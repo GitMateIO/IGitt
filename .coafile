@@ -1,0 +1,10 @@
+[autopep8]
+files = **/*.py
+bears = PEP8Bear
+default_actions = PEP8Bear: ApplyPatchAction
+
+[python]
+files = **/*.py
+bears = PyImportSortBear, PyUnusedCodeBear, PyLintBear
+use_spaces = True
+pylint_disable = R0903

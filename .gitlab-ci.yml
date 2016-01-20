@@ -1,0 +1,7 @@
+image: sils1297/gm-build-cont
+
+run_tests:
+  script: python3 -m pytest
+
+check_code:
+  script: coala-json -S=autoapply=false
