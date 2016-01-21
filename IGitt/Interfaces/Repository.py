@@ -66,6 +66,16 @@ class Repository:
         """
         raise NotImplementedError
 
+    def delete_label(self, name: str):
+        """
+        Deletes a label.
+
+        :param name: The caption of the label to delete.
+        :raises ElementDoesntExistError: If the label doesn't exist.
+        :raises RuntimeError: If something goes wrong (network, auth...).
+        """
+        raise NotImplementedError
+
     def get_clone(self) -> (Repo, str):
         """
         Clones the repository into a temporary directory:
