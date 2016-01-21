@@ -2,9 +2,9 @@
 This contains the Issue implementation for GitHub.
 """
 
-from GitIt.GitHub import patch_data, post_data, query
-from GitIt.GitHub.GitHubComment import GitHubComment
-from GitIt.Interfaces.Issue import Issue
+from IGitt.GitHub import patch_data, post_data, query
+from IGitt.GitHub.GitHubComment import GitHubComment
+from IGitt.Interfaces.Issue import Issue
 
 
 class GitHubIssue(Issue):

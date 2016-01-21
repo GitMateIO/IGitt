@@ -3,7 +3,7 @@ This module contains the Issue abstraction class which provides properties and
 actions related to issues and bug reports.
 """
 
-from GitIt.Interfaces.Comment import Comment
+from IGitt.Interfaces.Comment import Comment
 
 
 class Issue:

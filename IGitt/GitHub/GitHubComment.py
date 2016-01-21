@@ -2,8 +2,8 @@
 Represents a comment on GitHub.
 """
 
-from GitIt.GitHub import delete_request, query
-from GitIt.Interfaces.Comment import Comment
+from IGitt.GitHub import delete_request, query
+from IGitt.Interfaces.Comment import Comment
 
 
 class GitHubComment(Comment):

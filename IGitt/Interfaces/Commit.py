@@ -2,7 +2,7 @@
 This module contains the actual commit object.
 """
 
-from GitIt.Interfaces.CommitStatus import CommitStatus, Status
+from IGitt.Interfaces.CommitStatus import CommitStatus, Status
 
 
 class Commit:

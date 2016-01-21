@@ -1,4 +1,4 @@
-GitIt
+IGitt
 =====
 
 This is a simple library that allows you to access various git hosting
