@@ -23,27 +23,6 @@ class Repository:
         """
         raise NotImplementedError
 
-    def get_commit(self, sha: str):
-        """
-        Retrieves the commit with the given SHA.
-
-        :return: A commit object.
-        :raises ElementDoesntExistError: If the commit doesn't exist.
-        :raises RuntimeError: If something goes wrong (network, auth...).
-        """
-        raise NotImplementedError
-
-    def get_pull_request(self, pr_number: int):
-        """
-        Retrieves the PR with the associated ID.
-
-        :param pr_number: The ID of the PR to retrieve.
-        :return: A PullRequest object.
-        :raises ElementDoesntExistError: If the PR doesn't exist.
-        :raises RuntimeError: If something goes wrong (network, auth...).
-        """
-        raise NotImplementedError
-
     def get_issue(self, issue_number: int):
         """
         Retrieves an issue.
