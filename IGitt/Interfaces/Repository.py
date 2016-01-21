@@ -131,15 +131,6 @@ class Repository:
         raise NotImplementedError
 
     @property
-    def access_key(self) -> str:
-        """
-        Retrieves the access key.
-
-        :return: A string, usually an OAuth token.
-        """
-        raise NotImplementedError
-
-    @property
     def clone_url(self) -> str:
         """
         Retrieves an url that can be used for cloning the repository.
