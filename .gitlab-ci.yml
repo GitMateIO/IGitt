@@ -5,3 +5,11 @@ run_tests:
 
 check_code:
   script: coala-json -S=autoapply=false
+
+release:
+  script:
+  - python .ci/adjust_version.py IGitt/VERSION -b `date --utc +%Y%m%d%H%M%S`
+  - python setup.py sdist bdist_wheel
+  - twine upload dist/* -u "$PYPIUSER" -p "$PYPIPW"
+  only:
+  - master
