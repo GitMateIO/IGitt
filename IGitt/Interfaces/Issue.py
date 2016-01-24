@@ -79,6 +79,15 @@ class Issue:
         """
         raise NotImplementedError
 
+    @property
+    def available_labels(self) -> {str}:
+        """
+        Compiles a set of labels that are available for labelling this issue.
+
+        :return: A set of label captions.
+        """
+        raise NotImplementedError
+
     def add_comment(self, body) -> Comment:
         """
         Adds a comment to the issue.

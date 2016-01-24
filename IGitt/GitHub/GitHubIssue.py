@@ -167,3 +167,19 @@ class GitHubIssue(Issue):
         :param value: A set of label texts.
         """
         self._data = patch_data(self._token, self._url, {'labels': list(value)})
+
+    @property
+    def available_labels(self):
+        """
+        Retrieves a set of captions that are available for labelling bugs.
+
+        >>> from os import environ
+        >>> issue = GitHubIssue(environ['GITHUB_TEST_TOKEN'],
+        ...                     'gitmate-test-user/test', 1)
+        >>> sorted(issue.available_labels)
+        ['a', 'b', 'c']
+
+        :return: A set of label captions (str).
+        """
+        return {label['name'] for label in query(
+            self._token, '/repos/' + self._repository + '/labels')}
