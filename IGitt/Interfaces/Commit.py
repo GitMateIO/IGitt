@@ -3,6 +3,7 @@ This module contains the actual commit object.
 """
 
 from IGitt.Interfaces.CommitStatus import CommitStatus, Status
+from IGitt.Interfaces.Repository import Repository
 
 
 class Commit:
@@ -133,7 +134,16 @@ class Commit:
         raise NotImplementedError
 
     @property
-    def repository(self):
+    def parent(self):
+        """
+        Retrieves the parent commit if possible.
+
+        :return: A Commit object.
+        """
+        raise NotImplementedError
+
+    @property
+    def repository(self) -> Repository:
         """
         Retrieves the repository that holds this commit.
 
