@@ -40,3 +40,12 @@ class MergeRequest:
         :return: A list of Commits.
         """
         raise NotImplementedError
+
+    @property
+    def repository(self):
+        """
+        Retrieves the repository where this PR is from.
+
+        :return: A Repository object.
+        """
+        raise NotImplementedError

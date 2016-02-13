@@ -73,3 +73,19 @@ class GitHubMergeRequest(MergeRequest):
         commits = query(self._token, self._url + '/commits')
         return [GitHubCommit(self._token, self._repository, commit['sha'])
                 for commit in commits]
+
+    @property
+    def repository(self):
+        """
+        Retrieves the repository where this comes from.
+
+        >>> from os import environ
+        >>> pr = GitHubMergeRequest(environ['GITHUB_TEST_TOKEN'],
+        ...                         'gitmate-test-user/test', 7)
+        >>> pr.repository.full_name
+        'gitmate-test-user/test'
+
+        :return: The repository object.
+        """
+        from .GitHubRepository import GitHubRepository
+        return GitHubRepository(self._token, self._repository)
