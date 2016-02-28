@@ -5,7 +5,7 @@ server.git.Interfaces.
 
 from json import loads
 
-from requests import delete, get, patch, post
+from requests import get
 
 HEADERS = {'User-Agent': 'GitMate'}
 
