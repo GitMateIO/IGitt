@@ -21,3 +21,14 @@ def query(token: str, url: str):
     return loads(get('https://gitlab.com/api/v3/' + url,
                      params={'private_token': token},
                      headers=HEADERS).text)
+
+
+def delete_request(token: str, url: str):
+    """
+    Sends a delete request to the given URL on Gitlab.
+
+    :param token: A private token.
+    :param url: The URL to access, e.g. ``/projects``.
+    """
+    delete('https://gitlab.com/api/v3/' + url, params={'private_token': token},
+           headers=HEADERS)
