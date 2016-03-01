@@ -5,7 +5,7 @@ server.git.Interfaces.
 
 from json import loads
 
-from requests import get
+from requests import get, post, delete
 
 HEADERS = {'User-Agent': 'GitMate'}
 
@@ -21,6 +21,20 @@ def query(token: str, url: str):
     return loads(get('https://gitlab.com/api/v3/' + url,
                      params={'private_token': token},
                      headers=HEADERS).text)
+
+
+def post_data(token: str, url: str, data: dict):
+    """
+    Posts the given data onto Gitlab.
+
+    :param token: A private token.
+    :param url: The URL to access, e.g. ``/projects``.
+    :param data: The data to post.
+    :return: The response as a dictionary.
+    """
+    return loads(post('https://gitlab.com/api/v3/' + url,
+                      params={'private_token': token}, headers=HEADERS,
+                      json=data).text)
 
 
 def delete_request(token: str, url: str):
