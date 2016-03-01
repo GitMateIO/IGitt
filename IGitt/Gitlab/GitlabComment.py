@@ -2,13 +2,14 @@
 Represents a note(comment) on  Gitlab.
 """
 
-from IGitt.Gitlab import delete_request, query
+from IGitt.Gitlab import query
 from IGitt.Interfaces.Comment import Comment
 
 
 class GitlabComment(Comment):
     """
-    Represents a note(comment) on Gitlab, mainly with a body and author - as the Gitlab api does not support deleting, we also can not.
+    Represents a note(comment) on Gitlab, mainly with a body and author
+    - as the Gitlab api does not support deleting, we also can not.
     """
 
     def __init__(self, private_token, projectID, issueID, note_id):
