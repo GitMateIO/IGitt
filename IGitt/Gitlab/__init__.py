@@ -37,6 +37,20 @@ def post_data(token: str, url: str, data: dict):
                       json=data).text)
 
 
+def patch_data(token: str, url: str, data: dict):
+    """
+    Patches the given data onto Gitlab.
+
+    :param token: A private token.
+    :param url: The URL to access, e.g. ``/projects``.
+    :param data: The data to post.
+    :return: The response as a dictionary.
+    """
+    return loads(patch('https://gitlab.com/api/v3/' + url,
+                       params={'private_token': token}, headers=HEADERS,
+                       json=data).text)
+
+
 def delete_request(token: str, url: str):
     """
     Sends a delete request to the given URL on Gitlab.
