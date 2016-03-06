@@ -49,3 +49,13 @@ class MergeRequest:
         :return: A Repository object.
         """
         raise NotImplementedError
+
+    @property
+    def issue(self):
+        """
+        Retrieves an Issue object representing issue capabilities of the merge
+        request.
+
+        :return: An Issue object.
+        """
+        raise NotImplementedError

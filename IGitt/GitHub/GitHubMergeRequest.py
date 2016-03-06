@@ -3,6 +3,7 @@ Contains a class representing the GitHub pull request.
 """
 from IGitt.GitHub import query
 from IGitt.GitHub.GitHubCommit import GitHubCommit
+from IGitt.GitHub.GitHubIssue import GitHubIssue
 from IGitt.Interfaces.MergeRequest import MergeRequest
 
 
@@ -89,3 +90,18 @@ class GitHubMergeRequest(MergeRequest):
         """
         from .GitHubRepository import GitHubRepository
         return GitHubRepository(self._token, self._repository)
+
+    @property
+    def issue(self):
+        """
+        Retrieves a GitHubIssue:
+
+        >>> from os import environ
+        >>> pr = GitHubMergeRequest(environ['GITHUB_TEST_TOKEN'],
+        ...                         'gitmate-test-user/test', 7)
+        >>> pr.issue.labels
+        set()
+
+        :return: The issue object.
+        """
+        return GitHubIssue(self._token, self._repository, self._number)
