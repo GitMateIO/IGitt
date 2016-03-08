@@ -37,6 +37,22 @@ def get_diff_index(patch, line_nr):
 
     >>> get_diff_index(patch, 8)
 
+    Sometimes GitHub misformats the patch like this:
+
+    >>> patch = ('@@ -464,11 +464,10 @@ def get_action_info(section, action):\n'
+    ...          ' line 464\n'
+    ...          ' line 465\n'
+    ...          ' line 466\n'
+    ...          '-line 467\n'
+    ...          '-line 468\n'
+    ...          '+line 467\n'
+    ...          '+line 468\n'
+    ...          ' line 469\n')
+    >>> get_diff_index(patch, 465)
+    2
+    >>> get_diff_index(patch, 467)
+    6
+
     :param patch: A list of lines of a unified diff.
     :param line_nr: The line number to identify.
     :return: The position in the Patch or None
@@ -49,7 +65,7 @@ def get_diff_index(patch, line_nr):
             continue
 
         if line.startswith("@@"):
-            values = line[line.find("-"):line.rfind(" ")]
+            values = line[line.find("-"):line.find(" @@", 3)]
             _, added = tuple(values.split(" "))
             current_line_added = int(added.split(",")[0][1:])
         elif line.startswith('+') or line.startswith(' '):
