@@ -26,7 +26,7 @@ def get(token: str, url: str):
                          headers=HEADERS).text)
 
 
-def post_data(token: str, url: str, data: dict):
+def post(token: str, url: str, data: dict):
     """
     Posts the given data onto GitHub.
 

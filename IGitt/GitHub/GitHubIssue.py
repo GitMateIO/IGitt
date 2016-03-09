@@ -2,7 +2,7 @@
 This contains the Issue implementation for GitHub.
 """
 
-from IGitt.GitHub import patch_data, post_data, get
+from IGitt.GitHub import patch_data, post, get
 from IGitt.GitHub.GitHubComment import GitHubComment
 from IGitt.Interfaces.Issue import Issue
 
@@ -130,7 +130,7 @@ class GitHubIssue(Issue):
         :param body: The body of the new comment to create.
         :return: The newly created comment.
         """
-        result = post_data(self._token, self._url + '/comments', {'body': body})
+        result = post(self._token, self._url + '/comments', {'body': body})
 
         return GitHubComment(self._token, self._repository, result['id'])
 

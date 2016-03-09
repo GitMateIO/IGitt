@@ -2,7 +2,7 @@
 Contains the abstraction for a commit in GitHub.
 """
 from IGitt import ElementDoesntExistError
-from IGitt.GitHub import post_data, get
+from IGitt.GitHub import post, get
 from IGitt.GitHub.GitHubRepository import GitHubRepository
 from IGitt.Interfaces.Commit import Commit
 from IGitt.Interfaces.CommitStatus import CommitStatus, Status
@@ -177,7 +177,7 @@ class GitHubCommit(Commit):
                 'target_url': status.url, 'description': status.description,
                 'context': status.context}
         status_url = '/repos/' + self._repository + '/statuses/' + self.sha
-        post_data(self._token, status_url, data)
+        post(self._token, status_url, data)
 
     def get_statuses(self) -> {CommitStatus}:
         """
@@ -275,4 +275,4 @@ class GitHubCommit(Commit):
             except ElementDoesntExistError:
                 pass  # Fallback to comment below the file
 
-        post_data(self._token, self._url + '/comments', data)
+        post(self._token, self._url + '/comments', data)

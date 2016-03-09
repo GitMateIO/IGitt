@@ -3,7 +3,7 @@ Contains the GitHub Repository implementation.
 """
 
 from IGitt import ElementAlreadyExistsError, ElementDoesntExistError
-from IGitt.GitHub import delete_request, post_data, get
+from IGitt.GitHub import delete_request, post, get
 from IGitt.GitHub.GitHubIssue import GitHubIssue
 from IGitt.Interfaces.Repository import Repository
 
@@ -106,8 +106,8 @@ class GitHubRepository(Repository):
         if name in self.get_labels():
             raise ElementAlreadyExistsError(name + " already exists.")
 
-        post_data(self._token, self._url + '/labels',
-                  {'name': name, 'color': color.lstrip('#')})
+        post(self._token, self._url + '/labels',
+             {'name': name, 'color': color.lstrip('#')})
 
     def delete_label(self, name: str):
         """
@@ -177,6 +177,6 @@ class GitHubRepository(Repository):
         :param url: The URL to fire the webhook to.
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
-        post_data(self._token, self._url + '/hooks',
-                  {'name': 'web', 'active': True, 'events': ['*'],
+        post(self._token, self._url + '/hooks',
+             {'name': 'web', 'active': True, 'events': ['*'],
                    'config': {'url': url, "content_type": 'json'}})
