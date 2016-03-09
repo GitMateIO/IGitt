@@ -1,5 +1,5 @@
 [default]
-ignore = .ci/**
+ignore = .ci/**, build/**
 
 [autopep8]
 files = **/*.py
