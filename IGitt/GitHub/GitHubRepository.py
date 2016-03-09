@@ -3,7 +3,7 @@ Contains the GitHub Repository implementation.
 """
 
 from IGitt import ElementAlreadyExistsError, ElementDoesntExistError
-from IGitt.GitHub import delete, post, get
+from IGitt.GitHub import delete, get, post
 from IGitt.GitHub.GitHubIssue import GitHubIssue
 from IGitt.Interfaces.Repository import Repository
 
@@ -179,4 +179,4 @@ class GitHubRepository(Repository):
         """
         post(self._token, self._url + '/hooks',
              {'name': 'web', 'active': True, 'events': ['*'],
-                   'config': {'url': url, "content_type": 'json'}})
+              'config': {'url': url, "content_type": 'json'}})

@@ -2,7 +2,7 @@
 This contains the Issue implementation for GitHub.
 """
 
-from IGitt.GitHub import patch, post, get
+from IGitt.GitHub import get, patch, post
 from IGitt.GitHub.GitHubComment import GitHubComment
 from IGitt.Interfaces.Issue import Issue
 

@@ -5,8 +5,8 @@ server.git.Interfaces.
 
 from json import loads
 
-from requests import get as raw_get
 from requests import delete as raw_delete
+from requests import get as raw_get
 from requests import patch as raw_patch
 from requests import post as raw_post
 

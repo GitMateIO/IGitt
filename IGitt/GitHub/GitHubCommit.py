@@ -2,7 +2,7 @@
 Contains the abstraction for a commit in GitHub.
 """
 from IGitt import ElementDoesntExistError
-from IGitt.GitHub import post, get
+from IGitt.GitHub import get, post
 from IGitt.GitHub.GitHubRepository import GitHubRepository
 from IGitt.Interfaces.Commit import Commit
 from IGitt.Interfaces.CommitStatus import CommitStatus, Status
