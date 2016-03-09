@@ -34,3 +34,19 @@ class GitHub(Hoster):
         repo_list = query(self._token, '/user/repos')
         return {repo['full_name']
                 for repo in repo_list if repo['permissions']['admin']}
+
+    @property
+    def write_repositories(self):
+        """
+        Retrieves the full names of repositories this user can write to.
+
+        >>> from os import environ
+        >>> github = GitHub(environ['GITHUB_TEST_TOKEN'])
+        >>> sorted(github.write_repositories)
+        ['gitmate-test-user/test', 'sils1297/gitmate-test']
+
+        :return: A set of strings.
+        """
+        repo_list = query(self._token, '/user/repos')
+        return {repo['full_name']
+                for repo in repo_list if repo['permissions']['push']}

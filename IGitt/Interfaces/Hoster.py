@@ -16,3 +16,12 @@ class Hoster:
         :return: A set of strings.
         """
         raise NotImplementedError
+
+    @property
+    def write_repositories(self):
+        """
+        Retrieves the full names of repositories this user can write to.
+
+        :return: A set of strings.
+        """
+        raise NotImplementedError
