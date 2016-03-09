@@ -2,7 +2,7 @@
 This contains the Issue implementation for GitHub.
 """
 
-from IGitt.GitHub import patch_data, post, get
+from IGitt.GitHub import patch, post, get
 from IGitt.GitHub.GitHubComment import GitHubComment
 from IGitt.Interfaces.Issue import Issue
 
@@ -57,7 +57,7 @@ class GitHubIssue(Issue):
 
         :param new_title: The new title.
         """
-        self._data = patch_data(self._token, self._url, {'title': new_title})
+        self._data = patch(self._token, self._url, {'title': new_title})
 
     @property
     def number(self) -> int:
@@ -166,7 +166,7 @@ class GitHubIssue(Issue):
 
         :param value: A set of label texts.
         """
-        self._data = patch_data(self._token, self._url, {'labels': list(value)})
+        self._data = patch(self._token, self._url, {'labels': list(value)})
 
     @property
     def available_labels(self):

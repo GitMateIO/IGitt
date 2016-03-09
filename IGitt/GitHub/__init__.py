@@ -40,7 +40,7 @@ def post(token: str, url: str, data: dict):
                           json=data).text)
 
 
-def patch_data(token: str, url: str, data: dict):
+def patch(token: str, url: str, data: dict):
     """
     Patches the given data onto GitHub.
 
