@@ -2,7 +2,7 @@
 Represents a comment on GitHub.
 """
 
-from IGitt.GitHub import delete_request, get
+from IGitt.GitHub import delete, get
 from IGitt.Interfaces.Comment import Comment
 
 
@@ -59,4 +59,4 @@ class GitHubComment(Comment):
         """
         Deletes the comment.
         """
-        delete_request(self._token, self._url)
+        delete(self._token, self._url)

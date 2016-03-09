@@ -3,7 +3,7 @@ Contains the GitHub Repository implementation.
 """
 
 from IGitt import ElementAlreadyExistsError, ElementDoesntExistError
-from IGitt.GitHub import delete_request, post, get
+from IGitt.GitHub import delete, post, get
 from IGitt.GitHub.GitHubIssue import GitHubIssue
 from IGitt.Interfaces.Repository import Repository
 
@@ -146,7 +146,7 @@ class GitHubRepository(Repository):
         if name not in self.get_labels():
             raise ElementDoesntExistError(name + " doesnt exist.")
 
-        delete_request(self._token, self._url + '/labels/' + name)
+        delete(self._token, self._url + '/labels/' + name)
 
     def get_issue(self, issue_number: int):
         """

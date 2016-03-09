@@ -54,7 +54,7 @@ def patch(token: str, url: str, data: dict):
                            json=data).text)
 
 
-def delete_request(token: str, url: str):
+def delete(token: str, url: str):
     """
     Sends a delete request to the given URL on GitHub.
 
