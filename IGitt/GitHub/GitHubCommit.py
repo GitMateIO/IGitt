@@ -37,7 +37,8 @@ def get_diff_index(patch, line_nr):
 
     >>> get_diff_index(patch, 8)
 
-    Sometimes GitHub misformats the patch like this:
+    Sometimes patches contain the function and shall still be interpreted
+    correctly:
 
     >>> patch = ('@@ -464,11 +464,10 @@ def get_action_info(section, action):\n'
     ...          ' line 464\n'
