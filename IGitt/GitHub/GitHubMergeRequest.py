@@ -1,7 +1,7 @@
 """
 Contains a class representing the GitHub pull request.
 """
-from IGitt.GitHub import query
+from IGitt.GitHub import get
 from IGitt.GitHub.GitHubCommit import GitHubCommit
 from IGitt.GitHub.GitHubIssue import GitHubIssue
 from IGitt.Interfaces.MergeRequest import MergeRequest
@@ -24,7 +24,7 @@ class GitHubMergeRequest(MergeRequest):
         self._repository = repository
         self._number = pr_number
         self._url = '/repos/' + repository + '/pulls/' + str(pr_number)
-        self._data = query(self._token, self._url)
+        self._data = get(self._token, self._url)
 
     @property
     def base(self):
@@ -71,7 +71,7 @@ class GitHubMergeRequest(MergeRequest):
 
         :return: A list of commit objects.
         """
-        commits = query(self._token, self._url + '/commits')
+        commits = get(self._token, self._url + '/commits')
         return [GitHubCommit(self._token, self._repository, commit['sha'])
                 for commit in commits]
 

@@ -2,7 +2,7 @@
 This contains the Issue implementation for GitHub.
 """
 
-from IGitt.GitHub import patch_data, post_data, query
+from IGitt.GitHub import patch_data, post_data, get
 from IGitt.GitHub.GitHubComment import GitHubComment
 from IGitt.Interfaces.Issue import Issue
 
@@ -25,7 +25,7 @@ class GitHubIssue(Issue):
         self._token = oauth_token
         self._repository = repository
         self._url = '/repos/'+repository+'/issues/'+str(issue_number)
-        self._data = query(self._token, self._url)
+        self._data = get(self._token, self._url)
 
     @property
     def title(self):
@@ -181,5 +181,5 @@ class GitHubIssue(Issue):
 
         :return: A set of label captions (str).
         """
-        return {label['name'] for label in query(
+        return {label['name'] for label in get(
             self._token, '/repos/' + self._repository + '/labels')}

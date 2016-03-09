@@ -2,7 +2,7 @@
 Contains the Hoster implementation for GitHub.
 """
 
-from IGitt.GitHub import query
+from IGitt.GitHub import get
 from IGitt.Interfaces.Hoster import Hoster
 
 
@@ -31,7 +31,7 @@ class GitHub(Hoster):
 
         :return: A set of full repository names.
         """
-        repo_list = query(self._token, '/user/repos')
+        repo_list = get(self._token, '/user/repos')
         return {repo['full_name']
                 for repo in repo_list if repo['permissions']['admin']}
 
@@ -47,6 +47,6 @@ class GitHub(Hoster):
 
         :return: A set of strings.
         """
-        repo_list = query(self._token, '/user/repos')
+        repo_list = get(self._token, '/user/repos')
         return {repo['full_name']
                 for repo in repo_list if repo['permissions']['push']}

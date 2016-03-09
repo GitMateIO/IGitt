@@ -13,7 +13,7 @@ from requests import post as raw_post
 HEADERS = {'User-Agent': 'GitMate'}
 
 
-def query(token: str, url: str):
+def get(token: str, url: str):
     """
     Queries GitHub on the given URL for data.
 

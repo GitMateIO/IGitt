@@ -3,7 +3,7 @@ Contains the GitHub Repository implementation.
 """
 
 from IGitt import ElementAlreadyExistsError, ElementDoesntExistError
-from IGitt.GitHub import delete_request, post_data, query
+from IGitt.GitHub import delete_request, post_data, get
 from IGitt.GitHub.GitHubIssue import GitHubIssue
 from IGitt.Interfaces.Repository import Repository
 
@@ -24,7 +24,7 @@ class GitHubRepository(Repository):
         self._token = oauth_token
         self._repository = repository
         self._url = '/repos/'+repository
-        self._data = query(self._token, self._url)
+        self._data = get(self._token, self._url)
 
     @property
     def hoster(self):
@@ -78,7 +78,7 @@ class GitHubRepository(Repository):
         :return: A set of strings containing the label captions.
         """
         return {label['name']
-                for label in query(self._token, self._url + '/labels')}
+                for label in get(self._token, self._url + '/labels')}
 
     def create_label(self, name: str, color: str):
         """

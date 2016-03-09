@@ -2,7 +2,7 @@
 Contains the abstraction for a commit in GitHub.
 """
 from IGitt import ElementDoesntExistError
-from IGitt.GitHub import post_data, query
+from IGitt.GitHub import post_data, get
 from IGitt.GitHub.GitHubRepository import GitHubRepository
 from IGitt.Interfaces.Commit import Commit
 from IGitt.Interfaces.CommitStatus import CommitStatus, Status
@@ -97,7 +97,7 @@ class GitHubCommit(Commit):
         self._repository = repository
         self._sha = sha
         self._url = '/repos/' + repository + '/commits/' + sha
-        self._data = query(self._token, self._url)
+        self._data = get(self._token, self._url)
 
     @property
     def sha(self):
@@ -187,7 +187,7 @@ class GitHubCommit(Commit):
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
         url = self._url + '/statuses'
-        statuses = query(self._token, url)
+        statuses = get(self._token, url)
 
         # Only the first of each context is the one we want
         result = set()

@@ -2,7 +2,7 @@
 Represents a comment on GitHub.
 """
 
-from IGitt.GitHub import delete_request, query
+from IGitt.GitHub import delete_request, get
 from IGitt.Interfaces.Comment import Comment
 
 
@@ -23,7 +23,7 @@ class GitHubComment(Comment):
         self._token = oauth_token
         self._url = '/repos/'+repository+'/issues/comments/'+str(comment_id)
 
-        self._data = query(self._token, self._url)
+        self._data = get(self._token, self._url)
 
     @property
     def body(self):
