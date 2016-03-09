@@ -5,7 +5,10 @@ server.git.Interfaces.
 
 from json import loads
 
-from requests import delete, get, patch, post
+from requests import get as raw_get
+from requests import delete as raw_delete
+from requests import patch as raw_patch
+from requests import post as raw_post
 
 HEADERS = {'User-Agent': 'GitMate'}
 
@@ -18,9 +21,9 @@ def query(token: str, url: str):
     :param url: E.g. ``/repo``
     :return: A dictionary with the data.
     """
-    return loads(get('https://api.github.com' + url,
-                     params={'access_token': token},
-                     headers=HEADERS).text)
+    return loads(raw_get('https://api.github.com' + url,
+                         params={'access_token': token},
+                         headers=HEADERS).text)
 
 
 def post_data(token: str, url: str, data: dict):
@@ -32,9 +35,9 @@ def post_data(token: str, url: str, data: dict):
     :param data: The data to post.
     :return: The response as a dictionary.
     """
-    return loads(post('https://api.github.com' + url,
-                      params={'access_token': token}, headers=HEADERS,
-                      json=data).text)
+    return loads(raw_post('https://api.github.com' + url,
+                          params={'access_token': token}, headers=HEADERS,
+                          json=data).text)
 
 
 def patch_data(token: str, url: str, data: dict):
@@ -46,9 +49,9 @@ def patch_data(token: str, url: str, data: dict):
     :param data: The data to post.
     :return: The response as a dictionary.
     """
-    return loads(patch('https://api.github.com' + url,
-                       params={'access_token': token}, headers=HEADERS,
-                       json=data).text)
+    return loads(raw_patch('https://api.github.com' + url,
+                           params={'access_token': token}, headers=HEADERS,
+                           json=data).text)
 
 
 def delete_request(token: str, url: str):
@@ -58,5 +61,5 @@ def delete_request(token: str, url: str):
     :param token: An OAuth token.
     :param url: The URL to access, e.g. ``/repo``.
     """
-    delete('https://api.github.com' + url, params={'access_token': token},
-           headers=HEADERS)
+    raw_delete('https://api.github.com' + url, params={'access_token': token},
+               headers=HEADERS)
