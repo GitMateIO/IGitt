@@ -55,15 +55,16 @@ class GitHubRepository(Repository):
         """
         Retrieves the URL of the repository.
 
-        >>> from os import environ
-        >>> repo = GitHubRepository(environ['GITHUB_TEST_TOKEN'],
+        >>> from os import environ as env
+        >>> repo = GitHubRepository(env['GITHUB_TEST_TOKEN'],
         ...                         'gitmate-test-user/test')
-        >>> repo.clone_url
-        'https://github.com/gitmate-test-user/test.git'
+        >>> expected = 'https://{}@github.com/gitmate-test-user/test.git'
+        >>> assert repo.clone_url == expected.format(env['GITHUB_TEST_TOKEN'])
 
         :return: A URL that can be used to clone the repository with Git.
         """
-        return self._data['clone_url']
+        return self._data['clone_url'].replace(
+            'github.com', self._token + '@github.com', 1)
 
     def get_labels(self):
         """
