@@ -23,6 +23,15 @@ class Repository:
         """
         raise NotImplementedError
 
+    def delete_hook(self, url: str):
+        """
+        Deletes all webhooks to the given URL.
+
+        :param url: The URL to not fire the webhook to anymore.
+        :raises RuntimeError: If something goes wrong (network, auth...).
+        """
+        raise NotImplementedError
+
     def get_issue(self, issue_number: int):
         """
         Retrieves an issue.

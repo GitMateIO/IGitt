@@ -175,9 +175,26 @@ class GitHubRepository(Repository):
         ...                         'gitmate-test-user/test')
         >>> repo.register_hook("http://some.url/in/the/world")
 
+        To delete it simply run:
+
+        >>> repo.delete_hook("http://some.url/in/the/world")
+
         :param url: The URL to fire the webhook to.
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
         post(self._token, self._url + '/hooks',
              {'name': 'web', 'active': True, 'events': ['*'],
               'config': {'url': url, "content_type": 'json'}})
+
+    def delete_hook(self, url: str):
+        """
+        Deletes all webhooks to the given URL.
+
+        :param url: The URL to not fire the webhook to anymore.
+        :raises RuntimeError: If something goes wrong (network, auth...).
+        """
+        hook_url = self._url + '/hooks'
+        hooks = get(self._token, hook_url)
+        for hook in hooks:
+            if hook['config']['url'] == url:
+                delete(self._token, hook_url + '/' + str(hook['id']))
