@@ -224,7 +224,7 @@ class GitHubCommit(Commit):
         :raises ElementDoesntExistError: If the given filename doesn't exist.
         """
         for file in self._data['files']:
-            if file['filename'] == filename:
+            if file['filename'] == filename and 'patch' in file:
                 return file['patch']
 
         raise ElementDoesntExistError('The file does not exist.')
