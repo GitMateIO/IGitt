@@ -21,7 +21,7 @@ class GitlabComment(Comment):
         :param comment_id: The id of the comment.
         """
         self._token = private_token
-        self._url = 'projects/'+str(projectID) +\
+        self._url = '/projects/'+str(projectID) +\
             '/issues/'+str(issueID)+'/notes/'+str(note_id)
 
         self._data = get(self._token, self._url)
