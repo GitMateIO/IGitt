@@ -2,7 +2,7 @@
 Contains the Hoster implementation for Gitlab.
 """
 
-from IGitt.Gitlab import query
+from IGitt.Gitlab import get
 from IGitt.Interfaces.Hoster import Hoster
 
 

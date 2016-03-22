@@ -2,7 +2,7 @@
 Represents a note(comment) on  Gitlab.
 """
 
-from IGitt.Gitlab import query
+from IGitt.Gitlab import get
 from IGitt.Interfaces.Comment import Comment
 
 
