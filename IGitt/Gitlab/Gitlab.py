@@ -46,6 +46,6 @@ class Gitlab(Hoster):
 
         :return: A set of strings.
         """
-        repo_list = get(self._token, '/user/repos')
+        repo_list = get(self._token, '/projects')
         return {repo['name_with_namespace'] for repo in repo_list
                 if repo['permissions']['project_access']['access_level'] >= 30}
