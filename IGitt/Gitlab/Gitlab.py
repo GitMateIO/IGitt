@@ -31,7 +31,7 @@ class Gitlab(Hoster):
 
         :return: A set of full repository names.
         """
-        repo_list = query(self._token, 'projects/owned')
+        repo_list = get(self._token, 'projects/owned')
         return {repo['name_with_namespace'] for repo in repo_list}
 
     @property
