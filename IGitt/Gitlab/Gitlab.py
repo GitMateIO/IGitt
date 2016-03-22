@@ -33,3 +33,19 @@ class Gitlab(Hoster):
         """
         repo_list = query(self._token, 'projects/owned')
         return {repo['name_with_namespace'] for repo in repo_list}
+
+    @property
+    def write_repositories(self):
+        """
+        Retrieves the full names of repositories this user can write to.
+
+        >>> from os import environ
+        >>> gitlab = Gitlab(environ['GITLAB_TEST_TOKEN'])
+        >>> sorted(gitlab.write_repositories)
+        ['GitMate / someTest', 'Max Scholz / IGitt']
+
+        :return: A set of strings.
+        """
+        repo_list = get(self._token, '/user/repos')
+        return {repo['name_with_namespace'] for repo in repo_list
+                if repo['permissions']['project_access']['access_level'] >= 30}
