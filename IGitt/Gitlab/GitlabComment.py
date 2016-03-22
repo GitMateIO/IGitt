@@ -24,7 +24,7 @@ class GitlabComment(Comment):
         self._url = 'projects/'+str(projectID) +\
             '/issues/'+str(issueID)+'/notes/'+str(note_id)
 
-        self._data = query(self._token, self._url)
+        self._data = get(self._token, self._url)
 
     @property
     def body(self):
