@@ -91,14 +91,16 @@ class Commit:
         self.set_status(status)
 
     def comment(self, message: str, file: (str, None)=None,
-                line: (int, None)=None):
+                line: (int, None)=None, mr_number: int=None):
         """
         Puts a comment on the new version of the given line. If the file or
         line is None, the comment will be placed at the bottom of the commit.
 
-        :param message: The message to comment.
-        :param file:    Filename or None
-        :param line:    Line number or None
+        :param message:   The message to comment.
+        :param file:      Filename or None
+        :param line:      Line number or None
+        :param mr_number: The number of a merge request if this should end up in
+                          the review UI of the merge request.
 
         :raises RuntimeError: If something goes wrong (network, auth...).
         """

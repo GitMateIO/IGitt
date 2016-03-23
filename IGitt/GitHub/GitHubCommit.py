@@ -230,7 +230,7 @@ class GitHubCommit(Commit):
         raise ElementDoesntExistError('The file does not exist.')
 
     def comment(self, message: str, file: (str, None)=None,
-                line: (int, None)=None):
+                line: (int, None)=None, mr_number: int=None):
         """
         Places a comment on the commit.
 
@@ -249,8 +249,15 @@ class GitHubCommit(Commit):
         >>> commit.comment("Here in line 4, there's a spelling mistake!",
         ...                'README.md', 4)
 
+        If you supply the ``pr_number`` argument, the comment will appear in the
+        review UI of that pull request:
+
+        >>> commit.comment("Here in line 4, there's a spelling mistake!",
+        ...                'README.md', 4, mr_number=6)
+
         Beat that! Of course, there's a lot of error handling. If you give the
-        wrong file, the comment will appear below the commit:
+        wrong file, the comment will appear below the commit with a note about
+        the commit, file and line:
 
         >>> commit.comment("Oh, this'll end up below!!", 'READMENOT.md', 4)
 
@@ -259,9 +266,16 @@ class GitHubCommit(Commit):
 
         >>> commit.comment("Oh, this'll too end up below!!", 'README.md', 8)
 
+        If you give a pull request, the comment will appear on the PR instead:
+
+        >>> commit.comment("Oh, this'll too end up on the PR.",
+        ...                'README.md', 8, mr_number=6)
+
         :param message: The body of the comment.
         :param file: The file to place the comment, relative to repository root.
         :param line: The line in the file in the comment or None.
+        :param mr_number: The number of a merge request if this should end up in
+                          the review UI of the merge request.
         """
         data = {'body': message}
 
@@ -275,4 +289,20 @@ class GitHubCommit(Commit):
             except ElementDoesntExistError:
                 pass  # Fallback to comment below the file
 
-        post(self._token, self._url + '/comments', data)
+        if 'position' not in data:
+            file_str = "" if file is None else ", file " + file
+            line_str = "" if line is None else ", line " + str(line)
+            data['body'] = ("Comment on " + self.sha + file_str + line_str +
+                            ".\n\n" + data['body'])
+
+        if mr_number is None:
+            post(self._token, self._url + '/comments', data)
+        elif 'position' in data:
+            data['commit_id'] = self.sha
+            post(self._token,
+                 '/repos/' + self._repository + "/pulls/" + str(mr_number) +
+                 "/comments", data)
+        else:  # Position not available, pr number available, comment on PR
+            post(self._token,
+                 '/repos/' + self._repository + "/issues/" + str(mr_number) +
+                 "/comments", data)
