@@ -15,7 +15,7 @@ class GitHubRepository(Repository):
 
     def __init__(self, oauth_token: str, repository: str):
         """
-        Creates a new GitHubRepository object with the given credentials.
+        Creates a new GitHub Repository object with the given credentials.
 
         :param oauth_token: The OAuth token.
         :param repository: The full name of the repository,
