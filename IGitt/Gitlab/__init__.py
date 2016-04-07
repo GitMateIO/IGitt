@@ -28,7 +28,8 @@ def _fetch_all(req_type: str, token: str, url: str, data: dict=None):
         'get': req.get,
         'post': req.post,
         'patch': req.patch,
-        'delete': req.delete}
+        'delete': req.delete,
+        'put': req.put}
     params = {'private_token': token}
     req.params.update(params)
     req.headers.update(HEADERS)
@@ -92,3 +93,15 @@ def delete(token: str, url: str):
     :param url: The URL to access, e.g. ``/projects``.
     """
     _ = _fetch_all('delete', token, url)
+
+
+def put(token: str, url: str, data: dict):
+    """
+    Puts the given data onto Gitlab.
+
+    :param token: A private token.
+    :param url: The URL to access, e.g. ``/projects``.
+    :param data: The data to post.
+    :return: The response as a dictionary.
+    """
+    return _fetch_all('put', token, url, data)
