@@ -122,7 +122,8 @@ class GitlabIssue(Issue):
 
         >>> comment.body
         'Doh!'
-        >>> comment.delete()
+
+        comment.delete() can't test this as the Gitlab api does not support it
 
         The comment will be created by the user authenticated via the oauth
         token.
