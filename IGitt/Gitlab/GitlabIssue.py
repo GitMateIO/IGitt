@@ -2,7 +2,7 @@
 This contains the Issue implementation for Gitlab.
 """
 
-from IGitt.Gitlab import get, patch, post
+from IGitt.Gitlab import get, patch, post, put
 from IGitt.Gitlab.GitlabComment import GitlabComment
 from IGitt.Interfaces.Issue import Issue
 
@@ -33,9 +33,10 @@ class GitlabIssue(Issue):
 
         >>> from os import environ
         >>> issue = GitlabIssue(environ['GITLAB_TEST_TOKEN'],
-        ...                     'gitmate-test-user/test', 1)
+        ...                     915800, 1274759)
         >>> issue.title
-        'test issue'
+        'test issue title'
+
 
         You can simply set it using the property setter:
 
@@ -43,7 +44,7 @@ class GitlabIssue(Issue):
         >>> issue.title
         'dont panic'
 
-        >>> issue.title = 'test issue'
+        >>> issue.title = 'test issue title'
 
         :return: The title of the issue - as string.
         """
@@ -56,20 +57,20 @@ class GitlabIssue(Issue):
 
         :param new_title: The new title.
         """
-        self._data = patch(self._token, self._url, {'title': new_title})
+        self._data = put(self._token, self._url, {'title': new_title})
 
     @property
     def number(self) -> int:
         """
-        Returns the issue "number" or id.
+        Returns the issue id.
 
         >>> from os import environ
         >>> issue = GitlabIssue(environ['GITLAB_TEST_TOKEN'],
-        ...                     'gitmate-test-user/test', 1)
-        >>> issue.number
-        1
+        ...                     915800, 1274759)
+        >>> issue.id
+        1274759
 
-        :return: The number of the issue.
+        :return: The id of the issue.
         """
         return self._data['id']
 
@@ -80,12 +81,12 @@ class GitlabIssue(Issue):
 
         >>> from os import environ
         >>> issue = GitlabIssue(environ['GITLAB_TEST_TOKEN'],
-        ...                     'gitmate-test-user/test', 1)
+        ...                     915800, 1274759)
         >>> issue.assignee
-        'gitmate-test-user'
+        'GitMateTest'
 
         >>> issue = GitlabIssue(environ['GITLAB_TEST_TOKEN'],
-        ...                     'gitmate-test-user/test', 2)
+        ...                     915800, 1455638,)
         >>> issue.assignee  # Returns None, unassigned
 
         :return: A string containing the username or None.
@@ -100,9 +101,9 @@ class GitlabIssue(Issue):
 
         >>> from os import environ
         >>> issue = GitlabIssue(environ['GITLAB_TEST_TOKEN'],
-        ...                     'gitmate-test-user/test', 1)
+        ...                     915800, 1274759)
         >>> issue.description
-        'A nice description!'
+        'some text issue text'
 
         :return: A string containing the main description of the issue.
         """
@@ -114,7 +115,7 @@ class GitlabIssue(Issue):
 
         >>> from os import environ
         >>> issue = GitlabIssue(environ['GITLAB_TEST_TOKEN'],
-        ...                     'gitmate-test-user/test', 3)
+        ...                     915800, 1274759)
         >>> comment = issue.add_comment("Doh!")
 
         You can use the comment right after:
@@ -141,15 +142,15 @@ class GitlabIssue(Issue):
 
         >>> from os import environ
         >>> issue = GitlabIssue(environ['GITLAB_TEST_TOKEN'],
-        ...                     'gitmate-test-user/test', 1)
+        ...                     915800, 1274759)
         >>> issue.labels
         set()
 
         Use the property setter to set the labels:
 
-        >>> issue.labels = {'a', 'b', 'c'}
+        >>> issue.labels = {'test label 1', 'test label 2'}
         >>> sorted(issue.labels)
-        ['a', 'b', 'c']
+        ['test label 1', 'test label 2']
 
         Use the empty set intuitively to clear all labels:
 
@@ -166,7 +167,7 @@ class GitlabIssue(Issue):
 
         :param value: A set of label texts.
         """
-        self._data = patch(self._token, self._url, {'labels': list(value)})
+        self._data = put(self._token, self._url, {'labels': list(value)})
 
     @property
     def available_labels(self):
@@ -175,9 +176,9 @@ class GitlabIssue(Issue):
 
         >>> from os import environ
         >>> issue = GitlabIssue(environ['GITLAB_TEST_TOKEN'],
-        ...                     'gitmate-test-user/test', 1)
+        ...                     915800, 1274759)
         >>> sorted(issue.available_labels)
-        ['a', 'b', 'c']
+        ['test label 1', 'test label 2']
 
         :return: A set of label captions (str).
         """
