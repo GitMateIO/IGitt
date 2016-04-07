@@ -131,8 +131,8 @@ class GitlabIssue(Issue):
         """
         result = post(self._token, self._url + '/notes', {'body': body})
 
-        # TODO parameter mit comment abgleichen
-        return GitlabComment(self._token, self._project, result['id'])
+        return GitlabComment(
+            self._token, self._project, self._data['id'], result['id'])
 
     @property
     def labels(self):
