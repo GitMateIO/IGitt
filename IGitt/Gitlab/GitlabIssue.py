@@ -2,7 +2,7 @@
 This contains the Issue implementation for Gitlab.
 """
 
-from IGitt.Gitlab import get, patch, post, put
+from IGitt.Gitlab import get, post, put
 from IGitt.Gitlab.GitlabComment import GitlabComment
 from IGitt.Interfaces.Issue import Issue
 
