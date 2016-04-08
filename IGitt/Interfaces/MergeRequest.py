@@ -59,3 +59,12 @@ class MergeRequest:
         :return: An Issue object.
         """
         raise NotImplementedError
+
+    @property
+    def affected_files(self):
+        """
+        Retrieves the affected files.
+
+        :return: A set of filenames relative to repo root.
+        """
+        raise NotImplementedError

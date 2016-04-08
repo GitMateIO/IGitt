@@ -105,3 +105,19 @@ class GitHubMergeRequest(MergeRequest):
         :return: The issue object.
         """
         return GitHubIssue(self._token, self._repository, self._number)
+
+    @property
+    def affected_files(self):
+        """
+        Retrieves affected files from a GitHub pull request.
+
+        >>> from os import environ
+        >>> pr = GitHubMergeRequest(environ['GITHUB_TEST_TOKEN'],
+        ...                         'gitmate-test-user/test', 7)
+        >>> pr.affected_files
+        {'README.md'}
+
+        :return: A set of filenames.
+        """
+        files = get(self._token, self._url + '/files')
+        return {file['filename'] for file in files}
