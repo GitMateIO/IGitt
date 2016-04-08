@@ -1,12 +1,15 @@
-image: sils1297/gm-build-cont
-
 run_tests:
+  image: sils1297/gm-build-cont
   script: python3 -m pytest
 
 check_code:
-  script: coala-json -S=autoapply=false
+  image: coala/base
+  script:
+  - pip install -r requirements.txt
+  - coala-ci
 
 release:
+  image: sils1297/gm-build-cont
   script:
   - python .ci/adjust_version.py IGitt/VERSION -b `date --utc +%Y%m%d%H%M%S`
   - python setup.py sdist bdist_wheel

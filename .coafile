@@ -8,6 +8,6 @@ default_actions = PEP8Bear: ApplyPatchAction
 
 [python]
 files = **/*.py
-bears = PyImportSortBear, PyUnusedCodeBear, PyLintBear
+bears = PyUnusedCodeBear, PyLintBear
 use_spaces = True
 pylint_disable = R0903, C0411
