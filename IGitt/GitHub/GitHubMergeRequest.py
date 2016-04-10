@@ -121,3 +121,18 @@ class GitHubMergeRequest(MergeRequest):
         """
         files = get(self._token, self._url + '/files')
         return {file['filename'] for file in files}
+
+    @property
+    def diffstat(self):
+        """
+        Gets additions and deletions of a merge request.
+
+        >>> from os import environ
+        >>> pr = GitHubMergeRequest(environ['GITHUB_TEST_TOKEN'],
+        ...                         'gitmate-test-user/test', 7)
+        >>> pr.diffstat
+        (2, 0)
+
+        :return: An (additions, deletions) tuple.
+        """
+        return self._data['additions'], self._data['deletions']

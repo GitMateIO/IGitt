@@ -68,3 +68,12 @@ class MergeRequest:
         :return: A set of filenames relative to repo root.
         """
         raise NotImplementedError
+
+    @property
+    def diffstat(self):
+        """
+        Gets additions and deletions of a merge request.
+
+        :return: An (additions, deletions) tuple.
+        """
+        raise NotImplementedError
