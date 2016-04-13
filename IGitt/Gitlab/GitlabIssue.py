@@ -67,7 +67,7 @@ class GitlabIssue(Issue):
         >>> from os import environ
         >>> issue = GitlabIssue(environ['GITLAB_TEST_TOKEN'],
         ...                     915800, 1274759)
-        >>> issue.id
+        >>> issue.number
         1274759
 
         :return: The id of the issue.
