@@ -176,7 +176,11 @@ class GitHubRepository(Repository):
         hook_url = self._url + '/hooks'
         hooks = get(self._token, hook_url)
 
-        return {hook['config']['url'] for hook in hooks}
+        # Use get since some hooks might not have a config - stupid github
+        results = {hook['config'].get('url') for hook in hooks}
+        results.discard(None)
+
+        return results
 
     def register_hook(self, url: str):
         """
