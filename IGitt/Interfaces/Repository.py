@@ -16,7 +16,8 @@ class Repository:
 
     def register_hook(self, url: str):
         """
-        Registers a webhook to the given URL.
+        Registers a webhook to the given URL. Should pass silently if the hook
+        already exists.
 
         :param url: The URL to fire the webhook to.
         :raises RuntimeError: If something goes wrong (network, auth...).
@@ -25,10 +26,20 @@ class Repository:
 
     def delete_hook(self, url: str):
         """
-        Deletes all webhooks to the given URL.
+        Deletes all webhooks to the given URL. (Does nothing if no such hook
+        exists.)
 
         :param url: The URL to not fire the webhook to anymore.
         :raises RuntimeError: If something goes wrong (network, auth...).
+        """
+        raise NotImplementedError
+
+    @property
+    def hooks(self) -> {str}:
+        """
+        Retrieves all URLs this repository is hooked to.
+
+        :return: Set of URLs (str).
         """
         raise NotImplementedError
 

@@ -166,6 +166,18 @@ class GitHubRepository(Repository):
         """
         return GitHubIssue(self._token, self.full_name, issue_number)
 
+    @property
+    def hooks(self):
+        """
+        Retrieves all URLs this repository is hooked to.
+
+        :return: Set of URLs (str).
+        """
+        hook_url = self._url + '/hooks'
+        hooks = get(self._token, hook_url)
+
+        return {hook['config']['url'] for hook in hooks}
+
     def register_hook(self, url: str):
         """
         Registers a webhook to the given URL. Use it as simple as:
@@ -175,6 +187,10 @@ class GitHubRepository(Repository):
         ...                         'gitmate-test-user/test')
         >>> repo.register_hook("http://some.url/in/the/world")
 
+        It does nothing if the hook is already there:
+
+        >>> repo.register_hook("http://some.url/in/the/world")
+
         To delete it simply run:
 
         >>> repo.delete_hook("http://some.url/in/the/world")
@@ -182,6 +198,9 @@ class GitHubRepository(Repository):
         :param url: The URL to fire the webhook to.
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
+        if url in self.hooks:
+            return
+
         post(self._token, self._url + '/hooks',
              {'name': 'web', 'active': True, 'events': ['*'],
               'config': {'url': url, "content_type": 'json'}})
@@ -195,6 +214,8 @@ class GitHubRepository(Repository):
         """
         hook_url = self._url + '/hooks'
         hooks = get(self._token, hook_url)
+
+        # Do not use self.hooks since id of the hook is needed
         for hook in hooks:
             if hook['config']['url'] == url:
                 delete(self._token, hook_url + '/' + str(hook['id']))
