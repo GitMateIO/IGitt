@@ -217,5 +217,5 @@ class GitHubRepository(Repository):
 
         # Do not use self.hooks since id of the hook is needed
         for hook in hooks:
-            if hook['config']['url'] == url:
+            if hook['config'].get('url', None) == url:
                 delete(self._token, hook_url + '/' + str(hook['id']))
