@@ -19,7 +19,8 @@ def _fetch_all(req_type: str, token: str, url: str, data: dict=None):
     :param url  : E.g. ``/repo``
     :param data : The data to post. Used for Patch and Post methods only
     :return     : A dictionary or a list of dictionary if the response contains
-                  multiple items ( usually in case of pagination )
+                  multiple items (usually in case of pagination) and the HTTP
+                  status code.
     """
 
     data_container = []
@@ -37,16 +38,31 @@ def _fetch_all(req_type: str, token: str, url: str, data: dict=None):
 
     # Delete request returns no response
     if not len(resp.text):
-        return
+        return [], resp.status_code
     if isinstance(resp.json(), dict):
-        return resp.json()
+        return resp.json(), resp.status_code
     while resp.links.get('next', False):
         data_container.extend(resp.json())
         resp = fetch_method(resp.links.get('next')['url'], json=data)
 
     # Add the last node data
     data_container.extend(resp.json())
-    return data_container
+    return data_container, resp.status_code
+
+
+def error_checked_request(req_type: str, token: str, url: str, data: dict=None):
+    """
+    Performs the given request and checks the response for errors.
+
+    Any arguments are passed through to _fetch_all.
+
+    :raises RuntimeError: If the response indicates any problem.
+    """
+    response, code = _fetch_all(req_type, token, url, data)
+    if code >= 300:
+        raise RuntimeError(response, code)
+
+    return response
 
 
 def get(token: str, url: str):
@@ -56,8 +72,9 @@ def get(token: str, url: str):
     :param token: An OAuth token.
     :param url: E.g. ``/repo``
     :return: A dictionary with the data.
+    :raises RuntimeError: If the response indicates any problem.
     """
-    return _fetch_all('get', token, url)
+    return error_checked_request('get', token, url)
 
 
 def post(token: str, url: str, data: dict):
@@ -68,8 +85,9 @@ def post(token: str, url: str, data: dict):
     :param url: The URL to access, e.g. ``/repo``.
     :param data: The data to post.
     :return: The response as a dictionary.
+    :raises RuntimeError: If the response indicates any problem.
     """
-    return _fetch_all('post', token, url, data)
+    return error_checked_request('post', token, url, data)
 
 
 def patch(token: str, url: str, data: dict):
@@ -80,8 +98,9 @@ def patch(token: str, url: str, data: dict):
     :param url: The URL to access, e.g. ``/repo``.
     :param data: The data to post.
     :return: The response as a dictionary.
+    :raises RuntimeError: If the response indicates any problem.
     """
-    return _fetch_all('patch', token, url, data)
+    return error_checked_request('patch', token, url, data)
 
 
 def delete(token: str, url: str):
@@ -90,5 +109,6 @@ def delete(token: str, url: str):
 
     :param token: An OAuth token.
     :param url: The URL to access, e.g. ``/repo``.
+    :raises RuntimeError: If the response indicates any problem.
     """
-    _ = _fetch_all('delete', token, url)
+    _ = error_checked_request('delete', token, url)

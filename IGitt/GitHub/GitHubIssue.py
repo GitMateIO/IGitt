@@ -16,6 +16,14 @@ class GitHubIssue(Issue):
         """
         Creates a new GitHubIssue with the given credentials.
 
+        >>> from os import environ
+        >>> issue = GitHubIssue(environ['GITHUB_TEST_TOKEN'],
+        ...                     'gitmate-test-user/repo_that_doesnt_exist', 1)
+        ... # doctest: +IGNORE_EXCEPTION_DETAIL
+        Traceback (most recent call last):
+         ...
+        RuntimeError: ({'message': 'Not Found', ...}, 404)
+
         :param oauth_token: The OAuth token.
         :param repository: The full name of the repository,
                            e.g. ``sils1297/something``.
