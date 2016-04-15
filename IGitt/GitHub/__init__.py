@@ -4,12 +4,35 @@ server.git.Interfaces.
 """
 
 from requests import Session
+from functools import wraps
 
 HEADERS = {'User-Agent': 'GitMate'}
 BASE_URL = "https://api.github.com"
 
 
-def _fetch_all(req_type: str, token: str, url: str, data: dict=None):
+def error_checked_request(func):
+    """
+    Create an error check wrapper augmenting ``func`` to perform the given
+    request and check the response for errors.
+    """
+    @wraps(func)
+    def wrap_func(*args, **kwargs):
+        """
+        Perform the given request and checks the response for errors.
+        Any arguments are passed through to ``func``.
+
+        :raises RuntimeError: If the response indicates any problem.
+        """
+        response, code = func(*args, **kwargs)
+        if code >= 300:
+            raise RuntimeError(response, code)
+
+        return response
+    return wrap_func
+
+
+@error_checked_request
+def _fetch_all_github(req_type: str, token: str, url: str, data: dict=None):
     """
     Fetch all the contents by following
     the ``Link`` header.
@@ -50,21 +73,6 @@ def _fetch_all(req_type: str, token: str, url: str, data: dict=None):
     return data_container, resp.status_code
 
 
-def error_checked_request(req_type: str, token: str, url: str, data: dict=None):
-    """
-    Performs the given request and checks the response for errors.
-
-    Any arguments are passed through to _fetch_all.
-
-    :raises RuntimeError: If the response indicates any problem.
-    """
-    response, code = _fetch_all(req_type, token, url, data)
-    if code >= 300:
-        raise RuntimeError(response, code)
-
-    return response
-
-
 def get(token: str, url: str):
     """
     Queries GitHub on the given URL for data.
@@ -74,7 +82,7 @@ def get(token: str, url: str):
     :return: A dictionary with the data.
     :raises RuntimeError: If the response indicates any problem.
     """
-    return error_checked_request('get', token, url)
+    return _fetch_all_github('get', token, url)
 
 
 def post(token: str, url: str, data: dict):
@@ -87,7 +95,7 @@ def post(token: str, url: str, data: dict):
     :return: The response as a dictionary.
     :raises RuntimeError: If the response indicates any problem.
     """
-    return error_checked_request('post', token, url, data)
+    return _fetch_all_github('post', token, url, data)
 
 
 def patch(token: str, url: str, data: dict):
@@ -100,7 +108,7 @@ def patch(token: str, url: str, data: dict):
     :return: The response as a dictionary.
     :raises RuntimeError: If the response indicates any problem.
     """
-    return error_checked_request('patch', token, url, data)
+    return _fetch_all_github('patch', token, url, data)
 
 
 def delete(token: str, url: str):
@@ -111,4 +119,4 @@ def delete(token: str, url: str):
     :param url: The URL to access, e.g. ``/repo``.
     :raises RuntimeError: If the response indicates any problem.
     """
-    _ = error_checked_request('delete', token, url)
+    _ = _fetch_all_github('delete', token, url)
