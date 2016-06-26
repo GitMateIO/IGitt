@@ -45,7 +45,7 @@ class GitHubMergeRequest(MergeRequest):
     @property
     def head(self):
         """
-        Retrieves the head commit as a commit objet.
+        Retrieves the head commit as a commit object.
 
         >>> from os import environ
         >>> pr = GitHubMergeRequest(environ['GITHUB_TEST_TOKEN'],
