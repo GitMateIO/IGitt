@@ -223,3 +223,18 @@ class GitHubRepository(Repository):
         for hook in hooks:
             if hook['config'].get('url', None) == url:
                 delete(self._token, hook_url + '/' + str(hook['id']))
+
+    @property
+    def merge_requests(self) -> set:
+        """
+        Retrieves a set of merge request objects.
+
+        >>> from os import environ
+        >>> repo = GitHubRepository(environ['GITHUB_TEST_TOKEN'],
+        ...                         'gitmate-test-user/test')
+        >>> len(repo.merge_requests)
+        2
+        """
+        from IGitt.GitHub.GitHubMergeRequest import GitHubMergeRequest
+        return {GitHubMergeRequest(self._token, self.full_name, res['number'])
+                for res in get(self._token, self._url + '/pulls')}

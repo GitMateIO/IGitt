@@ -147,3 +147,10 @@ class Repository:
         :return: A string that can be used with ``git clone <url>`` as url.
         """
         raise NotImplementedError
+
+    @property
+    def merge_requests(self) -> set:
+        """
+        Retrieves a set of merge request objects.
+        """
+        raise NotImplementedError
