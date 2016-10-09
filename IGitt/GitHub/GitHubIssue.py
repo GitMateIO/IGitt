@@ -143,6 +143,26 @@ class GitHubIssue(Issue):
         return GitHubComment(self._token, self._repository, result['id'])
 
     @property
+    def comments(self):
+        """
+        Retrieves comments from the issue.
+
+        >>> from os import environ
+        >>> issue = GitHubIssue(environ['GITHUB_TEST_TOKEN'],
+        ...                     'gitmate-test-user/test', 9)
+        >>> comments = issue.comments
+
+        Now we can e.g. access the last comment:
+
+        >>> comments[-1].body
+        'Do not comment here.'
+
+        :return: A list of Comment objects.
+        """
+        return [GitHubComment(self._token, self._repository, result['id'])
+                for result in get(self._token, self._url + '/comments')]
+
+    @property
     def labels(self):
         """
         Retrieves all labels associated with this bug.

@@ -88,6 +88,15 @@ class Issue:
         """
         raise NotImplementedError
 
+    @property
+    def comments(self) -> [Comment]:
+        """
+        Retrieves a list of comments which are on the issue excliding the description.
+
+        :return: A list of Comment objects.
+        """
+        raise NotImplementedError
+
     def add_comment(self, body) -> Comment:
         """
         Adds a comment to the issue.
