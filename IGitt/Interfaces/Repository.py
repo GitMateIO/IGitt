@@ -81,7 +81,7 @@ class Repository:
 
         >>> test_repo = type(
         ...     'MockRepo', (Repository,),
-        ...     {'clone_url': 'https://github.com/sils1297/configurations'})
+        ...     {'clone_url': 'https://github.com/sils/configurations'})
         >>> repo, path = test_repo().get_clone()
 
         With this Repo object you can easily access the source code of the

@@ -19,7 +19,7 @@ class GitHubRepository(Repository):
 
         :param oauth_token: The OAuth token.
         :param repository: The full name of the repository,
-                           e.g. ``sils1297/something``.
+                           e.g. ``sils/something``.
         """
         self._token = oauth_token
         self._repository = repository
@@ -38,7 +38,7 @@ class GitHubRepository(Repository):
     @property
     def full_name(self):
         """
-        Retrieves the full name of the repository, e.g. "sils1297/something".
+        Retrieves the full name of the repository, e.g. "sils/something".
 
         >>> from os import environ
         >>> repo = GitHubRepository(environ['GITHUB_TEST_TOKEN'],

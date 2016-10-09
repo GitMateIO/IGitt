@@ -26,7 +26,7 @@ class GitHubIssue(Issue):
 
         :param oauth_token: The OAuth token.
         :param repository: The full name of the repository,
-                           e.g. ``sils1297/something``.
+                           e.g. ``sils/something``.
         :param issue_number: The issue number.
         :raises RuntimeError: If something goes wrong (network, auth, ...)
         """

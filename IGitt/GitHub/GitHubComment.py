@@ -49,7 +49,7 @@ class GitHubComment(Comment):
         >>> issue = GitHubComment(environ['GITHUB_TEST_TOKEN'],
         ...                      'gitmate-test-user/test', 172962077)
         >>> issue.author
-        'sils1297'
+        'sils'
 
         :return: A string containing the authors username.
         """

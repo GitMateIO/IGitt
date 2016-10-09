@@ -43,7 +43,7 @@ class GitHub(Hoster):
         >>> from os import environ
         >>> github = GitHub(environ['GITHUB_TEST_TOKEN'])
         >>> sorted(github.write_repositories)
-        ['gitmate-test-user/test', 'sils1297/gitmate-test']
+        ['gitmate-test-user/test', 'sils/gitmate-test']
 
         :return: A set of strings.
         """
