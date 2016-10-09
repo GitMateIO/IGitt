@@ -1,6 +1,7 @@
 """
 Represents a comment on GitHub.
 """
+from datetime import datetime
 
 from IGitt.GitHub import delete, get
 from IGitt.Interfaces.Comment import Comment
@@ -54,6 +55,34 @@ class GitHubComment(Comment):
         :return: A string containing the authors username.
         """
         return self._data['user']['login']
+
+    @property
+    def created(self) -> datetime:
+        """
+        Retrieves a timestamp on when the comment was created.
+
+        >>> from os import environ
+        >>> issue = GitHubComment(environ['GITHUB_TEST_TOKEN'],
+        ...                      'gitmate-test-user/test', 172962077)
+        >>> issue.created
+        datetime.datetime(2016, 1, 19, 19, 37, 53)
+        """
+        return datetime.strptime(self._data['created_at'],
+                                 "%Y-%m-%dT%H:%M:%SZ")
+
+    @property
+    def updated(self) -> datetime:
+        """
+        Retrieves a timestamp on when the comment was updated the last time.
+
+        >>> from os import environ
+        >>> issue = GitHubComment(environ['GITHUB_TEST_TOKEN'],
+        ...                      'gitmate-test-user/test', 172962077)
+        >>> issue.updated
+        datetime.datetime(2016, 10, 9, 11, 36, 7)
+        """
+        return datetime.strptime(self._data['updated_at'],
+                                 "%Y-%m-%dT%H:%M:%SZ")
 
     def delete(self):
         """

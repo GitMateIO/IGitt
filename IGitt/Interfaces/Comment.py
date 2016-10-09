@@ -2,6 +2,7 @@
 This module contains the Comment class representing a comment on a pull
 request, commit or issue.
 """
+from datetime import datetime
 
 
 class Comment:
@@ -20,6 +21,20 @@ class Comment:
     def author(self) -> str:
         """
         Retrieves the username of the author of the comment.
+        """
+        raise NotImplementedError
+
+    @property
+    def created(self) -> datetime:
+        """
+        Retrieves a timestamp on when the comment was created.
+        """
+        raise NotImplementedError
+
+    @property
+    def updated(self) -> datetime:
+        """
+        Retrieves a timestamp on when the comment was updated the last time.
         """
         raise NotImplementedError
 
