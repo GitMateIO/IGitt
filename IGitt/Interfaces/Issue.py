@@ -2,6 +2,7 @@
 This module contains the Issue abstraction class which provides properties and
 actions related to issues and bug reports.
 """
+from datetime import datetime
 
 from IGitt.Interfaces.Comment import Comment
 
@@ -104,5 +105,19 @@ class Issue:
         :param body: The content of the comment.
         :return: The newly created comment.
         :raises RuntimeError: If something goes wrong (network, auth...).
+        """
+        raise NotImplementedError
+
+    @property
+    def created(self) -> datetime:
+        """
+        Retrieves a timestamp on when the comment was created.
+        """
+        raise NotImplementedError
+
+    @property
+    def updated(self) -> datetime:
+        """
+        Retrieves a timestamp on when the comment was updated the last time.
         """
         raise NotImplementedError

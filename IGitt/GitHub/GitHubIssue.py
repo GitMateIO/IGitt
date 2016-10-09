@@ -1,6 +1,7 @@
 """
 This contains the Issue implementation for GitHub.
 """
+from datetime import datetime
 
 from IGitt.GitHub import get, patch, post
 from IGitt.GitHub.GitHubComment import GitHubComment
@@ -211,3 +212,31 @@ class GitHubIssue(Issue):
         """
         return {label['name'] for label in get(
             self._token, '/repos/' + self._repository + '/labels')}
+
+    @property
+    def created(self) -> datetime:
+        """
+        Retrieves a timestamp on when the issue was created.
+
+        >>> from os import environ
+        >>> issue = GitHubIssue(environ['GITHUB_TEST_TOKEN'],
+        ...                     'gitmate-test-user/test', 1)
+        >>> issue.created
+        datetime.datetime(2016, 1, 13, 7, 56, 23)
+        """
+        return datetime.strptime(self._data['created_at'],
+                                 "%Y-%m-%dT%H:%M:%SZ")
+
+    @property
+    def updated(self) -> datetime:
+        """
+        Retrieves a timestamp on when the issue was updated the last time.
+
+        >>> from os import environ
+        >>> issue = GitHubIssue(environ['GITHUB_TEST_TOKEN'],
+        ...                     'gitmate-test-user/test', 9)
+        >>> issue.updated
+        datetime.datetime(2016, 10, 9, 11, 27, 11)
+        """
+        return datetime.strptime(self._data['updated_at'],
+                                 "%Y-%m-%dT%H:%M:%SZ")
