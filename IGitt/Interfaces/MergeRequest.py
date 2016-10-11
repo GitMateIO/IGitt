@@ -2,6 +2,7 @@
 Contains a class that represents a request to merge something into some git
 branch.
 """
+from datetime import datetime
 
 from IGitt.Interfaces.Commit import Commit
 
@@ -75,5 +76,20 @@ class MergeRequest:
         Gets additions and deletions of a merge request.
 
         :return: An (additions, deletions) tuple.
+        """
+        raise NotImplementedError
+
+    @property
+    def created(self) -> datetime:
+        """
+        Retrieves a timestamp on when the merge request was created.
+        """
+        raise NotImplementedError
+
+    @property
+    def updated(self) -> datetime:
+        """
+        Retrieves a timestamp on when the merge request was updated the last
+        time.
         """
         raise NotImplementedError

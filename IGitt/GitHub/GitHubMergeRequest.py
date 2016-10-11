@@ -1,6 +1,8 @@
 """
 Contains a class representing the GitHub pull request.
 """
+from datetime import datetime
+
 from IGitt.GitHub import get
 from IGitt.GitHub.GitHubCommit import GitHubCommit
 from IGitt.GitHub.GitHubIssue import GitHubIssue
@@ -136,3 +138,32 @@ class GitHubMergeRequest(MergeRequest):
         :return: An (additions, deletions) tuple.
         """
         return self._data['additions'], self._data['deletions']
+
+    @property
+    def created(self) -> datetime:
+        """
+        Retrieves a timestamp on when the merge request was created.
+
+        >>> from os import environ
+        >>> pr = GitHubMergeRequest(environ['GITHUB_TEST_TOKEN'],
+        ...                         'gitmate-test-user/test', 7)
+        >>> pr.created
+        datetime.datetime(2016, 1, 24, 19, 47, 19)
+        """
+        return datetime.strptime(self._data['created_at'],
+                                 "%Y-%m-%dT%H:%M:%SZ")
+
+    @property
+    def updated(self) -> datetime:
+        """
+        Retrieves a timestamp on when the merge request was updated the last
+        time.
+
+        >>> from os import environ
+        >>> pr = GitHubMergeRequest(environ['GITHUB_TEST_TOKEN'],
+        ...                         'gitmate-test-user/test', 7)
+        >>> pr.updated
+        datetime.datetime(2016, 1, 24, 19, 47, 45)
+        """
+        return datetime.strptime(self._data['updated_at'],
+                                 "%Y-%m-%dT%H:%M:%SZ")
