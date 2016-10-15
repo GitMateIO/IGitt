@@ -24,12 +24,22 @@ class MergeRequest:
         raise NotImplementedError
 
     @property
-    def head(self) -> Commit:
+    def base_branch_name(self) -> str:
         """
-        Retrieves the head commit of the merge request, i.e. the one that
+        Retrieves the base branch name of the merge request, i.e. the one it
+        should be merged into.
+
+        :return: A string.
+        """
+        raise NotImplementedError
+
+    @property
+    def head_branch_name(self) -> str:
+        """
+        Retrieves the head branch name of the merge request, i.e. the one that
         will be merged.
 
-        :return: A Commit object.
+        :return: A string.
         """
         raise NotImplementedError
 

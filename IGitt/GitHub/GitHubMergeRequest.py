@@ -61,6 +61,38 @@ class GitHubMergeRequest(MergeRequest):
                             self._data['head']['sha'])
 
     @property
+    def base_branch_name(self) -> str:
+        """
+        Retrieves the base branch name of the merge request, i.e. the one it
+        should be merged into.
+
+        >>> from os import environ
+        >>> pr = GitHubMergeRequest(environ['GITHUB_TEST_TOKEN'],
+        ...                         'gitmate-test-user/test', 7)
+        >>> pr.base_branch_name
+        'master'
+
+        :return: A string.
+        """
+        return self._data['base']['ref']
+
+    @property
+    def head_branch_name(self) -> str:
+        """
+        Retrieves the head branch name of the merge request, i.e. the one that
+        will be merged.
+
+        >>> from os import environ
+        >>> pr = GitHubMergeRequest(environ['GITHUB_TEST_TOKEN'],
+        ...                         'gitmate-test-user/test', 7)
+        >>> pr.head_branch_name
+        'gitmate-test-user-patch-2'
+
+        :return: A string.
+        """
+        return self._data['head']['ref']
+
+    @property
     def commits(self):
         """
         Retrieves a list of commit objects that are included in the PR.
