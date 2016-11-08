@@ -105,14 +105,14 @@ class GitHubIssue(Issue):
 
     @property
     def description(self):
-        """
+        r"""
         Retrieves the main description of the issue:
 
         >>> from os import environ
         >>> issue = GitHubIssue(environ['GITHUB_TEST_TOKEN'],
         ...                     'gitmate-test-user/test', 1)
         >>> issue.description
-        'A nice description!'
+        'A nice description!\n'
 
         :return: A string containing the main description of the issue.
         """
