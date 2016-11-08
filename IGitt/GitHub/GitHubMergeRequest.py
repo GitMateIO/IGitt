@@ -3,7 +3,7 @@ Contains a class representing the GitHub pull request.
 """
 from datetime import datetime
 
-from IGitt.GitHub import get
+from IGitt.GitHub import get, patch
 from IGitt.GitHub.GitHubCommit import GitHubCommit
 from IGitt.GitHub.GitHubIssue import GitHubIssue
 from IGitt.Interfaces.MergeRequest import MergeRequest
@@ -199,3 +199,46 @@ class GitHubMergeRequest(MergeRequest):
         """
         return datetime.strptime(self._data['updated_at'],
                                  "%Y-%m-%dT%H:%M:%SZ")
+
+    def close(self):
+        """
+        Closes the merge request.
+
+        :raises RuntimeError: If something goes wrong (network, auth...).
+        """
+        self._data = patch(self._token, self._url, {"state": "closed"})
+
+    def reopen(self):
+        """
+        Reopens the merge request.
+
+        :raises RuntimeError: If something goes wrong (network, auth...).
+        """
+        self._data = patch(self._token, self._url, {"state": "open"})
+
+    @property
+    def state(self) -> str:
+        """
+        Get's the state of the merge request.
+
+        >>> from os import environ
+        >>> mr = GitHubMergeRequest(environ['GITHUB_TEST_TOKEN'],
+        ...                         'gitmate-test-user/test', 11)
+        >>> mr.state
+        'open'
+
+        So if we close it:
+
+        >>> mr.close()
+        >>> mr.state
+        'closed'
+
+        And reopen it:
+
+        >>> mr.reopen()
+        >>> mr.state
+        'open'
+
+        :return: Either 'open' or 'closed'.
+        """
+        return self._data['state']

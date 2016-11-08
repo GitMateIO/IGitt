@@ -233,7 +233,7 @@ class GitHubRepository(Repository):
         >>> repo = GitHubRepository(environ['GITHUB_TEST_TOKEN'],
         ...                         'gitmate-test-user/test')
         >>> len(repo.merge_requests)
-        2
+        3
         """
         from IGitt.GitHub.GitHubMergeRequest import GitHubMergeRequest
         return {GitHubMergeRequest(self._token, self.full_name, res['number'])

@@ -13,6 +13,31 @@ class MergeRequest:
     mail or a pull request on GitHub.
     """
 
+    def close(self):
+        """
+        Closes the merge request.
+
+        :raises RuntimeError: If something goes wrong (network, auth...).
+        """
+        raise NotImplementedError
+
+    def reopen(self):
+        """
+        Reopens the merge request.
+
+        :raises RuntimeError: If something goes wrong (network, auth...).
+        """
+        raise NotImplementedError
+
+    @property
+    def state(self) -> str:
+        """
+        Get's the state of the merge request.
+
+        :return: Either 'open' or 'closed'.
+        """
+        raise NotImplementedError
+
     @property
     def base(self) -> Commit:
         """
