@@ -240,3 +240,46 @@ class GitHubIssue(Issue):
         """
         return datetime.strptime(self._data['updated_at'],
                                  "%Y-%m-%dT%H:%M:%SZ")
+
+    def close(self):
+        """
+        Closes the issue.
+
+        :raises RuntimeError: If something goes wrong (network, auth...).
+        """
+        self._data = patch(self._token, self._url, {"state": "closed"})
+
+    def reopen(self):
+        """
+        Reopens the issue.
+
+        :raises RuntimeError: If something goes wrong (network, auth...).
+        """
+        self._data = patch(self._token, self._url, {"state": "open"})
+
+    @property
+    def state(self) -> str:
+        """
+        Get's the state of the issue.
+
+        >>> from os import environ
+        >>> issue = GitHubIssue(environ['GITHUB_TEST_TOKEN'],
+        ...                     'gitmate-test-user/test', 10)
+        >>> issue.state
+        'open'
+
+        So if we close it:
+
+        >>> issue.close()
+        >>> issue.state
+        'closed'
+
+        And reopen it:
+
+        >>> issue.reopen()
+        >>> issue.state
+        'open'
+
+        :return: Either 'open' or 'closed'.
+        """
+        return self._data['state']

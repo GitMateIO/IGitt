@@ -108,6 +108,31 @@ class Issue:
         """
         raise NotImplementedError
 
+    def close(self):
+        """
+        Closes the issue.
+
+        :raises RuntimeError: If something goes wrong (network, auth...).
+        """
+        raise NotImplementedError
+
+    def reopen(self):
+        """
+        Reopens the issue.
+
+        :raises RuntimeError: If something goes wrong (network, auth...).
+        """
+        raise NotImplementedError
+
+    @property
+    def state(self) -> str:
+        """
+        Get's the state of the issue.
+
+        :return: Either 'open' or 'closed'.
+        """
+        raise NotImplementedError
+
     @property
     def created(self) -> datetime:
         """
