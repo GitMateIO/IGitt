@@ -157,7 +157,6 @@ class GitHubIssue(Issue):
 
         >>> comments[-1].body
         'Do not comment here.'
-
         :return: A list of Comment objects.
         """
         return [GitHubComment(self._token, self._repository, result['id'])

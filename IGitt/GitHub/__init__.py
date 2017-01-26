@@ -119,4 +119,4 @@ def delete(token: str, url: str):
     :param url: The URL to access, e.g. ``/repo``.
     :raises RuntimeError: If the response indicates any problem.
     """
-    _ = _fetch_all_github('delete', token, url)
+    _fetch_all_github('delete', token, url)

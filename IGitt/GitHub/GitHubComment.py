@@ -36,7 +36,6 @@ class GitHubComment(Comment):
         ...                      'gitmate-test-user/test', 172962077)
         >>> issue.body
         'test comment'
-
         :return: A string containing the body.
         """
         return self._data['body']
