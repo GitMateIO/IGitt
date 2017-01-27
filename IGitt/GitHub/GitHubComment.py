@@ -28,14 +28,15 @@ class GitHubComment(Comment):
 
     @property
     def body(self):
-        """
+        r"""
         Retrieves the content of the comment:
 
         >>> from os import environ
         >>> issue = GitHubComment(environ['GITHUB_TEST_TOKEN'],
         ...                      'gitmate-test-user/test', 172962077)
         >>> issue.body
-        'test comment'
+        'test comment\n'
+
         :return: A string containing the body.
         """
         return self._data['body']

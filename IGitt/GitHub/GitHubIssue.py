@@ -145,7 +145,7 @@ class GitHubIssue(Issue):
 
     @property
     def comments(self):
-        """
+        r"""
         Retrieves comments from the issue.
 
         >>> from os import environ
@@ -156,7 +156,8 @@ class GitHubIssue(Issue):
         Now we can e.g. access the last comment:
 
         >>> comments[-1].body
-        'Do not comment here.'
+        'Do not comment here.\n'
+
         :return: A list of Comment objects.
         """
         return [GitHubComment(self._token, self._repository, result['id'])
