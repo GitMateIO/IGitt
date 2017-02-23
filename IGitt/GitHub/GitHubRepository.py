@@ -182,7 +182,7 @@ class GitHubRepository(Repository):
 
         return results
 
-    def register_hook(self, url: str):
+    def register_hook(self, url: str, secret: str=None):
         """
         Registers a webhook to the given URL. Use it as simple as:
 
@@ -195,19 +195,36 @@ class GitHubRepository(Repository):
 
         >>> repo.register_hook("http://some.url/in/the/world")
 
+        To register a secret token with the webhook, simply add
+        the secret param:
+
+        >>> repo.register_hook("http://some.url/i/have/a/secret",
+        ...     "mylittlesecret")
+
         To delete it simply run:
 
         >>> repo.delete_hook("http://some.url/in/the/world")
+        >>> repo.delete_hook("http://some.url/i/have/a/secret")
 
         :param url: The URL to fire the webhook to.
+        :param secret:
+            An optional secret token to be registered with the webhook. An
+        `X-Hub-Signature` value, in the response header, computed as a HMAC
+        hex digest of the body, using the `secret` as the key would be
+        returned when the webhook is fired.
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
         if url in self.hooks:
             return
 
+        config = {'url': url, 'content_type': 'json'}
+
+        if secret:
+            config['secret'] = secret
+
         post(self._token, self._url + '/hooks',
              {'name': 'web', 'active': True, 'events': ['*'],
-              'config': {'url': url, "content_type": 'json'}})
+              'config': config})
 
     def delete_hook(self, url: str):
         """
