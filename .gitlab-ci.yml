@@ -1,12 +1,15 @@
 run_tests:
-  image: sils1297/gm-build-cont
-  script: python3 -m pytest
-
-check_code:
-  image: coala/base
+  image: python:3
   script:
   - pip install -r requirements.txt
-  - coala-ci
+  - pip install pytest pytest-cov
+  - python3 -m pytest
+
+check_code:
+  image: coala/base:0.10
+  script:
+  - pip install -r requirements.txt
+  - coala --ci
 
 release:
   image: sils1297/gm-build-cont
