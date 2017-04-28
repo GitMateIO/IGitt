@@ -10,4 +10,4 @@ default_actions = PEP8Bear: ApplyPatchAction
 files = **/*.py
 bears = PyUnusedCodeBear, PyLintBear
 use_spaces = True
-pylint_disable = R0903, C0411
+pylint_disable = R0903, C0411, C0326, C1801
