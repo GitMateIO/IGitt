@@ -22,3 +22,20 @@ class MergeRequestActions(Enum):
     ATTRIBUTES_CHANGED = 5
     # When someone pushes to an existing merge request.
     SYNCHRONIZED = 6
+
+
+class IssueActions(Enum):
+    """
+    Issue related reactions.
+    """
+    # When a new issue is opened.
+    OPENED = 1
+    # When an existing issue is closed.
+    CLOSED = 2
+    # When an existing issue is reopened.
+    REOPENED = 3
+    # When someone comments on an issue.
+    COMMENTED = 4
+    # When an issue gets reassigned, labels are added or removed or the linked
+    # milestone is changed
+    ATTRIBUTES_CHANGED = 5
