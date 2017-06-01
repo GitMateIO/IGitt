@@ -97,7 +97,7 @@ class GitHubMergeRequest(MergeRequest):
     @lru_cache(None)
     def commits(self):
         """
-        Retrieves a list of commit objects that are included in the PR.
+        Retrieves a tuple of commit objects that are included in the PR.
 
         >>> from os import environ
         >>> pr = GitHubMergeRequest(environ['GITHUB_TEST_TOKEN'],
@@ -105,11 +105,11 @@ class GitHubMergeRequest(MergeRequest):
         >>> [commit.sha for commit in pr.commits]
         ['f6d2b7c66372236a090a2a74df2e47f42a54456b']
 
-        :return: A list of commit objects.
+        :return: A tuple of commit objects.
         """
         commits = get(self._token, self._url + '/commits')
-        return [GitHubCommit(self._token, self._repository, commit['sha'])
-                for commit in commits]
+        return tuple(GitHubCommit(self._token, self._repository, commit['sha'])
+                     for commit in commits)
 
     @property
     def repository(self):
