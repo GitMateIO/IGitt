@@ -2,6 +2,7 @@
 Contains a class representing the GitHub pull request.
 """
 from datetime import datetime
+from functools import lru_cache
 
 from IGitt.GitHub import get, patch
 from IGitt.GitHub.GitHubCommit import GitHubCommit
@@ -93,6 +94,7 @@ class GitHubMergeRequest(MergeRequest):
         return self._data['head']['ref']
 
     @property
+    @lru_cache(None)
     def commits(self):
         """
         Retrieves a list of commit objects that are included in the PR.
