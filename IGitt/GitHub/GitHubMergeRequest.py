@@ -244,3 +244,18 @@ class GitHubMergeRequest(MergeRequest):
         :return: Either 'open' or 'closed'.
         """
         return self._data['state']
+
+    @property
+    def number(self) -> int:
+        """
+        Returns the MR "number" or id.
+
+        >>> from os import environ
+        >>> mr = GitHubMergeRequest(environ['GITHUB_TEST_TOKEN'],
+        ...                         'gitmate-test-user/test', 11)
+        >>> mr.number
+        11
+
+        :return: The number of the issue.
+        """
+        return self._number

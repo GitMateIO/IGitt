@@ -138,3 +138,10 @@ class MergeRequest:
         time.
         """
         raise NotImplementedError
+
+    @property
+    def number(self) -> int:
+        """
+        Returns the MR "number" or id.
+        """
+        raise NotImplementedError
