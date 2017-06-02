@@ -1,16 +1,16 @@
 """
-This package contains the GitHub implementations of the interfaces in
-server.git.Interfaces.
+This package contains the GitLab implementations of the interfaces in
+server.git.Interfaces. GitLab drops the support of API version 3 as of
+August 22, 2017. So, IGitt adopts v4 to stay future proof.
 """
 from IGitt.Interfaces import _fetch
 
-
-BASE_URL = 'https://api.github.com'
+BASE_URL = 'https://gitlab.com/api/v4'
 
 
 def get(token: str, url: str, params: dict=None):
     """
-    Queries GitHub on the given URL for data.
+    Queries GitLab on the given URL for data.
 
     :param token: An OAuth token.
     :param url: E.g. ``/repo``
@@ -21,13 +21,13 @@ def get(token: str, url: str, params: dict=None):
     :raises RunTimeError:
         If the response indicates any problem.
     """
-    return _fetch(BASE_URL, 'get', {'access_token': token},
+    return _fetch(BASE_URL, 'get', {'private_token': token},
                   url, query_params=params)
 
 
 def post(token: str, url: str, data: dict):
     """
-    Posts the given data onto GitHub.
+    Posts the given data onto GitLab.
 
     :param token: An OAuth token.
     :param url: The URL to access, e.g. ``/repo``.
@@ -38,12 +38,12 @@ def post(token: str, url: str, data: dict):
     :raises RunTimeError:
         If the response indicates any problem.
     """
-    return _fetch(BASE_URL, 'post', {'access_token': token}, url, data)
+    return _fetch(BASE_URL, 'post', {'private_token': token}, url, data)
 
 
-def patch(token: str, url: str, data: dict):
+def put(token: str, url: str, data: dict):
     """
-    Patches the given data onto GitHub.
+    Puts the given data onto GitLab.
 
     :param token: An OAuth token.
     :param url: The URL to access, e.g. ``/repo``.
@@ -54,17 +54,17 @@ def patch(token: str, url: str, data: dict):
     :raises RunTimeError:
         If the response indicates any problem.
     """
-    return _fetch(BASE_URL, 'patch', {'access_token': token}, url, data)
+    return _fetch(BASE_URL, 'put', {'private_token': token}, url, data)
 
 
 def delete(token: str, url: str, params: dict=None):
     """
-    Sends a delete request to the given URL on GitHub.
+    Sends a delete request to the given URL on GitLab.
 
     :param token: An OAuth token.
     :param url: The URL to access, e.g. ``/repo``.
     :param params: The query params to be sent.
     :raises RuntimeError: If the response indicates any problem.
     """
-    _fetch(BASE_URL, 'delete', {'access_token': token},
+    _fetch(BASE_URL, 'delete', {'private_token': token},
            url, query_params=params)
