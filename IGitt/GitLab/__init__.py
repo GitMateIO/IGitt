@@ -3,6 +3,7 @@ This package contains the GitLab implementations of the interfaces in
 server.git.Interfaces. GitLab drops the support of API version 3 as of
 August 22, 2017. So, IGitt adopts v4 to stay future proof.
 """
+from IGitt.Interfaces import AccessLevel
 from IGitt.Interfaces import _fetch
 
 BASE_URL = 'https://gitlab.com/api/v4'

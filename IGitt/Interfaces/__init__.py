@@ -2,6 +2,7 @@
 This package contains an abstraction for a git repository.
 """
 from functools import wraps
+from enum import Enum
 from requests import Session
 
 
@@ -74,3 +75,14 @@ def _fetch(base_url: str, req_type: str, token: dict, url: str,
     # Add the last node data
     data_container.extend(resp.json())
     return data_container, resp.status_code
+
+
+class AccessLevel(Enum):
+    """
+    Different access levels for users.
+    """
+    CAN_VIEW = 10
+    CAN_READ = 20
+    CAN_WRITE = 30
+    ADMIN = 40
+    OWNER = 50
