@@ -15,10 +15,18 @@ class CommentType(Enum):
     MERGE_REQUEST = 'merge_requests'
     COMMIT = 'commits'
 
+
 class Comment:
     """
     A comment, essentially represented by body and author.
     """
+
+    @property
+    def type(self):
+        """
+        Retrieves the type of the comment.
+        """
+        raise NotImplementedError
 
     @property
     def body(self) -> str:

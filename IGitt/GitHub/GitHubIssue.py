@@ -5,6 +5,7 @@ from datetime import datetime
 
 from IGitt.GitHub import get, patch, post
 from IGitt.GitHub.GitHubComment import GitHubComment
+from IGitt.Interfaces.Comment import CommentType
 from IGitt.Interfaces.Issue import Issue
 
 
@@ -141,7 +142,8 @@ class GitHubIssue(Issue):
         """
         result = post(self._token, self._url + '/comments', {'body': body})
 
-        return GitHubComment(self._token, self._repository, result['id'])
+        return GitHubComment(self._token, self._repository,
+                             CommentType.ISSUE, result['id'])
 
     @property
     def comments(self):
@@ -160,7 +162,8 @@ class GitHubIssue(Issue):
 
         :return: A list of Comment objects.
         """
-        return [GitHubComment(self._token, self._repository, result['id'])
+        return [GitHubComment(self._token, self._repository,
+                              CommentType.ISSUE, result['id'])
                 for result in get(self._token, self._url + '/comments')]
 
     @property

@@ -4,7 +4,7 @@ Represents a comment on GitHub.
 from datetime import datetime
 
 from IGitt.GitHub import delete, get
-from IGitt.Interfaces.Comment import Comment
+from IGitt.Interfaces.Comment import Comment, CommentType
 
 
 class GitHubComment(Comment):
@@ -13,18 +13,36 @@ class GitHubComment(Comment):
     deletable!
     """
 
-    def __init__(self, oauth_token, repository, comment_id):
+    def __init__(self, oauth_token, repository, comment_type, comment_id):
         """
         Creates a new GitHub comment from the given data.
 
         :param oauth_token: An OAuth token to use for authentication.
         :param repository: The full name of the repository.
-        :param comment_id: The id of the comment.
+        :param comment_type: The type of comment it represents.
+        :param comment_id: The id of the comment or the sha of commit in the
+                           case of commit comments.
         """
         self._token = oauth_token
-        self._url = '/repos/'+repository+'/issues/comments/'+str(comment_id)
+        self._type = comment_type
 
+        if comment_type in [CommentType.MERGE_REQUEST, CommentType.ISSUE]:
+            fixture = '/issues/comments'
+        elif comment_type == CommentType.COMMIT:
+            fixture = '/comments'
+        else: # No such comment has been implemented on GitHub yet
+            raise NotImplementedError
+
+        self._url = '/repos/{repo}{fixture}/{comment_id}'.format(
+            repo=repository, fixture=fixture, comment_id=comment_id)
         self._data = get(self._token, self._url)
+
+    @property
+    def type(self) -> CommentType:
+        """
+        Retrieves the type of the comment it links to.
+        """
+        return self._type
 
     @property
     def body(self):
