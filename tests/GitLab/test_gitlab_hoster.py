@@ -18,10 +18,15 @@ class TestGitLab(unittest.TestCase):
 
     @my_vcr.use_cassette('tests/GitLab/cassettes/test_gitlab_hoster_owned.yaml')
     def test_owned_repositories(self):
-        self.assertEqual(sorted(self.gl.owned_repositories),
+        self.assertEqual(sorted(map(lambda x: x.full_name, self.gl.owned_repositories)),
                          ['gitmate-test-user/test'])
 
     @my_vcr.use_cassette('tests/GitLab/cassettes/test_gitlab_hoster_write.yaml')
     def test_write_repositories(self):
-        self.assertEqual(sorted(self.gl.write_repositories),
+        self.assertEqual(sorted(map(lambda x: x.full_name, self.gl.write_repositories)),
                          ['gitmate-test-user/test', 'nkprince007/gitmate-test'])
+
+    @my_vcr.use_cassette('tests/GitLab/cassettes/test_gitlab_hoster_get_repo.yaml')
+    def test_get_repo(self):
+        self.assertEqual(self.gl.get_repo('gitmate-test-user/test').full_name,
+                         'gitmate-test-user/test')
