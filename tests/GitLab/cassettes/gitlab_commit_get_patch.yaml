@@ -1,0 +1,27 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/3fc4b86/diff?User-Agent=GitMate
+  response:
+    body: {string: '[{"diff":"--- a/README.md\n+++ b/README.md\n@@ -1,2 +1,4 @@\n
+        # test\n a test repo\n+\n+a tst pr\n","new_path":"README.md","old_path":"README.md","a_mode":"100644","b_mode":"100644","new_file":false,"renamed_file":false,"deleted_file":false,"too_large":null}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['259']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 09:27:35 GMT']
+      Etag: [W/"706051d386064021c416ffa310d8f690"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [551eae96-5e81-4110-ae07-5a970254b8b0]
+      X-Runtime: ['0.532560']
+    status: {code: 200, message: OK}
+version: 1

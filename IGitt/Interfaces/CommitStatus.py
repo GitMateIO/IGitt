@@ -14,6 +14,8 @@ class Status(Enum):
     PENDING = 2  # The verification is ongoing.
     FAILED = 3  # Something's wrong with the commit.
     ERROR = 4  # Something went wrong and the commit could not be verified.
+    CANCELED = 5  # The build was canceled
+    RUNNING = 6  # The build is still in progress
 
 
 class CommitStatus:
