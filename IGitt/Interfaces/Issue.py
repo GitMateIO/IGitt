@@ -146,3 +146,10 @@ class Issue:
         Retrieves a timestamp on when the comment was updated the last time.
         """
         raise NotImplementedError
+
+    @staticmethod
+    def create(token, repository, title, body):
+        """
+        Create a new issue in repository.
+        """
+        raise NotImplementedError

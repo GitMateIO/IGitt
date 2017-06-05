@@ -283,3 +283,31 @@ class GitHubIssue(Issue):
         :return: Either 'open' or 'closed'.
         """
         return self._data['state']
+
+    @staticmethod
+    def create(token: str, repository: str,
+               title: str, body: str):
+        """
+        Create a new issue with given title and body.
+
+        >>> from os import environ
+        >>> issue = GitHubIssue.create(environ['GITHUB_TEST_TOKEN'],
+        ...                       'gitmate-test-user/test',
+        ...                       'test issue title',
+        ...                       'sample description')
+        >>> issue.state
+        'open'
+
+        :return: GitHubIssue object of the newly created issue.
+        """
+
+        post_url = '/repos/' + repository + '/issues'
+        data = {
+            "title": title,
+            "body": body,
+        }
+
+        resp = post(token, post_url, data)
+        issue_number = resp['number']
+
+        return GitHubIssue(token, repository, issue_number)
