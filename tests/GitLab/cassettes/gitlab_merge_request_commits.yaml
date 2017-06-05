@@ -1,0 +1,63 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/merge_requests/7/commits?User-Agent=GitMate
+  response:
+    body: {string: '[{"id":"f6d2b7c66372236a090a2a74df2e47f42a54456b","short_id":"f6d2b7c6","title":"Update
+        README.md","created_at":"2016-01-24T19:46:59.000+00:00","parent_ids":["674498fd415cfadc35c5eb28b8951e800f357c6f"],"message":"Update
+        README.md","author_name":"gitmate-test-user","author_email":"hostmaster@gitmate.io","authored_date":"2016-01-24T19:46:59.000+00:00","committer_name":"gitmate-test-user","committer_email":"hostmaster@gitmate.io","committed_date":"2016-01-24T19:46:59.000+00:00"}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['481']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 09:49:11 GMT']
+      Etag: [W/"a5a5f4c1b244a8e389be146cf353116a"]
+      Link: ['<https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/merge_requests/7/commits?User-Agent=GitMate&id=gitmate-test-user%2Ftest&merge_request_iid=7&page=1&per_page=20>;
+          rel="first", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/merge_requests/7/commits?User-Agent=GitMate&id=gitmate-test-user%2Ftest&merge_request_iid=7&page=1&per_page=20>;
+          rel="last"']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['20']
+      X-Prev-Page: ['']
+      X-Request-Id: [83acbc66-b9a3-42e6-8487-cb4872ac0ac2]
+      X-Runtime: ['0.353840']
+      X-Total: ['1']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/f6d2b7c66372236a090a2a74df2e47f42a54456b?User-Agent=GitMate
+  response:
+    body: {string: '{"id":"f6d2b7c66372236a090a2a74df2e47f42a54456b","short_id":"f6d2b7c6","title":"Update
+        README.md","created_at":"2016-01-24T20:46:59.000+01:00","parent_ids":["674498fd415cfadc35c5eb28b8951e800f357c6f"],"message":"Update
+        README.md","author_name":"gitmate-test-user","author_email":"hostmaster@gitmate.io","authored_date":"2016-01-24T20:46:59.000+01:00","committer_name":"gitmate-test-user","committer_email":"hostmaster@gitmate.io","committed_date":"2016-01-24T20:46:59.000+01:00","stats":{"additions":2,"deletions":0,"total":2},"status":null}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['541']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 09:49:13 GMT']
+      Etag: [W/"a3e5ec9d02534a24454bd5ec90ecd0b2"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [ea395c46-a08f-49f6-bb4c-c377bf79a658]
+      X-Runtime: ['0.279054']
+    status: {code: 200, message: OK}
+version: 1
