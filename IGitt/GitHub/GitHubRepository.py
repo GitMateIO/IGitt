@@ -255,3 +255,16 @@ class GitHubRepository(Repository):
         from IGitt.GitHub.GitHubMergeRequest import GitHubMergeRequest
         return {GitHubMergeRequest(self._token, self.full_name, res['number'])
                 for res in get(self._token, self._url + '/pulls')}
+
+    def create_issue(self, title: str, body: str) -> GitHubIssue:
+        """
+        Create a new issue in the repository.
+
+        >>> from os import environ
+        >>> repo = GitHubRepository(environ['GITHUB_TEST_TOKEN'],
+        ...                         'gitmate-test-user/test')
+        >>> iss = repo.create_issue('test issue title', 'test body title')
+        >>> isinstance(iss, GitHubIssue)
+        True
+        """
+        return GitHubIssue.create(self._token, self.name, title, body)
