@@ -260,6 +260,14 @@ class GitHubIssue(Issue):
         """
         self._data = patch(self._token, self._url, {"state": "open"})
 
+    def delete(self):
+        """
+        Should delete the issue, but GitHub doesn't allow it yet.
+
+        Reference: https://github.com/isaacs/github/issues/253
+        """
+        raise NotImplementedError("GitHub doesn't allow deleting issues.")
+
     @property
     def state(self) -> str:
         """
@@ -300,6 +308,19 @@ class GitHubIssue(Issue):
         ...                       'sample description')
         >>> issue.state
         'open'
+
+        Let's delete the newly created one, because it's useless.
+
+        >>> issue.delete()
+        ... # doctest: +IGNORE_EXCEPTION_DETAIL
+        Traceback (most recent call last):
+         ...
+        NotImplementedError
+
+        Because GitHub is stupid, they don't allow deleting issues. So, let's
+        atleast close this for now.
+
+        >>> issue.close()
 
         :return: GitHubIssue object of the newly created issue.
         """

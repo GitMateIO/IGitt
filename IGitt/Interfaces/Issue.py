@@ -124,6 +124,14 @@ class Issue:
         """
         raise NotImplementedError
 
+    def delete(self):
+        """
+        Deletes the issue.
+
+        :raises RuntimeError: If something goes wrong (network, auth...).
+        """
+        raise NotImplementedError
+
     @property
     def state(self) -> str:
         """
