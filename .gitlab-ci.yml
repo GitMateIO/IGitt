@@ -2,7 +2,7 @@ run_tests:
   image: python:3
   script:
   - pip install -r requirements.txt
-  - pip install pytest pytest-cov
+  - pip install -r test-requirements.txt
   - python3 -m pytest
 
 check_code:

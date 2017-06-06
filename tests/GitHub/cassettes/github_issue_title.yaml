@@ -1,0 +1,56 @@
+interactions:
+- request:
+    body: '{"title": "new title"}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['22']
+      Content-Type: [application/json]
+      User-Agent: [GitMate]
+    method: PATCH
+    uri: https://api.github.com/repos/gitmate-test-user/test/issues/39
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA+2W247aMBCGX2Xla1gD4Rip6ku0N+1WyCRDsNaxI9sB0Yh37+8ksN0sorvRXvQC
+        wUXizHwez+FPKlZaxWK2875wMeeikI+Z9Lty85iYnFsqjONYyIWnoSfnh6Ujy8MVl86V5Hi0YgNW
+        G0pv7HHdGwiMEhtSrj/iJSbeoCquRU4noHGcnLT/HPgZBi7tP43aoMDc+Vx1kvBXUd5RDpmyeBJF
+        yyiajpcDpst8Q5bF0WrAvPSKUHFNh4fmesBCTVlcMWUyqfEsJ0LFdVY+y6NAPAG3mE9GsygaMLEX
+        XthujepFF7XNE4CJ0R6pqfuo5K371/2XCMDMtpRAZli42TSB5ng3qNtJ6lpvjVLmAE438NcNf2Ur
+        fnFFnM211FlfDFwrbvyOkEEcK3RmJt2/2vJaWLVbheF0fi3TAHIogaX046G1jgjsoBFTVc99TSw3
+        LrGy8NLoHpl75Q6csZnQ8rfoiYO7A6XWmo8fsnaD+3sG9lq+G7+KF1buRXIM6bGUkNwj432ZHQCQ
+        /liE6fweJhL5l57WIs3DVG6FcnQ6aySLf1b1XGIsF9FiOseY3xyim1LeiCVPKcemQTERQnOTGGWg
+        DYzS8MPTlLaiVP4cz6+67XxwMAVpGCiTPMOyiRdy4ZzMNMFAl0q93DucAM65VHiXGH15fpHWeAHR
+        tgR2uhbYj01G48VwNMf/22gVR/N4PPuB/coivWozHsWTaTxbBptEGddimig2Jj0CGd5jDyldevzJ
+        PoUjtOYbmNxFEer9Vn/vongXRXwb8P9DFE9/AIxEil7HCgAA
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Access-Control-Expose-Headers: ['ETag, Link, X-GitHub-OTP, X-RateLimit-Limit,
+          X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes,
+          X-Poll-Interval']
+      Cache-Control: ['private, max-age=60, s-maxage=60']
+      Content-Encoding: [gzip]
+      Content-Security-Policy: [default-src 'none']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Tue, 06 Jun 2017 10:25:17 GMT']
+      ETag: [W/"35a947c9bd13c5b250eacf4b4e4b14be"]
+      Server: [GitHub.com]
+      Status: [200 OK]
+      Strict-Transport-Security: [max-age=31536000; includeSubdomains; preload]
+      Vary: ['Accept, Authorization, Cookie, X-GitHub-OTP', Accept-Encoding]
+      X-Accepted-OAuth-Scopes: ['public_repo, repo']
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [deny]
+      X-GitHub-Media-Type: [github.v3; format=json]
+      X-GitHub-Request-Id: ['E8EE:13F60:35E4DC8:46819F5:5936830B']
+      X-OAuth-Scopes: ['admin:gpg_key, admin:org, admin:org_hook, admin:public_key,
+          admin:repo_hook, delete_repo, gist, notifications, repo, user']
+      X-RateLimit-Limit: ['5000']
+      X-RateLimit-Remaining: ['4890']
+      X-RateLimit-Reset: ['1496745470']
+      X-Runtime-rack: ['0.093453']
+      X-Served-By: [593010132f82159af0ded24b4932e109]
+      X-XSS-Protection: [1; mode=block]
+    status: {code: 200, message: OK}
+version: 1
