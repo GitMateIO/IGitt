@@ -155,3 +155,9 @@ class Repository:
         Retrieves a set of merge request objects.
         """
         raise NotImplementedError
+
+    def create_issue(self, title, body):
+        """
+        Create a new issue.
+        """
+        raise NotImplementedError
