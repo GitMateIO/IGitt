@@ -1,0 +1,1598 @@
+interactions:
+- request:
+    body: '{"body": "this is a test comment"}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['34']
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.17.3]
+    method: POST
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31902676,"body":"this is a test comment","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T08:21:36.680Z","updated_at":"2017-06-09T08:21:36.680Z","system":false,"noteable_id":5613608,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['444']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:21:36 GMT']
+      Etag: [W/"71d1380ac11d8bb1be61a753d0d7a9bb"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [30a44442-721e-48a8-8fb7-327e010f9e1e]
+      X-Runtime: ['0.419855']
+    status: {code: 201, message: Created}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes/31902676?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31902676,"body":"this is a test comment","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T08:21:36.680Z","updated_at":"2017-06-09T08:21:36.680Z","system":false,"noteable_id":5613608,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['444']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:21:41 GMT']
+      Etag: [W/"71d1380ac11d8bb1be61a753d0d7a9bb"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [e327f70a-ee05-49de-904b-84e251efeb17]
+      X-Runtime: ['0.256033']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes?User-Agent=GitMate
+  response:
+    body: {string: '[{"id":31902676,"body":"this is a test comment","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T08:21:36.680Z","updated_at":"2017-06-09T08:21:36.680Z","system":false,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31902101,"body":"this
+        is a test comment","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T08:14:07.369Z","updated_at":"2017-06-09T08:14:07.369Z","system":false,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31900862,"body":"this
+        is a comment","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T07:58:37.840Z","updated_at":"2017-06-09T07:58:37.840Z","system":false,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31900146,"body":"this
+        is a comment","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T07:50:42.918Z","updated_at":"2017-06-09T07:50:42.918Z","system":false,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31899957,"body":"this
+        is a comment","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T07:48:08.096Z","updated_at":"2017-06-09T07:48:08.096Z","system":false,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31899682,"body":"reopened","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T07:45:05.775Z","updated_at":"2017-06-09T07:45:05.775Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31899671,"body":"closed","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T07:45:00.112Z","updated_at":"2017-06-09T07:45:00.112Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31899612,"body":"this
+        is a comment","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T07:44:12.196Z","updated_at":"2017-06-09T07:44:12.196Z","system":false,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31898880,"body":"this
+        is a comment","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T07:35:48.442Z","updated_at":"2017-06-09T07:35:48.442Z","system":false,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31897086,"body":"this
+        is a comment","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T07:08:18.452Z","updated_at":"2017-06-09T07:08:18.452Z","system":false,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31896876,"body":"added
+        ~2127066 label","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T07:04:13.457Z","updated_at":"2017-06-09T07:04:13.457Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31896773,"body":"changed
+        title from **{-Take it serious, son!-}** to **{+new title+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T07:02:18.293Z","updated_at":"2017-06-09T07:02:18.293Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31896534,"body":"this
+        is a comment","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T06:58:17.346Z","updated_at":"2017-06-09T06:58:17.346Z","system":false,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31896445,"body":"reopened","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T06:56:40.344Z","updated_at":"2017-06-09T06:56:40.344Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31896440,"body":"closed","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T06:56:36.534Z","updated_at":"2017-06-09T06:56:36.534Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31896430,"body":"this
+        is a comment","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T06:56:23.535Z","updated_at":"2017-06-09T06:56:23.535Z","system":false,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31841555,"body":"changed
+        title from **{-dont panic-}** to **{+Take it serious, son!+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-08T14:50:35.492Z","updated_at":"2017-06-08T14:50:35.492Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31841539,"body":"changed
+        title from **{-Take it serious, son!-}** to **{+dont panic+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-08T14:50:24.505Z","updated_at":"2017-06-08T14:50:24.505Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31841500,"body":"reopened","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-08T14:50:03.075Z","updated_at":"2017-06-08T14:50:03.075Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31841482,"body":"closed","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-08T14:49:52.565Z","updated_at":"2017-06-08T14:49:52.565Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['9002']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:21:45 GMT']
+      Etag: [W/"48c81ad19569e5c4249abcb1c3cb0908"]
+      Link: ['<https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes?User-Agent=GitMate&id=gitmate-test-user%2Ftest&noteable_id=1&page=2&per_page=20>;
+          rel="next", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes?User-Agent=GitMate&id=gitmate-test-user%2Ftest&noteable_id=1&page=1&per_page=20>;
+          rel="first", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes?User-Agent=GitMate&id=gitmate-test-user%2Ftest&noteable_id=1&page=6&per_page=20>;
+          rel="last"']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['2']
+      X-Page: ['1']
+      X-Per-Page: ['20']
+      X-Prev-Page: ['']
+      X-Request-Id: [267f7353-d347-40bf-ad29-c88bcd18b183]
+      X-Runtime: ['0.604192']
+      X-Total: ['105']
+      X-Total-Pages: ['6']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes?User-Agent=GitMate&User-Agent=GitMate&id=gitmate-test-user%2Ftest&noteable_id=1&page=2&per_page=20
+  response:
+    body: {string: '[{"id":31841418,"body":"removed ~2105509 ~2105511 ~2105512 labels","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-08T14:49:20.541Z","updated_at":"2017-06-08T14:49:20.541Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31841398,"body":"added
+        ~2105512 ~2105509 ~2105511 labels","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-08T14:49:09.581Z","updated_at":"2017-06-08T14:49:09.581Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31765642,"body":"changed
+        title from **{-dont panic-}** to **{+Take it serious, son!+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T19:09:04.981Z","updated_at":"2017-06-07T19:09:04.981Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31765621,"body":"changed
+        title from **{-Take it serious, son!-}** to **{+dont panic+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T19:08:50.631Z","updated_at":"2017-06-07T19:08:50.631Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31765582,"body":"reopened","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T19:08:24.160Z","updated_at":"2017-06-07T19:08:24.160Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31765561,"body":"closed","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T19:08:10.248Z","updated_at":"2017-06-07T19:08:10.248Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31765530,"body":"removed
+        ~2105509 ~2105511 ~2105512 labels","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T19:07:31.442Z","updated_at":"2017-06-07T19:07:31.442Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31765518,"body":"added
+        ~2105509 ~2105512 ~2105511 labels","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T19:07:18.098Z","updated_at":"2017-06-07T19:07:18.098Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31760324,"body":"changed
+        title from **{-dont panic-}** to **{+Take it serious, son!+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T17:43:35.978Z","updated_at":"2017-06-07T17:43:35.978Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31760315,"body":"changed
+        title from **{-Take it serious, son!-}** to **{+dont panic+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T17:43:26.540Z","updated_at":"2017-06-07T17:43:26.540Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31760298,"body":"reopened","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T17:43:09.073Z","updated_at":"2017-06-07T17:43:09.073Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31760286,"body":"closed","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T17:43:00.181Z","updated_at":"2017-06-07T17:43:00.181Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31760247,"body":"removed
+        ~2105509 ~2105511 ~2105512 labels","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T17:42:33.775Z","updated_at":"2017-06-07T17:42:33.775Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31760237,"body":"added
+        ~2105511 ~2105512 ~2105509 labels","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T17:42:25.019Z","updated_at":"2017-06-07T17:42:25.019Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31751037,"body":"changed
+        title from **{-dont panic-}** to **{+Take it serious, son!+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T15:48:19.966Z","updated_at":"2017-06-07T15:48:19.966Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31751036,"body":"changed
+        title from **{-Take it serious, son!-}** to **{+dont panic+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T15:48:17.075Z","updated_at":"2017-06-07T15:48:17.075Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31751021,"body":"reopened","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T15:48:12.414Z","updated_at":"2017-06-07T15:48:12.414Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31751017,"body":"closed","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T15:48:09.200Z","updated_at":"2017-06-07T15:48:09.200Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31751001,"body":"removed
+        ~2105509 ~2105511 ~2105512 labels","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T15:47:59.791Z","updated_at":"2017-06-07T15:47:59.791Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31750995,"body":"added
+        ~2105512 ~2105511 ~2105509 labels","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T15:47:56.641Z","updated_at":"2017-06-07T15:47:56.641Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['9323']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:21:46 GMT']
+      Etag: [W/"1c4ef7e43bffd4d79b30f2c1da2ad319"]
+      Link: ['<https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes?User-Agent=GitMate&id=gitmate-test-user%2Ftest&noteable_id=1&page=1&per_page=20>;
+          rel="prev", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes?User-Agent=GitMate&id=gitmate-test-user%2Ftest&noteable_id=1&page=3&per_page=20>;
+          rel="next", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes?User-Agent=GitMate&id=gitmate-test-user%2Ftest&noteable_id=1&page=1&per_page=20>;
+          rel="first", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes?User-Agent=GitMate&id=gitmate-test-user%2Ftest&noteable_id=1&page=6&per_page=20>;
+          rel="last"']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['3']
+      X-Page: ['2']
+      X-Per-Page: ['20']
+      X-Prev-Page: ['1']
+      X-Request-Id: [7b6d7d5c-2ee2-4ac2-b563-eddaa4b7a4c1]
+      X-Runtime: ['0.637837']
+      X-Total: ['105']
+      X-Total-Pages: ['6']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes?User-Agent=GitMate&User-Agent=GitMate&id=gitmate-test-user%2Ftest&noteable_id=1&page=3&per_page=20
+  response:
+    body: {string: '[{"id":31750859,"body":"Doh!","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T15:46:06.890Z","updated_at":"2017-06-07T15:46:06.890Z","system":false,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31746971,"body":"changed
+        title from **{-dont panic-}** to **{+Take it serious, son!+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T15:12:34.374Z","updated_at":"2017-06-07T15:12:34.374Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31746879,"body":"changed
+        title from **{-Take it serious, son!-}** to **{+dont panic+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T15:12:18.208Z","updated_at":"2017-06-07T15:12:18.208Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31746610,"body":"reopened","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T15:11:50.531Z","updated_at":"2017-06-07T15:11:50.531Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31746473,"body":"closed","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T15:11:36.008Z","updated_at":"2017-06-07T15:11:36.008Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31746266,"body":"removed
+        ~2105509 ~2105511 ~2105512 labels","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T15:10:56.601Z","updated_at":"2017-06-07T15:10:56.601Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31746233,"body":"added
+        ~2105512 ~2105511 ~2105509 labels","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T15:10:43.464Z","updated_at":"2017-06-07T15:10:43.464Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31738922,"body":"changed
+        title from **{-dont panic-}** to **{+Take it serious, son!+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T14:16:56.302Z","updated_at":"2017-06-07T14:16:56.302Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31738919,"body":"changed
+        title from **{-Take it serious, son!-}** to **{+dont panic+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T14:16:52.649Z","updated_at":"2017-06-07T14:16:52.649Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31738901,"body":"reopened","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T14:16:44.313Z","updated_at":"2017-06-07T14:16:44.313Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31738894,"body":"closed","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T14:16:39.779Z","updated_at":"2017-06-07T14:16:39.779Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31738880,"body":"removed
+        ~2105509 ~2105511 ~2105512 labels","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T14:16:26.683Z","updated_at":"2017-06-07T14:16:26.683Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31738871,"body":"added
+        ~2105511 ~2105509 ~2105512 labels","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T14:16:21.253Z","updated_at":"2017-06-07T14:16:21.253Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31728990,"body":"changed
+        title from **{-dont panic-}** to **{+Take it serious, son!+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T12:58:23.808Z","updated_at":"2017-06-07T12:58:23.808Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31728970,"body":"changed
+        title from **{-Take it serious, son!-}** to **{+dont panic+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T12:58:08.492Z","updated_at":"2017-06-07T12:58:08.492Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31728916,"body":"reopened","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T12:57:33.992Z","updated_at":"2017-06-07T12:57:33.992Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31728883,"body":"closed","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T12:57:17.425Z","updated_at":"2017-06-07T12:57:17.425Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31728820,"body":"removed
+        ~2105509 ~2105511 ~2105512 labels","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T12:56:28.860Z","updated_at":"2017-06-07T12:56:28.860Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31728774,"body":"added
+        ~2105509 ~2105512 ~2105511 labels","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T12:56:09.078Z","updated_at":"2017-06-07T12:56:09.078Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31707649,"body":"changed
+        title from **{-dont panic-}** to **{+Take it serious, son!+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T09:09:44.788Z","updated_at":"2017-06-07T09:09:44.788Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['9318']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:21:47 GMT']
+      Etag: [W/"98480da0eec114a879a5af63ffaa662e"]
+      Link: ['<https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes?User-Agent=GitMate&id=gitmate-test-user%2Ftest&noteable_id=1&page=2&per_page=20>;
+          rel="prev", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes?User-Agent=GitMate&id=gitmate-test-user%2Ftest&noteable_id=1&page=4&per_page=20>;
+          rel="next", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes?User-Agent=GitMate&id=gitmate-test-user%2Ftest&noteable_id=1&page=1&per_page=20>;
+          rel="first", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes?User-Agent=GitMate&id=gitmate-test-user%2Ftest&noteable_id=1&page=6&per_page=20>;
+          rel="last"']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['4']
+      X-Page: ['3']
+      X-Per-Page: ['20']
+      X-Prev-Page: ['2']
+      X-Request-Id: [064ad7ff-14c9-4802-bcd6-bc52ea453753]
+      X-Runtime: ['0.378632']
+      X-Total: ['105']
+      X-Total-Pages: ['6']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes?User-Agent=GitMate&User-Agent=GitMate&id=gitmate-test-user%2Ftest&noteable_id=1&page=4&per_page=20
+  response:
+    body: {string: '[{"id":31707643,"body":"changed title from **{-Take it serious,
+        son!-}** to **{+dont panic+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T09:09:40.877Z","updated_at":"2017-06-07T09:09:40.877Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31707624,"body":"removed
+        ~2105509 ~2105511 ~2105512 labels","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T09:09:28.527Z","updated_at":"2017-06-07T09:09:28.527Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31707619,"body":"added
+        ~2105509 ~2105512 ~2105511 labels","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T09:09:25.746Z","updated_at":"2017-06-07T09:09:25.746Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31706058,"body":"changed
+        title from **{-dont panic-}** to **{+Take it serious, son!+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T08:51:39.430Z","updated_at":"2017-06-07T08:51:39.430Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31706056,"body":"changed
+        title from **{-Take it serious, son!-}** to **{+dont panic+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T08:51:38.223Z","updated_at":"2017-06-07T08:51:38.223Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31706050,"body":"reopened","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T08:51:36.058Z","updated_at":"2017-06-07T08:51:36.058Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31706044,"body":"closed","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T08:51:30.668Z","updated_at":"2017-06-07T08:51:30.668Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31706040,"body":"removed
+        ~2105509 ~2105511 ~2105512 labels","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T08:51:27.437Z","updated_at":"2017-06-07T08:51:27.437Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31706037,"body":"added
+        ~2105512 ~2105509 ~2105511 labels","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T08:51:25.337Z","updated_at":"2017-06-07T08:51:25.337Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31698394,"body":"changed
+        title from **{-dont panic-}** to **{+Take it serious, son!+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T07:13:59.248Z","updated_at":"2017-06-07T07:13:59.248Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31698393,"body":"changed
+        title from **{-Take it serious, son!-}** to **{+dont panic+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T07:13:58.127Z","updated_at":"2017-06-07T07:13:58.127Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31698388,"body":"removed
+        ~2105509 ~2105511 ~2105512 labels","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T07:13:53.848Z","updated_at":"2017-06-07T07:13:53.848Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31698386,"body":"added
+        ~2105511 ~2105512 ~2105509 labels","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T07:13:52.177Z","updated_at":"2017-06-07T07:13:52.177Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31696236,"body":"changed
+        title from **{-dont panic-}** to **{+Take it serious, son!+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T06:40:42.845Z","updated_at":"2017-06-07T06:40:42.845Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31696230,"body":"changed
+        title from **{-Take it serious, son!-}** to **{+dont panic+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T06:40:36.181Z","updated_at":"2017-06-07T06:40:36.181Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31696190,"body":"removed
+        ~2105509 ~2105511 ~2105512 labels","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T06:39:57.190Z","updated_at":"2017-06-07T06:39:57.190Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31696186,"body":"added
+        ~2105511 ~2105512 ~2105509 labels","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T06:39:53.096Z","updated_at":"2017-06-07T06:39:53.096Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31694647,"body":"changed
+        title from **{-dont panic-}** to **{+Take it serious, son!+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T06:08:27.836Z","updated_at":"2017-06-07T06:08:27.836Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31694642,"body":"changed
+        title from **{-Take it serious, son!-}** to **{+dont panic+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T06:08:22.086Z","updated_at":"2017-06-07T06:08:22.086Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31694610,"body":"removed
+        ~2105509 ~2105511 ~2105512 labels","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T06:07:54.631Z","updated_at":"2017-06-07T06:07:54.631Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['9546']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:21:48 GMT']
+      Etag: [W/"f238dcced732381b0e62797b49d43db6"]
+      Link: ['<https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes?User-Agent=GitMate&id=gitmate-test-user%2Ftest&noteable_id=1&page=3&per_page=20>;
+          rel="prev", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes?User-Agent=GitMate&id=gitmate-test-user%2Ftest&noteable_id=1&page=5&per_page=20>;
+          rel="next", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes?User-Agent=GitMate&id=gitmate-test-user%2Ftest&noteable_id=1&page=1&per_page=20>;
+          rel="first", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes?User-Agent=GitMate&id=gitmate-test-user%2Ftest&noteable_id=1&page=6&per_page=20>;
+          rel="last"']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['5']
+      X-Page: ['4']
+      X-Per-Page: ['20']
+      X-Prev-Page: ['3']
+      X-Request-Id: [7221e77c-a675-47c7-9c97-31f95cd2df2b]
+      X-Runtime: ['0.420358']
+      X-Total: ['105']
+      X-Total-Pages: ['6']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes?User-Agent=GitMate&User-Agent=GitMate&id=gitmate-test-user%2Ftest&noteable_id=1&page=5&per_page=20
+  response:
+    body: {string: '[{"id":31694607,"body":"added ~2105509 ~2105511 ~2105512 labels","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T06:07:51.756Z","updated_at":"2017-06-07T06:07:51.756Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31586821,"body":"changed
+        title from **{-dont panic-}** to **{+Take it serious, son!+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-06T06:30:49.137Z","updated_at":"2017-06-06T06:30:49.137Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31586816,"body":"changed
+        title from **{-Take it serious, son!-}** to **{+dont panic+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-06T06:30:43.499Z","updated_at":"2017-06-06T06:30:43.499Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31586787,"body":"removed
+        ~2105509 ~2105511 ~2105512 labels","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-06T06:29:56.384Z","updated_at":"2017-06-06T06:29:56.384Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31586782,"body":"added
+        ~2105509 ~2105511 ~2105512 labels","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-06T06:29:51.025Z","updated_at":"2017-06-06T06:29:51.025Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31580463,"body":"changed
+        title from **{-dont panic-}** to **{+Take it serious, son!+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-06T03:52:54.194Z","updated_at":"2017-06-06T03:52:54.194Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31580454,"body":"changed
+        title from **{-Take it serious, son!-}** to **{+dont panic+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-06T03:52:44.079Z","updated_at":"2017-06-06T03:52:44.079Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31580417,"body":"removed
+        ~2105509 ~2105511 ~2105512 labels","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-06T03:51:43.561Z","updated_at":"2017-06-06T03:51:43.561Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31580413,"body":"added
+        ~2105511 ~2105509 ~2105512 labels","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-06T03:51:32.585Z","updated_at":"2017-06-06T03:51:32.585Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31516582,"body":"changed
+        title from **{-dont panic-}** to **{+Take it serious, son!+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-05T09:56:53.775Z","updated_at":"2017-06-05T09:56:53.775Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31516575,"body":"changed
+        title from **{-Take it serious, son!-}** to **{+dont panic+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-05T09:56:49.564Z","updated_at":"2017-06-05T09:56:49.564Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31516548,"body":"removed
+        ~2105509 ~2105511 ~2105512 labels","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-05T09:56:29.548Z","updated_at":"2017-06-05T09:56:29.548Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31516536,"body":"added
+        ~2105511 ~2105509 ~2105512 labels","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-05T09:56:22.375Z","updated_at":"2017-06-05T09:56:22.375Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31515325,"body":"changed
+        title from **{-dont panic-}** to **{+Take it serious, son!+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-05T09:41:51.809Z","updated_at":"2017-06-05T09:41:51.809Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31515321,"body":"changed
+        title from **{-Take it serious, son!-}** to **{+dont panic+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-05T09:41:49.562Z","updated_at":"2017-06-05T09:41:49.562Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31515316,"body":"removed
+        ~2105509 ~2105511 ~2105512 labels","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-05T09:41:41.646Z","updated_at":"2017-06-05T09:41:41.646Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31515312,"body":"added
+        ~2105511 ~2105509 ~2105512 labels","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-05T09:41:38.241Z","updated_at":"2017-06-05T09:41:38.241Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31515188,"body":"Doh!","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-05T09:39:30.092Z","updated_at":"2017-06-05T09:39:30.092Z","system":false,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31514549,"body":"changed
+        title from **{-dont panic-}** to **{+Take it serious, son!+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-05T09:30:26.568Z","updated_at":"2017-06-05T09:30:26.568Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31503431,"body":"Doh!","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-05T06:33:24.399Z","updated_at":"2017-06-05T06:33:24.399Z","system":false,"noteable_id":5613608,"noteable_type":"Issue"}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['9540']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:21:48 GMT']
+      Etag: [W/"41d6d93a419b4c6cd1121bc9d6202b0b"]
+      Link: ['<https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes?User-Agent=GitMate&id=gitmate-test-user%2Ftest&noteable_id=1&page=4&per_page=20>;
+          rel="prev", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes?User-Agent=GitMate&id=gitmate-test-user%2Ftest&noteable_id=1&page=6&per_page=20>;
+          rel="next", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes?User-Agent=GitMate&id=gitmate-test-user%2Ftest&noteable_id=1&page=1&per_page=20>;
+          rel="first", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes?User-Agent=GitMate&id=gitmate-test-user%2Ftest&noteable_id=1&page=6&per_page=20>;
+          rel="last"']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['6']
+      X-Page: ['5']
+      X-Per-Page: ['20']
+      X-Prev-Page: ['4']
+      X-Request-Id: [5d91ec36-0419-4f34-a93d-b51f64a7d3f4]
+      X-Runtime: ['0.457641']
+      X-Total: ['105']
+      X-Total-Pages: ['6']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes?User-Agent=GitMate&User-Agent=GitMate&id=gitmate-test-user%2Ftest&noteable_id=1&page=6&per_page=20
+  response:
+    body: {string: '[{"id":31502991,"body":"changed title from **{-Take it serious,
+        son!-}** to **{+dont panic+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-05T06:22:31.483Z","updated_at":"2017-06-05T06:22:31.483Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31502919,"body":"Doh!","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-05T06:20:28.065Z","updated_at":"2017-06-05T06:20:28.065Z","system":false,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31502636,"body":"changed
+        title from **{-dont panic-}** to **{+Take it serious, son!+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-05T06:13:58.105Z","updated_at":"2017-06-05T06:13:58.105Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31502630,"body":"changed
+        title from **{-Take it serious, son!-}** to **{+dont panic+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-05T06:13:52.510Z","updated_at":"2017-06-05T06:13:52.510Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"},{"id":31500135,"body":"Lemme
+        comment on you.\r\n","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-05T05:20:28.418Z","updated_at":"2017-06-05T06:05:34.491Z","system":false,"noteable_id":5613608,"noteable_type":"Issue"}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['2377']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:21:49 GMT']
+      Etag: [W/"94db8a1846a1c16eeb6403610be024cc"]
+      Link: ['<https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes?User-Agent=GitMate&id=gitmate-test-user%2Ftest&noteable_id=1&page=5&per_page=20>;
+          rel="prev", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes?User-Agent=GitMate&id=gitmate-test-user%2Ftest&noteable_id=1&page=1&per_page=20>;
+          rel="first", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes?User-Agent=GitMate&id=gitmate-test-user%2Ftest&noteable_id=1&page=6&per_page=20>;
+          rel="last"']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['6']
+      X-Per-Page: ['20']
+      X-Prev-Page: ['5']
+      X-Request-Id: [dddc85da-1ef1-485e-8885-4755c34cd153]
+      X-Runtime: ['0.348114']
+      X-Total: ['105']
+      X-Total-Pages: ['6']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes/31902676?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31902676,"body":"this is a test comment","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T08:21:36.680Z","updated_at":"2017-06-09T08:21:36.680Z","system":false,"noteable_id":5613608,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['444']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:21:53 GMT']
+      Etag: [W/"71d1380ac11d8bb1be61a753d0d7a9bb"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [863a997d-5c4f-4606-9730-0223dca5a37d]
+      X-Runtime: ['0.316072']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes/31902101?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31902101,"body":"this is a test comment","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T08:14:07.369Z","updated_at":"2017-06-09T08:14:07.369Z","system":false,"noteable_id":5613608,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['444']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:21:58 GMT']
+      Etag: [W/"98341af3d611ee16cd332a088fa9dcdc"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [19402f35-fb40-43d7-a412-4d2c8f3adb7d]
+      X-Runtime: ['0.348240']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes/31900862?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31900862,"body":"this is a comment","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T07:58:37.840Z","updated_at":"2017-06-09T07:58:37.840Z","system":false,"noteable_id":5613608,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['439']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:22:03 GMT']
+      Etag: [W/"ffa5b41f282dbbd8a99bc2287133ab1e"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [252571ca-0e2c-497e-9619-42dda7cb0ba9]
+      X-Runtime: ['0.225025']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes/31900146?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31900146,"body":"this is a comment","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T07:50:42.918Z","updated_at":"2017-06-09T07:50:42.918Z","system":false,"noteable_id":5613608,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['439']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:22:07 GMT']
+      Etag: [W/"b6586851451a954549e3d2266c20a23b"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [bc3a4759-9ce4-4f9d-bff0-acbb7591445a]
+      X-Runtime: ['0.512475']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes/31899957?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31899957,"body":"this is a comment","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T07:48:08.096Z","updated_at":"2017-06-09T07:48:08.096Z","system":false,"noteable_id":5613608,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['439']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:22:12 GMT']
+      Etag: [W/"ba8a5ad89679b01860188ee783768a8d"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [f4b5fe8c-bff7-483e-99d6-0439ab7b5305]
+      X-Runtime: ['0.520144']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes/31899682?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31899682,"body":"reopened","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T07:45:05.775Z","updated_at":"2017-06-09T07:45:05.775Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['429']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:22:16 GMT']
+      Etag: [W/"097f5ce454fb0d2f18fcf50153203af0"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [497db9cb-643b-4c29-9290-80a6cff21b89]
+      X-Runtime: ['0.194320']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes/31899671?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31899671,"body":"closed","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T07:45:00.112Z","updated_at":"2017-06-09T07:45:00.112Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['427']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:22:20 GMT']
+      Etag: [W/"b580b724f47a92182e7a3233ceea8420"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [d357f764-7a33-41b9-93c7-e7897eefdd9e]
+      X-Runtime: ['0.216035']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes/31899612?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31899612,"body":"this is a comment","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T07:44:12.196Z","updated_at":"2017-06-09T07:44:12.196Z","system":false,"noteable_id":5613608,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['439']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:22:25 GMT']
+      Etag: [W/"b6ead2672429155a4e42d4743937170f"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [c7079cb9-9e72-4875-8674-f98cc3b43f9e]
+      X-Runtime: ['0.229422']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes/31898880?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31898880,"body":"this is a comment","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T07:35:48.442Z","updated_at":"2017-06-09T07:35:48.442Z","system":false,"noteable_id":5613608,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['439']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:22:29 GMT']
+      Etag: [W/"cf15f6f00700019e9834b63ee0789cd6"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [c650556d-5266-404d-9eb5-c4ecaf7a6049]
+      X-Runtime: ['0.327123']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes/31897086?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31897086,"body":"this is a comment","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T07:08:18.452Z","updated_at":"2017-06-09T07:08:18.452Z","system":false,"noteable_id":5613608,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['439']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:22:33 GMT']
+      Etag: [W/"38555190c4d98ccf7fd23aaccb73cab3"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [71845996-a137-46e6-8182-a024af33fcff]
+      X-Runtime: ['0.230830']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes/31896876?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31896876,"body":"added ~2127066 label","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T07:04:13.457Z","updated_at":"2017-06-09T07:04:13.457Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['441']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:22:37 GMT']
+      Etag: [W/"69c80551dc08fe860fd17b38bb654e4f"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [c022260c-4e6e-4bd2-b41c-f71f33b2a35c]
+      X-Runtime: ['0.453881']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes/31896773?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31896773,"body":"changed title from **{-Take it serious,
+        son!-}** to **{+new title+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T07:02:18.293Z","updated_at":"2017-06-09T07:02:18.293Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['490']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:22:39 GMT']
+      Etag: [W/"adafdaa8e2681c54ba468a1bea2295b6"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [455ae42d-b93d-4f4b-a1f4-e60ef2a9577d]
+      X-Runtime: ['0.272296']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes/31896534?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31896534,"body":"this is a comment","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T06:58:17.346Z","updated_at":"2017-06-09T06:58:17.346Z","system":false,"noteable_id":5613608,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['439']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:22:42 GMT']
+      Etag: [W/"eb62bc81e19d72131265111db88ce931"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [1a55c7fd-614c-4026-85f4-e9bb88c26fe1]
+      X-Runtime: ['0.269106']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes/31896445?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31896445,"body":"reopened","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T06:56:40.344Z","updated_at":"2017-06-09T06:56:40.344Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['429']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:22:44 GMT']
+      Etag: [W/"08490f96103a547e10907eeae76a2166"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [11d9db97-46ae-418d-a1f8-96aced9d77fa]
+      X-Runtime: ['0.286883']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes/31896440?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31896440,"body":"closed","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T06:56:36.534Z","updated_at":"2017-06-09T06:56:36.534Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['427']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:22:46 GMT']
+      Etag: [W/"6f027c71e55c57c32b5cb9c7c7ed66c0"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [32ea52ea-108d-4fc3-baf5-b20d7f123fdf]
+      X-Runtime: ['0.208944']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes/31896430?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31896430,"body":"this is a comment","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T06:56:23.535Z","updated_at":"2017-06-09T06:56:23.535Z","system":false,"noteable_id":5613608,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['439']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:22:48 GMT']
+      Etag: [W/"ac605798d6822258c985ce65356e472c"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [ba45b1d7-576d-4000-9155-1fb8c11d3770]
+      X-Runtime: ['0.183545']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes/31841555?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31841555,"body":"changed title from **{-dont panic-}** to
+        **{+Take it serious, son!+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-08T14:50:35.492Z","updated_at":"2017-06-08T14:50:35.492Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['491']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:22:50 GMT']
+      Etag: [W/"b603c7dd3ebb97053cb1e4362cbe9e2a"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [3bfe25b0-d0dc-42dc-ac0f-97c5366d3f02]
+      X-Runtime: ['0.227809']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes/31841539?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31841539,"body":"changed title from **{-Take it serious,
+        son!-}** to **{+dont panic+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-08T14:50:24.505Z","updated_at":"2017-06-08T14:50:24.505Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['491']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:22:52 GMT']
+      Etag: [W/"673a17ad9d0366af5ecb54b158f69c8c"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [6f9a19fe-1542-4d8e-b892-34c2b327e9dd]
+      X-Runtime: ['0.200678']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes/31841500?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31841500,"body":"reopened","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-08T14:50:03.075Z","updated_at":"2017-06-08T14:50:03.075Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['429']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:22:54 GMT']
+      Etag: [W/"bf6379e16e45a817b7cbf95c4c2bd4c9"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [a2683b36-e8bf-4a7f-9565-fee864eeed69]
+      X-Runtime: ['0.281984']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes/31841482?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31841482,"body":"closed","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-08T14:49:52.565Z","updated_at":"2017-06-08T14:49:52.565Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['427']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:22:55 GMT']
+      Etag: [W/"bcfd96d24a40faa265f04bff63e01287"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [b1120331-e023-47ad-b323-cdd2f247e42c]
+      X-Runtime: ['0.221746']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes/31841418?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31841418,"body":"removed ~2105509 ~2105511 ~2105512 labels","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-08T14:49:20.541Z","updated_at":"2017-06-08T14:49:20.541Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['462']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:22:57 GMT']
+      Etag: [W/"40191161da6d49c0f2091c7ff09816d8"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [00887dab-9f38-4d45-a6ad-e9f5d97a3a96]
+      X-Runtime: ['0.332179']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes/31841398?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31841398,"body":"added ~2105512 ~2105509 ~2105511 labels","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-08T14:49:09.581Z","updated_at":"2017-06-08T14:49:09.581Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['460']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:22:59 GMT']
+      Etag: [W/"23366519ef365bd888dcc1131d199068"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [13ebe101-d2b6-4cb7-8456-cd2225e10dff]
+      X-Runtime: ['0.241183']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes/31765642?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31765642,"body":"changed title from **{-dont panic-}** to
+        **{+Take it serious, son!+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T19:09:04.981Z","updated_at":"2017-06-07T19:09:04.981Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['491']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:23:01 GMT']
+      Etag: [W/"5e4c9e4ebc77ffcf6dd6f15dce92c428"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [276bf1f9-3318-4974-93a6-ba1b2d622c2a]
+      X-Runtime: ['0.267635']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes/31765621?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31765621,"body":"changed title from **{-Take it serious,
+        son!-}** to **{+dont panic+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T19:08:50.631Z","updated_at":"2017-06-07T19:08:50.631Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['491']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:23:03 GMT']
+      Etag: [W/"31e8725d73f76098693f64790ca155d4"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [a0af6d7d-68ec-4aea-89e9-fb423e4cd74c]
+      X-Runtime: ['0.239926']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes/31765582?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31765582,"body":"reopened","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T19:08:24.160Z","updated_at":"2017-06-07T19:08:24.160Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['429']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:23:05 GMT']
+      Etag: [W/"278d5875754877453158eef92e568e6d"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [b16ada4a-6e36-4333-b697-cc65dbb1c0c9]
+      X-Runtime: ['0.203391']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes/31765561?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31765561,"body":"closed","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T19:08:10.248Z","updated_at":"2017-06-07T19:08:10.248Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['427']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:23:07 GMT']
+      Etag: [W/"8f348d8702d7c7f8339e0006b734d659"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [fafd8e00-43e7-46d1-8af0-810a3d300686]
+      X-Runtime: ['0.182792']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes/31765530?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31765530,"body":"removed ~2105509 ~2105511 ~2105512 labels","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T19:07:31.442Z","updated_at":"2017-06-07T19:07:31.442Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['462']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:23:10 GMT']
+      Etag: [W/"ee6774a7d3abaf4a1ba2979f61cfcb53"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [df029461-45c5-4bb4-855c-9e3c6eff48fa]
+      X-Runtime: ['0.450315']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes/31765518?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31765518,"body":"added ~2105509 ~2105512 ~2105511 labels","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T19:07:18.098Z","updated_at":"2017-06-07T19:07:18.098Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['460']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:23:12 GMT']
+      Etag: [W/"2e669dc546e03989e374de9a00613422"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [113bf0f7-b133-42ad-9e09-79fc867952dd]
+      X-Runtime: ['0.282902']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes/31760324?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31760324,"body":"changed title from **{-dont panic-}** to
+        **{+Take it serious, son!+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T17:43:35.978Z","updated_at":"2017-06-07T17:43:35.978Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['491']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:23:15 GMT']
+      Etag: [W/"cb499e29d68b2c1face6095372f2de94"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [8ba35bcd-c32c-4a33-946d-2513a946d269]
+      X-Runtime: ['0.247764']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes/31760315?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31760315,"body":"changed title from **{-Take it serious,
+        son!-}** to **{+dont panic+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T17:43:26.540Z","updated_at":"2017-06-07T17:43:26.540Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['491']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:23:17 GMT']
+      Etag: [W/"e329551bea49e88512ef85c27926bbf1"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [0b1c73be-744e-4826-ae71-ce9a287c103d]
+      X-Runtime: ['0.344668']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes/31760298?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31760298,"body":"reopened","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T17:43:09.073Z","updated_at":"2017-06-07T17:43:09.073Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['429']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:23:21 GMT']
+      Etag: [W/"e6a8cb35392c3d18a31cf683a9b1669a"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [97a9f6be-e14b-463c-9863-885aca2b362f]
+      X-Runtime: ['0.326979']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes/31760286?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31760286,"body":"closed","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T17:43:00.181Z","updated_at":"2017-06-07T17:43:00.181Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['427']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:23:25 GMT']
+      Etag: [W/"73dc913e91296b31154563107efe4ba9"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [def3b0d9-c3de-443b-bffa-33a4738630d1]
+      X-Runtime: ['0.277579']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes/31760247?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31760247,"body":"removed ~2105509 ~2105511 ~2105512 labels","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T17:42:33.775Z","updated_at":"2017-06-07T17:42:33.775Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['462']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:23:28 GMT']
+      Etag: [W/"8064d870dea24a314e89acc4739e94ac"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [204a40c9-eeeb-47f9-a4ca-966eb6591ba1]
+      X-Runtime: ['0.172384']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes/31760237?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31760237,"body":"added ~2105511 ~2105512 ~2105509 labels","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T17:42:25.019Z","updated_at":"2017-06-07T17:42:25.019Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['460']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:23:31 GMT']
+      Etag: [W/"23c1d4dffa0ee19786cec37513f89fdc"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [1611532b-dfdd-49fe-b46e-351825926736]
+      X-Runtime: ['0.402896']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes/31751037?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31751037,"body":"changed title from **{-dont panic-}** to
+        **{+Take it serious, son!+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T15:48:19.966Z","updated_at":"2017-06-07T15:48:19.966Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['491']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:23:36 GMT']
+      Etag: [W/"81bbbae4e35bdc49e0158f3387034323"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [210754a4-1aec-4b31-9524-be6cdd30e096]
+      X-Runtime: ['0.186043']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes/31751036?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31751036,"body":"changed title from **{-Take it serious,
+        son!-}** to **{+dont panic+}**","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T15:48:17.075Z","updated_at":"2017-06-07T15:48:17.075Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['491']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:23:39 GMT']
+      Etag: [W/"52e090c8f290db34d8ccbb334c249ff4"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [ca00ff3b-0f4e-469e-8efc-8f41f0da5296]
+      X-Runtime: ['0.295271']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes/31751021?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31751021,"body":"reopened","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T15:48:12.414Z","updated_at":"2017-06-07T15:48:12.414Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['429']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:23:43 GMT']
+      Etag: [W/"b855ade81afbc6bff238d75df3916878"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [872b1bbe-a614-4e96-a8a8-62c64d3e45f1]
+      X-Runtime: ['0.188013']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1/notes/31751017?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31751017,"body":"closed","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-07T15:48:09.200Z","updated_at":"2017-06-07T15:48:09.200Z","system":true,"noteable_id":5613608,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['427']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:23:47 GMT']
+      Etag: [W/"3edd603bde4b1534714daa12f454e692"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [92110476-9986-4b66-be27-bfa23ff3d193]
+      X-Runtime: ['0.534134']
+    status: {code: 200, message: OK}
+- request:
+    body: '{"body": "this is a test comment"}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['34']
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.17.3]
+    method: POST
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/3/notes?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31903131,"body":"this is a test comment","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T08:27:04.473Z","updated_at":"2017-06-09T08:27:04.473Z","system":false,"noteable_id":5613911,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['444']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:27:04 GMT']
+      Etag: [W/"633c9227606a52cfeb23553a5ce37b5d"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [360dc851-2b70-4e5d-a5b0-b282c260df47]
+      X-Runtime: ['0.330105']
+    status: {code: 201, message: Created}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/3/notes/31903131?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31903131,"body":"this is a test comment","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T08:27:04.473Z","updated_at":"2017-06-09T08:27:04.473Z","system":false,"noteable_id":5613911,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['444']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:27:07 GMT']
+      Etag: [W/"633c9227606a52cfeb23553a5ce37b5d"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [78cd1d3f-6bf1-4685-bc6e-8d279c88cb99]
+      X-Runtime: ['0.285167']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/3/notes?User-Agent=GitMate
+  response:
+    body: {string: '[{"id":31903131,"body":"this is a test comment","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T08:27:04.473Z","updated_at":"2017-06-09T08:27:04.473Z","system":false,"noteable_id":5613911,"noteable_type":"Issue"},{"id":31502884,"body":"Stop
+        staring at me.","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-05T06:19:38.058Z","updated_at":"2017-06-05T06:19:50.469Z","system":false,"noteable_id":5613911,"noteable_type":"Issue"},{"id":31502876,"body":"Go,
+        get your work done.","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-05T06:19:20.491Z","updated_at":"2017-06-05T06:19:20.491Z","system":false,"noteable_id":5613911,"noteable_type":"Issue"}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['1349']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:27:09 GMT']
+      Etag: [W/"b7f4665ff091eb55333f54c66c6ad342"]
+      Link: ['<https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/3/notes?User-Agent=GitMate&id=gitmate-test-user%2Ftest&noteable_id=3&page=1&per_page=20>;
+          rel="first", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/3/notes?User-Agent=GitMate&id=gitmate-test-user%2Ftest&noteable_id=3&page=1&per_page=20>;
+          rel="last"']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['20']
+      X-Prev-Page: ['']
+      X-Request-Id: [526b69f8-d262-4845-838a-ea174eb4a338]
+      X-Runtime: ['0.221105']
+      X-Total: ['3']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/3/notes/31502884?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31502884,"body":"Stop staring at me.","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-05T06:19:38.058Z","updated_at":"2017-06-05T06:19:50.469Z","system":false,"noteable_id":5613911,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['441']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:27:12 GMT']
+      Etag: [W/"1cdb48f9515b315d5206dc5d04726825"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [aa1fd51d-cb10-41fa-80d3-b740f08b3c2e]
+      X-Runtime: ['0.327786']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/3/notes/31502876?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31502876,"body":"Go, get your work done.","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-05T06:19:20.491Z","updated_at":"2017-06-05T06:19:20.491Z","system":false,"noteable_id":5613911,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['445']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:27:15 GMT']
+      Etag: [W/"cbd369e28325088f7782ab851175d0ed"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [aa292d21-47b3-4f27-8a29-c86fb4dc2566]
+      X-Runtime: ['0.243402']
+    status: {code: 200, message: OK}
+- request:
+    body: '{"body": "this is a test comment"}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['34']
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.17.3]
+    method: POST
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/3/notes?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31903769,"body":"this is a test comment","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T08:34:36.769Z","updated_at":"2017-06-09T08:34:36.769Z","system":false,"noteable_id":5613911,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['444']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:34:41 GMT']
+      Etag: [W/"6aed50c3b933b8a499866be355e92705"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [d63d612c-9e05-431c-ba0f-100c13b67985]
+      X-Runtime: ['5.354391']
+    status: {code: 201, message: Created}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/3/notes/31903769?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31903769,"body":"this is a test comment","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T08:34:36.769Z","updated_at":"2017-06-09T08:34:36.769Z","system":false,"noteable_id":5613911,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['444']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:34:44 GMT']
+      Etag: [W/"6aed50c3b933b8a499866be355e92705"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [ad1c4813-ed4d-426a-8eee-519009c58e37]
+      X-Runtime: ['0.775729']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/3/notes?User-Agent=GitMate
+  response:
+    body: {string: '[{"id":31903769,"body":"this is a test comment","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T08:34:36.769Z","updated_at":"2017-06-09T08:34:36.769Z","system":false,"noteable_id":5613911,"noteable_type":"Issue"},{"id":31903145,"body":"closed","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T08:27:18.674Z","updated_at":"2017-06-09T08:27:18.674Z","system":true,"noteable_id":5613911,"noteable_type":"Issue"},{"id":31903131,"body":"this
+        is a test comment","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T08:27:04.473Z","updated_at":"2017-06-09T08:27:04.473Z","system":false,"noteable_id":5613911,"noteable_type":"Issue"},{"id":31502884,"body":"Stop
+        staring at me.","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-05T06:19:38.058Z","updated_at":"2017-06-05T06:19:50.469Z","system":false,"noteable_id":5613911,"noteable_type":"Issue"},{"id":31502876,"body":"Go,
+        get your work done.","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-05T06:19:20.491Z","updated_at":"2017-06-05T06:19:20.491Z","system":false,"noteable_id":5613911,"noteable_type":"Issue"}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['2232']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:34:47 GMT']
+      Etag: [W/"9c794add485e6db301f1e87c4a107aee"]
+      Link: ['<https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/3/notes?User-Agent=GitMate&id=gitmate-test-user%2Ftest&noteable_id=3&page=1&per_page=20>;
+          rel="first", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/3/notes?User-Agent=GitMate&id=gitmate-test-user%2Ftest&noteable_id=3&page=1&per_page=20>;
+          rel="last"']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['20']
+      X-Prev-Page: ['']
+      X-Request-Id: [36e7de11-24a7-4156-b350-dd4a4679bbed]
+      X-Runtime: ['0.240200']
+      X-Total: ['5']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/3/notes/31903769?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31903769,"body":"this is a test comment","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T08:34:36.769Z","updated_at":"2017-06-09T08:34:36.769Z","system":false,"noteable_id":5613911,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['444']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:34:49 GMT']
+      Etag: [W/"6aed50c3b933b8a499866be355e92705"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [3061a6bb-9c77-413f-84af-5e733a0e4036]
+      X-Runtime: ['0.240911']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/3/notes/31903145?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31903145,"body":"closed","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T08:27:18.674Z","updated_at":"2017-06-09T08:27:18.674Z","system":true,"noteable_id":5613911,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['427']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:34:51 GMT']
+      Etag: [W/"a7bdbeaeb711e7f3a982dc2f69874f94"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [2aa1c943-9d75-4915-8c2e-d46bc1b2d9cf]
+      X-Runtime: ['0.254734']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/3/notes/31903131?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31903131,"body":"this is a test comment","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T08:27:04.473Z","updated_at":"2017-06-09T08:27:04.473Z","system":false,"noteable_id":5613911,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['444']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:34:53 GMT']
+      Etag: [W/"633c9227606a52cfeb23553a5ce37b5d"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [be9b06b3-7901-46e5-aa79-ea59e5bcea22]
+      X-Runtime: ['0.385569']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/3/notes/31502884?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31502884,"body":"Stop staring at me.","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-05T06:19:38.058Z","updated_at":"2017-06-05T06:19:50.469Z","system":false,"noteable_id":5613911,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['441']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:34:55 GMT']
+      Etag: [W/"1cdb48f9515b315d5206dc5d04726825"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [2675aef1-5f34-4eac-b01a-ece3d9d04da8]
+      X-Runtime: ['0.172864']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/3/notes/31502876?User-Agent=GitMate
+  response:
+    body: {string: '{"id":31502876,"body":"Go, get your work done.","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-05T06:19:20.491Z","updated_at":"2017-06-05T06:19:20.491Z","system":false,"noteable_id":5613911,"noteable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['445']
+      Content-Type: [application/json]
+      Date: ['Fri, 09 Jun 2017 08:34:57 GMT']
+      Etag: [W/"cbd369e28325088f7782ab851175d0ed"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [af7a8d78-90d0-4b0d-9391-61281a902475]
+      X-Runtime: ['0.293789']
+    status: {code: 200, message: OK}
+version: 1
