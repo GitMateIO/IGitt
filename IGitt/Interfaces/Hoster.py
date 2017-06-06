@@ -25,3 +25,9 @@ class Hoster:
         :return: A set of strings.
         """
         raise NotImplementedError
+
+    def get_repo(self, repository):
+        """
+        Return a repository object.
+        """
+        raise NotImplementedError

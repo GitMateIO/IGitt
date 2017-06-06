@@ -267,4 +267,4 @@ class GitHubRepository(Repository):
         >>> isinstance(iss, GitHubIssue)
         True
         """
-        return GitHubIssue.create(self._token, self.name, title, body)
+        return GitHubIssue.create(self._token, self.full_name, title, body)
