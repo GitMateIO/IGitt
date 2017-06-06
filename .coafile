@@ -11,3 +11,6 @@ files = **/*.py
 bears = PyUnusedCodeBear, PyLintBear
 use_spaces = True
 pylint_disable = R0903, C0411, C0326, C1801
+
+[mypy]
+bears = MypyBear
