@@ -4,6 +4,7 @@ Contains the Hoster implementation for GitHub.
 
 from IGitt.GitHub import get
 from IGitt.Interfaces.Hoster import Hoster
+from IGitt.GitHub.GitHubRepository import GitHubRepository
 
 
 class GitHub(Hoster):
@@ -50,3 +51,17 @@ class GitHub(Hoster):
         repo_list = get(self._token, '/user/repos')
         return {repo['full_name']
                 for repo in repo_list if repo['permissions']['push']}
+
+    def get_repo(self, repository) -> GitHubRepository:
+        """
+        Retrieve a given repository.
+
+        >>> from os import environ
+        >>> github = GitHub(environ['GITHUB_TEST_TOKEN'])
+        >>> repo = github.get_repo('gitmate-test-user/test')
+        >>> isinstance(repo, GitHubRepository)
+        True
+
+        :return: A repository object.
+        """
+        return GitHubRepository(self._token, repository)
