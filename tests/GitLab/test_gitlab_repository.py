@@ -64,3 +64,7 @@ class TestGitLabRepository(unittest.TestCase):
         self.repo.register_hook('http://some.url/in/the/world')
         self.repo.delete_hook('http://some.url/in/the/world')
         self.assertNotIn('http://some.url/in/the/world', self.repo.hooks)
+
+    @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_repo_merge_requests.yaml')
+    def test_merge_requests(self):
+        self.assertEqual(len(self.repo.merge_requests), 4)

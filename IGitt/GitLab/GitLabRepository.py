@@ -240,5 +240,16 @@ class GitLabRepository(Repository):
         return GitLabIssue.create(self._token, self.full_name, title, body)
 
     @property
-    def merge_requests(self):
-        raise NotImplementedError
+    def merge_requests(self) -> set:
+        """
+        Retrieves a set of merge request objects.
+
+        >>> from os import environ
+        >>> repo = GitLabRepository(environ['GITLAB_TEST_TOKEN'],
+        ...                         'gitmate-test-user/test')
+        >>> len(repo.merge_requests)
+        4
+        """
+        from IGitt.GitLab.GitLabMergeRequest import GitLabMergeRequest
+        return {GitLabMergeRequest(self._token, self.full_name, res['iid'])
+                for res in get(self._token, self._url + '/merge_requests')}
