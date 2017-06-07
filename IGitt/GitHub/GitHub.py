@@ -27,13 +27,13 @@ class GitHub(Hoster):
 
         >>> from os import environ
         >>> github = GitHub(environ['GITHUB_TEST_TOKEN'])
-        >>> github.owned_repositories
-        {'gitmate-test-user/test'}
+        >>> sorted(map(lambda x: x.full_name, github.owned_repositories))
+        ['gitmate-test-user/test']
 
         :return: A set of full repository names.
         """
         repo_list = get(self._token, '/user/repos')
-        return {repo['full_name']
+        return {GitHubRepository(self._token, repo['full_name'])
                 for repo in repo_list if repo['permissions']['admin']}
 
     @property
@@ -43,13 +43,13 @@ class GitHub(Hoster):
 
         >>> from os import environ
         >>> github = GitHub(environ['GITHUB_TEST_TOKEN'])
-        >>> sorted(github.write_repositories)
+        >>> sorted(map(lambda x: x.full_name, github.write_repositories))
         ['gitmate-test-user/test', 'sils/gitmate-test']
 
         :return: A set of strings.
         """
         repo_list = get(self._token, '/user/repos')
-        return {repo['full_name']
+        return {GitHubRepository(self._token, repo['full_name'])
                 for repo in repo_list if repo['permissions']['push']}
 
     def get_repo(self, repository) -> GitHubRepository:

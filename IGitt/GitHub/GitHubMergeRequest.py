@@ -197,7 +197,7 @@ class GitHubMergeRequest(MergeRequest):
         >>> pr = GitHubMergeRequest(environ['GITHUB_TEST_TOKEN'],
         ...                         'gitmate-test-user/test', 7)
         >>> pr.updated
-        datetime.datetime(2016, 1, 24, 19, 47, 45)
+        datetime.datetime(2017, 6, 7, 8, 42, 43)
         """
         return datetime.strptime(self._data['updated_at'],
                                  "%Y-%m-%dT%H:%M:%SZ")

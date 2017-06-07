@@ -166,9 +166,9 @@ class GitHubCommit(Commit):
         >>> status.description = "Theres no problem"
         >>> commit.set_status(status)
         >>> len(commit.get_statuses())
-        1
+        2
         >>> commit.get_statuses().pop().description
-        'Theres no problem'
+        'This commit needs work.'
 
         :param status: The CommitStatus to set to this commit.
         :raises RuntimeError: If something goes wrong (network, auth...).
