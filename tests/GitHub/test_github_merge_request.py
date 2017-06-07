@@ -29,6 +29,15 @@ class TestGitHubMergeRequest(unittest.TestCase):
         self.assertEqual(self.mr.head.sha,
                          'f6d2b7c66372236a090a2a74df2e47f42a54456b')
 
+    def test_description(self):
+        self.assertEqual(self.mr.description, '')
+
+    @my_vcr.use_cassette('tests/GitHub/cassettes/github_merge_request_title.yaml')
+    def test_title(self):
+        self.assertEqual(self.mr.title, 'test ack/unack')
+        self.mr.title = 'changed title'
+        self.assertEqual(self.mr.title, 'changed title')
+
     def test_base_branch_name(self):
         self.assertEqual(self.mr.base_branch_name, 'master')
 
@@ -45,10 +54,6 @@ class TestGitHubMergeRequest(unittest.TestCase):
         self.assertEqual(self.mr.repository.full_name,
                          'gitmate-test-user/test')
 
-    @my_vcr.use_cassette('tests/GitHub/cassettes/github_merge_request_issue.yaml')
-    def test_issue(self):
-        self.assertEqual(self.mr.issue.title, 'test ack/unack')
-
     def test_diffstat(self):
         self.assertEqual(self.mr.diffstat, (2, 0))
 
@@ -56,7 +61,7 @@ class TestGitHubMergeRequest(unittest.TestCase):
         self.assertEqual(self.mr.created, datetime.datetime(
             2016, 1, 24, 19, 47, 19))
         self.assertEqual(self.mr.updated, datetime.datetime(
-            2016, 1, 24, 19, 47, 45))
+            2017, 6, 7, 8, 42, 43))
 
     @my_vcr.use_cassette('tests/GitHub/cassettes/github_merge_request_affected_files.yaml')
     def test_affected_files(self):

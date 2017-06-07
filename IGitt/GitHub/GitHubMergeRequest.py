@@ -1,16 +1,32 @@
 """
 Contains a class representing the GitHub pull request.
+
+Labels, Milestones, Assignees and Comments are an integral part of GitHubIssue
+class. They have a rich unified way of handling issues and pull requests.
+
+Reference
+- https://developer.github.com/v3/pulls/#labels-assignees-and-milestones
+
+The methods being used from GitHubIssue are:
+- number
+- assignee
+- add_comment
+- comments
+- labels
+- labels.setter
+- available_labels
 """
 from datetime import datetime
 from functools import lru_cache
 
-from IGitt.GitHub import get, patch
+from IGitt.GitHub import get
+from IGitt.GitHub import patch
 from IGitt.GitHub.GitHubCommit import GitHubCommit
 from IGitt.GitHub.GitHubIssue import GitHubIssue
 from IGitt.Interfaces.MergeRequest import MergeRequest
 
 
-class GitHubMergeRequest(MergeRequest):
+class GitHubMergeRequest(MergeRequest, GitHubIssue):
     """
     A Pull Request on GitHub.
     """
@@ -23,11 +39,61 @@ class GitHubMergeRequest(MergeRequest):
         :param repository: The repository containing the PR.
         :param pr_number: The PR number.
         """
-        self._token = oauth_token
-        self._repository = repository
+        super(GitHubMergeRequest, self).__init__(
+            oauth_token, repository, pr_number)
         self._number = pr_number
-        self._url = '/repos/' + repository + '/pulls/' + str(pr_number)
-        self._data = get(self._token, self._url)
+        # using self.__url and self.__data instead to simplify inheritance with
+        # GitLabIssue and it's methods. GitLabIssue methods resolve self._url
+        # for calling self methods. Never use these interchangeably.
+        self.__url = '/repos/' + repository + '/pulls/' + str(pr_number)
+        self.__data = get(self._token, self.__url)
+
+    @property
+    def title(self):
+        """
+        Retrieves the title of the pull request.
+
+        >>> from os import environ
+        >>> mr = GitHubMergeRequest(environ['GITHUB_TEST_TOKEN'],
+        ...                         'gitmate-test-user/test', 1)
+        >>> mr.title
+        'test issue'
+
+        You can simply set it using the property setter:
+
+        >>> mr.title = 'dont panic'
+        >>> mr.title
+        'dont panic'
+
+        >>> mr.title = 'test issue'
+
+        :return: The title of the pull request - as string.
+        """
+        return self.__data['title']
+
+    @title.setter
+    def title(self, new_title):
+        """
+        Sets the title of the pull request.
+
+        :param new_title: The new title.
+        """
+        self.__data = patch(self._token, self.__url, {'title': new_title})
+
+    @property
+    def description(self):
+        r"""
+        Retrieves the main description of the pull request:
+
+        >>> from os import environ
+        >>> mr = GitHubIssue(environ['GITHUB_TEST_TOKEN'],
+        ...                     'gitmate-test-user/test', 1)
+        >>> mr.description
+        'A nice description!\n'
+
+        :return: A string containing the main description of the pull request.
+        """
+        return self.__data['body']
 
     @property
     def base(self):
@@ -43,7 +109,7 @@ class GitHubMergeRequest(MergeRequest):
         :return: A Commit object.
         """
         return GitHubCommit(self._token, self._repository,
-                            self._data['base']['sha'])
+                            self.__data['base']['sha'])
 
     @property
     def head(self):
@@ -59,7 +125,7 @@ class GitHubMergeRequest(MergeRequest):
         :return: A Commit object.
         """
         return GitHubCommit(self._token, self._repository,
-                            self._data['head']['sha'])
+                            self.__data['head']['sha'])
 
     @property
     def base_branch_name(self) -> str:
@@ -75,7 +141,7 @@ class GitHubMergeRequest(MergeRequest):
 
         :return: A string.
         """
-        return self._data['base']['ref']
+        return self.__data['base']['ref']
 
     @property
     def head_branch_name(self) -> str:
@@ -91,7 +157,7 @@ class GitHubMergeRequest(MergeRequest):
 
         :return: A string.
         """
-        return self._data['head']['ref']
+        return self.__data['head']['ref']
 
     @property
     @lru_cache(None)
@@ -107,7 +173,7 @@ class GitHubMergeRequest(MergeRequest):
 
         :return: A tuple of commit objects.
         """
-        commits = get(self._token, self._url + '/commits')
+        commits = get(self._token, self.__url + '/commits')
         return tuple(GitHubCommit(self._token, self._repository, commit['sha'])
                      for commit in commits)
 
@@ -128,21 +194,6 @@ class GitHubMergeRequest(MergeRequest):
         return GitHubRepository(self._token, self._repository)
 
     @property
-    def issue(self):
-        """
-        Retrieves a GitHubIssue:
-
-        >>> from os import environ
-        >>> pr = GitHubMergeRequest(environ['GITHUB_TEST_TOKEN'],
-        ...                         'gitmate-test-user/test', 7)
-        >>> pr.issue.labels
-        set()
-
-        :return: The issue object.
-        """
-        return GitHubIssue(self._token, self._repository, self._number)
-
-    @property
     def affected_files(self):
         """
         Retrieves affected files from a GitHub pull request.
@@ -155,7 +206,7 @@ class GitHubMergeRequest(MergeRequest):
 
         :return: A set of filenames.
         """
-        files = get(self._token, self._url + '/files')
+        files = get(self._token, self.__url + '/files')
         return {file['filename'] for file in files}
 
     @property
@@ -171,7 +222,7 @@ class GitHubMergeRequest(MergeRequest):
 
         :return: An (additions, deletions) tuple.
         """
-        return self._data['additions'], self._data['deletions']
+        return self.__data['additions'], self.__data['deletions']
 
     @property
     def created(self) -> datetime:
@@ -184,7 +235,7 @@ class GitHubMergeRequest(MergeRequest):
         >>> pr.created
         datetime.datetime(2016, 1, 24, 19, 47, 19)
         """
-        return datetime.strptime(self._data['created_at'],
+        return datetime.strptime(self.__data['created_at'],
                                  "%Y-%m-%dT%H:%M:%SZ")
 
     @property
@@ -199,7 +250,7 @@ class GitHubMergeRequest(MergeRequest):
         >>> pr.updated
         datetime.datetime(2017, 6, 7, 8, 42, 43)
         """
-        return datetime.strptime(self._data['updated_at'],
+        return datetime.strptime(self.__data['updated_at'],
                                  "%Y-%m-%dT%H:%M:%SZ")
 
     def close(self):
@@ -208,7 +259,7 @@ class GitHubMergeRequest(MergeRequest):
 
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
-        self._data = patch(self._token, self._url, {"state": "closed"})
+        self.__data = patch(self._token, self.__url, {'state': 'closed'})
 
     def reopen(self):
         """
@@ -216,7 +267,13 @@ class GitHubMergeRequest(MergeRequest):
 
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
-        self._data = patch(self._token, self._url, {"state": "open"})
+        self.__data = patch(self._token, self.__url, {'state': 'open'})
+
+    def delete(self):
+        """
+        GitHub doesn't allow deleting issues or pull requests.
+        """
+        raise NotImplementedError
 
     @property
     def state(self) -> str:
@@ -243,7 +300,7 @@ class GitHubMergeRequest(MergeRequest):
 
         :return: Either 'open' or 'closed'.
         """
-        return self._data['state']
+        return self.__data['state']
 
     @property
     def number(self) -> int:

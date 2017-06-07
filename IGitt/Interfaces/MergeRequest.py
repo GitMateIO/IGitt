@@ -5,9 +5,10 @@ branch.
 from datetime import datetime
 
 from IGitt.Interfaces.Commit import Commit
+from IGitt.Interfaces.Issue import Issue
 
 
-class MergeRequest:
+class MergeRequest(Issue):
     """
     A request to merge something into the main codebase. Can be a patch in a
     mail or a pull request on GitHub.
@@ -93,16 +94,6 @@ class MergeRequest:
         Retrieves the repository where this PR is from.
 
         :return: A Repository object.
-        """
-        raise NotImplementedError
-
-    @property
-    def issue(self):
-        """
-        Retrieves an Issue object representing issue capabilities of the merge
-        request.
-
-        :return: An Issue object.
         """
         raise NotImplementedError
 
