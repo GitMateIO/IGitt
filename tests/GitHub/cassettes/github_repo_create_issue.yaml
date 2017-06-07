@@ -1,0 +1,96 @@
+interactions:
+- request:
+    body: '{"body": "body", "title": "title"}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['34']
+      Content-Type: [application/json]
+      User-Agent: [GitMate]
+    method: POST
+    uri: https://api.github.com/repos/gitmate-test-user/test/issues
+  response:
+    body: {string: '{"url":"https://api.github.com/repos/gitmate-test-user/test/issues/60","repository_url":"https://api.github.com/repos/gitmate-test-user/test","labels_url":"https://api.github.com/repos/gitmate-test-user/test/issues/60/labels{/name}","comments_url":"https://api.github.com/repos/gitmate-test-user/test/issues/60/comments","events_url":"https://api.github.com/repos/gitmate-test-user/test/issues/60/events","html_url":"https://github.com/gitmate-test-user/test/issues/60","id":234120582,"number":60,"title":"title","user":{"login":"gitmate-test-user","id":16681030,"avatar_url":"https://avatars0.githubusercontent.com/u/16681030?v=3","gravatar_id":"","url":"https://api.github.com/users/gitmate-test-user","html_url":"https://github.com/gitmate-test-user","followers_url":"https://api.github.com/users/gitmate-test-user/followers","following_url":"https://api.github.com/users/gitmate-test-user/following{/other_user}","gists_url":"https://api.github.com/users/gitmate-test-user/gists{/gist_id}","starred_url":"https://api.github.com/users/gitmate-test-user/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/gitmate-test-user/subscriptions","organizations_url":"https://api.github.com/users/gitmate-test-user/orgs","repos_url":"https://api.github.com/users/gitmate-test-user/repos","events_url":"https://api.github.com/users/gitmate-test-user/events{/privacy}","received_events_url":"https://api.github.com/users/gitmate-test-user/received_events","type":"User","site_admin":false},"labels":[],"state":"open","locked":false,"assignee":null,"assignees":[],"milestone":null,"comments":0,"created_at":"2017-06-07T07:46:09Z","updated_at":"2017-06-07T07:46:09Z","closed_at":null,"body":"body","closed_by":null}'}
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Access-Control-Expose-Headers: ['ETag, Link, X-GitHub-OTP, X-RateLimit-Limit,
+          X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes,
+          X-Poll-Interval']
+      Cache-Control: ['private, max-age=60, s-maxage=60']
+      Content-Length: ['1727']
+      Content-Security-Policy: [default-src 'none']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Wed, 07 Jun 2017 07:46:09 GMT']
+      ETag: ['"f1ac493ad6de57274a98022aaf040b07"']
+      Location: ['https://api.github.com/repos/gitmate-test-user/test/issues/60']
+      Server: [GitHub.com]
+      Status: [201 Created]
+      Strict-Transport-Security: [max-age=31536000; includeSubdomains; preload]
+      Vary: ['Accept, Authorization, Cookie, X-GitHub-OTP', Accept-Encoding]
+      X-Accepted-OAuth-Scopes: ['']
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [deny]
+      X-GitHub-Media-Type: [github.v3; format=json]
+      X-GitHub-Request-Id: ['81B4:13F61:79C4AD9:9F46528:5937AF41']
+      X-OAuth-Scopes: ['admin:org, admin:org_hook, admin:public_key, admin:repo_hook,
+          delete_repo, gist, notifications, repo, user']
+      X-RateLimit-Limit: ['5000']
+      X-RateLimit-Remaining: ['4811']
+      X-RateLimit-Reset: ['1496823149']
+      X-Runtime-rack: ['0.130039']
+      X-Served-By: [6694d697f15dfc31f0ffaf8cdb1d5a86]
+      X-XSS-Protection: [1; mode=block]
+    status: {code: 201, message: Created}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [GitMate]
+    method: GET
+    uri: https://api.github.com/repos/gitmate-test-user/test/issues/60
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA62U0W7bMAxF/0XPSaUkndMZKPoT28uGIZBt1hEmS4Yku8iM/Puu5CRds6XtnD45
+        ocgjipfkwDqnWc62IbQ+51y26qZWYdsVN6VtuKPWeg5DIwPNA/kw7zw5Hn9x5X1HnmeCzVhyVMG6
+        3WYyEBgtC9J+OuI5Jz6iBm5kQ3ug8ZyGTPgY+BEGLvUfRh1RYG5Do8+K8Ico75BDVSxfrm4XS/Hp
+        bjljpmsKcizPxIwFFTRB8fE7Y1FPlg9M21oZ2P+iI5+IW2TZ3UKsQJC9DNKdi5SMXhy6J1JLawJq
+        kxqp48f4h/5+BWTtDpjIZjC82jYR948+/P9SIeLRam2fwDt/wcvWv3AlP4WfUMrU16AQPnAbtoSS
+        4pmxV2vl32rUS+ml0AEj68NGVRHmoYujalqKh2Ak+GSQ25A2QqJ2hS+daoOyZmIlXyCAtK6WRv2S
+        VyCB8CClbTTtwSkUiPeM9SUNxtiBt071stzFcjkqSfVQ4RruGQTYsGvjLH+NMwxNVKCNrJo4x49S
+        e9ofNyrLv/9InRCiu23JwF3b8idh+pIrxtp7VRuCg+m0fv7vx+BGaSx9a07npx2YYyeUjsCuNjKA
+        vxSL9Vxkc7H+Itb5bZaLz99wX9dWb/qU2voDZsyisNUOyPTBNeNxAVM83v8Gtkd4Tb8GAAA=
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Access-Control-Expose-Headers: ['ETag, Link, X-GitHub-OTP, X-RateLimit-Limit,
+          X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes,
+          X-Poll-Interval']
+      Cache-Control: ['private, max-age=60, s-maxage=60']
+      Content-Encoding: [gzip]
+      Content-Security-Policy: [default-src 'none']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Wed, 07 Jun 2017 07:46:10 GMT']
+      ETag: [W/"f1ac493ad6de57274a98022aaf040b07"]
+      Last-Modified: ['Wed, 07 Jun 2017 07:46:09 GMT']
+      Server: [GitHub.com]
+      Status: [200 OK]
+      Strict-Transport-Security: [max-age=31536000; includeSubdomains; preload]
+      Vary: ['Accept, Authorization, Cookie, X-GitHub-OTP', Accept-Encoding]
+      X-Accepted-OAuth-Scopes: ['public_repo, repo']
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [deny]
+      X-GitHub-Media-Type: [github.v3; format=json]
+      X-GitHub-Request-Id: ['C0F2:13F61:79C4BA0:9F4660B:5937AF42']
+      X-OAuth-Scopes: ['admin:org, admin:org_hook, admin:public_key, admin:repo_hook,
+          delete_repo, gist, notifications, repo, user']
+      X-RateLimit-Limit: ['5000']
+      X-RateLimit-Remaining: ['4810']
+      X-RateLimit-Reset: ['1496823149']
+      X-Runtime-rack: ['0.050971']
+      X-Served-By: [eef8b8685a106934dcbb4b7c59fba0bf]
+      X-XSS-Protection: [1; mode=block]
+    status: {code: 200, message: OK}
+version: 1
