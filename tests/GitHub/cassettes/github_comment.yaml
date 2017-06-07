@@ -1,0 +1,52 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [GitMate]
+    method: GET
+    uri: https://api.github.com/repos/gitmate-test-user/test/issues/comments/172962077
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA52U32rDIBjFX2W426TmD22oMPYS280YBJvYVEg0+JmULvTd92mla3NR0t2JOefn
+        8USdyGBawsjB2h4YpbyXq0baw7BbVbqjRvQaKE503IrYCrDxAMJQN6ISYBBAUdcJZYGmRbbdZElR
+        kAh5XVveo2+wj4HZqycHbnyL9R9m3H9EzjChrAm7oiPitkXYRFrdSIWFgGwhqNZFullnSUT4yC03
+        8+X9JOShNseptLLYiG9woMH+Pr7lCGxMoLj1CU487N/RgIYsjzsNor1uW31E1zzm/Y/9A9OrA8Nc
+        xlI1T7rRMVFtDwLbwchnt1EJdnkIr57wpIEtZe38gK0aUS8OEvQY46gwweTPrgcNO6iM7K3Uanmg
+        OxdStGm4kj/8OQq63Cny12jxTrwaXWJ012qx7SKfaG/kyKuT27oRlZAjlvgkauZDkj31As/rp7sl
+        WKm0ouR1527KnrcgzhGpjMA3oi65RV2WpJs4SeN0+5FuWV6wdf6FvqGvZ5o0iRPUpCzfsKRwmp2u
+        T0hwL8xLeAK+FTn/AmgjpnmpBAAA
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Access-Control-Expose-Headers: ['ETag, Link, X-GitHub-OTP, X-RateLimit-Limit,
+          X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes,
+          X-Poll-Interval']
+      Cache-Control: ['private, max-age=60, s-maxage=60']
+      Content-Encoding: [gzip]
+      Content-Security-Policy: [default-src 'none']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Tue, 06 Jun 2017 17:25:58 GMT']
+      ETag: [W/"5842055bcd0596c55cdd9296ecfcf0b4"]
+      Last-Modified: ['Tue, 06 Jun 2017 16:43:27 GMT']
+      Server: [GitHub.com]
+      Status: [200 OK]
+      Strict-Transport-Security: [max-age=31536000; includeSubdomains; preload]
+      Vary: ['Accept, Authorization, Cookie, X-GitHub-OTP', Accept-Encoding]
+      X-Accepted-OAuth-Scopes: ['public_repo, repo']
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [deny]
+      X-GitHub-Media-Type: [github.v3; format=json]
+      X-GitHub-Request-Id: ['C6B8:13F61:73A2A6B:97597F1:5936E5A5']
+      X-OAuth-Scopes: ['admin:org, admin:org_hook, admin:public_key, admin:repo_hook,
+          delete_repo, gist, notifications, repo, user']
+      X-RateLimit-Limit: ['5000']
+      X-RateLimit-Remaining: ['4996']
+      X-RateLimit-Reset: ['1496773364']
+      X-Runtime-rack: ['0.030583']
+      X-Served-By: [1e9204dbc0447a6f39c3b3c44d87b3f8]
+      X-XSS-Protection: [1; mode=block]
+    status: {code: 200, message: OK}
+version: 1
