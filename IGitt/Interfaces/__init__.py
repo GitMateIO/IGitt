@@ -6,7 +6,7 @@ from enum import Enum
 from requests import Session
 
 
-HEADERS = {'User-Agent': 'GitMate'}
+HEADERS = {'User-Agent': 'IGitt'}
 
 
 def error_checked_request(func):
