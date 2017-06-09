@@ -3,7 +3,17 @@ This module contains the Comment class representing a comment on a pull
 request, commit or issue.
 """
 from datetime import datetime
+from enum import Enum
 
+
+class CommentType(Enum):
+    """
+    An abstract class to differentiate types of comments.
+    """
+    ISSUE = 'issues'
+    SNIPPET = 'snippets'
+    MERGE_REQUEST = 'merge_requests'
+    COMMIT = 'commits'
 
 class Comment:
     """
