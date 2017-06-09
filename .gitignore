@@ -8,3 +8,4 @@ __pycache__
 *.orig
 .cache
 .coverage*
+.DS_Store
