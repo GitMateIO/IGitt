@@ -297,7 +297,7 @@ class GitHubIssue(Issue):
 
     @staticmethod
     def create(token: str, repository: str,
-               title: str, body: str):
+               title: str, body: str=''):
         """
         Create a new issue with given title and body.
 

@@ -307,7 +307,7 @@ class GitLabIssue(Issue):
         return self._data['state']
 
     @staticmethod
-    def create(token: str, repository: str, title: str, body: str):
+    def create(token: str, repository: str, title: str, body: str=''):
         """
         Create a new issue with given title and body.
 

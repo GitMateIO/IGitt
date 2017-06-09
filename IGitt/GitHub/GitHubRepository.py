@@ -256,7 +256,7 @@ class GitHubRepository(Repository):
         return {GitHubMergeRequest(self._token, self.full_name, res['number'])
                 for res in get(self._token, self._url + '/pulls')}
 
-    def create_issue(self, title: str, body: str) -> GitHubIssue:
+    def create_issue(self, title: str, body: str='') -> GitHubIssue:
         """
         Create a new issue in the repository.
 

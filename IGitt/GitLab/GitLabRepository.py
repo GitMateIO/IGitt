@@ -233,7 +233,7 @@ class GitLabRepository(Repository):
             if hook['url'] == url:
                 delete(self._token, hook_url + '/' + str(hook['id']))
 
-    def create_issue(self, title: str, body: str) -> GitLabIssue:
+    def create_issue(self, title: str, body: str='') -> GitLabIssue:
         """
         Create a new issue in the repository.
         """

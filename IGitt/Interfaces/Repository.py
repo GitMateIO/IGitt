@@ -156,7 +156,7 @@ class Repository:
         """
         raise NotImplementedError
 
-    def create_issue(self, title, body):
+    def create_issue(self, title, body=''):
         """
         Create a new issue.
         """
