@@ -8,10 +8,11 @@ from IGitt.Interfaces.Commit import Commit
 from IGitt.Interfaces.CommitStatus import CommitStatus, Status
 
 GH_STATE_TRANSLATION = {Status.ERROR: 'error', Status.FAILED: 'failure',
-                        Status.PENDING: 'pending',
-                        Status.SUCCESS: 'success'}
-INV_GH_STATE_TRANSLATION = {val: key for key, val
-                            in GH_STATE_TRANSLATION.items()}
+                        Status.PENDING: 'pending', Status.CANCELED: 'failure',
+                        Status.SUCCESS: 'success', Status.RUNNING: 'pending'}
+INV_GH_STATE_TRANSLATION = {'error': Status.ERROR, 'failure': Status.FAILED,
+                            'pending': Status.PENDING,
+                            'success': Status.SUCCESS}
 
 
 def get_diff_index(patch, line_nr):
