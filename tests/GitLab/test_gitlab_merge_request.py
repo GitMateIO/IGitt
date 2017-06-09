@@ -45,6 +45,7 @@ class TestGitLabMergeRequest(unittest.TestCase):
         self.assertEqual(self.mr.repository.full_name,
                          'gitmate-test-user/test')
 
+    @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_merge_request_diffstat.yaml')
     def test_diffstat(self):
         self.assertEqual(self.mr.diffstat, (2, 0))
 
