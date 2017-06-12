@@ -26,6 +26,13 @@ class Issue:
         """
         raise NotImplementedError
 
+    @property
+    def url(self) -> str:
+        """
+        Retrieves the url of the issue.
+        """
+        raise NotImplementedError
+
     @title.setter
     def title(self, new_title):
         """

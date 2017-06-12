@@ -26,6 +26,10 @@ class GitHubIssueTest(unittest.TestCase):
         self.iss.title = 'new title'
         self.assertEqual(self.iss.title, 'new title')
 
+    def test_url(self):
+        self.assertEqual(self.iss.url,
+                         'https://github.com/gitmate-test-user/test/issues/39')
+
     def test_assignee(self):
         self.assertEqual(self.iss.assignee, None)
 

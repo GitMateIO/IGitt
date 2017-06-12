@@ -26,6 +26,10 @@ class GitLabIssueTest(unittest.TestCase):
         self.iss.title = 'new title'
         self.assertEqual(self.iss.title, 'new title')
 
+    def test_url(self):
+        self.assertEqual(self.iss.url,
+                         'https://gitlab.com/gitmate-test-user/test/issues/3')
+
     def test_assignee(self):
         self.assertIsNone(self.iss.assignee)
 

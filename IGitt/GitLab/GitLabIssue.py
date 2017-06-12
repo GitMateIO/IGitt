@@ -75,6 +75,14 @@ class GitLabIssue(Issue):
         self._data = put(self._token, self._url, {'title': new_title})
 
     @property
+    def url(self):
+        """
+        Returns the link/URL of the issue.
+        """
+        return 'https://gitlab.com/{}/issues/{}'.format(self._repository,
+                                                        self.number)
+
+    @property
     def number(self) -> int:
         """
         Returns the issue "number" or id.
