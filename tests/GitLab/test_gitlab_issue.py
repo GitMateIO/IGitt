@@ -30,8 +30,14 @@ class GitLabIssueTest(unittest.TestCase):
         self.assertEqual(self.iss.url,
                          'https://gitlab.com/gitmate-test-user/test/issues/3')
 
+    @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_issue_assignee.yaml')
     def test_assignee(self):
         self.assertIsNone(self.iss.assignee)
+        iss = GitLabIssue(os.environ.get('GITLAB_TEST_TOKEN', ''),
+                          'gitmate-test-user/test', 27)
+        self.assertEqual(iss.assignee, None)
+        iss.assignee = 'meetmangukiya'
+        self.assertEqual(iss.assignee, 'meetmangukiya')
 
     def test_number(self):
         self.assertEqual(self.iss.number, 3)

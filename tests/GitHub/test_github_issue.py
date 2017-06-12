@@ -30,8 +30,13 @@ class GitHubIssueTest(unittest.TestCase):
         self.assertEqual(self.iss.url,
                          'https://github.com/gitmate-test-user/test/issues/39')
 
+    @my_vcr.use_cassette('tests/GitHub/cassettes/github_issue_assignee.yaml')
     def test_assignee(self):
         self.assertEqual(self.iss.assignee, None)
+        iss = GitHubIssue(os.environ.get('GITHUB_TEST_TOKEN', ''),
+                          'gitmate-test-user/test', 41)
+        iss.assignee = 'meetmangukiya'
+        self.assertEqual(iss.assignee, 'meetmangukiya')
 
     def test_number(self):
         self.assertEqual(self.iss.number, 39)

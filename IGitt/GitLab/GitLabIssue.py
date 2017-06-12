@@ -119,6 +119,15 @@ class GitLabIssue(Issue):
         return (self._data['assignees'][0]['username']
                 if self._data['assignees'] else None)
 
+    @assignee.setter
+    def assignee(self, new_assignee):
+        url = self._url.format(quote_plus(self._repository),
+                               self.number)
+        res = get(self._token, '/users', {'username': new_assignee})
+        if len(res) > 0:
+            user = res[0]['id']
+            self._data = put(self._token, url, {'assignee_ids': user})
+
     @property
     def description(self) -> str:
         r"""

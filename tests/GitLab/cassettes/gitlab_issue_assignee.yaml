@@ -1,0 +1,89 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/27?User-Agent=IGitt
+  response:
+    body: {string: '{"id":5685687,"iid":27,"project_id":3439658,"title":"test issue","description":"","state":"opened","created_at":"2017-06-12T18:14:54.571Z","updated_at":"2017-06-12T18:41:11.033Z","labels":[],"milestone":null,"assignees":[],"author":{"name":"Meet
+        Mangukiya","username":"meetmangukiya","id":707601,"state":"active","avatar_url":"https://gitlab.com/uploads/system/user/avatar/707601/avatar.png","web_url":"https://gitlab.com/meetmangukiya"},"assignee":null,"user_notes_count":0,"upvotes":0,"downvotes":0,"due_date":null,"confidential":false,"weight":null,"web_url":"https://gitlab.com/gitmate-test-user/test/issues/27","subscribed":true}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['634']
+      Content-Type: [application/json]
+      Date: ['Mon, 12 Jun 2017 19:54:46 GMT']
+      Etag: [W/"6e93a25fa4396d90b684686707c4aed3"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [36ce2850-2ac2-466d-b937-b4811abaf4ec]
+      X-Runtime: ['0.349949']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.17.3]
+    method: GET
+    uri: https://gitlab.com/api/v4/users?User-Agent=IGitt&username=meetmangukiya
+  response:
+    body: {string: '[{"name":"Meet Mangukiya","username":"meetmangukiya","id":707601,"state":"active","avatar_url":"https://gitlab.com/uploads/system/user/avatar/707601/avatar.png","web_url":"https://gitlab.com/meetmangukiya"}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['207']
+      Content-Type: [application/json]
+      Date: ['Mon, 12 Jun 2017 19:54:53 GMT']
+      Etag: [W/"dba9fcc1837dc5610687047d786f3314"]
+      Link: ['<https://gitlab.com/api/v4/users?User-Agent=IGitt&active=false&blocked=false&external=false&page=1&per_page=20&private_token=&skip_ldap=false&username=meetmangukiya>;
+          rel="first", <https://gitlab.com/api/v4/users?User-Agent=IGitt&active=false&blocked=false&external=false&page=1&per_page=20&private_token=&skip_ldap=false&username=meetmangukiya>;
+          rel="last"']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['20']
+      X-Prev-Page: ['']
+      X-Request-Id: [6080996e-2593-43f8-bcd2-22d55fb4b67e]
+      X-Runtime: ['0.103986']
+      X-Total: ['1']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+- request:
+    body: '{"assignee_ids": 707601}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['24']
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.17.3]
+    method: PUT
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/27?User-Agent=IGitt
+  response:
+    body: {string: '{"id":5685687,"iid":27,"project_id":3439658,"title":"test issue","description":"","state":"opened","created_at":"2017-06-12T18:14:54.571Z","updated_at":"2017-06-12T19:55:03.051Z","labels":[],"milestone":null,"assignees":[{"name":"Meet
+        Mangukiya","username":"meetmangukiya","id":707601,"state":"active","avatar_url":"https://gitlab.com/uploads/system/user/avatar/707601/avatar.png","web_url":"https://gitlab.com/meetmangukiya"}],"author":{"name":"Meet
+        Mangukiya","username":"meetmangukiya","id":707601,"state":"active","avatar_url":"https://gitlab.com/uploads/system/user/avatar/707601/avatar.png","web_url":"https://gitlab.com/meetmangukiya"},"assignee":{"name":"Meet
+        Mangukiya","username":"meetmangukiya","id":707601,"state":"active","avatar_url":"https://gitlab.com/uploads/system/user/avatar/707601/avatar.png","web_url":"https://gitlab.com/meetmangukiya"},"user_notes_count":0,"upvotes":0,"downvotes":0,"due_date":null,"confidential":false,"weight":null,"web_url":"https://gitlab.com/gitmate-test-user/test/issues/27","subscribed":true}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['1040']
+      Content-Type: [application/json]
+      Date: ['Mon, 12 Jun 2017 19:55:03 GMT']
+      Etag: [W/"751afed878653015834545dc96cac866"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [4224d9ed-8dbc-4e22-85e7-16d9e8cee6e2]
+      X-Runtime: ['1.284307']
+    status: {code: 200, message: OK}
+version: 1

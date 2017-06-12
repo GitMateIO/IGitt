@@ -112,6 +112,13 @@ class GitHubIssue(Issue):
         return (self._data['assignee']['login'] if self._data['assignee'] else
                 None)
 
+    @assignee.setter
+    def assignee(self, new_assignee):
+        self._data = post(self._token,
+                          '/repos/{}/issues/{}/assignees'.format(self._repository,
+                                                                 self.number),
+                          {'assignees': new_assignee})
+
     @property
     def description(self):
         r"""
