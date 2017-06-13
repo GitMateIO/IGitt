@@ -12,12 +12,6 @@ class Issue:
     Represents an issue on GitHub or GitLab or a bug report on bugzilla or so.
     """
 
-    def refresh(self):
-        """
-        Refreshes the data from the hoster.
-        """
-        raise NotImplementedError
-
     @property
     def number(self) -> int:
         """
@@ -29,13 +23,6 @@ class Issue:
     def title(self) -> str:
         """
         Retrieves the title of the issue.
-        """
-        raise NotImplementedError
-
-    @property
-    def url(self) -> str:
-        """
-        Retrieves the url of the issue.
         """
         raise NotImplementedError
 
@@ -137,14 +124,6 @@ class Issue:
         """
         raise NotImplementedError
 
-    def delete(self):
-        """
-        Deletes the issue.
-
-        :raises RuntimeError: If something goes wrong (network, auth...).
-        """
-        raise NotImplementedError
-
     @property
     def state(self) -> str:
         """
@@ -165,12 +144,5 @@ class Issue:
     def updated(self) -> datetime:
         """
         Retrieves a timestamp on when the comment was updated the last time.
-        """
-        raise NotImplementedError
-
-    @staticmethod
-    def create(token, repository, title, body=''):
-        """
-        Create a new issue in repository.
         """
         raise NotImplementedError

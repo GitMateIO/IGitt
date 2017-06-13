@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: IGitt
+Version: 0.3.0
+Summary: A git(hub/lab/...) hosting abstraction library.
+Home-page: UNKNOWN
+Author: Lasse Schuirmann
+Author-email: lasse.schuirmann@gmail.com
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN

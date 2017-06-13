@@ -42,6 +42,9 @@ class GitLabIssue(Issue):
             repo=quote_plus(repository), issue_iid=issue_iid)
         self._data = get(self._token, self._url)
 
+    def refresh(self):
+        self._data = get(self._token, self._url)
+
     @property
     def title(self) -> str:
         """

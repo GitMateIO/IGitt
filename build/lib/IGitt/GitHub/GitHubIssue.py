@@ -5,7 +5,6 @@ from datetime import datetime
 
 from IGitt.GitHub import get, patch, post
 from IGitt.GitHub.GitHubComment import GitHubComment
-from IGitt.Interfaces.Comment import CommentType
 from IGitt.Interfaces.Issue import Issue
 
 
@@ -35,9 +34,6 @@ class GitHubIssue(Issue):
         self._token = oauth_token
         self._repository = repository
         self._url = '/repos/'+repository+'/issues/'+str(issue_number)
-        self._data = get(self._token, self._url)
-
-    def refresh(self):
         self._data = get(self._token, self._url)
 
     @property
@@ -73,14 +69,6 @@ class GitHubIssue(Issue):
         self._data = patch(self._token, self._url, {'title': new_title})
 
     @property
-    def url(self):
-        """
-        Returns the link/URL of the issue.
-        """
-        return 'https://github.com/{}/issues/{}'.format(self._repository,
-                                                        self.number)
-
-    @property
     def number(self) -> int:
         """
         Returns the issue "number" or id.
@@ -114,13 +102,6 @@ class GitHubIssue(Issue):
         """
         return (self._data['assignee']['login'] if self._data['assignee'] else
                 None)
-
-    @assignee.setter
-    def assignee(self, new_assignee):
-        self._data = post(self._token,
-                          '/repos/{}/issues/{}/assignees'.format(self._repository,
-                                                                 self.number),
-                          {'assignees': new_assignee})
 
     @property
     def description(self):
@@ -160,8 +141,7 @@ class GitHubIssue(Issue):
         """
         result = post(self._token, self._url + '/comments', {'body': body})
 
-        return GitHubComment(self._token, self._repository,
-                             CommentType.ISSUE, result['id'])
+        return GitHubComment(self._token, self._repository, result['id'])
 
     @property
     def comments(self):
@@ -180,8 +160,7 @@ class GitHubIssue(Issue):
 
         :return: A list of Comment objects.
         """
-        return [GitHubComment(self._token, self._repository,
-                              CommentType.ISSUE, result['id'])
+        return [GitHubComment(self._token, self._repository, result['id'])
                 for result in get(self._token, self._url + '/comments')]
 
     @property
@@ -278,14 +257,6 @@ class GitHubIssue(Issue):
         """
         self._data = patch(self._token, self._url, {"state": "open"})
 
-    def delete(self):
-        """
-        Should delete the issue, but GitHub doesn't allow it yet.
-
-        Reference: https://github.com/isaacs/github/issues/253
-        """
-        raise NotImplementedError("GitHub doesn't allow deleting issues.")
-
     @property
     def state(self) -> str:
         """
@@ -312,44 +283,3 @@ class GitHubIssue(Issue):
         :return: Either 'open' or 'closed'.
         """
         return self._data['state']
-
-    @staticmethod
-    def create(token: str, repository: str,
-               title: str, body: str=''):
-        """
-        Create a new issue with given title and body.
-
-        >>> from os import environ
-        >>> issue = GitHubIssue.create(environ['GITHUB_TEST_TOKEN'],
-        ...                       'gitmate-test-user/test',
-        ...                       'test issue title',
-        ...                       'sample description')
-        >>> issue.state
-        'open'
-
-        Let's delete the newly created one, because it's useless.
-
-        >>> issue.delete()
-        ... # doctest: +IGNORE_EXCEPTION_DETAIL
-        Traceback (most recent call last):
-         ...
-        NotImplementedError
-
-        Because GitHub is stupid, they don't allow deleting issues. So, let's
-        atleast close this for now.
-
-        >>> issue.close()
-
-        :return: GitHubIssue object of the newly created issue.
-        """
-
-        post_url = '/repos/' + repository + '/issues'
-        data = {
-            "title": title,
-            "body": body,
-        }
-
-        resp = post(token, post_url, data)
-        issue_number = resp['number']
-
-        return GitHubIssue(token, repository, issue_number)
