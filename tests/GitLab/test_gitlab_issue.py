@@ -19,6 +19,11 @@ class GitLabIssueTest(unittest.TestCase):
         self.iss = GitLabIssue(os.environ.get('GITLAB_TEST_TOKEN', ''),
                                'gitmate-test-user/test', 3)
 
+    @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_teardown.yml',
+                         filter_query_parameters=['access_token'])
+    def tearDown(self):
+        self.iss.labels = set()
+
     @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_issue_title.yaml',
                          filter_query_parameters=['private_token'])
     def test_title(self):
@@ -57,6 +62,18 @@ class GitLabIssueTest(unittest.TestCase):
         self.assertEqual(self.iss.labels, set())
         self.iss.labels = self.iss.labels | {'dem'}
         self.assertEqual(len(self.iss.available_labels), 4)
+
+    @my_vcr.use_cassette('tests/GitLab/cassettes/'
+                         'gitlab_issue_labels_updated.yaml',
+                         filter_query_parameters=['private_token'])
+    def test_issue_labels_updated(self):
+        self.assertEqual(self.iss.labels, set())
+        second_instance = GitLabIssue(os.environ.get('GITLAB_TEST_TOKEN', ''),
+                                      'gitmate-test-user/test', 3)
+        second_instance.labels.add('test')
+        self.assertEqual(self.iss.labels, set())
+        self.iss.refresh()
+        self.assertEqual(self.iss.labels, {'test'})
 
     @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_issue_time.yaml',
                          filter_query_parameters=['private_token'])
