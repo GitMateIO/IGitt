@@ -24,7 +24,13 @@ class GitHubRepository(Repository):
         self._token = oauth_token
         self._repository = repository
         self._url = '/repos/'+repository
-        self._data = get(self._token, self._url)
+        self.__data = None
+
+    @property
+    def _data(self):
+        if not self.__data:
+            self.__data = get(self._token, self._url)
+        return self.__data
 
     @property
     def hoster(self):
@@ -48,7 +54,7 @@ class GitHubRepository(Repository):
 
         :return: The full repository name as string.
         """
-        return self._data['full_name']
+        return self._repository
 
     @property
     def clone_url(self):
@@ -107,8 +113,11 @@ class GitHubRepository(Repository):
         if name in self.get_labels():
             raise ElementAlreadyExistsError(name + " already exists.")
 
-        post(self._token, self._url + '/labels',
-             {'name': name, 'color': color.lstrip('#')})
+        self.__data = post(
+            self._token,
+            self._url + '/labels',
+            {'name': name, 'color': color.lstrip('#')}
+        )
 
     def delete_label(self, name: str):
         """
@@ -222,9 +231,11 @@ class GitHubRepository(Repository):
         if secret:
             config['secret'] = secret
 
-        post(self._token, self._url + '/hooks',
-             {'name': 'web', 'active': True, 'events': ['*'],
-              'config': config})
+        self.__data = post(
+            self._token,
+            self._url + '/hooks',
+            {'name': 'web', 'active': True, 'events': ['*'], 'config': config}
+        )
 
     def delete_hook(self, url: str):
         """
