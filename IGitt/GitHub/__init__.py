@@ -67,4 +67,4 @@ def delete(token: str, url: str, params: dict=None):
     :raises RuntimeError: If the response indicates any problem.
     """
     _fetch(BASE_URL, 'delete', {'access_token': token},
-           url, query_params=params)
+           url, params)

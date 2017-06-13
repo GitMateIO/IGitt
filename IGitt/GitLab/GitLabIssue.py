@@ -98,7 +98,7 @@ class GitLabIssue(Issue):
         return self._data['iid']
 
     @property
-    def assignee(self):
+    def assignees(self):
         """
         Retrieves the assignee of the issue:
 
@@ -112,21 +112,49 @@ class GitLabIssue(Issue):
         ...                     'gitmate-test-user/test', 2)
         >>> issue.assignee # Returns None, unassigned
 
-        :return: A string containing the username or None.
+        :return: A tuple containing the usernames of assignees.
         """
-        # GitLab uses some stupid EE conformance to create a single element
-        # array of assignee.
-        return (self._data['assignees'][0]['username']
-                if self._data['assignees'] else None)
+        return tuple(user['username'] for user in self._data['assignees'])
 
-    @assignee.setter
-    def assignee(self, new_assignee):
-        url = self._url.format(quote_plus(self._repository),
-                               self.number)
-        res = get(self._token, '/users', {'username': new_assignee})
-        if len(res) > 0:
-            user = res[0]['id']
-            self._data = put(self._token, url, {'assignee_ids': user})
+    def get_user(self, username: str):
+        """
+        Queries the user resource with given username.
+        :param username: Username of the user being queried.
+        :return:         json response of the query.
+        """
+        return get(self._token, '/users', {'username': username})[0]
+
+    def assign(self, username: str):
+        """
+        Adds the user as one of the assignees of the issue.
+        :param username: Username of the user to be added as an assignee.
+        """
+        url = '/projects/{repo}/issues/{iid}'.format(
+            repo=quote_plus(self._repository),
+            iid=self.number
+        )
+        current_assignee_ids = [user['id'] for user in self._data['assignees']]
+        user = self.get_user(username)
+        if user['id'] not in current_assignee_ids:
+            current_assignee_ids.append(user['id'])
+            self._data = put(self._token, url,
+                             {"assignee_ids": current_assignee_ids})
+
+    def unassign(self, username: str):
+        """
+        Removes the user from the assignees of the issue.
+        :param username: Username of the user to be unassigned.
+        """
+        url = '/projects/{repo}/issues/{iid}'.format(
+            repo=quote_plus(self._repository),
+            iid=self.number
+        )
+        current_assignee_ids = [user['id'] for user in self._data['assignees']]
+        user = self.get_user(username)
+        if user['username'] in self.assignees:
+            current_assignee_ids.remove(user['id'])
+            self._data = put(self._token, url,
+                             {'assignee_ids': current_assignee_ids})
 
     @property
     def description(self) -> str:

@@ -50,19 +50,21 @@ class Issue:
         raise NotImplementedError
 
     @property
-    def assignee(self) -> str:
+    def assignees(self) -> tuple:
         """
-        Retrieves the username of the assigned user or None.
+        Retrieves a tuple of usernames of assignees.
         """
         raise NotImplementedError
 
-    @assignee.setter
-    def assignee(self, username: str):
+    def assign(self, username: str):
         """
-        Sets the assignee to the given user.
+        Sets a given user as assignee.
+        """
+        raise NotImplementedError
 
-        :param username: A string containing the username of the user.
-        :raises RuntimeError: If something goes wrong (network, auth...).
+    def unassign(self, username: str):
+        """
+        Unassigns given user from issue.
         """
         raise NotImplementedError
 

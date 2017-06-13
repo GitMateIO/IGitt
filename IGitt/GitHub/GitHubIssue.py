@@ -3,7 +3,7 @@ This contains the Issue implementation for GitHub.
 """
 from datetime import datetime
 
-from IGitt.GitHub import get, patch, post
+from IGitt.GitHub import get, patch, post, delete
 from IGitt.GitHub.GitHubComment import GitHubComment
 from IGitt.Interfaces.Comment import CommentType
 from IGitt.Interfaces.Issue import Issue
@@ -93,7 +93,7 @@ class GitHubIssue(Issue):
         return self._data['number']
 
     @property
-    def assignee(self):
+    def assignees(self):
         """
         Retrieves the assignee of the issue:
 
@@ -107,17 +107,27 @@ class GitHubIssue(Issue):
         ...                     'gitmate-test-user/test', 2)
         >>> issue.assignee  # Returns None, unassigned
 
-        :return: A string containing the username or None.
+        :return: A tuple containing the usernames of assignees.
         """
-        return (self._data['assignee']['login'] if self._data['assignee'] else
-                None)
+        return tuple(user['login'] for user in self._data['assignees'])
 
-    @assignee.setter
-    def assignee(self, new_assignee):
-        self._data = post(self._token,
-                          '/repos/{}/issues/{}/assignees'.format(self._repository,
-                                                                 self.number),
-                          {'assignees': new_assignee})
+
+    def assign(self, username: str):
+        """
+        Adds the user as one of the assignees of the issue.
+        :param username: Username of the user to be added as an assignee.
+        """
+        url = self._url + '/assignees'
+        self._data = post(self._token, url, {"assignees": [username]})
+
+    def unassign(self, username: str):
+        """
+        Removes the user from the assignees of the issue.
+        :param username: Username of the user to be unassigned.
+        """
+        url = self._url + '/assignees'
+        delete(self._token, url, {"assignees": [username]})
+        self._data = get(self._token, self._url)
 
     @property
     def description(self):

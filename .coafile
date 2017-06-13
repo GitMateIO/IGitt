@@ -13,7 +13,7 @@ pylint_disable = R0903, C0411, C0326, C1801, W0231, R0913
 [python.code]
 files = **/*.py
 ignore = tests/**.py
-pylint_disable += E1126
+pylint_disable += E1126, R1705
 
 [python.tests]
 files = tests/**.py
