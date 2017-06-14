@@ -213,10 +213,21 @@ class GitLabRepository(Repository, GitLabMixin):
         if url in self.hooks:
             return
 
-        config = {'url': url}
+        config = {
+            'url': url,
+            'push_events': True,
+            'issues_events': True,
+            'merge_requests_events': True,
+            'tag_push_events': True,
+            'note_events': True,
+            'job_events': True,
+            'pipeline_events': True,
+            'wiki_events': True,
+            'enable_ssl_verification': False,
+        }
 
-        if secret:
-            config['secret'] = secret
+        if secret is not None:
+            config['token'] = secret
 
         self.data = post(self._token, self._url + '/hooks', config)
 
