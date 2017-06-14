@@ -1,21 +1,21 @@
-[default]
+[all]
 ignore = .ci/**, build/**
 
-[autopep8]
+[all.autopep8]
 bears = PEP8Bear
 default_actions = PEP8Bear: ApplyPatchAction
 
-[python]
+[all.python]
 bears = PyUnusedCodeBear, PyLintBear
 use_spaces = True
 pylint_disable = R0903, C0411, C0326, C1801, W0231, R0913
 
-[python.code]
+[all.python.code]
 files = **/*.py
 ignore = tests/**.py
 pylint_disable += E1126, R1705
 
-[python.tests]
+[all.python.tests]
 files = tests/**.py
 # ignore C0111 to allow test methods without docstrings
 # ignore C0103 to allow lowercase constants
