@@ -13,7 +13,6 @@ my_vcr = vcr.VCR(match_on=['method', 'scheme', 'host', 'port', 'path'],
 
 class TestGitHubRepository(unittest.TestCase):
 
-    @my_vcr.use_cassette('tests/GitHub/cassettes/github_repo.yaml')
     def setUp(self):
         self.repo = GitHubRepository(os.environ.get('GITHUB_TEST_TOKEN', ''),
                                      'gitmate-test-user/test')

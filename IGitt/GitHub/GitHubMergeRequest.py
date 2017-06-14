@@ -26,6 +26,7 @@ from IGitt.GitHub.GitHubIssue import GitHubIssue
 from IGitt.Interfaces.MergeRequest import MergeRequest
 
 
+# Issue is used as a Mixin, super() is never called by design!
 class GitHubMergeRequest(MergeRequest, GitHubIssue):
     """
     A Pull Request on GitHub.
@@ -39,14 +40,10 @@ class GitHubMergeRequest(MergeRequest, GitHubIssue):
         :param repository: The repository containing the PR.
         :param pr_number: The PR number.
         """
-        super(GitHubMergeRequest, self).__init__(
-            oauth_token, repository, pr_number)
+        self._token = oauth_token
         self._number = pr_number
-        # using self.__url and self.__data instead to simplify inheritance with
-        # GitLabIssue and it's methods. GitLabIssue methods resolve self._url
-        # for calling self methods. Never use these interchangeably.
-        self.__url = '/repos/' + repository + '/pulls/' + str(pr_number)
-        self.__data = get(self._token, self.__url)
+        self._repository = repository
+        self._url = '/repos/' + repository + '/pulls/' + str(pr_number)
 
     @property
     def title(self):
@@ -69,7 +66,7 @@ class GitHubMergeRequest(MergeRequest, GitHubIssue):
 
         :return: The title of the pull request - as string.
         """
-        return self.__data['title']
+        return self.data['title']
 
     @title.setter
     def title(self, new_title):
@@ -78,7 +75,7 @@ class GitHubMergeRequest(MergeRequest, GitHubIssue):
 
         :param new_title: The new title.
         """
-        self.__data = patch(self._token, self.__url, {'title': new_title})
+        self.data = patch(self._token, self._url, {'title': new_title})
 
     @property
     def description(self):
@@ -93,7 +90,7 @@ class GitHubMergeRequest(MergeRequest, GitHubIssue):
 
         :return: A string containing the main description of the pull request.
         """
-        return self.__data['body']
+        return self.data['body']
 
     @property
     def base(self):
@@ -109,7 +106,7 @@ class GitHubMergeRequest(MergeRequest, GitHubIssue):
         :return: A Commit object.
         """
         return GitHubCommit(self._token, self._repository,
-                            self.__data['base']['sha'])
+                            self.data['base']['sha'])
 
     @property
     def head(self):
@@ -125,7 +122,7 @@ class GitHubMergeRequest(MergeRequest, GitHubIssue):
         :return: A Commit object.
         """
         return GitHubCommit(self._token, self._repository,
-                            self.__data['head']['sha'])
+                            self.data['head']['sha'])
 
     @property
     def base_branch_name(self) -> str:
@@ -141,7 +138,7 @@ class GitHubMergeRequest(MergeRequest, GitHubIssue):
 
         :return: A string.
         """
-        return self.__data['base']['ref']
+        return self.data['base']['ref']
 
     @property
     def head_branch_name(self) -> str:
@@ -157,7 +154,7 @@ class GitHubMergeRequest(MergeRequest, GitHubIssue):
 
         :return: A string.
         """
-        return self.__data['head']['ref']
+        return self.data['head']['ref']
 
     @property
     @lru_cache(None)
@@ -173,7 +170,7 @@ class GitHubMergeRequest(MergeRequest, GitHubIssue):
 
         :return: A tuple of commit objects.
         """
-        commits = get(self._token, self.__url + '/commits')
+        commits = get(self._token, self._url + '/commits')
         return tuple(GitHubCommit(self._token, self._repository, commit['sha'])
                      for commit in commits)
 
@@ -206,7 +203,7 @@ class GitHubMergeRequest(MergeRequest, GitHubIssue):
 
         :return: A set of filenames.
         """
-        files = get(self._token, self.__url + '/files')
+        files = get(self._token, self._url + '/files')
         return {file['filename'] for file in files}
 
     @property
@@ -222,7 +219,7 @@ class GitHubMergeRequest(MergeRequest, GitHubIssue):
 
         :return: An (additions, deletions) tuple.
         """
-        return self.__data['additions'], self.__data['deletions']
+        return self.data['additions'], self.data['deletions']
 
     @property
     def created(self) -> datetime:
@@ -235,7 +232,7 @@ class GitHubMergeRequest(MergeRequest, GitHubIssue):
         >>> pr.created
         datetime.datetime(2016, 1, 24, 19, 47, 19)
         """
-        return datetime.strptime(self.__data['created_at'],
+        return datetime.strptime(self.data['created_at'],
                                  "%Y-%m-%dT%H:%M:%SZ")
 
     @property
@@ -250,7 +247,7 @@ class GitHubMergeRequest(MergeRequest, GitHubIssue):
         >>> pr.updated
         datetime.datetime(2017, 6, 7, 8, 42, 43)
         """
-        return datetime.strptime(self.__data['updated_at'],
+        return datetime.strptime(self.data['updated_at'],
                                  "%Y-%m-%dT%H:%M:%SZ")
 
     def close(self):
@@ -259,7 +256,7 @@ class GitHubMergeRequest(MergeRequest, GitHubIssue):
 
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
-        self.__data = patch(self._token, self.__url, {'state': 'closed'})
+        self.data = patch(self._token, self._url, {'state': 'closed'})
 
     def reopen(self):
         """
@@ -267,7 +264,7 @@ class GitHubMergeRequest(MergeRequest, GitHubIssue):
 
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
-        self.__data = patch(self._token, self.__url, {'state': 'open'})
+        self.data = patch(self._token, self._url, {'state': 'open'})
 
     def delete(self):
         """
@@ -300,7 +297,7 @@ class GitHubMergeRequest(MergeRequest, GitHubIssue):
 
         :return: Either 'open' or 'closed'.
         """
-        return self.__data['state']
+        return self.data['state']
 
     @property
     def number(self) -> int:

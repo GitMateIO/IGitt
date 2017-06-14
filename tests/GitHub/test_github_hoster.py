@@ -12,7 +12,6 @@ my_vcr = vcr.VCR(match_on=['method', 'scheme', 'host', 'port', 'path'],
 
 class TestGitHub(unittest.TestCase):
 
-    @my_vcr.use_cassette('tests/GitHub/cassettes/test_github_hoster.yaml')
     def setUp(self):
         self.gh = GitHub(os.environ.get('GITHUB_TEST_TOKEN', ''))
 

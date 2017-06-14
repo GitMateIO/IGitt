@@ -3,13 +3,13 @@ This contains the Issue implementation for GitHub.
 """
 from datetime import datetime
 
-from IGitt.GitHub import get, patch, post, delete
+from IGitt.GitHub import get, patch, post, delete, GitHubMixin
 from IGitt.GitHub.GitHubComment import GitHubComment
 from IGitt.Interfaces.Comment import CommentType
 from IGitt.Interfaces.Issue import Issue
 
 
-class GitHubIssue(Issue):
+class GitHubIssue(Issue, GitHubMixin):
     """
     This class represents an issue on GitHub.
     """
@@ -34,8 +34,8 @@ class GitHubIssue(Issue):
         """
         self._token = oauth_token
         self._repository = repository
+        self._number = issue_number
         self._url = '/repos/'+repository+'/issues/'+str(issue_number)
-        self._data = get(self._token, self._url)
 
     @property
     def title(self):
@@ -58,7 +58,7 @@ class GitHubIssue(Issue):
 
         :return: The title of the issue - as string.
         """
-        return self._data['title']
+        return self.data['title']
 
     @title.setter
     def title(self, new_title):
@@ -67,7 +67,7 @@ class GitHubIssue(Issue):
 
         :param new_title: The new title.
         """
-        self._data = patch(self._token, self._url, {'title': new_title})
+        self.data = patch(self._token, self._url, {'title': new_title})
 
     @property
     def url(self):
@@ -90,7 +90,7 @@ class GitHubIssue(Issue):
 
         :return: The number of the issue.
         """
-        return self._data['number']
+        return self._number
 
     @property
     def assignees(self):
@@ -109,7 +109,7 @@ class GitHubIssue(Issue):
 
         :return: A tuple containing the usernames of assignees.
         """
-        return tuple(user['login'] for user in self._data['assignees'])
+        return tuple(user['login'] for user in self.data['assignees'])
 
 
     def assign(self, username: str):
@@ -118,7 +118,7 @@ class GitHubIssue(Issue):
         :param username: Username of the user to be added as an assignee.
         """
         url = self._url + '/assignees'
-        self._data = post(self._token, url, {"assignees": [username]})
+        self.data = post(self._token, url, {"assignees": [username]})
 
     def unassign(self, username: str):
         """
@@ -127,7 +127,7 @@ class GitHubIssue(Issue):
         """
         url = self._url + '/assignees'
         delete(self._token, url, {"assignees": [username]})
-        self._data = get(self._token, self._url)
+        self.data = get(self._token, self._url)
 
     @property
     def description(self):
@@ -142,7 +142,7 @@ class GitHubIssue(Issue):
 
         :return: A string containing the main description of the issue.
         """
-        return self._data['body']
+        return self.data['body']
 
     def add_comment(self, body):
         """
@@ -214,7 +214,7 @@ class GitHubIssue(Issue):
 
         :return: A list of label captions (str).
         """
-        return set(label['name'] for label in self._data['labels'])
+        return set(label['name'] for label in self.data['labels'])
 
     @labels.setter
     def labels(self, value: {str}):
@@ -223,7 +223,7 @@ class GitHubIssue(Issue):
 
         :param value: A set of label texts.
         """
-        self._data = patch(self._token, self._url, {'labels': list(value)})
+        self.data = patch(self._token, self._url, {'labels': list(value)})
 
     @property
     def available_labels(self):
@@ -252,7 +252,7 @@ class GitHubIssue(Issue):
         >>> issue.created
         datetime.datetime(2016, 1, 13, 7, 56, 23)
         """
-        return datetime.strptime(self._data['created_at'],
+        return datetime.strptime(self.data['created_at'],
                                  "%Y-%m-%dT%H:%M:%SZ")
 
     @property
@@ -266,7 +266,7 @@ class GitHubIssue(Issue):
         >>> issue.updated
         datetime.datetime(2016, 10, 9, 11, 27, 11)
         """
-        return datetime.strptime(self._data['updated_at'],
+        return datetime.strptime(self.data['updated_at'],
                                  "%Y-%m-%dT%H:%M:%SZ")
 
     def close(self):
@@ -275,7 +275,7 @@ class GitHubIssue(Issue):
 
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
-        self._data = patch(self._token, self._url, {"state": "closed"})
+        self.data = patch(self._token, self._url, {"state": "closed"})
 
     def reopen(self):
         """
@@ -283,7 +283,7 @@ class GitHubIssue(Issue):
 
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
-        self._data = patch(self._token, self._url, {"state": "open"})
+        self.data = patch(self._token, self._url, {"state": "open"})
 
     def delete(self):
         """
@@ -318,7 +318,7 @@ class GitHubIssue(Issue):
 
         :return: Either 'open' or 'closed'.
         """
-        return self._data['state']
+        return self.data['state']
 
     @staticmethod
     def create(token: str, repository: str,

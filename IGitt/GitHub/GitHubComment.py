@@ -3,11 +3,11 @@ Represents a comment on GitHub.
 """
 from datetime import datetime
 
-from IGitt.GitHub import delete, get
+from IGitt.GitHub import delete, GitHubMixin
 from IGitt.Interfaces.Comment import Comment, CommentType
 
 
-class GitHubComment(Comment):
+class GitHubComment(Comment, GitHubMixin):
     """
     Represents a comment on GitHub, mainly with a body and author - oh and it's
     deletable!
@@ -35,7 +35,6 @@ class GitHubComment(Comment):
 
         self._url = '/repos/{repo}{fixture}/{comment_id}'.format(
             repo=repository, fixture=fixture, comment_id=comment_id)
-        self._data = get(self._token, self._url)
 
     @property
     def type(self) -> CommentType:
@@ -57,7 +56,7 @@ class GitHubComment(Comment):
 
         :return: A string containing the body.
         """
-        return self._data['body']
+        return self.data['body']
 
     @property
     def author(self):
@@ -72,7 +71,7 @@ class GitHubComment(Comment):
 
         :return: A string containing the authors username.
         """
-        return self._data['user']['login']
+        return self.data['user']['login']
 
     @property
     def created(self) -> datetime:
@@ -85,7 +84,7 @@ class GitHubComment(Comment):
         >>> issue.created
         datetime.datetime(2016, 1, 19, 19, 37, 53)
         """
-        return datetime.strptime(self._data['created_at'],
+        return datetime.strptime(self.data['created_at'],
                                  "%Y-%m-%dT%H:%M:%SZ")
 
     @property
@@ -99,7 +98,7 @@ class GitHubComment(Comment):
         >>> issue.updated
         datetime.datetime(2016, 10, 9, 11, 36, 7)
         """
-        return datetime.strptime(self._data['updated_at'],
+        return datetime.strptime(self.data['updated_at'],
                                  "%Y-%m-%dT%H:%M:%SZ")
 
     def delete(self):

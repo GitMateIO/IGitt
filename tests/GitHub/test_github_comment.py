@@ -15,7 +15,6 @@ my_vcr = vcr.VCR(match_on=['method', 'scheme', 'host', 'port', 'path'],
 
 class GitHubCommentTest(unittest.TestCase):
 
-    @my_vcr.use_cassette('tests/GitHub/cassettes/github_comment.yaml')
     def setUp(self):
         self.comment = GitHubComment(os.environ.get('GITHUB_TEST_TOKEN', ''),
                                      'gitmate-test-user/test',
@@ -25,12 +24,15 @@ class GitHubCommentTest(unittest.TestCase):
     def test_type(self):
         self.assertEqual(self.comment.type, CommentType.COMMIT)
 
+    @my_vcr.use_cassette('tests/GitHub/cassettes/github_comment_body.yaml')
     def test_body(self):
         self.assertEqual(self.comment.body, 'test comment on commit')
 
+    @my_vcr.use_cassette('tests/GitHub/cassettes/github_comment_author.yaml')
     def test_author(self):
         self.assertEqual(self.comment.author, 'nkprince007')
 
+    @my_vcr.use_cassette('tests/GitHub/cassettes/github_comment_time.yaml')
     def test_time(self):
         self.assertEqual(self.comment.created,
                          datetime.datetime(2017, 6, 9, 6, 39, 34))

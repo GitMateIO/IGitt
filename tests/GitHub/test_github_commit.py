@@ -14,10 +14,10 @@ my_vcr = vcr.VCR(match_on=['method', 'scheme', 'host', 'port', 'path'],
 
 class GitHubCommitTest(unittest.TestCase):
 
-    @my_vcr.use_cassette('tests/GitHub/cassettes/github_commit.yaml')
     def setUp(self):
         self.commit = GitHubCommit(os.environ.get('GITHUB_TEST_TOKEN', ''),
-                                   'gitmate-test-user/test', '645961c')
+                                   'gitmate-test-user/test',
+                                   '645961c0841a84c1dd2a58535aa70ad45be48c46')
 
     def test_sha(self):
         self.assertIn('645961c', self.commit.sha)
@@ -35,12 +35,14 @@ class GitHubCommitTest(unittest.TestCase):
     @my_vcr.use_cassette('tests/GitHub/cassettes/github_commit_status.yaml')
     def test_set_status(self):
         self.commit = GitHubCommit(os.environ.get('GITHUB_TEST_TOKEN', ''),
-                                   'gitmate-test-user/test', '3fc4b86')
+                                   'gitmate-test-user/test',
+                                   '3fc4b860e0a2c17819934d678decacd914271e5c')
         status = CommitStatus(Status.FAILED, 'Theres a problem',
                               'gitmate/test')
         self.commit.set_status(status)
-        self.assertEqual(self.commit.get_statuses(
-            ).pop().description, 'Theres a problem')
+        self.assertIn('Theres a problem',
+                      [status.description
+                       for status in self.commit.get_statuses()])
 
     @my_vcr.use_cassette('tests/GitHub/cassettes/github_commit_get_patch.yaml')
     def test_get_patch_for_file(self):

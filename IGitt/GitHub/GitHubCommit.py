@@ -2,7 +2,7 @@
 Contains the abstraction for a commit in GitHub.
 """
 from IGitt import ElementDoesntExistError
-from IGitt.GitHub import get, post
+from IGitt.GitHub import get, post, GitHubMixin
 from IGitt.GitHub.GitHubRepository import GitHubRepository
 from IGitt.Interfaces.Commit import Commit
 from IGitt.Interfaces.CommitStatus import CommitStatus, Status
@@ -81,7 +81,7 @@ def get_diff_index(patch, line_nr):
     return None
 
 
-class GitHubCommit(Commit):
+class GitHubCommit(Commit, GitHubMixin):
     """
     Represents a commit on GitHub.
     """
@@ -98,7 +98,6 @@ class GitHubCommit(Commit):
         self._repository = repository
         self._sha = sha
         self._url = '/repos/' + repository + '/commits/' + sha
-        self._data = get(self._token, self._url)
 
     @property
     def sha(self):
@@ -109,11 +108,11 @@ class GitHubCommit(Commit):
         >>> commit = GitHubCommit(environ['GITHUB_TEST_TOKEN'],
         ...                       'gitmate-test-user/test', '674498')
         >>> commit.sha
-        '674498fd415cfadc35c5eb28b8951e800f357c6f'
+        '674498'
 
-        :return: A string holding the full SHA of the commit.
+        :return: A string holding the SHA of the commit.
         """
-        return self._data['sha']
+        return self._sha
 
     @property
     def repository(self):
@@ -145,7 +144,7 @@ class GitHubCommit(Commit):
         :return: A Commit object.
         """
         return GitHubCommit(self._token, self._repository,
-                            self._data['parents'][0]['sha'])
+                            self.data['parents'][0]['sha'])
 
     def set_status(self, status: CommitStatus):
         """
@@ -224,7 +223,7 @@ class GitHubCommit(Commit):
         :return: A string containing the patch.
         :raises ElementDoesntExistError: If the given filename doesn't exist.
         """
-        for file in self._data['files']:
+        for file in self.data['files']:
             if file['filename'] == filename and 'patch' in file:
                 return file['patch']
 

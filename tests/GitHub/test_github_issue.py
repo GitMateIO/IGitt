@@ -13,8 +13,6 @@ my_vcr = vcr.VCR(match_on=['method', 'scheme', 'host', 'port', 'path'],
 
 class GitHubIssueTest(unittest.TestCase):
 
-    @my_vcr.use_cassette('tests/GitHub/cassettes/github_issue.yaml',
-                         filter_query_parameters=['access_token'])
     def setUp(self):
         self.iss = GitHubIssue(os.environ.get('GITHUB_TEST_TOKEN', ''),
                                'gitmate-test-user/test', 39)
@@ -22,7 +20,6 @@ class GitHubIssueTest(unittest.TestCase):
     @my_vcr.use_cassette('tests/GitHub/cassettes/github_issue_title.yaml',
                          filter_query_parameters=['access_token'])
     def test_title(self):
-        self.assertEqual(self.iss.title, 'new title')
         self.iss.title = 'new title'
         self.assertEqual(self.iss.title, 'new title')
 
@@ -43,6 +40,8 @@ class GitHubIssueTest(unittest.TestCase):
     def test_number(self):
         self.assertEqual(self.iss.number, 39)
 
+    @my_vcr.use_cassette('tests/GitHub/cassettes/github_issue_desc.yaml',
+                         filter_query_parameters=['access_token'])
     def test_description(self):
         self.assertEqual(self.iss.description, 'test description\r\n')
 
@@ -55,7 +54,7 @@ class GitHubIssueTest(unittest.TestCase):
     @my_vcr.use_cassette('tests/GitHub/cassettes/github_issue_labels.yaml',
                          filter_query_parameters=['access_token'])
     def test_issue_labels(self):
-        self.assertEqual(list(self.iss.labels), ['dem'])
+        self.assertEqual(list(self.iss.labels), [])
         self.iss.labels = self.iss.labels | {'dem'}
         self.assertEqual(len(self.iss.available_labels), 4)
 
@@ -65,7 +64,7 @@ class GitHubIssueTest(unittest.TestCase):
         self.assertEqual(self.iss.created,
                          datetime.datetime(2017, 6, 6, 9, 36, 15))
         self.assertEqual(self.iss.updated,
-                         datetime.datetime(2017, 6, 6, 10, 20, 49))
+                         datetime.datetime(2017, 6, 13, 11, 59, 56))
 
     @my_vcr.use_cassette('tests/GitHub/cassettes/github_issue_state.yaml',
                          filter_query_parameters=['access_token'])

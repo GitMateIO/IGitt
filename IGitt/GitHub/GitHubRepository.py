@@ -3,12 +3,12 @@ Contains the GitHub Repository implementation.
 """
 
 from IGitt import ElementAlreadyExistsError, ElementDoesntExistError
-from IGitt.GitHub import delete, get, post
+from IGitt.GitHub import delete, get, post, GitHubMixin
 from IGitt.GitHub.GitHubIssue import GitHubIssue
 from IGitt.Interfaces.Repository import Repository
 
 
-class GitHubRepository(Repository):
+class GitHubRepository(Repository, GitHubMixin):
     """
     Represents a repository on GitHub.
     """
@@ -24,13 +24,6 @@ class GitHubRepository(Repository):
         self._token = oauth_token
         self._repository = repository
         self._url = '/repos/'+repository
-        self.__data = None
-
-    @property
-    def _data(self):
-        if not self.__data:
-            self.__data = get(self._token, self._url)
-        return self.__data
 
     @property
     def hoster(self):
@@ -69,7 +62,7 @@ class GitHubRepository(Repository):
 
         :return: A URL that can be used to clone the repository with Git.
         """
-        return self._data['clone_url'].replace(
+        return self.data['clone_url'].replace(
             'github.com', self._token + '@github.com', 1)
 
     def get_labels(self):
@@ -113,7 +106,7 @@ class GitHubRepository(Repository):
         if name in self.get_labels():
             raise ElementAlreadyExistsError(name + " already exists.")
 
-        self.__data = post(
+        self.data = post(
             self._token,
             self._url + '/labels',
             {'name': name, 'color': color.lstrip('#')}
@@ -231,7 +224,7 @@ class GitHubRepository(Repository):
         if secret:
             config['secret'] = secret
 
-        self.__data = post(
+        self.data = post(
             self._token,
             self._url + '/hooks',
             {'name': 'web', 'active': True, 'events': ['*'], 'config': config}

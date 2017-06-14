@@ -3,9 +3,18 @@ This package contains the GitHub implementations of the interfaces in
 server.git.Interfaces.
 """
 from IGitt.Interfaces import _fetch
-
+from IGitt.Utils import CachedDataMixin
 
 BASE_URL = 'https://api.github.com'
+
+
+class GitHubMixin(CachedDataMixin):
+    """
+    Base object for things that are on GitHub.
+    """
+
+    def _get_data(self):
+        return get(self._token, self._url)
 
 
 def get(token: str, url: str, params: dict=None):
