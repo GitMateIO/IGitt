@@ -13,7 +13,6 @@ my_vcr = vcr.VCR(match_on=['method', 'scheme', 'host', 'port', 'path'],
 
 class TestGitLabMergeRequest(unittest.TestCase):
 
-    @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_merge_request.yaml')
     def setUp(self):
         self.mr = GitLabMergeRequest(os.environ.get('GITLAB_TEST_TOKEN', ''),
                                      'gitmate-test-user/test',
@@ -29,9 +28,11 @@ class TestGitLabMergeRequest(unittest.TestCase):
         self.assertEqual(self.mr.head.sha,
                          'f6d2b7c66372236a090a2a74df2e47f42a54456b')
 
+    @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_merge_request_basebranchname.yaml')
     def test_base_branch_name(self):
         self.assertEqual(self.mr.base_branch_name, 'master')
 
+    @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_merge_request_headbranchname.yaml')
     def test_head_branch_name(self):
         self.assertEqual(self.mr.head_branch_name, 'gitmate-test-user-patch-2')
 
@@ -49,11 +50,12 @@ class TestGitLabMergeRequest(unittest.TestCase):
     def test_diffstat(self):
         self.assertEqual(self.mr.diffstat, (2, 0))
 
+    @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_merge_request_time.yaml')
     def test_time(self):
         self.assertEqual(self.mr.created, datetime.datetime(
             2017, 6, 7, 12, 1, 20, 476000))
         self.assertEqual(self.mr.updated, datetime.datetime(
-            2017, 6, 8, 14, 53, 58, 726000))
+            2017, 6, 9, 9, 49, 7, 691000))
 
     @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_merge_request_affected_files.yaml')
     def test_affected_files(self):

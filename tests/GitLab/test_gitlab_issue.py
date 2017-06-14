@@ -13,8 +13,6 @@ my_vcr = vcr.VCR(match_on=['method', 'scheme', 'host', 'port', 'path'],
 
 class GitLabIssueTest(unittest.TestCase):
 
-    @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_issue.yaml',
-                         filter_query_parameters=['private_token'])
     def setUp(self):
         self.iss = GitLabIssue(os.environ.get('GITLAB_TEST_TOKEN', ''),
                                'gitmate-test-user/test', 3)
@@ -22,7 +20,6 @@ class GitLabIssueTest(unittest.TestCase):
     @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_issue_title.yaml',
                          filter_query_parameters=['private_token'])
     def test_title(self):
-        self.assertEqual(self.iss.title, "Don't add mean comments here!")
         self.iss.title = 'new title'
         self.assertEqual(self.iss.title, 'new title')
 
@@ -43,6 +40,7 @@ class GitLabIssueTest(unittest.TestCase):
     def test_number(self):
         self.assertEqual(self.iss.number, 3)
 
+    @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_issue_desc.yaml')
     def test_description(self):
         self.assertEqual(self.iss.description,
                          'Stop trying to be badass.')
@@ -65,7 +63,7 @@ class GitLabIssueTest(unittest.TestCase):
         self.assertEqual(self.iss.created,
                          datetime.datetime(2017, 6, 5, 6, 19, 6, 379000))
         self.assertEqual(self.iss.updated,
-                         datetime.datetime(2017, 6, 5, 6, 19, 50, 479000))
+                         datetime.datetime(2017, 6, 9, 8, 38, 28, 449000))
 
     @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_issue_state.yaml',
                          filter_query_parameters=['private_token'])

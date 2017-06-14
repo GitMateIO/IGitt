@@ -4,13 +4,12 @@ Represents a comment (or note) on GitLab.
 from urllib.parse import quote_plus
 
 from datetime import datetime
-from IGitt.GitLab import delete
-from IGitt.GitLab import get
+from IGitt.GitLab import delete, GitLabMixin
 from IGitt.Interfaces.Comment import Comment
 from IGitt.Interfaces.Comment import CommentType
 
 
-class GitLabComment(Comment):
+class GitLabComment(Comment, GitLabMixin):
     """
     Represents a comment (or note as GitLab folks call it), with mainly a body
     and an author, which can ofcourse be deleted.
@@ -36,7 +35,6 @@ class GitLabComment(Comment):
         self._url = '/projects/{repo}/{c_type}/{iid}/notes/{c_id}'.format(
             repo=quote_plus(repository), c_type=self._type.value,
             iid=iid, c_id=comment_id)
-        self._data = get(self._token, self._url)
 
     @property
     def type(self) -> CommentType:
@@ -59,7 +57,7 @@ class GitLabComment(Comment):
 
         :return: A string containing the author's username.
         """
-        return self._data['author']['username']
+        return self.data['author']['username']
 
     @property
     def body(self) -> str:
@@ -75,7 +73,7 @@ class GitLabComment(Comment):
 
         :return: A string containing the body.
         """
-        return self._data['body']
+        return self.data['body']
 
     @property
     def created(self) -> datetime:
@@ -89,7 +87,7 @@ class GitLabComment(Comment):
         >>> note.created
         datetime.datetime(2017, 6, 5, 5, 20, 28, 418000)
         """
-        return datetime.strptime(self._data['created_at'],
+        return datetime.strptime(self.data['created_at'],
                                  '%Y-%m-%dT%H:%M:%S.%fZ')
 
     @property
@@ -104,7 +102,7 @@ class GitLabComment(Comment):
         >>> note.updated
         datetime.datetime(2017, 6, 5, 6, 5, 34, 491000)
         """
-        return datetime.strptime(self._data['updated_at'],
+        return datetime.strptime(self.data['updated_at'],
                                  '%Y-%m-%dT%H:%M:%S.%fZ')
 
     def delete(self):

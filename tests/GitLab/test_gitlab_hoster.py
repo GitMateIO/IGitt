@@ -12,7 +12,6 @@ my_vcr = vcr.VCR(match_on=['method', 'scheme', 'host', 'port', 'path'],
 
 class TestGitLab(unittest.TestCase):
 
-    @my_vcr.use_cassette('tests/GitLab/cassettes/test_gitlab_hoster.yaml')
     def setUp(self):
         self.gl = GitLab(os.environ.get('GITLAB_TEST_TOKEN', ''))
 

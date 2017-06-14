@@ -4,7 +4,7 @@ This contains the Issue implementation for GitLab.
 from datetime import datetime
 from urllib.parse import quote_plus
 
-from IGitt.GitLab import delete
+from IGitt.GitLab import delete, GitLabMixin
 from IGitt.GitLab import get
 from IGitt.GitLab import put
 from IGitt.GitLab import post
@@ -13,7 +13,7 @@ from IGitt.Interfaces.Comment import CommentType
 from IGitt.Interfaces.Issue import Issue
 
 
-class GitLabIssue(Issue):
+class GitLabIssue(Issue, GitLabMixin):
     """
     This class represents an issue on GitLab.
     """
@@ -38,9 +38,9 @@ class GitLabIssue(Issue):
         """
         self._token = oauth_token
         self._repository = repository
+        self._iid = issue_iid
         self._url = '/projects/{repo}/issues/{issue_iid}'.format(
             repo=quote_plus(repository), issue_iid=issue_iid)
-        self._data = get(self._token, self._url)
 
     @property
     def title(self) -> str:
@@ -63,7 +63,7 @@ class GitLabIssue(Issue):
 
         :return: The title of the issue - as string.
         """
-        return self._data['title']
+        return self.data['title']
 
     @title.setter
     def title(self, new_title):
@@ -72,7 +72,7 @@ class GitLabIssue(Issue):
 
         :param new_title: The new title.
         """
-        self._data = put(self._token, self._url, {'title': new_title})
+        self.data = put(self._token, self._url, {'title': new_title})
 
     @property
     def url(self):
@@ -95,7 +95,7 @@ class GitLabIssue(Issue):
 
         :return: The number of the issue.
         """
-        return self._data['iid']
+        return self._iid
 
     @property
     def assignees(self):
@@ -114,7 +114,7 @@ class GitLabIssue(Issue):
 
         :return: A tuple containing the usernames of assignees.
         """
-        return tuple(user['username'] for user in self._data['assignees'])
+        return tuple(user['username'] for user in self.data['assignees'])
 
     def get_user(self, username: str):
         """
@@ -133,12 +133,12 @@ class GitLabIssue(Issue):
             repo=quote_plus(self._repository),
             iid=self.number
         )
-        current_assignee_ids = [user['id'] for user in self._data['assignees']]
+        current_assignee_ids = [user['id'] for user in self.data['assignees']]
         user = self.get_user(username)
         if user['id'] not in current_assignee_ids:
             current_assignee_ids.append(user['id'])
-            self._data = put(self._token, url,
-                             {"assignee_ids": current_assignee_ids})
+            self.data = put(self._token, url,
+                            {"assignee_ids": current_assignee_ids})
 
     def unassign(self, username: str):
         """
@@ -149,12 +149,12 @@ class GitLabIssue(Issue):
             repo=quote_plus(self._repository),
             iid=self.number
         )
-        current_assignee_ids = [user['id'] for user in self._data['assignees']]
+        current_assignee_ids = [user['id'] for user in self.data['assignees']]
         user = self.get_user(username)
         if user['username'] in self.assignees:
             current_assignee_ids.remove(user['id'])
-            self._data = put(self._token, url,
-                             {'assignee_ids': current_assignee_ids})
+            self.data = put(self._token, url,
+                            {'assignee_ids': current_assignee_ids})
 
     @property
     def description(self) -> str:
@@ -169,7 +169,7 @@ class GitLabIssue(Issue):
 
         :return: A string containing the main description of the issue.
         """
-        return self._data['description']
+        return self.data['description']
 
     def add_comment(self, body):
         """
@@ -243,7 +243,7 @@ class GitLabIssue(Issue):
 
         :return: A list of label captions (str).
         """
-        return set(self._data['labels'])
+        return set(self.data['labels'])
 
     @labels.setter
     def labels(self, value: {str}):
@@ -252,8 +252,8 @@ class GitLabIssue(Issue):
 
         :param value: A set of label texts.
         """
-        self._data = put(self._token, self._url,
-                         {'labels': ','.join(map(str, value))})
+        self.data = put(self._token, self._url,
+                        {'labels': ','.join(map(str, value))})
 
     @property
     def available_labels(self) -> {str}:
@@ -283,7 +283,7 @@ class GitLabIssue(Issue):
         >>> issue.created
         datetime.datetime(2017, 6, 5, 9, 45, 20, 678000)
         """
-        return datetime.strptime(self._data['created_at'],
+        return datetime.strptime(self.data['created_at'],
                                  '%Y-%m-%dT%H:%M:%S.%fZ')
 
     @property
@@ -297,7 +297,7 @@ class GitLabIssue(Issue):
         >>> issue.updated
         datetime.datetime(2017, 6, 5, 9, 45, 56, 115000)
         """
-        return datetime.strptime(self._data['updated_at'],
+        return datetime.strptime(self.data['updated_at'],
                                  '%Y-%m-%dT%H:%M:%S.%fZ')
 
     def close(self):
@@ -306,7 +306,7 @@ class GitLabIssue(Issue):
 
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
-        self._data = put(self._token, self._url, {'state_event': 'close'})
+        self.data = put(self._token, self._url, {'state_event': 'close'})
 
     def reopen(self):
         """
@@ -314,7 +314,7 @@ class GitLabIssue(Issue):
 
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
-        self._data = put(self._token, self._url, {'state_event': 'reopen'})
+        self.data = put(self._token, self._url, {'state_event': 'reopen'})
 
     def delete(self):
         """
@@ -349,7 +349,7 @@ class GitLabIssue(Issue):
 
         :return: Either 'opened', 'reopened' or 'closed'.
         """
-        return self._data['state']
+        return self.data['state']
 
     @staticmethod
     def create(token: str, repository: str, title: str, body: str=''):

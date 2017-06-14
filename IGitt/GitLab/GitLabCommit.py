@@ -5,7 +5,7 @@ from urllib.parse import quote_plus
 
 from IGitt import ElementDoesntExistError
 from IGitt.GitHub.GitHubCommit import get_diff_index
-from IGitt.GitLab import get, post
+from IGitt.GitLab import get, post, GitLabMixin
 from IGitt.GitLab.GitLabRepository import GitLabRepository
 from IGitt.Interfaces.Commit import Commit
 from IGitt.Interfaces.CommitStatus import Status, CommitStatus
@@ -19,24 +19,29 @@ INV_GL_STATE_TRANSLATION = {val: key for key, val
                             in GL_STATE_TRANSLATION.items()}
 
 
-class GitLabCommit(Commit):
+class GitLabCommit(Commit, GitLabMixin):
     """
     Represents a commit on GitLab.
     """
 
-    def __init__(self, oauth_token: str, repository: str, sha: str):
+    def __init__(self, oauth_token: str, repository: str, sha: (str, None),
+                 branch: (str, None)=None):
         """
         Creates a new GitLabCommit object.
 
         :param oauth_token: A valid OAuth token for authentication.
         :param repository: The full repository name.
-        :param sha: The commit SHA.
+        :param sha: The full commit SHA, if None given provide a branch.
+        :param branch: A branch name if SHA is unavailable. Note that lazy
+                       loading won't work in that case.
         """
+        assert sha or branch, "Either full SHA or branch name has to be given!"
         self._token = oauth_token
         self._repository = repository
+        self._sha = sha
+        self._branch = branch
         self._url = '/projects/{id}/repository/commits/{sha}'.format(
-            id=quote_plus(repository), sha=sha)
-        self._data = get(self._token, self._url)
+            id=quote_plus(repository), sha=sha if sha else branch)
 
     @property
     def sha(self):
@@ -47,11 +52,11 @@ class GitLabCommit(Commit):
         >>> commit = GitLabCommit(environ['GITLAB_TEST_TOKEN'],
         ...                       'gitmate-test-user/test', '674498')
         >>> commit.sha
-        '674498fd415cfadc35c5eb28b8951e800f357c6f'
+        '674498'
 
-        :return: A string holding the full SHA of the commit.
+        :return: A string holding the SHA of the commit.
         """
-        return self._data['id']
+        return self._sha if self._sha else self.data['id']
 
     @property
     def repository(self):
@@ -83,7 +88,7 @@ class GitLabCommit(Commit):
         :return: A Commit object.
         """
         return GitLabCommit(self._token, self._repository,
-                            self._data['parent_ids'][0])
+                            self.data['parent_ids'][0])
 
     def get_statuses(self) -> {CommitStatus}:
         """

@@ -1,5 +1,33 @@
 interactions:
 - request:
+    body: '{"state": "failed", "target_url": "", "description": "Theres a problem",
+      "name": "gitmate/test"}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['96']
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.17.3]
+    method: POST
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/statuses/3fc4b86?User-Agent=IGitt
+  response:
+    body: {string: '{"id":18627186,"sha":"3fc4b860e0a2c17819934d678decacd914271e5c","ref":"gitmate-test-user-patch-1","status":"failed","name":"gitmate/test","target_url":null,"description":"Theres
+        a problem","created_at":"2017-06-14T10:25:45.707Z","started_at":null,"finished_at":"2017-06-14T10:25:45.729Z","allow_failure":false,"coverage":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"}}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['564']
+      Content-Type: [application/json]
+      Date: ['Wed, 14 Jun 2017 10:25:45 GMT']
+      Etag: [W/"dfa52483d8b3bc633b958a5684b67040"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [97e4afcb-f151-494f-94b4-fb5a71018427]
+      X-Runtime: ['0.448739']
+    status: {code: 201, message: Created}
+- request:
     body: null
     headers:
       Accept: ['*/*']
@@ -7,23 +35,30 @@ interactions:
       Connection: [keep-alive]
       User-Agent: [python-requests/2.17.3]
     method: GET
-    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/3fc4b86?User-Agent=GitMate
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/3fc4b86/statuses?User-Agent=IGitt
   response:
-    body: {string: '{"id":"3fc4b860e0a2c17819934d678decacd914271e5c","short_id":"3fc4b860","title":"Update
-        README.md","created_at":"2016-01-24T18:49:12.000+01:00","parent_ids":["674498fd415cfadc35c5eb28b8951e800f357c6f"],"message":"Update
-        README.md","author_name":"gitmate-test-user","author_email":"hostmaster@gitmate.io","authored_date":"2016-01-24T18:49:12.000+01:00","committer_name":"gitmate-test-user","committer_email":"hostmaster@gitmate.io","committed_date":"2016-01-24T18:49:12.000+01:00","stats":{"additions":2,"deletions":0,"total":2},"status":"success"}'}
+    body: {string: '[]'}
     headers:
       Cache-Control: ['max-age=0, private, must-revalidate']
-      Content-Length: ['546']
+      Content-Length: ['2']
       Content-Type: [application/json]
-      Date: ['Fri, 09 Jun 2017 09:27:40 GMT']
-      Etag: [W/"411d9df422770563367929acb0f752ba"]
+      Date: ['Wed, 14 Jun 2017 10:25:47 GMT']
+      Etag: [W/"d751713988987e9331980363e24189ce"]
+      Link: ['<https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/3fc4b86/statuses?User-Agent=IGitt&id=gitmate-test-user%2Ftest&page=1&per_page=20&private_token=UtQ1zsWdKv_vqA5yVnE4&sha=3fc4b86>;
+          rel="first", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/3fc4b86/statuses?User-Agent=IGitt&id=gitmate-test-user%2Ftest&page=0&per_page=20&private_token=UtQ1zsWdKv_vqA5yVnE4&sha=3fc4b86>;
+          rel="last"']
       Server: [nginx]
       Strict-Transport-Security: [max-age=31536000]
       Vary: [Origin]
       X-Frame-Options: [SAMEORIGIN]
-      X-Request-Id: [916f4278-b375-47d5-b6d9-b590386ab884]
-      X-Runtime: ['0.249629']
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['20']
+      X-Prev-Page: ['']
+      X-Request-Id: [74d70d57-e9f9-4df6-af6a-7c2356b548fb]
+      X-Runtime: ['0.170963']
+      X-Total: ['0']
+      X-Total-Pages: ['0']
     status: {code: 200, message: OK}
 - request:
     body: '{"state": "failed", "target_url": "", "description": "Theres a problem",
@@ -36,22 +71,22 @@ interactions:
       Content-Type: [application/json]
       User-Agent: [python-requests/2.17.3]
     method: POST
-    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/statuses/3fc4b860e0a2c17819934d678decacd914271e5c?User-Agent=GitMate
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/statuses/3fc4b860e0a2c17819934d678decacd914271e5c?User-Agent=IGitt
   response:
-    body: {string: '{"id":18277944,"sha":"3fc4b860e0a2c17819934d678decacd914271e5c","ref":"gitmate-test-user-patch-1","status":"failed","name":"gitmate/test","target_url":null,"description":"Theres
-        a problem","created_at":"2017-06-09T09:27:42.248Z","started_at":null,"finished_at":"2017-06-09T09:27:42.280Z","allow_failure":false,"coverage":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"}}'}
+    body: {string: '{"id":18627456,"sha":"3fc4b860e0a2c17819934d678decacd914271e5c","ref":"gitmate-test-user-patch-1","status":"failed","name":"gitmate/test","target_url":null,"description":"Theres
+        a problem","created_at":"2017-06-14T10:29:19.772Z","started_at":null,"finished_at":"2017-06-14T10:29:19.794Z","allow_failure":false,"coverage":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"}}'}
     headers:
       Cache-Control: ['max-age=0, private, must-revalidate']
       Content-Length: ['564']
       Content-Type: [application/json]
-      Date: ['Fri, 09 Jun 2017 09:27:42 GMT']
-      Etag: [W/"7c28ed7c4be9d6d659bb469df8a5514b"]
+      Date: ['Wed, 14 Jun 2017 10:29:24 GMT']
+      Etag: [W/"241c967a624ae87f9c5544698a3b3589"]
       Server: [nginx]
       Strict-Transport-Security: [max-age=31536000]
       Vary: [Origin]
       X-Frame-Options: [SAMEORIGIN]
-      X-Request-Id: [260f0078-7647-497c-88db-ed34aa753e92]
-      X-Runtime: ['0.495783']
+      X-Request-Id: [0bccd940-cbce-4229-b125-99d48e7b413e]
+      X-Runtime: ['5.362392']
     status: {code: 201, message: Created}
 - request:
     body: null
@@ -61,18 +96,18 @@ interactions:
       Connection: [keep-alive]
       User-Agent: [python-requests/2.17.3]
     method: GET
-    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/3fc4b860e0a2c17819934d678decacd914271e5c/statuses?User-Agent=GitMate
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/3fc4b860e0a2c17819934d678decacd914271e5c/statuses?User-Agent=IGitt
   response:
-    body: {string: '[{"id":18277944,"sha":"3fc4b860e0a2c17819934d678decacd914271e5c","ref":"gitmate-test-user-patch-1","status":"failed","name":"gitmate/test","target_url":null,"description":"Theres
-        a problem","created_at":"2017-06-09T09:27:42.248Z","started_at":null,"finished_at":"2017-06-09T09:27:42.280Z","allow_failure":false,"coverage":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"}}]'}
+    body: {string: '[{"id":18627456,"sha":"3fc4b860e0a2c17819934d678decacd914271e5c","ref":"gitmate-test-user-patch-1","status":"failed","name":"gitmate/test","target_url":null,"description":"Theres
+        a problem","created_at":"2017-06-14T10:29:19.772Z","started_at":null,"finished_at":"2017-06-14T10:29:19.794Z","allow_failure":false,"coverage":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"}}]'}
     headers:
       Cache-Control: ['max-age=0, private, must-revalidate']
       Content-Length: ['571']
       Content-Type: [application/json]
-      Date: ['Fri, 09 Jun 2017 09:27:43 GMT']
-      Etag: [W/"c1897bebea85bd8c869b60c6a5a04c12"]
-      Link: ['<https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/3fc4b860e0a2c17819934d678decacd914271e5c/statuses?User-Agent=GitMate&id=gitmate-test-user%2Ftest&page=1&per_page=20&sha=3fc4b860e0a2c17819934d678decacd914271e5c>;
-          rel="first", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/3fc4b860e0a2c17819934d678decacd914271e5c/statuses?User-Agent=GitMate&id=gitmate-test-user%2Ftest&page=1&per_page=20&sha=3fc4b860e0a2c17819934d678decacd914271e5c>;
+      Date: ['Wed, 14 Jun 2017 10:29:26 GMT']
+      Etag: [W/"1ce65c958f5d1b45791b3e7eb0976f4d"]
+      Link: ['<https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/3fc4b860e0a2c17819934d678decacd914271e5c/statuses?User-Agent=IGitt&id=gitmate-test-user%2Ftest&page=1&per_page=20&private_token=UtQ1zsWdKv_vqA5yVnE4&sha=3fc4b860e0a2c17819934d678decacd914271e5c>;
+          rel="first", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/3fc4b860e0a2c17819934d678decacd914271e5c/statuses?User-Agent=IGitt&id=gitmate-test-user%2Ftest&page=1&per_page=20&private_token=UtQ1zsWdKv_vqA5yVnE4&sha=3fc4b860e0a2c17819934d678decacd914271e5c>;
           rel="last"']
       Server: [nginx]
       Strict-Transport-Security: [max-age=31536000]
@@ -82,8 +117,8 @@ interactions:
       X-Page: ['1']
       X-Per-Page: ['20']
       X-Prev-Page: ['']
-      X-Request-Id: [0c5b812a-3671-4f4e-a117-b5144d33cd91]
-      X-Runtime: ['0.182063']
+      X-Request-Id: [009465b0-d63f-4705-beaf-512829ef85c6]
+      X-Runtime: ['0.497837']
       X-Total: ['1']
       X-Total-Pages: ['1']
     status: {code: 200, message: OK}

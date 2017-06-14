@@ -14,10 +14,10 @@ my_vcr = vcr.VCR(match_on=['method', 'scheme', 'host', 'port', 'path'],
 
 class GitLabCommitTest(unittest.TestCase):
 
-    @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_commit.yaml')
     def setUp(self):
         self.commit = GitLabCommit(os.environ.get('GITLAB_TEST_TOKEN', ''),
-                                   'gitmate-test-user/test', '3fc4b86')
+                                   'gitmate-test-user/test',
+                                   '3fc4b860e0a2c17819934d678decacd914271e5c')
 
     def test_sha(self):
         self.assertIn('3fc4b86', self.commit.sha)
@@ -35,7 +35,8 @@ class GitLabCommitTest(unittest.TestCase):
     @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_commit_status.yaml')
     def test_set_status(self):
         self.commit = GitLabCommit(os.environ.get('GITLAB_TEST_TOKEN', ''),
-                                   'gitmate-test-user/test', '3fc4b86')
+                                   'gitmate-test-user/test',
+                                   '3fc4b860e0a2c17819934d678decacd914271e5c')
         status = CommitStatus(Status.FAILED, 'Theres a problem',
                               'gitmate/test')
         self.commit.set_status(status)
@@ -56,7 +57,8 @@ class GitLabCommitTest(unittest.TestCase):
     @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_commit_comment.yaml')
     def test_comment(self):
         self.commit = GitLabCommit(os.environ.get('GITLAB_TEST_TOKEN', ''),
-                                   'gitmate-test-user/test', '3fc4b86')
+                                   'gitmate-test-user/test',
+                                   '3fc4b860e0a2c17819934d678decacd914271e5c')
         self.commit.comment('An issue is here')
         self.commit.comment("Here in line 4, there's a spelling mistake!",
                             'README.md', 4)

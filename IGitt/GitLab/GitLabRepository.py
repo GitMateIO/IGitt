@@ -4,12 +4,12 @@ Contains the GitLab Repository implementation.
 from urllib.parse import quote_plus
 
 from IGitt import ElementAlreadyExistsError, ElementDoesntExistError
-from IGitt.GitLab import delete, get, post
+from IGitt.GitLab import delete, get, post, GitLabMixin
 from IGitt.GitLab.GitLabIssue import GitLabIssue
 from IGitt.Interfaces.Repository import Repository
 
 
-class GitLabRepository(Repository):
+class GitLabRepository(Repository, GitLabMixin):
     """
     Represents a repository on GitLab.
     """
@@ -25,7 +25,6 @@ class GitLabRepository(Repository):
         self._token = oauth_token
         self._repository = repository
         self._url = '/projects/' + quote_plus(repository)
-        self._data = get(self._token, self._url)
 
     @property
     def hoster(self) -> str:
@@ -49,7 +48,7 @@ class GitLabRepository(Repository):
 
         :return: The full repository name as string.
         """
-        return self._data['path_with_namespace']
+        return self._repository
 
     @property
     def clone_url(self) -> str:
@@ -64,7 +63,7 @@ class GitLabRepository(Repository):
 
         :return: A URL that can be used to clone the repository with Git.
         """
-        return self._data['http_url_to_repo'].replace(
+        return self.data['http_url_to_repo'].replace(
             'gitlab.com', self._token + '@gitlab.com', 1)
 
     def get_labels(self) -> {str}:
@@ -108,8 +107,11 @@ class GitLabRepository(Repository):
         if name in self.get_labels():
             raise ElementAlreadyExistsError(name + ' already exists.')
 
-        post(self._token, self._url + '/labels',
-             {'name': name, 'color': color})
+        self.data = post(
+            self._token,
+            self._url + '/labels',
+            {'name': name, 'color': color}
+        )
 
     def delete_label(self, name: str):
         """
@@ -216,7 +218,7 @@ class GitLabRepository(Repository):
         if secret:
             config['secret'] = secret
 
-        post(self._token, self._url + '/hooks', config)
+        self.data = post(self._token, self._url + '/hooks', config)
 
     def delete_hook(self, url: str):
         """

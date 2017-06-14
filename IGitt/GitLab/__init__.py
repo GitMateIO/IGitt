@@ -5,8 +5,18 @@ August 22, 2017. So, IGitt adopts v4 to stay future proof.
 """
 from IGitt.Interfaces import AccessLevel
 from IGitt.Interfaces import _fetch
+from IGitt.Utils import CachedDataMixin
 
 BASE_URL = 'https://gitlab.com/api/v4'
+
+
+class GitLabMixin(CachedDataMixin):
+    """
+    Base object for things that are on GitLab.
+    """
+
+    def _get_data(self):
+        return get(self._token, self._url)
 
 
 def get(token: str, url: str, params: dict=None):

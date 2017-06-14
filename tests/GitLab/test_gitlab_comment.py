@@ -15,7 +15,6 @@ my_vcr = vcr.VCR(match_on=['method', 'scheme', 'host', 'port', 'path'],
 
 class GitLabCommentTest(unittest.TestCase):
 
-    @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_comment.yaml')
     def setUp(self):
         self.comment = GitLabComment(os.environ.get('GITLAB_TEST_TOKEN', ''),
                                      'gitmate-test-user/test', 1,
@@ -24,12 +23,15 @@ class GitLabCommentTest(unittest.TestCase):
     def test_type(self):
         self.assertEqual(self.comment.type, CommentType.ISSUE)
 
+    @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_comment_body.yaml')
     def test_body(self):
         self.assertEqual(self.comment.body, 'Lemme comment on you.\r\n')
 
+    @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_comment_author.yaml')
     def test_author(self):
         self.assertEqual(self.comment.author, 'gitmate-test-user')
 
+    @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_comment_time.yaml')
     def test_time(self):
         self.assertEqual(self.comment.created,
                          datetime.datetime(2017, 6, 5, 5, 20, 28, 418000))

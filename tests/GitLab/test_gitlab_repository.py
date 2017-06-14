@@ -13,7 +13,6 @@ my_vcr = vcr.VCR(match_on=['method', 'scheme', 'host', 'port', 'path'],
 
 class TestGitLabRepository(unittest.TestCase):
 
-    @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_repo.yaml')
     def setUp(self):
         self.repo = GitLabRepository(os.environ.get('GITLAB_TEST_TOKEN', ''),
                                      'gitmate-test-user/test')

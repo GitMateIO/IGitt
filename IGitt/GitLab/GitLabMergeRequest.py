@@ -1,12 +1,5 @@
 """
 Contains a class representing the GitLab merge request.
-
-Unlike GitHub, GitLab maintains a seperate API for merge requests and issues.
-So, each method behaves through the inherent data shared through self._data and
-self._url, like a mixin.
-
-All the methods from GitLabIssue are used inherently but with the _url and
-_data properties of GitLabMergeRequest object.
 """
 import re
 
@@ -21,7 +14,8 @@ from IGitt.GitLab.GitLabIssue import GitLabIssue
 from IGitt.Interfaces.MergeRequest import MergeRequest
 
 
-class GitLabMergeRequest(MergeRequest, GitLabIssue):
+# Issue is used as a Mixin, super() is never called by design!
+class GitLabMergeRequest(GitLabIssue, MergeRequest):
     """
     A Merge Request on GitLab.
     """
@@ -39,22 +33,6 @@ class GitLabMergeRequest(MergeRequest, GitLabIssue):
         self._iid = mr_iid
         self._url = '/projects/{repo}/merge_requests/{iid}'.format(
             repo=quote_plus(repository), iid=self._iid)
-        self._data = get(self._token, self._url)
-
-    @property
-    def number(self) -> int:
-        """
-        Returns the MR "number" or id.
-
-        >>> from os import environ
-        >>> mr = GitLabMergeRequest(environ['GITLAB_TEST_TOKEN'],
-        ...                         'gitmate-test-user/test', 2)
-        >>> mr.number
-        2
-
-        :return: The number of the issue.
-        """
-        return self._iid
 
     @property
     def base_branch_name(self) -> str:
@@ -64,7 +42,7 @@ class GitLabMergeRequest(MergeRequest, GitLabIssue):
 
         :return: A string.
         """
-        return self._data['target_branch']
+        return self.data['target_branch']
 
     @property
     def base(self) -> GitLabCommit:
@@ -79,8 +57,8 @@ class GitLabMergeRequest(MergeRequest, GitLabIssue):
 
         :return: A GitLabCommit object.
         """
-        return GitLabCommit(self._token, self._repository,
-                            quote_plus(self.base_branch_name))
+        return GitLabCommit(self._token, self._repository, sha=None,
+                            branch=quote_plus(self.base_branch_name))
 
     @property
     def head_branch_name(self) -> str:
@@ -90,7 +68,7 @@ class GitLabMergeRequest(MergeRequest, GitLabIssue):
 
         :return: A string.
         """
-        return self._data['source_branch']
+        return self.data['source_branch']
 
     @property
     def head(self) -> GitLabCommit:
@@ -105,8 +83,8 @@ class GitLabMergeRequest(MergeRequest, GitLabIssue):
 
         :return: A GitLabCommit object.
         """
-        return GitLabCommit(self._token, self._repository,
-                            quote_plus(self.head_branch_name))
+        return GitLabCommit(self._token, self._repository, sha=None,
+                            branch=quote_plus(self.head_branch_name))
 
     @property
     @lru_cache(None)
@@ -196,7 +174,7 @@ class GitLabMergeRequest(MergeRequest, GitLabIssue):
         >>> pr.created
         datetime.datetime(2017, 6, 7, 3, 51, 41, 112000)
         """
-        return datetime.strptime(self._data['created_at'],
+        return datetime.strptime(self.data['created_at'],
                                  '%Y-%m-%dT%H:%M:%S.%fZ')
 
     @property
@@ -211,7 +189,7 @@ class GitLabMergeRequest(MergeRequest, GitLabIssue):
         >>> pr.updated
         datetime.datetime(2017, 6, 7, 3, 51, 41, 112000)
         """
-        return datetime.strptime(self._data['updated_at'],
+        return datetime.strptime(self.data['updated_at'],
                                  '%Y-%m-%dT%H:%M:%S.%fZ')
 
     def close(self):
@@ -220,7 +198,7 @@ class GitLabMergeRequest(MergeRequest, GitLabIssue):
 
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
-        self._data = put(self._token, self._url, {'state_event': 'close'})
+        self.data = put(self._token, self._url, {'state_event': 'close'})
 
     def reopen(self):
         """
@@ -228,7 +206,7 @@ class GitLabMergeRequest(MergeRequest, GitLabIssue):
 
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
-        self._data = put(self._token, self._url, {'state_event': 'reopen'})
+        self.data = put(self._token, self._url, {'state_event': 'reopen'})
 
     @property
     def state(self) -> str:
@@ -255,4 +233,4 @@ class GitLabMergeRequest(MergeRequest, GitLabIssue):
 
         :return: Either 'opened', 'merged' or 'reopened'.
         """
-        return self._data['state']
+        return self.data['state']
