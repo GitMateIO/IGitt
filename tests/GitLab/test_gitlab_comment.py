@@ -9,8 +9,8 @@ from IGitt.GitLab.GitLabComment import GitLabComment
 from IGitt.Interfaces.Comment import CommentType
 
 my_vcr = vcr.VCR(match_on=['method', 'scheme', 'host', 'port', 'path'],
-                 filter_query_parameters=['private_token'],
-                 filter_post_data_parameters=['private_token'])
+                 filter_query_parameters=['access_token'],
+                 filter_post_data_parameters=['access_token'])
 
 
 class GitLabCommentTest(unittest.TestCase):

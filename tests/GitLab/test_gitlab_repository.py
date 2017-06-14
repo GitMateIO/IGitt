@@ -7,8 +7,8 @@ from IGitt.GitLab.GitLabRepository import GitLabRepository
 from IGitt import ElementAlreadyExistsError, ElementDoesntExistError
 
 my_vcr = vcr.VCR(match_on=['method', 'scheme', 'host', 'port', 'path'],
-                 filter_query_parameters=['private_token'],
-                 filter_post_data_parameters=['private_token'])
+                 filter_query_parameters=['access_token'],
+                 filter_post_data_parameters=['access_token'])
 
 
 class TestGitLabRepository(unittest.TestCase):

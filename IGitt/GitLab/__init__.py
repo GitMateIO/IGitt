@@ -32,7 +32,7 @@ def get(token: str, url: str, params: dict=None):
     :raises RunTimeError:
         If the response indicates any problem.
     """
-    return _fetch(BASE_URL, 'get', {'private_token': token},
+    return _fetch(BASE_URL, 'get', {'access_token': token},
                   url, query_params=params)
 
 
@@ -49,7 +49,7 @@ def post(token: str, url: str, data: dict):
     :raises RunTimeError:
         If the response indicates any problem.
     """
-    return _fetch(BASE_URL, 'post', {'private_token': token}, url, data)
+    return _fetch(BASE_URL, 'post', {'access_token': token}, url, data)
 
 
 def put(token: str, url: str, data: dict):
@@ -65,7 +65,7 @@ def put(token: str, url: str, data: dict):
     :raises RunTimeError:
         If the response indicates any problem.
     """
-    return _fetch(BASE_URL, 'put', {'private_token': token}, url, data)
+    return _fetch(BASE_URL, 'put', {'access_token': token}, url, data)
 
 
 def delete(token: str, url: str, params: dict=None):
@@ -77,5 +77,5 @@ def delete(token: str, url: str, params: dict=None):
     :param params: The query params to be sent.
     :raises RuntimeError: If the response indicates any problem.
     """
-    _fetch(BASE_URL, 'delete', {'private_token': token},
+    _fetch(BASE_URL, 'delete', {'access_token': token},
            url, query_params=params)

@@ -41,8 +41,8 @@ interactions:
       Content-Type: [application/json]
       Date: ['Tue, 13 Jun 2017 16:23:21 GMT']
       Etag: [W/"dba9fcc1837dc5610687047d786f3314"]
-      Link: ['<https://gitlab.com/api/v4/users?User-Agent=IGitt&active=false&blocked=false&external=false&page=1&per_page=20&private_token=&skip_ldap=false&username=meetmangukiya>;
-          rel="first", <https://gitlab.com/api/v4/users?User-Agent=IGitt&active=false&blocked=false&external=false&page=1&per_page=20&private_token=&skip_ldap=false&username=meetmangukiya>;
+      Link: ['<https://gitlab.com/api/v4/users?User-Agent=IGitt&active=false&blocked=false&external=false&page=1&per_page=20&access_token=&skip_ldap=false&username=meetmangukiya>;
+          rel="first", <https://gitlab.com/api/v4/users?User-Agent=IGitt&active=false&blocked=false&external=false&page=1&per_page=20&access_token=&skip_ldap=false&username=meetmangukiya>;
           rel="last"']
       Server: [nginx]
       Strict-Transport-Security: [max-age=31536000]
@@ -103,8 +103,8 @@ interactions:
       Content-Type: [application/json]
       Date: ['Tue, 13 Jun 2017 16:23:32 GMT']
       Etag: [W/"dba9fcc1837dc5610687047d786f3314"]
-      Link: ['<https://gitlab.com/api/v4/users?User-Agent=IGitt&active=false&blocked=false&external=false&page=1&per_page=20&private_token=&skip_ldap=false&username=meetmangukiya>;
-          rel="first", <https://gitlab.com/api/v4/users?User-Agent=IGitt&active=false&blocked=false&external=false&page=1&per_page=20&private_token=&skip_ldap=false&username=meetmangukiya>;
+      Link: ['<https://gitlab.com/api/v4/users?User-Agent=IGitt&active=false&blocked=false&external=false&page=1&per_page=20&access_token=&skip_ldap=false&username=meetmangukiya>;
+          rel="first", <https://gitlab.com/api/v4/users?User-Agent=IGitt&active=false&blocked=false&external=false&page=1&per_page=20&access_token=&skip_ldap=false&username=meetmangukiya>;
           rel="last"']
       Server: [nginx]
       Strict-Transport-Security: [max-age=31536000]

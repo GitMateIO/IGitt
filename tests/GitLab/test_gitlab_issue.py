@@ -7,8 +7,8 @@ import vcr
 from IGitt.GitLab.GitLabIssue import GitLabIssue
 
 my_vcr = vcr.VCR(match_on=['method', 'scheme', 'host', 'port', 'path'],
-                 filter_query_parameters=['private_token'],
-                 filter_post_data_parameters=['private_token'])
+                 filter_query_parameters=['access_token'],
+                 filter_post_data_parameters=['access_token'])
 
 
 class GitLabIssueTest(unittest.TestCase):
@@ -18,7 +18,7 @@ class GitLabIssueTest(unittest.TestCase):
                                'gitmate-test-user/test', 3)
 
     @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_issue_title.yaml',
-                         filter_query_parameters=['private_token'])
+                         filter_query_parameters=['access_token'])
     def test_title(self):
         self.iss.title = 'new title'
         self.assertEqual(self.iss.title, 'new title')
@@ -51,14 +51,14 @@ class GitLabIssueTest(unittest.TestCase):
         self.assertEqual(self.iss.comments[0].body, 'this is a test comment')
 
     @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_issue_labels.yaml',
-                         filter_query_parameters=['private_token'])
+                         filter_query_parameters=['access_token'])
     def test_issue_labels(self):
         self.assertEqual(self.iss.labels, set())
         self.iss.labels = self.iss.labels | {'dem'}
         self.assertEqual(len(self.iss.available_labels), 4)
 
     @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_issue_time.yaml',
-                         filter_query_parameters=['private_token'])
+                         filter_query_parameters=['access_token'])
     def test_time(self):
         self.assertEqual(self.iss.created,
                          datetime.datetime(2017, 6, 5, 6, 19, 6, 379000))
@@ -66,7 +66,7 @@ class GitLabIssueTest(unittest.TestCase):
                          datetime.datetime(2017, 6, 9, 8, 38, 28, 449000))
 
     @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_issue_state.yaml',
-                         filter_query_parameters=['private_token'])
+                         filter_query_parameters=['access_token'])
     def test_state(self):
         self.iss.close()
         self.assertEqual(self.iss.state, 'closed')
@@ -74,7 +74,7 @@ class GitLabIssueTest(unittest.TestCase):
         self.assertEqual(self.iss.state, 'reopened')
 
     @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_issue_create_delete.yaml',
-                         filter_query_parameters=['private_token'])
+                         filter_query_parameters=['access_token'])
     def test_issue_create(self):
         issue = GitLabIssue.create(os.environ.get('GITLAB_TEST_TOKEN', ''),
                                    'gitmate-test-user/test',

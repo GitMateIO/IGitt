@@ -8,8 +8,8 @@ from IGitt.GitLab import BASE_URL as GITLAB_BASE_URL
 import vcr
 
 my_vcr = vcr.VCR(match_on=['method', 'scheme', 'host', 'port', 'path'],
-                 filter_query_parameters=['access_token', 'private_token'],
-                 filter_post_data_parameters=['access_token', 'private_token'])
+                 filter_query_parameters=['access_token'],
+                 filter_post_data_parameters=['access_token'])
 
 
 class TestGitHubInit(unittest.TestCase):
@@ -31,7 +31,7 @@ class TestGitHubInit(unittest.TestCase):
         @my_vcr.use_cassette('tests/Interfaces/cassettes/test_query_params.yaml')
         def test_get_query_gitlab():
             _fetch(GITLAB_BASE_URL, 'get',
-                   {'private_token': os.environ.get('GITLAB_TEST_TOKEN', '')},
+                   {'access_token': os.environ.get('GITLAB_TEST_TOKEN', '')},
                    '/projects', query_params={'owned': True})
 
         test_get_query_gitlab()

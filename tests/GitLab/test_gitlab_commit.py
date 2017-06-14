@@ -7,8 +7,8 @@ from IGitt.GitLab.GitLabCommit import GitLabCommit
 from IGitt.Interfaces.CommitStatus import CommitStatus, Status
 
 my_vcr = vcr.VCR(match_on=['method', 'scheme', 'host', 'port', 'path'],
-                 filter_query_parameters=['private_token'],
-                 filter_post_data_parameters=['private_token'],
+                 filter_query_parameters=['access_token'],
+                 filter_post_data_parameters=['access_token'],
                  filter_headers=['Link'])
 
 
