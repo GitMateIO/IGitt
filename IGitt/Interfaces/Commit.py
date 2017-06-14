@@ -129,9 +129,9 @@ class Commit:
     @property
     def sha(self) -> str:
         """
-        Retrieves the full sha of the commit.
+        Retrieves the sha of the commit.
 
-        :return: A string holding the full SHA of the commit.
+        :return: A string holding the SHA of the commit.
         """
         raise NotImplementedError
 
