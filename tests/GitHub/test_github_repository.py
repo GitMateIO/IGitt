@@ -24,6 +24,7 @@ class TestGitHubRepository(unittest.TestCase):
     def test_full_name(self):
         self.assertEqual(self.repo.full_name, 'gitmate-test-user/test')
 
+    @my_vcr.use_cassette('tests/GitHub/cassettes/github_repo_clone_url.yaml')
     def test_clone_url(self):
         self.assertEqual(self.repo.clone_url,
                          'https://{}@github.com/gitmate-test-user/test.git'.format(
