@@ -2,10 +2,15 @@
 Contains the Hoster implementation for GitLab.
 """
 
+import logging
+
 from IGitt.GitLab import get
 from IGitt.Interfaces import AccessLevel
 from IGitt.Interfaces.Hoster import Hoster
 from IGitt.GitLab.GitLabRepository import GitLabRepository
+
+LOGGER = logging.getLogger(__name__)
+LOGGER.setLevel(logging.DEBUG)
 
 
 class GitLab(Hoster):
@@ -50,10 +55,20 @@ class GitLab(Hoster):
         :return: A set of GitLabRepository objects.
         """
         repo_list = get(self._token, '/projects', {'membership': True})
+
+        retrievable_repos = []
+
+        for repo in repo_list:
+            try:
+                if (repo['permissions']['project_access']['access_level'] >=
+                        AccessLevel.CAN_WRITE.value):
+                    retrievable_repos.append(repo)
+            except (TypeError, KeyError):  # pragma: dont cover
+                LOGGER.warning('(%s) couldn\'t be retrieved',
+                               repo['path_with_namespace'])
+
         return {GitLabRepository(self._token, repo['path_with_namespace'])
-                for repo in repo_list
-                if repo['permissions']['project_access']['access_level'] >=
-                AccessLevel.CAN_WRITE.value}
+                for repo in retrievable_repos}
 
     def get_repo(self, repository) -> GitLabRepository:
         """
