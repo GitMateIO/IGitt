@@ -15,13 +15,20 @@ class CachedDataMixin:
         """
         raise NotImplementedError
 
+    def refresh(self):
+        """
+        Refreshes all the data from the hoster!
+        """
+        self._data = self._get_data()
+
     @property
     def data(self):
         """
         Retrieves the data, if needed from the network.
         """
         if not getattr(self, '_data', None):
-            self._data = self._get_data()
+            self.refresh()
+
         return self._data
 
     @data.setter
