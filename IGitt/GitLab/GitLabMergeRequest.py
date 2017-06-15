@@ -3,12 +3,10 @@ Contains a class representing the GitLab merge request.
 """
 import re
 
-from datetime import datetime
 from functools import lru_cache
 from urllib.parse import quote_plus
 
 from IGitt.GitLab import get
-from IGitt.GitLab import put
 from IGitt.GitLab.GitLabCommit import GitLabCommit
 from IGitt.GitLab.GitLabIssue import GitLabIssue
 from IGitt.Interfaces.MergeRequest import MergeRequest
@@ -162,75 +160,3 @@ class GitLabMergeRequest(GitLabIssue, MergeRequest):
         deletions = len([line for line in results if line.startswith('-')])
 
         return additions, deletions
-
-    @property
-    def created(self) -> datetime:
-        """
-        Retrieves a timestamp on when the merge request was created.
-
-        >>> from os import environ
-        >>> pr = GitLabMergeRequest(environ['GITLAB_TEST_TOKEN'],
-        ...                         'gitmate-test-user/test', 2)
-        >>> pr.created
-        datetime.datetime(2017, 6, 7, 3, 51, 41, 112000)
-        """
-        return datetime.strptime(self.data['created_at'],
-                                 '%Y-%m-%dT%H:%M:%S.%fZ')
-
-    @property
-    def updated(self) -> datetime:
-        """
-        Retrieves a timestamp on when the merge request was updated the last
-        time.
-
-        >>> from os import environ
-        >>> pr = GitLabMergeRequest(environ['GITLAB_TEST_TOKEN'],
-        ...                         'gitmate-test-user/test', 2)
-        >>> pr.updated
-        datetime.datetime(2017, 6, 7, 3, 51, 41, 112000)
-        """
-        return datetime.strptime(self.data['updated_at'],
-                                 '%Y-%m-%dT%H:%M:%S.%fZ')
-
-    def close(self):
-        """
-        Closes the merge request.
-
-        :raises RuntimeError: If something goes wrong (network, auth...).
-        """
-        self.data = put(self._token, self._url, {'state_event': 'close'})
-
-    def reopen(self):
-        """
-        Reopens the merge request.
-
-        :raises RuntimeError: If something goes wrong (network, auth...).
-        """
-        self.data = put(self._token, self._url, {'state_event': 'reopen'})
-
-    @property
-    def state(self) -> str:
-        """
-        Get's the state of the merge request.
-
-        >>> from os import environ
-        >>> mr = GitLabMergeRequest(environ['GITLAB_TEST_TOKEN'],
-        ...                         'gitmate-test-user/test', 7)
-        >>> mr.state
-        'reopened'
-
-        So if we close it:
-
-        >>> mr.close()
-        >>> mr.state
-        'closed'
-
-        And reopen it:
-
-        >>> mr.reopen()
-        >>> mr.state
-        'reopened'
-
-        :return: Either 'opened', 'merged' or 'reopened'.
-        """
-        return self.data['state']
