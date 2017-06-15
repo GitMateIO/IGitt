@@ -63,7 +63,7 @@ class TestGitHubMergeRequest(unittest.TestCase):
         self.assertEqual(self.mr.created, datetime.datetime(
             2016, 1, 24, 19, 47, 19))
         self.assertEqual(self.mr.updated, datetime.datetime(
-            2017, 6, 14, 10, 34, 40))
+            2017, 6, 15, 11, 24, 46))
 
     @my_vcr.use_cassette('tests/GitHub/cassettes/github_merge_request_affected_files.yaml')
     def test_affected_files(self):

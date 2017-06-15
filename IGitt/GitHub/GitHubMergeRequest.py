@@ -16,18 +16,16 @@ The methods being used from GitHubIssue are:
 - labels.setter
 - available_labels
 """
-from datetime import datetime
 from functools import lru_cache
 
 from IGitt.GitHub import get
-from IGitt.GitHub import patch
 from IGitt.GitHub.GitHubCommit import GitHubCommit
 from IGitt.GitHub.GitHubIssue import GitHubIssue
 from IGitt.Interfaces.MergeRequest import MergeRequest
 
 
 # Issue is used as a Mixin, super() is never called by design!
-class GitHubMergeRequest(MergeRequest, GitHubIssue):
+class GitHubMergeRequest(GitHubIssue, MergeRequest):
     """
     A Pull Request on GitHub.
     """
@@ -43,54 +41,12 @@ class GitHubMergeRequest(MergeRequest, GitHubIssue):
         self._token = oauth_token
         self._number = pr_number
         self._repository = repository
-        self._url = '/repos/' + repository + '/pulls/' + str(pr_number)
+        self._mr_url = '/repos/' + repository + '/pulls/' + str(pr_number)
+        self._url = '/repos/'+repository+'/issues/'+str(pr_number)
 
-    @property
-    def title(self):
-        """
-        Retrieves the title of the pull request.
-
-        >>> from os import environ
-        >>> mr = GitHubMergeRequest(environ['GITHUB_TEST_TOKEN'],
-        ...                         'gitmate-test-user/test', 1)
-        >>> mr.title
-        'test issue'
-
-        You can simply set it using the property setter:
-
-        >>> mr.title = 'dont panic'
-        >>> mr.title
-        'dont panic'
-
-        >>> mr.title = 'test issue'
-
-        :return: The title of the pull request - as string.
-        """
-        return self.data['title']
-
-    @title.setter
-    def title(self, new_title):
-        """
-        Sets the title of the pull request.
-
-        :param new_title: The new title.
-        """
-        self.data = patch(self._token, self._url, {'title': new_title})
-
-    @property
-    def description(self):
-        r"""
-        Retrieves the main description of the pull request:
-
-        >>> from os import environ
-        >>> mr = GitHubIssue(environ['GITHUB_TEST_TOKEN'],
-        ...                     'gitmate-test-user/test', 1)
-        >>> mr.description
-        'A nice description!\n'
-
-        :return: A string containing the main description of the pull request.
-        """
-        return self.data['body']
+    def refresh(self):
+        self.data = self._get_data()
+        self.data.update(get(self._token, self._mr_url))
 
     @property
     def base(self):
@@ -170,7 +126,7 @@ class GitHubMergeRequest(MergeRequest, GitHubIssue):
 
         :return: A tuple of commit objects.
         """
-        commits = get(self._token, self._url + '/commits')
+        commits = get(self._token, self._mr_url + '/commits')
         return tuple(GitHubCommit(self._token, self._repository, commit['sha'])
                      for commit in commits)
 
@@ -203,7 +159,7 @@ class GitHubMergeRequest(MergeRequest, GitHubIssue):
 
         :return: A set of filenames.
         """
-        files = get(self._token, self._url + '/files')
+        files = get(self._token, self._mr_url + '/files')
         return {file['filename'] for file in files}
 
     @property
@@ -221,95 +177,8 @@ class GitHubMergeRequest(MergeRequest, GitHubIssue):
         """
         return self.data['additions'], self.data['deletions']
 
-    @property
-    def created(self) -> datetime:
-        """
-        Retrieves a timestamp on when the merge request was created.
-
-        >>> from os import environ
-        >>> pr = GitHubMergeRequest(environ['GITHUB_TEST_TOKEN'],
-        ...                         'gitmate-test-user/test', 7)
-        >>> pr.created
-        datetime.datetime(2016, 1, 24, 19, 47, 19)
-        """
-        return datetime.strptime(self.data['created_at'],
-                                 "%Y-%m-%dT%H:%M:%SZ")
-
-    @property
-    def updated(self) -> datetime:
-        """
-        Retrieves a timestamp on when the merge request was updated the last
-        time.
-
-        >>> from os import environ
-        >>> pr = GitHubMergeRequest(environ['GITHUB_TEST_TOKEN'],
-        ...                         'gitmate-test-user/test', 7)
-        >>> pr.updated
-        datetime.datetime(2017, 6, 7, 8, 42, 43)
-        """
-        return datetime.strptime(self.data['updated_at'],
-                                 "%Y-%m-%dT%H:%M:%SZ")
-
-    def close(self):
-        """
-        Closes the merge request.
-
-        :raises RuntimeError: If something goes wrong (network, auth...).
-        """
-        self.data = patch(self._token, self._url, {'state': 'closed'})
-
-    def reopen(self):
-        """
-        Reopens the merge request.
-
-        :raises RuntimeError: If something goes wrong (network, auth...).
-        """
-        self.data = patch(self._token, self._url, {'state': 'open'})
-
     def delete(self):
         """
         GitHub doesn't allow deleting issues or pull requests.
         """
         raise NotImplementedError
-
-    @property
-    def state(self) -> str:
-        """
-        Get's the state of the merge request.
-
-        >>> from os import environ
-        >>> mr = GitHubMergeRequest(environ['GITHUB_TEST_TOKEN'],
-        ...                         'gitmate-test-user/test', 11)
-        >>> mr.state
-        'open'
-
-        So if we close it:
-
-        >>> mr.close()
-        >>> mr.state
-        'closed'
-
-        And reopen it:
-
-        >>> mr.reopen()
-        >>> mr.state
-        'open'
-
-        :return: Either 'open' or 'closed'.
-        """
-        return self.data['state']
-
-    @property
-    def number(self) -> int:
-        """
-        Returns the MR "number" or id.
-
-        >>> from os import environ
-        >>> mr = GitHubMergeRequest(environ['GITHUB_TEST_TOKEN'],
-        ...                         'gitmate-test-user/test', 11)
-        >>> mr.number
-        11
-
-        :return: The number of the issue.
-        """
-        return self._number

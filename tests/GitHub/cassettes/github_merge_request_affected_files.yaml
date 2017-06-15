@@ -5,9 +5,9 @@ interactions:
       Accept: ['*/*']
       Accept-Encoding: ['gzip, deflate']
       Connection: [keep-alive]
-      User-Agent: [GitMate]
+      User-Agent: [python-requests/2.17.3]
     method: GET
-    uri: https://api.github.com/repos/gitmate-test-user/test/pulls/7/files
+    uri: https://api.github.com/repos/gitmate-test-user/test/pulls/7/files?User-Agent=IGitt
   response:
     body:
       string: !!binary |
@@ -26,24 +26,25 @@ interactions:
       Content-Encoding: [gzip]
       Content-Security-Policy: [default-src 'none']
       Content-Type: [application/json; charset=utf-8]
-      Date: ['Wed, 07 Jun 2017 08:42:40 GMT']
+      Date: ['Thu, 15 Jun 2017 11:24:41 GMT']
       ETag: [W/"375ee9fb03e681803bc19fc3225108f9"]
-      Last-Modified: ['Tue, 06 Jun 2017 16:58:04 GMT']
+      Last-Modified: ['Thu, 15 Jun 2017 11:24:20 GMT']
       Server: [GitHub.com]
       Status: [200 OK]
       Strict-Transport-Security: [max-age=31536000; includeSubdomains; preload]
-      Vary: ['Accept, Authorization, Cookie, X-GitHub-OTP']
+      Vary: ['Accept, Authorization, Cookie, X-GitHub-OTP', Accept-Encoding]
       X-Accepted-OAuth-Scopes: ['']
       X-Content-Type-Options: [nosniff]
       X-Frame-Options: [deny]
       X-GitHub-Media-Type: [github.v3; format=json]
-      X-GitHub-Request-Id: ['C544:13F62:84827A7:AD40CCC:5937BC7F']
+      X-GitHub-Request-Id: ['B3A0:160A:611430:7A6350:59426E79']
       X-OAuth-Scopes: ['admin:org, admin:org_hook, admin:public_key, admin:repo_hook,
           delete_repo, gist, notifications, repo, user']
       X-RateLimit-Limit: ['5000']
-      X-RateLimit-Remaining: ['4984']
-      X-RateLimit-Reset: ['1496826754']
-      X-Runtime-rack: ['0.048575']
+      X-RateLimit-Remaining: ['4925']
+      X-RateLimit-Reset: ['1497528781']
+      X-Runtime-rack: ['0.040281']
+      X-Served-By: [52437fedc85beec8da3449496900fb9a]
       X-XSS-Protection: [1; mode=block]
     status: {code: 200, message: OK}
 version: 1
