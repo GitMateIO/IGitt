@@ -19,7 +19,7 @@ class GitLabMixin(CachedDataMixin):
         return get(self._token, self._url)
 
 
-def get(token: str, url: str, params: dict=None):
+def get(token: str, url: str, params: dict=frozenset()):
     """
     Queries GitLab on the given URL for data.
 
@@ -33,7 +33,7 @@ def get(token: str, url: str, params: dict=None):
         If the response indicates any problem.
     """
     return _fetch(BASE_URL, 'get', {'access_token': token},
-                  url, query_params=params)
+                  url, query_params={**dict(params), 'per_page': 100})
 
 
 def post(token: str, url: str, data: dict):
