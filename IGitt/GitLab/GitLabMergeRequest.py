@@ -33,6 +33,16 @@ class GitLabMergeRequest(GitLabIssue, MergeRequest):
             repo=quote_plus(repository), iid=self._iid)
 
     @property
+    def url(self):
+        """
+        Returns the link/URL of the merge request.
+        """
+        return 'https://gitlab.com/{}/merge_requests/{}'.format(
+            self._repository,
+            self.number
+        )
+
+    @property
     def base_branch_name(self) -> str:
         """
         Retrieves the base branch name of the merge request, i.e. the one it

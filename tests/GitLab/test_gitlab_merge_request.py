@@ -64,6 +64,10 @@ class TestGitLabMergeRequest(unittest.TestCase):
     def test_number(self):
         self.assertEqual(self.mr.number, 7)
 
+    def test_url(self):
+        self.assertEqual(self.mr.url,
+                         'https://gitlab.com/gitmate-test-user/test/merge_requests/7')
+
     @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_merge_request_states.yaml')
     def test_change_state(self):
         self.mr.close()
