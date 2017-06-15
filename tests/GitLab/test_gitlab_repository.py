@@ -51,6 +51,10 @@ class TestGitLabRepository(unittest.TestCase):
     def test_get_issue(self):
         self.assertEqual(self.repo.get_issue(1).title, 'new title')
 
+    @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_repo_get_mr.yaml')
+    def test_get_mr(self):
+        self.assertEqual(self.repo.get_mr(2).title, 'Sils/severalcommits')
+
     @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_repo_create_issue.yaml')
     def test_create_issue(self):
         self.assertEqual(self.repo.create_issue(

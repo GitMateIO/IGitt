@@ -168,6 +168,18 @@ class GitHubRepository(Repository, GitHubMixin):
         """
         return GitHubIssue(self._token, self.full_name, issue_number)
 
+    def get_mr(self, mr_number: int):
+        """
+        Retrieves an MR:
+
+        :param mr_number: The merge_request ID of the MR to retrieve.
+        :return: A MergeRequest object.
+        :raises ElementDoesntExistError: If the MR doesn't exist.
+        :raises RuntimeError: If something goes wrong (network, auth...).
+        """
+        from IGitt.GitHub.GitHubMergeRequest import GitHubMergeRequest
+        return GitHubMergeRequest(self._token, self.full_name, mr_number)
+
     @property
     def hooks(self):
         """

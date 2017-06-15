@@ -169,6 +169,18 @@ class GitLabRepository(Repository, GitLabMixin):
         """
         return GitLabIssue(self._token, self.full_name, issue_number)
 
+    def get_mr(self, mr_number: int):
+        """
+        Retrieves an MR.
+
+        :param mr_number: The MR IID of the merge_request on GitLab.
+        :return: A MergeRequest object.
+        :raises ElementDoesntExistError: If the MR doesn't exist.
+        :raises RuntimeError: If something goes wrong (network, auth...).
+        """
+        from IGitt.GitLab.GitLabMergeRequest import GitLabMergeRequest
+        return GitLabMergeRequest(self._token, self.full_name, mr_number)
+
     @property
     def hooks(self) -> {str}:
         """

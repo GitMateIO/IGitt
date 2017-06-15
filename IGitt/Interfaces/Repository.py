@@ -55,6 +55,15 @@ class Repository:
         """
         raise NotImplementedError
 
+    def get_mr(self, mr_number: int):
+        """
+        Retrieves an MR.
+
+        :param mr_number: The merge_request ID of the MR to retrieve.
+        :return: An MR object.
+        """
+        raise NotImplementedError
+
     def create_label(self, name: str, color: str):
         """
         Creates a new label.
