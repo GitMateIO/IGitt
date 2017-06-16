@@ -26,7 +26,7 @@ class TestGitLabRepository(unittest.TestCase):
     def test_clone_url(self):
         self.assertEqual(self.repo.clone_url,
                          'https://{}@gitlab.com/gitmate-test-user/test.git'.format(
-                             os.environ.get('GITLAB_TEST_TOKEN', ''))
+                             'oauth2:' + os.environ.get('GITLAB_TEST_TOKEN', ''))
                         )
 
     @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_repo_get_labels.yaml')
