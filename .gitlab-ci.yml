@@ -4,12 +4,16 @@ run_tests:
   - pip install -r requirements.txt
   - pip install -r test-requirements.txt
   - python3 -m pytest
+  except:
+  - master
 
 check_code:
   image: python:3.5-alpine
   script:
   - pip install 'coala-bears[alldeps]'
   - coala --ci
+  except:
+  - master
 
 release:
   image: sils1297/gm-build-cont
