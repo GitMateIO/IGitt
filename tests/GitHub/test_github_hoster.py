@@ -15,6 +15,13 @@ class TestGitHub(unittest.TestCase):
     def setUp(self):
         self.gh = GitHub(os.environ.get('GITHUB_TEST_TOKEN', ''))
 
+    @my_vcr.use_cassette('tests/GitHub/cassettes/test_github_hoster_master.yaml')
+    def test_master_repositories(self):
+        self.assertEqual(sorted(map(lambda x: x.full_name, self.gh.master_repositories)),
+                         ['GitMateIO/gitmate-2',
+                          'GitMateIO/gitmate-2-frontend',
+                          'gitmate-test-user/test'])
+
     @my_vcr.use_cassette('tests/GitHub/cassettes/test_github_hoster_owned.yaml')
     def test_owned_repositories(self):
         self.assertEqual(sorted(map(lambda x: x.full_name, self.gh.owned_repositories)),

@@ -15,6 +15,11 @@ class TestGitLab(unittest.TestCase):
     def setUp(self):
         self.gl = GitLab(os.environ.get('GITLAB_TEST_TOKEN', ''))
 
+    @my_vcr.use_cassette('tests/GitLab/cassettes/test_gitlab_hoster_master.yaml')
+    def test_master_repositories(self):
+        self.assertEqual(sorted(map(lambda x: x.full_name, self.gl.master_repositories)),
+                         ['gitmate-test-user/test'])
+
     @my_vcr.use_cassette('tests/GitLab/cassettes/test_gitlab_hoster_owned.yaml')
     def test_owned_repositories(self):
         self.assertEqual(sorted(map(lambda x: x.full_name, self.gl.owned_repositories)),

@@ -21,6 +21,15 @@ class GitHub(Hoster):
         self._token = oauth_token
 
     @property
+    def master_repositories(self):
+        """
+        Retrieves repositories the user has admin access to.
+        """
+        repo_list = get(self._token, '/user/repos')
+        return {GitHubRepository(self._token, repo['full_name'])
+                for repo in repo_list if repo['permissions']['admin']}
+
+    @property
     def owned_repositories(self):
         """
         Retrieves repositories owned by the authenticated user.
@@ -32,9 +41,9 @@ class GitHub(Hoster):
 
         :return: A set of full repository names.
         """
-        repo_list = get(self._token, '/user/repos')
+        repo_list = get(self._token, '/user/repos', {'affiliation': 'owner'})
         return {GitHubRepository(self._token, repo['full_name'])
-                for repo in repo_list if repo['permissions']['admin']}
+                for repo in repo_list}
 
     @property
     def write_repositories(self):

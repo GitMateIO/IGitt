@@ -1,6 +1,7 @@
 """
 Contains the git Hoster abstraction.
 """
+from IGitt.Interfaces.Repository import Repository
 
 
 class Hoster:
@@ -9,7 +10,14 @@ class Hoster:
     repositories and stuff like that.
     """
     @property
-    def owned_repositories(self) -> {str}:
+    def master_repositories(self) -> {Repository}:
+        """
+        Retrieves the repositories the user has administrative access to.
+        """
+        raise NotImplementedError
+
+    @property
+    def owned_repositories(self) -> {Repository}:
         """
         Retrieves the full names of the owned repositories as strings.
 
@@ -18,7 +26,7 @@ class Hoster:
         raise NotImplementedError
 
     @property
-    def write_repositories(self):
+    def write_repositories(self) -> {Repository}:
         """
         Retrieves the full names of repositories this user can write to.
 
@@ -26,7 +34,7 @@ class Hoster:
         """
         raise NotImplementedError
 
-    def get_repo(self, repository):
+    def get_repo(self, repository) -> Repository:
         """
         Return a repository object.
         """

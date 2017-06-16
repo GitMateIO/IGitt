@@ -27,6 +27,27 @@ class GitLab(Hoster):
         self._token = oauth_token
 
     @property
+    def master_repositories(self):
+        """
+        Retrieves repositories the user has admin access to.
+        """
+        repo_list = get(self._token, '/projects', {'membership': True})
+
+        retrievable_repos = []
+
+        for repo in repo_list:
+            try:
+                if (repo['permissions']['project_access']['access_level'] >=
+                        AccessLevel.ADMIN.value):
+                    retrievable_repos.append(repo)
+            except (TypeError, KeyError):  # pragma: dont cover
+                LOGGER.warning('(%s) couldn\'t be retrieved',
+                               repo['path_with_namespace'])
+
+        return {GitLabRepository(self._token, repo['path_with_namespace'])
+                for repo in retrievable_repos}
+
+    @property
     def owned_repositories(self):
         """
         Retrieves repositories owned by the authenticated user.
