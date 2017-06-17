@@ -3,7 +3,7 @@ Represents a comment on GitHub.
 """
 from datetime import datetime
 
-from IGitt.GitHub import delete, GitHubMixin
+from IGitt.GitHub import delete, patch, GitHubMixin
 from IGitt.Interfaces.Comment import Comment, CommentType
 
 
@@ -57,6 +57,16 @@ class GitHubComment(Comment, GitHubMixin):
         :return: A string containing the body.
         """
         return self.data['body']
+
+    @body.setter
+    def body(self, value: str):
+        """
+        Sets comment body to value on GitHub.
+
+        :param value: A string containing comment body.
+        """
+        payload = {'body': value}
+        self.data = patch(self._token, self._url, payload)
 
     @property
     def author(self):

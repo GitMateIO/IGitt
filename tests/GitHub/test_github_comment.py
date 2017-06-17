@@ -20,6 +20,10 @@ class GitHubCommentTest(unittest.TestCase):
                                      'gitmate-test-user/test',
                                      CommentType.COMMIT,
                                      22461603)
+        self.issue_comment = GitHubComment(os.environ.get('GITHUB_TEST_TOKEN', ''),
+                                           'gitmate-test-user/test',
+                                           CommentType.ISSUE,
+                                           309221241)
 
     def test_type(self):
         self.assertEqual(self.comment.type, CommentType.COMMIT)
@@ -27,6 +31,16 @@ class GitHubCommentTest(unittest.TestCase):
     @my_vcr.use_cassette('tests/GitHub/cassettes/github_comment_body.yaml')
     def test_body(self):
         self.assertEqual(self.comment.body, 'test comment on commit')
+
+    @my_vcr.use_cassette('tests/GitHub/cassettes/github_comment_body_setter.yaml')
+    def test_body_setter(self):
+        self.issue_comment.body = 'test comment body has changed'
+        self.assertEqual(self.issue_comment.body,
+                         'test comment body has changed')
+        self.issue_comment.body = 'test comment body to change'
+        self.assertEqual(self.issue_comment.body,
+                         'test comment body to change')
+
 
     @my_vcr.use_cassette('tests/GitHub/cassettes/github_comment_author.yaml')
     def test_author(self):

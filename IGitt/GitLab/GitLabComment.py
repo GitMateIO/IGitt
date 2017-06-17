@@ -4,7 +4,7 @@ Represents a comment (or note) on GitLab.
 from urllib.parse import quote_plus
 
 from datetime import datetime
-from IGitt.GitLab import delete, GitLabMixin
+from IGitt.GitLab import delete, put, GitLabMixin
 from IGitt.Interfaces.Comment import Comment
 from IGitt.Interfaces.Comment import CommentType
 
@@ -74,6 +74,16 @@ class GitLabComment(Comment, GitLabMixin):
         :return: A string containing the body.
         """
         return self.data['body']
+
+    @body.setter
+    def body(self, value: str):
+        """
+        Edits the body of the comment on GitLab.
+
+        :param value: A string containing comment body.
+        """
+        payload = {'body': value}
+        self.data = put(self._token, self._url, payload)
 
     @property
     def created(self) -> datetime:

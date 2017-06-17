@@ -19,6 +19,9 @@ class GitLabCommentTest(unittest.TestCase):
         self.comment = GitLabComment(os.environ.get('GITLAB_TEST_TOKEN', ''),
                                      'gitmate-test-user/test', 1,
                                      CommentType.ISSUE, 31500135)
+        self.issue_comment = GitLabComment(os.environ.get('GITLAB_TEST_TOKEN', ''),
+                                           'gitmate-test-user/test', 30,
+                                           CommentType.ISSUE, 32616806)
 
     def test_type(self):
         self.assertEqual(self.comment.type, CommentType.ISSUE)
@@ -26,6 +29,13 @@ class GitLabCommentTest(unittest.TestCase):
     @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_comment_body.yaml')
     def test_body(self):
         self.assertEqual(self.comment.body, 'Lemme comment on you.\r\n')
+
+    @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_comment_body_setter.yaml')
+    def test_body_setter(self):
+        self.issue_comment.body = 'test comment body has changed'
+        self.assertEqual(self.issue_comment.body, 'test comment body has changed')
+        self.issue_comment.body = 'test comment body to change'
+        self.assertEqual(self.issue_comment.body, 'test comment body to change')
 
     @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_comment_author.yaml')
     def test_author(self):

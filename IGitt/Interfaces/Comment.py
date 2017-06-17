@@ -35,6 +35,13 @@ class Comment:
         """
         raise NotImplementedError
 
+    @body.setter
+    def body(self, value):
+        """
+        Edits the comment body at the hosting site to value.
+        """
+        raise NotImplementedError
+
     @property
     def author(self) -> str:
         """
