@@ -4,6 +4,7 @@ import os
 import vcr
 
 from IGitt.GitLab.GitLabRepository import GitLabRepository
+from IGitt.Interfaces.Repository import WebhookEvents
 from IGitt import ElementAlreadyExistsError, ElementDoesntExistError
 
 my_vcr = vcr.VCR(match_on=['method', 'scheme', 'host', 'port', 'path'],
@@ -62,11 +63,14 @@ class TestGitLabRepository(unittest.TestCase):
 
     @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_repo_hooks.yaml')
     def test_hooks(self):
-        self.repo.register_hook('http://some.url/in/the/world', '...')
+        self.repo.register_hook('http://some.url/in/the/world', 'secret',
+                                events={WebhookEvents.MERGE_REQUEST})
         self.assertIn('http://some.url/in/the/world', self.repo.hooks)
         self.repo.register_hook('http://some.url/in/the/world')
         self.repo.delete_hook('http://some.url/in/the/world')
         self.assertNotIn('http://some.url/in/the/world', self.repo.hooks)
+        self.repo.register_hook('http://some.url/in/the/world')
+        self.assertIn('http://some.url/in/the/world', self.repo.hooks)
 
     @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_repo_merge_requests.yaml')
     def test_merge_requests(self):

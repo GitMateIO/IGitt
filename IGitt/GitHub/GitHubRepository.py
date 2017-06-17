@@ -6,6 +6,17 @@ from IGitt import ElementAlreadyExistsError, ElementDoesntExistError
 from IGitt.GitHub import delete, get, post, GitHubMixin
 from IGitt.GitHub.GitHubIssue import GitHubIssue
 from IGitt.Interfaces.Repository import Repository
+from IGitt.Interfaces.Repository import WebhookEvents
+
+
+GH_WEBHOOK_TRANSLATION = {
+    WebhookEvents.PUSH: 'push',
+    WebhookEvents.ISSUE: 'issues',
+    WebhookEvents.MERGE_REQUEST: 'pull_request',
+    WebhookEvents.COMMIT_COMMENT: 'commit_comment',
+    WebhookEvents.MERGE_REQUEST_COMMENT: 'issue_comment',
+    WebhookEvents.ISSUE_COMMENT: 'issue_comment'
+}
 
 
 class GitHubRepository(Repository, GitHubMixin):
@@ -196,7 +207,10 @@ class GitHubRepository(Repository, GitHubMixin):
 
         return results
 
-    def register_hook(self, url: str, secret: str=None):
+    def register_hook(self,
+                      url: str,
+                      secret: str=None,
+                      events: {WebhookEvents}=None):
         """
         Registers a webhook to the given URL. Use it as simple as:
 
@@ -226,20 +240,28 @@ class GitHubRepository(Repository, GitHubMixin):
         `X-Hub-Signature` value, in the response header, computed as a HMAC
         hex digest of the body, using the `secret` as the key would be
         returned when the webhook is fired.
+        :param events:
+            The events for which the webhook is to be registered against.
+            Defaults to all possible events.
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
         if url in self.hooks:
             return
 
         config = {'url': url, 'content_type': 'json'}
+        reg_events = []
 
         if secret:
             config['secret'] = secret
 
+        if events:
+            reg_events = [GH_WEBHOOK_TRANSLATION[event] for event in events]
+
         self.data = post(
             self._token,
             self._url + '/hooks',
-            {'name': 'web', 'active': True, 'events': ['*'], 'config': config}
+            {'name': 'web', 'active': True, 'config': config,
+             'events': reg_events if len(reg_events) else ['*']}
         )
 
     def delete_hook(self, url: str):

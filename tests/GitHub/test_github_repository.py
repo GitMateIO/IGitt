@@ -4,6 +4,7 @@ import os
 import vcr
 
 from IGitt.GitHub.GitHubRepository import GitHubRepository
+from IGitt.Interfaces.Repository import WebhookEvents
 from IGitt import ElementAlreadyExistsError, ElementDoesntExistError
 
 my_vcr = vcr.VCR(match_on=['method', 'scheme', 'host', 'port', 'path'],
@@ -67,8 +68,11 @@ class TestGitHubRepository(unittest.TestCase):
 
     @my_vcr.use_cassette('tests/GitHub/cassettes/github_repo_hooks.yaml')
     def test_hooks(self):
-        self.repo.register_hook('http://some.url/in/the/world', '...')
+        self.repo.register_hook('http://some.url/in/the/world', '...',
+                                events={WebhookEvents.PUSH})
         self.assertIn('http://some.url/in/the/world', self.repo.hooks)
         self.repo.register_hook('http://some.url/in/the/world')
         self.repo.delete_hook('http://some.url/in/the/world')
         self.assertNotIn('http://some.url/in/the/world', self.repo.hooks)
+        self.repo.register_hook('http://some.url/in/the/world')
+        self.assertIn('http://some.url/in/the/world', self.repo.hooks)

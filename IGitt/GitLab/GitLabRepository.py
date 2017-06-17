@@ -7,7 +7,20 @@ from IGitt import ElementAlreadyExistsError, ElementDoesntExistError
 from IGitt.GitLab import delete, get, post, GitLabMixin
 from IGitt.GitLab.GitLabIssue import GitLabIssue
 from IGitt.Interfaces.Repository import Repository
+from IGitt.Interfaces.Repository import WebhookEvents
 
+
+GL_WEBHOOK_TRANSLATION = {
+    WebhookEvents.PUSH: 'push_events',
+    WebhookEvents.ISSUE: 'issues_events',
+    WebhookEvents.MERGE_REQUEST: 'merge_requests_events',
+    WebhookEvents.COMMIT_COMMENT: 'note_events',
+    WebhookEvents.MERGE_REQUEST_COMMENT: 'note_events',
+    WebhookEvents.ISSUE_COMMENT: 'note_events',
+}
+
+GL_WEBHOOK_EVENTS = {'tag_push_events', 'job_events', 'pipeline_events',
+                     'wiki_events'} | set(GL_WEBHOOK_TRANSLATION.values())
 
 class GitLabRepository(Repository, GitLabMixin):
     """
@@ -193,7 +206,10 @@ class GitLabRepository(Repository, GitLabMixin):
 
         return {hook['url'] for hook in hooks}
 
-    def register_hook(self, url: str, secret: str=None):
+    def register_hook(self,
+                      url: str,
+                      secret: str=None,
+                      events: {WebhookEvents}=None):
         """
         Registers a webhook to the given URL. Use it as simple as:
 
@@ -220,6 +236,9 @@ class GitLabRepository(Repository, GitLabMixin):
         :param url: The URL to fire the webhook to.
         :param secret:
             An optional secret token to be registered with the webhook.
+        :param events:
+            The events for which the webhook is to be registered against.
+            Defaults to all possible events.
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
         if url in self.hooks:
@@ -227,19 +246,17 @@ class GitLabRepository(Repository, GitLabMixin):
 
         config = {
             'url': url,
-            'push_events': True,
-            'issues_events': True,
-            'merge_requests_events': True,
-            'tag_push_events': True,
-            'note_events': True,
-            'job_events': True,
-            'pipeline_events': True,
-            'wiki_events': True,
             'enable_ssl_verification': False,
         }
 
-        if secret is not None:
+        if secret:
             config['token'] = secret
+
+        if events and len(events):
+            config.update({GL_WEBHOOK_TRANSLATION[event]: True
+                           for event in events})
+        else:
+            config.update({event: True for event in GL_WEBHOOK_EVENTS})
 
         self.data = post(self._token, self._url + '/hooks', config)
 

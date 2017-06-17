@@ -28,13 +28,18 @@ class Repository:
     issues, PRs, hooks and so on.
     """
 
-    def register_hook(self, url: str, secret: str=None):
+    def register_hook(self,
+                      url: str,
+                      secret: str=None,
+                      events: {WebhookEvents}=None):
         """
         Registers a webhook to the given URL. Should pass silently if the hook
         already exists.
 
         :param url: The URL to fire the webhook to.
         :param secret: An optional secret token to be registered with webhook.
+        :param events: The set of events for which the webhook is to be
+                       registered against. Defaults to all possible events.
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
         raise NotImplementedError
