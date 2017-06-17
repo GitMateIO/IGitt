@@ -2,9 +2,23 @@
 Contains the Repository base class.
 """
 
+from enum import Enum
 from tempfile import mkdtemp
 
 from git.repo.base import Repo
+
+
+class WebhookEvents(Enum):
+    """
+    This class depicts the webhook events that can be registered with any
+    hosting service providers like GitHub or GitLab.
+    """
+    PUSH = 1
+    ISSUE = 2
+    MERGE_REQUEST = 3
+    ISSUE_COMMENT = 4
+    COMMIT_COMMENT = 5
+    MERGE_REQUEST_COMMENT = 6
 
 
 class Repository:
