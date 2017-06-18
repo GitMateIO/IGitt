@@ -44,9 +44,25 @@ class GitHubMergeRequest(GitHubIssue, MergeRequest):
         self._mr_url = '/repos/' + repository + '/pulls/' + str(pr_number)
         self._url = '/repos/'+repository+'/issues/'+str(pr_number)
 
-    def refresh(self):
-        self.data = self._get_data()
-        self.data.update(get(self._token, self._mr_url))
+    @property
+    def data(self):
+        """
+        Retrieves the MR specific data if it's not there yet.
+        """
+        data = super().data
+        if not 'additions' in data:
+            self._data.update(get(self._token, self._mr_url))
+
+        return super().data
+
+    @data.setter
+    def data(self, value):
+        """
+        Setter for the data, use it to override, refresh, ...
+        """
+        # Ignore PyLintBear (W0201)
+        self._data = value
+
 
     @property
     def base(self):
