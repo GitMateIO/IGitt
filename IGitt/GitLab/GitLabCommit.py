@@ -245,9 +245,14 @@ class GitLabCommit(Commit, GitLabMixin):
             data['note'] = ('Comment on ' + self.sha + file_str + line_str +
                             '.\n\n' + data['note'])
 
-        if mr_number is None:  # comments directly on the commit
+        # comments directly on the commit, if the line and path are valid
+        # appears on a rich diff, else at the last line of commit.
+        # If the commit is part of an mr, the comments appear in the
+        # discussions view.
+        if 'line' in data and 'path' in data or mr_number is None:
             post(self._token, self._url + '/comments', data)
-        else:  # comments on the merge request
+
+        else: # comments on the merge request
             data['body'] = data['note']  # because gitlab is stupid
             post(self._token,
                  '/projects/{id}/merge_requests/{mr_iid}/notes'.format(

@@ -1,31 +1,5 @@
 interactions:
 - request:
-    body: null
-    headers:
-      Accept: ['*/*']
-      Accept-Encoding: ['gzip, deflate']
-      Connection: [keep-alive]
-      User-Agent: [python-requests/2.17.3]
-    method: GET
-    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/3fc4b86?User-Agent=GitMate
-  response:
-    body: {string: '{"id":"3fc4b860e0a2c17819934d678decacd914271e5c","short_id":"3fc4b860","title":"Update
-        README.md","created_at":"2016-01-24T18:49:12.000+01:00","parent_ids":["674498fd415cfadc35c5eb28b8951e800f357c6f"],"message":"Update
-        README.md","author_name":"gitmate-test-user","author_email":"hostmaster@gitmate.io","authored_date":"2016-01-24T18:49:12.000+01:00","committer_name":"gitmate-test-user","committer_email":"hostmaster@gitmate.io","committed_date":"2016-01-24T18:49:12.000+01:00","stats":{"additions":2,"deletions":0,"total":2},"status":"success"}'}
-    headers:
-      Cache-Control: ['max-age=0, private, must-revalidate']
-      Content-Length: ['546']
-      Content-Type: [application/json]
-      Date: ['Fri, 09 Jun 2017 09:27:18 GMT']
-      Etag: [W/"411d9df422770563367929acb0f752ba"]
-      Server: [nginx]
-      Strict-Transport-Security: [max-age=31536000]
-      Vary: [Origin]
-      X-Frame-Options: [SAMEORIGIN]
-      X-Request-Id: [abcb1864-a4ca-4b9d-8a0a-e125702c68db]
-      X-Runtime: ['0.541315']
-    status: {code: 200, message: OK}
-- request:
     body: '{"note": "Comment on 3fc4b860e0a2c17819934d678decacd914271e5c.\n\nAn issue
       is here", "line_type": "new"}'
     headers:
@@ -36,22 +10,22 @@ interactions:
       Content-Type: [application/json]
       User-Agent: [python-requests/2.17.3]
     method: POST
-    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/3fc4b86/comments?User-Agent=GitMate
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/3fc4b860e0a2c17819934d678decacd914271e5c/comments?User-Agent=IGitt
   response:
     body: {string: '{"note":"Comment on 3fc4b860e0a2c17819934d678decacd914271e5c.\n\nAn
-        issue is here","path":null,"line":null,"line_type":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T09:27:19.749Z"}'}
+        issue is here","path":null,"line":null,"line_type":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-19T12:32:29.574Z"}'}
     headers:
       Cache-Control: ['max-age=0, private, must-revalidate']
       Content-Length: ['402']
       Content-Type: [application/json]
-      Date: ['Fri, 09 Jun 2017 09:27:19 GMT']
-      Etag: [W/"224c3b3489047a2399571aa384b39594"]
+      Date: ['Mon, 19 Jun 2017 12:32:29 GMT']
+      Etag: [W/"84a508d9ab117b38c051d57e52219c08"]
       Server: [nginx]
       Strict-Transport-Security: [max-age=31536000]
       Vary: [Origin]
       X-Frame-Options: [SAMEORIGIN]
-      X-Request-Id: [f6ed5195-5540-4d4c-87cf-6c4eef295b71]
-      X-Runtime: ['0.361357']
+      X-Request-Id: [a4098df1-fe81-464b-9b67-aaec6e4694c3]
+      X-Runtime: ['0.448222']
     status: {code: 201, message: Created}
 - request:
     body: null
@@ -61,7 +35,7 @@ interactions:
       Connection: [keep-alive]
       User-Agent: [python-requests/2.17.3]
     method: GET
-    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/3fc4b86/diff?User-Agent=GitMate
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/3fc4b860e0a2c17819934d678decacd914271e5c/diff?User-Agent=IGitt&per_page=100
   response:
     body: {string: '[{"diff":"--- a/README.md\n+++ b/README.md\n@@ -1,2 +1,4 @@\n
         # test\n a test repo\n+\n+a tst pr\n","new_path":"README.md","old_path":"README.md","a_mode":"100644","b_mode":"100644","new_file":false,"renamed_file":false,"deleted_file":false,"too_large":null}]'}
@@ -69,14 +43,14 @@ interactions:
       Cache-Control: ['max-age=0, private, must-revalidate']
       Content-Length: ['259']
       Content-Type: [application/json]
-      Date: ['Fri, 09 Jun 2017 09:27:21 GMT']
+      Date: ['Mon, 19 Jun 2017 12:32:32 GMT']
       Etag: [W/"706051d386064021c416ffa310d8f690"]
       Server: [nginx]
       Strict-Transport-Security: [max-age=31536000]
       Vary: [Origin]
       X-Frame-Options: [SAMEORIGIN]
-      X-Request-Id: [9643a1e8-fc66-4c3c-9112-e4fc0afa669a]
-      X-Runtime: ['0.156181']
+      X-Request-Id: [1453a9d6-7e4a-4c92-8e79-e9640b280b45]
+      X-Runtime: ['0.244022']
     status: {code: 200, message: OK}
 - request:
     body: '{"note": "Here in line 4, there''s a spelling mistake!", "line_type": "new",
@@ -89,21 +63,21 @@ interactions:
       Content-Type: [application/json]
       User-Agent: [python-requests/2.17.3]
     method: POST
-    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/3fc4b86/comments?User-Agent=GitMate
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/3fc4b860e0a2c17819934d678decacd914271e5c/comments?User-Agent=IGitt
   response:
-    body: {string: '{"note":"Here in line 4, there''s a spelling mistake!","path":"README.md","line":4,"line_type":"new","author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T09:27:22.917Z"}'}
+    body: {string: '{"note":"Here in line 4, there''s a spelling mistake!","path":"README.md","line":4,"line_type":"new","author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-19T12:32:34.369Z"}'}
     headers:
       Cache-Control: ['max-age=0, private, must-revalidate']
       Content-Length: ['378']
       Content-Type: [application/json]
-      Date: ['Fri, 09 Jun 2017 09:27:23 GMT']
-      Etag: [W/"bf602a7d2d2e25cd9b86147ca0a0e49c"]
+      Date: ['Mon, 19 Jun 2017 12:32:39 GMT']
+      Etag: [W/"1824859a4bf0d305a1fc74647974d49a"]
       Server: [nginx]
       Strict-Transport-Security: [max-age=31536000]
       Vary: [Origin]
       X-Frame-Options: [SAMEORIGIN]
-      X-Request-Id: [b7250665-97e5-4461-938f-a16e559c548d]
-      X-Runtime: ['0.590115']
+      X-Request-Id: [a04f8843-f414-4804-a129-f258cea24908]
+      X-Runtime: ['5.531854']
     status: {code: 201, message: Created}
 - request:
     body: null
@@ -113,7 +87,7 @@ interactions:
       Connection: [keep-alive]
       User-Agent: [python-requests/2.17.3]
     method: GET
-    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/3fc4b86/diff?User-Agent=GitMate
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/3fc4b860e0a2c17819934d678decacd914271e5c/diff?User-Agent=IGitt&per_page=100
   response:
     body: {string: '[{"diff":"--- a/README.md\n+++ b/README.md\n@@ -1,2 +1,4 @@\n
         # test\n a test repo\n+\n+a tst pr\n","new_path":"README.md","old_path":"README.md","a_mode":"100644","b_mode":"100644","new_file":false,"renamed_file":false,"deleted_file":false,"too_large":null}]'}
@@ -121,42 +95,41 @@ interactions:
       Cache-Control: ['max-age=0, private, must-revalidate']
       Content-Length: ['259']
       Content-Type: [application/json]
-      Date: ['Fri, 09 Jun 2017 09:27:24 GMT']
+      Date: ['Mon, 19 Jun 2017 12:32:42 GMT']
       Etag: [W/"706051d386064021c416ffa310d8f690"]
       Server: [nginx]
       Strict-Transport-Security: [max-age=31536000]
       Vary: [Origin]
       X-Frame-Options: [SAMEORIGIN]
-      X-Request-Id: [98d7d0e5-a5bf-46f0-b0b2-8f9d37187c34]
-      X-Runtime: ['0.282095']
+      X-Request-Id: [f4f2dfc6-0bc3-493c-ab2f-7140232a99a4]
+      X-Runtime: ['0.270396']
     status: {code: 200, message: OK}
 - request:
     body: '{"note": "Here in line 4, there''s a spelling mistake!", "line_type": "new",
-      "line": 4, "path": "README.md", "body": "Here in line 4, there''s a spelling
-      mistake!"}'
+      "line": 4, "path": "README.md"}'
     headers:
       Accept: ['*/*']
       Accept-Encoding: ['gzip, deflate']
       Connection: [keep-alive]
-      Content-Length: ['162']
+      Content-Length: ['107']
       Content-Type: [application/json]
       User-Agent: [python-requests/2.17.3]
     method: POST
-    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/merge_requests/6/notes?User-Agent=GitMate
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/3fc4b860e0a2c17819934d678decacd914271e5c/comments?User-Agent=IGitt
   response:
-    body: {string: '{"id":31908234,"body":"Here in line 4, there''s a spelling mistake!","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T09:27:26.322Z","updated_at":"2017-06-09T09:27:26.322Z","system":false,"noteable_id":3758430,"noteable_type":"MergeRequest"}'}
+    body: {string: '{"note":"Here in line 4, there''s a spelling mistake!","path":"README.md","line":4,"line_type":"new","author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-19T12:32:43.698Z"}'}
     headers:
       Cache-Control: ['max-age=0, private, must-revalidate']
-      Content-Length: ['472']
+      Content-Length: ['378']
       Content-Type: [application/json]
-      Date: ['Fri, 09 Jun 2017 09:27:26 GMT']
-      Etag: [W/"f48753b728d806b429d36db397afd5cf"]
+      Date: ['Mon, 19 Jun 2017 12:32:44 GMT']
+      Etag: [W/"836d4c6d40bb074e65b3f02d1653c22d"]
       Server: [nginx]
       Strict-Transport-Security: [max-age=31536000]
       Vary: [Origin]
       X-Frame-Options: [SAMEORIGIN]
-      X-Request-Id: [bd0c14f4-3189-4823-8892-0984196c2b3c]
-      X-Runtime: ['0.320991']
+      X-Request-Id: [c5d0e3a5-82e0-489f-b004-4cb740c49da8]
+      X-Runtime: ['0.571637']
     status: {code: 201, message: Created}
 - request:
     body: '{"note": "Comment on 3fc4b860e0a2c17819934d678decacd914271e5c, file READNOT.md.\n\ntest
@@ -170,22 +143,22 @@ interactions:
       Content-Type: [application/json]
       User-Agent: [python-requests/2.17.3]
     method: POST
-    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/merge_requests/6/notes?User-Agent=GitMate
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/merge_requests/6/notes?User-Agent=IGitt
   response:
-    body: {string: '{"id":31908245,"body":"Comment on 3fc4b860e0a2c17819934d678decacd914271e5c,
-        file READNOT.md.\n\ntest comment","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T09:27:28.360Z","updated_at":"2017-06-09T09:27:28.360Z","system":false,"noteable_id":3758430,"noteable_type":"MergeRequest"}'}
+    body: {string: '{"id":32754928,"body":"Comment on 3fc4b860e0a2c17819934d678decacd914271e5c,
+        file READNOT.md.\n\ntest comment","attachment":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-19T12:32:45.554Z","updated_at":"2017-06-19T12:32:45.554Z","system":false,"noteable_id":3758430,"noteable_type":"MergeRequest"}'}
     headers:
       Cache-Control: ['max-age=0, private, must-revalidate']
       Content-Length: ['514']
       Content-Type: [application/json]
-      Date: ['Fri, 09 Jun 2017 09:27:28 GMT']
-      Etag: [W/"096995216bad54a8c85825f1fdd2a04e"]
+      Date: ['Mon, 19 Jun 2017 12:32:45 GMT']
+      Etag: [W/"3833ea004f50a0d47fd1ea197d05582d"]
       Server: [nginx]
       Strict-Transport-Security: [max-age=31536000]
       Vary: [Origin]
       X-Frame-Options: [SAMEORIGIN]
-      X-Request-Id: [0129c301-edbb-4030-b426-f5c166b0a43e]
-      X-Runtime: ['0.449681']
+      X-Request-Id: [bfc0b1c1-6fa5-4cbb-b34b-369f07269f32]
+      X-Runtime: ['0.544830']
     status: {code: 201, message: Created}
 - request:
     body: null
@@ -195,7 +168,7 @@ interactions:
       Connection: [keep-alive]
       User-Agent: [python-requests/2.17.3]
     method: GET
-    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/3fc4b86/diff?User-Agent=GitMate
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/3fc4b860e0a2c17819934d678decacd914271e5c/diff?User-Agent=IGitt&per_page=100
   response:
     body: {string: '[{"diff":"--- a/README.md\n+++ b/README.md\n@@ -1,2 +1,4 @@\n
         # test\n a test repo\n+\n+a tst pr\n","new_path":"README.md","old_path":"README.md","a_mode":"100644","b_mode":"100644","new_file":false,"renamed_file":false,"deleted_file":false,"too_large":null}]'}
@@ -203,120 +176,14 @@ interactions:
       Cache-Control: ['max-age=0, private, must-revalidate']
       Content-Length: ['259']
       Content-Type: [application/json]
-      Date: ['Fri, 09 Jun 2017 09:27:32 GMT']
+      Date: ['Mon, 19 Jun 2017 12:32:47 GMT']
       Etag: [W/"706051d386064021c416ffa310d8f690"]
       Server: [nginx]
       Strict-Transport-Security: [max-age=31536000]
       Vary: [Origin]
       X-Frame-Options: [SAMEORIGIN]
-      X-Request-Id: [11a41a03-18d5-41dd-9f34-5a384f8e26bf]
-      X-Runtime: ['2.128497']
-    status: {code: 200, message: OK}
-- request:
-    body: '{"note": "Comment on 3fc4b860e0a2c17819934d678decacd914271e5c, file READNOT.md,
-      line 4.\n\ntest comment", "line_type": "new"}'
-    headers:
-      Accept: ['*/*']
-      Accept-Encoding: ['gzip, deflate']
-      Connection: [keep-alive]
-      Content-Length: ['125']
-      Content-Type: [application/json]
-      User-Agent: [python-requests/2.17.3]
-    method: POST
-    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/3fc4b86/comments?User-Agent=GitMate
-  response:
-    body: {string: '{"note":"Comment on 3fc4b860e0a2c17819934d678decacd914271e5c,
-        file READNOT.md, line 4.\n\ntest comment","path":null,"line":null,"line_type":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T09:27:33.830Z"}'}
-    headers:
-      Cache-Control: ['max-age=0, private, must-revalidate']
-      Content-Length: ['423']
-      Content-Type: [application/json]
-      Date: ['Fri, 09 Jun 2017 09:27:34 GMT']
-      Etag: [W/"b6ec8d3eb7abaea060a633de2463b3c1"]
-      Server: [nginx]
-      Strict-Transport-Security: [max-age=31536000]
-      Vary: [Origin]
-      X-Frame-Options: [SAMEORIGIN]
-      X-Request-Id: [2131fbf5-a950-46db-a752-5ea043c67ee0]
-      X-Runtime: ['0.349052']
-    status: {code: 201, message: Created}
-- request:
-    body: '{"note": "Comment on 3fc4b860e0a2c17819934d678decacd914271e5c.\n\nAn issue
-      is here", "line_type": "new"}'
-    headers:
-      Accept: ['*/*']
-      Accept-Encoding: ['gzip, deflate']
-      Connection: [keep-alive]
-      Content-Length: ['104']
-      Content-Type: [application/json]
-      User-Agent: [python-requests/2.17.3]
-    method: POST
-    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/3fc4b860e0a2c17819934d678decacd914271e5c/comments?User-Agent=IGitt
-  response:
-    body: {string: '{"note":"Comment on 3fc4b860e0a2c17819934d678decacd914271e5c.\n\nAn
-        issue is here","path":null,"line":null,"line_type":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-14T10:28:01.429Z"}'}
-    headers:
-      Cache-Control: ['max-age=0, private, must-revalidate']
-      Content-Length: ['402']
-      Content-Type: [application/json]
-      Date: ['Wed, 14 Jun 2017 10:28:01 GMT']
-      Etag: [W/"9df74b7ce27f682f0b81bbdadcd23f0f"]
-      Server: [nginx]
-      Strict-Transport-Security: [max-age=31536000]
-      Vary: [Origin]
-      X-Frame-Options: [SAMEORIGIN]
-      X-Request-Id: [4d26af53-a75d-4034-ae06-a88e0e1e88fb]
-      X-Runtime: ['0.425097']
-    status: {code: 201, message: Created}
-- request:
-    body: null
-    headers:
-      Accept: ['*/*']
-      Accept-Encoding: ['gzip, deflate']
-      Connection: [keep-alive]
-      User-Agent: [python-requests/2.17.3]
-    method: GET
-    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/3fc4b860e0a2c17819934d678decacd914271e5c/diff?User-Agent=IGitt
-  response:
-    body: {string: '[{"diff":"--- a/README.md\n+++ b/README.md\n@@ -1,2 +1,4 @@\n
-        # test\n a test repo\n+\n+a tst pr\n","new_path":"README.md","old_path":"README.md","a_mode":"100644","b_mode":"100644","new_file":false,"renamed_file":false,"deleted_file":false,"too_large":null}]'}
-    headers:
-      Cache-Control: ['max-age=0, private, must-revalidate']
-      Content-Length: ['259']
-      Content-Type: [application/json]
-      Date: ['Wed, 14 Jun 2017 10:28:02 GMT']
-      Etag: [W/"706051d386064021c416ffa310d8f690"]
-      Server: [nginx]
-      Strict-Transport-Security: [max-age=31536000]
-      Vary: [Origin]
-      X-Frame-Options: [SAMEORIGIN]
-      X-Request-Id: [ed3a7460-a303-4f36-875d-32eecb11471c]
-      X-Runtime: ['0.237087']
-    status: {code: 200, message: OK}
-- request:
-    body: null
-    headers:
-      Accept: ['*/*']
-      Accept-Encoding: ['gzip, deflate']
-      Connection: [keep-alive]
-      User-Agent: [python-requests/2.17.3]
-    method: GET
-    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/3fc4b860e0a2c17819934d678decacd914271e5c/diff?User-Agent=IGitt
-  response:
-    body: {string: '[{"diff":"--- a/README.md\n+++ b/README.md\n@@ -1,2 +1,4 @@\n
-        # test\n a test repo\n+\n+a tst pr\n","new_path":"README.md","old_path":"README.md","a_mode":"100644","b_mode":"100644","new_file":false,"renamed_file":false,"deleted_file":false,"too_large":null}]'}
-    headers:
-      Cache-Control: ['max-age=0, private, must-revalidate']
-      Content-Length: ['259']
-      Content-Type: [application/json]
-      Date: ['Wed, 14 Jun 2017 10:28:04 GMT']
-      Etag: [W/"706051d386064021c416ffa310d8f690"]
-      Server: [nginx]
-      Strict-Transport-Security: [max-age=31536000]
-      Vary: [Origin]
-      X-Frame-Options: [SAMEORIGIN]
-      X-Request-Id: [67df7cf6-8294-4e8c-b03d-841ef360bda1]
-      X-Runtime: ['0.223646']
+      X-Request-Id: [fbe3a537-7704-4156-9739-671093d9e022]
+      X-Runtime: ['0.180386']
     status: {code: 200, message: OK}
 - request:
     body: '{"note": "Comment on 3fc4b860e0a2c17819934d678decacd914271e5c, file READNOT.md,
@@ -332,71 +199,18 @@ interactions:
     uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/3fc4b860e0a2c17819934d678decacd914271e5c/comments?User-Agent=IGitt
   response:
     body: {string: '{"note":"Comment on 3fc4b860e0a2c17819934d678decacd914271e5c,
-        file READNOT.md, line 4.\n\ntest comment","path":null,"line":null,"line_type":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-14T10:28:05.065Z"}'}
+        file READNOT.md, line 4.\n\ntest comment","path":null,"line":null,"line_type":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-19T12:32:48.738Z"}'}
     headers:
       Cache-Control: ['max-age=0, private, must-revalidate']
       Content-Length: ['423']
       Content-Type: [application/json]
-      Date: ['Wed, 14 Jun 2017 10:28:05 GMT']
-      Etag: [W/"772ce4a43931e3a5018ec6240e421e70"]
+      Date: ['Mon, 19 Jun 2017 12:32:49 GMT']
+      Etag: [W/"ab4986fa8b8ef4d5237725142ac58514"]
       Server: [nginx]
       Strict-Transport-Security: [max-age=31536000]
       Vary: [Origin]
       X-Frame-Options: [SAMEORIGIN]
-      X-Request-Id: [a59b852a-ad32-4976-9d4a-247c17c1619d]
-      X-Runtime: ['0.365571']
-    status: {code: 201, message: Created}
-- request:
-    body: null
-    headers:
-      Accept: ['*/*']
-      Accept-Encoding: ['gzip, deflate']
-      Connection: [keep-alive]
-      User-Agent: [python-requests/2.17.3]
-    method: GET
-    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/3fc4b860e0a2c17819934d678decacd914271e5c/diff?User-Agent=IGitt
-  response:
-    body: {string: '[{"diff":"--- a/README.md\n+++ b/README.md\n@@ -1,2 +1,4 @@\n
-        # test\n a test repo\n+\n+a tst pr\n","new_path":"README.md","old_path":"README.md","a_mode":"100644","b_mode":"100644","new_file":false,"renamed_file":false,"deleted_file":false,"too_large":null}]'}
-    headers:
-      Cache-Control: ['max-age=0, private, must-revalidate']
-      Content-Length: ['259']
-      Content-Type: [application/json]
-      Date: ['Wed, 14 Jun 2017 10:29:15 GMT']
-      Etag: [W/"706051d386064021c416ffa310d8f690"]
-      Server: [nginx]
-      Strict-Transport-Security: [max-age=31536000]
-      Vary: [Origin]
-      X-Frame-Options: [SAMEORIGIN]
-      X-Request-Id: [305a6d71-7e49-412a-9c65-ae4563248e58]
-      X-Runtime: ['0.453793']
-    status: {code: 200, message: OK}
-- request:
-    body: '{"note": "Comment on 3fc4b860e0a2c17819934d678decacd914271e5c, file READNOT.md,
-      line 4.\n\ntest comment", "line_type": "new"}'
-    headers:
-      Accept: ['*/*']
-      Accept-Encoding: ['gzip, deflate']
-      Connection: [keep-alive]
-      Content-Length: ['125']
-      Content-Type: [application/json]
-      User-Agent: [python-requests/2.17.3]
-    method: POST
-    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/3fc4b860e0a2c17819934d678decacd914271e5c/comments?User-Agent=IGitt
-  response:
-    body: {string: '{"note":"Comment on 3fc4b860e0a2c17819934d678decacd914271e5c,
-        file READNOT.md, line 4.\n\ntest comment","path":null,"line":null,"line_type":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-14T10:29:16.725Z"}'}
-    headers:
-      Cache-Control: ['max-age=0, private, must-revalidate']
-      Content-Length: ['423']
-      Content-Type: [application/json]
-      Date: ['Wed, 14 Jun 2017 10:29:16 GMT']
-      Etag: [W/"df2fa9d4b074e307fae2cf7d3004c6df"]
-      Server: [nginx]
-      Strict-Transport-Security: [max-age=31536000]
-      Vary: [Origin]
-      X-Frame-Options: [SAMEORIGIN]
-      X-Request-Id: [c10c9ea4-c105-4287-99ed-a862964e7126]
-      X-Runtime: ['0.534613']
+      X-Request-Id: [55a9c8cf-5274-41e4-8eaf-4d015f53c9f3]
+      X-Runtime: ['0.676906']
     status: {code: 201, message: Created}
 version: 1
