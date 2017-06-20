@@ -32,20 +32,17 @@ class GitLab(Hoster):
         Retrieves repositories the user has admin access to.
         """
         repo_list = get(self._token, '/projects', {'membership': True})
-
-        retrievable_repos = []
-
+        repos = []
         for repo in repo_list:
-            try:
-                if (repo['permissions']['project_access']['access_level'] >=
-                        AccessLevel.ADMIN.value):
-                    retrievable_repos.append(repo)
-            except (TypeError, KeyError):  # pragma: dont cover
-                LOGGER.warning('(%s) couldn\'t be retrieved',
-                               repo['path_with_namespace'])
-
+            perms = repo['permissions']
+            project_access = perms['project_access'] or {}
+            group_access = perms['group_access'] or {}
+            access_level = max(project_access.get('access_level', 0),
+                               group_access.get('access_level', 0))
+            if access_level >= AccessLevel.ADMIN.value:
+                repos.append(repo)
         return {GitLabRepository(self._token, repo['path_with_namespace'])
-                for repo in retrievable_repos}
+                for repo in repos}
 
     @property
     def owned_repositories(self):
@@ -76,20 +73,17 @@ class GitLab(Hoster):
         :return: A set of GitLabRepository objects.
         """
         repo_list = get(self._token, '/projects', {'membership': True})
-
-        retrievable_repos = []
-
+        repos = []
         for repo in repo_list:
-            try:
-                if (repo['permissions']['project_access']['access_level'] >=
-                        AccessLevel.CAN_WRITE.value):
-                    retrievable_repos.append(repo)
-            except (TypeError, KeyError):  # pragma: dont cover
-                LOGGER.warning('(%s) couldn\'t be retrieved',
-                               repo['path_with_namespace'])
-
+            perms = repo['permissions']
+            project_access = perms['project_access'] or {}
+            group_access = perms['group_access'] or {}
+            access_level = max(project_access.get('access_level', 0),
+                               group_access.get('access_level', 0))
+            if access_level >= AccessLevel.CAN_WRITE.value:
+                repos.append(repo)
         return {GitLabRepository(self._token, repo['path_with_namespace'])
-                for repo in retrievable_repos}
+                for repo in repos}
 
     def get_repo(self, repository) -> GitLabRepository:
         """
