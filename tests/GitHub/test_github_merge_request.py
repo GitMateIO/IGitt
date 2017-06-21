@@ -4,6 +4,7 @@ import datetime
 
 import vcr
 
+from IGitt.GitHub import GitHubToken
 from IGitt.GitHub.GitHubMergeRequest import GitHubMergeRequest
 
 my_vcr = vcr.VCR(match_on=['method', 'scheme', 'host', 'port', 'path'],
@@ -14,7 +15,8 @@ my_vcr = vcr.VCR(match_on=['method', 'scheme', 'host', 'port', 'path'],
 class TestGitHubMergeRequest(unittest.TestCase):
 
     def setUp(self):
-        self.mr = GitHubMergeRequest(os.environ.get('GITHUB_TEST_TOKEN', ''),
+        token = GitHubToken(os.environ.get('GITHUB_TEST_TOKEN', ''))
+        self.mr = GitHubMergeRequest(token,
                                      'gitmate-test-user/test', 7)
 
     @my_vcr.use_cassette('tests/GitHub/cassettes/github_merge_request_base.yaml')

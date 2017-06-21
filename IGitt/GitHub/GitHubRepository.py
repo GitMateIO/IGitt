@@ -4,6 +4,7 @@ Contains the GitHub Repository implementation.
 
 from IGitt import ElementAlreadyExistsError, ElementDoesntExistError
 from IGitt.GitHub import delete, get, post, GitHubMixin
+from IGitt.GitHub import GitHubToken
 from IGitt.GitHub.GitHubIssue import GitHubIssue
 from IGitt.Interfaces.Repository import Repository
 from IGitt.Interfaces.Repository import WebhookEvents
@@ -24,15 +25,15 @@ class GitHubRepository(Repository, GitHubMixin):
     Represents a repository on GitHub.
     """
 
-    def __init__(self, oauth_token: str, repository: str):
+    def __init__(self, token: GitHubToken, repository: str):
         """
         Creates a new GitHubRepository object with the given credentials.
 
-        :param oauth_token: The OAuth token.
+        :param token: A GitHubToken object to authenticate with.
         :param repository: The full name of the repository,
                            e.g. ``sils/something``.
         """
-        self._token = oauth_token
+        self._token = token
         self._repository = repository
         self._url = '/repos/'+repository
 
@@ -51,7 +52,7 @@ class GitHubRepository(Repository, GitHubMixin):
         Retrieves the full name of the repository, e.g. "sils/something".
 
         >>> from os import environ
-        >>> repo = GitHubRepository(environ['GITHUB_TEST_TOKEN'],
+        >>> repo = GitHubRepository(GitHubToken(environ['GITHUB_TEST_TOKEN']),
         ...                         'gitmate-test-user/test')
         >>> repo.full_name
         'gitmate-test-user/test'
@@ -66,22 +67,24 @@ class GitHubRepository(Repository, GitHubMixin):
         Retrieves the URL of the repository.
 
         >>> from os import environ as env
-        >>> repo = GitHubRepository(env['GITHUB_TEST_TOKEN'],
+        >>> repo = GitHubRepository(GitHubToken(environ['GITHUB_TEST_TOKEN']),
         ...                         'gitmate-test-user/test')
         >>> expected = 'https://{}@github.com/gitmate-test-user/test.git'
-        >>> assert repo.clone_url == expected.format(env['GITHUB_TEST_TOKEN'])
+        >>> assert repo.clone_url == expected.format(GitHubToken(
+        ...     env['GITHUB_TEST_TOKEN'])
+        ... )
 
         :return: A URL that can be used to clone the repository with Git.
         """
         return self.data['clone_url'].replace(
-            'github.com', self._token + '@github.com', 1)
+            'github.com', self._token.value + '@github.com', 1)
 
     def get_labels(self):
         """
         Retrieves the labels of the repository.
 
         >>> from os import environ
-        >>> repo = GitHubRepository(environ['GITHUB_TEST_TOKEN'],
+        >>> repo = GitHubRepository(GitHubToken(environ['GITHUB_TEST_TOKEN']),
         ...                         'gitmate-test-user/test')
         >>> sorted(repo.get_labels())
         ['a', 'b', 'c']
@@ -100,7 +103,7 @@ class GitHubRepository(Repository, GitHubMixin):
         an exception:
 
         >>> from os import environ
-        >>> repo = GitHubRepository(environ['GITHUB_TEST_TOKEN'],
+        >>> repo = GitHubRepository(GitHubToken(environ['GITHUB_TEST_TOKEN']),
         ...                         'gitmate-test-user/test')
         >>> sorted(repo.get_labels())
         ['a', 'b', 'c']
@@ -130,7 +133,7 @@ class GitHubRepository(Repository, GitHubMixin):
         Take a given repository:
 
         >>> from os import environ
-        >>> repo = GitHubRepository(environ['GITHUB_TEST_TOKEN'],
+        >>> repo = GitHubRepository(GitHubToken(environ['GITHUB_TEST_TOKEN']),
         ...                         'gitmate-test-user/test')
         >>> sorted(repo.get_labels())
         ['a', 'b', 'c']
@@ -167,7 +170,7 @@ class GitHubRepository(Repository, GitHubMixin):
         Retrieves an issue:
 
         >>> from os import environ
-        >>> repo = GitHubRepository(environ['GITHUB_TEST_TOKEN'],
+        >>> repo = GitHubRepository(GitHubToken(environ['GITHUB_TEST_TOKEN']),
         ...                         'gitmate-test-user/test')
         >>> repo.get_issue(1).title
         'test issue'

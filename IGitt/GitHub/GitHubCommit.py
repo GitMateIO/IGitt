@@ -2,7 +2,7 @@
 Contains the abstraction for a commit in GitHub.
 """
 from IGitt import ElementDoesntExistError
-from IGitt.GitHub import get, post, GitHubMixin
+from IGitt.GitHub import get, post, GitHubMixin, GitHubToken
 from IGitt.GitHub.GitHubRepository import GitHubRepository
 from IGitt.Interfaces.Commit import Commit
 from IGitt.Interfaces.CommitStatus import CommitStatus, Status
@@ -86,15 +86,15 @@ class GitHubCommit(Commit, GitHubMixin):
     Represents a commit on GitHub.
     """
 
-    def __init__(self, oauth_token: str, repository: str, sha: str):
+    def __init__(self, token: GitHubToken, repository: str, sha: str):
         """
         Creates a new github commit object.
 
-        :param oauth_token: A valid OAuth token for authentication.
+        :param token: A GitHubToken object for authentication.
         :param repository: The full repository name.
         :param sha: The commit SHA.
         """
-        self._token = oauth_token
+        self._token = token
         self._repository = repository
         self._sha = sha
         self._url = '/repos/' + repository + '/commits/' + sha
@@ -105,7 +105,7 @@ class GitHubCommit(Commit, GitHubMixin):
         Retrieves the SHA of the commit:
 
         >>> from os import environ
-        >>> commit = GitHubCommit(environ['GITHUB_TEST_TOKEN'],
+        >>> commit = GitHubCommit(GitHubToken(environ['GITHUB_TEST_TOKEN']),
         ...                       'gitmate-test-user/test', '674498')
         >>> commit.sha
         '674498'
@@ -120,7 +120,7 @@ class GitHubCommit(Commit, GitHubMixin):
         Retrieves the repository that holds this commit.
 
         >>> from os import environ
-        >>> commit = GitHubCommit(environ['GITHUB_TEST_TOKEN'],
+        >>> commit = GitHubCommit(GithubToken(environ['GITHUB_TEST_TOKEN']),
         ...                       'gitmate-test-user/test', '3fc4b86')
         >>> commit.repository.full_name
         'gitmate-test-user/test'
@@ -136,7 +136,7 @@ class GitHubCommit(Commit, GitHubMixin):
         will be returned.
 
         >>> from os import environ
-        >>> commit = GitHubCommit(environ['GITHUB_TEST_TOKEN'],
+        >>> commit = GitHubCommit(GithubToken(environ['GITHUB_TEST_TOKEN']),
         ...                       'gitmate-test-user/test', '3fc4b86')
         >>> commit.parent.sha
         '674498fd415cfadc35c5eb28b8951e800f357c6f'
@@ -151,7 +151,7 @@ class GitHubCommit(Commit, GitHubMixin):
         Adds the given status to the commit.
 
         >>> from os import environ
-        >>> commit = GitHubCommit(environ['GITHUB_TEST_TOKEN'],
+        >>> commit = GitHubCommit(GithubToken(environ['GITHUB_TEST_TOKEN']),
         ...                       'gitmate-test-user/test', '3fc4b86')
         >>> status = CommitStatus(Status.FAILED, 'Theres a problem',
         ...                       'gitmate/test')
@@ -207,7 +207,7 @@ class GitHubCommit(Commit, GitHubMixin):
         Retrieves the patch for the given file:
 
         >>> from os import environ
-        >>> commit = GitHubCommit(environ['GITHUB_TEST_TOKEN'],
+        >>> commit = GitHubCommit(GithubToken(environ['GITHUB_TEST_TOKEN']),
         ...                       'gitmate-test-user/test', '3fc4b86')
         >>> commit.get_patch_for_file('README.md')
         '@@ -1,2 +1,4 @@\n # test\n a test repo\n+\n+a tst pr'
@@ -235,7 +235,7 @@ class GitHubCommit(Commit, GitHubMixin):
         Places a comment on the commit.
 
         >>> from os import environ
-        >>> commit = GitHubCommit(environ['GITHUB_TEST_TOKEN'],
+        >>> commit = GitHubCommit(GithubToken(environ['GITHUB_TEST_TOKEN']),
         ...                       'gitmate-test-user/test', '3fc4b86')
 
         So this line places a comment on the bottom of the commit,

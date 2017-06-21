@@ -2,7 +2,7 @@
 Contains the Hoster implementation for GitHub.
 """
 
-from IGitt.GitHub import get
+from IGitt.GitHub import get, GitHubToken
 from IGitt.Interfaces.Hoster import Hoster
 from IGitt.GitHub.GitHubRepository import GitHubRepository
 
@@ -12,13 +12,13 @@ class GitHub(Hoster):
     A high level interface to GitHub.
     """
 
-    def __init__(self, oauth_token):
+    def __init__(self, token: GitHubToken):
         """
         Creates a new GitHub Hoster object.
 
-        :param oauth_token: An OAuth token to use for authentication.
+        :param token: A GitHubToken object to use for authentication.
         """
-        self._token = oauth_token
+        self._token = token
 
     @property
     def master_repositories(self):
@@ -35,7 +35,7 @@ class GitHub(Hoster):
         Retrieves repositories owned by the authenticated user.
 
         >>> from os import environ
-        >>> github = GitHub(environ['GITHUB_TEST_TOKEN'])
+        >>> github = GitHub(GitHubToken(environ['GITHUB_TEST_TOKEN']))
         >>> sorted(map(lambda x: x.full_name, github.owned_repositories))
         ['gitmate-test-user/test']
 
@@ -51,7 +51,7 @@ class GitHub(Hoster):
         Retrieves the full names of repositories this user can write to.
 
         >>> from os import environ
-        >>> github = GitHub(environ['GITHUB_TEST_TOKEN'])
+        >>> github = GitHub(GitHubToken(environ['GITHUB_TEST_TOKEN']))
         >>> sorted(map(lambda x: x.full_name, github.write_repositories))
         ['gitmate-test-user/test', 'sils/gitmate-test']
 

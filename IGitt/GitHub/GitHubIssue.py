@@ -4,6 +4,7 @@ This contains the Issue implementation for GitHub.
 from datetime import datetime
 
 from IGitt.GitHub import get, patch, post, delete, GitHubMixin
+from IGitt.GitHub import GitHubToken
 from IGitt.GitHub.GitHubComment import GitHubComment
 from IGitt.Interfaces.Comment import CommentType
 from IGitt.Interfaces.Issue import Issue
@@ -14,7 +15,7 @@ class GitHubIssue(Issue, GitHubMixin):
     This class represents an issue on GitHub.
     """
 
-    def __init__(self, oauth_token: str, repository: str, issue_number: int):
+    def __init__(self, token: GitHubToken, repository: str, issue_number: int):
         """
         Creates a new GitHubIssue with the given credentials.
 
@@ -26,13 +27,13 @@ class GitHubIssue(Issue, GitHubMixin):
          ...
         RuntimeError: ({'message': 'Not Found', ...}, 404)
 
-        :param oauth_token: The OAuth token.
+        :param token: A GitHubToken object.
         :param repository: The full name of the repository,
                            e.g. ``sils/something``.
         :param issue_number: The issue number.
         :raises RuntimeError: If something goes wrong (network, auth, ...)
         """
-        self._token = oauth_token
+        self._token = token
         self._repository = repository
         self._number = issue_number
         self._url = '/repos/'+repository+'/issues/'+str(issue_number)
@@ -43,7 +44,7 @@ class GitHubIssue(Issue, GitHubMixin):
         Retrieves the title of the issue.
 
         >>> from os import environ
-        >>> issue = GitHubIssue(environ['GITHUB_TEST_TOKEN'],
+        >>> issue = GitHubIssue(GitHubToken(environ['GITHUB_TEST_TOKEN']),
         ...                     'gitmate-test-user/test', 1)
         >>> issue.title
         'test issue'
@@ -98,12 +99,12 @@ class GitHubIssue(Issue, GitHubMixin):
         Retrieves the assignee of the issue:
 
         >>> from os import environ
-        >>> issue = GitHubIssue(environ['GITHUB_TEST_TOKEN'],
+        >>> issue = GitHubIssue(GitHubToken(environ['GITHUB_TEST_TOKEN']),
         ...                     'gitmate-test-user/test', 1)
         >>> issue.assignee
         'gitmate-test-user'
 
-        >>> issue = GitHubIssue(environ['GITHUB_TEST_TOKEN'],
+        >>> issue = GitHubIssue(GitHubToken(environ['GITHUB_TEST_TOKEN']),
         ...                     'gitmate-test-user/test', 2)
         >>> issue.assignee  # Returns None, unassigned
 
@@ -135,7 +136,7 @@ class GitHubIssue(Issue, GitHubMixin):
         Retrieves the main description of the issue:
 
         >>> from os import environ
-        >>> issue = GitHubIssue(environ['GITHUB_TEST_TOKEN'],
+        >>> issue = GitHubIssue(GitHubToken(environ['GITHUB_TEST_TOKEN']),
         ...                     'gitmate-test-user/test', 1)
         >>> issue.description
         'A nice description!\n'
@@ -149,7 +150,7 @@ class GitHubIssue(Issue, GitHubMixin):
         Adds a comment to the issue:
 
         >>> from os import environ
-        >>> issue = GitHubIssue(environ['GITHUB_TEST_TOKEN'],
+        >>> issue = GitHubIssue(GitHubToken(environ['GITHUB_TEST_TOKEN']),
         ...                     'gitmate-test-user/test', 3)
         >>> comment = issue.add_comment("Doh!")
 
@@ -176,7 +177,7 @@ class GitHubIssue(Issue, GitHubMixin):
         Retrieves comments from the issue.
 
         >>> from os import environ
-        >>> issue = GitHubIssue(environ['GITHUB_TEST_TOKEN'],
+        >>> issue = GitHubIssue(GitHubToken(environ['GITHUB_TEST_TOKEN']),
         ...                     'gitmate-test-user/test', 9)
         >>> comments = issue.comments
 
@@ -197,7 +198,7 @@ class GitHubIssue(Issue, GitHubMixin):
         Retrieves all labels associated with this bug.
 
         >>> from os import environ
-        >>> issue = GitHubIssue(environ['GITHUB_TEST_TOKEN'],
+        >>> issue = GitHubIssue(GitHubToken(environ['GITHUB_TEST_TOKEN']),
         ...                     'gitmate-test-user/test', 1)
         >>> issue.labels
         set()
@@ -231,7 +232,7 @@ class GitHubIssue(Issue, GitHubMixin):
         Retrieves a set of captions that are available for labelling bugs.
 
         >>> from os import environ
-        >>> issue = GitHubIssue(environ['GITHUB_TEST_TOKEN'],
+        >>> issue = GitHubIssue(GitHubToken(environ['GITHUB_TEST_TOKEN']),
         ...                     'gitmate-test-user/test', 1)
         >>> sorted(issue.available_labels)
         ['a', 'b', 'c']
@@ -247,7 +248,7 @@ class GitHubIssue(Issue, GitHubMixin):
         Retrieves a timestamp on when the issue was created.
 
         >>> from os import environ
-        >>> issue = GitHubIssue(environ['GITHUB_TEST_TOKEN'],
+        >>> issue = GitHubIssue(GitHubToken(environ['GITHUB_TEST_TOKEN']),
         ...                     'gitmate-test-user/test', 1)
         >>> issue.created
         datetime.datetime(2016, 1, 13, 7, 56, 23)
@@ -261,7 +262,7 @@ class GitHubIssue(Issue, GitHubMixin):
         Retrieves a timestamp on when the issue was updated the last time.
 
         >>> from os import environ
-        >>> issue = GitHubIssue(environ['GITHUB_TEST_TOKEN'],
+        >>> issue = GitHubIssue(GitHubToken(environ['GITHUB_TEST_TOKEN']),
         ...                     'gitmate-test-user/test', 9)
         >>> issue.updated
         datetime.datetime(2016, 10, 9, 11, 27, 11)
@@ -299,7 +300,7 @@ class GitHubIssue(Issue, GitHubMixin):
         Get's the state of the issue.
 
         >>> from os import environ
-        >>> issue = GitHubIssue(environ['GITHUB_TEST_TOKEN'],
+        >>> issue = GitHubIssue(GitHubToken(environ['GITHUB_TEST_TOKEN']),
         ...                     'gitmate-test-user/test', 10)
         >>> issue.state
         'open'
@@ -327,10 +328,12 @@ class GitHubIssue(Issue, GitHubMixin):
         Create a new issue with given title and body.
 
         >>> from os import environ
-        >>> issue = GitHubIssue.create(environ['GITHUB_TEST_TOKEN'],
-        ...                       'gitmate-test-user/test',
-        ...                       'test issue title',
-        ...                       'sample description')
+        >>> issue = GitHubIssue.create(
+        ...     GitHubToken(environ['GITHUB_TEST_TOKEN']),
+        ...     'gitmate-test-user/test',
+        ...     'test issue title',
+        ...     'sample description'
+        ... )
         >>> issue.state
         'open'
 

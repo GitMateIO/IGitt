@@ -3,6 +3,7 @@ import os
 
 import vcr
 
+from IGitt.GitHub import GitHubToken
 from IGitt.GitHub.GitHubRepository import GitHubRepository
 from IGitt.Interfaces.Repository import WebhookEvents
 from IGitt import ElementAlreadyExistsError, ElementDoesntExistError
@@ -15,7 +16,8 @@ my_vcr = vcr.VCR(match_on=['method', 'scheme', 'host', 'port', 'path'],
 class TestGitHubRepository(unittest.TestCase):
 
     def setUp(self):
-        self.repo = GitHubRepository(os.environ.get('GITHUB_TEST_TOKEN', ''),
+        token = GitHubToken(os.environ.get('GITHUB_TEST_TOKEN', ''))
+        self.repo = GitHubRepository(token,
                                      'gitmate-test-user/test')
 
     def test_hoster(self):

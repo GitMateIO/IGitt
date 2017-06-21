@@ -18,7 +18,7 @@ The methods being used from GitHubIssue are:
 """
 from functools import lru_cache
 
-from IGitt.GitHub import get
+from IGitt.GitHub import get, GitHubToken
 from IGitt.GitHub.GitHubCommit import GitHubCommit
 from IGitt.GitHub.GitHubIssue import GitHubIssue
 from IGitt.Interfaces.MergeRequest import MergeRequest
@@ -30,15 +30,15 @@ class GitHubMergeRequest(GitHubIssue, MergeRequest):
     A Pull Request on GitHub.
     """
 
-    def __init__(self, oauth_token: str, repository: str, pr_number: int):
+    def __init__(self, token: GitHubToken, repository: str, pr_number: int):
         """
         Creates a new Pull Request.
 
-        :param oauth_token: The OAuth token to authenticate with.
+        :param token: A GitHubToken object to authenticate with.
         :param repository: The repository containing the PR.
         :param pr_number: The PR number.
         """
-        self._token = oauth_token
+        self._token = token
         self._number = pr_number
         self._repository = repository
         self._mr_url = '/repos/' + repository + '/pulls/' + str(pr_number)
@@ -70,7 +70,7 @@ class GitHubMergeRequest(GitHubIssue, MergeRequest):
         Retrieves the base commit as a commit object.
 
         >>> from os import environ
-        >>> pr = GitHubMergeRequest(environ['GITHUB_TEST_TOKEN'],
+        >>> pr = GitHubMergeRequest(GitHubToken(environ['GITHUB_TEST_TOKEN']),
         ...                         'gitmate-test-user/test', 7)
         >>> pr.base.sha
         '674498fd415cfadc35c5eb28b8951e800f357c6f'
@@ -86,7 +86,7 @@ class GitHubMergeRequest(GitHubIssue, MergeRequest):
         Retrieves the head commit as a commit object.
 
         >>> from os import environ
-        >>> pr = GitHubMergeRequest(environ['GITHUB_TEST_TOKEN'],
+        >>> pr = GitHubMergeRequest(GitHubToken(environ['GITHUB_TEST_TOKEN']),
         ...                         'gitmate-test-user/test', 7)
         >>> pr.head.sha
         'f6d2b7c66372236a090a2a74df2e47f42a54456b'
@@ -103,7 +103,7 @@ class GitHubMergeRequest(GitHubIssue, MergeRequest):
         should be merged into.
 
         >>> from os import environ
-        >>> pr = GitHubMergeRequest(environ['GITHUB_TEST_TOKEN'],
+        >>> pr = GitHubMergeRequest(GitHubToken(environ['GITHUB_TEST_TOKEN']),
         ...                         'gitmate-test-user/test', 7)
         >>> pr.base_branch_name
         'master'
@@ -119,7 +119,7 @@ class GitHubMergeRequest(GitHubIssue, MergeRequest):
         will be merged.
 
         >>> from os import environ
-        >>> pr = GitHubMergeRequest(environ['GITHUB_TEST_TOKEN'],
+        >>> pr = GitHubMergeRequest(GitHubToken(environ['GITHUB_TEST_TOKEN']),
         ...                         'gitmate-test-user/test', 7)
         >>> pr.head_branch_name
         'gitmate-test-user-patch-2'
@@ -135,7 +135,7 @@ class GitHubMergeRequest(GitHubIssue, MergeRequest):
         Retrieves a tuple of commit objects that are included in the PR.
 
         >>> from os import environ
-        >>> pr = GitHubMergeRequest(environ['GITHUB_TEST_TOKEN'],
+        >>> pr = GitHubMergeRequest(GitHubToken(environ['GITHUB_TEST_TOKEN']),
         ...                         'gitmate-test-user/test', 7)
         >>> [commit.sha for commit in pr.commits]
         ['f6d2b7c66372236a090a2a74df2e47f42a54456b']
@@ -152,7 +152,7 @@ class GitHubMergeRequest(GitHubIssue, MergeRequest):
         Retrieves the repository where this comes from.
 
         >>> from os import environ
-        >>> pr = GitHubMergeRequest(environ['GITHUB_TEST_TOKEN'],
+        >>> pr = GitHubMergeRequest(GitHubToken(environ['GITHUB_TEST_TOKEN']),
         ...                         'gitmate-test-user/test', 7)
         >>> pr.repository.full_name
         'gitmate-test-user/test'
@@ -168,7 +168,7 @@ class GitHubMergeRequest(GitHubIssue, MergeRequest):
         Retrieves affected files from a GitHub pull request.
 
         >>> from os import environ
-        >>> pr = GitHubMergeRequest(environ['GITHUB_TEST_TOKEN'],
+        >>> pr = GitHubMergeRequest(GitHubToken(environ['GITHUB_TEST_TOKEN']),
         ...                         'gitmate-test-user/test', 7)
         >>> pr.affected_files
         {'README.md'}
@@ -184,7 +184,7 @@ class GitHubMergeRequest(GitHubIssue, MergeRequest):
         Gets additions and deletions of a merge request.
 
         >>> from os import environ
-        >>> pr = GitHubMergeRequest(environ['GITHUB_TEST_TOKEN'],
+        >>> pr = GitHubMergeRequest(GitHubToken(environ['GITHUB_TEST_TOKEN']),
         ...                         'gitmate-test-user/test', 7)
         >>> pr.diffstat
         (2, 0)

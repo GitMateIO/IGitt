@@ -3,7 +3,7 @@ Represents a comment on GitHub.
 """
 from datetime import datetime
 
-from IGitt.GitHub import delete, patch, GitHubMixin
+from IGitt.GitHub import delete, patch, GitHubMixin, GitHubToken
 from IGitt.Interfaces.Comment import Comment, CommentType
 
 
@@ -13,17 +13,17 @@ class GitHubComment(Comment, GitHubMixin):
     deletable!
     """
 
-    def __init__(self, oauth_token, repository, comment_type, comment_id):
+    def __init__(self, token: GitHubToken, repository, comment_type, comment_id):
         """
         Creates a new GitHub comment from the given data.
 
-        :param oauth_token: An OAuth token to use for authentication.
+        :param token: A GitHubToken  object to use for authentication.
         :param repository: The full name of the repository.
         :param comment_type: The type of comment it represents.
         :param comment_id: The id of the comment or the sha of commit in the
                            case of commit comments.
         """
-        self._token = oauth_token
+        self._token = token
         self._type = comment_type
 
         if comment_type in [CommentType.MERGE_REQUEST, CommentType.ISSUE]:
@@ -49,7 +49,7 @@ class GitHubComment(Comment, GitHubMixin):
         Retrieves the content of the comment:
 
         >>> from os import environ
-        >>> issue = GitHubComment(environ['GITHUB_TEST_TOKEN'],
+        >>> issue = GitHubComment(GitHubToken(environ['GITHUB_TEST_TOKEN']),
         ...                      'gitmate-test-user/test', 172962077)
         >>> issue.body
         'test comment\n'
@@ -74,7 +74,7 @@ class GitHubComment(Comment, GitHubMixin):
         Retrieves the username of the author:
 
         >>> from os import environ
-        >>> issue = GitHubComment(environ['GITHUB_TEST_TOKEN'],
+        >>> issue = GitHubComment(GitHubToken(environ['GITHUB_TEST_TOKEN']),
         ...                      'gitmate-test-user/test', 172962077)
         >>> issue.author
         'sils'
@@ -89,7 +89,7 @@ class GitHubComment(Comment, GitHubMixin):
         Retrieves a timestamp on when the comment was created.
 
         >>> from os import environ
-        >>> issue = GitHubComment(environ['GITHUB_TEST_TOKEN'],
+        >>> issue = GitHubComment(GitHubToken(environ['GITHUB_TEST_TOKEN']),
         ...                      'gitmate-test-user/test', 172962077)
         >>> issue.created
         datetime.datetime(2016, 1, 19, 19, 37, 53)
@@ -103,7 +103,7 @@ class GitHubComment(Comment, GitHubMixin):
         Retrieves a timestamp on when the comment was updated the last time.
 
         >>> from os import environ
-        >>> issue = GitHubComment(environ['GITHUB_TEST_TOKEN'],
+        >>> issue = GitHubComment(GitHubToken(environ['GITHUB_TEST_TOKEN']),
         ...                      'gitmate-test-user/test', 172962077)
         >>> issue.updated
         datetime.datetime(2016, 10, 9, 11, 36, 7)

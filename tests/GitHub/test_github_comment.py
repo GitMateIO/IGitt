@@ -5,6 +5,7 @@ import datetime
 import vcr
 import requests_mock
 
+from IGitt.GitHub import GitHubToken
 from IGitt.GitHub.GitHubComment import GitHubComment
 from IGitt.Interfaces.Comment import CommentType
 
@@ -16,11 +17,12 @@ my_vcr = vcr.VCR(match_on=['method', 'scheme', 'host', 'port', 'path'],
 class GitHubCommentTest(unittest.TestCase):
 
     def setUp(self):
-        self.comment = GitHubComment(os.environ.get('GITHUB_TEST_TOKEN', ''),
+        self.token = GitHubToken(os.environ.get('GITHUB_TEST_TOKEN', ''))
+        self.comment = GitHubComment(self.token,
                                      'gitmate-test-user/test',
                                      CommentType.COMMIT,
                                      22461603)
-        self.issue_comment = GitHubComment(os.environ.get('GITHUB_TEST_TOKEN', ''),
+        self.issue_comment = GitHubComment(self.token,
                                            'gitmate-test-user/test',
                                            CommentType.ISSUE,
                                            309221241)

@@ -3,6 +3,7 @@ import unittest
 
 import vcr
 
+from IGitt.GitHub import GitHubToken
 from IGitt.GitHub.GitHub import GitHub
 
 my_vcr = vcr.VCR(match_on=['method', 'scheme', 'host', 'port', 'path'],
@@ -13,7 +14,7 @@ my_vcr = vcr.VCR(match_on=['method', 'scheme', 'host', 'port', 'path'],
 class TestGitHub(unittest.TestCase):
 
     def setUp(self):
-        self.gh = GitHub(os.environ.get('GITHUB_TEST_TOKEN', ''))
+        self.gh = GitHub(GitHubToken(os.environ.get('GITHUB_TEST_TOKEN', '')))
 
     @my_vcr.use_cassette('tests/GitHub/cassettes/test_github_hoster_master.yaml')
     def test_master_repositories(self):

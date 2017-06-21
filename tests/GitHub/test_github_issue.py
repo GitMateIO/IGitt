@@ -4,6 +4,7 @@ import datetime
 
 import vcr
 
+from IGitt.GitHub import GitHubToken
 from IGitt.GitHub.GitHubIssue import GitHubIssue
 
 my_vcr = vcr.VCR(match_on=['method', 'scheme', 'host', 'port', 'path'],
@@ -14,7 +15,8 @@ my_vcr = vcr.VCR(match_on=['method', 'scheme', 'host', 'port', 'path'],
 class GitHubIssueTest(unittest.TestCase):
 
     def setUp(self):
-        self.iss = GitHubIssue(os.environ.get('GITHUB_TEST_TOKEN', ''),
+        self.token = GitHubToken(os.environ.get('GITHUB_TEST_TOKEN', ''))
+        self.iss = GitHubIssue(self.token,
                                'gitmate-test-user/test', 39)
 
     @my_vcr.use_cassette('tests/GitHub/cassettes/github_issue_title.yaml',
@@ -30,7 +32,7 @@ class GitHubIssueTest(unittest.TestCase):
     @my_vcr.use_cassette('tests/GitHub/cassettes/github_issue_assignee.yaml')
     def test_assignee(self):
         self.assertEqual(self.iss.assignees, tuple())
-        iss = GitHubIssue(os.environ.get('GITHUB_TEST_TOKEN', ''),
+        iss = GitHubIssue(self.token,
                           'gitmate-test-user/test', 41)
         iss.assign('meetmangukiya')
         self.assertEqual(iss.assignees, ('meetmangukiya', ))
@@ -77,7 +79,7 @@ class GitHubIssueTest(unittest.TestCase):
     @my_vcr.use_cassette('tests/GitHub/cassettes/github_issue_create.yaml',
                          filter_query_parameters=['access_token'])
     def test_issue_create(self):
-        iss = GitHubIssue.create(os.environ.get('GITHUB_TEST_TOKEN', ''),
+        iss = GitHubIssue.create(self.token,
                                  'gitmate-test-user/test',
                                  'test title', 'test body')
         self.assertEqual(iss.state, 'open')
