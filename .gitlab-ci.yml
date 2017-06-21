@@ -15,6 +15,10 @@ check_code:
   except:
   - master
 
+cache:
+  paths:
+  - /root/.cache/pip
+
 release:
   image: sils1297/gm-build-cont
   script:
