@@ -9,6 +9,27 @@ from requests import Session
 HEADERS = {'User-Agent': 'IGitt'}
 
 
+class Token:
+    """
+    Base class for different types of tokens used for different methods of
+    authentications.
+    """
+
+    @property
+    def value(self):
+        """
+        Token value
+        """
+        raise NotImplementedError
+
+    @property
+    def parameter(self):
+        """
+        Parameter to be used for authentication
+        """
+        raise NotImplementedError
+
+
 def error_checked_request(func):
     """
     Create an error check wrapper augmenting ``func`` to perform the given
