@@ -2,7 +2,7 @@
 This package contains the GitHub implementations of the interfaces in
 server.git.Interfaces.
 """
-from IGitt.Interfaces import _fetch
+from IGitt.Interfaces import _fetch, Token
 from IGitt.Utils import CachedDataMixin
 
 BASE_URL = 'https://api.github.com'
@@ -17,7 +17,24 @@ class GitHubMixin(CachedDataMixin):
         return get(self._token, self._url)
 
 
-def get(token: str, url: str, params: dict=None):
+class GitHubToken(Token):
+    """
+    Object representation of oauth tokens.
+    """
+
+    def __init__(self, token):
+        self._token = token
+
+    @property
+    def parameter(self):
+        return {'access_token': self._token}
+
+    @property
+    def value(self):
+        return self._token
+
+
+def get(token: GitHubToken, url: str, params: dict=None):
     """
     Queries GitHub on the given URL for data.
 
@@ -30,11 +47,11 @@ def get(token: str, url: str, params: dict=None):
     :raises RunTimeError:
         If the response indicates any problem.
     """
-    return _fetch(BASE_URL, 'get', {'access_token': token},
+    return _fetch(BASE_URL, 'get', token.parameter,
                   url, query_params=params)
 
 
-def post(token: str, url: str, data: dict):
+def post(token: GitHubToken, url: str, data: dict):
     """
     Posts the given data onto GitHub.
 
@@ -47,10 +64,10 @@ def post(token: str, url: str, data: dict):
     :raises RunTimeError:
         If the response indicates any problem.
     """
-    return _fetch(BASE_URL, 'post', {'access_token': token}, url, data)
+    return _fetch(BASE_URL, 'post', token.parameter, url, data)
 
 
-def patch(token: str, url: str, data: dict):
+def patch(token: GitHubToken, url: str, data: dict):
     """
     Patches the given data onto GitHub.
 
@@ -63,10 +80,10 @@ def patch(token: str, url: str, data: dict):
     :raises RunTimeError:
         If the response indicates any problem.
     """
-    return _fetch(BASE_URL, 'patch', {'access_token': token}, url, data)
+    return _fetch(BASE_URL, 'patch', token.parameter, url, data)
 
 
-def delete(token: str, url: str, params: dict=None):
+def delete(token: GitHubToken, url: str, params: dict=None):
     """
     Sends a delete request to the given URL on GitHub.
 
@@ -75,5 +92,5 @@ def delete(token: str, url: str, params: dict=None):
     :param params: The query params to be sent.
     :raises RuntimeError: If the response indicates any problem.
     """
-    _fetch(BASE_URL, 'delete', {'access_token': token},
+    _fetch(BASE_URL, 'delete', token.parameter,
            url, params)
