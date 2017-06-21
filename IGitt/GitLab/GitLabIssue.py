@@ -8,6 +8,7 @@ from IGitt.GitLab import delete, GitLabMixin
 from IGitt.GitLab import get
 from IGitt.GitLab import put
 from IGitt.GitLab import post
+from IGitt.GitLab import GitLabOAuthToken, GitLabPrivateToken
 from IGitt.GitLab.GitLabComment import GitLabComment
 from IGitt.Interfaces.Comment import CommentType
 from IGitt.Interfaces.Issue import Issue
@@ -18,25 +19,26 @@ class GitLabIssue(Issue, GitLabMixin):
     This class represents an issue on GitLab.
     """
 
-    def __init__(self, oauth_token: str, repository: str, issue_iid: int):
+    def __init__(self, token: (GitLabOAuthToken, GitLabPrivateToken),
+                 repository: str, issue_iid: int):
         """
         Creates a new GitLabIssue with the given credentials.
 
         >>> from os import environ
-        >>> issue = GitLabIssue(environ['GITLAB_TEST_TOKEN'],
+        >>> issue = GitLabIssue(GitLabOAuthToken(environ['GITLAB_TEST_TOKEN']),
         ...                     'gitmate-test-user/repo_that_doesnt_exist', 1)
         ... # doctest: +IGNORE_EXCEPTION_DETAIL
         Traceback (most recent call last):
         ...
         RuntimeError: ({'message': 'Not Found', ...}, 404)
 
-        :param oauth_token: The OAuth token.
+        :param token: A Token object to be used for authentication.
         :param repository: The full name of the repository.
                            e.g. ``sils/baritone``.
         :param issue_iid: The issue internal identification number.
         :raises RuntimeError: If something goes wrong (network, auth, ...)
         """
-        self._token = oauth_token
+        self._token = token
         self._repository = repository
         self._iid = issue_iid
         self._url = '/projects/{repo}/issues/{issue_iid}'.format(
@@ -48,8 +50,9 @@ class GitLabIssue(Issue, GitLabMixin):
         Retrieves the title of the issue.
 
         >>> from os import environ
-        >>> issue = GitLabIssue(environ['GITLAB_TEST_TOKEN'],
+        >>> issue = GitLabIssue(GitLabOAuthToken(environ['GITLAB_TEST_TOKEN']),
         ...                     'gitmate-test-user/test', 1)
+
         >>> issue.title
         'Take it serious, son!'
 
@@ -88,7 +91,7 @@ class GitLabIssue(Issue, GitLabMixin):
         Returns the issue "number" or id.
 
         >>> from os import environ
-        >>> issue = GitLabIssue(environ['GITLAB_TEST_TOKEN'],
+        >>> issue = GitLabIssue(GitLabOAuthToken(environ['GITLAB_TEST_TOKEN']),
         ...                     'gitmate-test-user/test', 1)
         >>> issue.number
         1
@@ -103,12 +106,12 @@ class GitLabIssue(Issue, GitLabMixin):
         Retrieves the assignee of the issue:
 
         >>> from os import environ
-        >>> issue = GitLabIssue(environ['GITLAB_TEST_TOKEN'],
+        >>> issue = GitLabIssue(GitLabOAuthToken(environ['GITLAB_TEST_TOKEN']),
         ...                     'gitmate-test-user/test', 1)
         >>> issue.assignee
         'gitmate-test-user'
 
-        >>> issue = GitLabIssue(environ['GITLAB_TEST_TOKEN'],
+        >>> issue = GitLabIssue(GitLabOAuthToken(environ['GITLAB_TEST_TOKEN']),
         ...                     'gitmate-test-user/test', 2)
         >>> issue.assignee # Returns None, unassigned
 
@@ -162,7 +165,7 @@ class GitLabIssue(Issue, GitLabMixin):
         Retrieves the main description of the issue.
 
         >>> from os import environ
-        >>> issue = GitLabIssue(environ['GITLAB_TEST_TOKEN'],
+        >>> issue = GitLabIssue(GitLabOAuthToken(environ['GITLAB_TEST_TOKEN']),
         ...                     'gitmate-test-user/test', 1)
         >>> issue.description
         'I am a serious issue. Fix me soon, dude.'
@@ -176,7 +179,7 @@ class GitLabIssue(Issue, GitLabMixin):
         Adds a comment to the issue.
 
         >>> from os import environ
-        >>> issue = GitLabIssue(environ['GITLAB_TEST_TOKEN'],
+        >>> issue = GitLabIssue(GitLabOAuthToken(environ['GITLAB_TEST_TOKEN']),
         ...                     'gitmate-test-user/test', 1)
         >>> comment = issue.add_comment("Doh!")
 
@@ -206,7 +209,7 @@ class GitLabIssue(Issue, GitLabMixin):
         CE here - https://gitlab.com/gitlab-org/gitlab-ce/issues/32057
 
         >>> from os import environ
-        >>> issue = GitLabIssue(environ['GITLAB_TEST_TOKEN'],
+        >>> issue = GitLabIssue(GitLabOAuthToken(environ['GITLAB_TEST_TOKEN']),
         ...                     'gitmate-test-user/test', 3)
         >>> comments = issue.comments
         >>> for comment in comments:
@@ -226,7 +229,7 @@ class GitLabIssue(Issue, GitLabMixin):
         Retrieves all labels associated with this bug.
 
         >>> from os import environ
-        >>> issue = GitLabIssue(environ['GITLAB_TEST_TOKEN'],
+        >>> issue = GitLabIssue(GitLabOAuthToken(environ['GITLAB_TEST_TOKEN']),
         ...                     'gitmate-test-user/test', 1)
         >>> issue.labels
         set()
@@ -261,7 +264,7 @@ class GitLabIssue(Issue, GitLabMixin):
         Retrieves a set of captions that are available for labelling bugs.
 
         >>> from os import environ
-        >>> issue = GitLabIssue(environ['GITLAB_TEST_TOKEN'],
+        >>> issue = GitLabIssue(GitLabOAuthToken(environ['GITLAB_TEST_TOKEN']),
         ...                     'gitmate-test-user/test', 1)
         >>> sorted(issue.available_labels)
         ['a', 'b', 'c']
@@ -278,7 +281,7 @@ class GitLabIssue(Issue, GitLabMixin):
         Retrieves a timestamp on when the issue was created.
 
         >>> from os import environ
-        >>> issue = GitLabIssue(environ['GITLAB_TEST_TOKEN'],
+        >>> issue = GitLabIssue(GitLabOAuthToken(environ['GITLAB_TEST_TOKEN']),
         ...                     'gitmate-test-user/test', 4)
         >>> issue.created
         datetime.datetime(2017, 6, 5, 9, 45, 20, 678000)
@@ -292,7 +295,7 @@ class GitLabIssue(Issue, GitLabMixin):
         Retrieves a timestamp on when the issue was updated the last time.
 
         >>> from os import environ
-        >>> issue = GitLabIssue(environ['GITLAB_TEST_TOKEN'],
+        >>> issue = GitLabIssue(GitLabOAuthToken(environ['GITLAB_TEST_TOKEN']),
         ...                     'gitmate-test-user/test', 4)
         >>> issue.updated
         datetime.datetime(2017, 6, 5, 9, 45, 56, 115000)
@@ -330,7 +333,7 @@ class GitLabIssue(Issue, GitLabMixin):
         Get's the state of the issue.
 
         >>> from os import environ
-        >>> issue = GitLabIssue(environ['GITLAB_TEST_TOKEN'],
+        >>> issue = GitLabIssue(GitLabOAuthToken(environ['GITLAB_TEST_TOKEN']),
         ...                     'gitmate-test-user/test', 1)
         >>> issue.state
         'reopened'
@@ -352,15 +355,18 @@ class GitLabIssue(Issue, GitLabMixin):
         return self.data['state']
 
     @staticmethod
-    def create(token: str, repository: str, title: str, body: str=''):
+    def create(token: (GitLabOAuthToken, GitLabPrivateToken), repository: str,
+               title: str, body: str=''):
         """
         Create a new issue with given title and body.
 
         >>> from os import environ
-        >>> issue = GitLabIssue.create(environ['GITLAB_TEST_TOKEN'],
-        ...                            'gitmate-test-user/test',
-        ...                            'test issue title',
-        ...                            'sample description')
+        >>> issue = GitLabIssue.create(
+        ...     GitLabOAuthToken(environ['GITLAB_TEST_TOKEN']),
+        ...     'gitmate-test-user/test',
+        ...     'test issue title',
+        ...     'sample description'
+        ... )
         >>> issue.state
         'opened'
 

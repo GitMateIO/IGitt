@@ -6,6 +6,7 @@ from urllib.parse import quote_plus
 from IGitt import ElementDoesntExistError
 from IGitt.GitHub.GitHubCommit import get_diff_index
 from IGitt.GitLab import get, post, GitLabMixin
+from IGitt.GitLab import GitLabOAuthToken, GitLabPrivateToken
 from IGitt.GitLab.GitLabRepository import GitLabRepository
 from IGitt.Interfaces.Commit import Commit
 from IGitt.Interfaces.CommitStatus import Status, CommitStatus
@@ -25,19 +26,19 @@ class GitLabCommit(Commit, GitLabMixin):
     Represents a commit on GitLab.
     """
 
-    def __init__(self, oauth_token: str, repository: str, sha: (str, None),
-                 branch: (str, None)=None):
+    def __init__(self, token: (GitLabOAuthToken, GitLabPrivateToken),
+                 repository: str, sha: (str, None), branch: (str, None)=None):
         """
         Creates a new GitLabCommit object.
 
-        :param oauth_token: A valid OAuth token for authentication.
+        :param token: A Token object to be used for authentication.
         :param repository: The full repository name.
         :param sha: The full commit SHA, if None given provide a branch.
         :param branch: A branch name if SHA is unavailable. Note that lazy
                        loading won't work in that case.
         """
         assert sha or branch, "Either full SHA or branch name has to be given!"
-        self._token = oauth_token
+        self._token = token
         self._repository = repository
         self._sha = sha
         self._branch = branch
@@ -50,8 +51,10 @@ class GitLabCommit(Commit, GitLabMixin):
         Retrieves the SHA of the commit:
 
         >>> from os import environ
-        >>> commit = GitLabCommit(environ['GITLAB_TEST_TOKEN'],
-        ...                       'gitmate-test-user/test', '674498')
+        >>> commit = GitLabCommit(
+        ...     GitLabOAuthToken(environ['GITLAB_TEST_TOKEN']),
+        ...     'gitmate-test-user/test', '674498'
+        ... )
         >>> commit.sha
         '674498'
 
@@ -65,8 +68,10 @@ class GitLabCommit(Commit, GitLabMixin):
         Retrieves the repository that holds this commit.
 
         >>> from os import environ
-        >>> commit = GitLabCommit(environ['GITLAB_TEST_TOKEN'],
-        ...                       'gitmate-test-user/test', '3fc4b86')
+        >>> commit = GitLabCommit(
+        ...     GitLabOAuthToken(environ['GITLAB_TEST_TOKEN']),
+        ...     'gitmate-test-user/test', '3fc4b86'
+        ... )
         >>> commit.repository.full_name
         'gitmate-test-user/test'
 
@@ -81,8 +86,10 @@ class GitLabCommit(Commit, GitLabMixin):
         will be returned.
 
         >>> from os import environ
-        >>> commit = GitLabCommit(environ['GITLAB_TEST_TOKEN'],
-        ...                       'gitmate-test-user/test', '3fc4b86')
+        >>> commit = GitLabCommit(
+        ...     GitLabOAuthToken(environ['GITLAB_TEST_TOKEN']),
+        ...     'gitmate-test-user/test', '3fc4b86'
+        ... )
         >>> commit.parent.sha
         '674498fd415cfadc35c5eb28b8951e800f357c6f'
 
@@ -121,8 +128,10 @@ class GitLabCommit(Commit, GitLabMixin):
         Adds the given status to the commit.
 
         >>> from os import environ
-        >>> commit = GitLabCommit(environ['GITLAB_TEST_TOKEN'],
-        ...                       'gitmate-test-user/test', '3fc4b860')
+        >>> commit = GitLabCommit(
+        ...     GitLabOAuthToken(environ['GITLAB_TEST_TOKEN']),
+        ...     'gitmate-test-user/test', '3fc4b86'
+        ... )
         >>> status = CommitStatus(Status.FAILED, 'Theres a problem',
         ...                       'gitmate/test')
         >>> commit.set_status(status)
@@ -155,8 +164,10 @@ class GitLabCommit(Commit, GitLabMixin):
         Retrieves the unified diff for the commit.
 
         >>> from os import environ
-        >>> commit = GitLabCommit(environ['GITLAB_TEST_TOKEN'],
-        ...                       'gitmate-test-user/test', '3fc4b86')
+        >>> commit = GitLabCommit(
+        ...     GitLabOAuthToken(environ['GITLAB_TEST_TOKEN']),
+        ...     'gitmate-test-user/test', '3fc4b86'
+        ... )
         >>> assert (commit.get_patch_for_file('README.md') ==
         ...         '--- a/README.md\n+++ b/README.md\n@@ -1,2 +1,4 @@\n '
         ...         '# test\n a test repo\n+\n+a tst pr\n')
@@ -186,8 +197,10 @@ class GitLabCommit(Commit, GitLabMixin):
         Places a comment on the commit.
 
         >>> from os import environ
-        >>> commit = GitLabCommit(environ['GITLAB_TEST_TOKEN'],
-        ...                       'gitmate-test-user/test', '3fc4b86')
+        >>> commit = GitLabCommit(
+        ...     GitLabOAuthToken(environ['GITLAB_TEST_TOKEN']),
+        ...     'gitmate-test-user/test', '3fc4b86'
+        ... )
 
         So this line places a comment on the bottom of the commit,
         not associated to any particular piece of code:

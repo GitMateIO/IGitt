@@ -3,6 +3,7 @@ import unittest
 
 import vcr
 
+from IGitt.GitLab import GitLabOAuthToken
 from IGitt.GitLab.GitLabCommit import GitLabCommit
 from IGitt.Interfaces.CommitStatus import CommitStatus, Status
 
@@ -15,7 +16,8 @@ my_vcr = vcr.VCR(match_on=['method', 'scheme', 'host', 'port', 'path'],
 class GitLabCommitTest(unittest.TestCase):
 
     def setUp(self):
-        self.commit = GitLabCommit(os.environ.get('GITLAB_TEST_TOKEN', ''),
+        self.token = GitLabOAuthToken(os.environ.get('GITLAB_TEST_TOKEN', ''))
+        self.commit = GitLabCommit(self.token,
                                    'gitmate-test-user/test',
                                    '3fc4b860e0a2c17819934d678decacd914271e5c')
 
@@ -34,7 +36,7 @@ class GitLabCommitTest(unittest.TestCase):
 
     @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_commit_status.yaml')
     def test_set_status(self):
-        self.commit = GitLabCommit(os.environ.get('GITLAB_TEST_TOKEN', ''),
+        self.commit = GitLabCommit(self.token,
                                    'gitmate-test-user/test',
                                    '3fc4b860e0a2c17819934d678decacd914271e5c')
         status = CommitStatus(Status.FAILED, 'Theres a problem',
@@ -56,7 +58,7 @@ class GitLabCommitTest(unittest.TestCase):
 
     @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_commit_comment.yaml')
     def test_comment(self):
-        self.commit = GitLabCommit(os.environ.get('GITLAB_TEST_TOKEN', ''),
+        self.commit = GitLabCommit(self.token,
                                    'gitmate-test-user/test',
                                    '3fc4b860e0a2c17819934d678decacd914271e5c')
         self.commit.comment('An issue is here')

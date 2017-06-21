@@ -3,6 +3,7 @@ import unittest
 
 import vcr
 
+from IGitt.GitLab import GitLabOAuthToken
 from IGitt.GitLab.GitLab import GitLab
 
 my_vcr = vcr.VCR(match_on=['method', 'scheme', 'host', 'port', 'path'],
@@ -13,7 +14,7 @@ my_vcr = vcr.VCR(match_on=['method', 'scheme', 'host', 'port', 'path'],
 class TestGitLab(unittest.TestCase):
 
     def setUp(self):
-        self.gl = GitLab(os.environ.get('GITLAB_TEST_TOKEN', ''))
+        self.gl = GitLab(GitLabOAuthToken(os.environ.get('GITLAB_TEST_TOKEN', '')))
 
     @my_vcr.use_cassette('tests/GitLab/cassettes/test_gitlab_hoster_master.yaml')
     def test_master_repositories(self):

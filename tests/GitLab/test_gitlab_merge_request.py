@@ -4,6 +4,7 @@ import datetime
 
 import vcr
 
+from IGitt.GitLab import GitLabOAuthToken
 from IGitt.GitLab.GitLabMergeRequest import GitLabMergeRequest
 
 my_vcr = vcr.VCR(match_on=['method', 'scheme', 'host', 'port', 'path'],
@@ -14,7 +15,8 @@ my_vcr = vcr.VCR(match_on=['method', 'scheme', 'host', 'port', 'path'],
 class TestGitLabMergeRequest(unittest.TestCase):
 
     def setUp(self):
-        self.mr = GitLabMergeRequest(os.environ.get('GITLAB_TEST_TOKEN', ''),
+        token = GitLabOAuthToken(os.environ.get('GITLAB_TEST_TOKEN', ''))
+        self.mr = GitLabMergeRequest(token,
                                      'gitmate-test-user/test',
                                      7)
 

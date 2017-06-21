@@ -5,6 +5,7 @@ from urllib.parse import quote_plus
 
 from IGitt import ElementAlreadyExistsError, ElementDoesntExistError
 from IGitt.GitLab import delete, get, post, GitLabMixin
+from IGitt.GitLab import GitLabOAuthToken, GitLabPrivateToken
 from IGitt.GitLab.GitLabIssue import GitLabIssue
 from IGitt.Interfaces.Repository import Repository
 from IGitt.Interfaces.Repository import WebhookEvents
@@ -27,15 +28,16 @@ class GitLabRepository(Repository, GitLabMixin):
     Represents a repository on GitLab.
     """
 
-    def __init__(self, oauth_token: str, repository: str):
+    def __init__(self, token: (GitLabOAuthToken, GitLabPrivateToken),
+                 repository: str):
         """
         Creates a new GitLabRepository object with the given credentials.
 
-        :param oauth_token: The OAuth token.
+        :param token: A Token object to be used for authentication.
         :param repository: The full name of the repository,
                            e.g. ``sils/baritone``.
         """
-        self._token = oauth_token
+        self._token = token
         self._repository = repository
         self._url = '/projects/' + quote_plus(repository)
 
@@ -54,8 +56,10 @@ class GitLabRepository(Repository, GitLabMixin):
         Retrieves the full name of the repository, e.g. "sils/baritone".
 
         >>> from os import environ
-        >>> repo = GitLabRepository(environ['GITLAB_TEST_TOKEN'],
-        ...                         'gitmate-test-user/test')
+        >>> repo = GitLabRepository(
+        ...     GitLabOAuthToken(environ['GITLAB_TEST_TOKEN']),
+        ...     'gitmate-test-user/test'
+        ... )
         >>> repo.full_name
         'gitmate-test-user/test'
 
@@ -69,23 +73,28 @@ class GitLabRepository(Repository, GitLabMixin):
         Retrieves the URL of the repository.
 
         >>> from os import environ as env
-        >>> repo = GitLabRepository(env['GITLAB_TEST_TOKEN'],
-        ...                         'gitmate-test-user/test')
+        >>> repo = GitLabRepository(
+        ...     GitLabOAuthToken(environ['GITLAB_TEST_TOKEN']),
+        ...     'gitmate-test-user/test'
+        ... )
         >>> expected = 'https://{}@gitlab.com/gitmate-test-user/test.git'
         >>> assert repo.clone_url == expected.format(env['GITLAB_TEST_TOKEN'])
 
         :return: A URL that can be used to clone the repository with Git.
         """
         return self.data['http_url_to_repo'].replace(
-            'gitlab.com', 'oauth2:' + self._token + '@gitlab.com', 1)
+            'gitlab.com',
+            'oauth2:' + self._token.value + '@gitlab.com', 1)
 
     def get_labels(self) -> {str}:
         """
         Retrieves the labels of the repository.
 
         >>> from os import environ
-        >>> repo = GitLabRepository(environ['GITLAB_TEST_TOKEN'],
-        ...                         'gitmate-test-user/test')
+        >>> repo = GitLabRepository(
+        ...     GitLabOAuthToken(environ['GITLAB_TEST_TOKEN']),
+        ...     'gitmate-test-user/test'
+        ... )
         >>> sorted(repo.get_labels())
         ['a', 'b', 'c']
 
@@ -103,8 +112,10 @@ class GitLabRepository(Repository, GitLabMixin):
         an exception:
 
         >>> from os import environ
-        >>> repo = GitLabRepository(environ['GITLAB_TEST_TOKEN'],
-        ...                         'gitmate-test-user/test')
+        >>> repo = GitLabRepository(
+        ...     GitLabOAuthToken(environ['GITLAB_TEST_TOKEN']),
+        ...     'gitmate-test-user/test'
+        ... )
         >>> sorted(repo.get_labels())
         ['a', 'b', 'c']
         >>> repo.create_label('c', '#555555')
@@ -133,8 +144,10 @@ class GitLabRepository(Repository, GitLabMixin):
         Take a given repository:
 
         >>> from os import environ
-        >>> repo = GitLabRepository(environ['GITLAB_TEST_TOKEN'],
-        ...                         'gitmate-test-user/test')
+        >>> repo = GitLabRepository(
+        ...     GitLabOAuthToken(environ['GITLAB_TEST_TOKEN']),
+        ...     'gitmate-test-user/test'
+        ... )
         >>> sorted(repo.get_labels())
         ['a', 'b', 'c']
 
@@ -170,8 +183,10 @@ class GitLabRepository(Repository, GitLabMixin):
         Retrieves an issue:
 
         >>> from os import environ
-        >>> repo = GitLabRepository(environ['GITLAB_TEST_TOKEN'],
-        ...                         'gitmate-test-user/test')
+        >>> repo = GitLabRepository(
+        ...     GitLabOAuthToken(environ['GITLAB_TEST_TOKEN']),
+        ...     'gitmate-test-user/test'
+        ... )
         >>> repo.get_issue(1).title
         'Take it serious, son!'
 
@@ -287,8 +302,10 @@ class GitLabRepository(Repository, GitLabMixin):
         Retrieves a set of merge request objects.
 
         >>> from os import environ
-        >>> repo = GitLabRepository(environ['GITLAB_TEST_TOKEN'],
-        ...                         'gitmate-test-user/test')
+        >>> repo = GitLabRepository(
+        ...     GitLabOAuthToken(environ['GITLAB_TEST_TOKEN']),
+        ...     'gitmate-test-user/test'
+        ... )
         >>> len(repo.merge_requests)
         4
         """

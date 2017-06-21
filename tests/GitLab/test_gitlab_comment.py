@@ -5,6 +5,7 @@ import datetime
 import vcr
 import requests_mock
 
+from IGitt.GitLab import GitLabOAuthToken
 from IGitt.GitLab.GitLabComment import GitLabComment
 from IGitt.Interfaces.Comment import CommentType
 
@@ -16,10 +17,11 @@ my_vcr = vcr.VCR(match_on=['method', 'scheme', 'host', 'port', 'path'],
 class GitLabCommentTest(unittest.TestCase):
 
     def setUp(self):
-        self.comment = GitLabComment(os.environ.get('GITLAB_TEST_TOKEN', ''),
+        token = GitLabOAuthToken(os.environ.get('GITLAB_TEST_TOKEN', ''))
+        self.comment = GitLabComment(token,
                                      'gitmate-test-user/test', 1,
                                      CommentType.ISSUE, 31500135)
-        self.issue_comment = GitLabComment(os.environ.get('GITLAB_TEST_TOKEN', ''),
+        self.issue_comment = GitLabComment(token,
                                            'gitmate-test-user/test', 30,
                                            CommentType.ISSUE, 32616806)
 

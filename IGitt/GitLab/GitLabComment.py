@@ -5,6 +5,7 @@ from urllib.parse import quote_plus
 
 from datetime import datetime
 from IGitt.GitLab import delete, put, GitLabMixin
+from IGitt.GitLab import GitLabOAuthToken, GitLabPrivateToken
 from IGitt.Interfaces.Comment import Comment
 from IGitt.Interfaces.Comment import CommentType
 
@@ -15,12 +16,13 @@ class GitLabComment(Comment, GitLabMixin):
     and an author, which can ofcourse be deleted.
     """
 
-    def __init__(self, oauth_token: str, repository: str, iid: int,
-                 comment_type: CommentType, comment_id: int):
+    def __init__(self, token: (GitLabOAuthToken, GitLabPrivateToken),
+                 repository: str, iid: int, comment_type: CommentType,
+                 comment_id: int):
         """
         Creates a new GitLabComment with the given data.
 
-        :param oauth_token: An OAuth token to be used.
+        :param token: A Token object to be used for authentication.
         :param repository: The full namespace of the repository.
         :param iid: The unique identifier that links the holder of comment to
                     GitLab. i.e. which identifies the MR or issue or snippet
@@ -29,7 +31,7 @@ class GitLabComment(Comment, GitLabMixin):
                              GitLabComment types.
         :param comment_id: The id of comment.
         """
-        self._token = oauth_token
+        self._token = token
         self._repository = repository
         self._type = comment_type
         self._url = '/projects/{repo}/{c_type}/{iid}/notes/{c_id}'.format(
@@ -49,7 +51,7 @@ class GitLabComment(Comment, GitLabMixin):
         Retrieves the username of the comment author.
 
         >>> from os import environ
-        >>> note = GitLabComment(environ['GITLAB_TEST_TOKEN'],
+        >>> note = GitLabComment(GitLabOAuthToken(environ['GITLAB_TEST_TOKEN']),
         ...                      'gitmate-test-user/test', 1,
         ...                      CommentType.ISSUE, 31500135)
         >>> note.author
@@ -65,7 +67,7 @@ class GitLabComment(Comment, GitLabMixin):
         Retrieves the content of the comment.
 
         >>> from os import environ
-        >>> note = GitLabComment(environ['GITLAB_TEST_TOKEN'],
+        >>> note = GitLabComment(GitLabOAuthToken(environ['GITLAB_TEST_TOKEN']),
         ...                      'gitmate-test-user/test', 1,
         ...                      CommentType.ISSUE, 31500135)
         >>> note.body
@@ -91,7 +93,7 @@ class GitLabComment(Comment, GitLabMixin):
         Retrieves a timestamp on when the comment was created.
 
         >>> from os import environ
-        >>> note = GitLabComment(environ['GITLAB_TEST_TOKEN'],
+        >>> note = GitLabComment(GitLabOAuthToken(environ['GITLAB_TEST_TOKEN']),
         ...                      'gitmate-test-user/test', 1,
         ...                      CommentType.ISSUE, 31500135)
         >>> note.created
@@ -106,7 +108,7 @@ class GitLabComment(Comment, GitLabMixin):
         Retrieves a timestamp on when the comment was updated the last time.
 
         >>> from os import environ
-        >>> note = GitLabComment(environ['GITLAB_TEST_TOKEN'],
+        >>> note = GitLabComment(GitLabOAuthToken(environ['GITLAB_TEST_TOKEN']),
         ...                      'gitmate-test-user/test', 1,
         ...                      CommentType.ISSUE, 31500135)
         >>> note.updated

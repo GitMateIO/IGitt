@@ -1,0 +1,30 @@
+interactions:
+- request:
+    body: '{"description": "test body", "title": "test title"}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['51']
+      Content-Type: [application/json]
+      User-Agent: [python-requests/2.18.1]
+    method: POST
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues?User-Agent=IGitt
+  response:
+    body: {string: '{"id":5795065,"iid":31,"project_id":3439658,"title":"test title","description":"test
+        body","state":"opened","created_at":"2017-06-21T06:16:05.391Z","updated_at":"2017-06-21T06:16:05.391Z","labels":[],"milestone":null,"assignees":[],"author":{"name":"Meet
+        Mangukiya","username":"meetmangukiya","id":707601,"state":"active","avatar_url":"https://gitlab.com/uploads/system/user/avatar/707601/avatar.png","web_url":"https://gitlab.com/meetmangukiya"},"assignee":null,"user_notes_count":0,"upvotes":0,"downvotes":0,"due_date":null,"confidential":false,"weight":null,"web_url":"https://gitlab.com/gitmate-test-user/test/issues/31","subscribed":true}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['643']
+      Content-Type: [application/json]
+      Date: ['Wed, 21 Jun 2017 06:16:05 GMT']
+      Etag: [W/"f6f6f35eaf078afff2e845b5652ed2a1"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [84437d2f-6ef2-42fd-850b-731bc7e8b9c4]
+      X-Runtime: ['0.687935']
+    status: {code: 201, message: Created}
+version: 1

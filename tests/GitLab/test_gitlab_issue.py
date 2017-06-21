@@ -4,6 +4,7 @@ import datetime
 
 import vcr
 
+from IGitt.GitLab import GitLabOAuthToken
 from IGitt.GitLab.GitLabIssue import GitLabIssue
 
 my_vcr = vcr.VCR(match_on=['method', 'scheme', 'host', 'port', 'path'],
@@ -14,7 +15,8 @@ my_vcr = vcr.VCR(match_on=['method', 'scheme', 'host', 'port', 'path'],
 class GitLabIssueTest(unittest.TestCase):
 
     def setUp(self):
-        self.iss = GitLabIssue(os.environ.get('GITLAB_TEST_TOKEN', ''),
+        self.token = GitLabOAuthToken(os.environ.get('GITLAB_TEST_TOKEN', ''))
+        self.iss = GitLabIssue(self.token,
                                'gitmate-test-user/test', 3)
 
     @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_issue_title.yaml',
@@ -30,7 +32,7 @@ class GitLabIssueTest(unittest.TestCase):
     @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_issue_assignee.yaml')
     def test_assignee(self):
         self.assertEqual(self.iss.assignees, tuple())
-        iss = GitLabIssue(os.environ.get('GITLAB_TEST_TOKEN', ''),
+        iss = GitLabIssue(self.token,
                           'gitmate-test-user/test', 27)
         iss.assign('meetmangukiya')
         self.assertEqual(iss.assignees, ('meetmangukiya', ))
@@ -76,7 +78,7 @@ class GitLabIssueTest(unittest.TestCase):
     @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_issue_create_delete.yaml',
                          filter_query_parameters=['access_token'])
     def test_issue_create(self):
-        issue = GitLabIssue.create(os.environ.get('GITLAB_TEST_TOKEN', ''),
+        issue = GitLabIssue.create(self.token,
                                    'gitmate-test-user/test',
                                    'test title', 'test body')
         self.assertEqual(issue.state, 'opened')

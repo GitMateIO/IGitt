@@ -4,7 +4,7 @@ Contains the Hoster implementation for GitLab.
 
 import logging
 
-from IGitt.GitLab import get
+from IGitt.GitLab import get, GitLabOAuthToken, GitLabPrivateToken
 from IGitt.Interfaces import AccessLevel
 from IGitt.Interfaces.Hoster import Hoster
 from IGitt.GitLab.GitLabRepository import GitLabRepository
@@ -18,13 +18,13 @@ class GitLab(Hoster):
     A high level interface to GitLab.
     """
 
-    def __init__(self, oauth_token):
+    def __init__(self, token: (GitLabOAuthToken, GitLabPrivateToken)):
         """
         Creates a new GitLab Hoster object.
 
-        :param oauth_token: An OAuth token to use for authentication.
+        :param token: A Token object to be used for authentication.
         """
-        self._token = oauth_token
+        self._token = token
 
     @property
     def master_repositories(self):
@@ -50,7 +50,7 @@ class GitLab(Hoster):
         Retrieves repositories owned by the authenticated user.
 
         >>> from os import environ
-        >>> GitLab = GitLab(environ['GITLAB_TEST_TOKEN'])
+        >>> GitLab = GitLab(GitLabOAuthToken(viron['GITLAB_TEST_TOKEN']))
         >>> sorted(map(lambda x: x.full_name, GitLab.owned_repositories)
         {'gitmate-test-user/test'}
 
@@ -66,7 +66,7 @@ class GitLab(Hoster):
         Retrieves the full names of repositories this user can write to.
 
         >>> from os import environ
-        >>> GitLab = GitLab(environ['GITLAB_TEST_TOKEN'])
+        >>> GitLab = GitLab(GitLabOAuthToken(viron['GITLAB_TEST_TOKEN']))
         >>> sorted(map(lambda x: x.full_name, GitLab.write_repositories))
         ['gitmate-test-user/test', 'nkprince007/gitmate-test']
 
@@ -90,7 +90,7 @@ class GitLab(Hoster):
         Retrieve a given repository.
 
         >>> from os import environ
-        >>> source = GitLab(environ['GITLAB_TEST_TOKEN'])
+        >>> GitLab = GitLab(GitLabOAuthToken(viron['GITLAB_TEST_TOKEN']))
         >>> repo = source.get_repo('gitmate-test-user/test')
         >>> isinstance(repo, GitLabRepository)
         True

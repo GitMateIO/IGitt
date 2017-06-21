@@ -3,6 +3,7 @@ import os
 
 import vcr
 
+from IGitt.GitLab import GitLabOAuthToken
 from IGitt.GitLab.GitLabRepository import GitLabRepository
 from IGitt.Interfaces.Repository import WebhookEvents
 from IGitt import ElementAlreadyExistsError, ElementDoesntExistError
@@ -15,7 +16,8 @@ my_vcr = vcr.VCR(match_on=['method', 'scheme', 'host', 'port', 'path'],
 class TestGitLabRepository(unittest.TestCase):
 
     def setUp(self):
-        self.repo = GitLabRepository(os.environ.get('GITLAB_TEST_TOKEN', ''),
+        token = GitLabOAuthToken(os.environ.get('GITLAB_TEST_TOKEN', ''))
+        self.repo = GitLabRepository(token,
                                      'gitmate-test-user/test')
 
     def test_hoster(self):
