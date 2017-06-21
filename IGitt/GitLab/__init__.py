@@ -3,7 +3,7 @@ This package contains the GitLab implementations of the interfaces in
 server.git.Interfaces. GitLab drops the support of API version 3 as of
 August 22, 2017. So, IGitt adopts v4 to stay future proof.
 """
-from IGitt.Interfaces import AccessLevel
+from IGitt.Interfaces import Token
 from IGitt.Interfaces import _fetch
 from IGitt.Utils import CachedDataMixin
 
@@ -19,7 +19,41 @@ class GitLabMixin(CachedDataMixin):
         return get(self._token, self._url)
 
 
-def get(token: str, url: str, params: dict=frozenset()):
+class GitLabOAuthToken(Token):
+    """
+    Object representation of OAuth tokens.
+    """
+
+    def __init__(self, token):
+        self._token = token
+
+    @property
+    def parameter(self):
+        return {'access_token': self._token}
+
+    @property
+    def value(self):
+        return self._token
+
+
+class GitLabPrivateToken(Token):
+    """
+    Object representation of private tokens.
+    """
+
+    def __init__(self, token):
+        self._token = token
+
+    @property
+    def parameter(self):
+        return {'private_token': self._token}
+
+    @property
+    def value(self):
+        return self._token
+
+
+def get(token: (GitLabOAuthToken, GitLabPrivateToken), url: str, params: dict=frozenset()):
     """
     Queries GitLab on the given URL for data.
 
@@ -32,11 +66,11 @@ def get(token: str, url: str, params: dict=frozenset()):
     :raises RunTimeError:
         If the response indicates any problem.
     """
-    return _fetch(BASE_URL, 'get', {'access_token': token},
+    return _fetch(BASE_URL, 'get', token.parameter,
                   url, query_params={**dict(params), 'per_page': 100})
 
 
-def post(token: str, url: str, data: dict):
+def post(token: (GitLabOAuthToken, GitLabPrivateToken), url: str, data: dict):
     """
     Posts the given data onto GitLab.
 
@@ -49,10 +83,10 @@ def post(token: str, url: str, data: dict):
     :raises RunTimeError:
         If the response indicates any problem.
     """
-    return _fetch(BASE_URL, 'post', {'access_token': token}, url, data)
+    return _fetch(BASE_URL, 'post', token.parameter, url, data)
 
 
-def put(token: str, url: str, data: dict):
+def put(token: (GitLabOAuthToken, GitLabPrivateToken), url: str, data: dict):
     """
     Puts the given data onto GitLab.
 
@@ -65,10 +99,10 @@ def put(token: str, url: str, data: dict):
     :raises RunTimeError:
         If the response indicates any problem.
     """
-    return _fetch(BASE_URL, 'put', {'access_token': token}, url, data)
+    return _fetch(BASE_URL, 'put', token.parameter, url, data)
 
 
-def delete(token: str, url: str, params: dict=None):
+def delete(token: (GitLabOAuthToken, GitLabPrivateToken), url: str, params: dict=None):
     """
     Sends a delete request to the given URL on GitLab.
 
@@ -77,5 +111,5 @@ def delete(token: str, url: str, params: dict=None):
     :param params: The query params to be sent.
     :raises RuntimeError: If the response indicates any problem.
     """
-    _fetch(BASE_URL, 'delete', {'access_token': token},
+    _fetch(BASE_URL, 'delete', token.parameter,
            url, query_params=params)
