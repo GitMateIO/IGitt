@@ -9,6 +9,7 @@ from IGitt.GitLab import get, post, GitLabMixin
 from IGitt.GitLab.GitLabRepository import GitLabRepository
 from IGitt.Interfaces.Commit import Commit
 from IGitt.Interfaces.CommitStatus import Status, CommitStatus
+from traceback import print_exc
 
 GL_STATE_TRANSLATION = {Status.RUNNING: 'running',
                         Status.CANCELED: 'canceled',
@@ -245,14 +246,22 @@ class GitLabCommit(Commit, GitLabMixin):
             data['note'] = ('Comment on ' + self.sha + file_str + line_str +
                             '.\n\n' + data['note'])
 
-        # comments directly on the commit, if the line and path are valid
-        # appears on a rich diff, else at the last line of commit.
-        # If the commit is part of an mr, the comments appear in the
-        # discussions view.
+        # post a comment on commit
         if 'line' in data and 'path' in data or mr_number is None:
-            post(self._token, self._url + '/comments', data)
+            try:
+                post(self._token, self._url + '/comments', data)
+                return
+            except RuntimeError: # dont cover
+                print("ERROR: failed to post comment on commit.")
+                print("Repository:  {0!r}".format(self.repository))
+                print("Commit SHA:  {0!r}".format(self.sha))
+                print("Line no.:    {0!r}".format(data['line']))
+                print("File:        {0!r}".format(data['path']))
+                print("Message:     {0!r}".format(data['note']))
+                print_exc()
 
-        else: # comments on the merge request
+        # fallback to post the comment on relevant merge request
+        if mr_number is not None:
             data['body'] = data['note']  # because gitlab is stupid
             post(self._token,
                  '/projects/{id}/merge_requests/{mr_iid}/notes'.format(
