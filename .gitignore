@@ -9,3 +9,5 @@ __pycache__
 .cache
 .coverage*
 .DS_Store
+*.egg-info
+build/
