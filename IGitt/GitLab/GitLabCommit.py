@@ -10,7 +10,6 @@ from IGitt.GitLab import GitLabOAuthToken, GitLabPrivateToken
 from IGitt.GitLab.GitLabRepository import GitLabRepository
 from IGitt.Interfaces.Commit import Commit
 from IGitt.Interfaces.CommitStatus import Status, CommitStatus
-from traceback import print_exc
 
 GL_STATE_TRANSLATION = {Status.RUNNING: 'running',
                         Status.CANCELED: 'canceled',
@@ -261,17 +260,10 @@ class GitLabCommit(Commit, GitLabMixin):
 
         # post a comment on commit
         if 'line' in data and 'path' in data or mr_number is None:
-            try:
-                post(self._token, self._url + '/comments', data)
-                return
-            except RuntimeError: # dont cover
-                print("ERROR: failed to post comment on commit.")
-                print("Repository:  {0!r}".format(self.repository))
-                print("Commit SHA:  {0!r}".format(self.sha))
-                print("Line no.:    {0!r}".format(data['line']))
-                print("File:        {0!r}".format(data['path']))
-                print("Message:     {0!r}".format(data['note']))
-                print_exc()
+            url = '/projects/{id}/repository/commits/{sha}/comments'.format(
+                id=quote_plus(self._repository), sha=self.sha)
+            post(self._token, url, data)
+            return
 
         # fallback to post the comment on relevant merge request
         if mr_number is not None:
