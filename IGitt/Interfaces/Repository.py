@@ -184,6 +184,13 @@ class Repository:
         """
         raise NotImplementedError
 
+    @property
+    def issues(self) -> set:
+        """
+        Retrieves a set of issue objects.
+        """
+        raise NotImplementedError
+
     def create_issue(self, title, body=''):
         """
         Create a new issue.

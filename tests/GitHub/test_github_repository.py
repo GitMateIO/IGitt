@@ -59,6 +59,10 @@ class TestGitHubRepository(unittest.TestCase):
     def test_get_mr(self):
         self.assertEqual(self.repo.get_mr(11).title, 'testpr closing/opening')
 
+    @my_vcr.use_cassette('tests/GitHub/cassettes/github_repo_issues.yaml')
+    def test_issues(self):
+        self.assertEqual(len(self.repo.issues), 81)
+
     @my_vcr.use_cassette('tests/GitHub/cassettes/github_repo_merge_requests.yaml')
     def test_merge_requests(self):
         self.assertEqual(len(self.repo.merge_requests), 3)

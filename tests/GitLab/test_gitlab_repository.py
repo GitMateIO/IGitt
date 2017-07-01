@@ -77,3 +77,7 @@ class TestGitLabRepository(unittest.TestCase):
     @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_repo_merge_requests.yaml')
     def test_merge_requests(self):
         self.assertEqual(len(self.repo.merge_requests), 4)
+
+    @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_repo_issues.yaml')
+    def test_issues(self):
+        self.assertEqual(len(self.repo.issues), 13)

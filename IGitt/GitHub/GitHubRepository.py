@@ -297,6 +297,20 @@ class GitHubRepository(Repository, GitHubMixin):
         return {GitHubMergeRequest(self._token, self.full_name, res['number'])
                 for res in get(self._token, self._url + '/pulls')}
 
+    @property
+    def issues(self) -> set:
+        """
+        Retrieves a set of issue objects.
+
+        >>> from os import environ
+        >>> repo = GitHubRepository(environ['GITHUB_TEST_TOKEN'],
+        ...                         'gitmate-test-user/test')
+        >>> len(repo.issues)
+        81
+        """
+        return {GitHubIssue(self._token, self.full_name, res['number'])
+                for res in get(self._token, self._url + '/issues')}
+
     def create_issue(self, title: str, body: str='') -> GitHubIssue:
         """
         Create a new issue in the repository.

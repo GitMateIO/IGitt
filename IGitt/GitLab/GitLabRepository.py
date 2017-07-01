@@ -312,3 +312,17 @@ class GitLabRepository(Repository, GitLabMixin):
         from IGitt.GitLab.GitLabMergeRequest import GitLabMergeRequest
         return {GitLabMergeRequest(self._token, self.full_name, res['iid'])
                 for res in get(self._token, self._url + '/merge_requests')}
+
+    @property
+    def issues(self) -> set:
+        """
+        Retrieves a set of issue objects.
+
+        >>> from os import environ
+        >>> repo = GitLabRepository(environ['GITLAB_TEST_TOKEN'],
+        ...                         'gitmate-test-user/test')
+        >>> len(repo.issues)
+        13
+        """
+        return {GitLabIssue(self._token, self.full_name, res['iid'])
+                for res in get(self._token, self._url + '/issues')}
