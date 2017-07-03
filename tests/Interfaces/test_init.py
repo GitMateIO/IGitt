@@ -47,3 +47,16 @@ class TestGitHubInit(unittest.TestCase):
                    '/repos/coala/corobo/issues')
 
         cover_fetch_all_github()
+
+    @staticmethod
+    def test_github_search_pagination():
+
+        @my_vcr.use_cassette('tests/Interfaces/cassettes/test_github_search_pagination.yaml')
+        def cover_fetch_search_github():
+            # this is to cover the pagination format from github search API
+            _fetch(GITHUB_BASE_URL, 'get',
+                   {'access_token': os.environ.get('GITHUB_TEST_TOKEN', '')},
+                   '/search/issues',
+                   query_params={'q': ' repo:coala/corobo'})
+
+        cover_fetch_search_github()

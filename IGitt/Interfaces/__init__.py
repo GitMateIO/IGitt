@@ -87,11 +87,20 @@ def _fetch(base_url: str, req_type: str, token: dict, url: str,
     # Delete request returns no response
     if not len(resp.text):
         return [], resp.status_code
-    if isinstance(resp.json(), dict):
-        return resp.json(), resp.status_code
+
     while resp.links.get('next', False):
-        data_container.extend(resp.json())
+        if isinstance(resp.json(), dict):
+            data_container.extend(resp.json()['items'])
+        else:
+            data_container.extend(resp.json())
         resp = fetch_method(resp.links.get('next')['url'], json=data)
+
+    if isinstance(resp.json(), dict):
+        if 'items' in resp.json():
+            data_container.extend(resp.json()['items'])
+            return data_container, resp.status_code
+        else:
+            return resp.json(), resp.status_code
 
     # Add the last node data
     data_container.extend(resp.json())
