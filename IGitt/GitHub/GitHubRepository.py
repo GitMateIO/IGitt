@@ -1,6 +1,7 @@
 """
 Contains the GitHub Repository implementation.
 """
+from datetime import datetime
 
 from IGitt import ElementAlreadyExistsError, ElementDoesntExistError
 from IGitt.GitHub import delete, get, post, GitHubMixin, put
@@ -391,3 +392,66 @@ class GitHubRepository(Repository, GitHubMixin):
 
         from IGitt.GitHub.GitHubContent import GitHubContent
         return GitHubContent(self._token, self._repository, json['content']['path'])
+
+    def _search(self,
+                issue_type,
+                created_after: datetime.date='',
+                created_before: datetime.date='',
+                updated_after: datetime.date='',
+                updated_before: datetime.date=''):
+        """
+        Search for issue based on type 'issue' or 'pr' and return a
+        list of issues.
+        """
+        query = ' type:' + issue_type + ' state:open repo:' + self._repository
+        if ((created_after and created_before)
+                or (updated_after and updated_before)):
+            raise RuntimeError(('Cannot process before '
+                                'and after date simultaneously'))
+        if created_after:
+            query += ' created:>=' + str(created_after)
+        elif created_before:
+            query += ' created:<' + str(created_before)
+        if updated_after:
+            query += ' updated:>=' + str(updated_after)
+        elif updated_before:
+            query += ' updated:<' + str(updated_before)
+        base_url = '/search/issues'
+        query_params = {'q': query,
+                        'per_page': '100'}
+        resp = get(self._token, base_url, query_params)
+        return resp
+
+    def search_mrs(self,
+                   created_after: datetime.date='',
+                   created_before: datetime.date='',
+                   updated_after: datetime.date='',
+                   updated_before: datetime.date=''):
+        """
+        List open pull request in the repository.
+        """
+        for pr_data in self._search('pr',
+                                    created_after,
+                                    created_before,
+                                    updated_after,
+                                    updated_before):
+            pull_request = self.get_mr(pr_data['number'])
+            pull_request.data = pr_data
+            yield pull_request
+
+    def search_issues(self,
+                      created_after: datetime.date='',
+                      created_before: datetime.date='',
+                      updated_after: datetime.date='',
+                      updated_before: datetime.date=''):
+        """
+        List open issues in the repository.
+        """
+        for issue_data in self._search('issue',
+                                       created_after,
+                                       created_before,
+                                       updated_after,
+                                       updated_before):
+            issue = self.get_issue(issue_data['number'])
+            issue.data = issue_data
+            yield issue
