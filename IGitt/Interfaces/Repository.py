@@ -2,6 +2,7 @@
 Contains the Repository class.
 """
 
+from datetime import datetime
 from enum import Enum
 from tempfile import mkdtemp
 
@@ -232,5 +233,25 @@ class Repository:
                     author:(dict, None)=None, encoding: (str, None)=None,):
         """
         Creates a new file
+        """
+        raise NotImplementedError
+
+    def search_mrs(self,
+                   created_after: datetime.date='',
+                   created_before: datetime.date='',
+                   updated_after: datetime.date='',
+                   updated_before: datetime.date=''):
+        """
+        Retrieves a list of open prs
+        """
+        raise NotImplementedError
+
+    def search_issues(self,
+                      created_after: datetime.date='',
+                      created_before: datetime.date='',
+                      updated_after: datetime.date='',
+                      updated_before: datetime.date=''):
+        """
+        Retrieves a list of open issues
         """
         raise NotImplementedError
