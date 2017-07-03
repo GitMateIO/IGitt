@@ -1,6 +1,7 @@
 """
 Contains the GitLab Repository implementation.
 """
+from datetime import datetime
 from urllib.parse import quote_plus
 
 from IGitt import ElementAlreadyExistsError, ElementDoesntExistError
@@ -23,6 +24,28 @@ GL_WEBHOOK_TRANSLATION = {
 GL_WEBHOOK_EVENTS = {'tag_push_events', 'job_events', 'pipeline_events',
                      'wiki_events'} | set(GL_WEBHOOK_TRANSLATION.values())
 
+def date_in_range(data,
+                  created_after='',
+                  created_before='',
+                  updated_after='',
+                  updated_before=''):
+    """
+    Returns true if issue/MR is in the given range.
+    """
+    is_created_after = not created_after
+    is_created_before = not created_before
+    is_updated_after = not updated_after
+    is_updated_before = not updated_before
+    if created_after and data['created_at']>str(created_after):
+        is_created_after = True
+    if created_before and data['created_at']<str(created_before):
+        is_created_before = True
+    if updated_after and data['updated_at']>str(updated_after):
+        is_updated_after = True
+    if updated_before and data['updated_at']<str(updated_before):
+        is_updated_before = True
+    return (is_created_after and is_created_before and is_updated_after and
+            is_updated_before)
 
 class GitLabRepository(Repository, GitLabMixin):
     """
@@ -401,3 +424,53 @@ class GitLabRepository(Repository, GitLabMixin):
         Delete the Repository
         """
         delete(token=self._token, url=self._url)
+
+    def _search(self,
+                search_type):
+        """
+        Retrives a list of all open issues or merge requests.
+        :param search_type: A string for type of object i.e. issues for issue
+                            and merge_requests for merge requests.
+        :return: List of issues/merge requests.
+        """
+        query = dict()
+        url = self._url + '/{}'.format(search_type)
+        query['state'] = 'opened'
+        return get(self._token, url, params=query)
+
+
+    def search_issues(self,
+                      created_after: datetime.date='',
+                      created_before: datetime.date='',
+                      updated_after: datetime.date='',
+                      updated_before: datetime.date=''):
+        """
+        Searches for issues based on created and updated date.
+        """
+        for issue_data in filter(lambda data: date_in_range(data,
+                                                            created_after,
+                                                            created_before,
+                                                            updated_after,
+                                                            updated_before),
+                                 self._search('issues')):
+            issue = self.get_issue(issue_data['iid'])
+            issue.data = issue_data
+            yield issue
+
+    def search_mrs(self,
+                   created_after: datetime.date='',
+                   created_before: datetime.date='',
+                   updated_after: datetime.date='',
+                   updated_before: datetime.date=''):
+        """
+        Searches for merge request based on created and updated date.
+        """
+        for mr_data in filter(lambda data: date_in_range(data,
+                                                         created_after,
+                                                         created_before,
+                                                         updated_after,
+                                                         updated_before),
+                              self._search('merge_requests')):
+            merge_request = self.get_mr(mr_data['iid'])
+            merge_request.data = mr_data
+            yield merge_request

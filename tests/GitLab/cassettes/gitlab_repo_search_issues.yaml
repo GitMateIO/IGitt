@@ -1,0 +1,51 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.18.1]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues?User-Agent=IGitt&per_page=100&state=opened
+  response:
+    body: {string: '[{"id":6002929,"iid":32,"project_id":3439658,"title":"another
+        one","description":"","state":"opened","created_at":"2017-07-07T10:38:34.299Z","updated_at":"2017-07-07T10:38:57.787Z","labels":[],"milestone":null,"assignees":[],"author":{"name":"Lasse
+        Schuirmann","username":"sils","id":104269,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\u0026d=identicon","web_url":"https://gitlab.com/sils"},"assignee":null,"user_notes_count":3,"upvotes":0,"downvotes":0,"due_date":null,"confidential":false,"weight":null,"web_url":"https://gitlab.com/gitmate-test-user/test/issues/32"},{"id":5795065,"iid":31,"project_id":3439658,"title":"test
+        title","description":"test body","state":"opened","created_at":"2017-06-21T06:16:05.391Z","updated_at":"2017-06-21T06:16:05.391Z","labels":[],"milestone":null,"assignees":[],"author":{"name":"Meet
+        Mangukiya","username":"meetmangukiya","id":707601,"state":"active","avatar_url":"https://gitlab.com/uploads/system/user/avatar/707601/avatar.png","web_url":"https://gitlab.com/meetmangukiya"},"assignee":null,"user_notes_count":0,"upvotes":0,"downvotes":0,"due_date":null,"confidential":false,"weight":null,"web_url":"https://gitlab.com/gitmate-test-user/test/issues/31"},{"id":5741041,"iid":30,"project_id":3439658,"title":"comment
+        change test","description":"issue to test comment updation","state":"opened","created_at":"2017-06-17T14:45:01.839Z","updated_at":"2017-06-18T05:35:25.951Z","labels":[],"milestone":null,"assignees":[],"author":{"name":"Arjun
+        Singh Yadav","username":"arjunsinghy96","id":683065,"state":"active","avatar_url":"https://gitlab.com/uploads/system/user/avatar/683065/avatar.png","web_url":"https://gitlab.com/arjunsinghy96"},"assignee":null,"user_notes_count":2,"upvotes":0,"downvotes":0,"due_date":null,"confidential":false,"weight":null,"web_url":"https://gitlab.com/gitmate-test-user/test/issues/30"},{"id":5685687,"iid":27,"project_id":3439658,"title":"test
+        issue","description":"","state":"opened","created_at":"2017-06-12T18:14:54.571Z","updated_at":"2017-06-13T16:23:38.705Z","labels":[],"milestone":null,"assignees":[],"author":{"name":"Meet
+        Mangukiya","username":"meetmangukiya","id":707601,"state":"active","avatar_url":"https://gitlab.com/uploads/system/user/avatar/707601/avatar.png","web_url":"https://gitlab.com/meetmangukiya"},"assignee":null,"user_notes_count":0,"upvotes":0,"downvotes":0,"due_date":null,"confidential":false,"weight":null,"web_url":"https://gitlab.com/gitmate-test-user/test/issues/27"},{"id":5659734,"iid":26,"project_id":3439658,"title":"title","description":"body","state":"opened","created_at":"2017-06-09T09:09:29.600Z","updated_at":"2017-06-09T09:09:29.600Z","labels":[],"milestone":null,"assignees":[],"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"assignee":null,"user_notes_count":0,"upvotes":0,"downvotes":0,"due_date":null,"confidential":false,"weight":null,"web_url":"https://gitlab.com/gitmate-test-user/test/issues/26"},{"id":5659413,"iid":23,"project_id":3439658,"title":"test
+        title","description":"test body","state":"opened","created_at":"2017-06-09T08:25:09.680Z","updated_at":"2017-06-09T08:25:09.680Z","labels":[],"milestone":null,"assignees":[],"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"assignee":null,"user_notes_count":0,"upvotes":0,"downvotes":0,"due_date":null,"confidential":false,"weight":null,"web_url":"https://gitlab.com/gitmate-test-user/test/issues/23"},{"id":5659126,"iid":22,"project_id":3439658,"title":"test
+        title","description":"test body","state":"opened","created_at":"2017-06-09T07:44:51.404Z","updated_at":"2017-06-09T07:44:51.404Z","labels":[],"milestone":null,"assignees":[],"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"assignee":null,"user_notes_count":0,"upvotes":0,"downvotes":0,"due_date":null,"confidential":false,"weight":null,"web_url":"https://gitlab.com/gitmate-test-user/test/issues/22"},{"id":5658796,"iid":21,"project_id":3439658,"title":"test
+        title","description":"test body","state":"opened","created_at":"2017-06-09T06:56:27.838Z","updated_at":"2017-06-09T06:56:27.838Z","labels":[],"milestone":null,"assignees":[],"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"assignee":null,"user_notes_count":0,"upvotes":0,"downvotes":0,"due_date":null,"confidential":false,"weight":null,"web_url":"https://gitlab.com/gitmate-test-user/test/issues/21"},{"id":5615444,"iid":4,"project_id":3439658,"title":"Time
+        is important here.","description":"Don''t update me, never!","state":"opened","created_at":"2017-06-05T09:45:20.678Z","updated_at":"2017-06-05T09:45:56.115Z","labels":[],"milestone":null,"assignees":[],"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"assignee":null,"user_notes_count":1,"upvotes":0,"downvotes":0,"due_date":null,"confidential":false,"weight":null,"web_url":"https://gitlab.com/gitmate-test-user/test/issues/4"},{"id":5613911,"iid":3,"project_id":3439658,"title":"new
+        title","description":"Stop trying to be badass.","state":"reopened","created_at":"2017-06-05T06:19:06.379Z","updated_at":"2017-06-09T08:38:28.449Z","labels":[],"milestone":null,"assignees":[],"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"assignee":null,"user_notes_count":4,"upvotes":0,"downvotes":0,"due_date":null,"confidential":false,"weight":null,"web_url":"https://gitlab.com/gitmate-test-user/test/issues/3"},{"id":5613896,"iid":2,"project_id":3439658,"title":"Don''t
+        assign me to anyone!","description":"I wish I stay alone and no one disturbs
+        me.","state":"reopened","created_at":"2017-06-05T06:17:38.486Z","updated_at":"2017-06-06T03:52:24.802Z","labels":[],"milestone":null,"assignees":[],"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"assignee":null,"user_notes_count":0,"upvotes":0,"downvotes":0,"due_date":null,"confidential":false,"weight":null,"web_url":"https://gitlab.com/gitmate-test-user/test/issues/2"},{"id":5613608,"iid":1,"project_id":3439658,"title":"new
+        title","description":"I am a serious issue. Fix me soon, dude.","state":"reopened","created_at":"2017-06-05T05:19:51.840Z","updated_at":"2017-06-09T08:25:34.687Z","labels":["dem"],"milestone":null,"assignees":[{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"}],"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"assignee":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"user_notes_count":15,"upvotes":0,"downvotes":0,"due_date":null,"confidential":false,"weight":null,"web_url":"https://gitlab.com/gitmate-test-user/test/issues/1"}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['8341']
+      Content-Type: [application/json]
+      Date: ['Sat, 08 Jul 2017 05:48:21 GMT']
+      Etag: [W/"867d1ff6a58160bec37753d2c073fa83"]
+      Link: ['<https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues?User-Agent=IGitt&access_token=98f0f5b512132e1a255f6f6b400f6a121c7a35c838bdf6c9cf0750ef09a97b9f&id=gitmate-test-user%2Ftest&order_by=created_at&page=1&per_page=100&sort=desc&state=opened>;
+          rel="first", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues?User-Agent=IGitt&access_token=98f0f5b512132e1a255f6f6b400f6a121c7a35c838bdf6c9cf0750ef09a97b9f&id=gitmate-test-user%2Ftest&order_by=created_at&page=1&per_page=100&sort=desc&state=opened>;
+          rel="last"']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['100']
+      X-Prev-Page: ['']
+      X-Request-Id: [492ff07c-97dd-4830-98db-3454bf058d4f]
+      X-Runtime: ['1.081256']
+      X-Total: ['12']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+version: 1

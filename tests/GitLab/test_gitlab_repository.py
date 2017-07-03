@@ -1,6 +1,7 @@
 import unittest
 import os
 import time
+from datetime import datetime
 
 import vcr
 
@@ -160,3 +161,19 @@ class TestGitLabRepository(unittest.TestCase):
         self.assertIsInstance(fork.create_file(path='.coafile', message='hello',
                                                content='hello', branch='master'),
                               GitLabContent)
+
+    @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_repo_search_issues.yaml')
+    def test_search_issues(self):
+        created_after = datetime(2017, 6, 18).date()
+        created_before = datetime(2017, 7, 15).date()
+        issues = list(self.repo.search_issues(created_after=created_after,
+                                              created_before=created_before))
+        self.assertEqual(len(issues), 2)
+
+    @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_repo_search_merge_requests.yaml')
+    def test_search_mrs(self):
+        updated_after = datetime(2017, 6, 18).date()
+        updated_before = datetime(2017, 7, 2).date()
+        merge_requests = list(self.repo.search_mrs(updated_after=updated_after,
+                                                   updated_before=updated_before))
+        self.assertEqual(len(merge_requests), 3)
