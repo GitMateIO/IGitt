@@ -1,5 +1,6 @@
+image: python:3.5-alpine
+
 run_tests:
-  image: python:3
   script:
   - pip install -r requirements.txt
   - pip install -r test-requirements.txt
@@ -8,7 +9,6 @@ run_tests:
   - master
 
 check_code:
-  image: python:3.5-alpine
   script:
   - pip install 'coala-bears[alldeps]'
   - coala --ci
@@ -20,7 +20,8 @@ cache:
   - /root/.cache/pip
 
 release:
-  image: sils1297/gm-build-cont
+  before_script:
+  - pip install twine
   script:
   - python .ci/adjust_version.py IGitt/VERSION -b `date --utc +%Y%m%d%H%M%S`
   - python setup.py sdist bdist_wheel
