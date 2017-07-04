@@ -8,7 +8,24 @@ class CachedDataMixin:
     You provide:
 
     - self._get_data for getting your data
+
+    You can also create an IGitt instance with your own data using from_data
+    classmethod.
     """
+    @classmethod
+    def from_data(cls, *args, data: dict=frozenset()):
+        """
+        Returns an instance created from the provided data. No further requests
+        are made.
+
+        :raises TypeError:
+            When the args provided are insufficient to call __init__.
+        """
+        instance = cls(*args)
+        if len(data):
+            instance.data = data
+        return instance
+
     def _get_data(self):
         """
         Retrieves the data for the object.
