@@ -22,6 +22,13 @@ class Comment:
     """
 
     @property
+    def number(self) -> int:
+        """
+        Retrieves the id of the comment.
+        """
+        raise NotImplementedError
+
+    @property
     def type(self):
         """
         Retrieves the type of the comment.

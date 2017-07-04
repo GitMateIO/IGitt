@@ -17,7 +17,7 @@ class GitLabComment(Comment, GitLabMixin):
     """
 
     def __init__(self, token: (GitLabOAuthToken, GitLabPrivateToken),
-                 repository: str, iid: int, comment_type: CommentType,
+                 repository: str, iid: str, comment_type: CommentType,
                  comment_id: int):
         """
         Creates a new GitLabComment with the given data.
@@ -25,8 +25,9 @@ class GitLabComment(Comment, GitLabMixin):
         :param token: A Token object to be used for authentication.
         :param repository: The full namespace of the repository.
         :param iid: The unique identifier that links the holder of comment to
-                    GitLab. i.e. which identifies the MR or issue or snippet
-                    the comment links to.
+                    GitLab. i.e. which identifies the MR (number) or
+                    issue (number) or snippet (number) or commit (sha) the
+                    comment links to.
         :param comment_type: The type of comment it links to, either one of
                              GitLabComment types.
         :param comment_id: The id of comment.
@@ -34,9 +35,26 @@ class GitLabComment(Comment, GitLabMixin):
         self._token = token
         self._repository = repository
         self._type = comment_type
+        self._id = comment_id
+        self._iid = str(iid)
         self._url = '/projects/{repo}/{c_type}/{iid}/notes/{c_id}'.format(
             repo=quote_plus(repository), c_type=self._type.value,
             iid=iid, c_id=comment_id)
+
+    @property
+    def iid(self) -> str:
+        """
+        Retrieves the internal identifier of the linked resource
+        (issue/merge request/commit).
+        """
+        return self._iid
+
+    @property
+    def number(self) -> int:
+        """
+        Retrieves the id of the comment.
+        """
+        return self._id
 
     @property
     def type(self) -> CommentType:

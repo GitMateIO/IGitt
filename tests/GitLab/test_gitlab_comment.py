@@ -25,6 +25,14 @@ class GitLabCommentTest(unittest.TestCase):
                                            'gitmate-test-user/test', 30,
                                            CommentType.ISSUE, 32616806)
 
+    def test_number(self):
+        self.assertEqual(self.comment.number, 31500135)
+        self.assertEqual(self.issue_comment.number, 32616806)
+
+    def test_iid(self):
+        self.assertEqual(self.comment.iid, '1')
+        self.assertEqual(self.issue_comment.iid, '30')
+
     def test_type(self):
         self.assertEqual(self.comment.type, CommentType.ISSUE)
 

@@ -27,6 +27,10 @@ class GitHubCommentTest(unittest.TestCase):
                                            CommentType.ISSUE,
                                            309221241)
 
+    def test_number(self):
+        self.assertEqual(self.comment.number, 22461603)
+        self.assertEqual(self.issue_comment.number, 309221241)
+
     def test_type(self):
         self.assertEqual(self.comment.type, CommentType.COMMIT)
 

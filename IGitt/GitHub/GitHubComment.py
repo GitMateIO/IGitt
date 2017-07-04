@@ -25,6 +25,7 @@ class GitHubComment(Comment, GitHubMixin):
         """
         self._token = token
         self._type = comment_type
+        self._id = int(comment_id)
 
         if comment_type in [CommentType.MERGE_REQUEST, CommentType.ISSUE]:
             fixture = '/issues/comments'
@@ -35,6 +36,13 @@ class GitHubComment(Comment, GitHubMixin):
 
         self._url = '/repos/{repo}{fixture}/{comment_id}'.format(
             repo=repository, fixture=fixture, comment_id=comment_id)
+
+    @property
+    def number(self) -> int:
+        """
+        Retrieves the id of the comment.
+        """
+        return self._id
 
     @property
     def type(self) -> CommentType:
