@@ -26,6 +26,7 @@ class GitHubComment(Comment, GitHubMixin):
         self._token = token
         self._type = comment_type
         self._id = int(comment_id)
+        self._repository = repository
 
         if comment_type in [CommentType.MERGE_REQUEST, CommentType.ISSUE]:
             fixture = '/issues/comments'
@@ -124,3 +125,12 @@ class GitHubComment(Comment, GitHubMixin):
         Deletes the comment.
         """
         delete(self._token, self._url)
+
+    @property
+    def repository(self):
+        """
+        Returns the GitHub repository this comment was posted in, as a
+        GitHubRepository instance.
+        """
+        from IGitt.GitHub.GitHubRepository import GitHubRepository
+        return GitHubRepository(self._token, self._repository)

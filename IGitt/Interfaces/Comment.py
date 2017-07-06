@@ -5,6 +5,8 @@ request, commit or issue.
 from datetime import datetime
 from enum import Enum
 
+from IGitt.Interfaces.Repository import Repository
+
 
 class CommentType(Enum):
     """
@@ -75,5 +77,12 @@ class Comment:
         Deletes this comment at the hosting site.
 
         :raises RuntimeError: If the hosting service doesn't support deletion.
+        """
+        raise NotImplementedError
+
+    @property
+    def repository(self) -> Repository:
+        """
+        Retrieves the repository in which the comment was posted.
         """
         raise NotImplementedError

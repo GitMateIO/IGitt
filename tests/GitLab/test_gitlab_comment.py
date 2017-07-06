@@ -62,3 +62,7 @@ class GitLabCommentTest(unittest.TestCase):
         with requests_mock.Mocker() as m:
             m.delete(requests_mock.ANY, text='{}')
             self.comment.delete()
+
+    def test_repository(self):
+        self.assertEqual(self.comment.repository.full_name,
+                         'gitmate-test-user/test')

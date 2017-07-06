@@ -140,3 +140,12 @@ class GitLabComment(Comment, GitLabMixin):
         Deletes the comment.
         """
         delete(self._token, self._url)
+
+    @property
+    def repository(self):
+        """
+        Returns the GitLab repository this comment was posted in, as a
+        GitLabRepository instance.
+        """
+        from IGitt.GitLab.GitLabRepository import GitLabRepository
+        return GitLabRepository(self._token, self._repository)
