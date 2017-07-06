@@ -19,6 +19,10 @@ class GitLabIssueTest(unittest.TestCase):
         self.iss = GitLabIssue(self.token,
                                'gitmate-test-user/test', 3)
 
+    def test_repo(self):
+        self.assertEqual(self.iss.repository.full_name,
+                         'gitmate-test-user/test')
+
     @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_issue_title.yaml',
                          filter_query_parameters=['access_token'])
     def test_title(self):

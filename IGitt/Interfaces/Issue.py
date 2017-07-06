@@ -5,6 +5,7 @@ actions related to issues and bug reports.
 from datetime import datetime
 
 from IGitt.Interfaces.Comment import Comment
+from IGitt.Interfaces.Repository import Repository
 
 
 class Issue:
@@ -16,6 +17,13 @@ class Issue:
     def number(self) -> int:
         """
         Returns the issue "number" or id.
+        """
+        raise NotImplementedError
+
+    @property
+    def repository(self) -> Repository:
+        """
+        Returns the repository this issue is linked with.
         """
         raise NotImplementedError
 

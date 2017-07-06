@@ -45,6 +45,16 @@ class GitLabIssue(Issue, GitLabMixin):
             repo=quote_plus(repository), issue_iid=issue_iid)
 
     @property
+    def repository(self):
+        """
+        Returns the GitLab repository this issue is linked with as a
+        GitLabRepository instance.
+        """
+        from IGitt.GitLab.GitLabRepository import GitLabRepository
+        return GitLabRepository(self._token, self._repository)
+
+
+    @property
     def title(self) -> str:
         """
         Retrieves the title of the issue.

@@ -19,6 +19,10 @@ class GitHubIssueTest(unittest.TestCase):
         self.iss = GitHubIssue(self.token,
                                'gitmate-test-user/test', 39)
 
+    def test_repo(self):
+        self.assertEqual(self.iss.repository.full_name,
+                         'gitmate-test-user/test')
+
     @my_vcr.use_cassette('tests/GitHub/cassettes/github_issue_title.yaml',
                          filter_query_parameters=['access_token'])
     def test_title(self):

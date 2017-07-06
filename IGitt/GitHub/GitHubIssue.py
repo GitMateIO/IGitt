@@ -39,6 +39,15 @@ class GitHubIssue(Issue, GitHubMixin):
         self._url = '/repos/'+repository+'/issues/'+str(issue_number)
 
     @property
+    def repository(self):
+        """
+        Returns the GitHub repository this issue is linked with as a
+        GitHubRepository instance.
+        """
+        from IGitt.GitHub.GitHubRepository import GitHubRepository
+        return GitHubRepository(self._token, self._repository)
+
+    @property
     def title(self):
         """
         Retrieves the title of the issue.
