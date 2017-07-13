@@ -2,10 +2,14 @@
 This package contains the GitHub implementations of the interfaces in
 server.git.Interfaces.
 """
+import os
+
 from IGitt.Interfaces import _fetch, Token
 from IGitt.Utils import CachedDataMixin
 
-BASE_URL = 'https://api.github.com'
+
+GH_INSTANCE_URL = os.environ.get('GH_INSTANCE_URL', 'github.com')
+BASE_URL = 'https://api.' + GH_INSTANCE_URL
 
 
 class GitHubMixin(CachedDataMixin):
