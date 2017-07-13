@@ -3,11 +3,15 @@ This package contains the GitLab implementations of the interfaces in
 server.git.Interfaces. GitLab drops the support of API version 3 as of
 August 22, 2017. So, IGitt adopts v4 to stay future proof.
 """
+import os
+
 from IGitt.Interfaces import Token
 from IGitt.Interfaces import _fetch
 from IGitt.Utils import CachedDataMixin
 
-BASE_URL = 'https://gitlab.com/api/v4'
+
+GL_INSTANCE_URL = os.environ.get('GL_INSTANCE_URL', 'gitlab.com')
+BASE_URL = 'https://' + GL_INSTANCE_URL + '/api/v4'
 
 
 class GitLabMixin(CachedDataMixin):
