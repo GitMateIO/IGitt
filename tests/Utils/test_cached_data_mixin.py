@@ -22,5 +22,5 @@ class CachedDataMixinTest(unittest.TestCase):
 
     def test_from_data(self):
         repo = GitHubRepository.from_data(
-            self.token, 'gitmate-test-user/test', data=self.repository.data)
+            self.repository.data, self.token, 'gitmate-test-user/test')
         self.assertEqual(self.repository.clone_url, repo.clone_url)

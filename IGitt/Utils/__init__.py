@@ -13,7 +13,7 @@ class CachedDataMixin:
     classmethod.
     """
     @classmethod
-    def from_data(cls, *args, data: dict=frozenset()):
+    def from_data(cls, data: dict=frozenset(), *args, **kwargs):
         """
         Returns an instance created from the provided data. No further requests
         are made.
@@ -21,7 +21,7 @@ class CachedDataMixin:
         :raises TypeError:
             When the args provided are insufficient to call __init__.
         """
-        instance = cls(*args)
+        instance = cls(*args, **kwargs)
         if len(data):
             instance.data = data
         return instance
