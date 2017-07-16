@@ -15,7 +15,7 @@ class GitHubIssue(Issue, GitHubMixin):
     This class represents an issue on GitHub.
     """
 
-    def __init__(self, token: GitHubToken, repository: str, issue_number: int):
+    def __init__(self, token: GitHubToken, repository: str, number: int):
         """
         Creates a new GitHubIssue with the given credentials.
 
@@ -30,13 +30,13 @@ class GitHubIssue(Issue, GitHubMixin):
         :param token: A GitHubToken object.
         :param repository: The full name of the repository,
                            e.g. ``sils/something``.
-        :param issue_number: The issue number.
+        :param number: The issue number.
         :raises RuntimeError: If something goes wrong (network, auth, ...)
         """
         self._token = token
         self._repository = repository
-        self._number = issue_number
-        self._url = '/repos/'+repository+'/issues/'+str(issue_number)
+        self._number = number
+        self._url = '/repos/'+repository+'/issues/'+str(number)
 
     @property
     def repository(self):

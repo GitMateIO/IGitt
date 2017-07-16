@@ -20,7 +20,7 @@ class GitLabIssue(Issue, GitLabMixin):
     """
 
     def __init__(self, token: (GitLabOAuthToken, GitLabPrivateToken),
-                 repository: str, issue_iid: int):
+                 repository: str, number: int):
         """
         Creates a new GitLabIssue with the given credentials.
 
@@ -35,14 +35,14 @@ class GitLabIssue(Issue, GitLabMixin):
         :param token: A Token object to be used for authentication.
         :param repository: The full name of the repository.
                            e.g. ``sils/baritone``.
-        :param issue_iid: The issue internal identification number.
+        :param number: The issue internal identification number.
         :raises RuntimeError: If something goes wrong (network, auth, ...)
         """
         self._token = token
         self._repository = repository
-        self._iid = issue_iid
+        self._iid = number
         self._url = '/projects/{repo}/issues/{issue_iid}'.format(
-            repo=quote_plus(repository), issue_iid=issue_iid)
+            repo=quote_plus(repository), issue_iid=number)
 
     @property
     def repository(self):
