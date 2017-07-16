@@ -30,19 +30,19 @@ class GitHubMergeRequest(GitHubIssue, MergeRequest):
     A Pull Request on GitHub.
     """
 
-    def __init__(self, token: GitHubToken, repository: str, pr_number: int):
+    def __init__(self, token: GitHubToken, repository: str, number: int):
         """
         Creates a new Pull Request.
 
         :param token: A GitHubToken object to authenticate with.
         :param repository: The repository containing the PR.
-        :param pr_number: The PR number.
+        :param number: The PR number.
         """
         self._token = token
-        self._number = pr_number
+        self._number = number
         self._repository = repository
-        self._mr_url = '/repos/' + repository + '/pulls/' + str(pr_number)
-        self._url = '/repos/'+repository+'/issues/'+str(pr_number)
+        self._mr_url = '/repos/' + repository + '/pulls/' + str(number)
+        self._url = '/repos/'+repository+'/issues/'+str(number)
 
     @property
     def data(self):

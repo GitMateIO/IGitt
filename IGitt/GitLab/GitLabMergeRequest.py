@@ -19,17 +19,17 @@ class GitLabMergeRequest(GitLabIssue, MergeRequest):
     """
 
     def __init__(self, token: (GitLabOAuthToken, GitLabPrivateToken),
-                 repository: str, mr_iid: int):
+                 repository: str, number: int):
         """
         Creates a new GitLabMergeRequest object.
 
         :param token: A Token object to be used for authentication.
         :param repository: The repository containing the MR.
-        :param mr_iid: The unique identifier for GitLab MRs.
+        :param number: The unique internal identifier for GitLab MRs.
         """
         self._token = token
         self._repository = repository
-        self._iid = mr_iid
+        self._iid = number
         self._url = '/projects/{repo}/merge_requests/{iid}'.format(
             repo=quote_plus(repository), iid=self._iid)
 
