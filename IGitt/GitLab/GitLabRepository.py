@@ -9,7 +9,7 @@ from IGitt.GitLab import GitLabOAuthToken, GitLabPrivateToken
 from IGitt.GitLab.GitLabIssue import GitLabIssue
 from IGitt.Interfaces.Repository import Repository
 from IGitt.Interfaces.Repository import WebhookEvents
-
+from IGitt.Utils import eliminate_none
 
 GL_WEBHOOK_TRANSLATION = {
     WebhookEvents.PUSH: 'push_events',
@@ -22,6 +22,7 @@ GL_WEBHOOK_TRANSLATION = {
 
 GL_WEBHOOK_EVENTS = {'tag_push_events', 'job_events', 'pipeline_events',
                      'wiki_events'} | set(GL_WEBHOOK_TRANSLATION.values())
+
 
 class GitLabRepository(Repository, GitLabMixin):
     """
@@ -326,3 +327,68 @@ class GitLabRepository(Repository, GitLabMixin):
         """
         return {GitLabIssue(self._token, self.full_name, res['iid'])
                 for res in get(self._token, self._url + '/issues')}
+
+    def create_fork(self, organization: (str, None)=None,
+                    namespace: (str, None)=None):
+        """
+        Create a fork of Repository
+        """
+        url = self._url + '/fork'
+        data = {
+            'id': self._repository,
+            'namespace': namespace
+        }
+        res = post(self._token, url=url, data=data)
+
+        return GitLabRepository(self._token, res['path_with_namespace'])
+
+    def create_file(self, path: str, message: str, content: str,
+                    branch: (str, None)=None, committer:(str, None)=None,
+                    author:(dict, None)=None, encoding:(str, None)=None):
+        """
+        Create a new file in Repository
+        """
+        url = self._url + '/repository/files/' + path
+        data = {
+            'file_path' : path,
+            'commit_message' : message,
+            'content' : content,
+            'branch' : branch,
+            'encoding' : encoding
+        }
+
+        if author:
+            data['author_name'] = author['name']
+            data['author_email'] = author['email']
+
+        data = eliminate_none(data)
+        post(token=self._token, url=url, data=data)
+
+        from IGitt.GitLab.GitLabContent import GitLabContent
+        return GitLabContent(self._token, self._repository, path=path)
+
+    def create_merge_request(self, title:str, base:str, head:str,
+                             body: (str, None)=None,
+                             target_project_id: (int, None)=None,
+                             target_project: (str, None)=None):
+        """
+        Create a new merge request in Repository
+        """
+        url = self._url + '/merge_requests'
+        data = {
+            'title' : title,
+            'target_branch' : base,
+            'source_branch' : head,
+            'id' : quote_plus(self._repository),
+            'target_project_id' : target_project_id
+        }
+        json = post(self._token, url=url, data=data)
+
+        from IGitt.GitLab.GitLabMergeRequest import GitLabMergeRequest
+        return GitLabMergeRequest(self._token, repository=target_project, number=json['iid'])
+
+    def delete(self):
+        """
+        Delete the Repository
+        """
+        delete(token=self._token, url=self._url)

@@ -1,5 +1,5 @@
 """
-Contains the Repository base class.
+Contains the Repository class.
 """
 
 from enum import Enum
@@ -194,5 +194,35 @@ class Repository:
     def create_issue(self, title, body=''):
         """
         Create a new issue.
+        """
+        raise NotImplementedError
+
+    def create_fork(self, organization: (str, None)=None,
+                    namespace: (str, None)=None):
+        """
+        Create a fork
+        """
+        raise NotImplementedError
+
+    def delete(self):
+        """
+        Delete Repository
+        """
+        raise NotImplementedError
+
+    def create_merge_request(self, title:str, base:str, head:str,
+                             body: (str, None)=None,
+                             target_project_id: (int, None)=None,
+                             target_project: (str, None) = None):
+        """
+        Creates a PR
+        """
+        raise NotImplementedError
+
+    def create_file(self, path: str, message: str, content: str,
+                    branch: (str, None)=None, committer:(str, None)=None,
+                    author:(dict, None)=None, encoding: (str, None)=None,):
+        """
+        Creates a new file
         """
         raise NotImplementedError

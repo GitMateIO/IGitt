@@ -4,6 +4,8 @@ import os
 import vcr
 
 from IGitt.GitHub import GitHubToken
+from IGitt.GitHub.GitHubContent import GitHubContent
+from IGitt.GitHub.GitHubMergeRequest import GitHubMergeRequest
 from IGitt.GitHub.GitHubRepository import GitHubRepository
 from IGitt.Interfaces.Repository import WebhookEvents
 from IGitt import ElementAlreadyExistsError, ElementDoesntExistError
@@ -17,8 +19,10 @@ class TestGitHubRepository(unittest.TestCase):
 
     def setUp(self):
         token = GitHubToken(os.environ.get('GITHUB_TEST_TOKEN', ''))
+        fork_token = GitHubToken(os.environ.get('GITHUB_COAFILE_BOT_TOKEN', ''))
         self.repo = GitHubRepository(token,
                                      'gitmate-test-user/test')
+        self.fork_repo = GitHubRepository(fork_token, 'gitmate-test-user/test')
 
     def test_hoster(self):
         self.assertEqual(self.repo.hoster, 'github')
@@ -82,3 +86,37 @@ class TestGitHubRepository(unittest.TestCase):
         self.assertNotIn('http://some.url/in/the/world', self.repo.hooks)
         self.repo.register_hook('http://some.url/in/the/world')
         self.assertIn('http://some.url/in/the/world', self.repo.hooks)
+
+    @my_vcr.use_cassette('tests/GitHub/cassettes/github_repo_create_fork.yaml')
+    def test_create_fork(self):
+        self.assertIsInstance(self.fork_repo.create_fork(), GitHubRepository)
+
+    @my_vcr.use_cassette('tests/GitHub/cassettes/github_repo_delete.yaml')
+    def test_repo_delete(self):
+        fork = self.fork_repo.create_fork()
+        self.assertIsNone(fork.delete())
+
+    @my_vcr.use_cassette('tests/GitHub/cassettes/github_repo_create_mr.yaml')
+    def test_create_mr(self):
+        fork = self.fork_repo.create_fork()
+        try:
+            fork.create_file('.coafile', 'Hello', 'Hello', 'master')
+        except RuntimeError:
+            fork.delete()
+            fork = self.fork_repo.create_fork()
+            fork.create_file('.coafile', 'Hello', 'Hello', 'master')
+        self.assertIsInstance(
+            self.fork_repo.create_merge_request('add', head='coafile:master',
+                                                base='master'), GitHubMergeRequest)
+
+    @my_vcr.use_cassette('tests/GitHub/cassettes/github_repo_create_file.yaml')
+    def test_create_file(self):
+        fork = self.fork_repo.create_fork()
+        try:
+            file = fork.create_file('.coafile', 'Hello', 'Hello', 'master')
+        except RuntimeError:
+            fork.delete()
+            fork = self.fork_repo.create_fork()
+            file = fork.create_file('.coafile', 'Hello', 'Hello', 'master')
+
+        self.assertIsInstance(file, GitHubContent)

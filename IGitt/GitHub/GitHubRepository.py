@@ -3,12 +3,13 @@ Contains the GitHub Repository implementation.
 """
 
 from IGitt import ElementAlreadyExistsError, ElementDoesntExistError
-from IGitt.GitHub import delete, get, post, GitHubMixin
+from IGitt.GitHub import delete, get, post, GitHubMixin, put
 from IGitt.GitHub import GitHubToken
 from IGitt.GitHub.GitHubIssue import GitHubIssue
 from IGitt.Interfaces.Repository import Repository
 from IGitt.Interfaces.Repository import WebhookEvents
-
+from IGitt.Utils import eliminate_none
+from base64 import b64encode
 
 GH_WEBHOOK_TRANSLATION = {
     WebhookEvents.PUSH: 'push',
@@ -24,6 +25,8 @@ class GitHubRepository(Repository, GitHubMixin):
     """
     Represents a repository on GitHub.
     """
+
+
 
     def __init__(self, token: GitHubToken, repository: str):
         """
@@ -323,3 +326,53 @@ class GitHubRepository(Repository, GitHubMixin):
         True
         """
         return GitHubIssue.create(self._token, self.full_name, title, body)
+
+    def create_fork(self, organization: (str, None)=None,
+                    namespace: (str, None)=None):
+        """
+        Creates a fork of repository.
+        """
+        url = self._url + '/forks'
+        data = {
+            'organization': organization
+        }
+        data = eliminate_none(data)
+        response = post(self._token, url, data=data)
+
+        return GitHubRepository(self._token, response['full_name'])
+
+    def delete(self):
+        """
+        Deletes the repository
+        """
+        delete(self._token, self._url)
+
+    def create_merge_request(self, title:str, base:str, head:str,
+                             body: (str, None)=None,
+                             target_project_id: (int, None)=None,
+                             target_project: (str, None) = None):
+        """
+        Creates a merge request to that repository
+        """
+        data = {'title': title, 'body': body, 'base': base,
+                'head': head}
+        url = self._url + '/pulls'
+        json = post(self._token, url, data=data)
+
+        from IGitt.GitHub.GitHubMergeRequest import GitHubMergeRequest
+        return GitHubMergeRequest(self._token, json['base']['repo']['full_name'], json['number'])
+
+    def create_file(self, path: str, message: str, content: str,
+                    branch: (str, None)=None, committer:(str, None)=None,
+                    author:(dict, None)=None, encoding:(str, None)=None):
+        """
+        Creates a new file in the Repository
+        """
+        url = self._url + '/contents/' + path
+        content = b64encode(content.encode()).decode('utf-8')
+        data = { 'path' : path,
+                 'message': message, 'content': content, 'branch': branch}
+        json = put(self._token, url, data)
+
+        from IGitt.GitHub.GitHubContent import GitHubContent
+        return GitHubContent(self._token, self._repository, json['content']['path'])

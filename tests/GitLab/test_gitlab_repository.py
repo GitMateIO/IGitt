@@ -1,16 +1,19 @@
 import unittest
 import os
+import time
 
 import vcr
 
-from IGitt.GitLab import GitLabOAuthToken
+from IGitt.GitLab import GitLabOAuthToken, GitLabPrivateToken
+from IGitt.GitLab.GitLabContent import GitLabContent
+from IGitt.GitLab.GitLabMergeRequest import GitLabMergeRequest
 from IGitt.GitLab.GitLabRepository import GitLabRepository
 from IGitt.Interfaces.Repository import WebhookEvents
 from IGitt import ElementAlreadyExistsError, ElementDoesntExistError
 
 my_vcr = vcr.VCR(match_on=['method', 'scheme', 'host', 'port', 'path'],
-                 filter_query_parameters=['access_token'],
-                 filter_post_data_parameters=['access_token'])
+                 filter_query_parameters=['access_token', 'private_token'],
+                 filter_post_data_parameters=['access_token', 'private_token'])
 
 
 class TestGitLabRepository(unittest.TestCase):
@@ -19,6 +22,10 @@ class TestGitLabRepository(unittest.TestCase):
         token = GitLabOAuthToken(os.environ.get('GITLAB_TEST_TOKEN', ''))
         self.repo = GitLabRepository(token,
                                      'gitmate-test-user/test')
+
+        self.fork_token = GitLabPrivateToken(os.environ.get('GITLAB_COAFILE_BOT_TOKEN', ''))
+        self.fork_repo = GitLabRepository(self.fork_token,
+                                          'gitmate-test-user/test')
 
     def test_hoster(self):
         self.assertEqual(self.repo.hoster, 'gitlab')
@@ -81,3 +88,75 @@ class TestGitLabRepository(unittest.TestCase):
     @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_repo_issues.yaml')
     def test_issues(self):
         self.assertEqual(len(self.repo.issues), 13)
+
+    @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_repo_fork.yaml')
+    def test_create_fork(self):
+        try:
+            fork = self.fork_repo.create_fork(namespace='coafile')
+        except RuntimeError:
+            fork = GitLabRepository(self.fork_token, 'coafile/test')
+            fork.delete()
+            time.sleep(5)
+            fork = self.fork_repo.create_fork(namespace='coafile')
+
+        self.assertIsInstance(fork, GitLabRepository)
+
+    @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_repo_delete.yaml')
+    def test_delete_repo(self):
+        try:
+            fork = self.fork_repo.create_fork(namespace='coafile')
+        except RuntimeError:
+            fork = GitLabRepository(self.fork_token, 'coafile/test')
+            fork.delete()
+            time.sleep(5)
+            fork = self.fork_repo.create_fork(namespace='coafile')
+
+        self.assertIsNone(fork.delete())
+
+    @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_repo_create_mr.yaml')
+    def test_create_mr(self):
+        try:
+            fork = self.fork_repo.create_fork(namespace='coafile')
+        except RuntimeError:
+            fork = GitLabRepository(self.fork_token, 'coafile/test')
+            fork.delete()
+            time.sleep(5) # Waiting for repo deletion
+            fork = self.fork_repo.create_fork(namespace='coafile')
+
+        fork.create_file(path='.coafile', message='hello', content='hello', branch='master')
+        mr = fork.create_merge_request(title='coafile', head='master', base='master',
+                                       target_project_id=self.repo.data['id'],
+                                       target_project=self.repo.data['path_with_namespace'])
+
+        self.assertIsInstance(mr, GitLabMergeRequest)
+
+    @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_repo_create_mr_with_author.yaml')
+    def test_create_mr_with_author(self):
+        try:
+            fork = self.fork_repo.create_fork(namespace='coafile')
+        except RuntimeError:
+            fork = GitLabRepository(self.fork_token, 'coafile/test')
+            fork.delete()
+            time.sleep(5)  # Waiting for repo deletion
+            fork = self.fork_repo.create_fork(namespace='coafile')
+        author = {
+            'name' : 'coafile',
+            'email' : 'coafilecoala@gmail.com'
+        }
+        self.assertIsInstance(fork.create_file(path='.coafile', message='hello',
+                                               content='hello', branch='master', author=author),
+                              GitLabContent)
+
+    @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_repo_create_file.yaml')
+    def test_create_file(self):
+        try:
+            fork = self.fork_repo.create_fork(namespace='coafile')
+        except RuntimeError:
+            fork = GitLabRepository(self.fork_token, 'coafile/test')
+            fork.delete()
+            time.sleep(5)  # Waiting for repo deletion
+            fork = self.fork_repo.create_fork(namespace='coafile')
+
+        self.assertIsInstance(fork.create_file(path='.coafile', message='hello',
+                                               content='hello', branch='master'),
+                              GitLabContent)
