@@ -54,3 +54,10 @@ class CachedDataMixin:
         Setter for the data, use it to override, refresh, ...
         """
         self._data = value
+
+
+def eliminate_none(data):
+    """
+    Remove None values from dict
+    """
+    return dict((k, v) for k, v in data.items() if v is not None)
