@@ -184,6 +184,14 @@ class Repository:
         """
         raise NotImplementedError
 
+    def filter_issues(self, state: str='opened') -> set:
+        """
+        Filters the issues from the repository based on properties.
+
+        :param state: 'opened' or 'closed' or 'all'.
+        """
+        raise NotImplementedError
+
     @property
     def issues(self) -> set:
         """

@@ -20,6 +20,12 @@ GH_WEBHOOK_TRANSLATION = {
     WebhookEvents.ISSUE_COMMENT: 'issue_comment'
 }
 
+GH_ISSUE_STATE_TRANSLATION = {
+    'opened': 'open',
+    'closed': 'closed',
+    'all': 'all'
+}
+
 
 class GitHubRepository(Repository, GitHubMixin):
     """
@@ -300,6 +306,16 @@ class GitHubRepository(Repository, GitHubMixin):
         return {GitHubMergeRequest(self._token, self.full_name, res['number'])
                 for res in get(self._token, self._url + '/pulls')}
 
+    def filter_issues(self, state: str='opened') -> set:
+        """
+        Filters the issues from the repository based on properties.
+
+        :param state: 'opened' or 'closed' or 'all'.
+        """
+        params = {'state': GH_ISSUE_STATE_TRANSLATION[state]}
+        return {GitHubIssue(self._token, self.full_name, res['number'])
+                for res in get(self._token, self._url + '/issues', params)}
+
     @property
     def issues(self) -> set:
         """
@@ -311,8 +327,7 @@ class GitHubRepository(Repository, GitHubMixin):
         >>> len(repo.issues)
         81
         """
-        return {GitHubIssue(self._token, self.full_name, res['number'])
-                for res in get(self._token, self._url + '/issues')}
+        return self.filter_issues()
 
     def create_issue(self, title: str, body: str='') -> GitHubIssue:
         """

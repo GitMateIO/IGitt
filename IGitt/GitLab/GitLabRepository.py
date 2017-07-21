@@ -314,6 +314,16 @@ class GitLabRepository(Repository, GitLabMixin):
         return {GitLabMergeRequest(self._token, self.full_name, res['iid'])
                 for res in get(self._token, self._url + '/merge_requests')}
 
+    def filter_issues(self, state: str='opened') -> set:
+        """
+        Filters the issues from the repository based on properties.
+
+        :param state: 'opened' or 'closed' or 'all'.
+        """
+        params = {'state': state}
+        return {GitLabIssue(self._token, self.full_name, res['iid'])
+                for res in get(self._token, self._url + '/issues', params)}
+
     @property
     def issues(self) -> set:
         """
@@ -325,8 +335,7 @@ class GitLabRepository(Repository, GitLabMixin):
         >>> len(repo.issues)
         13
         """
-        return {GitLabIssue(self._token, self.full_name, res['iid'])
-                for res in get(self._token, self._url + '/issues')}
+        return self.filter_issues()
 
     def create_fork(self, organization: (str, None)=None,
                     namespace: (str, None)=None):
