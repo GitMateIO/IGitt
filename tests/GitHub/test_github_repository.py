@@ -19,7 +19,7 @@ class TestGitHubRepository(unittest.TestCase):
 
     def setUp(self):
         token = GitHubToken(os.environ.get('GITHUB_TEST_TOKEN', ''))
-        fork_token = GitHubToken(os.environ.get('GITHUB_COAFILE_BOT_TOKEN', ''))
+        fork_token = GitHubToken(os.environ.get('GITHUB_TEST_TOKEN_2', ''))
         self.repo = GitHubRepository(token,
                                      'gitmate-test-user/test')
         self.fork_repo = GitHubRepository(fork_token, 'gitmate-test-user/test')
@@ -106,7 +106,7 @@ class TestGitHubRepository(unittest.TestCase):
             fork = self.fork_repo.create_fork()
             fork.create_file('.coafile', 'Hello', 'Hello', 'master')
         self.assertIsInstance(
-            self.fork_repo.create_merge_request('add', head='coafile:master',
+            self.fork_repo.create_merge_request('add', head='gitmate-test-user-2:master',
                                                 base='master'), GitHubMergeRequest)
 
     @my_vcr.use_cassette('tests/GitHub/cassettes/github_repo_create_file.yaml')

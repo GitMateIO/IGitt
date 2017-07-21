@@ -20,13 +20,13 @@ class TestGitHubThread(unittest.TestCase):
         self.repo = GitHubRepository(self.token,
                                      'gitmate-test-user/test')
 
-        self.fork_token = GitHubToken(os.environ.get('GITHUB_COAFILE_BOT_TOKEN', ''))
-        self.temp_repo = GitHubRepository(self.token, 'coafile/issue')
+        self.fork_token = GitHubToken(os.environ.get('GITHUB_TEST_TOKEN_2', ''))
+        self.temp_repo = GitHubRepository(self.token, 'gitmate-test-user-2/issue')
 
 
     @my_vcr.use_cassette('tests/GitHub/cassettes/github_thread_unsubscribe.yaml')
     def test_unsubscribe(self):
-        self.temp_repo.create_issue('Hello', 'Hello @coafile')
+        self.temp_repo.create_issue('Hello', 'Hello @gitmate-test-user-2')
         notifications = GitHubNotification(self.fork_token)
         threads = notifications.get_threads()
         thread = threads[0]
@@ -34,7 +34,7 @@ class TestGitHubThread(unittest.TestCase):
 
     @my_vcr.use_cassette('tests/GitHub/cassettes/github_thread_mark_read.yaml')
     def test_mark_read(self):
-        self.temp_repo.create_issue('Hello', 'Hello @coafile')
+        self.temp_repo.create_issue('Hello', 'Hello @gitmate-test-user-2')
         notifications = GitHubNotification(self.fork_token)
         threads = notifications.get_threads()
         thread = threads[0]
@@ -42,7 +42,7 @@ class TestGitHubThread(unittest.TestCase):
 
     @my_vcr.use_cassette('tests/GitHub/cassettes/github_thread_reason.yaml')
     def test_reason(self):
-        self.temp_repo.create_issue('Hello', 'Hello @coafile')
+        self.temp_repo.create_issue('Hello', 'Hello @gitmate-test-user-2')
         notifications = GitHubNotification(self.fork_token)
         threads = notifications.get_threads()
         thread = threads[0]
@@ -50,7 +50,7 @@ class TestGitHubThread(unittest.TestCase):
 
     @my_vcr.use_cassette('tests/GitHub/cassettes/github_thread_unread.yaml')
     def test_unread(self):
-        self.temp_repo.create_issue('Hello', 'Hello @coafile')
+        self.temp_repo.create_issue('Hello', 'Hello @gitmate-test-user-2')
         notifications = GitHubNotification(self.fork_token)
         threads = notifications.get_threads()
         thread = threads[0]
