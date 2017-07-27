@@ -24,6 +24,10 @@ class GitHubCommitTest(unittest.TestCase):
     def test_sha(self):
         self.assertIn('645961c', self.commit.sha)
 
+    @my_vcr.use_cassette('tests/GitHub/cassettes/github_commit_message.yaml')
+    def test_message(self):
+        self.assertEqual(self.commit.message, 'Updated README.md')
+
     @my_vcr.use_cassette('tests/GitHub/cassettes/github_commit_repository.yaml')
     def test_repository(self):
         self.assertEqual(self.commit.repository.full_name,

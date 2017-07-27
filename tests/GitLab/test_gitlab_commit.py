@@ -24,6 +24,10 @@ class GitLabCommitTest(unittest.TestCase):
     def test_sha(self):
         self.assertIn('3fc4b86', self.commit.sha)
 
+    @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_commit_message.yaml')
+    def test_message(self):
+        self.assertEqual(self.commit.message, 'Update README.md')
+
     @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_commit_repository.yaml')
     def test_repository(self):
         self.assertEqual(self.commit.repository.full_name,

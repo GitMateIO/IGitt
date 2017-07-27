@@ -100,6 +100,15 @@ class GitHubCommit(Commit, GitHubMixin):
         self._url = '/repos/' + repository + '/commits/' + sha
 
     @property
+    def message(self) -> str:
+        """
+        Returns the commit message.
+
+        :return: Commit message as string.
+        """
+        return self.data['commit']['message']
+
+    @property
     def sha(self):
         """
         Retrieves the SHA of the commit:

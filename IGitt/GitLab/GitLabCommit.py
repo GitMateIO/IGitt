@@ -45,6 +45,15 @@ class GitLabCommit(Commit, GitLabMixin):
             id=quote_plus(repository), sha=sha if sha else branch)
 
     @property
+    def message(self) -> str:
+        """
+        Returns the commit message.
+
+        :return: Commit message as string.
+        """
+        return self.data['message']
+
+    @property
     def sha(self):
         """
         Retrieves the SHA of the commit:

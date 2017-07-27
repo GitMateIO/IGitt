@@ -152,3 +152,12 @@ class Commit:
         :return: A Repository object.
         """
         raise NotImplementedError
+
+    @property
+    def message(self) -> str:
+        """
+        Retrieves the commit message.
+
+        :return: Commit message as string.
+        """
+        raise NotImplementedError
