@@ -1,0 +1,69 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.18.1]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/merge_requests/25/commits?User-Agent=IGitt&per_page=100
+  response:
+    body: {string: '[{"id":"9ba5b704f5866e468ec2e639fa893ae4c129f2ad","short_id":"9ba5b704","title":"Create
+        a.txt","created_at":"2017-07-28T19:59:43.000Z","parent_ids":[],"message":"Create
+        a.txt\n\nAwesome commit message\n\nFix #21, Fixes #22 and Closes gitmate-test-user/test#23.\nThis
+        commit is also related to #31 and fixes #26, #27\nand https://gitlab.com/gitmate-test-user/test/issues/30.","author_name":"Naveen
+        Kumar Sangi","author_email":"nkprince007@gmail.com","authored_date":"2017-07-28T19:59:43.000Z","committer_name":"Naveen
+        Kumar Sangi","committer_email":"nkprince007@gmail.com","committed_date":"2017-07-28T19:59:43.000Z"}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['617']
+      Content-Type: [application/json]
+      Date: ['Fri, 28 Jul 2017 20:06:02 GMT']
+      Etag: [W/"af045c93b2c728bd4366b868c62788d2"]
+      Link: ['<https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/merge_requests/25/commits?User-Agent=IGitt&access_token=98f0f5b512132e1a255f6f6b400f6a121c7a35c838bdf6c9cf0750ef09a97b9f&id=gitmate-test-user%2Ftest&merge_request_iid=25&page=1&per_page=100>;
+          rel="first", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/merge_requests/25/commits?User-Agent=IGitt&access_token=98f0f5b512132e1a255f6f6b400f6a121c7a35c838bdf6c9cf0750ef09a97b9f&id=gitmate-test-user%2Ftest&merge_request_iid=25&page=1&per_page=100>;
+          rel="last"']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['100']
+      X-Prev-Page: ['']
+      X-Request-Id: [257b0e71-3564-4a4e-b71d-727ec916b565]
+      X-Runtime: ['0.388617']
+      X-Total: ['1']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.18.1]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/9ba5b704f5866e468ec2e639fa893ae4c129f2ad?User-Agent=IGitt&per_page=100
+  response:
+    body: {string: '{"id":"9ba5b704f5866e468ec2e639fa893ae4c129f2ad","short_id":"9ba5b704","title":"Create
+        a.txt","created_at":"2017-07-28T19:59:43.000+00:00","parent_ids":["515280bfe8488e1b403e0dd95c41a404355ca184"],"message":"Create
+        a.txt\n\nAwesome commit message\n\nFix #21, Fixes #22 and Closes gitmate-test-user/test#23.\nThis
+        commit is also related to #31 and fixes #26, #27\nand https://gitlab.com/gitmate-test-user/test/issues/30.","author_name":"Naveen
+        Kumar Sangi","author_email":"nkprince007@gmail.com","authored_date":"2017-07-28T19:59:43.000+00:00","committer_name":"Naveen
+        Kumar Sangi","committer_email":"nkprince007@gmail.com","committed_date":"2017-07-28T19:59:43.000+00:00","stats":{"additions":1,"deletions":0,"total":1},"status":null}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['734']
+      Content-Type: [application/json]
+      Date: ['Fri, 28 Jul 2017 20:06:15 GMT']
+      Etag: [W/"c8ce9b37a99d69f43699b2f78620dd7a"]
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [e95afca4-cea0-40c8-b074-8ce002623e66]
+      X-Runtime: ['0.136146']
+    status: {code: 200, message: OK}
+version: 1

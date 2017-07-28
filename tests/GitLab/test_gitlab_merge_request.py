@@ -15,10 +15,8 @@ my_vcr = vcr.VCR(match_on=['method', 'scheme', 'host', 'port', 'path'],
 class TestGitLabMergeRequest(unittest.TestCase):
 
     def setUp(self):
-        token = GitLabOAuthToken(os.environ.get('GITLAB_TEST_TOKEN', ''))
-        self.mr = GitLabMergeRequest(token,
-                                     'gitmate-test-user/test',
-                                     7)
+        self.token = GitLabOAuthToken(os.environ.get('GITLAB_TEST_TOKEN', ''))
+        self.mr = GitLabMergeRequest(self.token, 'gitmate-test-user/test', 7)
 
     @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_merge_request_base.yaml')
     def test_base(self):
@@ -76,3 +74,9 @@ class TestGitLabMergeRequest(unittest.TestCase):
         self.assertEqual(self.mr.state, 'closed')
         self.mr.reopen()
         self.assertEqual(self.mr.state, 'reopened')
+
+    @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_merge_request_closes_issues.yaml')
+    def test_closes_issues(self):
+        mr = GitLabMergeRequest(self.token, 'gitmate-test-user/test', 25)
+        self.assertEqual({int(issue.number) for issue in mr.closes_issues},
+                         {21, 22, 23, 26, 27, 30})

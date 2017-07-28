@@ -183,3 +183,13 @@ class GitLabMergeRequest(GitLabIssue, MergeRequest):
         deletions = len([line for line in results if line.startswith('-')])
 
         return additions, deletions
+
+    @property
+    def closes_issues(self) -> {GitLabIssue}:
+        """
+        Returns a set of GitLabIssue objects which would be closed upon merging
+        this pull request.
+        """
+        issues = self._get_closes_issues()
+        return {GitLabIssue(self._token, repo_name, number)
+                for number, repo_name in issues}

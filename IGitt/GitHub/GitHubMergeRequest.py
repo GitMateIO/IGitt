@@ -206,3 +206,13 @@ class GitHubMergeRequest(GitHubIssue, MergeRequest):
         GitHub doesn't allow deleting issues or pull requests.
         """
         raise NotImplementedError
+
+    @property
+    def closes_issues(self) -> {GitHubIssue}:
+        """
+        Returns a set of GitHubIssue objects which would be closed upon merging
+        this pull request.
+        """
+        issues = self._get_closes_issues()
+        return {GitHubIssue(self._token, repo_name, number)
+                for number, repo_name in issues}
