@@ -35,7 +35,7 @@ interactions:
       Content-Encoding: [gzip]
       Content-Security-Policy: [default-src 'none']
       Content-Type: [application/json; charset=utf-8]
-      Date: ['Thu, 27 Jul 2017 16:37:18 GMT']
+      Date: ['Wed, 02 Aug 2017 08:25:46 GMT']
       ETag: [W/"0a04ca745da73f35d739de02e86cacd1"]
       Last-Modified: ['Thu, 27 Jul 2017 08:21:07 GMT']
       Server: [GitHub.com]
@@ -46,13 +46,13 @@ interactions:
       X-Content-Type-Options: [nosniff]
       X-Frame-Options: [deny]
       X-GitHub-Media-Type: [github.v3; format=json]
-      X-GitHub-Request-Id: ['6169:127DD:35AC08:55D3F2:597A16BD']
+      X-GitHub-Request-Id: ['2FCF:1C4BD:F4F474:1542D50:59818C89']
       X-OAuth-Scopes: ['admin:org, admin:org_hook, admin:public_key, admin:repo_hook,
           delete_repo, gist, notifications, repo, user']
       X-RateLimit-Limit: ['5000']
-      X-RateLimit-Remaining: ['4990']
-      X-RateLimit-Reset: ['1501174323']
-      X-Runtime-rack: ['0.123622']
+      X-RateLimit-Remaining: ['4995']
+      X-RateLimit-Reset: ['1501665308']
+      X-Runtime-rack: ['0.082801']
       X-XSS-Protection: [1; mode=block]
     status: {code: 200, message: OK}
 - request:
@@ -94,7 +94,7 @@ interactions:
       Content-Encoding: [gzip]
       Content-Security-Policy: [default-src 'none']
       Content-Type: [application/json; charset=utf-8]
-      Date: ['Thu, 27 Jul 2017 16:37:23 GMT']
+      Date: ['Wed, 02 Aug 2017 08:25:48 GMT']
       ETag: [W/"052d97ec0abdf18f83116fefa1dde743"]
       Last-Modified: ['Thu, 27 Jul 2017 08:17:47 GMT']
       Server: [GitHub.com]
@@ -105,13 +105,13 @@ interactions:
       X-Content-Type-Options: [nosniff]
       X-Frame-Options: [deny]
       X-GitHub-Media-Type: [github.v3; format=json]
-      X-GitHub-Request-Id: ['9A6D:127E1:25C01B3:3B783BB:597A16C0']
+      X-GitHub-Request-Id: ['7AF0:3BEC:C644C8:F995E3:59818C8C']
       X-OAuth-Scopes: ['admin:org, admin:org_hook, admin:public_key, admin:repo_hook,
           delete_repo, gist, notifications, repo, user']
       X-RateLimit-Limit: ['5000']
-      X-RateLimit-Remaining: ['4989']
-      X-RateLimit-Reset: ['1501174323']
-      X-Runtime-rack: ['0.040973']
+      X-RateLimit-Remaining: ['4994']
+      X-RateLimit-Reset: ['1501665308']
+      X-Runtime-rack: ['0.044746']
       X-XSS-Protection: [1; mode=block]
     status: {code: 200, message: OK}
 version: 1

@@ -84,7 +84,7 @@ class TestGitHubMergeRequest(unittest.TestCase):
         self.mr.reopen()
         self.assertEqual(self.mr.state, 'open')
 
-    @my_vcr.use_cassette('tests/GitLab/cassettes/github_merge_request_closes_issues.yaml')
+    @my_vcr.use_cassette('tests/GitHub/cassettes/github_merge_request_closes_issues.yaml')
     def test_closes_issues(self):
         mr = GitHubMergeRequest(self.token, 'gitmate-test-user/test', 109)
         self.assertEqual({int(issue.number) for issue in mr.closes_issues},
