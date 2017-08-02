@@ -7,6 +7,7 @@ from itertools import chain
 import re
 
 from IGitt.Interfaces.Commit import Commit
+from IGitt.Interfaces.CommitStatus import Status
 from IGitt.Interfaces.Issue import Issue
 
 
@@ -209,3 +210,15 @@ class MergeRequest(Issue):
         pull request.
         """
         raise NotImplementedError
+
+    @property
+    def tests_passed(self) -> bool:
+        """
+        Returns True if all commits of the merge request have a success state.
+        If you wish to only get the head state, use mr.head.combined_status.
+        """
+        statuses = set(map(lambda commit: commit.combined_status,
+                           self.commits))
+        if Status.PENDING in statuses or Status.FAILED in statuses:
+            return False
+        return True
