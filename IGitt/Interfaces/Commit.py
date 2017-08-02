@@ -127,6 +127,20 @@ class Commit:
         raise NotImplementedError
 
     @property
+    def combined_status(self) -> Status:
+        """
+        Retrieves a combined status of all the commits.
+
+        :return:
+            Status.FAILED if any of the commits report as error or failure or
+            canceled
+            Status.PENDING if there are no statuses or a commit is pending or a
+            test is running
+            Status.SUCCESS if the latest status for all commits is success
+        """
+        raise NotImplementedError
+
+    @property
     def sha(self) -> str:
         """
         Retrieves the sha of the commit.

@@ -131,6 +131,35 @@ class GitLabCommit(Commit, GitLabMixin):
 
         return result
 
+    @property
+    def combined_status(self) -> Status:
+        """
+        Retrieves a combined status of all the commits.
+
+        :return:
+            Status.FAILED if any of the commits report as error or failure or
+            canceled
+            Status.PENDING if there are no statuses or a commit is pending or a
+            test is running
+            Status.SUCCESS if the latest status for all commits is success
+        :raises AssertionError:
+            If the status couldn't be matched with any of the possible outcomes
+            Status.SUCCESS, Status.FAILED and Status.PENDING.
+        """
+        statuses = set(map(lambda status: status.status, self.get_statuses()))
+        if (
+                not len(statuses) or
+                Status.PENDING in statuses or
+                Status.RUNNING in statuses):
+            return Status.PENDING
+        if (
+                Status.FAILED in statuses or
+                Status.ERROR in statuses or
+                Status.CANCELED in statuses):
+            return Status.FAILED
+        assert all(status == Status.SUCCESS for status in statuses)
+        return Status.SUCCESS
+
     def set_status(self, status: CommitStatus):
         """
         Adds the given status to the commit.

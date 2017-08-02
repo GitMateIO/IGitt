@@ -1,0 +1,108 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.18.1]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/3fc4b860e0a2c17819934d678decacd914271e5c/statuses?User-Agent=IGitt&per_page=100
+  response:
+    body: {string: '[{"id":18627456,"sha":"3fc4b860e0a2c17819934d678decacd914271e5c","ref":"gitmate-test-user-patch-1","status":"failed","name":"gitmate/test","target_url":null,"description":"Theres
+        a problem","created_at":"2017-06-14T10:29:19.772Z","started_at":null,"finished_at":"2017-06-14T10:29:19.794Z","allow_failure":false,"coverage":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"}}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['571']
+      Content-Type: [application/json]
+      Date: ['Wed, 02 Aug 2017 05:24:44 GMT']
+      Etag: [W/"1ce65c958f5d1b45791b3e7eb0976f4d"]
+      Link: ['<https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/3fc4b860e0a2c17819934d678decacd914271e5c/statuses?User-Agent=IGitt&access_token=98f0f5b512132e1a255f6f6b400f6a121c7a35c838bdf6c9cf0750ef09a97b9f&id=gitmate-test-user%2Ftest&page=1&per_page=100&sha=3fc4b860e0a2c17819934d678decacd914271e5c>;
+          rel="first", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/3fc4b860e0a2c17819934d678decacd914271e5c/statuses?User-Agent=IGitt&access_token=98f0f5b512132e1a255f6f6b400f6a121c7a35c838bdf6c9cf0750ef09a97b9f&id=gitmate-test-user%2Ftest&page=1&per_page=100&sha=3fc4b860e0a2c17819934d678decacd914271e5c>;
+          rel="last"']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['100']
+      X-Prev-Page: ['']
+      X-Request-Id: [3e8dab17-4add-40cf-b9f5-eac2e7e8fde6]
+      X-Runtime: ['0.106616']
+      X-Total: ['1']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.18.1]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/a37bb904b39a4aabee24f52ff98a0a988a41a24a/statuses?User-Agent=IGitt&per_page=100
+  response:
+    body: {string: '[{"id":18888923,"sha":"a37bb904b39a4aabee24f52ff98a0a988a41a24a","ref":"hello","status":"failed","name":"review/gitmate/manual","target_url":"http://gitmate.io/","description":"This
+        commit needs work.","created_at":"2017-06-17T01:00:29.578Z","started_at":null,"finished_at":"2017-06-17T01:00:29.602Z","allow_failure":false,"coverage":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"}},{"id":18921924,"sha":"a37bb904b39a4aabee24f52ff98a0a988a41a24a","ref":"hello","status":"running","name":"GitMate-2
+        PR Review","target_url":"http://2.gitmate.io/","description":"GitMate-2 analysis
+        in progress...","created_at":"2017-06-18T00:56:51.962Z","started_at":"2017-06-18T00:56:52.002Z","finished_at":null,"allow_failure":false,"coverage":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"}}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['1176']
+      Content-Type: [application/json]
+      Date: ['Wed, 02 Aug 2017 05:24:46 GMT']
+      Etag: [W/"b35f220c44a685ff46b2f66840125c34"]
+      Link: ['<https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/a37bb904b39a4aabee24f52ff98a0a988a41a24a/statuses?User-Agent=IGitt&access_token=98f0f5b512132e1a255f6f6b400f6a121c7a35c838bdf6c9cf0750ef09a97b9f&id=gitmate-test-user%2Ftest&page=1&per_page=100&sha=a37bb904b39a4aabee24f52ff98a0a988a41a24a>;
+          rel="first", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/a37bb904b39a4aabee24f52ff98a0a988a41a24a/statuses?User-Agent=IGitt&access_token=98f0f5b512132e1a255f6f6b400f6a121c7a35c838bdf6c9cf0750ef09a97b9f&id=gitmate-test-user%2Ftest&page=1&per_page=100&sha=a37bb904b39a4aabee24f52ff98a0a988a41a24a>;
+          rel="last"']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['100']
+      X-Prev-Page: ['']
+      X-Request-Id: [9f170055-3aa4-4956-96ee-69002680183d]
+      X-Runtime: ['0.099433']
+      X-Total: ['2']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.18.1]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/99f484ae167dcfcc35008ba3b5b564443d425ee0/statuses?User-Agent=IGitt&per_page=100
+  response:
+    body: {string: '[{"id":22972119,"sha":"99f484ae167dcfcc35008ba3b5b564443d425ee0","ref":"sils/severalcommits","status":"success","name":"review/gitmate/pr","target_url":"http://gitmate.io/","description":"This
+        PR has no issues. :)","created_at":"2017-07-18T08:05:50.984Z","started_at":"2017-07-18T08:05:51.050Z","finished_at":"2017-07-18T08:06:10.617Z","allow_failure":false,"coverage":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"}},{"id":22879883,"sha":"99f484ae167dcfcc35008ba3b5b564443d425ee0","ref":"sils/severalcommits","status":"success","name":"GitMate-2
+        PR Review","target_url":"http://gitmate.io/","description":"This PR has no
+        issues. :)","created_at":"2017-07-17T16:47:46.031Z","started_at":"2017-07-17T16:47:46.104Z","finished_at":"2017-07-17T16:48:13.578Z","allow_failure":false,"coverage":null,"author":{"name":"GitMate","username":"gitmate-test-user","id":1369631,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"}}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['1237']
+      Content-Type: [application/json]
+      Date: ['Wed, 02 Aug 2017 05:24:49 GMT']
+      Etag: [W/"90945bcbeeae5c71cac872ea0e321038"]
+      Link: ['<https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/99f484ae167dcfcc35008ba3b5b564443d425ee0/statuses?User-Agent=IGitt&access_token=98f0f5b512132e1a255f6f6b400f6a121c7a35c838bdf6c9cf0750ef09a97b9f&id=gitmate-test-user%2Ftest&page=1&per_page=100&sha=99f484ae167dcfcc35008ba3b5b564443d425ee0>;
+          rel="first", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/99f484ae167dcfcc35008ba3b5b564443d425ee0/statuses?User-Agent=IGitt&access_token=98f0f5b512132e1a255f6f6b400f6a121c7a35c838bdf6c9cf0750ef09a97b9f&id=gitmate-test-user%2Ftest&page=1&per_page=100&sha=99f484ae167dcfcc35008ba3b5b564443d425ee0>;
+          rel="last"']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['100']
+      X-Prev-Page: ['']
+      X-Request-Id: [a15fb966-3daf-487e-81af-5b7c1a85358b]
+      X-Runtime: ['0.119810']
+      X-Total: ['2']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+version: 1

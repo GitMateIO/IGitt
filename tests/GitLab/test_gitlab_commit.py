@@ -49,6 +49,18 @@ class GitLabCommitTest(unittest.TestCase):
         self.assertEqual(self.commit.get_statuses(
             ).pop().description, 'Theres a problem')
 
+    @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_combined_commit_status.yaml')
+    def test_combined_status(self):
+        self.assertEqual(self.commit.combined_status, Status.FAILED)
+        commit = GitLabCommit(self.token,
+                              'gitmate-test-user/test',
+                              'a37bb904b39a4aabee24f52ff98a0a988a41a24a')
+        self.assertEqual(commit.combined_status, Status.PENDING)
+        commit = GitLabCommit(self.token,
+                              'gitmate-test-user/test',
+                              '99f484ae167dcfcc35008ba3b5b564443d425ee0')
+        self.assertEqual(commit.combined_status, Status.SUCCESS)
+
     @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_commit_get_patch.yaml')
     def test_get_patch_for_file(self):
         patch = self.commit.get_patch_for_file('README.md')

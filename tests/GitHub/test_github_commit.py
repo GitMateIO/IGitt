@@ -50,6 +50,10 @@ class GitHubCommitTest(unittest.TestCase):
                       [status.description
                        for status in self.commit.get_statuses()])
 
+    @my_vcr.use_cassette('tests/GitHub/cassettes/github_combined_commit_status.yaml')
+    def test_combined_status(self):
+        self.assertEqual(self.commit.combined_status, Status.PENDING)
+
     @my_vcr.use_cassette('tests/GitHub/cassettes/github_commit_get_patch.yaml')
     def test_get_patch_for_file(self):
         patch = self.commit.get_patch_for_file('README.md')

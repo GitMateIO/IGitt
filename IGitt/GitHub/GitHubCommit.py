@@ -211,6 +211,21 @@ class GitHubCommit(Commit, GitHubMixin):
 
         return result
 
+    @property
+    def combined_status(self) -> Status:
+        """
+        Retrieves a combined status of all the commits.
+
+        :return:
+            Status.FAILED if any of the commits report as error or failure or
+            canceled
+            Status.PENDING if there are no statuses or a commit is pending or a
+            test is running
+            Status.SUCCESS if the latest status for all commits is success
+        """
+        url = self._url + '/status'
+        return INV_GH_STATE_TRANSLATION[get(self._token, url)['state']]
+
     def get_patch_for_file(self, filename: str):
         r"""
         Retrieves the patch for the given file:
