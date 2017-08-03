@@ -39,3 +39,12 @@ class IssueActions(Enum):
     # When an issue gets reassigned, labels are added or removed or the linked
     # milestone is changed
     ATTRIBUTES_CHANGED = 5
+
+
+class PipelineActions(Enum):
+    """
+    Pipeline and Commit status related actions.
+    """
+    # When the status of a pipeline is updated, also depicts the change of a
+    # commit status
+    UPDATED = 1
