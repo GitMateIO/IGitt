@@ -3,13 +3,17 @@ This package contains the GitHub implementations of the interfaces in
 server.git.Interfaces.
 """
 import os
+import logging
 
 from IGitt.Interfaces import _fetch, Token
 from IGitt.Utils import CachedDataMixin
 
-
-GH_INSTANCE_URL = os.environ.get('GH_INSTANCE_URL', 'github.com')
-BASE_URL = 'https://api.' + GH_INSTANCE_URL
+GH_INSTANCE_URL = os.environ.get('GH_INSTANCE_URL', 'https://github.com')
+if not GH_INSTANCE_URL.startswith('http'):  # dont cover cause it'll be removed
+    GH_INSTANCE_URL = 'https://' + GH_INSTANCE_URL
+    logging.warning('Include the protocol in GH_INSTANCE_URL! Omitting it has '
+                    'been deprecated.')
+BASE_URL = GH_INSTANCE_URL.replace('github.com', 'api.github.com')
 
 
 class GitHubMixin(CachedDataMixin):
