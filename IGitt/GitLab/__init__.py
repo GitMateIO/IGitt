@@ -4,14 +4,20 @@ server.git.Interfaces. GitLab drops the support of API version 3 as of
 August 22, 2017. So, IGitt adopts v4 to stay future proof.
 """
 import os
+import logging
 
 from IGitt.Interfaces import Token
 from IGitt.Interfaces import _fetch
 from IGitt.Utils import CachedDataMixin
 
 
-GL_INSTANCE_URL = os.environ.get('GL_INSTANCE_URL', 'gitlab.com')
-BASE_URL = 'https://' + GL_INSTANCE_URL + '/api/v4'
+GL_INSTANCE_URL = os.environ.get('GL_INSTANCE_URL', 'https://gitlab.com')
+if not GL_INSTANCE_URL.startswith('http'):  # dont cover cause it'll be removed
+    GL_INSTANCE_URL = 'https://' + GL_INSTANCE_URL
+    logging.warning('Include the protocol in GL_INSTANCE_URL! Omitting it has '
+                    'been deprecated.')
+
+BASE_URL = GL_INSTANCE_URL + '/api/v4'
 
 
 class GitLabMixin(CachedDataMixin):
