@@ -90,7 +90,7 @@ class GitLab(Hoster):
         Retrieve a given repository.
 
         >>> from os import environ
-        >>> GitLab = GitLab(GitLabOAuthToken(viron['GITLAB_TEST_TOKEN']))
+        >>> GitLab = GitLab(GitLabOAuthToken(environ['GITLAB_TEST_TOKEN']))
         >>> repo = source.get_repo('gitmate-test-user/test')
         >>> isinstance(repo, GitLabRepository)
         True
