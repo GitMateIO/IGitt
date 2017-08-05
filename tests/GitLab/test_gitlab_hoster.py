@@ -67,8 +67,8 @@ class TestGitLabWebhook(unittest.TestCase):
             },
             'issue': {
                 'iid': 123,
+                'action': 'open',
             },
-            'action': 'open',
         }
 
     def test_unknown_event(self):

@@ -131,7 +131,7 @@ class GitLab(Hoster):
                 'open': IssueActions.OPENED,
                 'close': IssueActions.CLOSED,
                 'reopen': IssueActions.REOPENED,
-            }.get(data['action'], IssueActions.ATTRIBUTES_CHANGED)
+            }.get(issue['action'], IssueActions.ATTRIBUTES_CHANGED)
 
             return trigger_event, [issue_obj]
 
