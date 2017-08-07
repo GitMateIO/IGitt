@@ -1,0 +1,17 @@
+0.4.0
+=====
+
+Start the changelog :)
+
+Changes since 0.3.0:
+
+- New endpoints are supported, e.g. searching issues.
+- Especially handle_webhook for getting related IGitt objects and events for webhook
+  without having to deal with github/lab directly.
+- Everything is cached implicitly, IGitt only does requests when needed.
+  There's a `.refresh` method for every class that holds data if you want
+  fresh data.
+
+BREAKING CHANGES:
+
+- We have token classes now. Use them!
