@@ -51,7 +51,6 @@ class TestGitLabWebhook(unittest.TestCase):
         self.default_data = {
             'project': {
                 'path_with_namespace': 'test/test',
-                'full_name': 'test/test',
             },
             'object_attributes': {
                 'id': 12,

@@ -170,17 +170,17 @@ class GitLab(Hoster):
             if comment_type == CommentType.MERGE_REQUEST:
                 iid = data['merge_request']['iid']
                 iss = GitLabMergeRequest(self._token,
-                                         repository['full_name'], iid)
+                                         repository['path_with_namespace'], iid)
                 action = MergeRequestActions.COMMENTED
             elif comment_type == CommentType.ISSUE:
                 iid = data['issue']['iid']
-                iss = GitLabIssue(self._token, repository['full_name'], iid)
+                iss = GitLabIssue(self._token, repository['path_with_namespace'], iid)
                 action = IssueActions.COMMENTED
             else:
                 raise NotImplementedError
 
             return action, [iss, GitLabComment(
-                self._token, repository['full_name'], iid,
+                self._token, repository['path_with_namespace'], iid,
                 comment_type, comment['id']
             )]
 
