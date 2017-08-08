@@ -117,7 +117,12 @@ class GitHub(Hoster):
             trigger_event = {
                 'synchronize': MergeRequestActions.SYNCHRONIZED,
                 'opened': MergeRequestActions.OPENED,
+                'closed': MergeRequestActions.CLOSED,
             }.get(data['action'], MergeRequestActions.ATTRIBUTES_CHANGED)
+            if (
+                    trigger_event == MergeRequestActions.CLOSED and
+                    pull_request['merged'] is True):
+                trigger_event = MergeRequestActions.MERGED
 
             return trigger_event, [pull_request_obj]
 

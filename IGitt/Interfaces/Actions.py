@@ -22,6 +22,8 @@ class MergeRequestActions(Enum):
     ATTRIBUTES_CHANGED = 5
     # When someone pushes to an existing merge request.
     SYNCHRONIZED = 6
+    # When an existing merge request is merged.
+    MERGED = 7
 
 
 class IssueActions(Enum):

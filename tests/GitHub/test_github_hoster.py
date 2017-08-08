@@ -78,6 +78,13 @@ class TestGitHubWebhook(unittest.TestCase):
         self.assertEqual(event, MergeRequestActions.OPENED)
         self.assertIsInstance(obj[0], GitHubMergeRequest)
 
+    def test_pr_merge_hook(self):
+        data = {**self.default_data, 'action': 'closed'}
+        data['pull_request']['merged'] = True
+        event, obj = self.gh.handle_webhook('pull_request', data)
+        self.assertEqual(event, MergeRequestActions.MERGED)
+        self.assertIsInstance(obj[0], GitHubMergeRequest)
+
     def test_issue_comment(self):
         event, obj = self.gh.handle_webhook('issue_comment', self.default_data)
         self.assertEqual(event, IssueActions.COMMENTED)
