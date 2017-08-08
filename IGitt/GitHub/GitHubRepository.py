@@ -395,10 +395,10 @@ class GitHubRepository(Repository, GitHubMixin):
 
     def _search(self,
                 issue_type,
-                created_after: datetime.date='',
-                created_before: datetime.date='',
-                updated_after: datetime.date='',
-                updated_before: datetime.date=''):
+                created_after: datetime='',
+                created_before: datetime='',
+                updated_after: datetime='',
+                updated_before: datetime=''):
         """
         Search for issue based on type 'issue' or 'pr' and return a
         list of issues.
@@ -409,13 +409,17 @@ class GitHubRepository(Repository, GitHubMixin):
             raise RuntimeError(('Cannot process before '
                                 'and after date simultaneously'))
         if created_after:
-            query += ' created:>=' + str(created_after)
+            query += (' created:>=' +
+                      str(created_after.strftime('%Y-%m-%dT%H:%M:%SZ')))
         elif created_before:
-            query += ' created:<' + str(created_before)
+            query += (' created:<' +
+                      str(created_before.strftime('%Y-%m-%dT%H:%M:%SZ')))
         if updated_after:
-            query += ' updated:>=' + str(updated_after)
+            query += (' updated:>=' +
+                      str(updated_after.strftime('%Y-%m-%dT%H:%M:%SZ')))
         elif updated_before:
-            query += ' updated:<' + str(updated_before)
+            query += (' updated:<' +
+                      str(updated_before.strftime('%Y-%m-%dT%H:%M:%SZ')))
         base_url = '/search/issues'
         query_params = {'q': query,
                         'per_page': '100'}
@@ -423,10 +427,10 @@ class GitHubRepository(Repository, GitHubMixin):
         return resp
 
     def search_mrs(self,
-                   created_after: datetime.date='',
-                   created_before: datetime.date='',
-                   updated_after: datetime.date='',
-                   updated_before: datetime.date=''):
+                   created_after: datetime='',
+                   created_before: datetime='',
+                   updated_after: datetime='',
+                   updated_before: datetime=''):
         """
         List open pull request in the repository.
         """
@@ -440,10 +444,10 @@ class GitHubRepository(Repository, GitHubMixin):
             yield pull_request
 
     def search_issues(self,
-                      created_after: datetime.date='',
-                      created_before: datetime.date='',
-                      updated_after: datetime.date='',
-                      updated_before: datetime.date=''):
+                      created_after: datetime='',
+                      created_before: datetime='',
+                      updated_after: datetime='',
+                      updated_before: datetime=''):
         """
         List open issues in the repository.
         """

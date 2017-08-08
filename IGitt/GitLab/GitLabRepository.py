@@ -440,10 +440,10 @@ class GitLabRepository(Repository, GitLabMixin):
 
 
     def search_issues(self,
-                      created_after: datetime.date='',
-                      created_before: datetime.date='',
-                      updated_after: datetime.date='',
-                      updated_before: datetime.date=''):
+                      created_after: datetime='',
+                      created_before: datetime='',
+                      updated_after: datetime='',
+                      updated_before: datetime=''):
         """
         Searches for issues based on created and updated date.
         """
@@ -458,10 +458,10 @@ class GitLabRepository(Repository, GitLabMixin):
             yield issue
 
     def search_mrs(self,
-                   created_after: datetime.date='',
-                   created_before: datetime.date='',
-                   updated_after: datetime.date='',
-                   updated_before: datetime.date=''):
+                   created_after: datetime='',
+                   created_before: datetime='',
+                   updated_after: datetime='',
+                   updated_before: datetime=''):
         """
         Searches for merge request based on created and updated date.
         """
