@@ -34,6 +34,13 @@ class GitLabMergeRequest(GitLabIssue, MergeRequest):
             repo=quote_plus(repository), iid=self._iid)
 
     @property
+    def mergeable(self):
+        """
+        Returns True if the MR can be merged with base branch without a rebase.
+        """
+        return self.data['merge_status'] == 'can_be_merged'
+
+    @property
     def url(self):
         """
         Returns the link/URL of the merge request.

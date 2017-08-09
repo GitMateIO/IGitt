@@ -45,6 +45,15 @@ class GitHubMergeRequest(GitHubIssue, MergeRequest):
         self._url = '/repos/'+repository+'/issues/'+str(number)
 
     @property
+    def mergeable(self):
+        """
+        Returns True if the MR can be merged with base branch without a rebase.
+        """
+        if self.data['mergeable'] is None:
+            return False
+        return self.data['mergeable']
+
+    @property
     def data(self):
         """
         Retrieves the MR specific data if it's not there yet.

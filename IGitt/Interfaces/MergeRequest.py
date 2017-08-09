@@ -27,6 +27,13 @@ class MergeRequest(Issue):
     mail or a pull request on GitHub.
     """
 
+    @property
+    def mergeable(self):
+        """
+        Returns True if the MR can be merged with base branch without a rebase.
+        """
+        raise NotImplementedError
+
     def close(self):
         """
         Closes the merge request.
