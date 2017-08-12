@@ -1,8 +1,9 @@
 """
 This package contains an abstraction for a git repository.
 """
-from functools import wraps
 from enum import Enum
+from functools import wraps
+from json.decoder import JSONDecodeError
 from requests import Session
 
 
@@ -53,10 +54,10 @@ def error_checked_request(func):
 
 @error_checked_request
 def _fetch(base_url: str, req_type: str, token: dict, url: str,
-           data: dict=None, query_params: dict=None):
+           data: dict=None, query_params: dict=None,
+           headers: dict=frozenset()):
     """
-    Fetch all the contents by following
-    the ``Link`` header.
+    Fetch all the contents by following the ``Link`` header.
 
     :param base_url: The base URL which is used to generate sub URLs.
     :param req_type: A request type. Get, Post, Patch and Delete.
@@ -64,9 +65,10 @@ def _fetch(base_url: str, req_type: str, token: dict, url: str,
     :param url  : E.g. ``/repo``
     :param query_params: The query parameters.
     :param data : The data to post. Used for Patch and Post methods only
-    :return     : A dictionary or a list of dictionary if the response contains
-                  multiple items (usually in case of pagination) and the HTTP
-                  status code.
+    :return     : A dictionary or a list of dictionaries if the response
+                  contains multiple items (usually in case of pagination) or a
+                  string in case of other format received (e.g. when fetching a
+                  git patch or diff) and the HTTP status code.
     """
     data_container = []
     req = Session()
@@ -77,12 +79,12 @@ def _fetch(base_url: str, req_type: str, token: dict, url: str,
         'patch': req.patch,
         'delete': req.delete
     }
-    req.params.update(HEADERS)
     req.params.update(token)
     if query_params is not None:
         req.params.update(query_params)
     fetch_method = req_methods[req_type]
-    resp = fetch_method(base_url + url, json=data)
+    resp = fetch_method(
+        base_url + url, json=data, headers={**HEADERS, **dict(headers)})
 
     # Delete request returns no response
     if not len(resp.text):
@@ -95,12 +97,15 @@ def _fetch(base_url: str, req_type: str, token: dict, url: str,
             data_container.extend(resp.json())
         resp = fetch_method(resp.links.get('next')['url'], json=data)
 
-    if isinstance(resp.json(), dict):
-        if 'items' in resp.json():
-            data_container.extend(resp.json()['items'])
-            return data_container, resp.status_code
-        else:
-            return resp.json(), resp.status_code
+    try:
+        if isinstance(resp.json(), dict):
+            if 'items' in resp.json():
+                data_container.extend(resp.json()['items'])
+                return data_container, resp.status_code
+            else:
+                return resp.json(), resp.status_code
+    except JSONDecodeError:
+        return resp.text, resp.status_code
 
     # Add the last node data
     data_container.extend(resp.json())

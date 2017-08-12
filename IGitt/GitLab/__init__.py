@@ -63,13 +63,15 @@ class GitLabPrivateToken(Token):
         return self._token
 
 
-def get(token: (GitLabOAuthToken, GitLabPrivateToken), url: str, params: dict=frozenset()):
+def get(token: (GitLabOAuthToken, GitLabPrivateToken), url: str,
+        params: dict=frozenset(), headers: dict=frozenset()):
     """
     Queries GitLab on the given URL for data.
 
     :param token: An OAuth token.
     :param url: E.g. ``/repo``
     :param params: The query params to be sent.
+    :param headers: The request headers to be sent.
     :return:
         A dictionary or a list of dictionary if the response contains multiple
         items (usually in case of pagination) and the HTTP status code.
@@ -77,49 +79,57 @@ def get(token: (GitLabOAuthToken, GitLabPrivateToken), url: str, params: dict=fr
         If the response indicates any problem.
     """
     return _fetch(BASE_URL, 'get', token.parameter,
-                  url, query_params={**dict(params), 'per_page': 100})
+                  url, query_params={**dict(params), 'per_page': 100},
+                  headers=headers)
 
 
-def post(token: (GitLabOAuthToken, GitLabPrivateToken), url: str, data: dict):
+def post(token: (GitLabOAuthToken, GitLabPrivateToken), url: str, data: dict,
+         headers: dict=frozenset()):
     """
     Posts the given data onto GitLab.
 
     :param token: An OAuth token.
     :param url: The URL to access, e.g. ``/repo``.
     :param data: The data to post.
+    :param headers: The request headers to be sent.
     :return:
         A dictionary or a list of dictionary if the response contains multiple
         items (usually in case of pagination) and the HTTP status code.
     :raises RunTimeError:
         If the response indicates any problem.
     """
-    return _fetch(BASE_URL, 'post', token.parameter, url, data)
+    return _fetch(BASE_URL, 'post', token.parameter, url, data,
+                  headers=headers)
 
 
-def put(token: (GitLabOAuthToken, GitLabPrivateToken), url: str, data: dict):
+def put(token: (GitLabOAuthToken, GitLabPrivateToken), url: str, data: dict,
+        headers: dict=frozenset()):
     """
     Puts the given data onto GitLab.
 
     :param token: An OAuth token.
     :param url: The URL to access, e.g. ``/repo``.
     :param data: The data to post.
+    :param headers: The request headers to be sent.
     :return:
         A dictionary or a list of dictionary if the response contains multiple
         items (usually in case of pagination) and the HTTP status code.
     :raises RunTimeError:
         If the response indicates any problem.
     """
-    return _fetch(BASE_URL, 'put', token.parameter, url, data)
+    return _fetch(BASE_URL, 'put', token.parameter, url, data, headers=headers)
 
 
-def delete(token: (GitLabOAuthToken, GitLabPrivateToken), url: str, params: dict=None):
+def delete(token: (GitLabOAuthToken, GitLabPrivateToken), url: str,
+           params: dict=None, headers: dict=frozenset()):
     """
     Sends a delete request to the given URL on GitLab.
 
     :param token: An OAuth token.
     :param url: The URL to access, e.g. ``/repo``.
     :param params: The query params to be sent.
+    :param headers: The request headers to be sent.
     :raises RuntimeError: If the response indicates any problem.
     """
     _fetch(BASE_URL, 'delete', token.parameter,
-           url, query_params=params)
+           url, query_params=params, headers=headers)
