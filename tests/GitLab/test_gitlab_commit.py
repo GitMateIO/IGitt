@@ -84,3 +84,14 @@ class GitLabCommitTest(unittest.TestCase):
                             'README.md', 4, mr_number=6)
         self.commit.comment('test comment', 'READNOT.md', mr_number=6)
         self.commit.comment('test comment', 'READNOT.md', 4)
+
+    @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_commit_unified_diff.yaml')
+    def test_unified_diff(self):
+        self.assertEqual(self.commit.unified_diff,
+                         '--- a/README.md\n'
+                         '+++ b/README.md\n'
+                         '@@ -1,2 +1,4 @@\n'
+                         ' # test\n'
+                         ' a test repo\n'
+                         '+\n'
+                         '+a tst pr\n')

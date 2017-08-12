@@ -83,3 +83,14 @@ class GitHubCommitTest(unittest.TestCase):
                  ' something old\n')  # Line 4
         self.assertEqual(get_diff_index(patch, 1), 1)
         self.assertEqual(get_diff_index(patch, 8), None)
+
+    @my_vcr.use_cassette('tests/GitHub/cassettes/github_commit_unified_diff.yaml')
+    def test_unified_diff(self):
+        self.assertEqual(self.commit.unified_diff,
+                         '--- a/README.md\n'
+                         '+++ b/README.md\n'
+                         '@@ -1,2 +1,4 @@\n'
+                         ' # test\n'
+                         ' a test repo\n'
+                         '+\n'
+                         '+yeah thats it')

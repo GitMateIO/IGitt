@@ -309,3 +309,12 @@ class GitLabCommit(Commit, GitLabMixin):
             post(self._token,
                  '/projects/{id}/merge_requests/{mr_iid}/notes'.format(
                      id=quote_plus(self._repository), mr_iid=mr_number), data)
+
+    @property
+    def unified_diff(self):
+        """
+        Retrieves the unified diff for the commit excluding the diff index.
+        """
+        return '\n'.join(patch['diff']
+                         for patch in get(self._token, self._url + '/diff')
+                        )

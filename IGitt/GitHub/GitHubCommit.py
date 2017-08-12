@@ -330,3 +330,18 @@ class GitHubCommit(Commit, GitHubMixin):
             post(self._token,
                  '/repos/' + self._repository + "/issues/" + str(mr_number) +
                  "/comments", data)
+
+    @property
+    def unified_diff(self):
+        """
+        Retrieves the unified diff for the commit excluding the diff index.
+        """
+        difflines = str(get(self._token, self._url, headers={
+            'Accept': 'application/vnd.github.v3.diff'
+        })).strip().splitlines()
+        # getting rid of the indexing stuff from git diff e.g. removing lines
+        # ``diff --git a/somefile b/somefile
+        # index 1da2df..2dacdf 100644``
+        return '\n'.join([diff for diff in difflines
+                          if not diff.startswith('diff --git') and
+                          not diff.startswith('index')])

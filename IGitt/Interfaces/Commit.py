@@ -175,3 +175,10 @@ class Commit:
         :return: Commit message as string.
         """
         raise NotImplementedError
+
+    @property
+    def unified_diff(self):
+        """
+        Retrieves the unified diff for the commit excluding the diff index.
+        """
+        raise NotImplementedError
