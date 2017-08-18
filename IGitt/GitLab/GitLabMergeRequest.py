@@ -193,3 +193,14 @@ class GitLabMergeRequest(GitLabIssue, MergeRequest):
         issues = self._get_closes_issues()
         return {GitLabIssue(self._token, repo_name, number)
                 for number, repo_name in issues}
+
+    @property
+    def mergeable(self) -> bool:
+        """
+        Returns true if there is no conflict and the merge request is approved.
+        """
+        approval = get(self._token, self._url + '/approvals')
+        if (approval['merge_status'] == 'can_be_merged' and
+                approval['approvals_left'] == 0):
+            return True
+        return False

@@ -216,3 +216,10 @@ class GitHubMergeRequest(GitHubIssue, MergeRequest):
         issues = self._get_closes_issues()
         return {GitHubIssue(self._token, repo_name, number)
                 for number, repo_name in issues}
+
+    @property
+    def mergeable(self) -> bool:
+        """
+        Returns true if there is no conflict.
+        """
+        return self.data['mergeable']

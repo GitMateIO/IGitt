@@ -222,3 +222,10 @@ class MergeRequest(Issue):
         if Status.PENDING in statuses or Status.FAILED in statuses:
             return False
         return True
+
+    @property
+    def mergeable(self) -> bool:
+        """
+        Returns True if there is no conflict and the merge request is approved.
+        """
+        raise NotImplementedError

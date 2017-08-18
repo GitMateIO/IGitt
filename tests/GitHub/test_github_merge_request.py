@@ -95,3 +95,9 @@ class TestGitHubMergeRequest(unittest.TestCase):
         self.assertEqual(self.mr.tests_passed, True)
         mr = GitHubMergeRequest(self.token, 'gitmate-test-user/test', 109)
         self.assertEqual(mr.tests_passed, False)
+
+    @my_vcr.use_cassette('tests/GitHub/cassettes/github_merge_request_test_mergeable.yaml')
+    def test_mergeable(self):
+        mergeable_mr = GitHubMergeRequest(self.token, 'gitmate-test-user/test', 108)
+        self.assertTrue(mergeable_mr.mergeable)
+        self.assertFalse(self.mr.mergeable)
