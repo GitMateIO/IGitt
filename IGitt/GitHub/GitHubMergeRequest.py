@@ -50,7 +50,7 @@ class GitHubMergeRequest(GitHubIssue, MergeRequest):
         Retrieves the MR specific data if it's not there yet.
         """
         data = super().data
-        if not 'additions' in data:
+        if 'additions' not in data:
             self._data.update(get(self._token, self._mr_url))
 
         return super().data
