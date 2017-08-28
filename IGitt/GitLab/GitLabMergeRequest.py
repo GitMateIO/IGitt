@@ -6,7 +6,8 @@ import re
 from functools import lru_cache
 from urllib.parse import quote_plus
 
-from IGitt.GitLab import get, GitLabOAuthToken, GitLabPrivateToken
+from IGitt.GitLab import get, GitLabOAuthToken, GitLabPrivateToken, \
+    GL_INSTANCE_URL
 from IGitt.GitLab.GitLabCommit import GitLabCommit
 from IGitt.GitLab.GitLabIssue import GitLabIssue
 from IGitt.Interfaces.MergeRequest import MergeRequest
@@ -38,7 +39,7 @@ class GitLabMergeRequest(GitLabIssue, MergeRequest):
         """
         Returns the link/URL of the merge request.
         """
-        return 'https://gitlab.com/{}/merge_requests/{}'.format(
+        return GL_INSTANCE_URL + '/{}/merge_requests/{}'.format(
             self._repository,
             self.number
         )

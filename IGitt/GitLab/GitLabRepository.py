@@ -107,8 +107,7 @@ class GitLabRepository(Repository, GitLabMixin):
         :return: A URL that can be used to clone the repository with Git.
         """
         return self.data['http_url_to_repo'].replace(
-            'gitlab.com',
-            'oauth2:' + self._token.value + '@gitlab.com', 1)
+            '://', '://oauth2:' + self._token.value + '@', 1)
 
     def get_labels(self) -> {str}:
         """

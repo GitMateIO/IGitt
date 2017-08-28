@@ -4,10 +4,7 @@ This contains the Issue implementation for GitLab.
 from datetime import datetime
 from urllib.parse import quote_plus
 
-from IGitt.GitLab import delete, GitLabMixin
-from IGitt.GitLab import get
-from IGitt.GitLab import put
-from IGitt.GitLab import post
+from IGitt.GitLab import get, put, post, delete, GitLabMixin, GL_INSTANCE_URL
 from IGitt.GitLab import GitLabOAuthToken, GitLabPrivateToken
 from IGitt.GitLab.GitLabComment import GitLabComment
 from IGitt.Interfaces.Comment import CommentType
@@ -92,7 +89,7 @@ class GitLabIssue(Issue, GitLabMixin):
         """
         Returns the link/URL of the issue.
         """
-        return 'https://gitlab.com/{}/issues/{}'.format(self._repository,
+        return GL_INSTANCE_URL + '/{}/issues/{}'.format(self._repository,
                                                         self.number)
 
     @property
