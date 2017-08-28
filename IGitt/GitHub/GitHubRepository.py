@@ -315,7 +315,8 @@ class GitHubRepository(Repository, GitHubMixin):
         """
         params = {'state': GH_ISSUE_STATE_TRANSLATION[state]}
         return {GitHubIssue(self._token, self.full_name, res['number'])
-                for res in get(self._token, self._url + '/issues', params)}
+                for res in get(self._token, self._url + '/issues', params)
+                if 'pull_request' not in res}
 
     @property
     def issues(self) -> set:
