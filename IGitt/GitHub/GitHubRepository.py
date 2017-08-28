@@ -314,7 +314,8 @@ class GitHubRepository(Repository, GitHubMixin):
         :param state: 'opened' or 'closed' or 'all'.
         """
         params = {'state': GH_ISSUE_STATE_TRANSLATION[state]}
-        return {GitHubIssue(self._token, self.full_name, res['number'])
+        return {GitHubIssue.from_data(res, self._token,
+                                      self.full_name, res['number'])
                 for res in get(self._token, self._url + '/issues', params)
                 if 'pull_request' not in res}
 
