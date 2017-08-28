@@ -89,6 +89,8 @@ class GitLabRepository(Repository, GitLabMixin):
 
         :return: The full repository name as string.
         """
+        if self._repository.isdigit():
+            self._repository = self.data['path_with_namespace']
         return self._repository
 
     @property
