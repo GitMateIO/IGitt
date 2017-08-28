@@ -25,6 +25,9 @@ from IGitt.Interfaces.MergeRequest import MergeRequest
 
 
 # Issue is used as a Mixin, super() is never called by design!
+from IGitt.Utils import PossiblyIncompleteDict
+
+
 class GitHubMergeRequest(GitHubIssue, MergeRequest):
     """
     A Pull Request on GitHub.
@@ -44,25 +47,20 @@ class GitHubMergeRequest(GitHubIssue, MergeRequest):
         self._mr_url = '/repos/' + repository + '/pulls/' + str(number)
         self._url = '/repos/'+repository+'/issues/'+str(number)
 
-    @property
-    def data(self):
-        """
-        Retrieves the MR specific data if it's not there yet.
-        """
-        data = super().data
-        if 'additions' not in data:
-            self._data.update(get(self._token, self._mr_url))
+    def _get_data(self):
+        issue_data = get(self._token, self._url)
 
-        return super().data
+        def get_full_data():
+            """
+            Updates the incomplete issue data with the PR data to make it
+            complete.
+            """
+            # Ignore PyLintBear (E1101), its type inference is too stupid
+            issue_data.update(get(self._token, self._mr_url))
+            return issue_data
 
-    @data.setter
-    def data(self, value):
-        """
-        Setter for the data, use it to override, refresh, ...
-        """
-        # Ignore PyLintBear (W0201)
-        self._data = value
-
+        # If issue data is sufficient, don't even get MR data
+        return PossiblyIncompleteDict(issue_data, get_full_data)
 
     @property
     def base(self):
