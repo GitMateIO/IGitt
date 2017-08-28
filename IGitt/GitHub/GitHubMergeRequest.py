@@ -147,20 +147,37 @@ class GitHubMergeRequest(GitHubIssue, MergeRequest):
                      for commit in commits)
 
     @property
-    def repository(self):
+    def target_repository(self):
         """
         Retrieves the repository where this comes from.
 
         >>> from os import environ
         >>> pr = GitHubMergeRequest(GitHubToken(environ['GITHUB_TEST_TOKEN']),
         ...                         'gitmate-test-user/test', 7)
-        >>> pr.repository.full_name
+        >>> pr.target_repository.full_name
         'gitmate-test-user/test'
 
         :return: The repository object.
         """
         from .GitHubRepository import GitHubRepository
         return GitHubRepository(self._token, self._repository)
+
+    @property
+    def source_repository(self):
+        """
+        Retrieves the repository where this PR's head branch is located at.
+
+        >>> from os import environ
+        >>> pr = GitHubMergeRequest(GitHubToken(environ['GITHUB_TEST_TOKEN']),
+        ...                         'gitmate-test-user/test', 7)
+        >>> pr.source_repository.full_name
+        'gitmate-test-user/test'
+
+        :return: The repository object.
+        """
+        from .GitHubRepository import GitHubRepository
+        return GitHubRepository(self._token,
+                                self.data['head']['repo']['full_name'])
 
     @property
     def affected_files(self):

@@ -102,9 +102,18 @@ class MergeRequest(Issue):
         raise NotImplementedError
 
     @property
-    def repository(self):
+    def target_repository(self):
         """
-        Retrieves the repository where this PR is from.
+        Retrieves the repository where this PR is opened at.
+
+        :return: A Repository object.
+        """
+        raise NotImplementedError
+
+    @property
+    def source_repository(self):
+        """
+        Retrieves the repository where this PR's head branch is located at.
 
         :return: A Repository object.
         """
