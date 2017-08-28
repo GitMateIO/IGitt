@@ -104,7 +104,26 @@ class MergeRequest(Issue):
     @property
     def repository(self):
         """
-        Retrieves the repository where this PR is from.
+        Retrieves the repository where this PR is opened at.
+
+        :return: A Repository object.
+        """
+        raise NotImplementedError
+
+    @property
+    def target_repository(self):
+        """
+        Retrieves the repository where this PR is opened at. An alias to
+        ``self.repository`` property.
+
+        :return: A Repository object.
+        """
+        return self.repository
+
+    @property
+    def source_repository(self):
+        """
+        Retrieves the repository where this PR's head branch is located at.
 
         :return: A Repository object.
         """

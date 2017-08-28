@@ -140,6 +140,25 @@ class GitLabMergeRequest(GitLabIssue, MergeRequest):
         return GitLabRepository(self._token, self._repository)
 
     @property
+    def source_repository(self):
+        """
+        Retrieves the repository where this PR's head branch is located at.
+
+        >>> from os import environ
+        >>> pr = GitLabMergeRequest(
+        ...     GitLabOAuthToken(environ['GITLAB_TEST_TOKEN']),
+        ...     'gitmate-test-user/test', 2
+        ... )
+        >>> pr.source_repository.full_name
+        'gitmate-test-user/test'
+
+        :return: The repository object.
+        """
+        from .GitLabRepository import GitLabRepository
+        return GitLabRepository(self._token,
+                                str(self.data['source_project_id']))
+
+    @property
     def affected_files(self):
         """
         Retrieves affected files from a GitLab merge request.

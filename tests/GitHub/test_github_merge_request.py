@@ -52,7 +52,9 @@ class TestGitHubMergeRequest(unittest.TestCase):
 
     @my_vcr.use_cassette('tests/GitHub/cassettes/github_merge_request_repository.yaml')
     def test_repository(self):
-        self.assertEqual(self.mr.repository.full_name,
+        self.assertEqual(self.mr.target_repository.full_name,
+                         'gitmate-test-user/test')
+        self.assertEqual(self.mr.source_repository.full_name,
                          'gitmate-test-user/test')
 
     @my_vcr.use_cassette('tests/GitHub/cassettes/github_merge_request_diffstat.yaml')
