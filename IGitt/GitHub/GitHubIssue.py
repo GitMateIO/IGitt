@@ -196,8 +196,8 @@ class GitHubIssue(Issue, GitHubMixin):
 
         :return: A list of Comment objects.
         """
-        return [GitHubComment(self._token, self._repository,
-                              CommentType.ISSUE, result['id'])
+        return [GitHubComment.from_data(result, self._token, self._repository,
+                                        CommentType.ISSUE, result['id'])
                 for result in get(self._token, self._url + '/comments')]
 
     @property
