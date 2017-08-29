@@ -75,8 +75,9 @@ class GitHubMergeRequest(GitHubIssue, MergeRequest):
 
         :return: A Commit object.
         """
-        return GitHubCommit(self._token, self._repository,
-                            self.data['base']['sha'])
+        return GitHubCommit.from_data(self.data['base'], self._token,
+                                      self._repository,
+                                      self.data['base']['sha'])
 
     @property
     def head(self):
@@ -91,8 +92,9 @@ class GitHubMergeRequest(GitHubIssue, MergeRequest):
 
         :return: A Commit object.
         """
-        return GitHubCommit(self._token, self._repository,
-                            self.data['head']['sha'])
+        return GitHubCommit.from_data(self.data['head'], self._token,
+                                      self._repository,
+                                      self.data['head']['sha'])
 
     @property
     def base_branch_name(self) -> str:

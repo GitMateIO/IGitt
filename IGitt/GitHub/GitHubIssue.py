@@ -176,8 +176,8 @@ class GitHubIssue(Issue, GitHubMixin):
         """
         result = post(self._token, self._url + '/comments', {'body': body})
 
-        return GitHubComment(self._token, self._repository,
-                             CommentType.ISSUE, result['id'])
+        return GitHubComment.from_data(result, self._token, self._repository,
+                                       CommentType.ISSUE, result['id'])
 
     @property
     def comments(self):
@@ -370,4 +370,4 @@ class GitHubIssue(Issue, GitHubMixin):
         resp = post(token, post_url, data)
         issue_number = resp['number']
 
-        return GitHubIssue(token, repository, issue_number)
+        return GitHubIssue.from_data(resp, token, repository, issue_number)
