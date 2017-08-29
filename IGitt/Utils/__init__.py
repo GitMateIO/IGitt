@@ -62,8 +62,8 @@ class CachedDataMixin:
             When the args provided are insufficient to call __init__.
         """
         instance = cls(*args, **kwargs)
-        if len(data):
-            instance.data = data
+        instance.data = data
+
         return instance
 
     def _get_data(self):
