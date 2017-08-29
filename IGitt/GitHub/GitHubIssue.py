@@ -121,7 +121,6 @@ class GitHubIssue(Issue, GitHubMixin):
         """
         return tuple(user['login'] for user in self.data['assignees'])
 
-
     def assign(self, username: str):
         """
         Adds the user as one of the assignees of the issue.
