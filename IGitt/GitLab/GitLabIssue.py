@@ -226,9 +226,13 @@ class GitLabIssue(Issue, GitLabMixin):
 
         :return: A list of Comment objects.
         """
-        return [GitLabComment(self._token, self._repository, self.number,
-                              CommentType.ISSUE, result['id'])
-                for result in get(self._token, self._url + '/notes')]
+        return [
+            GitLabComment.from_data(
+                result, self._token, self._repository, self.number,
+                CommentType.ISSUE, result['id']
+            )
+            for result in get(self._token, self._url + '/notes')
+        ]
 
     @property
     def labels(self) -> {str}:
@@ -386,4 +390,4 @@ class GitLabIssue(Issue, GitLabMixin):
         url = '/projects/{repo}/issues'.format(repo=quote_plus(repository))
         issue = post(token, url, {'title': title, 'description': body})
 
-        return GitLabIssue(token, repository, issue['iid'])
+        return GitLabIssue.from_data(issue, token, repository, issue['iid'])

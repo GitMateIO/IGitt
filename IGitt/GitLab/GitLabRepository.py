@@ -335,7 +335,8 @@ class GitLabRepository(Repository, GitLabMixin):
         4
         """
         from IGitt.GitLab.GitLabMergeRequest import GitLabMergeRequest
-        return {GitLabMergeRequest(self._token, self.full_name, res['iid'])
+        return {GitLabMergeRequest.from_data(res, self._token,
+                                             self.full_name, res['iid'])
                 for res in get(self._token, self._url + '/merge_requests')}
 
     def filter_issues(self, state: str='opened') -> set:
@@ -345,7 +346,8 @@ class GitLabRepository(Repository, GitLabMixin):
         :param state: 'opened' or 'closed' or 'all'.
         """
         params = {'state': state}
-        return {GitLabIssue(self._token, self.full_name, res['iid'])
+        return {GitLabIssue.from_data(res, self._token,
+                                      self.full_name, res['iid'])
                 for res in get(self._token, self._url + '/issues', params)}
 
     @property
@@ -418,7 +420,9 @@ class GitLabRepository(Repository, GitLabMixin):
         json = post(self._token, url=url, data=data)
 
         from IGitt.GitLab.GitLabMergeRequest import GitLabMergeRequest
-        return GitLabMergeRequest(self._token, repository=target_project, number=json['iid'])
+        return GitLabMergeRequest.from_data(json, self._token,
+                                            repository=target_project,
+                                            number=json['iid'])
 
     def delete(self):
         """
