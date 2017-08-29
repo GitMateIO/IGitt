@@ -141,7 +141,8 @@ class GitHubMergeRequest(GitHubIssue, MergeRequest):
         :return: A tuple of commit objects.
         """
         commits = get(self._token, self._mr_url + '/commits')
-        return tuple(GitHubCommit(self._token, self._repository, commit['sha'])
+        return tuple(GitHubCommit.from_data(commit, self._token,
+                                            self._repository, commit['sha'])
                      for commit in commits)
 
     @property
