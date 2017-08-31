@@ -27,6 +27,9 @@ class TestGitHubMergeRequest(unittest.TestCase):
     def test_head(self):
         self.assertEqual(self.mr.head.sha,
                          'f6d2b7c66372236a090a2a74df2e47f42a54456b')
+        # test for forks
+        mr = GitHubMergeRequest(self.token, 'gitmate-test-user/test', 111)
+        self.assertEqual(mr.head.sha, 'ddab515cc0ea3773f5554c85880a228490c7005c')
 
     @my_vcr.use_cassette('tests/GitHub/cassettes/github_merge_request_desc.yaml')
     def test_description(self):

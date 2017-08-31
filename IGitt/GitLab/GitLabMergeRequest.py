@@ -97,8 +97,8 @@ class GitLabMergeRequest(GitLabIssue, MergeRequest):
 
         :return: A GitLabCommit object.
         """
-        return GitLabCommit(self._token, self._repository, sha=None,
-                            branch=quote_plus(self.head_branch_name))
+        return GitLabCommit(self._token, self.source_repository.full_name,
+                            sha=None, branch=quote_plus(self.head_branch_name))
 
     @property
     @lru_cache(None)

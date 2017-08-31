@@ -27,6 +27,9 @@ class TestGitLabMergeRequest(unittest.TestCase):
     def test_head(self):
         self.assertEqual(self.mr.head.sha,
                          'f6d2b7c66372236a090a2a74df2e47f42a54456b')
+        # test for forks
+        mr = GitLabMergeRequest(self.token, 'gitmate-test-user/test', 26)
+        self.assertEqual(mr.head.sha, '33c53a63131beb1b06c10c4d3b2d7591338dbaa0')
 
     @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_merge_request_basebranchname.yaml')
     def test_base_branch_name(self):

@@ -93,7 +93,7 @@ class GitHubMergeRequest(GitHubIssue, MergeRequest):
         :return: A Commit object.
         """
         return GitHubCommit.from_data(self.data['head'], self._token,
-                                      self._repository,
+                                      self.source_repository.full_name,
                                       self.data['head']['sha'])
 
     @property
