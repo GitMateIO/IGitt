@@ -232,6 +232,10 @@ class GitHubIssue(Issue, GitHubMixin):
 
         :param value: A set of label texts.
         """
+        # Only if self.data is populated we actually save a request here
+        if 'labels' in self.data and value == self.labels:
+            return  # No need to patch
+
         self.data = patch(self._token, self._url, {'labels': list(value)})
 
     @property

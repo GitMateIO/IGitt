@@ -61,6 +61,7 @@ class GitLabIssueTest(unittest.TestCase):
     def test_issue_labels(self):
         self.assertEqual(self.iss.labels, set())
         self.iss.labels = self.iss.labels | {'dem'}
+        self.iss.labels = self.iss.labels  # Doesn't do a request :)
         self.assertEqual(len(self.iss.available_labels), 4)
 
     @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_issue_time.yaml',

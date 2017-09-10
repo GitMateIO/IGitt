@@ -62,6 +62,7 @@ class GitHubIssueTest(unittest.TestCase):
     def test_issue_labels(self):
         self.assertEqual(list(self.iss.labels), [])
         self.iss.labels = self.iss.labels | {'dem'}
+        self.iss.labels = self.iss.labels  # Doesn't do a request :)
         self.assertEqual(len(self.iss.available_labels), 4)
 
     @my_vcr.use_cassette('tests/GitHub/cassettes/github_issue_time.yaml',
