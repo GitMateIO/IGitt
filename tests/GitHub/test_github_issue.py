@@ -51,6 +51,11 @@ class GitHubIssueTest(unittest.TestCase):
     def test_description(self):
         self.assertEqual(self.iss.description, 'test description\r\n')
 
+    @my_vcr.use_cassette('tests/GitHub/cassettes/github_issue_auth.yaml',
+                         filter_query_parameters=['access_token'])
+    def test_author(self):
+        self.assertEqual(self.iss.author, 'meetmangukiya')
+
     @my_vcr.use_cassette('tests/GitHub/cassettes/github_issue_comment.yaml',
                          filter_query_parameters=['access_token'])
     def test_comment(self):

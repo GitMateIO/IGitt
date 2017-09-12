@@ -153,6 +153,15 @@ class GitHubIssue(Issue, GitHubMixin):
         """
         return self.data['body']
 
+    @property
+    def author(self) -> str:
+        """
+        Retrieves the username of the issue author.
+
+        :return: A string containing the author's username.
+        """
+        return self.data['user']['login']
+
     def add_comment(self, body):
         """
         Adds a comment to the issue:

@@ -58,6 +58,13 @@ class Issue:
         raise NotImplementedError
 
     @property
+    def author(self) -> str:
+        """
+        Retrieves the username of the author of the comment.
+        """
+        raise NotImplementedError
+
+    @property
     def assignees(self) -> tuple:
         """
         Retrieves a tuple of usernames of assignees.

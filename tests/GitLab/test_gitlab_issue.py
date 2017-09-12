@@ -51,6 +51,10 @@ class GitLabIssueTest(unittest.TestCase):
         self.assertEqual(self.iss.description,
                          'Stop trying to be badass.')
 
+    @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_issue_auth.yaml')
+    def test_author(self):
+        self.assertEqual(self.iss.author, 'gitmate-test-user')
+
     @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_issue_add_comment.yaml')
     def test_add_comment(self):
         self.iss.add_comment('this is a test comment')

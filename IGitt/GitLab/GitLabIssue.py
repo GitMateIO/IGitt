@@ -181,6 +181,15 @@ class GitLabIssue(Issue, GitLabMixin):
         """
         return self.data['description']
 
+    @property
+    def author(self) -> str:
+        """
+        Retrieves the username of the issue author.
+
+        :return: A string containing the author's username.
+        """
+        return self.data['author']['username']
+
     def add_comment(self, body):
         """
         Adds a comment to the issue.
