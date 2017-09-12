@@ -13,6 +13,7 @@ from IGitt.Interfaces.CommitStatus import Status, CommitStatus
 
 GL_STATE_TRANSLATION = {Status.RUNNING: 'running',
                         Status.CANCELED: 'canceled',
+                        Status.ERROR: 'failed',
                         Status.FAILED: 'failed',
                         Status.PENDING: 'pending',
                         Status.SUCCESS: 'success'}
