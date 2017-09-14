@@ -42,6 +42,8 @@ class GitHubIssueTest(unittest.TestCase):
         self.assertEqual(iss.assignees, ('meetmangukiya', ))
         iss.unassign('meetmangukiya')
         self.assertEqual(iss.assignees, tuple())
+        iss = GitHubIssue(self.token, 'gitmate-test-user/test', 107)
+        self.assertEqual(iss.assignees, tuple())
 
     def test_number(self):
         self.assertEqual(self.iss.number, 39)

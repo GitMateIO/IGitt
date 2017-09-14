@@ -124,7 +124,12 @@ class GitLabIssue(Issue, GitLabMixin):
 
         :return: A tuple containing the usernames of assignees.
         """
-        return tuple(user['username'] for user in self.data['assignees'])
+        try:
+            return tuple(user['username'] for user in self.data['assignees'])
+        except KeyError:
+            # GitLab merge requests without assignees do not have `assignees`
+            # parameter in the fetched data. So, return an empty tuple instead.
+            return tuple()
 
     def get_user(self, username: str):
         """

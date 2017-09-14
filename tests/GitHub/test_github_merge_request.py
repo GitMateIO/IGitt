@@ -100,3 +100,7 @@ class TestGitHubMergeRequest(unittest.TestCase):
         self.assertEqual(self.mr.tests_passed, True)
         mr = GitHubMergeRequest(self.token, 'gitmate-test-user/test', 109)
         self.assertEqual(mr.tests_passed, False)
+
+    @my_vcr.use_cassette('tests/GitHub/cassettes/github_merge_request_assignees.yaml')
+    def test_assignees(self):
+        self.assertEqual(self.mr.assignees, tuple())

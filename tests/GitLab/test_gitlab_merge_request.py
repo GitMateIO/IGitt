@@ -85,3 +85,8 @@ class TestGitLabMergeRequest(unittest.TestCase):
         mr = GitLabMergeRequest(self.token, 'gitmate-test-user/test', 25)
         self.assertEqual({int(issue.number) for issue in mr.closes_issues},
                          {21, 22, 23, 26, 27, 30})
+
+    @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_merge_request_assignees.yaml')
+    def test_assignees(self):
+        mr = GitLabMergeRequest(self.token, 'gitmate-test-user/test', 25)
+        self.assertEqual(mr.assignees, tuple())
