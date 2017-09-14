@@ -35,15 +35,15 @@ class GitHubIssueTest(unittest.TestCase):
 
     @my_vcr.use_cassette('tests/GitHub/cassettes/github_issue_assignee.yaml')
     def test_assignee(self):
-        self.assertEqual(self.iss.assignees, tuple())
+        self.assertEqual(self.iss.assignees, set())
         iss = GitHubIssue(self.token,
                           'gitmate-test-user/test', 41)
         iss.assign('meetmangukiya')
-        self.assertEqual(iss.assignees, ('meetmangukiya', ))
+        self.assertEqual(iss.assignees, {'meetmangukiya'})
         iss.unassign('meetmangukiya')
-        self.assertEqual(iss.assignees, tuple())
+        self.assertEqual(iss.assignees, set())
         iss = GitHubIssue(self.token, 'gitmate-test-user/test', 107)
-        self.assertEqual(iss.assignees, tuple())
+        self.assertEqual(iss.assignees, set())
 
     def test_number(self):
         self.assertEqual(self.iss.number, 39)

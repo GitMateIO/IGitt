@@ -110,16 +110,17 @@ class GitHubIssue(Issue, GitHubMixin):
         >>> from os import environ
         >>> issue = GitHubIssue(GitHubToken(environ['GITHUB_TEST_TOKEN']),
         ...                     'gitmate-test-user/test', 1)
-        >>> issue.assignee
-        'gitmate-test-user'
+        >>> issue.assignees
+        {'gitmate-test-user'}
 
         >>> issue = GitHubIssue(GitHubToken(environ['GITHUB_TEST_TOKEN']),
         ...                     'gitmate-test-user/test', 2)
-        >>> issue.assignee  # Returns None, unassigned
+        >>> issue.assignees  # Returns empty set, unassigned
+        {}
 
-        :return: A tuple containing the usernames of assignees.
+        :return: A set containing the usernames of assignees.
         """
-        return tuple(user['login'] for user in self.data['assignees'])
+        return set(user['login'] for user in self.data['assignees'])
 
     def assign(self, username: str):
         """

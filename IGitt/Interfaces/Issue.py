@@ -65,9 +65,9 @@ class Issue:
         raise NotImplementedError
 
     @property
-    def assignees(self) -> tuple:
+    def assignees(self) -> {str}:
         """
-        Retrieves a tuple of usernames of assignees.
+        Retrieves a set of usernames of assignees.
         """
         raise NotImplementedError
 

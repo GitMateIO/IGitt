@@ -103,4 +103,5 @@ class TestGitHubMergeRequest(unittest.TestCase):
 
     @my_vcr.use_cassette('tests/GitHub/cassettes/github_merge_request_assignees.yaml')
     def test_assignees(self):
-        self.assertEqual(self.mr.assignees, tuple())
+        # test merge request with no assignees
+        self.assertEqual(self.mr.assignees, set())

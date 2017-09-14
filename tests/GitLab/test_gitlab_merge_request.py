@@ -88,5 +88,6 @@ class TestGitLabMergeRequest(unittest.TestCase):
 
     @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_merge_request_assignees.yaml')
     def test_assignees(self):
+        # test merge request with no assignees
         mr = GitLabMergeRequest(self.token, 'gitmate-test-user/test', 25)
-        self.assertEqual(mr.assignees, tuple())
+        self.assertEqual(mr.assignees, set())

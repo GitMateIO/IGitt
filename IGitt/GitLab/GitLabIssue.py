@@ -115,21 +115,22 @@ class GitLabIssue(Issue, GitLabMixin):
         >>> from os import environ
         >>> issue = GitLabIssue(GitLabOAuthToken(environ['GITLAB_TEST_TOKEN']),
         ...                     'gitmate-test-user/test', 1)
-        >>> issue.assignee
-        'gitmate-test-user'
+        >>> issue.assignees
+        {'gitmate-test-user'}
 
         >>> issue = GitLabIssue(GitLabOAuthToken(environ['GITLAB_TEST_TOKEN']),
         ...                     'gitmate-test-user/test', 2)
-        >>> issue.assignee # Returns None, unassigned
+        >>> issue.assignees # Returns empty set, unassigned
+        {}
 
-        :return: A tuple containing the usernames of assignees.
+        :return: A set containing the usernames of assignees.
         """
         try:
-            return tuple(user['username'] for user in self.data['assignees'])
+            return set(user['username'] for user in self.data['assignees'])
         except KeyError:
             # GitLab merge requests without assignees do not have `assignees`
-            # parameter in the fetched data. So, return an empty tuple instead.
-            return tuple()
+            # parameter in the fetched data. So, return an empty set instead.
+            return set()
 
     def get_user(self, username: str):
         """
