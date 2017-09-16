@@ -1,6 +1,7 @@
 """
 This package contains an abstraction for a git repository.
 """
+from abc import ABCMeta, abstractproperty
 from enum import Enum
 from functools import wraps
 from json.decoder import JSONDecodeError
@@ -10,25 +11,23 @@ from requests import Session
 HEADERS = {'User-Agent': 'IGitt'}
 
 
-class Token:
+class Token(metaclass=ABCMeta):
     """
     Base class for different types of tokens used for different methods of
     authentications.
     """
 
-    @property
+    @abstractproperty
     def value(self):
         """
         Token value
         """
-        raise NotImplementedError
 
-    @property
+    @abstractproperty
     def parameter(self):
         """
         Parameter to be used for authentication
         """
-        raise NotImplementedError
 
 
 def error_checked_request(func):

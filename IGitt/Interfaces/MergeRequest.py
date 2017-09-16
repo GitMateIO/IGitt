@@ -2,6 +2,9 @@
 Contains a class that represents a request to merge something into some git
 branch.
 """
+from abc import ABCMeta
+from abc import abstractmethod
+from abc import abstractproperty
 from datetime import datetime
 from itertools import chain
 import re
@@ -21,38 +24,37 @@ SUPPORTED_HOST_KEYWORD_REGEX = {
     }
 CONCATENATION_KEYWORDS = [r',', r'\sand\s']
 
-class MergeRequest(Issue):
+class MergeRequest(Issue, metaclass=ABCMeta):
     """
     A request to merge something into the main codebase. Can be a patch in a
     mail or a pull request on GitHub.
     """
 
+    @abstractmethod
     def close(self):
         """
         Closes the merge request.
 
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def reopen(self):
         """
         Reopens the merge request.
 
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
-        raise NotImplementedError
 
-    @property
+    @abstractproperty
     def state(self) -> str:
         """
         Get's the state of the merge request.
 
         :return: Either 'open' or 'closed'.
         """
-        raise NotImplementedError
 
-    @property
+    @abstractproperty
     def base(self) -> Commit:
         """
         Retrieves the base commit of the merge request, i.e. the one it should
@@ -60,9 +62,8 @@ class MergeRequest(Issue):
 
         :return: A Commit object.
         """
-        raise NotImplementedError
 
-    @property
+    @abstractproperty
     def base_branch_name(self) -> str:
         """
         Retrieves the base branch name of the merge request, i.e. the one it
@@ -70,9 +71,8 @@ class MergeRequest(Issue):
 
         :return: A string.
         """
-        raise NotImplementedError
 
-    @property
+    @abstractproperty
     def head(self) -> Commit:
         """
         Retrieves the head commit of the merge request, i.e. the one which
@@ -80,9 +80,8 @@ class MergeRequest(Issue):
 
         :return: A Commit object.
         """
-        raise NotImplementedError
 
-    @property
+    @abstractproperty
     def head_branch_name(self) -> str:
         """
         Retrieves the head branch name of the merge request, i.e. the one that
@@ -90,25 +89,22 @@ class MergeRequest(Issue):
 
         :return: A string.
         """
-        raise NotImplementedError
 
-    @property
+    @abstractproperty
     def commits(self) -> [Commit]:
         """
         Retrieves all commits that are contained in this request.
 
         :return: A list of Commits.
         """
-        raise NotImplementedError
 
-    @property
+    @abstractproperty
     def repository(self):
         """
         Retrieves the repository where this PR is opened at.
 
         :return: A Repository object.
         """
-        raise NotImplementedError
 
     @property
     def target_repository(self):
@@ -120,49 +116,44 @@ class MergeRequest(Issue):
         """
         return self.repository
 
-    @property
+    @abstractproperty
     def source_repository(self):
         """
         Retrieves the repository where this PR's head branch is located at.
 
         :return: A Repository object.
         """
-        raise NotImplementedError
 
-    @property
+    @abstractproperty
     def affected_files(self):
         """
         Retrieves the affected files.
 
         :return: A set of filenames relative to repo root.
         """
-        raise NotImplementedError
 
-    @property
+    @abstractproperty
     def diffstat(self):
         """
         Gets additions and deletions of a merge request.
 
         :return: An (additions, deletions) tuple.
         """
-        raise NotImplementedError
 
-    @property
+    @abstractproperty
     def created(self) -> datetime:
         """
         Retrieves a timestamp on when the merge request was created.
         """
-        raise NotImplementedError
 
-    @property
+    @abstractproperty
     def updated(self) -> datetime:
         """
         Retrieves a timestamp on when the merge request was updated the last
         time.
         """
-        raise NotImplementedError
 
-    @property
+    @abstractproperty
     def number(self) -> int:
         """
         Returns the MR "number" or id.
@@ -222,13 +213,12 @@ class MergeRequest(Issue):
 
         return results
 
-    @property
+    @abstractproperty
     def closes_issues(self) -> {Issue}:
         """
         Returns a set of Issue objects which would be closed upon merging this
         pull request.
         """
-        raise NotImplementedError
 
     @property
     def tests_passed(self) -> bool:

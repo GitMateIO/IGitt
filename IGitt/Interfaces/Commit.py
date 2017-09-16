@@ -1,12 +1,15 @@
 """
 This module contains the actual commit object.
 """
+from abc import ABCMeta
+from abc import abstractproperty
+from abc import abstractmethod
 
 from IGitt.Interfaces.CommitStatus import CommitStatus, Status
 from IGitt.Interfaces.Repository import Repository
 
 
-class Commit:
+class Commit(metaclass=ABCMeta):
     """
     An abstraction representing a commit. This especially exposes functions to
     place comments and manipulate the status.
@@ -90,6 +93,7 @@ class Commit:
                               'review/gitmate/manual', 'http://gitmate.io')
         self.set_status(status)
 
+    @abstractmethod
     def comment(self, message: str, file: (str, None)=None,
                 line: (int, None)=None, mr_number: int=None):
         """
@@ -104,8 +108,8 @@ class Commit:
 
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def set_status(self, status: CommitStatus):
         """
         Adds the given status to the commit. If a status with the same context
@@ -115,8 +119,8 @@ class Commit:
 
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_statuses(self) -> {CommitStatus}:
         """
         Retrieves the all commit statuses.
@@ -124,9 +128,8 @@ class Commit:
         :return: A (frozen)set of CommitStatus objects.
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
-        raise NotImplementedError
 
-    @property
+    @abstractproperty
     def combined_status(self) -> Status:
         """
         Retrieves a combined status of all the commits.
@@ -138,47 +141,41 @@ class Commit:
             test is running
             Status.SUCCESS if the latest status for all commits is success
         """
-        raise NotImplementedError
 
-    @property
+    @abstractproperty
     def sha(self) -> str:
         """
         Retrieves the sha of the commit.
 
         :return: A string holding the SHA of the commit.
         """
-        raise NotImplementedError
 
-    @property
+    @abstractproperty
     def parent(self):
         """
         Retrieves the parent commit if possible.
 
         :return: A Commit object.
         """
-        raise NotImplementedError
 
-    @property
+    @abstractproperty
     def repository(self) -> Repository:
         """
         Retrieves the repository that holds this commit.
 
         :return: A Repository object.
         """
-        raise NotImplementedError
 
-    @property
+    @abstractproperty
     def message(self) -> str:
         """
         Retrieves the commit message.
 
         :return: Commit message as string.
         """
-        raise NotImplementedError
 
-    @property
-    def unified_diff(self):
+    @abstractproperty
+    def unified_diff(self) -> str:
         """
         Retrieves the unified diff for the commit excluding the diff index.
         """
-        raise NotImplementedError

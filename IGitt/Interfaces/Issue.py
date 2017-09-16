@@ -2,97 +2,94 @@
 This module contains the Issue abstraction class which provides properties and
 actions related to issues and bug reports.
 """
+from abc import ABCMeta
+from abc import abstractmethod
+from abc import abstractproperty
+from abc import abstractstaticmethod
 from datetime import datetime
 
 from IGitt.Interfaces.Comment import Comment
 from IGitt.Interfaces.Repository import Repository
 
 
-class Issue:
+class Issue(metaclass=ABCMeta):
     """
     Represents an issue on GitHub or GitLab or a bug report on bugzilla or so.
     """
 
-    @property
+    @abstractproperty
     def number(self) -> int:
         """
         Returns the issue "number" or id.
         """
-        raise NotImplementedError
 
-    @property
+    @abstractproperty
     def repository(self) -> Repository:
         """
         Returns the repository this issue is linked with.
         """
-        raise NotImplementedError
 
-    @property
+    @abstractproperty
     def title(self) -> str:
         """
         Retrieves the title of the issue.
         """
-        raise NotImplementedError
 
-    @property
+    @abstractproperty
     def url(self) -> str:
         """
         Retrieves the url of the issue.
         """
-        raise NotImplementedError
 
     @title.setter
+    @abstractmethod
     def title(self, new_title):
         """
         Sets the title of the issue.
 
         :param new_title: The new title.
         """
-        raise NotImplementedError
 
-    @property
+    @abstractproperty
     def description(self) -> str:
         """
         Retrieves the main description of the issue.
         """
-        raise NotImplementedError
 
-    @property
+    @abstractproperty
     def author(self) -> str:
         """
         Retrieves the username of the author of the comment.
         """
-        raise NotImplementedError
 
-    @property
+    @abstractproperty
     def assignees(self) -> {str}:
         """
         Retrieves a set of usernames of assignees.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def assign(self, username: str):
         """
         Sets a given user as assignee.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def unassign(self, username: str):
         """
         Unassigns given user from issue.
         """
-        raise NotImplementedError
 
-    @property
+    @abstractproperty
     def labels(self) -> {str}:
         """
         Retrieves the set of labels the issue is currently tagged with.
 
         :return: The set of labels.
         """
-        raise NotImplementedError
 
     @labels.setter
+    @abstractmethod
     def labels(self, value: {str}):
         """
         Tags the issue with the given labels. For examples see documentation
@@ -102,26 +99,24 @@ class Issue:
 
         :param value: The new set of labels.
         """
-        raise NotImplementedError
 
-    @property
+    @abstractproperty
     def available_labels(self) -> {str}:
         """
         Compiles a set of labels that are available for labelling this issue.
 
         :return: A set of label captions.
         """
-        raise NotImplementedError
 
-    @property
+    @abstractproperty
     def comments(self) -> [Comment]:
         """
         Retrieves a list of comments which are on the issue excliding the description.
 
         :return: A list of Comment objects.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def add_comment(self, body) -> Comment:
         """
         Adds a comment to the issue.
@@ -130,58 +125,53 @@ class Issue:
         :return: The newly created comment.
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def close(self):
         """
         Closes the issue.
 
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def reopen(self):
         """
         Reopens the issue.
 
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def delete(self):
         """
         Deletes the issue.
 
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
-        raise NotImplementedError
 
-    @property
+    @abstractproperty
     def state(self) -> str:
         """
         Get's the state of the issue.
 
         :return: Either 'open' or 'closed'.
         """
-        raise NotImplementedError
 
-    @property
+    @abstractproperty
     def created(self) -> datetime:
         """
         Retrieves a timestamp on when the comment was created.
         """
-        raise NotImplementedError
 
-    @property
+    @abstractproperty
     def updated(self) -> datetime:
         """
         Retrieves a timestamp on when the comment was updated the last time.
         """
-        raise NotImplementedError
 
-    @staticmethod
+    @abstractstaticmethod
     def create(token, repository, title, body=''):
         """
         Create a new issue in repository.
         """
-        raise NotImplementedError

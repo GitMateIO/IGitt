@@ -1,7 +1,9 @@
 """
 Contains the Repository class.
 """
-
+from abc import ABCMeta
+from abc import abstractmethod
+from abc import abstractproperty
 from datetime import datetime
 from enum import Enum
 from tempfile import mkdtemp
@@ -22,13 +24,14 @@ class WebhookEvents(Enum):
     MERGE_REQUEST_COMMENT = 6
 
 
-class Repository:
+class Repository(metaclass=ABCMeta):
     """
     This class depicts a Repository at a hosting service like GitHub. Thus, on
     top of access to the actual code and history, it also provides access to
     issues, PRs, hooks and so on.
     """
 
+    @abstractmethod
     def register_hook(self,
                       url: str,
                       secret: str=None,
@@ -43,8 +46,8 @@ class Repository:
                        registered against. Defaults to all possible events.
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def delete_hook(self, url: str):
         """
         Deletes all webhooks to the given URL. (Does nothing if no such hook
@@ -53,17 +56,16 @@ class Repository:
         :param url: The URL to not fire the webhook to anymore.
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
-        raise NotImplementedError
 
-    @property
+    @abstractproperty
     def hooks(self) -> {str}:
         """
         Retrieves all URLs this repository is hooked to.
 
         :return: Set of URLs (str).
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_issue(self, issue_number: int):
         """
         Retrieves an issue.
@@ -73,8 +75,8 @@ class Repository:
         :raises ElementDoesntExistError: If the issue doesn't exist.
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def get_mr(self, mr_number: int):
         """
         Retrieves an MR.
@@ -82,8 +84,8 @@ class Repository:
         :param mr_number: The merge_request ID of the MR to retrieve.
         :return: An MR object.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def create_label(self, name: str, color: str):
         """
         Creates a new label.
@@ -93,8 +95,8 @@ class Repository:
         :raises ElementAlreadyExistsError: If the label name already exists.
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def delete_label(self, name: str):
         """
         Deletes a label.
@@ -103,7 +105,6 @@ class Repository:
         :raises ElementDoesntExistError: If the label doesn't exist.
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
-        raise NotImplementedError
 
     def get_clone(self) -> (Repo, str):
         """
@@ -141,6 +142,7 @@ class Repository:
 
         return repo, tempdir
 
+    @abstractmethod
     def get_labels(self) -> {str}:
         """
         Retrieves the set of labels.
@@ -148,18 +150,16 @@ class Repository:
         :return: A set of strings, the captions of the labels.
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
-        raise NotImplementedError
 
-    @property
+    @abstractproperty
     def hoster(self) -> str:
         """
         Retrieves the name of the hoster.
 
         :return: A string, e.g. 'github' or 'gitlab'.
         """
-        raise NotImplementedError
 
-    @property
+    @abstractproperty
     def full_name(self) -> str:
         """
         Retrieves the full name of the repository, that identifies it uniquely
@@ -167,58 +167,55 @@ class Repository:
 
         :return: A string, e.g. 'coala-analyzer/coala'.
         """
-        raise NotImplementedError
 
-    @property
+    @abstractproperty
     def clone_url(self) -> str:
         """
         Retrieves an url that can be used for cloning the repository.
 
         :return: A string that can be used with ``git clone <url>`` as url.
         """
-        raise NotImplementedError
 
-    @property
+    @abstractproperty
     def merge_requests(self) -> set:
         """
         Retrieves a set of merge request objects.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def filter_issues(self, state: str='opened') -> set:
         """
         Filters the issues from the repository based on properties.
 
         :param state: 'opened' or 'closed' or 'all'.
         """
-        raise NotImplementedError
 
-    @property
+    @abstractproperty
     def issues(self) -> set:
         """
         Retrieves a set of issue objects.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def create_issue(self, title, body=''):
         """
         Create a new issue.
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def create_fork(self, organization: (str, None)=None,
                     namespace: (str, None)=None):
         """
         Create a fork
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def delete(self):
         """
         Delete Repository
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def create_merge_request(self, title:str, base:str, head:str,
                              body: (str, None)=None,
                              target_project_id: (int, None)=None,
@@ -226,16 +223,16 @@ class Repository:
         """
         Creates a PR
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def create_file(self, path: str, message: str, content: str,
                     branch: (str, None)=None, committer:(str, None)=None,
                     author:(dict, None)=None, encoding: (str, None)=None,):
         """
         Creates a new file
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def search_mrs(self,
                    created_after: datetime.date='',
                    created_before: datetime.date='',
@@ -246,6 +243,7 @@ class Repository:
         """
         raise NotImplementedError
 
+    @abstractmethod
     def search_issues(self,
                       created_after: datetime.date='',
                       created_before: datetime.date='',

@@ -10,9 +10,16 @@ class TestCommit(unittest.TestCase):
         CommitMock = type('CommitMock', (Commit, ),
                           {'set_status': lambda self, s: self.statuses.append(s),
                            'get_statuses': lambda self: self.statuses,
-                           'statuses': []})
+                           'statuses': [],
+                           'combined_status': Status.SUCCESS,
+                           'comment': lambda self: None,
+                           'message': lambda self: 'random message',
+                           'parent': lambda self: None,
+                           'repository': lambda self: None,
+                           'sha': lambda self: None,
+                           'unified_diff': lambda self: None})
 
-        commit = CommitMock()
+        commit = CommitMock() #pylint: disable=E0110
         commit.pending()
         assert commit.get_statuses()[0].context == 'review/gitmate/manual'
 
