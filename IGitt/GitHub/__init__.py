@@ -24,6 +24,11 @@ class GitHubMixin(CachedDataMixin):
     def _get_data(self):
         return get(self._token, self._url)
 
+    def __repr__(self): # dont cover
+        return '<{} object(url={}) at {}>'.format(self.__class__.__name__,
+                                            self.url,
+                                            hex(id(self)))
+
 
 class GitHubToken(Token):
     """
