@@ -29,6 +29,14 @@ class Repository:
     issues, PRs, hooks and so on.
     """
 
+    @property
+    def top_level_org(self):
+        """
+        Returns the topmost organization, e.g. for `gitmate/open-source/IGitt`
+        this is `gitmate`.
+        """
+        raise NotImplementedError
+
     def register_hook(self,
                       url: str,
                       secret: str=None,

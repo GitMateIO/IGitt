@@ -7,6 +7,7 @@ from IGitt import ElementAlreadyExistsError, ElementDoesntExistError
 from IGitt.GitHub import delete, get, post, GitHubMixin, put
 from IGitt.GitHub import GitHubToken
 from IGitt.GitHub.GitHubIssue import GitHubIssue
+from IGitt.GitHub.GitHubOrganization import GitHubOrganization
 from IGitt.Interfaces.Repository import Repository
 from IGitt.Interfaces.Repository import WebhookEvents
 from IGitt.Utils import eliminate_none
@@ -33,8 +34,6 @@ class GitHubRepository(Repository, GitHubMixin):
     Represents a repository on GitHub.
     """
 
-
-
     def __init__(self, token: GitHubToken, repository: str):
         """
         Creates a new GitHubRepository object with the given credentials.
@@ -46,6 +45,15 @@ class GitHubRepository(Repository, GitHubMixin):
         self._token = token
         self._repository = repository
         self._url = '/repos/'+repository
+
+    @property
+    def top_level_org(self):
+        """
+        Returns the topmost organization, e.g. for `gitmate/open-source/IGitt`
+        this is `gitmate`.
+        """
+        return GitHubOrganization(self._token,
+                                  self._repository.split('/', maxsplit=1)[0])
 
     @property
     def hoster(self):

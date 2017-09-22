@@ -8,9 +8,11 @@ from IGitt import ElementAlreadyExistsError, ElementDoesntExistError
 from IGitt.GitLab import delete, get, post, GitLabMixin
 from IGitt.GitLab import GitLabOAuthToken, GitLabPrivateToken
 from IGitt.GitLab.GitLabIssue import GitLabIssue
+from IGitt.GitLab.GitLabOrganization import GitLabOrganization
 from IGitt.Interfaces.Repository import Repository
 from IGitt.Interfaces.Repository import WebhookEvents
 from IGitt.Utils import eliminate_none
+
 
 GL_WEBHOOK_TRANSLATION = {
     WebhookEvents.PUSH: 'push_events',
@@ -23,6 +25,7 @@ GL_WEBHOOK_TRANSLATION = {
 
 GL_WEBHOOK_EVENTS = {'tag_push_events', 'job_events', 'pipeline_events',
                      'wiki_events'} | set(GL_WEBHOOK_TRANSLATION.values())
+
 
 def date_in_range(data,
                   created_after='',
@@ -47,6 +50,7 @@ def date_in_range(data,
     return (is_created_after and is_created_before and is_updated_after and
             is_updated_before)
 
+
 class GitLabRepository(Repository, GitLabMixin):
     """
     Represents a repository on GitLab.
@@ -64,6 +68,15 @@ class GitLabRepository(Repository, GitLabMixin):
         self._token = token
         self._repository = repository
         self._url = '/projects/' + quote_plus(repository)
+
+    @property
+    def top_level_org(self):
+        """
+        Returns the topmost organization, e.g. for `gitmate/open-source/IGitt`
+        this is `gitmate`.
+        """
+        return GitLabOrganization(self._token,
+                                  self._repository.split('/', maxsplit=1)[0])
 
     @property
     def hoster(self) -> str:
