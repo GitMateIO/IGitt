@@ -1,0 +1,290 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/groups/gitmate-test-org/members?per_page=100
+  response:
+    body: {string: '[{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user","access_level":40,"expires_at":null},{"id":104269,"name":"Lasse
+        Schuirmann","username":"sils","state":"active","avatar_url":"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\u0026d=identicon","web_url":"https://gitlab.com/sils","access_level":50,"expires_at":null},{"id":889700,"name":"Naveen
+        Kumar Sangi","username":"nkprince007","state":"active","avatar_url":"https://gitlab.com/uploads/-/system/user/avatar/889700/avatar.png","web_url":"https://gitlab.com/nkprince007","access_level":50,"expires_at":null}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['767']
+      Content-Type: [application/json]
+      Date: ['Fri, 22 Sep 2017 21:26:02 GMT']
+      Etag: [W/"eaa4066ee0c13df103b7ef560067cd03"]
+      Link: ['<https://gitlab.com/api/v4/groups/gitmate-test-org/members?access_token=98f0f5b512132e1a255f6f6b400f6a121c7a35c838bdf6c9cf0750ef09a97b9f&id=gitmate-test-org&page=1&per_page=100>;
+          rel="first", <https://gitlab.com/api/v4/groups/gitmate-test-org/members?access_token=98f0f5b512132e1a255f6f6b400f6a121c7a35c838bdf6c9cf0750ef09a97b9f&id=gitmate-test-org&page=1&per_page=100>;
+          rel="last"']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['11']
+      RateLimit-Remaining: ['589']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['100']
+      X-Prev-Page: ['']
+      X-Request-Id: [2f3d6b88-c765-42a2-b143-1aa6411a82dd]
+      X-Runtime: ['0.334216']
+      X-Total: ['3']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/groups?per_page=100
+  response:
+    body: {string: '[{"id":1999522,"name":"another-subgroup","path":"another-subgroup","description":"","visibility":"public","ldap_cn":null,"ldap_access":null,"lfs_enabled":true,"avatar_url":null,"web_url":"https://gitlab.com/groups/gitmate-test-org/another-subgroup","request_access_enabled":false,"full_name":"gitmate-test-org
+        / another-subgroup","full_path":"gitmate-test-org/another-subgroup","parent_id":1999111},{"id":1999111,"name":"gitmate-test-org","path":"gitmate-test-org","description":"","visibility":"public","ldap_cn":null,"ldap_access":null,"lfs_enabled":true,"avatar_url":null,"web_url":"https://gitlab.com/groups/gitmate-test-org","request_access_enabled":false,"full_name":"gitmate-test-org","full_path":"gitmate-test-org","parent_id":null},{"id":1999237,"name":"subgroup","path":"subgroup","description":"","visibility":"public","ldap_cn":null,"ldap_access":null,"lfs_enabled":true,"avatar_url":null,"web_url":"https://gitlab.com/groups/gitmate-test-org/subgroup","request_access_enabled":false,"full_name":"gitmate-test-org
+        / subgroup","full_path":"gitmate-test-org/subgroup","parent_id":1999111}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['1099']
+      Content-Type: [application/json]
+      Date: ['Fri, 22 Sep 2017 21:26:06 GMT']
+      Etag: [W/"b41b792c594899318cfb79e3ffba9fe4"]
+      Link: ['<https://gitlab.com/api/v4/groups?access_token=98f0f5b512132e1a255f6f6b400f6a121c7a35c838bdf6c9cf0750ef09a97b9f&order_by=name&owned=false&page=1&per_page=100&sort=asc&statistics=false>;
+          rel="first", <https://gitlab.com/api/v4/groups?access_token=98f0f5b512132e1a255f6f6b400f6a121c7a35c838bdf6c9cf0750ef09a97b9f&order_by=name&owned=false&page=1&per_page=100&sort=asc&statistics=false>;
+          rel="last"']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['12']
+      RateLimit-Remaining: ['588']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['100']
+      X-Prev-Page: ['']
+      X-Request-Id: [93cb2e2f-6917-4030-b1a4-28fabc0ea334]
+      X-Runtime: ['0.197188']
+      X-Total: ['3']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/groups/gitmate-test-org%2Fanother-subgroup/members?per_page=100
+  response:
+    body: {string: '[{"id":170770,"name":"Fabian Neuschmidt","username":"fneu","state":"active","avatar_url":"https://gitlab.com/uploads/-/system/user/avatar/170770/avatar.png","web_url":"https://gitlab.com/fneu","access_level":10,"expires_at":null},{"id":104269,"name":"Lasse
+        Schuirmann","username":"sils","state":"active","avatar_url":"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\u0026d=identicon","web_url":"https://gitlab.com/sils","access_level":50,"expires_at":null}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['482']
+      Content-Type: [application/json]
+      Date: ['Fri, 22 Sep 2017 21:26:09 GMT']
+      Etag: [W/"0cf196510723ca4d946a7f8eb89e0c9e"]
+      Link: ['<https://gitlab.com/api/v4/groups/gitmate-test-org%2Fanother-subgroup/members?access_token=98f0f5b512132e1a255f6f6b400f6a121c7a35c838bdf6c9cf0750ef09a97b9f&id=gitmate-test-org%2Fanother-subgroup&page=1&per_page=100>;
+          rel="first", <https://gitlab.com/api/v4/groups/gitmate-test-org%2Fanother-subgroup/members?access_token=98f0f5b512132e1a255f6f6b400f6a121c7a35c838bdf6c9cf0750ef09a97b9f&id=gitmate-test-org%2Fanother-subgroup&page=1&per_page=100>;
+          rel="last"']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['13']
+      RateLimit-Remaining: ['587']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['100']
+      X-Prev-Page: ['']
+      X-Request-Id: [2e5635a8-3020-47e0-a986-9d8e98c194b5]
+      X-Runtime: ['0.137460']
+      X-Total: ['2']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/groups/gitmate-test-org%2Fsubgroup/members?per_page=100
+  response:
+    body: {string: '[{"id":1399318,"name":"GitMate Bot","username":"gitmate-bot","state":"active","avatar_url":"https://gitlab.com/uploads/-/system/user/avatar/1399318/avatar.png","web_url":"https://gitlab.com/gitmate-bot","access_level":20,"expires_at":null},{"id":889700,"name":"Naveen
+        Kumar Sangi","username":"nkprince007","state":"active","avatar_url":"https://gitlab.com/uploads/-/system/user/avatar/889700/avatar.png","web_url":"https://gitlab.com/nkprince007","access_level":50,"expires_at":null}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['484']
+      Content-Type: [application/json]
+      Date: ['Fri, 22 Sep 2017 21:26:13 GMT']
+      Etag: [W/"23970e66698b832cae9f9aad28bd152e"]
+      Link: ['<https://gitlab.com/api/v4/groups/gitmate-test-org%2Fsubgroup/members?access_token=98f0f5b512132e1a255f6f6b400f6a121c7a35c838bdf6c9cf0750ef09a97b9f&id=gitmate-test-org%2Fsubgroup&page=1&per_page=100>;
+          rel="first", <https://gitlab.com/api/v4/groups/gitmate-test-org%2Fsubgroup/members?access_token=98f0f5b512132e1a255f6f6b400f6a121c7a35c838bdf6c9cf0750ef09a97b9f&id=gitmate-test-org%2Fsubgroup&page=1&per_page=100>;
+          rel="last"']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['14']
+      RateLimit-Remaining: ['586']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['100']
+      X-Prev-Page: ['']
+      X-Request-Id: [1f21e108-852e-4809-8822-c4062c5c530d]
+      X-Runtime: ['0.217239']
+      X-Total: ['2']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/groups/gitmate-test-org%2Fsubgroup/members?per_page=100
+  response:
+    body: {string: '[{"id":1399318,"name":"GitMate Bot","username":"gitmate-bot","state":"active","avatar_url":"https://gitlab.com/uploads/-/system/user/avatar/1399318/avatar.png","web_url":"https://gitlab.com/gitmate-bot","access_level":20,"expires_at":null},{"id":889700,"name":"Naveen
+        Kumar Sangi","username":"nkprince007","state":"active","avatar_url":"https://gitlab.com/uploads/-/system/user/avatar/889700/avatar.png","web_url":"https://gitlab.com/nkprince007","access_level":50,"expires_at":null}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['484']
+      Content-Type: [application/json]
+      Date: ['Fri, 22 Sep 2017 21:26:16 GMT']
+      Etag: [W/"23970e66698b832cae9f9aad28bd152e"]
+      Link: ['<https://gitlab.com/api/v4/groups/gitmate-test-org%2Fsubgroup/members?access_token=98f0f5b512132e1a255f6f6b400f6a121c7a35c838bdf6c9cf0750ef09a97b9f&id=gitmate-test-org%2Fsubgroup&page=1&per_page=100>;
+          rel="first", <https://gitlab.com/api/v4/groups/gitmate-test-org%2Fsubgroup/members?access_token=98f0f5b512132e1a255f6f6b400f6a121c7a35c838bdf6c9cf0750ef09a97b9f&id=gitmate-test-org%2Fsubgroup&page=1&per_page=100>;
+          rel="last"']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['15']
+      RateLimit-Remaining: ['585']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['100']
+      X-Prev-Page: ['']
+      X-Request-Id: [6cda97a9-bef7-4460-a70e-396d010204a7]
+      X-Runtime: ['0.262730']
+      X-Total: ['2']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/groups?per_page=100
+  response:
+    body: {string: '[{"id":1999522,"name":"another-subgroup","path":"another-subgroup","description":"","visibility":"public","ldap_cn":null,"ldap_access":null,"lfs_enabled":true,"avatar_url":null,"web_url":"https://gitlab.com/groups/gitmate-test-org/another-subgroup","request_access_enabled":false,"full_name":"gitmate-test-org
+        / another-subgroup","full_path":"gitmate-test-org/another-subgroup","parent_id":1999111},{"id":1999111,"name":"gitmate-test-org","path":"gitmate-test-org","description":"","visibility":"public","ldap_cn":null,"ldap_access":null,"lfs_enabled":true,"avatar_url":null,"web_url":"https://gitlab.com/groups/gitmate-test-org","request_access_enabled":false,"full_name":"gitmate-test-org","full_path":"gitmate-test-org","parent_id":null},{"id":1999237,"name":"subgroup","path":"subgroup","description":"","visibility":"public","ldap_cn":null,"ldap_access":null,"lfs_enabled":true,"avatar_url":null,"web_url":"https://gitlab.com/groups/gitmate-test-org/subgroup","request_access_enabled":false,"full_name":"gitmate-test-org
+        / subgroup","full_path":"gitmate-test-org/subgroup","parent_id":1999111}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['1099']
+      Content-Type: [application/json]
+      Date: ['Fri, 22 Sep 2017 21:26:19 GMT']
+      Etag: [W/"b41b792c594899318cfb79e3ffba9fe4"]
+      Link: ['<https://gitlab.com/api/v4/groups?access_token=98f0f5b512132e1a255f6f6b400f6a121c7a35c838bdf6c9cf0750ef09a97b9f&order_by=name&owned=false&page=1&per_page=100&sort=asc&statistics=false>;
+          rel="first", <https://gitlab.com/api/v4/groups?access_token=98f0f5b512132e1a255f6f6b400f6a121c7a35c838bdf6c9cf0750ef09a97b9f&order_by=name&owned=false&page=1&per_page=100&sort=asc&statistics=false>;
+          rel="last"']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['16']
+      RateLimit-Remaining: ['584']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['100']
+      X-Prev-Page: ['']
+      X-Request-Id: [69e0a042-f64e-4804-be3e-19d68f806d52]
+      X-Runtime: ['0.155090']
+      X-Total: ['3']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/groups/gitmate-test-org/members?per_page=100
+  response:
+    body: {string: '[{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user","access_level":40,"expires_at":null},{"id":104269,"name":"Lasse
+        Schuirmann","username":"sils","state":"active","avatar_url":"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\u0026d=identicon","web_url":"https://gitlab.com/sils","access_level":50,"expires_at":null},{"id":889700,"name":"Naveen
+        Kumar Sangi","username":"nkprince007","state":"active","avatar_url":"https://gitlab.com/uploads/-/system/user/avatar/889700/avatar.png","web_url":"https://gitlab.com/nkprince007","access_level":50,"expires_at":null}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['767']
+      Content-Type: [application/json]
+      Date: ['Fri, 22 Sep 2017 21:26:23 GMT']
+      Etag: [W/"eaa4066ee0c13df103b7ef560067cd03"]
+      Link: ['<https://gitlab.com/api/v4/groups/gitmate-test-org/members?access_token=98f0f5b512132e1a255f6f6b400f6a121c7a35c838bdf6c9cf0750ef09a97b9f&id=gitmate-test-org&page=1&per_page=100>;
+          rel="first", <https://gitlab.com/api/v4/groups/gitmate-test-org/members?access_token=98f0f5b512132e1a255f6f6b400f6a121c7a35c838bdf6c9cf0750ef09a97b9f&id=gitmate-test-org&page=1&per_page=100>;
+          rel="last"']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['17']
+      RateLimit-Remaining: ['583']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['100']
+      X-Prev-Page: ['']
+      X-Request-Id: [f8a95ba5-c29e-4f23-a440-1b878b82d8f7]
+      X-Runtime: ['0.348862']
+      X-Total: ['3']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/groups/gitmate-test-user/members?per_page=100
+  response:
+    body: {string: '{"message":"404 Group Not Found"}'}
+    headers:
+      Cache-Control: [no-cache]
+      Content-Length: ['33']
+      Content-Type: [application/json]
+      Date: ['Fri, 22 Sep 2017 21:26:28 GMT']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['18']
+      RateLimit-Remaining: ['582']
+      Server: [nginx]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [8af0818c-7215-42e4-99a6-de919e743274]
+      X-Runtime: ['0.172990']
+    status: {code: 404, message: Not Found}
+version: 1
