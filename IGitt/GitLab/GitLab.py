@@ -120,13 +120,18 @@ class GitLab(Hoster):
         :return:      An IssueActions or MergeRequestActions member and a list
                       of the affected IGitt objects.
         """
-        repository = (data['project'] if 'project' in data.keys()
-                      else data['object_attributes']['target'])
+        repository = (
+            data['project_name'].replace(' / ', '/')
+            if 'project_name' in data.keys()
+            else data['project']['path_with_namespace']
+            if 'project' in data.keys()
+            else data['object_attributes']['target']['path_with_namespace']
+        )
 
         if event == 'Issue Hook':
             issue = data['object_attributes']
             issue_obj = GitLabIssue(
-                self._token, repository['path_with_namespace'], issue['iid'])
+                self._token, repository, issue['iid'])
             trigger_event = {
                 'open': IssueActions.OPENED,
                 'close': IssueActions.CLOSED,
@@ -139,7 +144,7 @@ class GitLab(Hoster):
             merge_request_data = data['object_attributes']
             merge_request_obj = GitLabMergeRequest(
                 self._token,
-                repository['path_with_namespace'],
+                repository,
                 merge_request_data['iid'])
             trigger_event = {
                 'update': MergeRequestActions.ATTRIBUTES_CHANGED,
@@ -171,24 +176,24 @@ class GitLab(Hoster):
             if comment_type == CommentType.MERGE_REQUEST:
                 iid = data['merge_request']['iid']
                 iss = GitLabMergeRequest(self._token,
-                                         repository['path_with_namespace'], iid)
+                                         repository, iid)
                 action = MergeRequestActions.COMMENTED
             elif comment_type == CommentType.ISSUE:
                 iid = data['issue']['iid']
-                iss = GitLabIssue(self._token, repository['path_with_namespace'], iid)
+                iss = GitLabIssue(self._token, repository, iid)
                 action = IssueActions.COMMENTED
             else:
                 raise NotImplementedError
 
             return action, [iss, GitLabComment(
-                self._token, repository['path_with_namespace'], iid,
+                self._token, repository, iid,
                 comment_type, comment['id']
             )]
 
         if event == 'Pipeline Hook':
             return PipelineActions.UPDATED, [GitLabCommit(
                 self._token,
-                repository['path_with_namespace'],
+                repository,
                 data['commit']['id'])]
 
         raise NotImplementedError('Given webhook cannot be handled yet.')
