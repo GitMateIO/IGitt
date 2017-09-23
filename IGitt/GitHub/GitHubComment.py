@@ -7,7 +7,7 @@ from IGitt.GitHub import delete, patch, GitHubMixin, GitHubToken
 from IGitt.Interfaces.Comment import Comment, CommentType
 
 
-class GitHubComment(Comment, GitHubMixin):
+class GitHubComment(GitHubMixin, Comment):
     """
     Represents a comment on GitHub, mainly with a body and author - oh and it's
     deletable!

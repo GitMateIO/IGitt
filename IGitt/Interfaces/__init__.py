@@ -10,6 +10,20 @@ from requests import Session
 HEADERS = {'User-Agent': 'IGitt'}
 
 
+class IGittObject:
+    """
+    Any IGitt interface should inherit from this and any IGitt object shall
+    have those methods.
+    """
+
+    @property
+    def hoster(self):
+        """
+        The hosting service of the object, e.g. 'gitlab' or 'github'.
+        """
+        raise NotImplementedError
+
+
 class Token:
     """
     Base class for different types of tokens used for different methods of

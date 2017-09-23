@@ -4,7 +4,7 @@ Contains the Hoster implementation for GitLab.
 
 import logging
 
-from IGitt.GitLab import get, GitLabOAuthToken, GitLabPrivateToken
+from IGitt.GitLab import get, GitLabOAuthToken, GitLabPrivateToken, GitLabMixin
 from IGitt.GitLab.GitLabComment import GitLabComment
 from IGitt.GitLab.GitLabCommit import GitLabCommit
 from IGitt.GitLab.GitLabIssue import GitLabIssue
@@ -20,7 +20,7 @@ LOGGER = logging.getLogger(__name__)
 LOGGER.setLevel(logging.DEBUG)
 
 
-class GitLab(Hoster):
+class GitLab(GitLabMixin, Hoster):
     """
     A high level interface to GitLab.
     """

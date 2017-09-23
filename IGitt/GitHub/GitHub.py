@@ -2,7 +2,7 @@
 Contains the Hoster implementation for GitHub.
 """
 
-from IGitt.GitHub import get, GitHubToken
+from IGitt.GitHub import get, GitHubToken, GitHubMixin
 from IGitt.GitHub.GitHubComment import GitHubComment
 from IGitt.GitHub.GitHubCommit import GitHubCommit
 from IGitt.GitHub.GitHubIssue import GitHubIssue
@@ -14,7 +14,7 @@ from IGitt.Interfaces.Hoster import Hoster
 from IGitt.GitHub.GitHubRepository import GitHubRepository
 
 
-class GitHub(Hoster):
+class GitHub(GitHubMixin, Hoster):
     """
     A high level interface to GitHub.
     """

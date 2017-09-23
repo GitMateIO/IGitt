@@ -24,6 +24,13 @@ class GitHubMixin(CachedDataMixin):
     def _get_data(self):
         return get(self._token, self._url)
 
+    @property
+    def hoster(self):
+        """
+        Returns `github`.
+        """
+        return 'github'
+
 
 class GitHubToken(Token):
     """

@@ -81,7 +81,7 @@ def get_diff_index(patch, line_nr):
     return None
 
 
-class GitHubCommit(Commit, GitHubMixin):
+class GitHubCommit(GitHubMixin, Commit):
     """
     Represents a commit on GitHub.
     """

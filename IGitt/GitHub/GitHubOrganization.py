@@ -9,7 +9,7 @@ from IGitt.GitHub import get
 from IGitt.Interfaces.Organization import Organization
 
 
-class GitHubOrganization(Organization, GitHubMixin):
+class GitHubOrganization(GitHubMixin, Organization):
     """
     Represents an organization on GitLab.
     """

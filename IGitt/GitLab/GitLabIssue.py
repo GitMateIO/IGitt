@@ -11,7 +11,7 @@ from IGitt.Interfaces.Comment import CommentType
 from IGitt.Interfaces.Issue import Issue
 
 
-class GitLabIssue(Issue, GitLabMixin):
+class GitLabIssue(GitLabMixin, Issue):
     """
     This class represents an issue on GitLab.
     """

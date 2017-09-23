@@ -10,7 +10,7 @@ from IGitt.Interfaces.Comment import Comment
 from IGitt.Interfaces.Comment import CommentType
 
 
-class GitLabComment(Comment, GitLabMixin):
+class GitLabComment(GitLabMixin, Comment):
     """
     Represents a comment (or note as GitLab folks call it), with mainly a body
     and an author, which can ofcourse be deleted.

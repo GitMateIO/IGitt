@@ -10,7 +10,7 @@ from IGitt.Interfaces.Comment import CommentType
 from IGitt.Interfaces.Issue import Issue
 
 
-class GitHubIssue(Issue, GitHubMixin):
+class GitHubIssue(GitHubMixin, Issue):
     """
     This class represents an issue on GitHub.
     """

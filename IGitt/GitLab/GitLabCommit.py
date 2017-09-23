@@ -21,7 +21,7 @@ INV_GL_STATE_TRANSLATION = {val: key for key, val
                             in GL_STATE_TRANSLATION.items()}
 
 
-class GitLabCommit(Commit, GitLabMixin):
+class GitLabCommit(GitLabMixin, Commit):
     """
     Represents a commit on GitLab.
     """

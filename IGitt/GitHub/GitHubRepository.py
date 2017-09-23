@@ -29,7 +29,7 @@ GH_ISSUE_STATE_TRANSLATION = {
 }
 
 
-class GitHubRepository(Repository, GitHubMixin):
+class GitHubRepository(GitHubMixin, Repository):
     """
     Represents a repository on GitHub.
     """
@@ -54,15 +54,6 @@ class GitHubRepository(Repository, GitHubMixin):
         """
         return GitHubOrganization(self._token,
                                   self._repository.split('/', maxsplit=1)[0])
-
-    @property
-    def hoster(self):
-        """
-        Indicates that the repository is hosted by GitHub.
-
-        :return: "github".
-        """
-        return "github"  # dont cover
 
     @property
     def full_name(self):

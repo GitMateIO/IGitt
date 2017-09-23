@@ -5,7 +5,7 @@ from IGitt.GitHub import GitHubMixin, GitHubToken, patch, delete
 from IGitt.Interfaces.Thread import Thread
 
 
-class GitHubThread(Thread, GitHubMixin):
+class GitHubThread(GitHubMixin, Thread):
     """
     This class represents a thread on GitHub
     """

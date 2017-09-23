@@ -1,9 +1,10 @@
 """
 This module contains the Content class.
 """
+from IGitt.Interfaces import IGittObject
 
 
-class Content:
+class Content(IGittObject):
     """
     Represents content on GitHub or GitLab or a bug report on bugzilla or so.
     """

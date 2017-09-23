@@ -5,6 +5,7 @@ request, commit or issue.
 from datetime import datetime
 from enum import Enum
 
+from IGitt.Interfaces import IGittObject
 from IGitt.Interfaces.Repository import Repository
 
 
@@ -18,7 +19,7 @@ class CommentType(Enum):
     COMMIT = 'commits'
 
 
-class Comment:
+class Comment(IGittObject):
     """
     A comment, essentially represented by body and author.
     """

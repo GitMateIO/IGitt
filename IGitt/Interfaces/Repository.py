@@ -8,6 +8,8 @@ from tempfile import mkdtemp
 
 from git.repo.base import Repo
 
+from IGitt.Interfaces import IGittObject
+
 
 class WebhookEvents(Enum):
     """
@@ -22,7 +24,7 @@ class WebhookEvents(Enum):
     MERGE_REQUEST_COMMENT = 6
 
 
-class Repository:
+class Repository(IGittObject):
     """
     This class depicts a Repository at a hosting service like GitHub. Thus, on
     top of access to the actual code and history, it also provides access to
@@ -155,15 +157,6 @@ class Repository:
 
         :return: A set of strings, the captions of the labels.
         :raises RuntimeError: If something goes wrong (network, auth...).
-        """
-        raise NotImplementedError
-
-    @property
-    def hoster(self) -> str:
-        """
-        Retrieves the name of the hoster.
-
-        :return: A string, e.g. 'github' or 'gitlab'.
         """
         raise NotImplementedError
 

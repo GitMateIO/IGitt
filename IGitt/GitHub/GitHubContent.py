@@ -7,7 +7,7 @@ from IGitt.GitHub import GitHubMixin, GitHubToken, get, delete, put
 from IGitt.Interfaces.Content import Content
 
 
-class GitHubContent(Content, GitHubMixin):
+class GitHubContent(GitHubMixin, Content):
     """
     This class represents a content on GitHub
     """

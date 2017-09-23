@@ -4,11 +4,12 @@ actions related to issues and bug reports.
 """
 from datetime import datetime
 
+from IGitt.Interfaces import IGittObject
 from IGitt.Interfaces.Comment import Comment
 from IGitt.Interfaces.Repository import Repository
 
 
-class Issue:
+class Issue(IGittObject):
     """
     Represents an issue on GitHub or GitLab or a bug report on bugzilla or so.
     """

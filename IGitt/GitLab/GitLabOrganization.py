@@ -11,7 +11,7 @@ from IGitt.Interfaces import AccessLevel
 from IGitt.Interfaces.Organization import Organization
 
 
-class GitLabOrganization(Organization, GitLabMixin):
+class GitLabOrganization(GitLabMixin, Organization):
     """
     Represents an organization on GitLab.
     """

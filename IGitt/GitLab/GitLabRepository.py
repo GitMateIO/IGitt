@@ -51,7 +51,7 @@ def date_in_range(data,
             is_updated_before)
 
 
-class GitLabRepository(Repository, GitLabMixin):
+class GitLabRepository(GitLabMixin, Repository):
     """
     Represents a repository on GitLab.
     """
@@ -77,15 +77,6 @@ class GitLabRepository(Repository, GitLabMixin):
         """
         return GitLabOrganization(self._token,
                                   self._repository.split('/', maxsplit=1)[0])
-
-    @property
-    def hoster(self) -> str:
-        """
-        Indicates that the repository is hosted by GitLab.
-
-        :return: "gitlab".
-        """
-        return 'gitlab'  # dont cover
 
     @property
     def full_name(self) -> str:

@@ -1,12 +1,12 @@
 """
 This module contains the actual commit object.
 """
-
+from IGitt.Interfaces import IGittObject
 from IGitt.Interfaces.CommitStatus import CommitStatus, Status
 from IGitt.Interfaces.Repository import Repository
 
 
-class Commit:
+class Commit(IGittObject):
     """
     An abstraction representing a commit. This especially exposes functions to
     place comments and manipulate the status.

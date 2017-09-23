@@ -6,7 +6,7 @@ from IGitt.GitHub.GitHubThread import GitHubThread
 from IGitt.Interfaces.Notification import Notification
 
 
-class GitHubNotification(Notification, GitHubMixin):
+class GitHubNotification(GitHubMixin, Notification):
     """
     This class represents a Notification on GitHub
     """

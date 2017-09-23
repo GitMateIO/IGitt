@@ -1,10 +1,11 @@
 """
 Contains the git Hoster abstraction.
 """
+from IGitt.Interfaces import IGittObject
 from IGitt.Interfaces.Repository import Repository
 
 
-class Hoster:
+class Hoster(IGittObject):
     """
     Abstracts a service like GitHub and allows e.g. to query for available
     repositories and stuff like that.

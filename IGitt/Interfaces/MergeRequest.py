@@ -21,6 +21,7 @@ SUPPORTED_HOST_KEYWORD_REGEX = {
     }
 CONCATENATION_KEYWORDS = [r',', r'\sand\s']
 
+
 class MergeRequest(Issue):
     """
     A request to merge something into the main codebase. Can be a patch in a

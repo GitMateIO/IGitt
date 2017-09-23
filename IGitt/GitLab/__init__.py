@@ -28,6 +28,13 @@ class GitLabMixin(CachedDataMixin):
     def _get_data(self):
         return get(self._token, self._url)
 
+    @property
+    def hoster(self):
+        """
+        Tells you that this is a `gitlab` object.
+        """
+        return 'gitlab'
+
 
 class GitLabOAuthToken(Token):
     """

@@ -1,9 +1,10 @@
 """
 Contains the Thread class.
 """
+from IGitt.Interfaces import IGittObject
 
 
-class Thread:
+class Thread(IGittObject):
     """
     Represents an thread on GitHub or GitLab or a bug report on bugzilla or so.
     """

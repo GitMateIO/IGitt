@@ -2,9 +2,10 @@
 This module contains the Issue abstraction class which provides properties and
 actions related to issues and bug reports.
 """
+from IGitt.Interfaces import IGittObject
 
 
-class Organization:
+class Organization(IGittObject):
     """
     Represents an organization on GitHub or GitLab.
     """

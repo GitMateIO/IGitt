@@ -7,7 +7,7 @@ from IGitt.GitLab import GitLabMixin, GitLabOAuthToken, GitLabPrivateToken, get,
 from IGitt.Interfaces.Content import Content
 
 
-class GitLabContent(Content, GitLabMixin):
+class GitLabContent(GitLabMixin, Content):
     """
     This class represents a content on GitHub
     """
