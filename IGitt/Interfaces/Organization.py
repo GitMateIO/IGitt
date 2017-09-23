@@ -25,6 +25,14 @@ class Organization(IGittObject):
         raise NotImplementedError
 
     @property
+    def masters(self) -> {str}:
+        """
+        Returns the user handles of all users able to manage members, usually
+        the master role (sometimes no such role exists, then same as owners).
+        """
+        raise NotImplementedError
+
+    @property
     def name(self) -> str:
         """
         The name of the organization.

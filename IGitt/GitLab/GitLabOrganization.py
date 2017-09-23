@@ -67,19 +67,29 @@ class GitLabOrganization(GitLabMixin, Organization):
         except RuntimeError:
             return 1
 
-    @property
-    def owners(self) -> {str}:
-        """
-        Returns the user handles of all admin users.
-        """
+    def _members(self, access_level):
         try:
             return {
                 user['username']
                 for user in self.raw_members()
-                if user['access_level'] >= AccessLevel.OWNER.value
+                if user['access_level'] >= access_level
             }
         except RuntimeError:
             return {self.name}
+
+    @property
+    def owners(self) -> {str}:
+        """
+        Returns the user handles of all owner users.
+        """
+        return self._members(AccessLevel.OWNER.value)
+
+    @property
+    def masters(self) -> {str}:
+        """
+        Returns the user handles of all master users.
+        """
+        return self._members(AccessLevel.ADMIN.value)
 
     @property
     def name(self) -> str:

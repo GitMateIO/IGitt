@@ -34,6 +34,8 @@ class GitLabOrganizationTest(unittest.TestCase):
     def test_admins(self):
         self.assertEqual(self.suborg.owners, {'sils', 'nkprince007'})
         self.assertEqual(self.org.owners, {'sils', 'nkprince007'})
+        self.assertEqual(self.org.masters, {'sils', 'nkprince007',
+                                            'gitmate-test-user'})
         self.assertEqual(self.user.owners, {'gitmate-test-user'})
 
     def test_organization(self):

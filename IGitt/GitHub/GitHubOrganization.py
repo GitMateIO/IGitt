@@ -49,6 +49,13 @@ class GitHubOrganization(GitHubMixin, Organization):
             return {self.name}
 
     @property
+    def masters(self):
+        """
+        Gets all owners (because there's no masters role on GitHub).
+        """
+        return self.owners
+
+    @property
     def name(self) -> str:
         """
         The name of the organization.
