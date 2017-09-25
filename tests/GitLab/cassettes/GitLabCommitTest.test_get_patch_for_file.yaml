@@ -1,0 +1,30 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/3fc4b860e0a2c17819934d678decacd914271e5c/diff?per_page=100
+  response:
+    body: {string: '[{"old_path":"README.md","new_path":"README.md","a_mode":"100644","b_mode":"100644","new_file":false,"renamed_file":false,"deleted_file":false,"diff":"@@
+        -1,2 +1,4 @@\n # test\n a test repo\n+\n+a tst pr\n"}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['208']
+      Content-Type: [application/json]
+      Date: ['Sun, 24 Sep 2017 11:39:43 GMT']
+      Etag: [W/"f3bd22df054b8e07dd82ea1ab048269a"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['19']
+      RateLimit-Remaining: ['581']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [717bd1a6-14ba-4e39-969d-092ca1ec3ab2]
+      X-Runtime: ['0.170475']
+    status: {code: 200, message: OK}
+version: 1

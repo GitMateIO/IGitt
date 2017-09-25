@@ -1,0 +1,141 @@
+interactions:
+- request:
+    body: '{"path": "deleteme", "message": "hello", "content": "aGVsbG8=", "branch":
+      "master"}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['83']
+      Content-Type: [application/json]
+      User-Agent: [IGitt]
+    method: PUT
+    uri: https://api.github.com/repos/gitmate-test-user/test/contents/deleteme
+  response:
+    body: {string: '{"content":{"name":"deleteme","path":"deleteme","sha":"b6fc4c620b67d95f953a5c1c1230aaab5db5a1b0","size":5,"url":"https://api.github.com/repos/gitmate-test-user/test/contents/deleteme?ref=master","html_url":"https://github.com/gitmate-test-user/test/blob/master/deleteme","git_url":"https://api.github.com/repos/gitmate-test-user/test/git/blobs/b6fc4c620b67d95f953a5c1c1230aaab5db5a1b0","download_url":"https://raw.githubusercontent.com/gitmate-test-user/test/master/deleteme","type":"file","_links":{"self":"https://api.github.com/repos/gitmate-test-user/test/contents/deleteme?ref=master","git":"https://api.github.com/repos/gitmate-test-user/test/git/blobs/b6fc4c620b67d95f953a5c1c1230aaab5db5a1b0","html":"https://github.com/gitmate-test-user/test/blob/master/deleteme"}},"commit":{"sha":"d9dab485d405734034508bd71af7701166702201","url":"https://api.github.com/repos/gitmate-test-user/test/git/commits/d9dab485d405734034508bd71af7701166702201","html_url":"https://github.com/gitmate-test-user/test/commit/d9dab485d405734034508bd71af7701166702201","author":{"name":"gitmate-test-user","email":"hostmaster@gitmate.io","date":"2017-09-24T18:29:21Z"},"committer":{"name":"gitmate-test-user","email":"hostmaster@gitmate.io","date":"2017-09-24T18:29:21Z"},"tree":{"sha":"4ced78868797736077503c6f6a05497515a6b69e","url":"https://api.github.com/repos/gitmate-test-user/test/git/trees/4ced78868797736077503c6f6a05497515a6b69e"},"message":"hello","parents":[{"sha":"f78fa380ddc11504a55d16bbb1578e6e1ee3bfef","url":"https://api.github.com/repos/gitmate-test-user/test/git/commits/f78fa380ddc11504a55d16bbb1578e6e1ee3bfef","html_url":"https://github.com/gitmate-test-user/test/commit/f78fa380ddc11504a55d16bbb1578e6e1ee3bfef"}]}}'}
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Access-Control-Expose-Headers: ['ETag, Link, X-GitHub-OTP, X-RateLimit-Limit,
+          X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes,
+          X-Poll-Interval']
+      Cache-Control: ['private, max-age=60, s-maxage=60']
+      Content-Length: ['1720']
+      Content-Security-Policy: [default-src 'none']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Sun, 24 Sep 2017 18:29:21 GMT']
+      ETag: ['"d03d95a215e5147f13bee88f7cab061f"']
+      Server: [GitHub.com]
+      Status: [201 Created]
+      Strict-Transport-Security: [max-age=31536000; includeSubdomains; preload]
+      Vary: ['Accept, Authorization, Cookie, X-GitHub-OTP', Accept-Encoding]
+      X-Accepted-OAuth-Scopes: ['']
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [deny]
+      X-GitHub-Media-Type: [github.v3; format=json]
+      X-GitHub-Request-Id: ['40AE:D7DD:194AB1F:2051470:59C7F980']
+      X-OAuth-Scopes: ['admin:org, admin:org_hook, admin:public_key, admin:repo_hook,
+          gist, notifications, repo, user']
+      X-RateLimit-Limit: ['5000']
+      X-RateLimit-Remaining: ['4952']
+      X-RateLimit-Reset: ['1506280502']
+      X-Runtime-rack: ['0.651416']
+      X-XSS-Protection: [1; mode=block]
+    status: {code: 201, message: Created}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://api.github.com/repos/gitmate-test-user/test/contents/deleteme
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA7WS3W7CMAyF3yXXQMpPu1EJ7ZI32NUk5KQurUiTqnaFNsS7z9m6CZi4oNLuoqP4
+        s32OT8pDgypXBTpklOdEtcDVtUIViGCy0q5stkhM9lSs03KdLiG1cztfLBMAMGlhUpibRBBUfwg0
+        nai+c1JZMbeUaw1tPdvXXPVmZkOjO2wDaREaYJwyEk97wk7Hl7bBM3om/TPZS4flpgFi7KRDxY3b
+        XdMvyHeYxgWjvxG/WGHJ7xvUI4NKtY5g0g8YVISjdwGKm74dHAeDohGDBV9e3dno7zL83sY8y9rF
+        LAeECLB9JbN93rx5kdHbUNR+H1MFwmwl2s7V/kAqPylCV/5ParLFSPAol+ORXPQbeSDn8ycNkGYq
+        JgMAAA==
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Access-Control-Expose-Headers: ['ETag, Link, X-GitHub-OTP, X-RateLimit-Limit,
+          X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes,
+          X-Poll-Interval']
+      Cache-Control: ['private, max-age=60, s-maxage=60']
+      Content-Encoding: [gzip]
+      Content-Security-Policy: [default-src 'none']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Sun, 24 Sep 2017 18:29:23 GMT']
+      ETag: [W/"388151cd4213bb97c916c94c7ad4a443"]
+      Last-Modified: ['Sun, 24 Sep 2017 18:29:21 GMT']
+      Server: [GitHub.com]
+      Status: [200 OK]
+      Strict-Transport-Security: [max-age=31536000; includeSubdomains; preload]
+      Vary: ['Accept, Authorization, Cookie, X-GitHub-OTP', Accept-Encoding]
+      X-Accepted-OAuth-Scopes: ['']
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [deny]
+      X-GitHub-Media-Type: [github.v3; format=json]
+      X-GitHub-Request-Id: ['40B4:D7DD:194AB66:20514C4:59C7F982']
+      X-OAuth-Scopes: ['admin:org, admin:org_hook, admin:public_key, admin:repo_hook,
+          gist, notifications, repo, user']
+      X-RateLimit-Limit: ['5000']
+      X-RateLimit-Remaining: ['4951']
+      X-RateLimit-Reset: ['1506280502']
+      X-Runtime-rack: ['0.040066']
+      X-XSS-Protection: [1; mode=block]
+    status: {code: 200, message: OK}
+- request:
+    body: '{"path": "/repos/gitmate-test-user/test/contents/deleteme", "message":
+      "Delete file", "sha": "b6fc4c620b67d95f953a5c1c1230aaab5db5a1b0", "branch":
+      "master"}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['156']
+      Content-Type: [application/json]
+      User-Agent: [IGitt]
+    method: DELETE
+    uri: https://api.github.com/repos/gitmate-test-user/test/contents/deleteme
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA7WSz2rEIBDGX6V43qwaNYk59dBH6KmllEmcbAL5h5rTknfvpNtASynssvQijuP4
+        m+9zzqyexohjZOW49P2BwmHoKDqz0AIrGZqqUcpm24IGCgepEtq5WmpZGxS2zhxaEOzAFt9TQRvj
+        HErOYe6Opy62S3WkN7nHeQqcDgaImEQMMVkCer7ttmN+AQd+A7CNQ//+k/qN+AfrwrkFA0tsJ79Z
+        MsKAJPHXyyQeB+g+5U+BJIaI/vHr2rGbKO9INqVTIfNE2CTVz7IoU1umxQtbd9up6n8x0SN1sf+t
+        MkabTNdCQWVRSSUdgobaZuAy4xqstClSVHf/7YYN/Goc+TFgCHDaHHvCHiM+NF2P1McMnoY1sPJ1
+        F+Gsg0oXxmlhcqWF0kYUlcslNHkupMyyXKRk+90i9gG9AXjPgF6NWd/W9QMimrLFxwMAAA==
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Access-Control-Expose-Headers: ['ETag, Link, X-GitHub-OTP, X-RateLimit-Limit,
+          X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes,
+          X-Poll-Interval']
+      Cache-Control: ['private, max-age=60, s-maxage=60']
+      Content-Encoding: [gzip]
+      Content-Security-Policy: [default-src 'none']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Sun, 24 Sep 2017 18:29:28 GMT']
+      ETag: [W/"91b57bd060b365daced236912698a96a"]
+      Server: [GitHub.com]
+      Status: [200 OK]
+      Strict-Transport-Security: [max-age=31536000; includeSubdomains; preload]
+      Vary: ['Accept, Authorization, Cookie, X-GitHub-OTP', Accept-Encoding]
+      X-Accepted-OAuth-Scopes: ['']
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [deny]
+      X-GitHub-Media-Type: [github.v3; format=json]
+      X-GitHub-Request-Id: ['40B8:D7DC:93D8CC:BC5555:59C7F985']
+      X-OAuth-Scopes: ['admin:org, admin:org_hook, admin:public_key, admin:repo_hook,
+          gist, notifications, repo, user']
+      X-RateLimit-Limit: ['5000']
+      X-RateLimit-Remaining: ['4950']
+      X-RateLimit-Reset: ['1506280502']
+      X-Runtime-rack: ['0.749037']
+      X-XSS-Protection: [1; mode=block]
+    status: {code: 200, message: OK}
+version: 1

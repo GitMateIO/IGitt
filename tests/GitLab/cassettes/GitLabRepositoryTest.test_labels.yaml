@@ -1,0 +1,272 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/labels?per_page=100
+  response:
+    body: {string: '[{"id":2105509,"name":"a","color":"#428BCA","description":"","open_issues_count":0,"closed_issues_count":0,"open_merge_requests_count":0,"priority":null,"subscribed":false},{"id":2105511,"name":"b","color":"#428BCA","description":"","open_issues_count":0,"closed_issues_count":0,"open_merge_requests_count":0,"priority":null,"subscribed":false},{"id":2105512,"name":"c","color":"#004E00","description":"","open_issues_count":0,"closed_issues_count":0,"open_merge_requests_count":0,"priority":null,"subscribed":false},{"id":2127066,"name":"dem","color":"#428BCA","description":null,"open_issues_count":2,"closed_issues_count":0,"open_merge_requests_count":0,"priority":null,"subscribed":false}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['693']
+      Content-Type: [application/json]
+      Date: ['Sun, 24 Sep 2017 18:03:50 GMT']
+      Etag: [W/"7d4e83b5fc5462b5e7e509d88d943838"]
+      Link: ['<https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/labels?access_token=98f0f5b512132e1a255f6f6b400f6a121c7a35c838bdf6c9cf0750ef09a97b9f&id=gitmate-test-user%2Ftest&page=1&per_page=100>;
+          rel="first", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/labels?access_token=98f0f5b512132e1a255f6f6b400f6a121c7a35c838bdf6c9cf0750ef09a97b9f&id=gitmate-test-user%2Ftest&page=1&per_page=100>;
+          rel="last"']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['108']
+      RateLimit-Remaining: ['492']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['100']
+      X-Prev-Page: ['']
+      X-Request-Id: [85601e2c-9925-49fc-aa4f-7900e2226a68]
+      X-Runtime: ['0.919188']
+      X-Total: ['4']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/labels?per_page=100
+  response:
+    body: {string: '[{"id":2105509,"name":"a","color":"#428BCA","description":"","open_issues_count":0,"closed_issues_count":0,"open_merge_requests_count":0,"priority":null,"subscribed":false},{"id":2105511,"name":"b","color":"#428BCA","description":"","open_issues_count":0,"closed_issues_count":0,"open_merge_requests_count":0,"priority":null,"subscribed":false},{"id":2105512,"name":"c","color":"#004E00","description":"","open_issues_count":0,"closed_issues_count":0,"open_merge_requests_count":0,"priority":null,"subscribed":false},{"id":2127066,"name":"dem","color":"#428BCA","description":null,"open_issues_count":2,"closed_issues_count":0,"open_merge_requests_count":0,"priority":null,"subscribed":false}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['693']
+      Content-Type: [application/json]
+      Date: ['Sun, 24 Sep 2017 18:03:56 GMT']
+      Etag: [W/"7d4e83b5fc5462b5e7e509d88d943838"]
+      Link: ['<https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/labels?access_token=98f0f5b512132e1a255f6f6b400f6a121c7a35c838bdf6c9cf0750ef09a97b9f&id=gitmate-test-user%2Ftest&page=1&per_page=100>;
+          rel="first", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/labels?access_token=98f0f5b512132e1a255f6f6b400f6a121c7a35c838bdf6c9cf0750ef09a97b9f&id=gitmate-test-user%2Ftest&page=1&per_page=100>;
+          rel="last"']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['109']
+      RateLimit-Remaining: ['491']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['100']
+      X-Prev-Page: ['']
+      X-Request-Id: [a4bf0e90-ce2d-48b1-95d5-d3be9bb508aa]
+      X-Runtime: ['0.681409']
+      X-Total: ['4']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/labels?per_page=100
+  response:
+    body: {string: '[{"id":2105509,"name":"a","color":"#428BCA","description":"","open_issues_count":0,"closed_issues_count":0,"open_merge_requests_count":0,"priority":null,"subscribed":false},{"id":2105511,"name":"b","color":"#428BCA","description":"","open_issues_count":0,"closed_issues_count":0,"open_merge_requests_count":0,"priority":null,"subscribed":false},{"id":2105512,"name":"c","color":"#004E00","description":"","open_issues_count":0,"closed_issues_count":0,"open_merge_requests_count":0,"priority":null,"subscribed":false},{"id":2127066,"name":"dem","color":"#428BCA","description":null,"open_issues_count":2,"closed_issues_count":0,"open_merge_requests_count":0,"priority":null,"subscribed":false}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['693']
+      Content-Type: [application/json]
+      Date: ['Sun, 24 Sep 2017 18:04:03 GMT']
+      Etag: [W/"7d4e83b5fc5462b5e7e509d88d943838"]
+      Link: ['<https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/labels?access_token=98f0f5b512132e1a255f6f6b400f6a121c7a35c838bdf6c9cf0750ef09a97b9f&id=gitmate-test-user%2Ftest&page=1&per_page=100>;
+          rel="first", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/labels?access_token=98f0f5b512132e1a255f6f6b400f6a121c7a35c838bdf6c9cf0750ef09a97b9f&id=gitmate-test-user%2Ftest&page=1&per_page=100>;
+          rel="last"']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['110']
+      RateLimit-Remaining: ['490']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['100']
+      X-Prev-Page: ['']
+      X-Request-Id: [39b89334-28e7-454f-83e8-a08e83a30137]
+      X-Runtime: ['0.673751']
+      X-Total: ['4']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+- request:
+    body: '{"name": "bug", "color": "#000000"}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['35']
+      Content-Type: [application/json]
+      User-Agent: [IGitt]
+    method: POST
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/labels
+  response:
+    body: {string: '{"id":2713079,"name":"bug","color":"#000000","description":null,"open_issues_count":0,"closed_issues_count":0,"open_merge_requests_count":0,"priority":null,"subscribed":false}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['175']
+      Content-Type: [application/json]
+      Date: ['Sun, 24 Sep 2017 18:04:07 GMT']
+      Etag: [W/"104b1cff8d479c155afabb937aad8e26"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['111']
+      RateLimit-Remaining: ['489']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [c091ab9a-0465-417a-a4ba-93bdabd32632]
+      X-Runtime: ['0.711212']
+    status: {code: 201, message: Created}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/labels?per_page=100
+  response:
+    body: {string: '[{"id":2105509,"name":"a","color":"#428BCA","description":"","open_issues_count":0,"closed_issues_count":0,"open_merge_requests_count":0,"priority":null,"subscribed":false},{"id":2105511,"name":"b","color":"#428BCA","description":"","open_issues_count":0,"closed_issues_count":0,"open_merge_requests_count":0,"priority":null,"subscribed":false},{"id":2713079,"name":"bug","color":"#000000","description":null,"open_issues_count":0,"closed_issues_count":0,"open_merge_requests_count":0,"priority":null,"subscribed":false},{"id":2105512,"name":"c","color":"#004E00","description":"","open_issues_count":0,"closed_issues_count":0,"open_merge_requests_count":0,"priority":null,"subscribed":false},{"id":2127066,"name":"dem","color":"#428BCA","description":null,"open_issues_count":2,"closed_issues_count":0,"open_merge_requests_count":0,"priority":null,"subscribed":false}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['869']
+      Content-Type: [application/json]
+      Date: ['Sun, 24 Sep 2017 18:04:11 GMT']
+      Etag: [W/"20f29eeda6f8919c569cceefa0240e44"]
+      Link: ['<https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/labels?access_token=98f0f5b512132e1a255f6f6b400f6a121c7a35c838bdf6c9cf0750ef09a97b9f&id=gitmate-test-user%2Ftest&page=1&per_page=100>;
+          rel="first", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/labels?access_token=98f0f5b512132e1a255f6f6b400f6a121c7a35c838bdf6c9cf0750ef09a97b9f&id=gitmate-test-user%2Ftest&page=1&per_page=100>;
+          rel="last"']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['112']
+      RateLimit-Remaining: ['488']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['100']
+      X-Prev-Page: ['']
+      X-Request-Id: [56057cc6-612c-4aef-80ac-fbc829756ab3]
+      X-Runtime: ['0.702569']
+      X-Total: ['5']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/labels?per_page=100
+  response:
+    body: {string: '[{"id":2105509,"name":"a","color":"#428BCA","description":"","open_issues_count":0,"closed_issues_count":0,"open_merge_requests_count":0,"priority":null,"subscribed":false},{"id":2105511,"name":"b","color":"#428BCA","description":"","open_issues_count":0,"closed_issues_count":0,"open_merge_requests_count":0,"priority":null,"subscribed":false},{"id":2713079,"name":"bug","color":"#000000","description":null,"open_issues_count":0,"closed_issues_count":0,"open_merge_requests_count":0,"priority":null,"subscribed":false},{"id":2105512,"name":"c","color":"#004E00","description":"","open_issues_count":0,"closed_issues_count":0,"open_merge_requests_count":0,"priority":null,"subscribed":false},{"id":2127066,"name":"dem","color":"#428BCA","description":null,"open_issues_count":2,"closed_issues_count":0,"open_merge_requests_count":0,"priority":null,"subscribed":false}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['869']
+      Content-Type: [application/json]
+      Date: ['Sun, 24 Sep 2017 18:04:14 GMT']
+      Etag: [W/"20f29eeda6f8919c569cceefa0240e44"]
+      Link: ['<https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/labels?access_token=98f0f5b512132e1a255f6f6b400f6a121c7a35c838bdf6c9cf0750ef09a97b9f&id=gitmate-test-user%2Ftest&page=1&per_page=100>;
+          rel="first", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/labels?access_token=98f0f5b512132e1a255f6f6b400f6a121c7a35c838bdf6c9cf0750ef09a97b9f&id=gitmate-test-user%2Ftest&page=1&per_page=100>;
+          rel="last"']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['113']
+      RateLimit-Remaining: ['487']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['100']
+      X-Prev-Page: ['']
+      X-Request-Id: [bd474ae5-45fc-4388-9971-9a56b8f1e2a4]
+      X-Runtime: ['0.803742']
+      X-Total: ['5']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['0']
+      User-Agent: [IGitt]
+    method: DELETE
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/labels?name=bug
+  response:
+    body: {string: ''}
+    headers:
+      Cache-Control: [no-cache]
+      Date: ['Sun, 24 Sep 2017 18:04:18 GMT']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['114']
+      RateLimit-Remaining: ['486']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [44a85a30-5376-4f89-aa92-edab6fbe1562]
+      X-Runtime: ['0.200093']
+    status: {code: 204, message: No Content}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/labels?per_page=100
+  response:
+    body: {string: '[{"id":2105509,"name":"a","color":"#428BCA","description":"","open_issues_count":0,"closed_issues_count":0,"open_merge_requests_count":0,"priority":null,"subscribed":false},{"id":2105511,"name":"b","color":"#428BCA","description":"","open_issues_count":0,"closed_issues_count":0,"open_merge_requests_count":0,"priority":null,"subscribed":false},{"id":2105512,"name":"c","color":"#004E00","description":"","open_issues_count":0,"closed_issues_count":0,"open_merge_requests_count":0,"priority":null,"subscribed":false},{"id":2127066,"name":"dem","color":"#428BCA","description":null,"open_issues_count":2,"closed_issues_count":0,"open_merge_requests_count":0,"priority":null,"subscribed":false}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['693']
+      Content-Type: [application/json]
+      Date: ['Sun, 24 Sep 2017 18:04:23 GMT']
+      Etag: [W/"7d4e83b5fc5462b5e7e509d88d943838"]
+      Link: ['<https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/labels?access_token=98f0f5b512132e1a255f6f6b400f6a121c7a35c838bdf6c9cf0750ef09a97b9f&id=gitmate-test-user%2Ftest&page=1&per_page=100>;
+          rel="first", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/labels?access_token=98f0f5b512132e1a255f6f6b400f6a121c7a35c838bdf6c9cf0750ef09a97b9f&id=gitmate-test-user%2Ftest&page=1&per_page=100>;
+          rel="last"']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['115']
+      RateLimit-Remaining: ['485']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['100']
+      X-Prev-Page: ['']
+      X-Request-Id: [c10ec985-b4d6-46b2-9b37-2482e429cf2e]
+      X-Runtime: ['1.328166']
+      X-Total: ['4']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+version: 1

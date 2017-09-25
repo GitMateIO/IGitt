@@ -1,0 +1,29 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/files/README.md?path=%2Fprojects%2Fgitmate-test-user%252Ftest%2Frepository%2Ffiles%2FREADME.md&per_page=100&ref=master
+  response:
+    body: {string: '{"file_name":"README.md","file_path":"README.md","size":34,"encoding":"base64","content":"SSBhbSBhIHRlc3QgcmVwbyEgVXBkYXRlZCBjb250ZW50IQ==","ref":"master","blob_id":"a56b0b6db987ba71cb1adbcb3b47bfb5a4548632","commit_id":"71a61579cb3aa493e8eadc9f183ff4377be4d1be","last_commit_id":"515280bfe8488e1b403e0dd95c41a404355ca184"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['323']
+      Content-Type: [application/json]
+      Date: ['Sun, 24 Sep 2017 12:11:57 GMT']
+      Etag: [W/"0df5f50a262102c4dafbe028449c467a"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['13']
+      RateLimit-Remaining: ['587']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [4f3ea674-1caa-4c51-a746-b5eeb5cc90de]
+      X-Runtime: ['0.238458']
+    status: {code: 200, message: OK}
+version: 1

@@ -1,0 +1,46 @@
+interactions:
+- request:
+    body: '{"title": "test title", "body": "test body"}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['44']
+      Content-Type: [application/json]
+      User-Agent: [IGitt]
+    method: POST
+    uri: https://api.github.com/repos/gitmate-test-user/test/issues
+  response:
+    body: {string: '{"url":"https://api.github.com/repos/gitmate-test-user/test/issues/112","repository_url":"https://api.github.com/repos/gitmate-test-user/test","labels_url":"https://api.github.com/repos/gitmate-test-user/test/issues/112/labels{/name}","comments_url":"https://api.github.com/repos/gitmate-test-user/test/issues/112/comments","events_url":"https://api.github.com/repos/gitmate-test-user/test/issues/112/events","html_url":"https://github.com/gitmate-test-user/test/issues/112","id":260105498,"number":112,"title":"test
+        title","user":{"login":"gitmate-test-user","id":16681030,"avatar_url":"https://avatars3.githubusercontent.com/u/16681030?v=4","gravatar_id":"","url":"https://api.github.com/users/gitmate-test-user","html_url":"https://github.com/gitmate-test-user","followers_url":"https://api.github.com/users/gitmate-test-user/followers","following_url":"https://api.github.com/users/gitmate-test-user/following{/other_user}","gists_url":"https://api.github.com/users/gitmate-test-user/gists{/gist_id}","starred_url":"https://api.github.com/users/gitmate-test-user/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/gitmate-test-user/subscriptions","organizations_url":"https://api.github.com/users/gitmate-test-user/orgs","repos_url":"https://api.github.com/users/gitmate-test-user/repos","events_url":"https://api.github.com/users/gitmate-test-user/events{/privacy}","received_events_url":"https://api.github.com/users/gitmate-test-user/received_events","type":"User","site_admin":false},"labels":[],"state":"open","locked":false,"assignee":null,"assignees":[],"milestone":null,"comments":0,"created_at":"2017-09-24T18:34:46Z","updated_at":"2017-09-24T18:34:46Z","closed_at":null,"author_association":"OWNER","body":"test
+        body","closed_by":null}'}
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Access-Control-Expose-Headers: ['ETag, Link, X-GitHub-OTP, X-RateLimit-Limit,
+          X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes,
+          X-Poll-Interval']
+      Cache-Control: ['private, max-age=60, s-maxage=60']
+      Content-Length: ['1772']
+      Content-Security-Policy: [default-src 'none']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Sun, 24 Sep 2017 18:34:46 GMT']
+      ETag: ['"863c80376e43141c81115266dbde1839"']
+      Location: ['https://api.github.com/repos/gitmate-test-user/test/issues/112']
+      Server: [GitHub.com]
+      Status: [201 Created]
+      Strict-Transport-Security: [max-age=31536000; includeSubdomains; preload]
+      Vary: ['Accept, Authorization, Cookie, X-GitHub-OTP', Accept-Encoding]
+      X-Accepted-OAuth-Scopes: ['']
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [deny]
+      X-GitHub-Media-Type: [github.v3; format=json]
+      X-GitHub-Request-Id: ['4179:D7DE:2D57091:39F9886:59C7FAC3']
+      X-OAuth-Scopes: ['admin:org, admin:org_hook, admin:public_key, admin:repo_hook,
+          gist, notifications, repo, user']
+      X-RateLimit-Limit: ['5000']
+      X-RateLimit-Remaining: ['4931']
+      X-RateLimit-Reset: ['1506280502']
+      X-Runtime-rack: ['0.144963']
+      X-XSS-Protection: [1; mode=block]
+    status: {code: 201, message: Created}
+version: 1

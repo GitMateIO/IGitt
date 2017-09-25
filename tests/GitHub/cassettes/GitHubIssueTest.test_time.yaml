@@ -1,0 +1,56 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://api.github.com/repos/gitmate-test-user/test/issues/39
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA62V32+bMBDH/5XKz0kNISUJ0jR1e61Uqepetk6RA1di1djINqky1P99ZyBJC2la
+        aJQ8gH338fl+fClJoQWJyNra3ESUspxfptyui9VlrDKqIVeG4kLGLIwtGDsuDGjqnig3pgBDgwUZ
+        kcqQW6W3y8FAxAi2AmGGIw4x0RpVUskyeEE0XicDac8D38GQC5uzUWsUMtc2E60kvCrKJ8rBExJN
+        gmAeBFN/PiKyyFagSRQsRsRyKwArLuH5on4eEVdTEpVEqJRL3MsAsOIyLZ74lmE8DjcLJ95VEIwI
+        2zDLdLtG1aLxmuZxwFhJi6mp+qigjfv3zbcpAlPdUByZ4MLJpnE0Q9tBnU5S2/pRCaGekdMO/G3D
+        HzmK7l0xzvqZy3QoBl1LquwaMIN4LdeZKTcfteWxsCq3EofT2CVPHMhgCTQk/UNrHDGwZ4kxldXc
+        V8RiZWLNc8uVHJC5N+6IUzplkv9jA3HobpBSaU3/S1Zu6P6ZgT2W79qvpLnmGxZvXXo0xMA3mPGh
+        zBYAkXabu+n85SYS888tLFmSual8ZMLAy04jSfSnrOYynITTub+YzT4YopNSXoslTSDDQ51iYgj1
+        S6yEQm0gkLgf7ibwyAphd/H8rdrOOgeVg0QDoeIntKzjRbkwhqcS0EAWQhzeDd4AnTMu8Fui5H5/
+        L62R76Fqa0B4smR4IJl4/mzshfi/9xZREEb+1W88sMiTts1iPJne+/MouIq8ibOJhTINpgmjsGul
+        lxidinnVkHjAz9ubm+sft3fX97d36LRSyRZX3cfuIoH9IDzoB3fPBrlCk4NydrQZDV2V/DCc+16A
+        Nzoln8G78rnz/4J+HgvttIYe8+ilox3AcC19D/UVPe0yv6SpXdz5dPUI+7U0Y5f11tYusq++dgn9
+        NbbLOI/Odrn9tfblP5jrC4UeCwAA
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Access-Control-Expose-Headers: ['ETag, Link, X-GitHub-OTP, X-RateLimit-Limit,
+          X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes,
+          X-Poll-Interval']
+      Cache-Control: ['private, max-age=60, s-maxage=60']
+      Content-Encoding: [gzip]
+      Content-Security-Policy: [default-src 'none']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Sun, 24 Sep 2017 18:35:04 GMT']
+      ETag: [W/"ec2a0e33d45e2e0d7faddff5540eaf45"]
+      Last-Modified: ['Sun, 24 Sep 2017 18:35:02 GMT']
+      Server: [GitHub.com]
+      Status: [200 OK]
+      Strict-Transport-Security: [max-age=31536000; includeSubdomains; preload]
+      Vary: ['Accept, Authorization, Cookie, X-GitHub-OTP', Accept-Encoding]
+      X-Accepted-OAuth-Scopes: ['public_repo, repo']
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [deny]
+      X-GitHub-Media-Type: [github.v3; format=json]
+      X-GitHub-Request-Id: ['4196:D7DE:2D5742B:39F9D22:59C7FAD7']
+      X-OAuth-Scopes: ['admin:org, admin:org_hook, admin:public_key, admin:repo_hook,
+          gist, notifications, repo, user']
+      X-RateLimit-Limit: ['5000']
+      X-RateLimit-Remaining: ['4927']
+      X-RateLimit-Reset: ['1506280502']
+      X-Runtime-rack: ['0.073054']
+      X-XSS-Protection: [1; mode=block]
+    status: {code: 200, message: OK}
+version: 1

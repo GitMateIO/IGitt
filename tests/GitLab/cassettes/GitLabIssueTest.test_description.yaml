@@ -1,0 +1,30 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/3?per_page=100
+  response:
+    body: {string: '{"id":5613911,"iid":3,"project_id":3439658,"title":"new title","description":"Stop
+        trying to be badass.","state":"opened","created_at":"2017-06-05T06:19:06.379Z","updated_at":"2017-09-24T17:05:22.081Z","labels":[],"milestone":null,"assignees":[],"author":{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"assignee":null,"user_notes_count":5,"upvotes":0,"downvotes":0,"due_date":null,"confidential":false,"weight":null,"web_url":"https://gitlab.com/gitmate-test-user/test/issues/3","time_stats":{"time_estimate":0,"total_time_spent":0,"human_time_estimate":null,"human_total_time_spent":null},"_links":{"self":"http://gitlab.com/api/v4/projects/3439658/issues/3","notes":"http://gitlab.com/api/v4/projects/3439658/issues/3/notes","award_emoji":"http://gitlab.com/api/v4/projects/3439658/issues/3/award_emoji","project":"http://gitlab.com/api/v4/projects/3439658"},"subscribed":true}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['1061']
+      Content-Type: [application/json]
+      Date: ['Sun, 24 Sep 2017 17:06:25 GMT']
+      Etag: [W/"9fa7a7bbad84f8ffb992bbf660826645"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['11']
+      RateLimit-Remaining: ['589']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [01819188-3ab6-4df8-8d6a-b0e2194229db]
+      X-Runtime: ['0.261471']
+    status: {code: 200, message: OK}
+version: 1

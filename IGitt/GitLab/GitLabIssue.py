@@ -366,7 +366,7 @@ class GitLabIssue(GitLabMixin, Issue):
         >>> issue = GitLabIssue(GitLabOAuthToken(environ['GITLAB_TEST_TOKEN']),
         ...                     'gitmate-test-user/test', 1)
         >>> issue.state
-        'reopened'
+        'opened'
 
         So if we close it:
 
@@ -378,9 +378,12 @@ class GitLabIssue(GitLabMixin, Issue):
 
         >>> issue.reopen()
         >>> issue.state
-        'reopened'
+        'opened'
 
-        :return: Either 'opened', 'reopened' or 'closed'.
+        Note: GitLab Issues & Merge Requests API underwent a change to have
+        only two states, 'opened' or 'closed'. No 'reopened' state anymore.
+
+        :return: Either 'opened' or 'closed'.
         """
         return self.data['state']
 

@@ -5,7 +5,7 @@ could be taken on webhooks.
 from enum import Enum
 
 
-class MergeRequestActions(Enum):
+class MergeRequestActions(Enum): # dont cover cause it's just an Enum
     """
     Merge Request related actions.
     """
@@ -26,7 +26,7 @@ class MergeRequestActions(Enum):
     MERGED = 7
 
 
-class IssueActions(Enum):
+class IssueActions(Enum): # dont cover cause it's just an Enum
     """
     Issue related reactions.
     """
@@ -43,7 +43,7 @@ class IssueActions(Enum):
     ATTRIBUTES_CHANGED = 5
 
 
-class PipelineActions(Enum):
+class PipelineActions(Enum): # dont cover cause it's just an Enum
     """
     Pipeline and Commit status related actions.
     """

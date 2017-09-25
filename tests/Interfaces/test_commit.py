@@ -1,10 +1,10 @@
-import unittest
-
 from IGitt.Interfaces.CommitStatus import Status
 from IGitt.Interfaces.Commit import Commit
 
+from tests import IGittTestCase
 
-class TestCommit(unittest.TestCase):
+
+class TestCommit(IGittTestCase):
 
     def test_status(self):
         CommitMock = type('CommitMock', (Commit, ),

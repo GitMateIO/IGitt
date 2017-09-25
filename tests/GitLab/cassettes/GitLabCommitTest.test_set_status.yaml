@@ -1,0 +1,70 @@
+interactions:
+- request:
+    body: '{"state": "failed", "target_url": "", "description": "Theres a problem",
+      "name": "gitmate/test"}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['96']
+      Content-Type: [application/json]
+      User-Agent: [IGitt]
+    method: POST
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/statuses/3fc4b860e0a2c17819934d678decacd914271e5c
+  response:
+    body: {string: '{"id":33805094,"sha":"3fc4b860e0a2c17819934d678decacd914271e5c","ref":"gitmate-test-user-patch-1","status":"failed","name":"gitmate/test","target_url":null,"description":"Theres
+        a problem","created_at":"2017-09-24T11:39:59.759Z","started_at":null,"finished_at":"2017-09-24T11:39:59.790Z","allow_failure":false,"coverage":null,"author":{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"}}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['564']
+      Content-Type: [application/json]
+      Date: ['Sun, 24 Sep 2017 11:39:59 GMT']
+      Etag: [W/"6a4dc727860793635bac65bd98f0581a"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['22']
+      RateLimit-Remaining: ['578']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [154cbb8a-fb39-416b-bcaf-24a37ad89421]
+      X-Runtime: ['0.575150']
+    status: {code: 201, message: Created}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/3fc4b860e0a2c17819934d678decacd914271e5c/statuses?per_page=100
+  response:
+    body: {string: '[{"id":33805094,"sha":"3fc4b860e0a2c17819934d678decacd914271e5c","ref":"gitmate-test-user-patch-1","status":"failed","name":"gitmate/test","target_url":null,"description":"Theres
+        a problem","created_at":"2017-09-24T11:39:59.759Z","started_at":null,"finished_at":"2017-09-24T11:39:59.790Z","allow_failure":false,"coverage":null,"author":{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"}}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['571']
+      Content-Type: [application/json]
+      Date: ['Sun, 24 Sep 2017 11:40:13 GMT']
+      Etag: [W/"c4dd1b59dd0eeaeb73cd8e3146c5c8bc"]
+      Link: ['<https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/3fc4b860e0a2c17819934d678decacd914271e5c/statuses?access_token=98f0f5b512132e1a255f6f6b400f6a121c7a35c838bdf6c9cf0750ef09a97b9f&id=gitmate-test-user%2Ftest&page=1&per_page=100&sha=3fc4b860e0a2c17819934d678decacd914271e5c>;
+          rel="first", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/3fc4b860e0a2c17819934d678decacd914271e5c/statuses?access_token=98f0f5b512132e1a255f6f6b400f6a121c7a35c838bdf6c9cf0750ef09a97b9f&id=gitmate-test-user%2Ftest&page=1&per_page=100&sha=3fc4b860e0a2c17819934d678decacd914271e5c>;
+          rel="last"']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['23']
+      RateLimit-Remaining: ['577']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['100']
+      X-Prev-Page: ['']
+      X-Request-Id: [c62e42b0-54fd-4e58-829f-14051f03c770]
+      X-Runtime: ['0.301392']
+      X-Total: ['1']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+version: 1

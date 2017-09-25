@@ -1,18 +1,14 @@
 import os
-import unittest
 
-from IGitt.Interfaces import error_checked_request, _fetch
+from IGitt.Interfaces import _fetch
+from IGitt.Interfaces import error_checked_request
 from IGitt.GitHub import BASE_URL as GITHUB_BASE_URL
 from IGitt.GitLab import BASE_URL as GITLAB_BASE_URL
 
-import vcr
-
-my_vcr = vcr.VCR(match_on=['method', 'scheme', 'host', 'port', 'path'],
-                 filter_query_parameters=['access_token'],
-                 filter_post_data_parameters=['access_token'])
+from tests import IGittTestCase
 
 
-class TestGitHubInit(unittest.TestCase):
+class TestInterfacesInit(IGittTestCase):
 
     def test_raises_runtime_error(self):
 
@@ -22,41 +18,23 @@ class TestGitHubInit(unittest.TestCase):
 
         try:
             return_300()
-        except RuntimeError as e:
-            self.assertEqual(e.args, ('', 300))
+        except RuntimeError as ex:
+            self.assertEqual(ex.args, ('', 300))
 
-    @staticmethod
-    def test_query_params():
+    def test_get_query_gitlab(self):
+        _fetch(GITLAB_BASE_URL, 'get',
+                {'access_token': os.environ.get('GITLAB_TEST_TOKEN', '')},
+                '/projects', query_params={'owned': True})
 
-        @my_vcr.use_cassette('tests/Interfaces/cassettes/test_query_params.yaml')
-        def test_get_query_gitlab():
-            _fetch(GITLAB_BASE_URL, 'get',
-                   {'access_token': os.environ.get('GITLAB_TEST_TOKEN', '')},
-                   '/projects', query_params={'owned': True})
+    def test_pagination(self):
+        # this is to cover the branch where it handles the pagination
+        _fetch(GITHUB_BASE_URL, 'get',
+                {'access_token': os.environ.get('GITHUB_TEST_TOKEN', '')},
+                '/repos/coala/corobo/issues')
 
-        test_get_query_gitlab()
-
-    @staticmethod
-    def test_pagination():
-
-        @my_vcr.use_cassette('tests/Interfaces/cassettes/test_pagination.yaml')
-        def cover_fetch_all_github():
-            # this is to cover the branch where it handles the pagination
-            _fetch(GITHUB_BASE_URL, 'get',
-                   {'access_token': os.environ.get('GITHUB_TEST_TOKEN', '')},
-                   '/repos/coala/corobo/issues')
-
-        cover_fetch_all_github()
-
-    @staticmethod
-    def test_github_search_pagination():
-
-        @my_vcr.use_cassette('tests/Interfaces/cassettes/test_github_search_pagination.yaml')
-        def cover_fetch_search_github():
-            # this is to cover the pagination format from github search API
-            _fetch(GITHUB_BASE_URL, 'get',
-                   {'access_token': os.environ.get('GITHUB_TEST_TOKEN', '')},
-                   '/search/issues',
-                   query_params={'q': ' repo:coala/corobo'})
-
-        cover_fetch_search_github()
+    def test_github_search_pagination(self):
+        # this is to cover the pagination format from github search API
+        _fetch(GITHUB_BASE_URL, 'get',
+               {'access_token': os.environ.get('GITHUB_TEST_TOKEN', '')},
+               '/search/issues',
+               query_params={'q': ' repo:coala/corobo'})

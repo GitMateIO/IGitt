@@ -1,0 +1,63 @@
+interactions:
+- request:
+    body: '{"id": "gitmate-test-user/test", "namespace": "coafile"}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['56']
+      Content-Type: [application/json]
+      User-Agent: [IGitt]
+    method: POST
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/fork
+  response:
+    body: {string: '{"id":4235783,"description":"","default_branch":null,"tag_list":[],"ssh_url_to_repo":"git@gitlab.com:coafile/test.git","http_url_to_repo":"https://gitlab.com/coafile/test.git","web_url":"https://gitlab.com/coafile/test","name":"test","name_with_namespace":"coafile
+        / test","path":"test","path_with_namespace":"coafile/test","star_count":0,"forks_count":0,"created_at":"2017-09-26T02:31:43.911Z","last_activity_at":"2017-09-26T02:31:43.911Z","_links":{"self":"http://gitlab.com/api/v4/projects/4235783","issues":"http://gitlab.com/api/v4/projects/4235783/issues","merge_requests":"http://gitlab.com/api/v4/projects/4235783/merge_requests","repo_branches":"http://gitlab.com/api/v4/projects/4235783/repository/branches","labels":"http://gitlab.com/api/v4/projects/4235783/labels","events":"http://gitlab.com/api/v4/projects/4235783/events","members":"http://gitlab.com/api/v4/projects/4235783/members"},"archived":false,"visibility":"public","owner":{"id":1451715,"name":"coafile","username":"coafile","state":"active","avatar_url":"https://secure.gravatar.com/avatar/c08f4b57e9c95c8d7e757bf827bcefec?s=80&d=identicon","web_url":"https://gitlab.com/coafile"},"resolve_outdated_diff_discussions":false,"container_registry_enabled":true,"issues_enabled":true,"merge_requests_enabled":true,"wiki_enabled":true,"jobs_enabled":true,"snippets_enabled":true,"shared_runners_enabled":true,"lfs_enabled":true,"creator_id":1451715,"namespace":{"id":1758508,"name":"coafile","path":"coafile","kind":"user","full_path":"coafile","parent_id":null},"forked_from_project":{"id":3439658,"description":"","default_branch":"master","tag_list":[],"ssh_url_to_repo":"git@gitlab.com:gitmate-test-user/test.git","http_url_to_repo":"https://gitlab.com/gitmate-test-user/test.git","web_url":"https://gitlab.com/gitmate-test-user/test","name":"test","name_with_namespace":"GitMate
+        / test","path":"test","path_with_namespace":"gitmate-test-user/test","star_count":0,"forks_count":2,"created_at":"2017-06-05T04:56:19.418Z","last_activity_at":"2017-09-24T17:05:22.287Z"},"import_status":"scheduled","import_error":null,"avatar_url":null,"open_issues_count":0,"runners_token":"GFnXox1k1kJyDK_TYjtW","public_jobs":true,"ci_config_path":null,"shared_with_groups":[],"only_allow_merge_if_pipeline_succeeds":false,"request_access_enabled":false,"only_allow_merge_if_all_discussions_are_resolved":false,"printing_merge_request_link_enabled":true,"approvals_before_merge":0}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['2437']
+      Content-Type: [application/json]
+      Date: ['Tue, 26 Sep 2017 02:31:51 GMT']
+      Etag: [W/"157a03a5431dc60fe928b7fc71aee9da"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['1']
+      RateLimit-Remaining: ['599']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [9a40380b-0d1a-4992-ad79-12b342cd2a3d]
+      X-Runtime: ['9.831750']
+    status: {code: 201, message: Created}
+- request:
+    body: '{"file_path": ".coafile", "commit_message": "hello", "content": "hello",
+      "branch": "master"}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['92']
+      Content-Type: [application/json]
+      User-Agent: [IGitt]
+    method: POST
+    uri: https://gitlab.com/api/v4/projects/coafile%2Ftest/repository/files/.coafile
+  response:
+    body: {string: '{"file_path":".coafile","branch":"master"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['42']
+      Content-Type: [application/json]
+      Date: ['Tue, 26 Sep 2017 02:31:59 GMT']
+      Etag: [W/"8401c9688817b9cd522d370f7d64a5d3"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['2']
+      RateLimit-Remaining: ['598']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [9cae87d1-91a8-4fea-82c9-1251e75ea264]
+      X-Runtime: ['4.410095']
+    status: {code: 201, message: Created}
+version: 1

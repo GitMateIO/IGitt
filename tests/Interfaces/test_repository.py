@@ -1,16 +1,24 @@
 from unittest.mock import MagicMock
 
+from IGitt.Interfaces.Repository import Repository
 import git
 
-from IGitt.Interfaces.Repository import Repository
+from tests import IGittTestCase
 
-git.Repo.clone_from = MagicMock()
-git.Repo.clone_from.return_value = git.Repo()
 
-test_repo = type('MockRepo', (Repository, ),
-                 {'clone_url': 'https://github.com/sils/configurations'})
+class TestRepository(IGittTestCase):
 
-repo, path = test_repo().get_clone()
+    def setUp(self):
+        git.Repo.clone_from = MagicMock()
+        git.Repo.clone_from.return_value = git.Repo()
 
-assert isinstance(repo, git.Repo)
-assert 'tmp' in path
+        self.test_repo = type(
+            'MockRepo', (Repository, ),
+            {'clone_url': 'https://github.com/sils/configurations'})
+
+
+    def test_clone(self):
+        repo, path = self.test_repo().get_clone()
+
+        self.assertIsInstance(repo, git.Repo)
+        self.assertIn('tmp', path)

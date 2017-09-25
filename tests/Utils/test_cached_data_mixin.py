@@ -1,21 +1,15 @@
 import os
-import unittest
-
-import vcr
 
 from IGitt.GitHub import GitHubToken
 from IGitt.GitHub.GitHubRepository import GitHubRepository
 
-
-my_vcr = vcr.VCR(match_on=['method', 'scheme', 'host', 'port', 'path'],
-                 filter_query_parameters=['access_token'],
-                 filter_post_data_parameters=['access_token'],
-                 filter_headers=['Link'])
+from tests import IGittTestCase
 
 
-class CachedDataMixinTest(unittest.TestCase):
-    @my_vcr.use_cassette('tests/Utils/cassettes/create_repo.yaml')
-    def setUp(self):
-        self.token = GitHubToken(os.environ['GITHUB_TEST_TOKEN'])
-        self.repository = GitHubRepository(self.token, 'gitmate-test-user/test')
-        self.repository.refresh()
+class CachedDataMixinTest(IGittTestCase):
+    vcr_options = {'filter_headers': ['Link']}
+
+    def test_create_repo(self):
+        token = GitHubToken(os.environ['GITHUB_TEST_TOKEN'])
+        repository = GitHubRepository(token, 'gitmate-test-user/test')
+        repository.refresh()

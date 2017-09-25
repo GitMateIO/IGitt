@@ -1,0 +1,98 @@
+interactions:
+- request:
+    body: '{"labels": ""}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['14']
+      Content-Type: [application/json]
+      User-Agent: [IGitt]
+    method: PUT
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/3
+  response:
+    body: {string: '{"id":5613911,"iid":3,"project_id":3439658,"title":"new title","description":"Stop
+        trying to be badass.","state":"opened","created_at":"2017-06-05T06:19:06.379Z","updated_at":"2017-09-24T17:06:45.955Z","labels":[],"milestone":null,"assignees":[],"author":{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"assignee":null,"user_notes_count":5,"upvotes":0,"downvotes":0,"due_date":null,"confidential":false,"weight":null,"web_url":"https://gitlab.com/gitmate-test-user/test/issues/3","time_stats":{"time_estimate":0,"total_time_spent":0,"human_time_estimate":null,"human_total_time_spent":null},"_links":{"self":"http://gitlab.com/api/v4/projects/3439658/issues/3","notes":"http://gitlab.com/api/v4/projects/3439658/issues/3/notes","award_emoji":"http://gitlab.com/api/v4/projects/3439658/issues/3/award_emoji","project":"http://gitlab.com/api/v4/projects/3439658"},"subscribed":true}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['1061']
+      Content-Type: [application/json]
+      Date: ['Sun, 24 Sep 2017 17:32:49 GMT']
+      Etag: [W/"2669cff067a532842ba74ed703e10351"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['2']
+      RateLimit-Remaining: ['598']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [221622e6-e9fa-4233-a182-4ec73dde0996]
+      X-Runtime: ['0.866983']
+    status: {code: 200, message: OK}
+- request:
+    body: '{"labels": "dem"}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['17']
+      Content-Type: [application/json]
+      User-Agent: [IGitt]
+    method: PUT
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/3
+  response:
+    body: {string: '{"id":5613911,"iid":3,"project_id":3439658,"title":"new title","description":"Stop
+        trying to be badass.","state":"opened","created_at":"2017-06-05T06:19:06.379Z","updated_at":"2017-09-24T17:06:45.955Z","labels":["dem"],"milestone":null,"assignees":[],"author":{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"assignee":null,"user_notes_count":5,"upvotes":0,"downvotes":0,"due_date":null,"confidential":false,"weight":null,"web_url":"https://gitlab.com/gitmate-test-user/test/issues/3","time_stats":{"time_estimate":0,"total_time_spent":0,"human_time_estimate":null,"human_total_time_spent":null},"_links":{"self":"http://gitlab.com/api/v4/projects/3439658/issues/3","notes":"http://gitlab.com/api/v4/projects/3439658/issues/3/notes","award_emoji":"http://gitlab.com/api/v4/projects/3439658/issues/3/award_emoji","project":"http://gitlab.com/api/v4/projects/3439658"},"subscribed":true}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['1066']
+      Content-Type: [application/json]
+      Date: ['Sun, 24 Sep 2017 17:32:52 GMT']
+      Etag: [W/"1347df5d090167a650391e2faa8ca3a3"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['3']
+      RateLimit-Remaining: ['597']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [0c41d0e8-fffa-461e-b8d6-03d5f962b1d6]
+      X-Runtime: ['1.325218']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/labels?per_page=100
+  response:
+    body: {string: '[{"id":2105509,"name":"a","color":"#428BCA","description":"","open_issues_count":0,"closed_issues_count":0,"open_merge_requests_count":0,"priority":null,"subscribed":false},{"id":2105511,"name":"b","color":"#428BCA","description":"","open_issues_count":0,"closed_issues_count":0,"open_merge_requests_count":0,"priority":null,"subscribed":false},{"id":2105512,"name":"c","color":"#004E00","description":"","open_issues_count":0,"closed_issues_count":0,"open_merge_requests_count":0,"priority":null,"subscribed":false},{"id":2127066,"name":"dem","color":"#428BCA","description":null,"open_issues_count":2,"closed_issues_count":0,"open_merge_requests_count":0,"priority":null,"subscribed":false},{"id":2161777,"name":"process/WIP","color":"#428BCA","description":null,"open_issues_count":0,"closed_issues_count":0,"open_merge_requests_count":0,"priority":null,"subscribed":false},{"id":2162053,"name":"process/pending_review","color":"#428BCA","description":null,"open_issues_count":0,"closed_issues_count":0,"open_merge_requests_count":1,"priority":null,"subscribed":false},{"id":2161778,"name":"size/XS","color":"#428BCA","description":null,"open_issues_count":0,"closed_issues_count":0,"open_merge_requests_count":1,"priority":null,"subscribed":false}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['1252']
+      Content-Type: [application/json]
+      Date: ['Sun, 24 Sep 2017 17:32:57 GMT']
+      Etag: [W/"7ea45020601927900e8d4b54198a99e0"]
+      Link: ['<https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/labels?access_token=98f0f5b512132e1a255f6f6b400f6a121c7a35c838bdf6c9cf0750ef09a97b9f&id=gitmate-test-user%2Ftest&page=1&per_page=100>;
+          rel="first", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/labels?access_token=98f0f5b512132e1a255f6f6b400f6a121c7a35c838bdf6c9cf0750ef09a97b9f&id=gitmate-test-user%2Ftest&page=1&per_page=100>;
+          rel="last"']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['4']
+      RateLimit-Remaining: ['596']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['100']
+      X-Prev-Page: ['']
+      X-Request-Id: [620066bd-1db0-4c95-9cd8-165777f408cd]
+      X-Runtime: ['0.820476']
+      X-Total: ['7']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+version: 1

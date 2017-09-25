@@ -1,20 +1,14 @@
-import unittest
 import os
-
-import vcr
 
 from IGitt.GitHub import GitHubToken
 from IGitt.GitHub.GitHubNotification import GitHubNotification
 from IGitt.GitHub.GitHubRepository import GitHubRepository
 from IGitt.GitHub.GitHubThread import GitHubThread
 
-
-my_vcr = vcr.VCR(match_on=['method', 'scheme', 'host', 'port', 'path'],
-                 filter_query_parameters=['access_token'],
-                 filter_post_data_parameters=['access_token'])
+from tests import IGittTestCase
 
 
-class TestGitHubNotification(unittest.TestCase):
+class GitHubNotificationTest(IGittTestCase):
 
     def setUp(self):
         self.token = GitHubToken(os.environ.get('GITHUB_TEST_TOKEN', ''))
@@ -23,7 +17,6 @@ class TestGitHubNotification(unittest.TestCase):
                                      'coafile/issue')
         temp_repo.create_issue('Hello', 'Hello @coafile')
 
-    @my_vcr.use_cassette('tests/GitHub/cassettes/github_notifications_get_notifications.yaml')
     def test_get_notifications(self):
         notifs = GitHubNotification(self.fork_token)
         threads = notifs.get_threads()

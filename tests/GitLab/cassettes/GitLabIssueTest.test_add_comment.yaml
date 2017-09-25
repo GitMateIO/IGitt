@@ -1,0 +1,74 @@
+interactions:
+- request:
+    body: '{"body": "this is a test comment"}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['34']
+      Content-Type: [application/json]
+      User-Agent: [IGitt]
+    method: POST
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/3/notes
+  response:
+    body: {string: '{"id":41246518,"body":"this is a test comment","attachment":null,"author":{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-09-24T17:05:21.996Z","updated_at":"2017-09-24T17:05:21.996Z","system":false,"noteable_id":5613911,"noteable_type":"Issue","noteable_iid":3}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['461']
+      Content-Type: [application/json]
+      Date: ['Sun, 24 Sep 2017 17:05:22 GMT']
+      Etag: [W/"1622128b47cd1da92fa2710772a5cda6"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['1']
+      RateLimit-Remaining: ['599']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [99f35695-0fa2-46ff-8475-6fb47b67ee9f]
+      X-Runtime: ['0.471243']
+    status: {code: 201, message: Created}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/3/notes?per_page=100
+  response:
+    body: {string: '[{"id":41246518,"body":"this is a test comment","attachment":null,"author":{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-09-24T17:05:21.996Z","updated_at":"2017-09-24T17:05:21.996Z","system":false,"noteable_id":5613911,"noteable_type":"Issue","noteable_iid":3},{"id":32202869,"body":"removed
+        ~2127066 label","attachment":null,"author":{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-13T11:57:07.629Z","updated_at":"2017-06-13T11:57:07.629Z","system":true,"noteable_id":5613911,"noteable_type":"Issue","noteable_iid":3},{"id":31904088,"body":"reopened","attachment":null,"author":{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T08:38:28.428Z","updated_at":"2017-06-09T08:38:28.428Z","system":true,"noteable_id":5613911,"noteable_type":"Issue","noteable_iid":3},{"id":31904081,"body":"closed","attachment":null,"author":{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T08:38:23.171Z","updated_at":"2017-06-09T08:38:23.171Z","system":true,"noteable_id":5613911,"noteable_type":"Issue","noteable_iid":3},{"id":31903900,"body":"changed
+        title from **{-Don\u0026#39;t add mean comments here!-}** to **{+new title+}**","attachment":null,"author":{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T08:36:12.322Z","updated_at":"2017-06-09T08:36:12.322Z","system":true,"noteable_id":5613911,"noteable_type":"Issue","noteable_iid":3},{"id":31903878,"body":"reopened","attachment":null,"author":{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T08:35:55.814Z","updated_at":"2017-06-09T08:35:55.814Z","system":true,"noteable_id":5613911,"noteable_type":"Issue","noteable_iid":3},{"id":31903834,"body":"added
+        ~2127066 label","attachment":null,"author":{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T08:35:25.841Z","updated_at":"2017-06-09T08:35:25.841Z","system":true,"noteable_id":5613911,"noteable_type":"Issue","noteable_iid":3},{"id":31903769,"body":"this
+        is a test comment","attachment":null,"author":{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T08:34:36.769Z","updated_at":"2017-06-09T08:34:36.769Z","system":false,"noteable_id":5613911,"noteable_type":"Issue","noteable_iid":3},{"id":31903145,"body":"closed","attachment":null,"author":{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T08:27:18.674Z","updated_at":"2017-06-09T08:27:18.674Z","system":true,"noteable_id":5613911,"noteable_type":"Issue","noteable_iid":3},{"id":31903131,"body":"this
+        is a test comment","attachment":null,"author":{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-09T08:27:04.473Z","updated_at":"2017-06-09T08:27:04.473Z","system":false,"noteable_id":5613911,"noteable_type":"Issue","noteable_iid":3},{"id":31502884,"body":"Stop
+        staring at me.","attachment":null,"author":{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-05T06:19:38.058Z","updated_at":"2017-06-05T06:19:50.469Z","system":false,"noteable_id":5613911,"noteable_type":"Issue","noteable_iid":3},{"id":31502876,"body":"Go,
+        get your work done.","attachment":null,"author":{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-05T06:19:20.491Z","updated_at":"2017-06-05T06:19:20.491Z","system":false,"noteable_id":5613911,"noteable_type":"Issue","noteable_iid":3}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['5598']
+      Content-Type: [application/json]
+      Date: ['Sun, 24 Sep 2017 17:05:28 GMT']
+      Etag: [W/"839a1ac89d2d888018b76f215363c5d5"]
+      Link: ['<https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/3/notes?access_token=98f0f5b512132e1a255f6f6b400f6a121c7a35c838bdf6c9cf0750ef09a97b9f&id=gitmate-test-user%2Ftest&noteable_id=3&page=1&per_page=100>;
+          rel="first", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/3/notes?access_token=98f0f5b512132e1a255f6f6b400f6a121c7a35c838bdf6c9cf0750ef09a97b9f&id=gitmate-test-user%2Ftest&noteable_id=3&page=1&per_page=100>;
+          rel="last"']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['2']
+      RateLimit-Remaining: ['598']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['100']
+      X-Prev-Page: ['']
+      X-Request-Id: [41a6440a-fc91-4e42-8d58-4eb69259b7fd]
+      X-Runtime: ['0.239082']
+      X-Total: ['12']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+version: 1

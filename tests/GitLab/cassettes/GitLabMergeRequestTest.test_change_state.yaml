@@ -1,0 +1,62 @@
+interactions:
+- request:
+    body: '{"state_event": "close"}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['24']
+      Content-Type: [application/json]
+      User-Agent: [IGitt]
+    method: PUT
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/merge_requests/7
+  response:
+    body: {string: '{"id":3761791,"iid":7,"project_id":3439658,"title":"Update README.md","description":"","state":"closed","created_at":"2017-06-07T12:01:20.476Z","updated_at":"2017-09-24T17:45:48.067Z","target_branch":"master","source_branch":"gitmate-test-user-patch-2","upvotes":0,"downvotes":0,"author":{"id":889700,"name":"Naveen
+        Kumar Sangi","username":"nkprince007","state":"active","avatar_url":"https://gitlab.com/uploads/-/system/user/avatar/889700/avatar.png","web_url":"https://gitlab.com/nkprince007"},"assignee":null,"source_project_id":3439658,"target_project_id":3439658,"labels":[],"work_in_progress":false,"milestone":null,"merge_when_pipeline_succeeds":false,"merge_status":"unchecked","sha":"f6d2b7c66372236a090a2a74df2e47f42a54456b","merge_commit_sha":null,"user_notes_count":11,"approvals_before_merge":null,"should_remove_source_branch":null,"force_remove_source_branch":null,"squash":false,"web_url":"https://gitlab.com/gitmate-test-user/test/merge_requests/7","time_stats":{"time_estimate":0,"total_time_spent":0,"human_time_estimate":null,"human_total_time_spent":null},"subscribed":true}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['1095']
+      Content-Type: [application/json]
+      Date: ['Sun, 24 Sep 2017 17:45:48 GMT']
+      Etag: [W/"0b4d869859193e7018d065e8317ad0b6"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['19']
+      RateLimit-Remaining: ['581']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [b078dd49-6046-4e80-8698-72954a864d45]
+      X-Runtime: ['1.296973']
+    status: {code: 200, message: OK}
+- request:
+    body: '{"state_event": "reopen"}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['25']
+      Content-Type: [application/json]
+      User-Agent: [IGitt]
+    method: PUT
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/merge_requests/7
+  response:
+    body: {string: '{"id":3761791,"iid":7,"project_id":3439658,"title":"Update README.md","description":"","state":"opened","created_at":"2017-06-07T12:01:20.476Z","updated_at":"2017-09-24T17:45:50.540Z","target_branch":"master","source_branch":"gitmate-test-user-patch-2","upvotes":0,"downvotes":0,"author":{"id":889700,"name":"Naveen
+        Kumar Sangi","username":"nkprince007","state":"active","avatar_url":"https://gitlab.com/uploads/-/system/user/avatar/889700/avatar.png","web_url":"https://gitlab.com/nkprince007"},"assignee":null,"source_project_id":3439658,"target_project_id":3439658,"labels":[],"work_in_progress":false,"milestone":null,"merge_when_pipeline_succeeds":false,"merge_status":"unchecked","sha":"f6d2b7c66372236a090a2a74df2e47f42a54456b","merge_commit_sha":null,"user_notes_count":11,"approvals_before_merge":null,"should_remove_source_branch":null,"force_remove_source_branch":null,"squash":false,"web_url":"https://gitlab.com/gitmate-test-user/test/merge_requests/7","time_stats":{"time_estimate":0,"total_time_spent":0,"human_time_estimate":null,"human_total_time_spent":null},"subscribed":true}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['1095']
+      Content-Type: [application/json]
+      Date: ['Sun, 24 Sep 2017 17:45:52 GMT']
+      Etag: [W/"930b21e7d9f2cbfa7dfc936bd83a456a"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['20']
+      RateLimit-Remaining: ['580']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [429b87cb-adef-4f92-996c-2d84e9dcb291]
+      X-Runtime: ['2.262403']
+    status: {code: 200, message: OK}
+version: 1
