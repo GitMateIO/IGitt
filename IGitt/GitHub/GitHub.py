@@ -82,7 +82,7 @@ class GitHub(GitHubMixin, Hoster):
         """
         return GitHubRepository(self._token, repository)
 
-    def handle_webhook(self, event: str, data: dict):
+    def handle_webhook(self, repository: str, event: str, data: dict):
         """
         Handles a GitHub webhook for you.
 
@@ -91,10 +91,11 @@ class GitHub(GitHubMixin, Hoster):
         ``MergeRequestActions.COMMENTED,
         [GitHubMergeRequest(...), GitHubComment(...)]``.
 
-        :param event: The HTTP_X_GITHUB_EVENT of the request header.
-        :param data:  The pythonified JSON data of the request.
-        :return:      An IssueActions or MergeRequestActions member and a list
-                      of the affected IGitt objects.
+        :param repository:  The name of the repository.
+        :param event:       The HTTP_X_GITLAB_EVENT of the request header.
+        :param data:        The pythonified JSON data of the request.
+        :return:            An IssueActions or MergeRequestActions member and a
+                            list of the affected IGitt objects.
         """
         repository = data['repository']
 

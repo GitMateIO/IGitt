@@ -49,9 +49,10 @@ class TestGitHubWebhook(unittest.TestCase):
 
     def setUp(self):
         self.gh = GitHub(GitHubToken(os.environ.get('GITHUB_TEST_TOKEN', '')))
+        self.repo_name = 'org/test_repo'
         self.default_data = {
             'repository': {
-                'full_name': 'org/test-repo'
+                'full_name': self.repo_name
             },
             'pull_request': {'number': 0},
             'issue': {'number': 0},
@@ -66,27 +67,33 @@ class TestGitHubWebhook(unittest.TestCase):
 
     def test_unknown_event(self):
         with self.assertRaises(NotImplementedError):
-            self.gh.handle_webhook('unknown_event', self.default_data)
+            self.gh.handle_webhook(self.repo_name,
+                                   'unknown_event',
+                                   self.default_data)
 
     def test_issue_hook(self):
-        event, obj = self.gh.handle_webhook('issues', self.default_data)
+        event, obj = self.gh.handle_webhook(
+            self.repo_name, 'issues', self.default_data)
         self.assertEqual(event, IssueActions.OPENED)
         self.assertIsInstance(obj[0], GitHubIssue)
 
     def test_pr_hook(self):
-        event, obj = self.gh.handle_webhook('pull_request', self.default_data)
+        event, obj = self.gh.handle_webhook(
+            self.repo_name, 'pull_request', self.default_data)
         self.assertEqual(event, MergeRequestActions.OPENED)
         self.assertIsInstance(obj[0], GitHubMergeRequest)
 
     def test_pr_merge_hook(self):
         data = {**self.default_data, 'action': 'closed'}
         data['pull_request']['merged'] = True
-        event, obj = self.gh.handle_webhook('pull_request', data)
+        event, obj = self.gh.handle_webhook(
+            self.repo_name, 'pull_request', data)
         self.assertEqual(event, MergeRequestActions.MERGED)
         self.assertIsInstance(obj[0], GitHubMergeRequest)
 
     def test_issue_comment(self):
-        event, obj = self.gh.handle_webhook('issue_comment', self.default_data)
+        event, obj = self.gh.handle_webhook(
+            self.repo_name, 'issue_comment', self.default_data)
         self.assertEqual(event, IssueActions.COMMENTED)
         self.assertIsInstance(obj[0], GitHubIssue)
         self.assertIsInstance(obj[1], GitHubComment)
@@ -95,12 +102,14 @@ class TestGitHubWebhook(unittest.TestCase):
         data = self.default_data
         data['issue']['pull_request'] = {}  # Exists for PRs
 
-        event, obj = self.gh.handle_webhook('issue_comment', data)
+        event, obj = self.gh.handle_webhook(
+            self.repo_name, 'issue_comment', data)
         self.assertEqual(event, MergeRequestActions.COMMENTED)
         self.assertIsInstance(obj[0], GitHubMergeRequest)
         self.assertIsInstance(obj[1], GitHubComment)
 
     def test_status(self):
-        event, obj = self.gh.handle_webhook('status', self.default_data)
+        event, obj = self.gh.handle_webhook(
+            self.repo_name, 'status', self.default_data)
         self.assertEqual(event, PipelineActions.UPDATED)
         self.assertIsInstance(obj[0], GitHubCommit)
