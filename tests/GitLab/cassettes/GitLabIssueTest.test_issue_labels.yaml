@@ -1,0 +1,98 @@
+interactions:
+- request:
+    body: '{"labels": ""}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['14']
+      Content-Type: [application/json]
+      User-Agent: [IGitt]
+    method: PUT
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/3
+  response:
+    body: {string: '{"id":5613911,"iid":3,"project_id":3439658,"title":"new title","description":"Stop
+        trying to be badass.","state":"opened","created_at":"2017-06-05T06:19:06.379Z","updated_at":"2017-09-28T16:26:32.950Z","labels":[],"milestone":null,"assignees":[],"author":{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"assignee":null,"user_notes_count":10,"upvotes":0,"downvotes":0,"due_date":null,"confidential":false,"weight":null,"web_url":"https://gitlab.com/gitmate-test-user/test/issues/3","time_stats":{"time_estimate":0,"total_time_spent":0,"human_time_estimate":null,"human_total_time_spent":null},"_links":{"self":"http://gitlab.com/api/v4/projects/3439658/issues/3","notes":"http://gitlab.com/api/v4/projects/3439658/issues/3/notes","award_emoji":"http://gitlab.com/api/v4/projects/3439658/issues/3/award_emoji","project":"http://gitlab.com/api/v4/projects/3439658"},"subscribed":true}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['1062']
+      Content-Type: [application/json]
+      Date: ['Thu, 28 Sep 2017 16:26:58 GMT']
+      Etag: [W/"aa96d3b55e2dfdacab4be75cbd199d47"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['18']
+      RateLimit-Remaining: ['582']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [40445ade-df24-44a9-bec7-771addcd7286]
+      X-Runtime: ['1.134648']
+    status: {code: 200, message: OK}
+- request:
+    body: '{"labels": "dem"}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['17']
+      Content-Type: [application/json]
+      User-Agent: [IGitt]
+    method: PUT
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/3
+  response:
+    body: {string: '{"id":5613911,"iid":3,"project_id":3439658,"title":"new title","description":"Stop
+        trying to be badass.","state":"opened","created_at":"2017-06-05T06:19:06.379Z","updated_at":"2017-09-28T16:26:32.950Z","labels":["dem"],"milestone":null,"assignees":[],"author":{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"assignee":null,"user_notes_count":10,"upvotes":0,"downvotes":0,"due_date":null,"confidential":false,"weight":null,"web_url":"https://gitlab.com/gitmate-test-user/test/issues/3","time_stats":{"time_estimate":0,"total_time_spent":0,"human_time_estimate":null,"human_total_time_spent":null},"_links":{"self":"http://gitlab.com/api/v4/projects/3439658/issues/3","notes":"http://gitlab.com/api/v4/projects/3439658/issues/3/notes","award_emoji":"http://gitlab.com/api/v4/projects/3439658/issues/3/award_emoji","project":"http://gitlab.com/api/v4/projects/3439658"},"subscribed":true}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['1067']
+      Content-Type: [application/json]
+      Date: ['Thu, 28 Sep 2017 16:27:01 GMT']
+      Etag: [W/"ea1c72a85cdedd2c0d65b2842e0035f3"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['19']
+      RateLimit-Remaining: ['581']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [2d6a8b8d-16e0-4624-9db5-21d655fad2fa]
+      X-Runtime: ['1.183202']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/labels?per_page=100
+  response:
+    body: {string: '[{"id":2105509,"name":"a","color":"#428BCA","description":"","open_issues_count":0,"closed_issues_count":0,"open_merge_requests_count":0,"priority":null,"subscribed":false},{"id":2105511,"name":"b","color":"#428BCA","description":"","open_issues_count":0,"closed_issues_count":0,"open_merge_requests_count":0,"priority":null,"subscribed":false},{"id":2105512,"name":"c","color":"#004E00","description":"","open_issues_count":0,"closed_issues_count":0,"open_merge_requests_count":0,"priority":null,"subscribed":false},{"id":2127066,"name":"dem","color":"#428BCA","description":null,"open_issues_count":2,"closed_issues_count":0,"open_merge_requests_count":0,"priority":null,"subscribed":false}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['693']
+      Content-Type: [application/json]
+      Date: ['Thu, 28 Sep 2017 16:27:05 GMT']
+      Etag: [W/"7d4e83b5fc5462b5e7e509d88d943838"]
+      Link: ['<https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/labels?id=gitmate-test-user%2Ftest&page=1&per_page=100>;
+          rel="first", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/labels?id=gitmate-test-user%2Ftest&page=1&per_page=100>;
+          rel="last"']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['20']
+      RateLimit-Remaining: ['580']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['100']
+      X-Prev-Page: ['']
+      X-Request-Id: [4dcfde0a-5597-4af3-a923-5a0ec850f8c8]
+      X-Runtime: ['0.697969']
+      X-Total: ['4']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+version: 1

@@ -1,0 +1,39 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects?owned=True&per_page=100
+  response:
+    body: {string: '[{"id":3439658,"description":"","default_branch":"master","tag_list":[],"ssh_url_to_repo":"git@gitlab.com:gitmate-test-user/test.git","http_url_to_repo":"https://gitlab.com/gitmate-test-user/test.git","web_url":"https://gitlab.com/gitmate-test-user/test","name":"test","name_with_namespace":"GitMate
+        / test","path":"test","path_with_namespace":"gitmate-test-user/test","star_count":0,"forks_count":2,"created_at":"2017-06-05T04:56:19.418Z","last_activity_at":"2017-09-28T14:22:00.590Z","_links":{"self":"http://gitlab.com/api/v4/projects/3439658","issues":"http://gitlab.com/api/v4/projects/3439658/issues","merge_requests":"http://gitlab.com/api/v4/projects/3439658/merge_requests","repo_branches":"http://gitlab.com/api/v4/projects/3439658/repository/branches","labels":"http://gitlab.com/api/v4/projects/3439658/labels","events":"http://gitlab.com/api/v4/projects/3439658/events","members":"http://gitlab.com/api/v4/projects/3439658/members"},"archived":false,"visibility":"public","owner":{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"resolve_outdated_diff_discussions":null,"container_registry_enabled":true,"issues_enabled":true,"merge_requests_enabled":true,"wiki_enabled":true,"jobs_enabled":true,"snippets_enabled":true,"shared_runners_enabled":true,"lfs_enabled":true,"creator_id":1369631,"namespace":{"id":1652018,"name":"gitmate-test-user","path":"gitmate-test-user","kind":"user","full_path":"gitmate-test-user","parent_id":null,"plan":"early_adopter"},"import_status":"failed","avatar_url":null,"open_issues_count":14,"public_jobs":true,"ci_config_path":null,"shared_with_groups":[],"only_allow_merge_if_pipeline_succeeds":false,"request_access_enabled":false,"only_allow_merge_if_all_discussions_are_resolved":false,"printing_merge_request_link_enabled":true,"approvals_before_merge":0,"permissions":{"project_access":{"access_level":40,"notification_level":3},"group_access":null}}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['2087']
+      Content-Type: [application/json]
+      Date: ['Thu, 28 Sep 2017 16:26:28 GMT']
+      Etag: [W/"ee98c600238675d485637e80551916fe"]
+      Link: ['<https://gitlab.com/api/v4/projects?archived=false&membership=false&order_by=created_at&owned=true&page=1&per_page=100&simple=false&sort=desc&starred=false&statistics=false&with_issues_enabled=false&with_merge_requests_enabled=false>;
+          rel="first", <https://gitlab.com/api/v4/projects?archived=false&membership=false&order_by=created_at&owned=true&page=1&per_page=100&simple=false&sort=desc&starred=false&statistics=false&with_issues_enabled=false&with_merge_requests_enabled=false>;
+          rel="last"']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['7']
+      RateLimit-Remaining: ['593']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['100']
+      X-Prev-Page: ['']
+      X-Request-Id: [dbd7fcb7-0ab3-4a02-bd13-d16c3f0ec1e8]
+      X-Runtime: ['5.737958']
+      X-Total: ['1']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+version: 1

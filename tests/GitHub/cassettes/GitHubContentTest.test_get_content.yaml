@@ -1,0 +1,49 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://api.github.com/repos/gitmate-test-user/test/contents/README.md?path=%2Frepos%2Fgitmate-test-user%2Ftest%2Fcontents%2FREADME.md&ref=master
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA7WSW2sCMRCF/0ue1ah70QpSuq1QH/qggrVSkEw2e6m5LJssYsX/3tlWWiv1QaEP
+        gXDIfDPnTHZEMyXIgExHdw9Po5aKSYMUzGUnks0YKiwIoQ1hDDf9HrBeh0OHxcDBA78HCQTMD/x+
+        6HWRYfN3xHp+g1SlxNLMucIOKGVF3kpzl1XQ4kbRUhTGUhQUc6LphHXNyoqS1jfKjXZCO0u/h7st
+        RTJUzDpRYo/MKbn6jT9Cn4GCNEC/ED9chOHzE9Ylo2I1rcmWXpBRbDZaGhaf9C3Z5hBRHcUhhM+0
+        zlj6w43bFvVWk1wK9HZgoDCbRRngGT9OJfcmKVfzDWxH6XwRrV8WU7m8j96gG7SXz0F7PBkOXzWW
+        C81NnOsU64FZEfqorWSu15YMdsQKmfzTgtHvleSr9lH/p6N+1/6l/f4D7wD2sFYDAAA=
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Access-Control-Expose-Headers: ['ETag, Link, X-GitHub-OTP, X-RateLimit-Limit,
+          X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes,
+          X-Poll-Interval']
+      Cache-Control: ['private, max-age=60, s-maxage=60']
+      Content-Encoding: [gzip]
+      Content-Security-Policy: [default-src 'none']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Sun, 24 Sep 2017 18:29:35 GMT']
+      ETag: [W/"bfc30974c2e1eb4ce7eb6b4417de1e04"]
+      Last-Modified: ['Sun, 24 Sep 2017 18:29:28 GMT']
+      Server: [GitHub.com]
+      Status: [200 OK]
+      Strict-Transport-Security: [max-age=31536000; includeSubdomains; preload]
+      Vary: ['Accept, Authorization, Cookie, X-GitHub-OTP', Accept-Encoding]
+      X-Accepted-OAuth-Scopes: ['']
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [deny]
+      X-GitHub-Media-Type: [github.v3; format=json]
+      X-GitHub-Request-Id: ['40BC:D7DD:194AD2B:20516ED:59C7F98B']
+      X-OAuth-Scopes: ['admin:org, admin:org_hook, admin:public_key, admin:repo_hook,
+          gist, notifications, repo, user']
+      X-RateLimit-Limit: ['5000']
+      X-RateLimit-Remaining: ['4949']
+      X-RateLimit-Reset: ['1506280502']
+      X-Runtime-rack: ['0.044541']
+      X-XSS-Protection: [1; mode=block]
+    status: {code: 200, message: OK}
+version: 1

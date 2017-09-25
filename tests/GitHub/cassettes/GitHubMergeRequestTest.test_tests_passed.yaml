@@ -1,0 +1,225 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://api.github.com/repos/gitmate-test-user/test/pulls/7/commits
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA+1WTY+bMBD9KxXnJubTYKSqrdQ99lK1l65WkbENWAKMbJPVFuW/d0yS3SbbtAtR
+        pR72hjDvvZnxPGZuR8/U1Mu9EvOwSBnGURqGEaY+8WlI05iXoYjTMg5pEscJLry3HlNtK62Xjx4d
+        bK20e+poK4ClkralVqysMHY1GKHhc9FS2cBZrQwcGiv0h8Nna6ngnAMAjkM/wCs/WIXx14DkMc4T
+        8t3bHdUA9W9lWmEMrVwg33oX0ZsvNx8/fb5ZtxxCtFrAybFUhBZZSTJWsJKyggsSpCljJC0JpoJE
+        lAWCZ2mBATjoKXNre5MjRHu5htTroVhDDZEWvTLoWcmQK557jZysQS+Wg2Jdp7e/WINm9oLo7Iap
+        oYOWSK6KYYF+bdtmc5r1LxW+UNu9zoI0zZnUnAudmxxyACitgTZ68lmjKtldMJrkXh5gnAV+5ANm
+        Sy3V5wFPL010aEPnUKY6CzJTRw7oiH+/fReDcKUPNI7b+1tDO7rfNDTAZl4TIErVNOoe+M4zOPXQ
+        BUn0CH+kkl11DRXAR6RsLaCkkObOFUcauzC8CTqCyY3dSO7IDNyLFnxZiAcwBHjfQWzj9GuZWIfC
+        MC17K1W3MNQTCqBUuqKd/EGvoAQK19XT/29ZwhMUKMTWOWQZxx47ol7LLWUPrlxaMCG3cAvX8J6R
+        AK196KfBsp+HRlqxobx1Pi5pY8T5kHv1+KvHn0+uV4//YZW6NAb+J4/3VE/jPL89LpI4jWOSlTwO
+        ElglOYsSlogizIqMJIHIfL+MEljJS/iFLF/sjnvHDLGZ03q/sB6WqhfL7O52dz8BN0FBhn4MAAA=
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Access-Control-Expose-Headers: ['ETag, Link, X-GitHub-OTP, X-RateLimit-Limit,
+          X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes,
+          X-Poll-Interval']
+      Cache-Control: ['private, max-age=60, s-maxage=60']
+      Content-Encoding: [gzip]
+      Content-Security-Policy: [default-src 'none']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Sun, 24 Sep 2017 18:47:17 GMT']
+      ETag: [W/"fa720ce9103d83785493272e89c476db"]
+      Last-Modified: ['Sun, 24 Sep 2017 18:39:02 GMT']
+      Server: [GitHub.com]
+      Status: [200 OK]
+      Strict-Transport-Security: [max-age=31536000; includeSubdomains; preload]
+      Vary: ['Accept, Authorization, Cookie, X-GitHub-OTP', Accept-Encoding]
+      X-Accepted-OAuth-Scopes: ['']
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [deny]
+      X-GitHub-Media-Type: [github.v3; format=json]
+      X-GitHub-Request-Id: ['4390:D7DD:19555B2:205E3A9:59C7FDB3']
+      X-OAuth-Scopes: ['admin:org, admin:org_hook, admin:public_key, admin:repo_hook,
+          gist, notifications, repo, user']
+      X-RateLimit-Limit: ['5000']
+      X-RateLimit-Remaining: ['4892']
+      X-RateLimit-Reset: ['1506280502']
+      X-Runtime-rack: ['0.065886']
+      X-XSS-Protection: [1; mode=block]
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://api.github.com/repos/gitmate-test-user/test/commits/f6d2b7c66372236a090a2a74df2e47f42a54456b/status
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA6WY247iOBCGXwXldmkMdDhKq3mJ2ZtZrVAlcRKLJI5sB4axePetcg4NPT2hG98g
+        SFxfftcpZWygDRge7APdxDHXOpi6K43mOtj/a4NGFXgzN6bWe8agFrNMmLyJZrEsmeK11AwvlMh4
+        MVybFzRUjL6xHsPSdbKMNvF6/bpZLl/XMN/NYQmbMEmXPNyk4RJWYbhaR/hokQT7RbgJw+18t9y0
+        Uu7FJVzHStRGyAp1fc+FnqCSUpjJGfQE4mMlzwVPMp7MkGdAZdwc7jfR6Z0JyXBJLCvDfxqEKX4S
+        /Nxvh5VQNVDQCsVxe8kBaNFyvti8zLcvi933xXYf7vbL1Q9c09TJgzXX/3A7OSDiC/4w0kBxiGVT
+        4bMXU5SIDhdGqkuwt85b4W612m5WeK+CklxFvkdBaVMUh+7SxwHCRfJccUWkQmaC/Pnbyj4m6/V2
+        MX+dTwM4ATr1nUfbi/q1yw3KAefWyrg0adiis/92+jtEZKY6DO0gIPeNZRnhPsgyNMtNWfwe3D47
+        P9pMKotCnpH3fgf3if2HR7LBnDzsUKLKfFBobpk0OUeX4jav5ByhzZPynKnFDNbmIBKCYREqhbn7
+        jIOpgskYBVKeXK2rd0dtoqEKn5R6h0CkVBlU4hdQYT+JRAS1L1cjz23YmSKCnzB1n2S0tpbVSpwg
+        vpC7FI+5OGEUfLjvIIg1l5oK/h/MG4qJMPwASUl1nEKh+XUaOA3U3d2FL9eL6+OIvu+5MKHLE/IV
+        3kulOg780Swbe1l0oAcuHyNgaaojxe7ILz4YMrcMP7sCirHKIZIKsOn6cO84lt3+pBQxHEofvLNH
+        Ti7l0Yfj7JEjtG74p/J1NCgOo1lfE1VTRm2T+0wljJJbACoFrUVWce6z64FhWd+FIwVVnHtRe4Rl
+        7TcXZ8h8hJI5UqJCRj4YfDMyx7AMR5L2pWMOntoISog7puKpr1BCDEyj/CLtRBJjIPZj6vgbYzQX
+        h0nXdt4soMoayLyyZ2BgvOlFnMGvh2PLI5UdBIk0nikRNd5d7Q1DOtu5AGvcJ+g3lDemm/h9YnQz
+        srj905nBR2VHuMt2fyrl53sy/X48j4zGvkdY9taC2xbf3fHwbNfjP3pEdwjwc7M7R2hm/6rB5NSr
+        8Ek1KO4huSMwGwHOSbPZzOYc3Lxccjww+uhtAUgCFec49HmotD0CRxs8YLv5OyWRCc7jhYTER+fA
+        QF4bQQ+lLeA2uWo8fvrIc/a3wFIUOHXKyi84A+QWXUkjUhF/5ugxWmR3HPtNiyrmUyiKKWarEbHA
+        /MXjHgUQJ0ru5Z4WgJvAM397wig4prKPxxVvEZa1J8eE14W8+DaeG0qAB5K2tXlkWtcbv/Kf0tOH
+        kr4Rf/ph3V9ewfV/8NjwQ1YTAAA=
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Access-Control-Expose-Headers: ['ETag, Link, X-GitHub-OTP, X-RateLimit-Limit,
+          X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes,
+          X-Poll-Interval']
+      Cache-Control: ['private, max-age=60, s-maxage=60']
+      Content-Encoding: [gzip]
+      Content-Security-Policy: [default-src 'none']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Sun, 24 Sep 2017 18:47:19 GMT']
+      ETag: [W/"dc45e7b0563eeb94677a75303d3afe50"]
+      Server: [GitHub.com]
+      Status: [200 OK]
+      Strict-Transport-Security: [max-age=31536000; includeSubdomains; preload]
+      Vary: ['Accept, Authorization, Cookie, X-GitHub-OTP', Accept-Encoding]
+      X-Accepted-OAuth-Scopes: ['repo, repo:status']
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [deny]
+      X-GitHub-Media-Type: [github.v3; format=json]
+      X-GitHub-Request-Id: ['4391:D7DE:2D619CA:3A06A84:59C7FDB5']
+      X-OAuth-Scopes: ['admin:org, admin:org_hook, admin:public_key, admin:repo_hook,
+          gist, notifications, repo, user']
+      X-RateLimit-Limit: ['5000']
+      X-RateLimit-Remaining: ['4891']
+      X-RateLimit-Reset: ['1506280502']
+      X-Runtime-rack: ['0.038304']
+      X-XSS-Protection: [1; mode=block]
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://api.github.com/repos/gitmate-test-user/test/pulls/6/commits
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA+1WTY/TMBD9KyhnWjup46SVECCxRy4ILqxWlWNPWktJHNlOV0vV/844bXdpl8Im
+        FRKHvUWx33vz6ZnbbeTWIlpEs1KyIucUqEhknOXxfD5jime5AimkmscsyWJIZfQ2kqautY8W20h0
+        fm1s+GpEDciy0r4WHiYenJ90Dixeh1roCs/WxuGh82A/HK5NtcFzhQA8TmjMJzSeJOxrnC3YfBEn
+        36PdUQ1R/1amBufEKhjyrQ0Wvfly8/HT55tprdBEbwFPjqEqFYc8z4qUgkoLybgoMs6pzIAzyvI0
+        YRQSngICO9t77n3rFoSIVk/R9XVXTDGGxEJrHHkWMhKCF36TIOvIi+UwWNfp7RPryMBagMYvpeka
+        LImYJvwqM0aYsPZ1tTx1/JcgXwjvXmeEp+5MakhOhzpHAgCj67CSnlqtMivdXOg1rTAHnOcxnVHE
+        bIQX9tzg/qebHSoxNKk0jUeZvig7csS/37xjKLyyB5rAHf2tpgPdb2oaYQPThIjSVJW5R75zD07b
+        6IIkeYQ/UulmdQ0VwrfE+DVgSNHNXQiOdn6keT10i33u/FKrQOYwLxbUOBMPYDTwvkHbtv3r0rN2
+        hZNWt16bZqSpJxRIaexKNPqHuIISKUJV90/gOId7KFLAJnTIOI49dktaqzdCPoRwWZCgN5iFa3jP
+        SJDWP7T9bNmPRKc9LIWqQx+XonJwPudee/y1x59Prtce/8M2dWkM/E893grbj/PF7XGX5Blj87xU
+        LE5lKZScpTKFIsmLfJ7GkFNaztJM8hKfkPG73XHvGCA2cFrvd9bDUvVimd3d7u4nwUJV0YEMAAA=
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Access-Control-Expose-Headers: ['ETag, Link, X-GitHub-OTP, X-RateLimit-Limit,
+          X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes,
+          X-Poll-Interval']
+      Cache-Control: ['private, max-age=60, s-maxage=60']
+      Content-Encoding: [gzip]
+      Content-Security-Policy: [default-src 'none']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Sun, 24 Sep 2017 18:47:22 GMT']
+      ETag: [W/"e0b9d305258244de0943ef67f19018d7"]
+      Last-Modified: ['Thu, 15 Jun 2017 17:30:22 GMT']
+      Server: [GitHub.com]
+      Status: [200 OK]
+      Strict-Transport-Security: [max-age=31536000; includeSubdomains; preload]
+      Vary: ['Accept, Authorization, Cookie, X-GitHub-OTP', Accept-Encoding]
+      X-Accepted-OAuth-Scopes: ['']
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [deny]
+      X-GitHub-Media-Type: [github.v3; format=json]
+      X-GitHub-Request-Id: ['4392:D7DF:1363C9D:18BB2EA:59C7FDB9']
+      X-OAuth-Scopes: ['admin:org, admin:org_hook, admin:public_key, admin:repo_hook,
+          gist, notifications, repo, user']
+      X-RateLimit-Limit: ['5000']
+      X-RateLimit-Remaining: ['4890']
+      X-RateLimit-Reset: ['1506280502']
+      X-Runtime-rack: ['0.053103']
+      X-XSS-Protection: [1; mode=block]
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://api.github.com/repos/gitmate-test-user/test/commits/3fc4b860e0a2c17819934d678decacd914271e5c/status
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA8WY247iOBCGXwXldgAnnEFazUv03uxohJzEJFY7cWQ79DIW7z5VzqGBZQKNL/am
+        RQf7y+86uQobaEMNC3bBgXJRKxaM3ZNaMx3sftigVgK+zI2p9I4QWvFpxk1ex9NEFkSxSmoCDwpg
+        TAzTZgIbFcFPpMOQ+SFZxJtVyEI6S6L1Jtpu54t0td6kLKFJuo0Ws3XElgm8mqfBLpptosV2Pd/M
+        GinX4lKmE8Urw2UJut5yrkegpOBmVDKW6tGHVO9TIBmqMmb2n/JBfSt0yiWBFYksDfvXAEWxI2cf
+        3dekoGVNBa5QDM6V7ikumoXRehKuJuH6LQp3i9VuFv0Da+oqfbDmPP5frLhcz9fhdjabP2NFppge
+        0VGlZCxYcWu+K2O1RnQ+vm+j7WS2eIs2u2i1m4d/sNHNmvNPUJlTMPMXgsVIQ8U+kXUJ/oFgcdHI
+        jVSnYGddKC22y+VmvYzGQUkLjKNW9KEWYt8+uh+9cDL5UTKFJCEzjsH2n5WwyAXsarWJwnk4DuiR
+        QtxdBJ3LGfdQz9vEwQRxoVcal0M16fZ/P/61AGSmWgyyAwyxoRRE3J0UhG25KcSNlIvUvXeYgxRC
+        fgDv9gTXWf+HV5J+O7y8+czLzAcF2y2RJmdgUjjmGY3DtXlRnttqIcu12fMUYVChlIL8fsXAWN5w
+        MwjEODlbVwwdtY77EvWi1CsEIKXKaMl/Uax6LyIBoYHkcuS1A7utgGBHCN0XGc1eSyrFjzQ5obkU
+        Sxg/ghd8uDcQwJpThQn/N8QN+oQbtqdpgXl8oEKz8zhwGvDqcw++nC9dAby+kOgIS8wIbQWvPcBl
+        1PMHo2zoJm1BD0w+RIDUVO/ou3d28sHgdkvgb5tACRQMGktFoej6cK84llz+iyFiGC188G4/cHIp
+        3304bj9wuNY1eypeB53iMJp0OVHWRdwUuWcyYZDcAEAp1Zpn0Bj5nLpnWNJV4VjRMsm9qB3CkuaT
+        8zPNfITidqDEQsY+GLgZiWNYAi1Jc+mYvac2hCLiiqnYwVcoInqmUX6ediKR0RO7Hn74xhiMxX4M
+        sK01BS2zmmZe0dMzwN94EWf018O25ZHKFgJEbM8Uj2vvqvaJQZ1NXwA57uP0C8on041DPj66aFnc
+        +XGg8lHZEq6i3Z+K8XlLxv8f9yODvu8QlnyW4KbEt994WLat8fde0Q4BfmZ2c4Qm9ltFTY61Ct5U
+        UcU8JLcEYmMKfdJ0OrU5o65fLhjM1D56GwCQqEpyaPo8VNoOAa0N/Prg+u8DikyhHxeSpj46ewbw
+        Gg96KG0Al8FVwfjpI8/tvwQWXEDXKUs/5/SQS3QpDT/w5JnRYzDJrjj2u+ZlwsZUiDFEq+EJh/iF
+        cQ8dCB0l8zJPA4BDwMzfTBiCQSj7WFyxBmFJMzmmrBLy5Ft4LigBDCRNafOItLY2fuUHt5eHkq4Q
+        P/2y9vfA4PwbSjRSnXMUAAA=
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Access-Control-Expose-Headers: ['ETag, Link, X-GitHub-OTP, X-RateLimit-Limit,
+          X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes,
+          X-Poll-Interval']
+      Cache-Control: ['private, max-age=60, s-maxage=60']
+      Content-Encoding: [gzip]
+      Content-Security-Policy: [default-src 'none']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Sun, 24 Sep 2017 18:47:26 GMT']
+      ETag: [W/"8eaafd26dc12832aec09528d45038d6d"]
+      Server: [GitHub.com]
+      Status: [200 OK]
+      Strict-Transport-Security: [max-age=31536000; includeSubdomains; preload]
+      Vary: ['Accept, Authorization, Cookie, X-GitHub-OTP', Accept-Encoding]
+      X-Accepted-OAuth-Scopes: ['repo, repo:status']
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [deny]
+      X-GitHub-Media-Type: [github.v3; format=json]
+      X-GitHub-Request-Id: ['4395:D7DF:1363D1B:18BB38B:59C7FDBB']
+      X-OAuth-Scopes: ['admin:org, admin:org_hook, admin:public_key, admin:repo_hook,
+          gist, notifications, repo, user']
+      X-RateLimit-Limit: ['5000']
+      X-RateLimit-Remaining: ['4889']
+      X-RateLimit-Reset: ['1506280502']
+      X-Runtime-rack: ['0.128227']
+      X-XSS-Protection: [1; mode=block]
+    status: {code: 200, message: OK}
+version: 1

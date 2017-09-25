@@ -1,0 +1,402 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/hooks?per_page=100
+  response:
+    body: {string: '[]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['2']
+      Content-Type: [application/json]
+      Date: ['Thu, 28 Sep 2017 16:57:37 GMT']
+      Etag: [W/"d751713988987e9331980363e24189ce"]
+      Link: ['<https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/hooks?id=gitmate-test-user%2Ftest&page=1&per_page=100>;
+          rel="first", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/hooks?id=gitmate-test-user%2Ftest&page=1&per_page=100>;
+          rel="last"']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['1']
+      RateLimit-Remaining: ['599']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['100']
+      X-Prev-Page: ['']
+      X-Request-Id: [c7d23128-dd7b-483a-9eb8-cf7efa592bbd]
+      X-Runtime: ['0.127901']
+      X-Total: ['0']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+- request:
+    body: '{"url": "http://some.url/in/the/world", "enable_ssl_verification": false,
+      "token": "secret", "merge_requests_events": true}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['123']
+      Content-Type: [application/json]
+      User-Agent: [IGitt]
+    method: POST
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/hooks
+  response:
+    body: {string: '{"id":247271,"url":"http://some.url/in/the/world","created_at":"2017-09-28T16:57:39.454Z","push_events":true,"tag_push_events":false,"repository_update_events":false,"enable_ssl_verification":false,"project_id":3439658,"issues_events":false,"merge_requests_events":true,"note_events":false,"pipeline_events":false,"wiki_page_events":false,"job_events":false}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['358']
+      Content-Type: [application/json]
+      Date: ['Thu, 28 Sep 2017 16:57:39 GMT']
+      Etag: [W/"b9957fc9ef892ebcaf240955cb69e9ca"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['2']
+      RateLimit-Remaining: ['598']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [4d1d9b6d-e8d2-4633-9f3d-830f6505eb18]
+      X-Runtime: ['0.211670']
+    status: {code: 201, message: Created}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/hooks?per_page=100
+  response:
+    body: {string: '[{"id":247271,"url":"http://some.url/in/the/world","created_at":"2017-09-28T16:57:39.454Z","push_events":true,"tag_push_events":false,"repository_update_events":false,"enable_ssl_verification":false,"project_id":3439658,"issues_events":false,"merge_requests_events":true,"note_events":false,"pipeline_events":false,"wiki_page_events":false,"job_events":false}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['360']
+      Content-Type: [application/json]
+      Date: ['Thu, 28 Sep 2017 16:57:41 GMT']
+      Etag: [W/"d1490e0323023630e06fac6263095cde"]
+      Link: ['<https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/hooks?id=gitmate-test-user%2Ftest&page=1&per_page=100>;
+          rel="first", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/hooks?id=gitmate-test-user%2Ftest&page=1&per_page=100>;
+          rel="last"']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['3']
+      RateLimit-Remaining: ['597']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['100']
+      X-Prev-Page: ['']
+      X-Request-Id: [6d418064-6068-49f4-84ee-bb401b612d03]
+      X-Runtime: ['0.260735']
+      X-Total: ['1']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/hooks?per_page=100
+  response:
+    body: {string: '[{"id":247271,"url":"http://some.url/in/the/world","created_at":"2017-09-28T16:57:39.454Z","push_events":true,"tag_push_events":false,"repository_update_events":false,"enable_ssl_verification":false,"project_id":3439658,"issues_events":false,"merge_requests_events":true,"note_events":false,"pipeline_events":false,"wiki_page_events":false,"job_events":false}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['360']
+      Content-Type: [application/json]
+      Date: ['Thu, 28 Sep 2017 16:57:42 GMT']
+      Etag: [W/"d1490e0323023630e06fac6263095cde"]
+      Link: ['<https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/hooks?id=gitmate-test-user%2Ftest&page=1&per_page=100>;
+          rel="first", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/hooks?id=gitmate-test-user%2Ftest&page=1&per_page=100>;
+          rel="last"']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['4']
+      RateLimit-Remaining: ['596']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['100']
+      X-Prev-Page: ['']
+      X-Request-Id: [38f75cae-1272-48eb-89be-c9a874a1a2a2]
+      X-Runtime: ['0.078993']
+      X-Total: ['1']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/hooks?per_page=100
+  response:
+    body: {string: '[{"id":247271,"url":"http://some.url/in/the/world","created_at":"2017-09-28T16:57:39.454Z","push_events":true,"tag_push_events":false,"repository_update_events":false,"enable_ssl_verification":false,"project_id":3439658,"issues_events":false,"merge_requests_events":true,"note_events":false,"pipeline_events":false,"wiki_page_events":false,"job_events":false}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['360']
+      Content-Type: [application/json]
+      Date: ['Thu, 28 Sep 2017 16:57:44 GMT']
+      Etag: [W/"d1490e0323023630e06fac6263095cde"]
+      Link: ['<https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/hooks?id=gitmate-test-user%2Ftest&page=1&per_page=100>;
+          rel="first", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/hooks?id=gitmate-test-user%2Ftest&page=1&per_page=100>;
+          rel="last"']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['5']
+      RateLimit-Remaining: ['595']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['100']
+      X-Prev-Page: ['']
+      X-Request-Id: [54057dc4-d84e-4a17-b1c8-ed350323e323]
+      X-Runtime: ['0.127887']
+      X-Total: ['1']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['0']
+      User-Agent: [IGitt]
+    method: DELETE
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/hooks/247271
+  response:
+    body: {string: ''}
+    headers:
+      Cache-Control: [no-cache]
+      Date: ['Thu, 28 Sep 2017 16:57:46 GMT']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['6']
+      RateLimit-Remaining: ['594']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [9ea4830d-42fa-4be7-bf05-be039866b607]
+      X-Runtime: ['0.140038']
+    status: {code: 204, message: No Content}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/hooks?per_page=100
+  response:
+    body: {string: '[]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['2']
+      Content-Type: [application/json]
+      Date: ['Thu, 28 Sep 2017 16:57:47 GMT']
+      Etag: [W/"d751713988987e9331980363e24189ce"]
+      Link: ['<https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/hooks?id=gitmate-test-user%2Ftest&page=1&per_page=100>;
+          rel="first", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/hooks?id=gitmate-test-user%2Ftest&page=1&per_page=100>;
+          rel="last"']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['7']
+      RateLimit-Remaining: ['593']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['100']
+      X-Prev-Page: ['']
+      X-Request-Id: [c8ddcc24-7299-4fe6-9061-34d2feb8c921]
+      X-Runtime: ['0.090356']
+      X-Total: ['0']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/hooks?per_page=100
+  response:
+    body: {string: '[]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['2']
+      Content-Type: [application/json]
+      Date: ['Thu, 28 Sep 2017 16:57:49 GMT']
+      Etag: [W/"d751713988987e9331980363e24189ce"]
+      Link: ['<https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/hooks?id=gitmate-test-user%2Ftest&page=1&per_page=100>;
+          rel="first", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/hooks?id=gitmate-test-user%2Ftest&page=1&per_page=100>;
+          rel="last"']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['8']
+      RateLimit-Remaining: ['592']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['100']
+      X-Prev-Page: ['']
+      X-Request-Id: [a826b255-b353-4bae-8348-4cea5fa48264]
+      X-Runtime: ['0.152480']
+      X-Total: ['0']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+- request:
+    body: '{"url": "http://some.url/in/the/world", "enable_ssl_verification": false,
+      "tag_push_events": true, "job_events": true, "pipeline_events": true, "issues_events":
+      true, "note_events": true, "merge_requests_events": true, "wiki_events": true,
+      "push_events": true}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['260']
+      Content-Type: [application/json]
+      User-Agent: [IGitt]
+    method: POST
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/hooks
+  response:
+    body: {string: '{"id":247272,"url":"http://some.url/in/the/world","created_at":"2017-09-28T16:57:51.502Z","push_events":true,"tag_push_events":true,"repository_update_events":false,"enable_ssl_verification":false,"project_id":3439658,"issues_events":true,"merge_requests_events":true,"note_events":true,"pipeline_events":true,"wiki_page_events":false,"job_events":true}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['353']
+      Content-Type: [application/json]
+      Date: ['Thu, 28 Sep 2017 16:57:51 GMT']
+      Etag: [W/"24f75291fafeb0da487df694f2e6403f"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['9']
+      RateLimit-Remaining: ['591']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [330d4cec-cef5-4837-ae7c-b665fe79b2c8]
+      X-Runtime: ['0.262169']
+    status: {code: 201, message: Created}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/hooks?per_page=100
+  response:
+    body: {string: '[{"id":247272,"url":"http://some.url/in/the/world","created_at":"2017-09-28T16:57:51.502Z","push_events":true,"tag_push_events":true,"repository_update_events":false,"enable_ssl_verification":false,"project_id":3439658,"issues_events":true,"merge_requests_events":true,"note_events":true,"pipeline_events":true,"wiki_page_events":false,"job_events":true}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['355']
+      Content-Type: [application/json]
+      Date: ['Thu, 28 Sep 2017 16:57:53 GMT']
+      Etag: [W/"3f8e5ca90065a8a5bf13f1cb97c7d216"]
+      Link: ['<https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/hooks?id=gitmate-test-user%2Ftest&page=1&per_page=100>;
+          rel="first", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/hooks?id=gitmate-test-user%2Ftest&page=1&per_page=100>;
+          rel="last"']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['10']
+      RateLimit-Remaining: ['590']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['100']
+      X-Prev-Page: ['']
+      X-Request-Id: [198ef21e-5d1a-4e5c-8ecd-4459a5e07a93]
+      X-Runtime: ['0.324796']
+      X-Total: ['1']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/hooks?per_page=100
+  response:
+    body: {string: '[{"id":247272,"url":"http://some.url/in/the/world","created_at":"2017-09-28T16:57:51.502Z","push_events":true,"tag_push_events":true,"repository_update_events":false,"enable_ssl_verification":false,"project_id":3439658,"issues_events":true,"merge_requests_events":true,"note_events":true,"pipeline_events":true,"wiki_page_events":false,"job_events":true}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['355']
+      Content-Type: [application/json]
+      Date: ['Thu, 28 Sep 2017 16:57:54 GMT']
+      Etag: [W/"3f8e5ca90065a8a5bf13f1cb97c7d216"]
+      Link: ['<https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/hooks?id=gitmate-test-user%2Ftest&page=1&per_page=100>;
+          rel="first", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/hooks?id=gitmate-test-user%2Ftest&page=1&per_page=100>;
+          rel="last"']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['11']
+      RateLimit-Remaining: ['589']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['100']
+      X-Prev-Page: ['']
+      X-Request-Id: [6381624a-f995-456c-984d-7bd9775534dd]
+      X-Runtime: ['0.067943']
+      X-Total: ['1']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['0']
+      User-Agent: [IGitt]
+    method: DELETE
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/hooks/247272
+  response:
+    body: {string: ''}
+    headers:
+      Cache-Control: [no-cache]
+      Date: ['Thu, 28 Sep 2017 16:57:56 GMT']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['12']
+      RateLimit-Remaining: ['588']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [61039d9f-d55c-4808-a2fc-6e24134597a6]
+      X-Runtime: ['0.110850']
+    status: {code: 204, message: No Content}
+version: 1

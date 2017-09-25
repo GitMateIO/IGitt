@@ -1,0 +1,58 @@
+interactions:
+- request:
+    body: '{"file_path": "deleteme", "commit_message": "hello", "content": "hello",
+      "branch": "master"}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['92']
+      Content-Type: [application/json]
+      User-Agent: [IGitt]
+    method: POST
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/files/deleteme
+  response:
+    body: {string: '{"file_path":"deleteme","branch":"master"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['42']
+      Content-Type: [application/json]
+      Date: ['Sun, 24 Sep 2017 12:11:44 GMT']
+      Etag: [W/"8827443863f95630b41d5576df384a90"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['11']
+      RateLimit-Remaining: ['589']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [b9f7ac82-666b-4cb8-9f3c-2f78761c5fb4]
+      X-Runtime: ['2.222494']
+    status: {code: 201, message: Created}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['0']
+      User-Agent: [IGitt]
+    method: DELETE
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/files/deleteme?branch=master&commit_message=Delete+file&file_path=%2Fprojects%2Fgitmate-test-user%252Ftest%2Frepository%2Ffiles%2Fdeleteme
+  response:
+    body: {string: ''}
+    headers:
+      Cache-Control: [no-cache]
+      Content-Type: [application/json]
+      Date: ['Sun, 24 Sep 2017 12:11:52 GMT']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['12']
+      RateLimit-Remaining: ['588']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [96728949-0fcd-4790-acd6-f440169a026f]
+      X-Runtime: ['2.854005']
+    status: {code: 204, message: No Content}
+version: 1

@@ -1,0 +1,52 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://api.github.com/users/sils
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA5VUwW6jMBT8FeRziIHSJEVabaRe9rC37V56iQw4YMnYlm2osqj/vmOgURupEjkB
+        fjPzxs8eRiJ1IxQpiBPSkQ0RNSke9+nuMUs2hA3MM3vqrQSg9d64gtJ50SXbRvi2L3vHbaWV58pv
+        K93Rni70n8OPHIKNXVSCMsHCjZoRi9DMhpqji5fWd/Km+dxzgi6gs5ZSv4F1a/M7YXplwMz8LlRz
+        JxuMkWrfckwHlt/DRoXz601M6JGGx0nUge8wasvr1UYWPGy8KTgYqeVGT0J96SorjBdarTf0hQUV
+        bRumxD92nwpY4RYFK+tbT2iw+IBLtJ42w0dqrBhYdQlbt7ziYsAQ75S64UHJXwzHff2Lww0jFZ6f
+        WN2FpJyZdHxDFOsC4Ddzjkd/qrYXtmNKAYzLaZi6oHgchOE2ruFGatNhdxHqJSK35AlxmiBAbIVG
+        Tepqmjjqv1hX9rYJc+mYCAmUodfWXXsdm1AIYQCoFZazUsKTtz38ldAryDMWvbaRPkfHSjPJNtFH
+        jj81phFT9bWAjHXMcxii0DV9KUV1ms+oOOCvsKxMN5gU6f4jRcggPrP8U6rwnWIgwQQOhXk4ypL0
+        IU6TOD28JIciTYo8f0Wb3tRfMPs4eYqz3UvyVKS7Is9eyft/BCeCA6wEAAA=
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Access-Control-Expose-Headers: ['ETag, Link, X-GitHub-OTP, X-RateLimit-Limit,
+          X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes,
+          X-Poll-Interval']
+      Cache-Control: ['private, max-age=60, s-maxage=60']
+      Content-Encoding: [gzip]
+      Content-Security-Policy: [default-src 'none']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Thu, 28 Sep 2017 14:12:36 GMT']
+      ETag: [W/"48e086b3e6f5723279e14e95ae4efb01"]
+      Last-Modified: ['Tue, 26 Sep 2017 09:16:42 GMT']
+      Server: [GitHub.com]
+      Status: [200 OK]
+      Strict-Transport-Security: [max-age=31536000; includeSubdomains; preload]
+      Vary: ['Accept, Authorization, Cookie, X-GitHub-OTP']
+      X-Accepted-OAuth-Scopes: ['']
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [deny]
+      X-GitHub-Media-Type: [github.v3; format=json]
+      X-GitHub-Request-Id: ['CF30:6A15:1EE96E:4B50C5:59CD0352']
+      X-OAuth-Scopes: ['admin:gpg_key, admin:org, admin:org_hook, admin:public_key,
+          admin:repo_hook, gist, notifications, repo, user']
+      X-RateLimit-Limit: ['5000']
+      X-RateLimit-Remaining: ['4997']
+      X-RateLimit-Reset: ['1506611374']
+      X-Runtime-rack: ['0.040536']
+      X-XSS-Protection: [1; mode=block]
+    status: {code: 200, message: OK}
+version: 1

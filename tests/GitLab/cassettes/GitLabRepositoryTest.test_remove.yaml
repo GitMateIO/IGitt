@@ -1,0 +1,38 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/hooks?per_page=100
+  response:
+    body: {string: '[]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['2']
+      Content-Type: [application/json]
+      Date: ['Thu, 28 Sep 2017 16:46:18 GMT']
+      Etag: [W/"d751713988987e9331980363e24189ce"]
+      Link: ['<https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/hooks?id=gitmate-test-user%2Ftest&page=1&per_page=100>;
+          rel="first", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/hooks?id=gitmate-test-user%2Ftest&page=1&per_page=100>;
+          rel="last"']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['7']
+      RateLimit-Remaining: ['593']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['100']
+      X-Prev-Page: ['']
+      X-Request-Id: [4c703022-a5e8-45a9-940e-72bc9df79b31]
+      X-Runtime: ['0.060029']
+      X-Total: ['0']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+version: 1

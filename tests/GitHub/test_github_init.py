@@ -1,6 +1,11 @@
 from IGitt.GitHub import GitHubToken
 
-def test_tokens():
-    github_token = GitHubToken('test')
-    assert github_token.parameter == {'access_token': 'test'}
-    assert github_token.value == 'test'
+from tests import IGittTestCase
+
+
+class GitHubInitTest(IGittTestCase):
+
+    def test_tokens(self):
+        github_token = GitHubToken('test')
+        self.assertEqual(github_token.parameter, {'access_token': 'test'})
+        self.assertEqual(github_token.value, 'test')

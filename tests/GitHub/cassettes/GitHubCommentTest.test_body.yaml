@@ -1,0 +1,52 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://api.github.com/repos/gitmate-test-user/test/comments/22461603
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA52UTY+bMBCG/8rKvcLafIQkSNWe9rq9tJdekGNMsAo2sgdWKcp/7xhItclKaclt
+        bM37+J2xxyPpbUNyUgN0LqeUd+r5qKDuD8/CtNTKzjiKGy0HGYJ0EPZOWuojigmt1OBoHKdZlLGE
+        BMhpm+Ia+QF3B6SAZts03e+qMo02ouKlSDZiIw/x7rDbbyK5Y6xKNluRVV/8wQqW48MPp6uS5Jdl
+        QLxTko+kMUelsUb9q7NKC8nYFp363Ggbs3i3ZwHhAwdub5zPmy5ZOuJ5wmjAmqfm9PSifxm+pog8
+        2gXj2QQ37vbW4xy9NnW/fde5lWka846MW9fXV/jpGPpXiA7nWOnjYxAUjtRALbF1WM7ZN0E5WG1p
+        Eo340BwUqvQYh9dhZbnW1iJDU+8a/YzTC554/cEJqzpQRq+2dyVGmLFHrtVv/hAMxQ4Z02itLW8S
+        oVgOfvDWqmfVSHEMBi5Ovi1WCqkG7PNjxBs5AuHUSXz8P/zsYdcVyIKXrZ+/ijdOngOCFSjfOJLr
+        vmkC0iiNijnuONSXeJ5yfA6I+9+vAY8UVuJfVRYcUBezaBuyLGT77yzLk32epD8xp+/Kf+bwHmpj
+        C+6cEWq6aeS9fXt7Rf3BlCdc+V/wafmGnoyeQgXk/AdPeeyHVQUAAA==
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Access-Control-Expose-Headers: ['ETag, Link, X-GitHub-OTP, X-RateLimit-Limit,
+          X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes,
+          X-Poll-Interval']
+      Cache-Control: ['private, max-age=60, s-maxage=60']
+      Content-Encoding: [gzip]
+      Content-Security-Policy: [default-src 'none']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Sun, 24 Sep 2017 18:15:05 GMT']
+      ETag: [W/"08eef70ea77d269c778fa9da22bffcf0"]
+      Last-Modified: ['Sun, 24 Sep 2017 04:52:11 GMT']
+      Server: [GitHub.com]
+      Status: [200 OK]
+      Strict-Transport-Security: [max-age=31536000; includeSubdomains; preload]
+      Vary: ['Accept, Authorization, Cookie, X-GitHub-OTP', Accept-Encoding]
+      X-Accepted-OAuth-Scopes: ['']
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [deny]
+      X-GitHub-Media-Type: [github.v3; format=json]
+      X-GitHub-Request-Id: ['3DC9:D7DE:2D46BB9:39E4D01:59C7F627']
+      X-OAuth-Scopes: ['admin:org, admin:org_hook, admin:public_key, admin:repo_hook,
+          gist, notifications, repo, user']
+      X-RateLimit-Limit: ['5000']
+      X-RateLimit-Remaining: ['4998']
+      X-RateLimit-Reset: ['1506280502']
+      X-Runtime-rack: ['0.046685']
+      X-XSS-Protection: [1; mode=block]
+    status: {code: 200, message: OK}
+version: 1

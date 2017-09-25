@@ -1,0 +1,33 @@
+interactions:
+- request:
+    body: '{"file_path": "/projects/gitmate-test-user%2Ftest/repository/files/README.md",
+      "commit_message": "Update README", "branch": "master", "content": "I am a test
+      repo! Updated content!"}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['182']
+      Content-Type: [application/json]
+      User-Agent: [IGitt]
+    method: PUT
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/files/README.md
+  response:
+    body: {string: '{"file_path":"README.md","branch":"master"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['43']
+      Content-Type: [application/json]
+      Date: ['Sun, 24 Sep 2017 12:12:02 GMT']
+      Etag: [W/"632d2018d4b2d3bca499defdcb026021"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['14']
+      RateLimit-Remaining: ['586']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [59014a06-bb2b-4235-b2bf-7126507a13e5]
+      X-Runtime: ['1.794913']
+    status: {code: 200, message: OK}
+version: 1
