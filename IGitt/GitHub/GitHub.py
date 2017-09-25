@@ -100,7 +100,7 @@ class GitHub(GitHubMixin, Hoster):
         if event == 'issues':
             issue = data['issue']
             issue_obj = GitHubIssue(
-                self._token, repository['full_name'], issue['number'])
+                self._token, repository, issue['number'])
             trigger_event = {
                 'opened': IssueActions.OPENED,
                 'closed': IssueActions.CLOSED,
@@ -112,7 +112,7 @@ class GitHub(GitHubMixin, Hoster):
         if event == 'pull_request':
             pull_request = data['pull_request']
             pull_request_obj = GitHubMergeRequest(
-                self._token, repository['full_name'], pull_request['number'])
+                self._token, repository, pull_request['number'])
             trigger_event = {
                 'synchronize': MergeRequestActions.SYNCHRONIZED,
                 'opened': MergeRequestActions.OPENED,
@@ -129,27 +129,26 @@ class GitHub(GitHubMixin, Hoster):
             if data['action'] != 'deleted':
                 comment_obj = GitHubComment(
                     self._token,
-                    repository['full_name'],
+                    repository,
                     CommentType.MERGE_REQUEST,
                     data['comment']['id'])
 
                 if 'pull_request' in data['issue']:
                     return MergeRequestActions.COMMENTED, [GitHubMergeRequest(
                         self._token,
-                        repository['full_name'],
+                        repository,
                         data['issue']['number']
                     ), comment_obj]
 
                 return IssueActions.COMMENTED, [GitHubIssue(
                     self._token,
-                    repository['full_name'],
+                    repository,
                     data['issue']['number']
                 ), comment_obj]
 
         if event == 'status':
             commit = data['commit']
-            commit_obj = GitHubCommit(self._token, repository['full_name'],
-                                      commit['sha'])
+            commit_obj = GitHubCommit(self._token, repository, commit['sha'])
             return PipelineActions.UPDATED, [commit_obj]
 
         raise NotImplementedError('Given webhook cannot be handled yet.')
