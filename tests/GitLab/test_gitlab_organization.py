@@ -32,11 +32,14 @@ class GitLabOrganizationTest(unittest.TestCase):
 
     @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_organization_admins.yaml')
     def test_admins(self):
-        self.assertEqual(self.suborg.owners, {'sils', 'nkprince007'})
-        self.assertEqual(self.org.owners, {'sils', 'nkprince007'})
-        self.assertEqual(self.org.masters, {'sils', 'nkprince007',
-                                            'gitmate-test-user'})
-        self.assertEqual(self.user.owners, {'gitmate-test-user'})
+        self.assertEqual({o.username for o in self.suborg.owners},
+                         {'sils', 'nkprince007'})
+        self.assertEqual({o.username for o in self.org.owners},
+                         {'sils', 'nkprince007'})
+        self.assertEqual({m.username for m in self.org.masters},
+                         {'sils', 'nkprince007', 'gitmate-test-user'})
+        self.assertEqual({o.username for o in self.user.owners},
+                         {'gitmate-test-user'})
 
     def test_organization(self):
         self.assertEqual(self.org.url,

@@ -7,6 +7,7 @@ from urllib.parse import quote_plus
 
 from IGitt.GitLab import GL_INSTANCE_URL, GitLabMixin
 from IGitt.GitLab import get
+from IGitt.GitLab.GitLabUser import GitLabUser
 from IGitt.Interfaces import AccessLevel
 from IGitt.Interfaces.Organization import Organization
 
@@ -70,22 +71,23 @@ class GitLabOrganization(GitLabMixin, Organization):
     def _members(self, access_level):
         try:
             return {
-                user['username']
+                GitLabUser.from_data(user, self._token, user['id'])
                 for user in self.raw_members()
                 if user['access_level'] >= access_level
             }
         except RuntimeError:
-            return {self.name}
+            return {GitLabUser.from_data({'username': self.name},
+                                         self._token, identifier=None)}
 
     @property
-    def owners(self) -> {str}:
+    def owners(self) -> {GitLabUser}:
         """
         Returns the user handles of all owner users.
         """
         return self._members(AccessLevel.OWNER.value)
 
     @property
-    def masters(self) -> {str}:
+    def masters(self) -> {GitLabUser}:
         """
         Returns the user handles of all master users.
         """
