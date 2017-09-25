@@ -106,7 +106,7 @@ class GitLab(GitLabMixin, Hoster):
         """
         return GitLabRepository(self._token, repository)
 
-    def handle_webhook(self, event: str, data: dict):
+    def handle_webhook(self, repository: str, event: str, data: dict):
         """
         Handles a GitHub webhook for you.
 
@@ -115,19 +115,12 @@ class GitLab(GitLabMixin, Hoster):
         ``MergeRequestActions.COMMENTED,
         [GitLabMergeRequest(...), GitLabComment(...)]``.
 
-        :param event: The HTTP_X_GITLAB_EVENT of the request header.
-        :param data:  The pythonified JSON data of the request.
-        :return:      An IssueActions or MergeRequestActions member and a list
-                      of the affected IGitt objects.
+        :param repository:  The name of the repository.
+        :param event:       The HTTP_X_GITLAB_EVENT of the request header.
+        :param data:        The pythonified JSON data of the request.
+        :return:            An IssueActions or MergeRequestActions member and a
+                            list of the affected IGitt objects.
         """
-        repository = (
-            data['project_name'].replace(' / ', '/')
-            if 'project_name' in data.keys()
-            else data['project']['path_with_namespace']
-            if 'project' in data.keys()
-            else data['object_attributes']['target']['path_with_namespace']
-        )
-
         if event == 'Issue Hook':
             issue = data['object_attributes']
             issue_obj = GitLabIssue(

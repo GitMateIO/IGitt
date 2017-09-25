@@ -48,9 +48,10 @@ class TestGitLabWebhook(unittest.TestCase):
     def setUp(self):
         self.gl = GitLab(GitLabOAuthToken(
             os.environ.get('GITLAB_TEST_TOKEN', '')))
+        self.repo_name = 'test/test'
         self.default_data = {
             'project': {
-                'path_with_namespace': 'test/test',
+                'path_with_namespace': self.repo_name,
             },
             'object_attributes': {
                 'id': 12,
@@ -72,15 +73,19 @@ class TestGitLabWebhook(unittest.TestCase):
 
     def test_unknown_event(self):
         with self.assertRaises(NotImplementedError):
-            self.gl.handle_webhook('unknown_event', self.default_data)
+            self.gl.handle_webhook(self.repo_name,
+                                   'unknown_event',
+                                   self.default_data)
 
     def test_issue_hook(self):
-        event, obj = self.gl.handle_webhook('Issue Hook', self.default_data)
+        event, obj = self.gl.handle_webhook(
+            self.repo_name, 'Issue Hook', self.default_data)
         self.assertEqual(event, IssueActions.OPENED)
         self.assertIsInstance(obj[0], GitLabIssue)
 
     def test_pr_hook(self):
-        event, obj = self.gl.handle_webhook('Merge Request Hook',
+        event, obj = self.gl.handle_webhook(self.repo_name,
+                                            'Merge Request Hook',
                                             self.default_data)
         self.assertEqual(event, MergeRequestActions.OPENED)
         self.assertIsInstance(obj[0], GitLabMergeRequest)
@@ -88,13 +93,15 @@ class TestGitLabWebhook(unittest.TestCase):
     def test_pr_synchronized(self):
         data = self.default_data
         data['object_attributes']['oldrev'] = 'deadbeef'
-        event, obj = self.gl.handle_webhook('Merge Request Hook',
+        event, obj = self.gl.handle_webhook(self.repo_name,
+                                            'Merge Request Hook',
                                             self.default_data)
         self.assertEqual(event, MergeRequestActions.SYNCHRONIZED)
         self.assertIsInstance(obj[0], GitLabMergeRequest)
 
     def test_issue_comment(self):
-        event, obj = self.gl.handle_webhook('Note Hook', self.default_data)
+        event, obj = self.gl.handle_webhook(
+            self.repo_name, 'Note Hook', self.default_data)
         self.assertEqual(event, IssueActions.COMMENTED)
         self.assertIsInstance(obj[0], GitLabIssue)
         self.assertIsInstance(obj[1], GitLabComment)
@@ -104,18 +111,20 @@ class TestGitLabWebhook(unittest.TestCase):
         data['object_attributes']['noteable_type'] = 'Snippet'
 
         with self.assertRaises(NotImplementedError):
-            self.gl.handle_webhook('Note Hook', data)
+            self.gl.handle_webhook(self.repo_name, 'Note Hook', data)
 
     def test_pr_comment(self):
         data = self.default_data
         data['object_attributes']['noteable_type'] = 'MergeRequest'
 
-        event, obj = self.gl.handle_webhook('Note Hook', data)
+        event, obj = self.gl.handle_webhook(
+            self.repo_name, 'Note Hook', data)
         self.assertEqual(event, MergeRequestActions.COMMENTED)
         self.assertIsInstance(obj[0], GitLabMergeRequest)
         self.assertIsInstance(obj[1], GitLabComment)
 
     def test_status(self):
-        event, obj = self.gl.handle_webhook('Pipeline Hook', self.default_data)
+        event, obj = self.gl.handle_webhook(
+            self.repo_name, 'Pipeline Hook', self.default_data)
         self.assertEqual(event, PipelineActions.UPDATED)
         self.assertIsInstance(obj[0], GitLabCommit)
