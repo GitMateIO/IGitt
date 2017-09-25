@@ -3,6 +3,7 @@ This module contains the Issue abstraction class which provides properties and
 actions related to issues and bug reports.
 """
 from IGitt.Interfaces import IGittObject
+from IGitt.Interfaces.User import User
 
 
 class Organization(IGittObject):
@@ -18,14 +19,14 @@ class Organization(IGittObject):
         raise NotImplementedError
 
     @property
-    def owners(self) -> {str}:
+    def owners(self) -> {User}:
         """
         Returns the user handles of all admin users, usually the owner role.
         """
         raise NotImplementedError
 
     @property
-    def masters(self) -> {str}:
+    def masters(self) -> {User}:
         """
         Returns the user handles of all users able to manage members, usually
         the master role (sometimes no such role exists, then same as owners).

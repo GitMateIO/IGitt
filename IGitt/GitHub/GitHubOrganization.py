@@ -1,11 +1,11 @@
 """
-This module contains the Issue abstraction class which provides properties and
-actions related to issues and bug reports.
+Here you go: GitHub organizations can be used in IGitt.
 """
 from urllib.parse import quote_plus
 
 from IGitt.GitHub import GH_INSTANCE_URL, GitHubMixin
 from IGitt.GitHub import get
+from IGitt.GitHub.GitHubUser import GitHubUser
 from IGitt.Interfaces.Organization import Organization
 
 
@@ -33,13 +33,13 @@ class GitHubOrganization(GitHubMixin, Organization):
             return 1
 
     @property
-    def owners(self) -> {str}:
+    def owners(self) -> {GitHubUser}:
         """
         Returns the user handles of all admin users.
         """
         try:
             return {
-                user['login']
+                GitHubUser.from_data(user, user['login'])
                 for user in get(
                     self._token, self._url + '/members',
                     params={'role': 'admin'}
@@ -49,7 +49,7 @@ class GitHubOrganization(GitHubMixin, Organization):
             return {self.name}
 
     @property
-    def masters(self):
+    def masters(self) -> {GitHubUser}:
         """
         Gets all owners (because there's no masters role on GitHub).
         """

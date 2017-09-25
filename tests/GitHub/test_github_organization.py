@@ -27,10 +27,14 @@ class GitHubOrganizationTest(unittest.TestCase):
 
     @my_vcr.use_cassette('tests/GitHub/cassettes/github_organization_admins.yaml')
     def test_owners(self):
-        self.assertEqual(self.org.owners, {'nkprince007', 'sils'})
-        self.assertEqual(self.org.masters, {'nkprince007', 'sils'})
-        self.assertEqual(self.user.owners, {'gitmate-test-user'})
-        self.assertEqual(self.user.masters, {'gitmate-test-user'})
+        self.assertEqual({o.login for o in self.org.owners},
+                         {'nkprince007', 'sils'})
+        self.assertEqual({m.login for m in self.org.masters},
+                         {'nkprince007', 'sils'})
+        self.assertEqual({o.login for o in self.user.owners},
+                         {'gitmate-test-user'})
+        self.assertEqual({m.login for m in self.user.masters},
+                         {'gitmate-test-user'})
 
     def test_organization(self):
         self.assertEqual(self.org.url,
