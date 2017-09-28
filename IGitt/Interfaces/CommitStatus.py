@@ -17,6 +17,7 @@ class Status(Enum):
     CANCELED = 5  # The build was canceled
     RUNNING = 6  # The build is still in progress
     MANUAL = 7  # The build can be triggered manually
+    CREATED = 8 # The build job is created
 
 
 class CommitStatus:
