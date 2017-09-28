@@ -30,6 +30,8 @@ class TestGitLabMergeRequest(unittest.TestCase):
         # test for forks
         mr = GitLabMergeRequest(self.token, 'gitmate-test-user/test', 26)
         self.assertEqual(mr.head.sha, '33c53a63131beb1b06c10c4d3b2d7591338dbaa0')
+        # GitLab doesn't copy the commit to the base repo
+        self.assertEqual(mr.head.repository.full_name, 'nkprince007/test')
 
     @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_merge_request_basebranchname.yaml')
     def test_base_branch_name(self):

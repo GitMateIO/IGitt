@@ -6,6 +6,8 @@ import re
 from functools import lru_cache
 from urllib.parse import quote_plus
 
+from cached_property import cached_property
+
 from IGitt.GitLab import get, GitLabOAuthToken, GitLabPrivateToken, \
     GL_INSTANCE_URL
 from IGitt.GitLab.GitLabCommit import GitLabCommit
@@ -139,7 +141,7 @@ class GitLabMergeRequest(GitLabIssue, MergeRequest):
         from .GitLabRepository import GitLabRepository
         return GitLabRepository(self._token, self._repository)
 
-    @property
+    @cached_property
     def source_repository(self):
         """
         Retrieves the repository where this PR's head branch is located at.

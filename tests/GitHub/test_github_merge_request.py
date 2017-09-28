@@ -30,6 +30,8 @@ class TestGitHubMergeRequest(unittest.TestCase):
         # test for forks
         mr = GitHubMergeRequest(self.token, 'gitmate-test-user/test', 111)
         self.assertEqual(mr.head.sha, 'ddab515cc0ea3773f5554c85880a228490c7005c')
+        # GitHub copies commit to the base repo
+        self.assertEqual(mr.head.repository.full_name, 'gitmate-test-user/test')
 
     @my_vcr.use_cassette('tests/GitHub/cassettes/github_merge_request_desc.yaml')
     def test_description(self):
