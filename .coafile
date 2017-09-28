@@ -8,11 +8,15 @@ default_actions = PEP8Bear: ApplyPatchAction
 [all.python]
 bears = PyUnusedCodeBear, PyLintBear
 use_spaces = True
-pylint_disable = R0903, C0411, C0326, C1801, W0231, R0913
+# ignore C0301 to allow LineLengthBear to handle it
+pylint_disable = R0903, C0411, C0326, C1801, W0231, R0913, C0301
 
 [all.python.code]
+bears += LineLengthBear
 files = **/*.py
 ignore = tests/**.py
+max_line_length = 80
+ignore_length_regex = ^.*https?://
 pylint_disable += E1126, R1705, R0904
 
 [all.python.tests]

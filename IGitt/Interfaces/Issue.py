@@ -117,7 +117,8 @@ class Issue(IGittObject):
     @property
     def comments(self) -> [Comment]:
         """
-        Retrieves a list of comments which are on the issue excliding the description.
+        Retrieves a list of comments which are on the issue excliding the
+        description.
 
         :return: A list of Comment objects.
         """

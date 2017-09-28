@@ -377,7 +377,9 @@ class GitHubRepository(GitHubMixin, Repository):
         json = post(self._token, url, data=data)
 
         from IGitt.GitHub.GitHubMergeRequest import GitHubMergeRequest
-        return GitHubMergeRequest(self._token, json['base']['repo']['full_name'], json['number'])
+        return GitHubMergeRequest(self._token,
+                                  json['base']['repo']['full_name'],
+                                  json['number'])
 
     def create_file(self, path: str, message: str, content: str,
                     branch: (str, None)=None, committer:(str, None)=None,
@@ -392,7 +394,9 @@ class GitHubRepository(GitHubMixin, Repository):
         json = put(self._token, url, data)
 
         from IGitt.GitHub.GitHubContent import GitHubContent
-        return GitHubContent(self._token, self._repository, json['content']['path'])
+        return GitHubContent(self._token,
+                             self._repository,
+                             json['content']['path'])
 
     def _search(self,
                 issue_type,

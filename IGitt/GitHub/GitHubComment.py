@@ -13,7 +13,11 @@ class GitHubComment(GitHubMixin, Comment):
     deletable!
     """
 
-    def __init__(self, token: GitHubToken, repository, comment_type, comment_id):
+    def __init__(self,
+                 token: GitHubToken,
+                 repository,
+                 comment_type,
+                 comment_id):
         """
         Creates a new GitHub comment from the given data.
 

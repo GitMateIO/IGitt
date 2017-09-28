@@ -3,7 +3,12 @@ This contains the Content implementation for GitLab.
 """
 from urllib.parse import quote_plus
 
-from IGitt.GitLab import GitLabMixin, GitLabOAuthToken, GitLabPrivateToken, get, delete, put
+from IGitt.GitLab import GitLabMixin
+from IGitt.GitLab import GitLabOAuthToken
+from IGitt.GitLab import GitLabPrivateToken
+from IGitt.GitLab import delete
+from IGitt.GitLab import get
+from IGitt.GitLab import put
 from IGitt.Interfaces.Content import Content
 
 
@@ -15,7 +20,8 @@ class GitLabContent(GitLabMixin, Content):
                  repository: str, path: str):
         self._token = token
         self._repository = repository
-        self._url = '/projects/' + quote_plus(repository) + '/repository/files/' + path
+        self._url = ('/projects/' + quote_plus(repository) +
+                     '/repository/files/' + path)
 
     def get_content(self, ref='master'):
         data = {
