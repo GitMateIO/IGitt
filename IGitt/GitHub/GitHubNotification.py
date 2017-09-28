@@ -16,5 +16,5 @@ class GitHubNotification(GitHubMixin, Notification):
         self._url = '/notifications'
 
     def get_threads(self):
-        return [GitHubThread(self._token, result['id'])
+        return [GitHubThread.from_data(result, self._token, result['id'])
                 for result in get(self._token, self._url)]
