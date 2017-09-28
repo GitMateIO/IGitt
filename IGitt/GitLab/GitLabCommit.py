@@ -11,12 +11,16 @@ from IGitt.GitLab.GitLabRepository import GitLabRepository
 from IGitt.Interfaces.Commit import Commit
 from IGitt.Interfaces.CommitStatus import Status, CommitStatus
 
-GL_STATE_TRANSLATION = {Status.RUNNING: 'running',
-                        Status.CANCELED: 'canceled',
-                        Status.ERROR: 'failed',
-                        Status.FAILED: 'failed',
-                        Status.PENDING: 'pending',
-                        Status.SUCCESS: 'success'}
+GL_STATE_TRANSLATION = {
+    Status.RUNNING: 'running',
+    Status.CANCELED: 'canceled',
+    Status.ERROR: 'failed',
+    Status.FAILED: 'failed',
+    Status.PENDING: 'pending',
+    Status.SUCCESS: 'success',
+    Status.MANUAL: 'manual',
+}
+
 INV_GL_STATE_TRANSLATION = {val: key for key, val
                             in GL_STATE_TRANSLATION.items()}
 

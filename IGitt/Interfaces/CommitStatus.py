@@ -16,6 +16,7 @@ class Status(Enum):
     ERROR = 4  # Something went wrong and the commit could not be verified.
     CANCELED = 5  # The build was canceled
     RUNNING = 6  # The build is still in progress
+    MANUAL = 7  # The build can be triggered manually
 
 
 class CommitStatus:
