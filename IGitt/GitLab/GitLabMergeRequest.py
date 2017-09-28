@@ -197,7 +197,10 @@ class GitLabMergeRequest(GitLabIssue, MergeRequest):
         expr = re.compile(r'@@ [0-9+,-]+ [0-9+,-]+ @@')
         for change in changes:
             diff = change['diff']
-            start_index = expr.search(diff).end()
+            match = expr.search(diff)
+            if not match: # for binary files match is None
+                continue
+            start_index = match.end()
             results += diff[start_index:].split('\n')
 
         additions = len([line for line in results if line.startswith('+')])

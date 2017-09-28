@@ -44,6 +44,8 @@ class GitLabMergeRequestTest(IGittTestCase):
 
     def test_diffstat(self):
         self.assertEqual(self.mr.diffstat, (2, 0))
+        mr = GitLabMergeRequest(self.token, 'gitmate-test-user/test', 39)
+        self.assertEqual(mr.diffstat, (0, 0))
 
     def test_time(self):
         self.assertEqual(self.mr.created, datetime.datetime(

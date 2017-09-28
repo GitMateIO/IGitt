@@ -9,7 +9,7 @@ interactions:
     method: GET
     uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/merge_requests/7/changes?per_page=100
   response:
-    body: {string: '{"id":3761791,"iid":7,"project_id":3439658,"title":"Update README.md","description":"","state":"opened","created_at":"2017-06-07T12:01:20.476Z","updated_at":"2017-09-24T17:45:50.540Z","target_branch":"master","source_branch":"gitmate-test-user-patch-2","upvotes":0,"downvotes":0,"author":{"id":889700,"name":"Naveen
+    body: {string: '{"id":3761791,"iid":7,"project_id":3439658,"title":"Update README.md","description":"","state":"opened","created_at":"2017-06-07T12:01:20.476Z","updated_at":"2017-09-28T17:46:54.877Z","target_branch":"master","source_branch":"gitmate-test-user-patch-2","upvotes":0,"downvotes":0,"author":{"id":889700,"name":"Naveen
         Kumar Sangi","username":"nkprince007","state":"active","avatar_url":"https://gitlab.com/uploads/-/system/user/avatar/889700/avatar.png","web_url":"https://gitlab.com/nkprince007"},"assignee":null,"source_project_id":3439658,"target_project_id":3439658,"labels":[],"work_in_progress":false,"milestone":null,"merge_when_pipeline_succeeds":false,"merge_status":"unchecked","sha":"f6d2b7c66372236a090a2a74df2e47f42a54456b","merge_commit_sha":null,"user_notes_count":11,"approvals_before_merge":null,"should_remove_source_branch":null,"force_remove_source_branch":null,"squash":false,"web_url":"https://gitlab.com/gitmate-test-user/test/merge_requests/7","time_stats":{"time_estimate":0,"total_time_spent":0,"human_time_estimate":null,"human_total_time_spent":null},"subscribed":true,"changes":[{"old_path":"README.md","new_path":"README.md","a_mode":"100644","b_mode":"100644","new_file":false,"renamed_file":false,"deleted_file":false,"diff":"---
         a/README.md\n+++ b/README.md\n@@ -1,2 +1,4 @@\n # test\n a test repo\n+\n+a
         commiit that can one acknowledge\n"}]}'}
@@ -17,16 +17,46 @@ interactions:
       Cache-Control: ['max-age=0, private, must-revalidate']
       Content-Length: ['1374']
       Content-Type: [application/json]
-      Date: ['Sun, 24 Sep 2017 17:46:01 GMT']
-      Etag: [W/"c11ac79a747ad8636c0052f2ed3f738e"]
+      Date: ['Thu, 28 Sep 2017 20:39:00 GMT']
+      Etag: [W/"ad6ee3dda04e9ed3a35df23958fbd6e6"]
       RateLimit-Limit: ['600']
-      RateLimit-Observed: ['24']
-      RateLimit-Remaining: ['576']
+      RateLimit-Observed: ['1']
+      RateLimit-Remaining: ['599']
       Server: [nginx]
       Strict-Transport-Security: [max-age=31536000]
       Vary: [Origin]
       X-Frame-Options: [SAMEORIGIN]
-      X-Request-Id: [17eb1663-3ab6-49ee-8a01-a8df6607d51d]
-      X-Runtime: ['0.405945']
+      X-Request-Id: [9d58043e-de76-43ec-af3a-db168ef9f1ca]
+      X-Runtime: ['0.357769']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/merge_requests/39/changes?per_page=100
+  response:
+    body: {string: '{"id":5213765,"iid":39,"project_id":3439658,"title":"Upload test
+        image","description":"","state":"opened","created_at":"2017-09-28T20:38:11.919Z","updated_at":"2017-09-28T20:38:12.396Z","target_branch":"master","source_branch":"binary","upvotes":0,"downvotes":0,"author":{"id":889700,"name":"Naveen
+        Kumar Sangi","username":"nkprince007","state":"active","avatar_url":"https://gitlab.com/uploads/-/system/user/avatar/889700/avatar.png","web_url":"https://gitlab.com/nkprince007"},"assignee":null,"source_project_id":3439658,"target_project_id":3439658,"labels":[],"work_in_progress":false,"milestone":null,"merge_when_pipeline_succeeds":false,"merge_status":"can_be_merged","sha":"6afe965df217b98628384d2e21c5565453027c8b","merge_commit_sha":null,"user_notes_count":0,"approvals_before_merge":null,"should_remove_source_branch":null,"force_remove_source_branch":true,"squash":false,"web_url":"https://gitlab.com/gitmate-test-user/test/merge_requests/39","time_stats":{"time_estimate":0,"total_time_spent":0,"human_time_estimate":null,"human_total_time_spent":null},"subscribed":false,"changes":[{"old_path":"cody-davis-259003.jpg","new_path":"cody-davis-259003.jpg","a_mode":"0","b_mode":"100644","new_file":true,"renamed_file":false,"deleted_file":false,"diff":"Binary
+        files /dev/null and b/cody-davis-259003.jpg differ\n"}]}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['1325']
+      Content-Type: [application/json]
+      Date: ['Thu, 28 Sep 2017 20:39:01 GMT']
+      Etag: [W/"2862ef9803cc8664098b5e765538dd09"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['2']
+      RateLimit-Remaining: ['598']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [c7ac6eb3-dc1e-443a-893b-3cab86b72be1]
+      X-Runtime: ['0.221652']
     status: {code: 200, message: OK}
 version: 1
