@@ -162,7 +162,8 @@ class GitLabCommit(GitLabMixin, Commit):
                 Status.ERROR in statuses or
                 Status.CANCELED in statuses):
             return Status.FAILED
-        assert all(status == Status.SUCCESS for status in statuses)
+        assert all(status in {Status.SUCCESS, Status.MANUAL}
+                   for status in statuses)
         return Status.SUCCESS
 
     def set_status(self, status: CommitStatus):
