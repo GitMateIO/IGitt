@@ -84,7 +84,7 @@ class GitLabIssueTest(unittest.TestCase):
         self.iss.close()
         self.assertEqual(self.iss.state, 'closed')
         self.iss.reopen()
-        self.assertEqual(self.iss.state, 'reopened')
+        self.assertEqual(self.iss.state, 'opened')
 
     @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_issue_create_delete.yaml',
                          filter_query_parameters=['access_token'])

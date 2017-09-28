@@ -80,7 +80,7 @@ class TestGitLabMergeRequest(unittest.TestCase):
         self.mr.close()
         self.assertEqual(self.mr.state, 'closed')
         self.mr.reopen()
-        self.assertEqual(self.mr.state, 'reopened')
+        self.assertEqual(self.mr.state, 'opened')
 
     @my_vcr.use_cassette('tests/GitLab/cassettes/gitlab_merge_request_closes_issues.yaml')
     def test_closes_issues(self):

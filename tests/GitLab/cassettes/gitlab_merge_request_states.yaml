@@ -7,24 +7,27 @@ interactions:
       Connection: [keep-alive]
       Content-Length: ['24']
       Content-Type: [application/json]
-      User-Agent: [python-requests/2.17.3]
+      User-Agent: [IGitt]
     method: PUT
-    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/merge_requests/7?User-Agent=GitMate
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/merge_requests/7
   response:
-    body: {string: '{"id":3761791,"iid":7,"project_id":3439658,"title":"Update README.md","description":"","state":"closed","created_at":"2017-06-07T12:01:20.476Z","updated_at":"2017-06-09T09:49:05.261Z","target_branch":"master","source_branch":"gitmate-test-user-patch-2","upvotes":0,"downvotes":0,"author":{"name":"Naveen
-        Kumar Sangi","username":"nkprince007","id":889700,"state":"active","avatar_url":"https://gitlab.com/uploads/system/user/avatar/889700/avatar.png","web_url":"https://gitlab.com/nkprince007"},"assignee":null,"source_project_id":3439658,"target_project_id":3439658,"labels":[],"work_in_progress":false,"milestone":null,"merge_when_pipeline_succeeds":false,"merge_status":"unchecked","sha":"f6d2b7c66372236a090a2a74df2e47f42a54456b","merge_commit_sha":null,"user_notes_count":11,"approvals_before_merge":null,"should_remove_source_branch":null,"force_remove_source_branch":null,"squash":false,"web_url":"https://gitlab.com/gitmate-test-user/test/merge_requests/7","subscribed":true}'}
+    body: {string: '{"id":3761791,"iid":7,"project_id":3439658,"title":"Update README.md","description":"","state":"closed","created_at":"2017-06-07T12:01:20.476Z","updated_at":"2017-09-28T17:46:51.706Z","target_branch":"master","source_branch":"gitmate-test-user-patch-2","upvotes":0,"downvotes":0,"author":{"id":889700,"name":"Naveen
+        Kumar Sangi","username":"nkprince007","state":"active","avatar_url":"https://gitlab.com/uploads/-/system/user/avatar/889700/avatar.png","web_url":"https://gitlab.com/nkprince007"},"assignee":null,"source_project_id":3439658,"target_project_id":3439658,"labels":[],"work_in_progress":false,"milestone":null,"merge_when_pipeline_succeeds":false,"merge_status":"unchecked","sha":"f6d2b7c66372236a090a2a74df2e47f42a54456b","merge_commit_sha":null,"user_notes_count":11,"approvals_before_merge":null,"should_remove_source_branch":null,"force_remove_source_branch":null,"squash":false,"web_url":"https://gitlab.com/gitmate-test-user/test/merge_requests/7","time_stats":{"time_estimate":0,"total_time_spent":0,"human_time_estimate":null,"human_total_time_spent":null},"subscribed":true}'}
     headers:
       Cache-Control: ['max-age=0, private, must-revalidate']
-      Content-Length: ['982']
+      Content-Length: ['1095']
       Content-Type: [application/json]
-      Date: ['Fri, 09 Jun 2017 09:49:05 GMT']
-      Etag: [W/"da2fe9d392c0d1a8ad1989d8d84c1291"]
+      Date: ['Thu, 28 Sep 2017 17:46:52 GMT']
+      Etag: [W/"70d4bdc4adec2c9acccab739780728e1"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['3']
+      RateLimit-Remaining: ['597']
       Server: [nginx]
       Strict-Transport-Security: [max-age=31536000]
       Vary: [Origin]
       X-Frame-Options: [SAMEORIGIN]
-      X-Request-Id: [88fa9d8a-5637-45f9-b66d-d8b668285f8f]
-      X-Runtime: ['0.972037']
+      X-Request-Id: [98b6858e-0713-41b6-93a1-2f4147038ba1]
+      X-Runtime: ['1.448769']
     status: {code: 200, message: OK}
 - request:
     body: '{"state_event": "reopen"}'
@@ -34,23 +37,26 @@ interactions:
       Connection: [keep-alive]
       Content-Length: ['25']
       Content-Type: [application/json]
-      User-Agent: [python-requests/2.17.3]
+      User-Agent: [IGitt]
     method: PUT
-    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/merge_requests/7?User-Agent=GitMate
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/merge_requests/7
   response:
-    body: {string: '{"id":3761791,"iid":7,"project_id":3439658,"title":"Update README.md","description":"","state":"reopened","created_at":"2017-06-07T12:01:20.476Z","updated_at":"2017-06-09T09:49:07.691Z","target_branch":"master","source_branch":"gitmate-test-user-patch-2","upvotes":0,"downvotes":0,"author":{"name":"Naveen
-        Kumar Sangi","username":"nkprince007","id":889700,"state":"active","avatar_url":"https://gitlab.com/uploads/system/user/avatar/889700/avatar.png","web_url":"https://gitlab.com/nkprince007"},"assignee":null,"source_project_id":3439658,"target_project_id":3439658,"labels":[],"work_in_progress":false,"milestone":null,"merge_when_pipeline_succeeds":false,"merge_status":"unchecked","sha":"f6d2b7c66372236a090a2a74df2e47f42a54456b","merge_commit_sha":null,"user_notes_count":11,"approvals_before_merge":null,"should_remove_source_branch":null,"force_remove_source_branch":null,"squash":false,"web_url":"https://gitlab.com/gitmate-test-user/test/merge_requests/7","subscribed":true}'}
+    body: {string: '{"id":3761791,"iid":7,"project_id":3439658,"title":"Update README.md","description":"","state":"opened","created_at":"2017-06-07T12:01:20.476Z","updated_at":"2017-09-28T17:46:54.877Z","target_branch":"master","source_branch":"gitmate-test-user-patch-2","upvotes":0,"downvotes":0,"author":{"id":889700,"name":"Naveen
+        Kumar Sangi","username":"nkprince007","state":"active","avatar_url":"https://gitlab.com/uploads/-/system/user/avatar/889700/avatar.png","web_url":"https://gitlab.com/nkprince007"},"assignee":null,"source_project_id":3439658,"target_project_id":3439658,"labels":[],"work_in_progress":false,"milestone":null,"merge_when_pipeline_succeeds":false,"merge_status":"unchecked","sha":"f6d2b7c66372236a090a2a74df2e47f42a54456b","merge_commit_sha":null,"user_notes_count":11,"approvals_before_merge":null,"should_remove_source_branch":null,"force_remove_source_branch":null,"squash":false,"web_url":"https://gitlab.com/gitmate-test-user/test/merge_requests/7","time_stats":{"time_estimate":0,"total_time_spent":0,"human_time_estimate":null,"human_total_time_spent":null},"subscribed":true}'}
     headers:
       Cache-Control: ['max-age=0, private, must-revalidate']
-      Content-Length: ['984']
+      Content-Length: ['1095']
       Content-Type: [application/json]
-      Date: ['Fri, 09 Jun 2017 09:49:09 GMT']
-      Etag: [W/"645e684fea52f9cbbe4a3c553382f5b4"]
+      Date: ['Thu, 28 Sep 2017 17:46:56 GMT']
+      Etag: [W/"5b51a6767ab3761c4eb984b147ce3e30"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['4']
+      RateLimit-Remaining: ['596']
       Server: [nginx]
       Strict-Transport-Security: [max-age=31536000]
       Vary: [Origin]
       X-Frame-Options: [SAMEORIGIN]
-      X-Request-Id: [fd3690ed-3854-45ac-9a6f-274cd00f83da]
-      X-Runtime: ['2.489643']
+      X-Request-Id: [968e0278-656c-41a5-bd2c-9633753c4433]
+      X-Runtime: ['1.470013']
     status: {code: 200, message: OK}
 version: 1
