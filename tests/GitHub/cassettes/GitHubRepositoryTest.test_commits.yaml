@@ -1,0 +1,117 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://api.github.com/repos/gitmate-test-user/test/commits
+  response:
+    body:
+      string: !!binary |
+        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
+        hgAA
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Access-Control-Expose-Headers: ['ETag, Link, X-GitHub-OTP, X-RateLimit-Limit,
+          X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes,
+          X-Poll-Interval']
+      Cache-Control: ['private, max-age=60, s-maxage=60']
+      Content-Encoding: [gzip]
+      Content-Security-Policy: [default-src 'none']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Fri, 29 Sep 2017 15:01:10 GMT']
+      ETag: [W/"c0e5d30a79944498b083b30683556b89"]
+      Last-Modified: ['Tue, 26 Sep 2017 07:25:41 GMT']
+      Server: [GitHub.com]
+      Status: [200 OK]
+      Strict-Transport-Security: [max-age=31536000; includeSubdomains; preload]
+      Vary: ['Accept, Authorization, Cookie, X-GitHub-OTP', Accept-Encoding]
+      X-Accepted-OAuth-Scopes: ['']
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [deny]
+      X-GitHub-Media-Type: [github.v3; format=json]
+      X-GitHub-Request-Id: ['45DD:22564:6881EEA:8621023:59CE6035']
+      X-OAuth-Scopes: ['admin:gpg_key, admin:org, admin:org_hook, admin:public_key,
+          admin:repo_hook, gist, notifications, repo, user']
+      X-RateLimit-Limit: ['5000']
+      X-RateLimit-Remaining: ['4996']
+      X-RateLimit-Reset: ['1506700751']
+      X-Runtime-rack: ['0.057492']
+      X-XSS-Protection: [1; mode=block]
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://api.github.com/repos/gitmate-test-user/empty/commits
+  response:
+    body: {string: '{"message":"Git Repository is empty.","documentation_url":"https://developer.github.com/v3/repos/commits/#list-commits-on-a-repository"}'}
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Access-Control-Expose-Headers: ['ETag, Link, X-GitHub-OTP, X-RateLimit-Limit,
+          X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes,
+          X-Poll-Interval']
+      Content-Length: ['136']
+      Content-Security-Policy: [default-src 'none']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Fri, 29 Sep 2017 15:01:12 GMT']
+      Server: [GitHub.com]
+      Status: [409 Conflict]
+      Strict-Transport-Security: [max-age=31536000; includeSubdomains; preload]
+      X-Accepted-OAuth-Scopes: ['']
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [deny]
+      X-GitHub-Media-Type: [github.v3; format=json]
+      X-GitHub-Request-Id: ['45DE:22565:2165177:2AA313D:59CE6037']
+      X-OAuth-Scopes: ['admin:gpg_key, admin:org, admin:org_hook, admin:public_key,
+          admin:repo_hook, gist, notifications, repo, user']
+      X-RateLimit-Limit: ['5000']
+      X-RateLimit-Remaining: ['4995']
+      X-RateLimit-Reset: ['1506700751']
+      X-Runtime-rack: ['0.026891']
+      X-XSS-Protection: [1; mode=block]
+    status: {code: 409, message: Conflict}
+version: 1

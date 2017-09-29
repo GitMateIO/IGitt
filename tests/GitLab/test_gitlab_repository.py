@@ -1,7 +1,6 @@
 from datetime import datetime
 
 import os
-import time
 
 from IGitt.GitLab import GitLabOAuthToken, GitLabPrivateToken
 from IGitt.GitLab.GitLabContent import GitLabContent
@@ -16,8 +15,8 @@ from tests import IGittTestCase
 class GitLabRepositoryTest(IGittTestCase):
 
     def setUp(self):
-        token = GitLabOAuthToken(os.environ.get('GITLAB_TEST_TOKEN', ''))
-        self.repo = GitLabRepository(token,
+        self.token = GitLabOAuthToken(os.environ.get('GITLAB_TEST_TOKEN', ''))
+        self.repo = GitLabRepository(self.token,
                                      'gitmate-test-user/test')
 
         self.fork_token = GitLabPrivateToken(os.environ.get('GITLAB_TEST_TOKEN_2', ''))
@@ -100,7 +99,6 @@ class GitLabRepositoryTest(IGittTestCase):
         except RuntimeError:
             fork = GitLabRepository(self.fork_token, 'gitmate-test-user-2/test')
             fork.delete()
-            time.sleep(5)
             fork = self.fork_repo.create_fork(namespace='gitmate-test-user-2')
 
 
@@ -112,7 +110,6 @@ class GitLabRepositoryTest(IGittTestCase):
         except RuntimeError:
             fork = GitLabRepository(self.fork_token, 'gitmate-test-user-2/test')
             fork.delete()
-            time.sleep(5) # Waiting for repo deletion
             fork = self.fork_repo.create_fork(namespace='gitmate-test-user-2')
 
         fork.create_file(path='.coafile', message='hello', content='hello', branch='master')
@@ -128,7 +125,6 @@ class GitLabRepositoryTest(IGittTestCase):
         except RuntimeError:
             fork = GitLabRepository(self.fork_token, 'gitmate-test-user-2/test')
             fork.delete()
-            time.sleep(5)  # Waiting for repo deletion
             fork = self.fork_repo.create_fork(namespace='gitmate-test-user-2')
         author = {
             'name': 'gitmate-test-user-2',
@@ -152,3 +148,22 @@ class GitLabRepositoryTest(IGittTestCase):
         merge_requests = list(self.repo.search_mrs(updated_after=updated_after,
                                                    updated_before=updated_before))
         self.assertEqual(len(merge_requests), 2)
+
+    def test_commits(self):
+        self.assertEqual({commit.sha for commit in self.repo.commits},
+                         {'69e17e536092754e98aafbe5da0ee2be5fea81fb',
+                          'dd52e331780d30b58da030f9341abd07ba4ce31e',
+                          '198dd16f8249ea98ed41876efe27d068b69fa215',
+                          '674498fd415cfadc35c5eb28b8951e800f357c6f',
+                          '71a61579cb3aa493e8eadc9f183ff4377be4d1be',
+                          'd6fe46331fcc32ac73c9308f94350d5822ce717d',
+                          '6371fe50a92fa2147dcde0ce011db726b35b2646',
+                          '7747ee49b7d322e7d82520126ca275115aa67447',
+                          'cb9aa1c8964b3bcb0c542b281e06b339ddcc015f',
+                          '645961c0841a84c1dd2a58535aa70ad45be48c46',
+                          'e3d12312ee8e4ba8e60ed009cf64fb3a1007b2c3',
+                          '515280bfe8488e1b403e0dd95c41a404355ca184',
+                          '05a9faff56fd9bdb25d18a554bb2f3320de3fc6f',
+                          'ed5fb0a1cc38a078a6f72b3523b6bce8c14be9b8'})
+        repo = GitLabRepository(self.token, 'gitmate-test-user/empty')
+        self.assertEqual(repo.commits, set())

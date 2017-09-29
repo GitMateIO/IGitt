@@ -98,6 +98,23 @@ class GitLabRepository(GitLabMixin, Repository):
         return self._repository
 
     @property
+    def commits(self):
+        """
+        Retrieves the set of commits in this repository.
+
+        :return: A set of GitLabCommit objects.
+        """
+        # Don't move to module, leads to circular imports
+        from IGitt.GitLab.GitLabCommit import GitLabCommit
+
+        return {GitLabCommit.from_data(commit,
+                                       self._token,
+                                       self.full_name,
+                                       commit['id'])
+                for commit in get(self._token,
+                                  self._url + '/repository/commits')}
+
+    @property
     def clone_url(self) -> str:
         """
         Retrieves the URL of the repository.
