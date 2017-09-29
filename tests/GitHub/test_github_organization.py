@@ -30,6 +30,6 @@ class GitHubOrganizationTest(IGittTestCase):
 
     def test_organization(self):
         self.assertEqual(self.org.url,
-                         'https://github.com/gitmate-test-org')
+                         'https://api.github.com/orgs/gitmate-test-org')
         self.assertEqual(self.user.url,
-                         'https://github.com/gitmate-test-user')
+                         'https://api.github.com/orgs/gitmate-test-user')

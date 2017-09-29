@@ -66,7 +66,7 @@ class GitHubMergeRequestTest(IGittTestCase):
 
     def test_url(self):
         self.assertEqual(self.mr.url,
-                         'https://github.com/gitmate-test-user/test/pull/7')
+                         'https://api.github.com/repos/gitmate-test-user/test/issues/7')
 
     def test_change_state(self):
         self.mr.close()

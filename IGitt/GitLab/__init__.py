@@ -35,6 +35,13 @@ class GitLabMixin(CachedDataMixin):
         """
         return 'gitlab'
 
+    @property
+    def url(self):
+        """
+        Returns gitlab API url.
+        """
+        return BASE_URL + self._url
+
 
 class GitLabOAuthToken(Token):
     """

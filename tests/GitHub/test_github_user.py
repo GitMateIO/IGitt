@@ -14,7 +14,7 @@ class GitHubUserTest(IGittTestCase):
         self.user = GitHubUser(self.token, 'sils')
 
     def test_user_url(self):
-        self.assertEqual(self.user.url, 'https://github.com/sils')
+        self.assertEqual(self.user.url, 'https://api.github.com/users/sils')
 
     def test_user_id(self):
         self.assertEqual(self.user.identifier, 5716520)

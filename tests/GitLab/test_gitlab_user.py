@@ -15,8 +15,7 @@ class GitLabUserTest(IGittTestCase):
         self.sils = GitLabUser(self.token, 104269)
 
     def test_user_url(self):
-        self.assertEqual(self.user.url, 'https://gitlab.com/gitmate-test-user')
-        self.assertEqual(self.sils.url, 'https://gitlab.com/sils')
+        self.assertEqual(self.sils.url, 'https://gitlab.com/api/v4/users/104269')
 
     def test_user_id(self):
         self.assertEqual(self.user.identifier, 1369631)

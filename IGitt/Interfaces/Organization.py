@@ -39,10 +39,3 @@ class Organization(IGittObject):
         The name of the organization.
         """
         raise NotImplementedError
-
-    @property
-    def url(self) -> str:
-        """
-        Retrieves the url of the issue.
-        """
-        raise NotImplementedError

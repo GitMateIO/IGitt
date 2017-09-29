@@ -1,7 +1,7 @@
 """
 Contains a representation of GitHub users.
 """
-from IGitt.GitHub import GitHubMixin, GH_INSTANCE_URL
+from IGitt.GitHub import GitHubMixin
 from IGitt.Interfaces.User import User
 
 
@@ -28,10 +28,3 @@ class GitHubUser(GitHubMixin, User):
         Gets a unique id for the user that never changes.
         """
         return self.data['id']
-
-    @property
-    def url(self):
-        """
-        The web URL for the user.
-        """
-        return GH_INSTANCE_URL + '/' + self.username

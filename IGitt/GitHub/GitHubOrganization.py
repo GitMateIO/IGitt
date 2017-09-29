@@ -3,7 +3,7 @@ Here you go: GitHub organizations can be used in IGitt.
 """
 from urllib.parse import quote_plus
 
-from IGitt.GitHub import GH_INSTANCE_URL, GitHubMixin
+from IGitt.GitHub import GitHubMixin
 from IGitt.GitHub import get
 from IGitt.GitHub.GitHubUser import GitHubUser
 from IGitt.Interfaces.Organization import Organization
@@ -61,10 +61,3 @@ class GitHubOrganization(GitHubMixin, Organization):
         The name of the organization.
         """
         return self._name
-
-    @property
-    def url(self):
-        """
-        Returns the link/URL of the issue.
-        """
-        return GH_INSTANCE_URL + '/{}'.format(self.name)

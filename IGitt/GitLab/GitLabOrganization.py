@@ -5,7 +5,7 @@ actions related to issues and bug reports.
 from functools import lru_cache
 from urllib.parse import quote_plus
 
-from IGitt.GitLab import GL_INSTANCE_URL, GitLabMixin
+from IGitt.GitLab import GitLabMixin
 from IGitt.GitLab import get
 from IGitt.GitLab.GitLabUser import GitLabUser
 from IGitt.Interfaces import AccessLevel
@@ -99,10 +99,3 @@ class GitLabOrganization(GitLabMixin, Organization):
         The name of the organization.
         """
         return self._name
-
-    @property
-    def url(self):
-        """
-        Returns the link/URL of the issue.
-        """
-        return GL_INSTANCE_URL + '/{}'.format(self.name)

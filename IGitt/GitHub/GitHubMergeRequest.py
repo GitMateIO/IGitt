@@ -211,14 +211,6 @@ class GitHubMergeRequest(GitHubIssue, MergeRequest):
         """
         return self.data['additions'], self.data['deletions']
 
-    @property
-    def url(self):
-        """
-        Returns the link/URL of the issue.
-        """
-        return 'https://github.com/{}/pull/{}'.format(self._repository,
-                                                      self.number)
-
     def delete(self):
         """
         GitHub doesn't allow deleting issues or pull requests.

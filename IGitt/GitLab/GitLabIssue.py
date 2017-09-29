@@ -4,7 +4,7 @@ This contains the Issue implementation for GitLab.
 from datetime import datetime
 from urllib.parse import quote_plus
 
-from IGitt.GitLab import get, put, post, delete, GitLabMixin, GL_INSTANCE_URL
+from IGitt.GitLab import get, put, post, delete, GitLabMixin
 from IGitt.GitLab import GitLabOAuthToken, GitLabPrivateToken
 from IGitt.GitLab.GitLabComment import GitLabComment
 from IGitt.Interfaces.Comment import CommentType
@@ -83,14 +83,6 @@ class GitLabIssue(GitLabMixin, Issue):
         :param new_title: The new title.
         """
         self.data = put(self._token, self._url, {'title': new_title})
-
-    @property
-    def url(self):
-        """
-        Returns the link/URL of the issue.
-        """
-        return GL_INSTANCE_URL + '/{}/issues/{}'.format(self._repository,
-                                                        self.number)
 
     @property
     def number(self) -> int:

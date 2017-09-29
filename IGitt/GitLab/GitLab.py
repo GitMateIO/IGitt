@@ -32,6 +32,7 @@ class GitLab(GitLabMixin, Hoster):
         :param token: A Token object to be used for authentication.
         """
         self._token = token
+        self._url = '/'
 
     @property
     def master_repositories(self):

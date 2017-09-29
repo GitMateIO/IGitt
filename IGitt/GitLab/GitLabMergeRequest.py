@@ -6,8 +6,7 @@ import re
 from functools import lru_cache
 from urllib.parse import quote_plus
 
-from IGitt.GitLab import get, GitLabOAuthToken, GitLabPrivateToken, \
-    GL_INSTANCE_URL
+from IGitt.GitLab import get, GitLabOAuthToken, GitLabPrivateToken
 from IGitt.GitLab.GitLabCommit import GitLabCommit
 from IGitt.GitLab.GitLabIssue import GitLabIssue
 from IGitt.Interfaces.MergeRequest import MergeRequest
@@ -33,16 +32,6 @@ class GitLabMergeRequest(GitLabIssue, MergeRequest):
         self._iid = number
         self._url = '/projects/{repo}/merge_requests/{iid}'.format(
             repo=quote_plus(repository), iid=self._iid)
-
-    @property
-    def url(self):
-        """
-        Returns the link/URL of the merge request.
-        """
-        return GL_INSTANCE_URL + '/{}/merge_requests/{}'.format(
-            self._repository,
-            self.number
-        )
 
     @property
     def base_branch_name(self) -> str:

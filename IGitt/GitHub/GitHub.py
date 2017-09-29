@@ -26,6 +26,7 @@ class GitHub(GitHubMixin, Hoster):
         :param token: A GitHubToken object to use for authentication.
         """
         self._token = token
+        self._url = '/'
 
     @property
     def master_repositories(self):

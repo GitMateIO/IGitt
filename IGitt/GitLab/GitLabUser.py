@@ -1,7 +1,7 @@
 """
 Contains a representation of GitHub users.
 """
-from IGitt.GitLab import GL_INSTANCE_URL, GitLabMixin
+from IGitt.GitLab import GitLabMixin
 from IGitt.Interfaces.User import User
 
 
@@ -34,10 +34,3 @@ class GitLabUser(GitLabMixin, User):
         Gets a unique id for the user that never changes.
         """
         return self._id or self.data['id']
-
-    @property
-    def url(self):
-        """
-        The web URL for the user.
-        """
-        return GL_INSTANCE_URL + '/' + self.username

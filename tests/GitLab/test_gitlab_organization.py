@@ -35,8 +35,8 @@ class GitLabOrganizationTest(IGittTestCase):
 
     def test_organization(self):
         self.assertEqual(self.org.url,
-                         'https://gitlab.com/gitmate-test-org')
+                         'https://gitlab.com/api/v4/groups/gitmate-test-org')
         self.assertEqual(self.suborg.url,
-                         'https://gitlab.com/gitmate-test-org/subgroup')
+                         'https://gitlab.com/api/v4/groups/gitmate-test-org%2Fsubgroup')
         self.assertEqual(self.user.url,
-                         'https://gitlab.com/gitmate-test-user')
+                         'https://gitlab.com/api/v4/groups/gitmate-test-user')

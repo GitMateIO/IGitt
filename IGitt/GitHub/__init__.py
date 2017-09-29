@@ -31,6 +31,13 @@ class GitHubMixin(CachedDataMixin):
         """
         return 'github'
 
+    @property
+    def url(self):
+        """
+        Returns github API url.
+        """
+        return BASE_URL + self._url
+
 
 class GitHubToken(Token):
     """
