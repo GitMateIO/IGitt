@@ -42,6 +42,11 @@ class GitLabMixin(CachedDataMixin):
         """
         return BASE_URL + self._url
 
+    def __repr__(self): # dont cover
+        return '<{} object(url={}) at {}>'.format(self.__class__.__name__,
+                                                  self.url,
+                                                  hex(id(self)))
+
 
 class GitLabOAuthToken(Token):
     """
