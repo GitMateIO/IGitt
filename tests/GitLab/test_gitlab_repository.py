@@ -1,5 +1,7 @@
-import os
 from datetime import datetime
+
+import os
+import time
 
 from IGitt.GitLab import GitLabOAuthToken, GitLabPrivateToken
 from IGitt.GitLab.GitLabContent import GitLabContent
@@ -18,7 +20,7 @@ class GitLabRepositoryTest(IGittTestCase):
         self.repo = GitLabRepository(token,
                                      'gitmate-test-user/test')
 
-        self.fork_token = GitLabPrivateToken(os.environ.get('GITLAB_COAFILE_BOT_TOKEN', ''))
+        self.fork_token = GitLabPrivateToken(os.environ.get('GITLAB_TEST_TOKEN_2', ''))
         self.fork_repo = GitLabRepository(self.fork_token,
                                           'gitmate-test-user/test')
 
@@ -84,31 +86,34 @@ class GitLabRepositoryTest(IGittTestCase):
 
     def test_create_fork(self):
         try:
-            fork = self.fork_repo.create_fork(namespace='coafile')
+            fork = self.fork_repo.create_fork(namespace='gitmate-test-user-2')
         except RuntimeError:
-            fork = GitLabRepository(self.fork_token, 'coafile/test')
+            fork = GitLabRepository(self.fork_token, 'gitmate-test-user-2/test')
             fork.delete()
-            fork = self.fork_repo.create_fork(namespace='coafile')
+            fork = self.fork_repo.create_fork(namespace='gitmate-test-user-2')
 
         self.assertIsInstance(fork, GitLabRepository)
 
     def test_delete_repo(self):
         try:
-            fork = self.fork_repo.create_fork(namespace='coafile')
+            fork = self.fork_repo.create_fork(namespace='gitmate-test-user-2')
         except RuntimeError:
-            fork = GitLabRepository(self.fork_token, 'coafile/test')
+            fork = GitLabRepository(self.fork_token, 'gitmate-test-user-2/test')
             fork.delete()
-            fork = self.fork_repo.create_fork(namespace='coafile')
+            time.sleep(5)
+            fork = self.fork_repo.create_fork(namespace='gitmate-test-user-2')
+
 
         self.assertIsNone(fork.delete())
 
     def test_create_mr(self):
         try:
-            fork = self.fork_repo.create_fork(namespace='coafile')
+            fork = self.fork_repo.create_fork(namespace='gitmate-test-user-2')
         except RuntimeError:
-            fork = GitLabRepository(self.fork_token, 'coafile/test')
+            fork = GitLabRepository(self.fork_token, 'gitmate-test-user-2/test')
             fork.delete()
-            fork = self.fork_repo.create_fork(namespace='coafile')
+            time.sleep(5) # Waiting for repo deletion
+            fork = self.fork_repo.create_fork(namespace='gitmate-test-user-2')
 
         fork.create_file(path='.coafile', message='hello', content='hello', branch='master')
         mr = fork.create_merge_request(title='coafile', head='master', base='master',
@@ -117,31 +122,21 @@ class GitLabRepositoryTest(IGittTestCase):
 
         self.assertIsInstance(mr, GitLabMergeRequest)
 
-    def test_create_mr_with_author(self):
-        try:
-            fork = self.fork_repo.create_fork(namespace='coafile')
-        except RuntimeError:
-            fork = GitLabRepository(self.fork_token, 'coafile/test')
-            fork.delete()
-            fork = self.fork_repo.create_fork(namespace='coafile')
-        author = {
-            'name' : 'coafile',
-            'email' : 'coafilecoala@gmail.com'
-        }
-        self.assertIsInstance(fork.create_file(path='.coafile', message='hello',
-                                               content='hello', branch='master', author=author),
-                              GitLabContent)
-
     def test_create_file(self):
         try:
-            fork = self.fork_repo.create_fork(namespace='coafile')
+            fork = self.fork_repo.create_fork(namespace='gitmate-test-user-2')
         except RuntimeError:
-            fork = GitLabRepository(self.fork_token, 'coafile/test')
+            fork = GitLabRepository(self.fork_token, 'gitmate-test-user-2/test')
             fork.delete()
-            fork = self.fork_repo.create_fork(namespace='coafile')
+            time.sleep(5)  # Waiting for repo deletion
+            fork = self.fork_repo.create_fork(namespace='gitmate-test-user-2')
+        author = {
+            'name': 'gitmate-test-user-2',
+            'email': 'coafilecoala@gmail.com'
+        }
 
         self.assertIsInstance(fork.create_file(path='.coafile', message='hello',
-                                               content='hello', branch='master'),
+                                               content='hello', branch='master', author=author),
                               GitLabContent)
 
     def test_search_issues(self):
