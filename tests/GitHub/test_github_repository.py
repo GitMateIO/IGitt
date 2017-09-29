@@ -14,9 +14,9 @@ from tests import IGittTestCase
 class GitHubRepositoryTest(IGittTestCase):
 
     def setUp(self):
-        token = GitHubToken(os.environ.get('GITHUB_TEST_TOKEN', ''))
+        self.token = GitHubToken(os.environ.get('GITHUB_TEST_TOKEN', ''))
         fork_token = GitHubToken(os.environ.get('GITHUB_TEST_TOKEN_2', ''))
-        self.repo = GitHubRepository(token,
+        self.repo = GitHubRepository(self.token,
                                      'gitmate-test-user/test')
         self.fork_repo = GitHubRepository(fork_token, 'gitmate-test-user/test')
 
@@ -130,3 +130,19 @@ class GitHubRepositoryTest(IGittTestCase):
         self.assertEqual(len(mrs), 11)
         mrs = [mr for mr in self.repo.search_mrs(updated_before=date)]
         self.assertEqual(len(mrs), 2)
+
+    def test_commits(self):
+        self.assertEqual({commit.sha for commit in self.repo.commits},
+                         {'645961c0841a84c1dd2a58535aa70ad45be48c46',
+                          'f7e962c0066f7c7600e3a9544bc72e0dc1bfdf02',
+                          'aca50e03cbd9e7285a5cf2b09a679505795a9de3',
+                          'e5bf3396f339e5a8da2304ddc141c5e09c6de9a0',
+                          '40a1c10f1911ccbc00aee00b35b7f398182c59b5',
+                          'd9dab485d405734034508bd71af7701166702201',
+                          'f78fa380ddc11504a55d16bbb1578e6e1ee3bfef',
+                          '161b186a5b341e5129d7d01ef5d12b4086717d63',
+                          '703c4badc774c9659a3909e203b2da96c97b44fc',
+                          '500050498474c746349ccb0ac8972e77813d2e9b',
+                          '674498fd415cfadc35c5eb28b8951e800f357c6f'})
+        repo = GitHubRepository(self.token, 'gitmate-test-user/empty')
+        self.assertEqual(repo.commits, set())

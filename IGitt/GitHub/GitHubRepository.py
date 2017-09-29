@@ -71,6 +71,26 @@ class GitHubRepository(GitHubMixin, Repository):
         return self._repository
 
     @property
+    def commits(self):
+        """
+        Retrieves the set of commits in this repository.
+
+        :return: A set of GitHubCommit objects.
+        """
+        # Don't move to module, leads to circular imports
+        from IGitt.GitHub.GitHubCommit import GitHubCommit
+
+        try:
+            return {GitHubCommit(self._token, self.full_name, commit['sha'])
+                    for commit in get(self._token, self._url + '/commits')}
+        except RuntimeError as ex:
+            # Repository is empty. GitHub returns 409.
+            if ex.args[1] == 409:
+                return set()
+            raise ex # dont cover, this is the real exception
+
+
+    @property
     def clone_url(self):
         """
         Retrieves the URL of the repository.

@@ -171,6 +171,15 @@ class Repository(IGittObject):
         raise NotImplementedError
 
     @property
+    def commits(self):
+        """
+        Retrieves the set of commits in this repository.
+
+        :return: Set of Commit objects.
+        """
+        raise NotImplementedError
+
+    @property
     def clone_url(self) -> str:
         """
         Retrieves an url that can be used for cloning the repository.
