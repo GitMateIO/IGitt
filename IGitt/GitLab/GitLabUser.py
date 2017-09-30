@@ -1,7 +1,11 @@
 """
 Contains a representation of GitHub users.
 """
+from typing import Optional
+
 from IGitt.GitLab import GitLabMixin
+from IGitt.GitLab import GitLabOAuthToken
+from IGitt.GitLab import GitLabPrivateToken
 from IGitt.Interfaces.User import User
 
 
@@ -10,7 +14,9 @@ class GitLabUser(GitLabMixin, User):
     A GitLab user, e.g. sils :)
     """
 
-    def __init__(self, token, identifier):
+    def __init__(self,
+                 token: (GitLabPrivateToken, GitLabOAuthToken),
+                 identifier: Optional[int]=None):
         """
         Creates a new user.
 
@@ -22,14 +28,14 @@ class GitLabUser(GitLabMixin, User):
         self._id = identifier
 
     @property
-    def username(self):
+    def username(self) -> str:
         """
         Retrieves the login for the user.
         """
         return self.data['username']
 
     @property
-    def identifier(self):
+    def identifier(self) -> int:
         """
         Gets a unique id for the user that never changes.
         """

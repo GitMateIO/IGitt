@@ -10,8 +10,7 @@ class GitLabUserTest(IGittTestCase):
 
     def setUp(self):
         self.token = GitLabOAuthToken(os.environ.get('GITLAB_TEST_TOKEN', ''))
-
-        self.user = GitLabUser(self.token, None)
+        self.user = GitLabUser(self.token)
         self.sils = GitLabUser(self.token, 104269)
 
     def test_user_url(self):
@@ -20,3 +19,7 @@ class GitLabUserTest(IGittTestCase):
     def test_user_id(self):
         self.assertEqual(self.user.identifier, 1369631)
         self.assertEqual(self.sils.identifier, 104269)
+
+    def test_username(self):
+        self.assertEqual(self.sils.username, 'sils')
+        self.assertEqual(self.user.username, 'gitmate-test-user')
