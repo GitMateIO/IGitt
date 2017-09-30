@@ -1,9 +1,9 @@
 import os
 
 from IGitt.GitHub import GitHubToken
+from IGitt.GitHub.GitHubIssue import GitHubIssue
 from IGitt.GitHub.GitHubNotification import GitHubNotification
-from IGitt.GitHub.GitHubRepository import GitHubRepository
-from IGitt.GitHub.GitHubThread import GitHubThread
+from IGitt.Interfaces.Notification import Reason
 
 from tests import IGittTestCase
 
@@ -12,12 +12,31 @@ class GitHubNotificationTest(IGittTestCase):
 
     def setUp(self):
         self.token = GitHubToken(os.environ.get('GITHUB_TEST_TOKEN', ''))
-        self.fork_token = GitHubToken(os.environ.get('GITHUB_TEST_TOKEN_2'))
-        temp_repo = GitHubRepository(self.token,
-                                     'gitmate-test-user-2/issue')
-        temp_repo.create_issue('Hello', 'Hello @gitmate-test-user-2')
+        self.notification = GitHubNotification(self.token, '262245073')
 
-    def test_get_notifications(self):
-        notifs = GitHubNotification(self.fork_token)
-        threads = notifs.get_threads()
-        self.assertIsInstance(threads[0], GitHubThread)
+    def test_id(self):
+        self.assertEqual(self.notification.identifier, '262245073')
+
+    def test_unsubscribe(self):
+        self.assertIsNone(self.notification.unsubscribe())
+
+    def test_mark_done(self):
+        self.assertIsNone(self.notification.mark_done())
+        self.assertEqual(self.notification.pending, False)
+
+    def test_reason(self):
+        self.assertEqual(self.notification.reason, Reason.SUBSCRIBED)
+
+    def test_subject_type(self):
+        self.assertEqual(self.notification.subject_type, GitHubIssue)
+
+    def test_subject(self):
+        self.assertIsInstance(self.notification.subject, GitHubIssue)
+        self.assertEqual(self.notification.subject.title, 'Hello')
+
+    def test_repository(self):
+        self.assertEqual(self.notification.repository.full_name,
+                         'gitmate-test-user-2/issue')
+
+    def test_fetch_all(self):
+        self.assertEqual(GitHubNotification.fetch_all(self.token), [])

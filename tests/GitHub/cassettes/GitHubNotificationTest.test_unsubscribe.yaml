@@ -1,0 +1,35 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['0']
+      User-Agent: [IGitt]
+    method: DELETE
+    uri: https://api.github.com/notifications/threads/262245073/subscription
+  response:
+    body: {string: ''}
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Access-Control-Expose-Headers: ['ETag, Link, X-GitHub-OTP, X-RateLimit-Limit,
+          X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes,
+          X-Poll-Interval']
+      Content-Security-Policy: [default-src 'none']
+      Content-Type: [application/octet-stream]
+      Date: ['Sat, 30 Sep 2017 01:58:44 GMT']
+      Server: [GitHub.com]
+      Status: [204 No Content]
+      Strict-Transport-Security: [max-age=31536000; includeSubdomains; preload]
+      Vary: [Accept-Encoding]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [deny]
+      X-GitHub-Request-Id: ['309B:22563:3BAEC5F:4C62BEF:59CEFA53']
+      X-RateLimit-Limit: ['5000']
+      X-RateLimit-Remaining: ['4996']
+      X-RateLimit-Reset: ['1506740319']
+      X-Runtime-rack: ['0.023409']
+      X-XSS-Protection: [1; mode=block]
+    status: {code: 204, message: No Content}
+version: 1
