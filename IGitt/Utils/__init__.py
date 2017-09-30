@@ -26,6 +26,12 @@ class PossiblyIncompleteDict:
         """
         return item in self._data
 
+    def update(self, value: dict):
+        """
+        Updates the dict with provided dict.
+        """
+        self._data.update(value)
+
     def maybe_refresh(self):
         """
         Refresh if it may need a refresh.
