@@ -3,6 +3,7 @@ Contains the GitLab Repository implementation.
 """
 from datetime import datetime
 from urllib.parse import quote_plus
+from typing import Union
 
 from IGitt import ElementAlreadyExistsError, ElementDoesntExistError
 from IGitt.GitLab import delete, get, post, GitLabMixin
@@ -57,17 +58,22 @@ class GitLabRepository(GitLabMixin, Repository):
     """
 
     def __init__(self, token: (GitLabOAuthToken, GitLabPrivateToken),
-                 repository: str):
+                 repository: Union[str, int]):
         """
         Creates a new GitLabRepository object with the given credentials.
 
         :param token: A Token object to be used for authentication.
-        :param repository: The full name of the repository,
+        :param repository: Full name or unique identifier of the repository,
                            e.g. ``sils/baritone``.
         """
         self._token = token
         self._repository = repository
-        self._url = '/projects/' + quote_plus(repository)
+        try:
+            repository = int(repository)
+            self._repository = None
+            self._url = '/projects/{}'.format(repository)
+        except ValueError:
+            self._url = '/projects/' + quote_plus(repository)
 
     @property
     def identifier(self):
@@ -100,9 +106,7 @@ class GitLabRepository(GitLabMixin, Repository):
 
         :return: The full repository name as string.
         """
-        if self._repository.isdigit():
-            self._repository = self.data['path_with_namespace']
-        return self._repository
+        return self._repository or self.data['path_with_namespace']
 
     @property
     def commits(self):

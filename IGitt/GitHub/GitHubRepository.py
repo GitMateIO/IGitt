@@ -1,7 +1,9 @@
 """
 Contains the GitHub Repository implementation.
 """
+from base64 import b64encode
 from datetime import datetime
+from typing import Union
 
 from IGitt import ElementAlreadyExistsError, ElementDoesntExistError
 from IGitt.GitHub import delete, get, post, GitHubMixin, put
@@ -11,7 +13,7 @@ from IGitt.GitHub.GitHubOrganization import GitHubOrganization
 from IGitt.Interfaces.Repository import Repository
 from IGitt.Interfaces.Repository import WebhookEvents
 from IGitt.Utils import eliminate_none
-from base64 import b64encode
+
 
 GH_WEBHOOK_TRANSLATION = {
     WebhookEvents.PUSH: 'push',
@@ -34,17 +36,24 @@ class GitHubRepository(GitHubMixin, Repository):
     Represents a repository on GitHub.
     """
 
-    def __init__(self, token: GitHubToken, repository: str):
+    def __init__(self,
+                 token: GitHubToken,
+                 repository: Union[str, int]):
         """
         Creates a new GitHubRepository object with the given credentials.
 
         :param token: A GitHubToken object to authenticate with.
-        :param repository: The full name of the repository,
+        :param repository: Full name or unique identifier of the repository,
                            e.g. ``sils/something``.
         """
         self._token = token
         self._repository = repository
-        self._url = '/repos/'+repository
+        try:
+            repository = int(repository)
+            self._repository = None
+            self._url = '/repositories/{}'.format(repository)
+        except ValueError:
+            self._url = '/repos/'+repository
 
     @property
     def identifier(self) -> int:
@@ -75,7 +84,7 @@ class GitHubRepository(GitHubMixin, Repository):
 
         :return: The full repository name as string.
         """
-        return self._repository
+        return self._repository or self.data['full_name']
 
     @property
     def commits(self):

@@ -26,6 +26,10 @@ class GitLabRepositoryTest(IGittTestCase):
     def test_id(self):
         self.assertEqual(self.repo.identifier, 3439658)
 
+    def test_id_init(self):
+        repo = GitLabRepository(self.token, 3439658)
+        self.assertEqual(repo.full_name, 'gitmate-test-user/test')
+
     def test_top_level_org(self):
         self.assertEqual(self.repo.top_level_org.name, 'gitmate-test-user')
 
