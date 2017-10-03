@@ -73,6 +73,13 @@ class GitLabRepository(GitLabMixin, Repository):
         self._url = '/projects/' + quote_plus(repository)
 
     @property
+    def identifier(self):
+        """
+        Returns the id of the repository.
+        """
+        return self.data['id']
+
+    @property
     def top_level_org(self):
         """
         Returns the topmost organization, e.g. for `gitmate/open-source/IGitt`
