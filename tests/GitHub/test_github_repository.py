@@ -20,6 +20,9 @@ class GitHubRepositoryTest(IGittTestCase):
                                      'gitmate-test-user/test')
         self.fork_repo = GitHubRepository(fork_token, 'gitmate-test-user/test')
 
+    def test_id(self):
+        self.assertEqual(self.repo.identifier, 49558751)
+
     def test_top_level_org(self):
         self.assertEqual(self.repo.top_level_org.name, 'gitmate-test-user')
 

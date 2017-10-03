@@ -32,6 +32,13 @@ class Repository(IGittObject):
     """
 
     @property
+    def identifier(self) -> int:
+        """
+        Returns the identifier of the repository.
+        """
+        raise NotImplementedError
+
+    @property
     def top_level_org(self):
         """
         Returns the topmost organization, e.g. for `gitmate/open-source/IGitt`
