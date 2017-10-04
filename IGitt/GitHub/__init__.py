@@ -71,6 +71,60 @@ class GitHubToken(Token):
         return self._token
 
 
+class GitHubJsonWebToken(Token):
+    """
+    Object representation of JSON Web Token.
+    """
+    def __init__(self, private_key: str, app_id: int):
+        self._key = private_key
+        self._app_id = app_id
+        self._payload = None
+        self._jwt_token = None
+
+    @property
+    def payload(self):
+        """
+        Returns the payload to be sent for JWT encoding.
+        """
+        if not self._payload:
+            self._payload = {
+                # issued at time
+                'iat': int(datetime.utcnow().timestamp()),
+                # JWT expiration time (10 minute maximum)
+                'exp': int(datetime.utcnow().timestamp() + (10 * 60)),
+                # GitHub App's identifier
+                'iss': self._app_id
+            }
+        return self._payload
+
+    @property
+    def is_expired(self):
+        """
+        Returns True if the JWT has expired.
+        """
+        return self.payload['exp'] < datetime.utcnow().timestamp()
+
+    @property
+    def headers(self):
+        return {'Authorization': 'Bearer {}'.format(self.value),
+                'Accept': 'application/vnd.github.machine-man-preview+json'}
+
+    @property
+    def parameter(self):
+        """
+        GitHub's JSON Web Token can only be authenticated via the
+        ``Authorization`` header and so, all the nested requests have to be made
+        in only that way.
+        """
+        raise NotImplementedError
+
+    @property
+    def value(self):
+        if not self._jwt_token or self.is_expired:
+            self._jwt_token = jwt.encode(self.payload, self._key, 'RS256')
+        return self._jwt_token.decode('utf-8')
+
+
 def get(token: Token,
         url: str,
         params: dict=None,
