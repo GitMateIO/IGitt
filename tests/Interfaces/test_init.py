@@ -6,6 +6,7 @@ from IGitt.GitHub import BASE_URL as GITHUB_BASE_URL
 from IGitt.GitHub import get
 from IGitt.GitHub import GitHubToken
 from IGitt.GitHub import GitHubJsonWebToken
+from IGitt.GitHub import GitHubInstallationToken
 from IGitt.GitLab import BASE_URL as GITLAB_BASE_URL
 from IGitt.GitLab import GitLabOAuthToken
 
@@ -23,6 +24,14 @@ class TestInterfacesInit(IGittTestCase):
         data = get(self.token, '/app')
         self.assertEqual(data['id'], int(os.environ['GITHUB_TEST_APP_ID']))
         self.assertEqual(data['name'], 'gitmate-test-app')
+
+    def test_github_installation_token(self):
+        itoken = GitHubInstallationToken(57250, self.token)
+        data = get(itoken, '/installation/repositories')
+        self.assertEqual(data['total_count'], 1)
+        self.assertEqual(data['repositories'][0]['full_name'],
+                         'gitmate-test-org/test')
+        self.assertEqual(itoken.is_expired, False)
 
     def test_raises_runtime_error(self):
 

@@ -125,6 +125,57 @@ class GitHubJsonWebToken(Token):
         return self._jwt_token.decode('utf-8')
 
 
+class GitHubInstallationToken(Token):
+    """
+    Object representation of GitHub Installation Token.
+    """
+    def __init__(self,
+                 installation_id: int,
+                 jwt_token: GitHubJsonWebToken,
+                 token: str=None,
+                 expiry: datetime=None):
+        self._jwt = jwt_token
+        self._expiry = expiry
+        self._token = token
+        self._id = installation_id
+
+    @property
+    def headers(self):
+        return {'Authorization': 'token {}'.format(self.value),
+                'Accept': 'application/vnd.github.machine-man-preview+json'}
+
+    @property
+    def is_expired(self):
+        """
+        Returns true if the token has expired.
+        """
+        if not self._expiry:
+            return True
+        return datetime.utcnow() > self._expiry
+
+    def _get_new_token(self):
+        data = post(self._jwt,
+                    '/installations/{}/access_tokens'.format(self._id),
+                    {})
+        return data['token'], datetime.strptime(data['expires_at'],
+                                                '%Y-%m-%dT%H:%M:%SZ')
+
+    @property
+    def value(self):
+        if self.is_expired or not self._token:
+            self._token, self._expiry = self._get_new_token()
+        return self._token
+
+    @property
+    def parameter(self):
+        """
+        GitHub Installation Token can only be authenticated via the
+        ``Authorization`` header and so, all the nested requests have to be
+        made in only that way.
+        """
+        raise NotImplementedError
+
+
 def get(token: Token,
         url: str,
         params: dict=None,
