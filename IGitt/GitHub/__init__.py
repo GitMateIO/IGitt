@@ -2,11 +2,14 @@
 This package contains the GitHub implementations of the interfaces in
 server.git.Interfaces.
 """
+from datetime import datetime
 import os
 import logging
 
 from IGitt.Interfaces import _fetch, Token
 from IGitt.Utils import CachedDataMixin
+import jwt
+
 
 GH_INSTANCE_URL = os.environ.get('GH_INSTANCE_URL', 'https://github.com')
 if not GH_INSTANCE_URL.startswith('http'):  # dont cover cause it'll be removed
@@ -53,6 +56,13 @@ class GitHubToken(Token):
         self._token = token
 
     @property
+    def headers(self):
+        """
+        GitHub Access token does not require any special headers.
+        """
+        raise NotImplementedError
+
+    @property
     def parameter(self):
         return {'access_token': self._token}
 
@@ -61,12 +71,14 @@ class GitHubToken(Token):
         return self._token
 
 
-def get(token: GitHubToken, url: str, params: dict=None,
+def get(token: Token,
+        url: str,
+        params: dict=None,
         headers: dict=frozenset()):
     """
     Queries GitHub on the given URL for data.
 
-    :param token: An OAuth token.
+    :param token: A Token object.
     :param url: E.g. ``/repo``
     :param params: The query params to be sent.
     :param headers: The request headers to be sent.
@@ -76,11 +88,11 @@ def get(token: GitHubToken, url: str, params: dict=None,
     :raises RunTimeError:
         If the response indicates any problem.
     """
-    return _fetch(BASE_URL, 'get', token.parameter,
+    return _fetch(BASE_URL, 'get', token,
                   url, query_params=params, headers=headers)
 
 
-def post(token: GitHubToken, url: str, data: dict, headers: dict=frozenset()):
+def post(token: Token, url: str, data: dict, headers: dict=frozenset()):
     """
     Posts the given data onto GitHub.
 
@@ -94,11 +106,10 @@ def post(token: GitHubToken, url: str, data: dict, headers: dict=frozenset()):
     :raises RunTimeError:
         If the response indicates any problem.
     """
-    return _fetch(BASE_URL, 'post', token.parameter, url, data,
-                  headers=headers)
+    return _fetch(BASE_URL, 'post', token, url, data, headers=headers)
 
 
-def patch(token: GitHubToken, url: str, data: dict, headers: dict=frozenset()):
+def patch(token: Token, url: str, data: dict, headers: dict=frozenset()):
     """
     Patches the given data onto GitHub.
 
@@ -112,11 +123,10 @@ def patch(token: GitHubToken, url: str, data: dict, headers: dict=frozenset()):
     :raises RunTimeError:
         If the response indicates any problem.
     """
-    return _fetch(BASE_URL, 'patch', token.parameter, url, data,
-                  headers=headers)
+    return _fetch(BASE_URL, 'patch', token, url, data, headers=headers)
 
 
-def delete(token: GitHubToken, url: str, params: dict=None,
+def delete(token: Token, url: str, params: dict=None,
            headers: dict=frozenset()):
     """
     Sends a delete request to the given URL on GitHub.
@@ -127,10 +137,10 @@ def delete(token: GitHubToken, url: str, params: dict=None,
     :param headers: The request headers to be sent.
     :raises RuntimeError: If the response indicates any problem.
     """
-    _fetch(BASE_URL, 'delete', token.parameter, url, params, headers=headers)
+    _fetch(BASE_URL, 'delete', token, url, params, headers=headers)
 
 
-def put(token: GitHubToken, url: str, data: dict, headers: dict=frozenset()):
+def put(token: Token, url: str, data: dict, headers: dict=frozenset()):
     """
     Puts the given data onto GitHub.
 
@@ -144,4 +154,4 @@ def put(token: GitHubToken, url: str, data: dict, headers: dict=frozenset()):
     :raises RunTimeError:
         If the response indicates any problem.
     """
-    return _fetch(BASE_URL, 'put', token.parameter, url, data, headers=headers)
+    return _fetch(BASE_URL, 'put', token, url, data, headers=headers)

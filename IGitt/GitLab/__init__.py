@@ -64,6 +64,13 @@ class GitLabOAuthToken(Token):
     def value(self):
         return self._token
 
+    @property
+    def headers(self):
+        """
+        GitLab OAuth token does not require any special headers.
+        """
+        raise NotImplementedError
+
 
 class GitLabPrivateToken(Token):
     """
@@ -81,6 +88,13 @@ class GitLabPrivateToken(Token):
     def value(self):
         return self._token
 
+    @property
+    def headers(self):
+        """
+        GitLab Private token does not require any special headers.
+        """
+        raise NotImplementedError
+
 
 def get(token: (GitLabOAuthToken, GitLabPrivateToken), url: str,
         params: dict=frozenset(), headers: dict=frozenset()):
@@ -97,7 +111,7 @@ def get(token: (GitLabOAuthToken, GitLabPrivateToken), url: str,
     :raises RunTimeError:
         If the response indicates any problem.
     """
-    return _fetch(BASE_URL, 'get', token.parameter,
+    return _fetch(BASE_URL, 'get', token,
                   url, query_params={**dict(params), 'per_page': 100},
                   headers=headers)
 
@@ -117,8 +131,7 @@ def post(token: (GitLabOAuthToken, GitLabPrivateToken), url: str, data: dict,
     :raises RunTimeError:
         If the response indicates any problem.
     """
-    return _fetch(BASE_URL, 'post', token.parameter, url, data,
-                  headers=headers)
+    return _fetch(BASE_URL, 'post', token, url, data, headers=headers)
 
 
 def put(token: (GitLabOAuthToken, GitLabPrivateToken), url: str, data: dict,
@@ -136,7 +149,7 @@ def put(token: (GitLabOAuthToken, GitLabPrivateToken), url: str, data: dict,
     :raises RunTimeError:
         If the response indicates any problem.
     """
-    return _fetch(BASE_URL, 'put', token.parameter, url, data, headers=headers)
+    return _fetch(BASE_URL, 'put', token, url, data, headers=headers)
 
 
 def delete(token: (GitLabOAuthToken, GitLabPrivateToken), url: str,
@@ -150,5 +163,5 @@ def delete(token: (GitLabOAuthToken, GitLabPrivateToken), url: str,
     :param headers: The request headers to be sent.
     :raises RuntimeError: If the response indicates any problem.
     """
-    _fetch(BASE_URL, 'delete', token.parameter,
+    _fetch(BASE_URL, 'delete', token,
            url, query_params=params, headers=headers)

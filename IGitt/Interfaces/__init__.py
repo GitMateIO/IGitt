@@ -29,6 +29,12 @@ class Token:
     Base class for different types of tokens used for different methods of
     authentications.
     """
+    @property
+    def headers(self):
+        """
+        The Authorization headers.
+        """
+        raise NotImplementedError
 
     @property
     def value(self):
@@ -66,16 +72,34 @@ def error_checked_request(func):
     return wrap_func
 
 
+def _get_session(token: Token, headers: dict, query_params: dict):
+    """
+    Retrieves the session for sending requests.
+    """
+    session = Session()
+    try:
+        headers = {**headers, **token.headers}
+    except NotImplementedError:
+        pass
+    try:
+        query_params = {**query_params, **token.parameter}
+    except NotImplementedError:
+        pass
+    session.params.update(query_params)
+    session.headers.update(headers)
+    return session
+
+
 @error_checked_request
-def _fetch(base_url: str, req_type: str, token: dict, url: str,
-           data: dict=None, query_params: dict=None,
+def _fetch(base_url: str, req_type: str, token: Token, url: str,
+           data: dict=None, query_params: dict=frozenset(),
            headers: dict=frozenset()):
     """
     Fetch all the contents by following the ``Link`` header.
 
     :param base_url: The base URL which is used to generate sub URLs.
     :param req_type: A request type. Get, Post, Patch and Delete.
-    :param token: A dict with matching query parameter and oauth token.
+    :param token: A Token object.
     :param url  : E.g. ``/repo``
     :param query_params: The query parameters.
     :param data : The data to post. Used for Patch and Post methods only
@@ -85,20 +109,18 @@ def _fetch(base_url: str, req_type: str, token: dict, url: str,
                   git patch or diff) and the HTTP status code.
     """
     data_container = []
-    req = Session()
+    session = _get_session(token,
+                           {**dict(headers), **HEADERS},
+                           dict(query_params or {}))
     req_methods = {
-        'get': req.get,
-        'post': req.post,
-        'put': req.put,
-        'patch': req.patch,
-        'delete': req.delete
+        'get': session.get,
+        'post': session.post,
+        'put': session.put,
+        'patch': session.patch,
+        'delete': session.delete
     }
-    req.params.update(token)
-    if query_params is not None:
-        req.params.update(query_params)
     fetch_method = req_methods[req_type]
-    resp = fetch_method(
-        base_url + url, json=data, headers={**HEADERS, **dict(headers)})
+    resp = fetch_method(base_url + url, json=data)
 
     # Delete request returns no response
     if not len(resp.text):
