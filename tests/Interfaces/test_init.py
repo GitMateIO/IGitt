@@ -3,7 +3,9 @@ import os
 from IGitt.Interfaces import _fetch
 from IGitt.Interfaces import error_checked_request
 from IGitt.GitHub import BASE_URL as GITHUB_BASE_URL
+from IGitt.GitHub import get
 from IGitt.GitHub import GitHubToken
+from IGitt.GitHub import GitHubJsonWebToken
 from IGitt.GitLab import BASE_URL as GITLAB_BASE_URL
 from IGitt.GitLab import GitLabOAuthToken
 
@@ -11,6 +13,15 @@ from tests import IGittTestCase
 
 
 class TestInterfacesInit(IGittTestCase):
+
+    def setUp(self):
+        self.token = GitHubJsonWebToken(os.environ['GITHUB_PRIVATE_KEY'],
+                                        os.environ['GITHUB_TEST_APP_ID'])
+
+    def test_github_json_web_token(self):
+        data = get(self.token, '/app')
+        self.assertEqual(data['id'], int(os.environ['GITHUB_TEST_APP_ID']))
+        self.assertEqual(data['name'], 'gitmate-test-app')
 
     def test_raises_runtime_error(self):
 

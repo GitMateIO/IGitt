@@ -1,0 +1,45 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: [application/vnd.github.machine-man-preview+json]
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE1MDcwODQxOTIsImV4cCI6MTUwNzA4NDc5MiwiaXNzIjoiNTQwOCJ9.eLbhv8wNDvIZjcW8_Y-D7SrNXzcyqDLqWJ3bbGVyRD4vfxNUbq79sjzvBjFcEvmUOwjqA3hkCCsrKdMqh1ys7D3Sq7LBtNlW0QQyFxuykftkvDm_067Mx03KIWHsVcJW8Yf6Re7bTeiZGcPvrRNu7TFb7SYJj-bcVsloMM56uDGF-dL2pe-MB6XDnu1Bup8XTeuNCWPL3XUAEZPLXQK9vetr3_FAyDxDxjsMwg4g_Hb-DJJ9ZaOPDRywp5zfRRKf0PpqqEWZ20DPBXtEeuNHMnfELw7kFwDxdu0wKM2j5ejeiyh0ynAg9YmKa1xyVIAlm-d3sZCwdU_8UGwZV6OzOw]
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://api.github.com/app
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA6WUQU7DMBBF7+J1UjtpCzQS4ghsWHVTuck0tXBsy56klKh3Z5wURCOEUNhZ1vzn
+        7xl/90xVrFivxEPC7MmAZ0XPtK2VYQWrFTYSIUUImFpfs2SoXua5WG1ykTDZSZR+13pN1UdEFwrO
+        x82QL0h+bPdtAF9ag2BwUdqGt/xT/9Q9rghZ+ysmshltTHBOXUmjnHCB/+DsiI2eOBkNDLIfBAer
+        tT0Rber/LwfyLzUZHtfK1P8gkbrnFo9A7aQrXmJjVMB55gZlT5cOuFNVZAWak4dqlsGrluzFB3Lp
+        uQdnB2i7D6VXDpU184zeEIhIj0wa9S7nE4kQCBQtzrM0KIkAHb3YeYhR2nPnVSfLc2yVhxJURwP4
+        B3bCICqeHVBmnr91LY5FIexk1cQMH6QOcEmYkU2svImBdI6qK/ia4Rg/eEPwRk7DZF7pOqYEIe6v
+        lIW2pdTYGgN6QfiEvoDfMkjnTZI7Oig90C9T7SSSgVxk96nYpHn2km2KdV6I5ZbIrasmNZlIxfIl
+        Wxd5VqzutuzyAe9r8C7LBAAA
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Access-Control-Expose-Headers: ['ETag, Link, X-GitHub-OTP, X-RateLimit-Limit,
+          X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes,
+          X-Poll-Interval']
+      Cache-Control: ['public, max-age=60, s-maxage=60']
+      Content-Encoding: [gzip]
+      Content-Security-Policy: [default-src 'none']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Wed, 04 Oct 2017 02:29:55 GMT']
+      ETag: [W/"2a364aa1ab6db60eb47cb0dfb752c08a"]
+      Server: [GitHub.com]
+      Status: [200 OK]
+      Strict-Transport-Security: [max-age=31536000; includeSubdomains; preload]
+      Vary: [Accept, Accept-Encoding]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [deny]
+      X-GitHub-Media-Type: [github.machine-man-preview; format=json]
+      X-GitHub-Request-Id: ['3801:D7DE:6FEE4A6:9013970:59D447A2']
+      X-Runtime-rack: ['0.018437']
+      X-XSS-Protection: [1; mode=block]
+    status: {code: 200, message: OK}
+version: 1
