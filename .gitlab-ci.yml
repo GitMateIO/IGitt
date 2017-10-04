@@ -1,9 +1,12 @@
 image: python:3.5-alpine
 
-run_tests:
-  script:
+before_script:
+  - apk --update add build-base libffi-dev openssl-dev
   - pip install -r requirements.txt
   - pip install -r test-requirements.txt
+
+run_tests:
+  script:
   - python3 -m pytest
   except:
   - master
