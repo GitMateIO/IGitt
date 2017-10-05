@@ -90,9 +90,9 @@ class GitHubJsonWebToken(Token):
         if not self._payload:
             self._payload = {
                 # issued at time
-                'iat': int(datetime.utcnow().timestamp()),
+                'iat': int(datetime.now().timestamp()),
                 # JWT expiration time (10 minute maximum)
-                'exp': int(datetime.utcnow().timestamp() + (10 * 60)),
+                'exp': int(datetime.now().timestamp() + (10 * 60)),
                 # GitHub App's identifier
                 'iss': self._app_id
             }
@@ -105,7 +105,7 @@ class GitHubJsonWebToken(Token):
         """
         Returns True if the JWT has expired.
         """
-        return self.payload['exp'] < datetime.utcnow().timestamp()
+        return self.payload['exp'] < datetime.now().timestamp()
 
     @property
     def headers(self):
