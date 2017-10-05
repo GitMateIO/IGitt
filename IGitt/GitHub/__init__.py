@@ -143,6 +143,13 @@ class GitHubInstallationToken(Token):
         self._id = installation_id
 
     @property
+    def jwt(self):
+        """
+        Retrieves the JWT being used.
+        """
+        return self._jwt
+
+    @property
     def headers(self):
         return {'Authorization': 'token {}'.format(self.value),
                 'Accept': 'application/vnd.github.machine-man-preview+json'}

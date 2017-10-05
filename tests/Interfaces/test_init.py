@@ -30,6 +30,7 @@ class TestInterfacesInit(IGittTestCase):
         self.assertEqual(data['total_count'], 1)
         self.assertEqual(data['repositories'][0]['full_name'],
                          'gitmate-test-org/test')
+        self.assertEqual(itoken.jwt, self.token)
 
     def test_raises_runtime_error(self):
 
