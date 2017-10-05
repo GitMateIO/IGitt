@@ -145,7 +145,7 @@ class GitLabRepository(GitLabMixin, Repository):
         return self.data['http_url_to_repo'].replace(
             '://', '://oauth2:' + self._token.value + '@', 1)
 
-    def get_labels(self) -> {str}:
+    def get_labels(self) -> Set[str]:
         """
         Retrieves the labels of the repository.
 
@@ -269,7 +269,7 @@ class GitLabRepository(GitLabMixin, Repository):
         return GitLabMergeRequest(self._token, self.full_name, mr_number)
 
     @property
-    def hooks(self) -> {str}:
+    def hooks(self) -> Set[str]:
         """
         Retrieves all URLs this repository is hooked to.
 

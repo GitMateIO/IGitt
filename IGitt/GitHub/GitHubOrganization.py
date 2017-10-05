@@ -1,6 +1,7 @@
 """
 Here you go: GitHub organizations can be used in IGitt.
 """
+from typing import Set
 from urllib.parse import quote_plus
 
 from IGitt.GitHub import GitHubMixin
@@ -33,7 +34,7 @@ class GitHubOrganization(GitHubMixin, Organization):
             return 1
 
     @property
-    def owners(self) -> {GitHubUser}:
+    def owners(self) -> Set[GitHubUser]:
         """
         Returns the user handles of all admin users.
         """
@@ -49,7 +50,7 @@ class GitHubOrganization(GitHubMixin, Organization):
             return {GitHubUser(self._token, self.name)}
 
     @property
-    def masters(self) -> {GitHubUser}:
+    def masters(self) -> Set[GitHubUser]:
         """
         Gets all owners (because there's no masters role on GitHub).
         """

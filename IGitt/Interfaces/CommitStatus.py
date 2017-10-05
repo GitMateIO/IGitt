@@ -26,7 +26,7 @@ class CommitStatus:
     """
 
     def __init__(self, status: Status, description: str='', context: str='',
-                 url: str=''):
+                 url: str='') -> None:
         """
         Creates a new commit status.
 

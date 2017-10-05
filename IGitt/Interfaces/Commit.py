@@ -2,6 +2,7 @@
 This module contains the actual commit object.
 """
 from typing import Optional
+from typing import Set
 
 from IGitt.Interfaces import IGittObject
 from IGitt.Interfaces.CommitStatus import CommitStatus, Status
@@ -119,7 +120,7 @@ class Commit(IGittObject):
         """
         raise NotImplementedError
 
-    def get_statuses(self) -> {CommitStatus}:
+    def get_statuses(self) -> Set[CommitStatus]:
         """
         Retrieves the all commit statuses.
 

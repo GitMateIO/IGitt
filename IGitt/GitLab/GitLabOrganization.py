@@ -3,6 +3,7 @@ This module contains the Issue abstraction class which provides properties and
 actions related to issues and bug reports.
 """
 from functools import lru_cache
+from typing import Set
 from urllib.parse import quote_plus
 
 from IGitt.GitLab import GitLabMixin
@@ -80,14 +81,14 @@ class GitLabOrganization(GitLabMixin, Organization):
                                          self._token, identifier=None)}
 
     @property
-    def owners(self) -> {GitLabUser}:
+    def owners(self) -> Set[GitLabUser]:
         """
         Returns the user handles of all owner users.
         """
         return self._members(AccessLevel.OWNER.value)
 
     @property
-    def masters(self) -> {GitLabUser}:
+    def masters(self) -> Set[GitLabUser]:
         """
         Returns the user handles of all master users.
         """

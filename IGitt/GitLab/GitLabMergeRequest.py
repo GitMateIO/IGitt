@@ -2,6 +2,7 @@
 Contains a class representing the GitLab merge request.
 """
 from functools import lru_cache
+from typing import Set
 from typing import Union
 from urllib.parse import quote_plus
 import re
@@ -198,7 +199,7 @@ class GitLabMergeRequest(GitLabIssue, MergeRequest):
         return additions, deletions
 
     @property
-    def closes_issues(self) -> {GitLabIssue}:
+    def closes_issues(self) -> Set[GitLabIssue]:
         """
         Returns a set of GitLabIssue objects which would be closed upon merging
         this pull request.

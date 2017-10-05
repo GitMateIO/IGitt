@@ -2,6 +2,7 @@
 Contains the abstraction for a commit in GitLab.
 """
 from typing import Optional
+from typing import Set
 from typing import Union
 from urllib.parse import quote_plus
 
@@ -117,7 +118,7 @@ class GitLabCommit(GitLabMixin, Commit):
         return GitLabCommit(self._token, self._repository,
                             self.data['parent_ids'][0])
 
-    def get_statuses(self) -> {CommitStatus}:
+    def get_statuses(self) -> Set[CommitStatus]:
         """
         Retrieves the all commit statuses.
 

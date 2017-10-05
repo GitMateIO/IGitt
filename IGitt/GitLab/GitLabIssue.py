@@ -2,6 +2,8 @@
 This contains the Issue implementation for GitLab.
 """
 from datetime import datetime
+from typing import List
+from typing import Set
 from typing import Union
 from urllib.parse import quote_plus
 
@@ -216,7 +218,7 @@ class GitLabIssue(GitLabMixin, Issue):
                              CommentType.ISSUE, result['id'])
 
     @property
-    def comments(self) -> [GitLabComment]:
+    def comments(self) -> List[GitLabComment]:
         r"""
         Retrieves comments from the issue.
 
@@ -243,7 +245,7 @@ class GitLabIssue(GitLabMixin, Issue):
         ]
 
     @property
-    def labels(self) -> {str}:
+    def labels(self) -> Set[str]:
         """
         Retrieves all labels associated with this bug.
 
@@ -268,7 +270,7 @@ class GitLabIssue(GitLabMixin, Issue):
         return set(self.data['labels'])
 
     @labels.setter
-    def labels(self, value: {str}):
+    def labels(self, value: Set[str]):
         """
         Sets the value of labels to the given set of labels.
 
@@ -282,7 +284,7 @@ class GitLabIssue(GitLabMixin, Issue):
                         {'labels': ','.join(map(str, value))})
 
     @property
-    def available_labels(self) -> {str}:
+    def available_labels(self) -> Set[str]:
         """
         Retrieves a set of captions that are available for labelling bugs.
 

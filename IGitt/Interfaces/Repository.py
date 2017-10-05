@@ -7,6 +7,7 @@ from enum import Enum
 from tempfile import mkdtemp
 from typing import Optional
 from typing import Set
+from typing import Union
 
 from git.repo.base import Repo
 
@@ -75,7 +76,7 @@ class Repository(IGittObject):
         raise NotImplementedError
 
     @property
-    def hooks(self) -> {str}:
+    def hooks(self) -> Set[str]:
         """
         Retrieves all URLs this repository is hooked to.
 
@@ -124,7 +125,7 @@ class Repository(IGittObject):
         """
         raise NotImplementedError
 
-    def get_clone(self) -> (Repo, str):
+    def get_clone(self) -> Union[Repo, str]:
         """
         Clones the repository into a temporary directory:
 
@@ -160,7 +161,7 @@ class Repository(IGittObject):
 
         return repo, tempdir
 
-    def get_labels(self) -> {str}:
+    def get_labels(self) -> Set[str]:
         """
         Retrieves the set of labels.
 
@@ -238,7 +239,7 @@ class Repository(IGittObject):
         """
         raise NotImplementedError
 
-    def create_merge_request(self, title:str, base:str, head:str,
+    def create_merge_request(self, title: str, base: str, head: str,
                              body: Optional[str]=None,
                              target_project_id: Optional[int]=None,
                              target_project: Optional[str]=None):

@@ -3,6 +3,8 @@ This module contains the Issue abstraction class which provides properties and
 actions related to issues and bug reports.
 """
 from datetime import datetime
+from typing import Set
+from typing import List
 
 from IGitt.Interfaces import IGittObject
 from IGitt.Interfaces.Comment import Comment
@@ -59,7 +61,7 @@ class Issue(IGittObject):
         raise NotImplementedError
 
     @property
-    def assignees(self) -> {str}:
+    def assignees(self) -> Set[str]:
         """
         Retrieves a set of usernames of assignees.
         """
@@ -78,7 +80,7 @@ class Issue(IGittObject):
         raise NotImplementedError
 
     @property
-    def labels(self) -> {str}:
+    def labels(self) -> Set[str]:
         """
         Retrieves the set of labels the issue is currently tagged with.
 
@@ -87,7 +89,7 @@ class Issue(IGittObject):
         raise NotImplementedError
 
     @labels.setter
-    def labels(self, value: {str}):
+    def labels(self, value: Set[str]):
         """
         Tags the issue with the given labels. For examples see documentation
         of the labels read function.
@@ -99,7 +101,7 @@ class Issue(IGittObject):
         raise NotImplementedError
 
     @property
-    def available_labels(self) -> {str}:
+    def available_labels(self) -> Set[str]:
         """
         Compiles a set of labels that are available for labelling this issue.
 
@@ -108,7 +110,7 @@ class Issue(IGittObject):
         raise NotImplementedError
 
     @property
-    def comments(self) -> [Comment]:
+    def comments(self) -> List[Comment]:
         """
         Retrieves a list of comments which are on the issue excliding the
         description.

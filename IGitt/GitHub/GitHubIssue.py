@@ -2,6 +2,7 @@
 This contains the Issue implementation for GitHub.
 """
 from datetime import datetime
+from typing import Set
 
 from IGitt.GitHub import get, patch, post, delete, GitHubMixin
 from IGitt.GitHub import GitHubToken
@@ -228,7 +229,7 @@ class GitHubIssue(GitHubMixin, Issue):
         return set(label['name'] for label in self.data['labels'])
 
     @labels.setter
-    def labels(self, value: {str}):
+    def labels(self, value: Set[str]):
         """
         Sets the labels to the given set of labels.
 

@@ -4,6 +4,8 @@ branch.
 """
 from datetime import datetime
 from itertools import chain
+from typing import List
+from typing import Set
 import re
 
 from IGitt.Interfaces.Commit import Commit
@@ -94,7 +96,7 @@ class MergeRequest(Issue):
         raise NotImplementedError
 
     @property
-    def commits(self) -> [Commit]:
+    def commits(self) -> List[Commit]:
         """
         Retrieves all commits that are contained in this request.
 
@@ -170,7 +172,7 @@ class MergeRequest(Issue):
         """
         raise NotImplementedError
 
-    def _get_closes_issues(self) -> {int}:
+    def _get_closes_issues(self) -> Set[int]:
         """
         Returns a set of tuples(issue number, name of the repository the issue
         is contained in), which would be closed upon merging this pull request.
@@ -224,7 +226,7 @@ class MergeRequest(Issue):
         return results
 
     @property
-    def closes_issues(self) -> {Issue}:
+    def closes_issues(self) -> Set[Issue]:
         """
         Returns a set of Issue objects which would be closed upon merging this
         pull request.

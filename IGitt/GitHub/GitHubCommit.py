@@ -2,6 +2,7 @@
 Contains the abstraction for a commit in GitHub.
 """
 from typing import Optional
+from typing import Set
 
 from IGitt import ElementDoesntExistError
 from IGitt.GitHub import get, post, GitHubMixin, GitHubToken
@@ -191,7 +192,7 @@ class GitHubCommit(GitHubMixin, Commit):
         status_url = '/repos/' + self._repository + '/statuses/' + self.sha
         post(self._token, status_url, data)
 
-    def get_statuses(self) -> {CommitStatus}:
+    def get_statuses(self) -> Set[CommitStatus]:
         """
         Retrieves the all commit statuses.
 

@@ -17,6 +17,7 @@ The methods being used from GitHubIssue are:
 - available_labels
 """
 from functools import lru_cache
+from typing import Set
 
 from IGitt.GitHub import get, GitHubToken
 from IGitt.GitHub.GitHubCommit import GitHubCommit
@@ -218,7 +219,7 @@ class GitHubMergeRequest(GitHubIssue, MergeRequest):
         raise NotImplementedError
 
     @property
-    def closes_issues(self) -> {GitHubIssue}:
+    def closes_issues(self) -> Set[GitHubIssue]:
         """
         Returns a set of GitHubIssue objects which would be closed upon merging
         this pull request.
