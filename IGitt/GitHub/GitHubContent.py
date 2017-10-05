@@ -2,6 +2,7 @@
 This contains the Content implementation for GitHub.
 """
 from base64 import b64encode
+from typing import Optional
 
 from IGitt.GitHub import GitHubMixin, GitHubToken, get, delete, put
 from IGitt.Interfaces.Content import Content
@@ -23,7 +24,7 @@ class GitHubContent(GitHubMixin, Content):
         }
         self.data = get(token=self._token, url=self._url, params=data)
 
-    def delete(self, message: str, branch: (str, None)=None):
+    def delete(self, message: str, branch: Optional[str]=None):
 
         if branch is None:
             branch = 'master'
@@ -36,7 +37,7 @@ class GitHubContent(GitHubMixin, Content):
         }
         delete(token=self._token, url=self._url, params=data)
 
-    def update(self, message: str, content: str, branch: (str, None)=None):
+    def update(self, message: str, content: str, branch: Optional[str]=None):
 
         content = b64encode(content.encode()).decode('utf-8')
 

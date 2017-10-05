@@ -2,6 +2,7 @@
 Contains the Hoster implementation for GitLab.
 """
 
+from typing import Union
 import logging
 
 from IGitt.GitLab import get, GitLabOAuthToken, GitLabPrivateToken, GitLabMixin
@@ -25,7 +26,7 @@ class GitLab(GitLabMixin, Hoster):
     A high level interface to GitLab.
     """
 
-    def __init__(self, token: (GitLabOAuthToken, GitLabPrivateToken)):
+    def __init__(self, token: Union[GitLabOAuthToken, GitLabPrivateToken]):
         """
         Creates a new GitLab Hoster object.
 

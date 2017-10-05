@@ -1,6 +1,8 @@
 """
 Contains the abstraction for a commit in GitHub.
 """
+from typing import Optional
+
 from IGitt import ElementDoesntExistError
 from IGitt.GitHub import get, post, GitHubMixin, GitHubToken
 from IGitt.GitHub.GitHubRepository import GitHubRepository
@@ -254,8 +256,8 @@ class GitHubCommit(GitHubMixin, Commit):
 
         raise ElementDoesntExistError('The file does not exist.')
 
-    def comment(self, message: str, file: (str, None)=None,
-                line: (int, None)=None, mr_number: int=None):
+    def comment(self, message: str, file: Optional[str]=None,
+                line: Optional[int]=None, mr_number: Optional[int]=None):
         """
         Places a comment on the commit.
 

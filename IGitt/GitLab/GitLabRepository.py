@@ -2,6 +2,9 @@
 Contains the GitLab Repository implementation.
 """
 from datetime import datetime
+from typing import Optional
+from typing import Set
+from typing import Union
 from urllib.parse import quote_plus
 
 from IGitt import ElementAlreadyExistsError, ElementDoesntExistError
@@ -28,10 +31,10 @@ GL_WEBHOOK_EVENTS = {'tag_push_events', 'job_events', 'pipeline_events',
 
 
 def date_in_range(data,
-                  created_after='',
-                  created_before='',
-                  updated_after='',
-                  updated_before=''):
+                  created_after: Optional[datetime]=None,
+                  created_before: Optional[datetime]=None,
+                  updated_after: Optional[datetime]=None,
+                  updated_before: Optional[datetime]=None):
     """
     Returns true if issue/MR is in the given range.
     """
@@ -56,7 +59,7 @@ class GitLabRepository(GitLabMixin, Repository):
     Represents a repository on GitLab.
     """
 
-    def __init__(self, token: (GitLabOAuthToken, GitLabPrivateToken),
+    def __init__(self, token: Union[GitLabOAuthToken, GitLabPrivateToken],
                  repository: str):
         """
         Creates a new GitLabRepository object with the given credentials.
@@ -269,8 +272,8 @@ class GitLabRepository(GitLabMixin, Repository):
 
     def register_hook(self,
                       url: str,
-                      secret: str=None,
-                      events: {WebhookEvents}=None):
+                      secret: Optional[str]=None,
+                      events: Optional[Set[WebhookEvents]]=None):
         """
         Registers a webhook to the given URL. Use it as simple as:
 
@@ -384,8 +387,8 @@ class GitLabRepository(GitLabMixin, Repository):
         """
         return self.filter_issues()
 
-    def create_fork(self, organization: (str, None)=None,
-                    namespace: (str, None)=None):
+    def create_fork(self, organization: Optional[str]=None,
+                    namespace: Optional[str]=None):
         """
         Create a fork of Repository
         """
@@ -399,8 +402,8 @@ class GitLabRepository(GitLabMixin, Repository):
         return GitLabRepository(self._token, res['path_with_namespace'])
 
     def create_file(self, path: str, message: str, content: str,
-                    branch: (str, None)=None, committer:(str, None)=None,
-                    author:(dict, None)=None, encoding:(str, None)=None):
+                    branch: Optional[str]=None, committer: Optional[str]=None,
+                    author: Optional[dict]=None, encoding: Optional[str]=None):
         """
         Create a new file in Repository
         """
@@ -424,9 +427,9 @@ class GitLabRepository(GitLabMixin, Repository):
         return GitLabContent(self._token, self._repository, path=path)
 
     def create_merge_request(self, title:str, base:str, head:str,
-                             body: (str, None)=None,
-                             target_project_id: (int, None)=None,
-                             target_project: (str, None)=None):
+                             body: Optional[str]=None,
+                             target_project_id: Optional[int]=None,
+                             target_project: Optional[str]=None):
         """
         Create a new merge request in Repository
         """
@@ -466,10 +469,10 @@ class GitLabRepository(GitLabMixin, Repository):
 
 
     def search_issues(self,
-                      created_after: datetime='',
-                      created_before: datetime='',
-                      updated_after: datetime='',
-                      updated_before: datetime=''):
+                      created_after: Optional[datetime]=None,
+                      created_before: Optional[datetime]=None,
+                      updated_after: Optional[datetime]=None,
+                      updated_before: Optional[datetime]=None):
         """
         Searches for issues based on created and updated date.
         """
@@ -484,10 +487,10 @@ class GitLabRepository(GitLabMixin, Repository):
             yield issue
 
     def search_mrs(self,
-                   created_after: datetime='',
-                   created_before: datetime='',
-                   updated_after: datetime='',
-                   updated_before: datetime=''):
+                   created_after: Optional[datetime]=None,
+                   created_before: Optional[datetime]=None,
+                   updated_after: Optional[datetime]=None,
+                   updated_before: Optional[datetime]=None):
         """
         Searches for merge request based on created and updated date.
         """

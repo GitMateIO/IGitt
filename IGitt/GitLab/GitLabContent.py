@@ -1,6 +1,8 @@
 """
 This contains the Content implementation for GitLab.
 """
+from typing import Optional
+from typing import Union
 from urllib.parse import quote_plus
 
 from IGitt.GitLab import GitLabMixin
@@ -16,7 +18,7 @@ class GitLabContent(GitLabMixin, Content):
     """
     This class represents a content on GitHub
     """
-    def __init__(self,  token: (GitLabOAuthToken, GitLabPrivateToken),
+    def __init__(self,  token: Union[GitLabOAuthToken, GitLabPrivateToken],
                  repository: str, path: str):
         self._token = token
         self._repository = repository
@@ -30,7 +32,7 @@ class GitLabContent(GitLabMixin, Content):
         }
         self.data = get(token=self._token, url=self._url, params=data)
 
-    def delete(self, message: str, branch: (str, None) = None):
+    def delete(self, message: str, branch: Optional[str]=None):
 
         if branch is None:
             branch = 'master'
@@ -42,7 +44,7 @@ class GitLabContent(GitLabMixin, Content):
         }
         delete(self._token, url=self._url, params=data)
 
-    def update(self, message: str, content: str, branch: (str, None) = None):
+    def update(self, message: str, content: str, branch: Optional[str]=None):
 
         if branch is None:
             branch = 'master'

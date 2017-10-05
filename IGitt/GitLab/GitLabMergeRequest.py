@@ -1,10 +1,10 @@
 """
 Contains a class representing the GitLab merge request.
 """
-import re
-
 from functools import lru_cache
+from typing import Union
 from urllib.parse import quote_plus
+import re
 
 from IGitt.GitLab import get, GitLabOAuthToken, GitLabPrivateToken
 from IGitt.GitLab.GitLabCommit import GitLabCommit
@@ -18,7 +18,7 @@ class GitLabMergeRequest(GitLabIssue, MergeRequest):
     A Merge Request on GitLab.
     """
 
-    def __init__(self, token: (GitLabOAuthToken, GitLabPrivateToken),
+    def __init__(self, token: Union[GitLabOAuthToken, GitLabPrivateToken],
                  repository: str, number: int):
         """
         Creates a new GitLabMergeRequest object.

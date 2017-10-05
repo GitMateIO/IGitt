@@ -4,6 +4,8 @@ This package contains an abstraction for a git repository.
 from enum import Enum
 from functools import wraps
 from json.decoder import JSONDecodeError
+from typing import Optional
+
 from requests import Session
 
 
@@ -74,8 +76,8 @@ def error_checked_request(func):
 
 @error_checked_request
 def _fetch(base_url: str, req_type: str, token: Token, url: str,
-           data: dict=None, query_params: dict=frozenset(),
-           headers: dict=frozenset()):
+           data: Optional[dict]=None, query_params: Optional[dict]=None,
+           headers: Optional[dict]=None):
     """
     Fetch all the contents by following the ``Link`` header.
 
@@ -92,7 +94,7 @@ def _fetch(base_url: str, req_type: str, token: Token, url: str,
     """
     data_container = []
     session = Session()
-    session.headers.update({**dict(headers), **HEADERS, **token.headers})
+    session.headers.update({**dict(headers or {}), **HEADERS, **token.headers})
     session.params.update({**dict(query_params or {}), **token.parameter})
     req_methods = {
         'get': session.get,

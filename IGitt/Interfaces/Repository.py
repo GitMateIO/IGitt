@@ -5,6 +5,8 @@ Contains the Repository class.
 from datetime import datetime
 from enum import Enum
 from tempfile import mkdtemp
+from typing import Optional
+from typing import Set
 
 from git.repo.base import Repo
 
@@ -41,8 +43,8 @@ class Repository(IGittObject):
 
     def register_hook(self,
                       url: str,
-                      secret: str=None,
-                      events: {WebhookEvents}=None):
+                      secret: Optional[str]=None,
+                      events: Optional[Set[WebhookEvents]]=None):
         """
         Registers a webhook to the given URL. Should pass silently if the hook
         already exists.
@@ -216,8 +218,8 @@ class Repository(IGittObject):
         """
         raise NotImplementedError
 
-    def create_fork(self, organization: (str, None)=None,
-                    namespace: (str, None)=None):
+    def create_fork(self, organization: Optional[str]=None,
+                    namespace: Optional[str]=None):
         """
         Create a fork
         """
@@ -230,37 +232,37 @@ class Repository(IGittObject):
         raise NotImplementedError
 
     def create_merge_request(self, title:str, base:str, head:str,
-                             body: (str, None)=None,
-                             target_project_id: (int, None)=None,
-                             target_project: (str, None) = None):
+                             body: Optional[str]=None,
+                             target_project_id: Optional[int]=None,
+                             target_project: Optional[str]=None):
         """
         Creates a PR
         """
         raise NotImplementedError
 
     def create_file(self, path: str, message: str, content: str,
-                    branch: (str, None)=None, committer:(str, None)=None,
-                    author:(dict, None)=None, encoding: (str, None)=None,):
+                    branch: Optional[str]=None, committer: Optional[str]=None,
+                    author: Optional[dict]=None, encoding: Optional[str]=None):
         """
         Creates a new file
         """
         raise NotImplementedError
 
     def search_mrs(self,
-                   created_after: datetime.date='',
-                   created_before: datetime.date='',
-                   updated_after: datetime.date='',
-                   updated_before: datetime.date=''):
+                   created_after: Optional[datetime.date]=None,
+                   created_before: Optional[datetime.date]=None,
+                   updated_after: Optional[datetime.date]=None,
+                   updated_before: Optional[datetime.date]=None):
         """
         Retrieves a list of open prs
         """
         raise NotImplementedError
 
     def search_issues(self,
-                      created_after: datetime.date='',
-                      created_before: datetime.date='',
-                      updated_after: datetime.date='',
-                      updated_before: datetime.date=''):
+                      created_after: Optional[datetime.date]=None,
+                      created_before: Optional[datetime.date]=None,
+                      updated_after: Optional[datetime.date]=None,
+                      updated_before: Optional[datetime.date]=None):
         """
         Retrieves a list of open issues
         """

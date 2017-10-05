@@ -24,7 +24,7 @@ class GitHubNotification(GitHubMixin, Notification):
     This class represents a Notification on GitHub.
     """
 
-    def __init__(self, token: GitHubToken, identifier: (str, int)):
+    def __init__(self, token: GitHubToken, identifier: Union[str, int]):
         """
         Creates a new GitHubNotification object with the given credentials.
         """

@@ -1,6 +1,7 @@
 """
 Represents a comment (or note) on GitLab.
 """
+from typing import Union
 from urllib.parse import quote_plus
 
 from datetime import datetime
@@ -16,7 +17,7 @@ class GitLabComment(GitLabMixin, Comment):
     and an author, which can ofcourse be deleted.
     """
 
-    def __init__(self, token: (GitLabOAuthToken, GitLabPrivateToken),
+    def __init__(self, token: Union[GitLabOAuthToken, GitLabPrivateToken],
                  repository: str, iid: str, comment_type: CommentType,
                  comment_id: int):
         """

@@ -2,6 +2,8 @@
 Contains the GitHub Repository implementation.
 """
 from datetime import datetime
+from typing import Optional
+from typing import Set
 
 from IGitt import ElementAlreadyExistsError, ElementDoesntExistError
 from IGitt.GitHub import delete, get, post, GitHubMixin, put
@@ -244,8 +246,8 @@ class GitHubRepository(GitHubMixin, Repository):
 
     def register_hook(self,
                       url: str,
-                      secret: str=None,
-                      events: {WebhookEvents}=None):
+                      secret: Optional[str]=None,
+                      events: Optional[Set[WebhookEvents]]=None):
         """
         Registers a webhook to the given URL. Use it as simple as:
 
@@ -367,8 +369,8 @@ class GitHubRepository(GitHubMixin, Repository):
         """
         return GitHubIssue.create(self._token, self.full_name, title, body)
 
-    def create_fork(self, organization: (str, None)=None,
-                    namespace: (str, None)=None):
+    def create_fork(self, organization: Optional[str]=None,
+                    namespace: Optional[str]=None):
         """
         Creates a fork of repository.
         """
@@ -388,9 +390,9 @@ class GitHubRepository(GitHubMixin, Repository):
         delete(self._token, self._url)
 
     def create_merge_request(self, title:str, base:str, head:str,
-                             body: (str, None)=None,
-                             target_project_id: (int, None)=None,
-                             target_project: (str, None) = None):
+                             body: Optional[str]=None,
+                             target_project_id: Optional[int]=None,
+                             target_project: Optional[str]= None):
         """
         Creates a merge request to that repository
         """
@@ -405,8 +407,8 @@ class GitHubRepository(GitHubMixin, Repository):
                                   json['number'])
 
     def create_file(self, path: str, message: str, content: str,
-                    branch: (str, None)=None, committer:(str, None)=None,
-                    author:(dict, None)=None, encoding:(str, None)=None):
+                    branch: Optional[str]=None, committer: Optional[str]=None,
+                    author: Optional[dict]=None, encoding: Optional[str]=None):
         """
         Creates a new file in the Repository
         """
@@ -423,10 +425,10 @@ class GitHubRepository(GitHubMixin, Repository):
 
     def _search(self,
                 issue_type,
-                created_after: datetime='',
-                created_before: datetime='',
-                updated_after: datetime='',
-                updated_before: datetime=''):
+                created_after: Optional[datetime]=None,
+                created_before: Optional[datetime]=None,
+                updated_after: Optional[datetime]=None,
+                updated_before: Optional[datetime]=None):
         """
         Search for issue based on type 'issue' or 'pr' and return a
         list of issues.
@@ -455,10 +457,10 @@ class GitHubRepository(GitHubMixin, Repository):
         return resp
 
     def search_mrs(self,
-                   created_after: datetime='',
-                   created_before: datetime='',
-                   updated_after: datetime='',
-                   updated_before: datetime=''):
+                   created_after: Optional[datetime]=None,
+                   created_before: Optional[datetime]=None,
+                   updated_after: Optional[datetime]=None,
+                   updated_before: Optional[datetime]=None):
         """
         List open pull request in the repository.
         """
@@ -472,10 +474,10 @@ class GitHubRepository(GitHubMixin, Repository):
             yield pull_request
 
     def search_issues(self,
-                      created_after: datetime='',
-                      created_before: datetime='',
-                      updated_after: datetime='',
-                      updated_before: datetime=''):
+                      created_after: Optional[datetime]=None,
+                      created_before: Optional[datetime]=None,
+                      updated_after: Optional[datetime]=None,
+                      updated_before: Optional[datetime]=None):
         """
         List open issues in the repository.
         """

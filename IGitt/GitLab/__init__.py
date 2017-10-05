@@ -3,6 +3,8 @@ This package contains the GitLab implementations of the interfaces in
 server.git.Interfaces. GitLab drops the support of API version 3 as of
 August 22, 2017. So, IGitt adopts v4 to stay future proof.
 """
+from typing import Optional
+from typing import Union
 import os
 import logging
 
@@ -96,8 +98,8 @@ class GitLabPrivateToken(Token):
         return {}
 
 
-def get(token: (GitLabOAuthToken, GitLabPrivateToken), url: str,
-        params: dict=frozenset(), headers: dict=frozenset()):
+def get(token: Union[GitLabOAuthToken, GitLabPrivateToken], url: str,
+        params: Optional[dict]=None, headers: Optional[dict]=None):
     """
     Queries GitLab on the given URL for data.
 
@@ -112,12 +114,14 @@ def get(token: (GitLabOAuthToken, GitLabPrivateToken), url: str,
         If the response indicates any problem.
     """
     return _fetch(BASE_URL, 'get', token,
-                  url, query_params={**dict(params), 'per_page': 100},
+                  url, query_params={**dict(params or {}), 'per_page': 100},
                   headers=headers)
 
 
-def post(token: (GitLabOAuthToken, GitLabPrivateToken), url: str, data: dict,
-         headers: dict=frozenset()):
+def post(token: Union[GitLabOAuthToken, GitLabPrivateToken],
+         url: str,
+         data: dict,
+         headers: Optional[dict]=None):
     """
     Posts the given data onto GitLab.
 
@@ -134,8 +138,10 @@ def post(token: (GitLabOAuthToken, GitLabPrivateToken), url: str, data: dict,
     return _fetch(BASE_URL, 'post', token, url, data, headers=headers)
 
 
-def put(token: (GitLabOAuthToken, GitLabPrivateToken), url: str, data: dict,
-        headers: dict=frozenset()):
+def put(token: Union[GitLabOAuthToken, GitLabPrivateToken],
+        url: str,
+        data: dict,
+        headers: Optional[dict]=None):
     """
     Puts the given data onto GitLab.
 
@@ -152,8 +158,8 @@ def put(token: (GitLabOAuthToken, GitLabPrivateToken), url: str, data: dict,
     return _fetch(BASE_URL, 'put', token, url, data, headers=headers)
 
 
-def delete(token: (GitLabOAuthToken, GitLabPrivateToken), url: str,
-           params: dict=None, headers: dict=frozenset()):
+def delete(token: Union[GitLabOAuthToken, GitLabPrivateToken], url: str,
+           params: Optional[dict]=None, headers: Optional[dict]=None):
     """
     Sends a delete request to the given URL on GitLab.
 

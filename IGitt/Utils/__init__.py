@@ -1,6 +1,7 @@
 """
 Provides useful stuff, generally!
 """
+from typing import Optional
 
 
 class PossiblyIncompleteDict:
@@ -59,7 +60,7 @@ class CachedDataMixin:
     default_data = {}
 
     @classmethod
-    def from_data(cls, data: dict=frozenset(), *args, **kwargs):
+    def from_data(cls, data: Optional[dict]=None, *args, **kwargs):
         """
         Returns an instance created from the provided data. No further requests
         are made.
@@ -68,7 +69,7 @@ class CachedDataMixin:
             When the args provided are insufficient to call __init__.
         """
         instance = cls(*args, **kwargs)
-        instance.data = data
+        instance.data = data or {}
 
         return instance
 

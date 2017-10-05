@@ -2,6 +2,7 @@
 Contains a representation of GitHub users.
 """
 from typing import Optional
+from typing import Union
 
 from IGitt.GitLab import GitLabMixin
 from IGitt.GitLab import GitLabOAuthToken
@@ -15,7 +16,7 @@ class GitLabUser(GitLabMixin, User):
     """
 
     def __init__(self,
-                 token: (GitLabPrivateToken, GitLabOAuthToken),
+                 token: Union[GitLabPrivateToken, GitLabOAuthToken],
                  identifier: Optional[int]=None):
         """
         Creates a new user.

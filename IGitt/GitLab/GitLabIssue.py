@@ -2,6 +2,7 @@
 This contains the Issue implementation for GitLab.
 """
 from datetime import datetime
+from typing import Union
 from urllib.parse import quote_plus
 
 from IGitt.GitLab import get, put, post, delete, GitLabMixin
@@ -16,7 +17,7 @@ class GitLabIssue(GitLabMixin, Issue):
     This class represents an issue on GitLab.
     """
 
-    def __init__(self, token: (GitLabOAuthToken, GitLabPrivateToken),
+    def __init__(self, token: Union[GitLabOAuthToken, GitLabPrivateToken],
                  repository: str, number: int):
         """
         Creates a new GitLabIssue with the given credentials.
@@ -380,7 +381,8 @@ class GitLabIssue(GitLabMixin, Issue):
         return self.data['state']
 
     @staticmethod
-    def create(token: (GitLabOAuthToken, GitLabPrivateToken), repository: str,
+    def create(token: Union[GitLabOAuthToken, GitLabPrivateToken],
+               repository: str,
                title: str, body: str=''):
         """
         Create a new issue with given title and body.

@@ -3,6 +3,7 @@ This package contains the GitHub implementations of the interfaces in
 server.git.Interfaces.
 """
 from datetime import datetime
+from typing import Optional
 import os
 import logging
 
@@ -72,8 +73,8 @@ class GitHubToken(Token):
 
 def get(token: Token,
         url: str,
-        params: dict=None,
-        headers: dict=frozenset()):
+        params: Optional[dict]=None,
+        headers: Optional[dict]=None):
     """
     Queries GitHub on the given URL for data.
 
@@ -91,7 +92,7 @@ def get(token: Token,
                   url, query_params=params, headers=headers)
 
 
-def post(token: Token, url: str, data: dict, headers: dict=frozenset()):
+def post(token: Token, url: str, data: dict, headers: Optional[dict]=None):
     """
     Posts the given data onto GitHub.
 
@@ -108,7 +109,7 @@ def post(token: Token, url: str, data: dict, headers: dict=frozenset()):
     return _fetch(BASE_URL, 'post', token, url, data, headers=headers)
 
 
-def patch(token: Token, url: str, data: dict, headers: dict=frozenset()):
+def patch(token: Token, url: str, data: dict, headers: Optional[dict]=None):
     """
     Patches the given data onto GitHub.
 
@@ -125,8 +126,10 @@ def patch(token: Token, url: str, data: dict, headers: dict=frozenset()):
     return _fetch(BASE_URL, 'patch', token, url, data, headers=headers)
 
 
-def delete(token: Token, url: str, params: dict=None,
-           headers: dict=frozenset()):
+def delete(token: Token,
+           url: str,
+           params: Optional[dict]=None,
+           headers: Optional[dict]=None):
     """
     Sends a delete request to the given URL on GitHub.
 
@@ -139,7 +142,7 @@ def delete(token: Token, url: str, params: dict=None,
     _fetch(BASE_URL, 'delete', token, url, params, headers=headers)
 
 
-def put(token: Token, url: str, data: dict, headers: dict=frozenset()):
+def put(token: Token, url: str, data: dict, headers: Optional[dict]=None):
     """
     Puts the given data onto GitHub.
 

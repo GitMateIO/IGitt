@@ -24,8 +24,8 @@ class GitLabNotification(GitLabMixin, Notification):
     This class represents a Notification on GitLab.
     """
     def __init__(self,
-                 token: (GitLabOAuthToken, GitLabPrivateToken),
-                 identifier: (str, int)):
+                 token: Union[GitLabOAuthToken, GitLabPrivateToken],
+                 identifier: Union[str, int]):
         """
         Creates a new GitLabNotification object with the given credentials.
         """
@@ -117,7 +117,7 @@ class GitLabNotification(GitLabMixin, Notification):
         return get(token, '/todos')
 
     @staticmethod
-    def fetch_all(token: (GitLabPrivateToken, GitLabOAuthToken)):
+    def fetch_all(token: Union[GitLabPrivateToken, GitLabOAuthToken]):
         """
         Returns the list of notifications for the user bearing the token.
         """

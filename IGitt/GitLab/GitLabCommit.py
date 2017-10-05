@@ -1,6 +1,8 @@
 """
 Contains the abstraction for a commit in GitLab.
 """
+from typing import Optional
+from typing import Union
 from urllib.parse import quote_plus
 
 from IGitt import ElementDoesntExistError
@@ -31,8 +33,11 @@ class GitLabCommit(GitLabMixin, Commit):
     Represents a commit on GitLab.
     """
 
-    def __init__(self, token: (GitLabOAuthToken, GitLabPrivateToken),
-                 repository: str, sha: (str, None), branch: (str, None)=None):
+    def __init__(self,
+                 token: Union[GitLabOAuthToken, GitLabPrivateToken],
+                 repository: str,
+                 sha: Optional[str],
+                 branch: Optional[str]=None):
         """
         Creates a new GitLabCommit object.
 
@@ -236,8 +241,8 @@ class GitLabCommit(GitLabMixin, Commit):
 
         raise ElementDoesntExistError('The file does not exist.')
 
-    def comment(self, message: str, file: (str, None)=None,
-                line: (int, None)=None, mr_number: int=None):
+    def comment(self, message: str, file: Optional[str]=None,
+                line: Optional[int]=None, mr_number: Optional[int]=None):
         """
         Places a comment on the commit.
 
