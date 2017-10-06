@@ -3,9 +3,13 @@ Contains a representation of GitHub users.
 """
 from typing import Optional
 
+from IGitt.GitHub import get
 from IGitt.GitHub import GitHubMixin
 from IGitt.GitHub import GitHubToken
 from IGitt.Interfaces.User import User
+
+
+PREVIEW_HEADER = {'Accept': 'application/vnd.github.machine-man-preview+json'}
 
 
 class GitHubUser(GitHubMixin, User):
@@ -37,3 +41,16 @@ class GitHubUser(GitHubMixin, User):
         Gets a unique id for the user that never changes.
         """
         return self.data['id']
+
+    def installed_repositories(self, installation_id: int):
+        """
+        List repositories that are accessible to the authenticated user for an
+        installation.
+        """
+        # Don't move to module code, causes circular dependencies
+        from IGitt.GitHub.GitHubRepository import GitHubRepository
+
+        repos = get(self._token, '/user/installations/{}/repositories'.format(
+            installation_id), headers=PREVIEW_HEADER)['repositories']
+        return {GitHubRepository.from_data(repo, self._token, repo['id'])
+                for repo in repos}

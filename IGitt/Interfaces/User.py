@@ -1,7 +1,10 @@
 """
 Holds the User class representing users on such a platform.
 """
+from typing import Set
+
 from IGitt.Interfaces import IGittObject
+from IGitt.Interfaces.Repository import Repository
 
 
 class User(IGittObject):
@@ -23,5 +26,13 @@ class User(IGittObject):
         """
         A unique ID used to identify the user. This is also given in oauth
         records.
+        """
+        raise NotImplementedError
+
+    def installed_repositories(self,
+                               installation_id: int) -> Set[Repository]:
+        """
+        List repositories that are accessible to the authenticated user for an
+        installation.
         """
         raise NotImplementedError

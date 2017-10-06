@@ -41,3 +41,12 @@ class GitLabUser(GitLabMixin, User):
         Gets a unique id for the user that never changes.
         """
         return self._id or self.data['id']
+
+    def installed_repositories(self, installation_id: int):
+        """
+        List repositories that are accessible to the authenticated user for an
+        installation.
+
+        GitLab doesn't support building installations yet.
+        """
+        raise NotImplementedError

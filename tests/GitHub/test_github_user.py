@@ -23,3 +23,8 @@ class GitHubUserTest(IGittTestCase):
     def test_username(self):
         self.assertEqual(self.sils.username, 'sils')
         self.assertEqual(self.user.username, 'gitmate-test-user')
+
+    def test_installed_repositories(self):
+        self.assertEqual({repo.full_name
+                          for repo in self.user.installed_repositories(57250)},
+                         {'gitmate-test-org/test'})
