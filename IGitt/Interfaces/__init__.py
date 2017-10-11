@@ -2,7 +2,6 @@
 This package contains an abstraction for a git repository.
 """
 from enum import Enum
-from functools import wraps
 from json.decoder import JSONDecodeError
 from typing import Optional
 
@@ -54,27 +53,6 @@ class Token:
         raise NotImplementedError
 
 
-def error_checked_request(func):
-    """
-    Create an error check wrapper augmenting ``func`` to perform the given
-    request and check the response for errors.
-    """
-    @wraps(func)
-    def wrap_func(*args, **kwargs):
-        """
-        Perform the given request and checks the response for errors.
-        Any arguments are passed through to ``func``.
-
-        :raises RuntimeError: If the response indicates any problem.
-        """
-        response, code = func(*args, **kwargs)
-        if code >= 300:
-            raise RuntimeError(response, code)
-
-        return response
-    return wrap_func
-
-
 def is_client_error(exception):
     """
     Returns true if the request responded with a client error.
@@ -83,7 +61,17 @@ def is_client_error(exception):
 
 
 @on_exception(expo, RuntimeError, max_tries=3, giveup=is_client_error)
-@error_checked_request
+def get_response(method, *args, **kwargs):
+    """
+    Sends a request and checks the response for errors, and retries unless it's
+    a HTTP client error.
+    """
+    response = method(*args, **kwargs)
+    if response.status_code >= 300:
+        raise RuntimeError(response, response.status_code)
+    return response
+
+
 def _fetch(base_url: str, req_type: str, token: Token, url: str,
            data: Optional[dict]=None, query_params: Optional[dict]=None,
            headers: Optional[dict]=None):
@@ -112,33 +100,33 @@ def _fetch(base_url: str, req_type: str, token: Token, url: str,
         'patch': session.patch,
         'delete': session.delete
     }
-    fetch_method = req_methods[req_type]
-    resp = fetch_method(base_url + url, json=data)
+    method = req_methods[req_type]
+    resp = get_response(method, base_url + url, json=data)
 
-    # Delete request returns no response
+    # DELETE request returns no response
     if not len(resp.text):
-        return [], resp.status_code
+        return []
 
-    while resp.links.get('next', False):
-        if isinstance(resp.json(), dict):
-            data_container.extend(resp.json()['items'])
-        else:
-            data_container.extend(resp.json())
-        resp = fetch_method(resp.links.get('next')['url'], json=data)
-
-    try:
-        if isinstance(resp.json(), dict):
-            if 'items' in resp.json():
-                data_container.extend(resp.json()['items'])
-                return data_container, resp.status_code
+    while True:
+        try:
+            if isinstance(resp.json(), dict) and 'items' not in resp.json():
+                # if response is a single object
+                return resp.json()
             else:
-                return resp.json(), resp.status_code
-    except JSONDecodeError:
-        return resp.text, resp.status_code
-
-    # Add the last node data
-    data_container.extend(resp.json())
-    return data_container, resp.status_code
+                if isinstance(resp.json(), list):
+                    # if response is a list of objects
+                    data_container.extend(resp.json())
+                elif 'items' in resp.json():
+                    # if response is a dict with `items` key
+                    data_container.extend(resp.json()['items'])
+                if not resp.links.get('next', False):
+                    return data_container
+                resp = get_response(method,
+                                    resp.links.get('next')['url'],
+                                    json=data)
+        except JSONDecodeError:
+            # if the request has a text response, for e.g. a git diff.
+            return resp.text
 
 
 class AccessLevel(Enum):

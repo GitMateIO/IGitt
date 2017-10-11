@@ -1,7 +1,6 @@
 import os
 
 from IGitt.Interfaces import _fetch
-from IGitt.Interfaces import error_checked_request
 from IGitt.GitHub import BASE_URL as GITHUB_BASE_URL
 from IGitt.GitHub import get
 from IGitt.GitHub import GitHubToken
@@ -9,6 +8,7 @@ from IGitt.GitHub import GitHubJsonWebToken
 from IGitt.GitHub import GitHubInstallationToken
 from IGitt.GitLab import BASE_URL as GITLAB_BASE_URL
 from IGitt.GitLab import GitLabOAuthToken
+from requests import Response
 
 from tests import IGittTestCase
 
@@ -33,15 +33,13 @@ class TestInterfacesInit(IGittTestCase):
         self.assertEqual(itoken.jwt, self.token)
 
     def test_raises_runtime_error(self):
-
-        @error_checked_request
-        def return_300():
-            return '', 300
-
         try:
-            return_300()
+            token = GitHubToken(os.environ.get('GITHUB_TEST_TOKEN', ''))
+            _fetch(GITHUB_BASE_URL, 'get', token,
+                   '/repos/gitmate-test-user/wontexist')
         except RuntimeError as ex:
-            self.assertEqual(ex.args, ('', 300))
+            self.assertIsInstance(ex.args[0], Response)
+            self.assertEqual(ex.args[1], 404)
 
     @staticmethod
     def test_get_query_gitlab():
