@@ -6,6 +6,7 @@ from functools import wraps
 from json.decoder import JSONDecodeError
 from typing import Optional
 
+from backoff import on_exception, expo
 from requests import Session
 
 
@@ -74,6 +75,11 @@ def error_checked_request(func):
     return wrap_func
 
 
+def is_fatal_error(e):
+    return 400 <= e.args[1] < 500
+
+
+@on_exception(expo, RuntimeError, max_tries=3, giveup=is_fatal_error)
 @error_checked_request
 def _fetch(base_url: str, req_type: str, token: Token, url: str,
            data: Optional[dict]=None, query_params: Optional[dict]=None,

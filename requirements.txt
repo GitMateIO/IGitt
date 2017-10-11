@@ -2,3 +2,4 @@ GitPython==1.0.1
 requests~=2.18.4
 cryptography~=2.0.3
 PyJWT~=1.5.3
+backoff~=1.4.3
