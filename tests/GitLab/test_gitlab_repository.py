@@ -90,6 +90,10 @@ class GitLabRepositoryTest(IGittTestCase):
     def test_issues(self):
         self.assertEqual(len(self.repo.issues), 14)
 
+    def test_filter_issues_scrape(self):
+        self.assertEqual(len(self.repo.filter_issues(scrape=True, state='all')),
+                         15)
+
     def test_create_fork(self):
         try:
             fork = self.fork_repo.create_fork(namespace='gitmate-test-user-2')

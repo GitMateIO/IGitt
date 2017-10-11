@@ -15,6 +15,8 @@ from IGitt.GitLab.GitLabOrganization import GitLabOrganization
 from IGitt.Interfaces.Repository import Repository
 from IGitt.Interfaces.Repository import WebhookEvents
 from IGitt.Utils import eliminate_none
+from bs4 import BeautifulSoup
+from requests import get as _get
 
 
 GL_WEBHOOK_TRANSLATION = {
@@ -373,13 +375,30 @@ class GitLabRepository(GitLabMixin, Repository):
                                              self.full_name, res['iid'])
                 for res in get(self._token, self._url + '/merge_requests')}
 
-    def filter_issues(self, state: str='opened') -> set:
+    def filter_issues(self, state: str='opened', scrape: bool=False) -> set:
         """
         Filters the issues from the repository based on properties.
 
         :param state: 'opened' or 'closed' or 'all'.
         """
         params = {'state': state}
+        if scrape:
+            issues = set()
+            url = self.data['web_url'] + '/issues'
+            while True:
+                resp = _get(url, {**params, **self._token.parameter})
+                soup = BeautifulSoup(resp.content, 'html.parser')
+                issues = issues | {li.get('url').split('/')[-1]
+                                   for li in soup.find_all('li',
+                                                           {'class': 'issue'})}
+                try:
+                    # fetch next page, if exists
+                    url = soup.find_all('a', {'rel': 'next'})[0].get('href')
+                except IndexError:
+                    break
+            return {GitLabIssue(self._token, self.full_name, iss_iid)
+                    for iss_iid in issues}
+
         return {GitLabIssue.from_data(res, self._token,
                                       self.full_name, res['iid'])
                 for res in get(self._token, self._url + '/issues', params)}
@@ -472,10 +491,8 @@ class GitLabRepository(GitLabMixin, Repository):
                             and merge_requests for merge requests.
         :return: List of issues/merge requests.
         """
-        query = dict()
         url = self._url + '/{}'.format(search_type)
-        query['state'] = 'opened'
-        return get(self._token, url, params=query)
+        return get(self._token, url, {'state': 'opened'})
 
 
     def search_issues(self,
