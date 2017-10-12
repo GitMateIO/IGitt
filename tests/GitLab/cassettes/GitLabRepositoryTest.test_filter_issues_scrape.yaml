@@ -18,17 +18,17 @@ interactions:
       Cache-Control: ['max-age=0, private, must-revalidate']
       Content-Length: ['2323']
       Content-Type: [application/json]
-      Date: ['Thu, 12 Oct 2017 13:33:58 GMT']
+      Date: ['Thu, 12 Oct 2017 14:38:31 GMT']
       Etag: [W/"612c4d4f223bd58021e8231a8fe67d74"]
       RateLimit-Limit: ['600']
-      RateLimit-Observed: ['1']
-      RateLimit-Remaining: ['599']
+      RateLimit-Observed: ['10']
+      RateLimit-Remaining: ['590']
       Server: [nginx]
       Strict-Transport-Security: [max-age=31536000]
       Vary: [Origin]
       X-Frame-Options: [SAMEORIGIN]
-      X-Request-Id: [7eb12f2c-5644-4699-ae61-fa3b4421eede]
-      X-Runtime: ['0.845954']
+      X-Request-Id: [b550f31a-4395-4ecf-9c26-88fa8431a067]
+      X-Runtime: ['0.247436']
     status: {code: 200, message: OK}
 - request:
     body: null
@@ -78,7 +78,7 @@ interactions:
         \ defer=\"defer\"></script>\n<script src=\"/assets/webpack/filtered_search.e86ff984638f56023135.bundle.js\"\
         \ defer=\"defer\"></script>\n<script src=\"/assets/webpack/issues.5f500fdc3f8ec958219c.bundle.js\"\
         \ defer=\"defer\"></script>\n\n\n<meta name=\"csrf-param\" content=\"authenticity_token\"\
-        \ />\n<meta name=\"csrf-token\" content=\"dOAWPPGTvP69zmYk7ZAb+KH7Y4NKNerzUcOr6RiGKTNYBQUwyuQNM2OAhNARmHc7hx3ZhwHJgqBtoS/K4GkSGA==\"\
+        \ />\n<meta name=\"csrf-token\" content=\"6QljHfwDLDHXWxMfPWtuNnwQcfh6kx+cTOzr1J/eW/eduT2YC7iuGZWvmdnqnhvrZnVJVF8m9or8PavPB7Vyrg==\"\
         \ />\n<meta content=\"origin-when-cross-origin\" name=\"referrer\">\n<meta\
         \ content=\"width=device-width, initial-scale=1, maximum-scale=1\" name=\"\
         viewport\">\n<meta content=\"#474D57\" name=\"theme-color\">\n<link rel=\"\
@@ -808,17 +808,443 @@ interactions:
           ''self'' https://gl-static.global.ssl.fastly.net wss://gitlab.com https://sentry.gitlap.com
           https://customers.gitlab.com; report-uri https://sentry-infra.gitlap.com/api/3/csp-report/?sentry_key=a664fdde83424b43a991f25fa7c78987']
       Content-Type: [text/html; charset=utf-8]
-      Date: ['Thu, 12 Oct 2017 13:34:02 GMT']
-      Etag: [W/"7f0bd9ed4721f0b9026cf9b0401af525"]
+      Date: ['Thu, 12 Oct 2017 14:38:33 GMT']
+      Etag: [W/"e360579a0e06eefdda7c03fa68cb5613"]
       Server: [nginx]
-      Set-Cookie: [_gitlab_session=11023cc0db49b96b40262350576f8ff6; path=/; secure;
+      Set-Cookie: [_gitlab_session=43c1fbad2b9a4a68cfac5d5055a42971; path=/; secure;
           HttpOnly]
       Strict-Transport-Security: [max-age=31536000]
       X-Content-Type-Options: [nosniff]
       X-Frame-Options: [DENY]
-      X-Request-Id: [22fe3fa9-5248-433d-bf75-bcd212b68bef]
-      X-Runtime: ['0.324257']
+      X-Request-Id: [a38a961c-061f-41e5-a75c-45ad5f9d7d4f]
+      X-Runtime: ['0.273151']
       X-Ua-Compatible: [IE=edge]
       X-Xss-Protection: [1; mode=block]
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/23?per_page=100
+  response:
+    body: {string: '{"id":5659413,"iid":23,"project_id":3439658,"title":"test title","description":"test
+        body","state":"opened","created_at":"2017-06-09T08:25:09.680Z","updated_at":"2017-07-29T15:13:07.355Z","labels":[],"milestone":null,"assignees":[],"author":{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"assignee":null,"user_notes_count":0,"upvotes":0,"downvotes":0,"due_date":null,"confidential":false,"weight":null,"web_url":"https://gitlab.com/gitmate-test-user/test/issues/23","time_stats":{"time_estimate":0,"total_time_spent":0,"human_time_estimate":null,"human_total_time_spent":null},"_links":{"self":"http://gitlab.com/api/v4/projects/3439658/issues/23","notes":"http://gitlab.com/api/v4/projects/3439658/issues/23/notes","award_emoji":"http://gitlab.com/api/v4/projects/3439658/issues/23/award_emoji","project":"http://gitlab.com/api/v4/projects/3439658"},"subscribed":true}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['1051']
+      Content-Type: [application/json]
+      Date: ['Thu, 12 Oct 2017 14:38:37 GMT']
+      Etag: [W/"b359308a30ef54680a211f59ff7c5e3e"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['11']
+      RateLimit-Remaining: ['589']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [b674c45a-b538-41bf-a2b1-ef3310589ab6]
+      X-Runtime: ['0.523447']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/26?per_page=100
+  response:
+    body: {string: '{"id":5659734,"iid":26,"project_id":3439658,"title":"title","description":"body","state":"opened","created_at":"2017-06-09T09:09:29.600Z","updated_at":"2017-07-29T15:14:10.245Z","labels":[],"milestone":null,"assignees":[],"author":{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"assignee":null,"user_notes_count":0,"upvotes":0,"downvotes":0,"due_date":null,"confidential":false,"weight":null,"web_url":"https://gitlab.com/gitmate-test-user/test/issues/26","time_stats":{"time_estimate":0,"total_time_spent":0,"human_time_estimate":null,"human_total_time_spent":null},"_links":{"self":"http://gitlab.com/api/v4/projects/3439658/issues/26","notes":"http://gitlab.com/api/v4/projects/3439658/issues/26/notes","award_emoji":"http://gitlab.com/api/v4/projects/3439658/issues/26/award_emoji","project":"http://gitlab.com/api/v4/projects/3439658"},"subscribed":true}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['1041']
+      Content-Type: [application/json]
+      Date: ['Thu, 12 Oct 2017 14:38:39 GMT']
+      Etag: [W/"13ad157308ec80532d383b64f08ddfd2"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['12']
+      RateLimit-Remaining: ['588']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [69e8b605-b95a-4937-8379-7fcbfb7f6779]
+      X-Runtime: ['0.208922']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/21?per_page=100
+  response:
+    body: {string: '{"id":5658796,"iid":21,"project_id":3439658,"title":"test title","description":"test
+        body","state":"opened","created_at":"2017-06-09T06:56:27.838Z","updated_at":"2017-07-29T15:13:43.227Z","labels":[],"milestone":null,"assignees":[],"author":{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"assignee":null,"user_notes_count":0,"upvotes":0,"downvotes":0,"due_date":null,"confidential":false,"weight":null,"web_url":"https://gitlab.com/gitmate-test-user/test/issues/21","time_stats":{"time_estimate":0,"total_time_spent":0,"human_time_estimate":null,"human_total_time_spent":null},"_links":{"self":"http://gitlab.com/api/v4/projects/3439658/issues/21","notes":"http://gitlab.com/api/v4/projects/3439658/issues/21/notes","award_emoji":"http://gitlab.com/api/v4/projects/3439658/issues/21/award_emoji","project":"http://gitlab.com/api/v4/projects/3439658"},"subscribed":true}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['1051']
+      Content-Type: [application/json]
+      Date: ['Thu, 12 Oct 2017 14:38:42 GMT']
+      Etag: [W/"11caef3a821ff9b8b9addc836a796899"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['13']
+      RateLimit-Remaining: ['587']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [ddb1cc21-bf91-47d0-9d25-0dccca85a079]
+      X-Runtime: ['0.201786']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/31?per_page=100
+  response:
+    body: {string: '{"id":5795065,"iid":31,"project_id":3439658,"title":"test title","description":"test
+        body","state":"opened","created_at":"2017-06-21T06:16:05.391Z","updated_at":"2017-07-28T20:00:28.071Z","labels":[],"milestone":null,"assignees":[],"author":{"id":707601,"name":"Meet
+        Mangukiya","username":"meetmangukiya","state":"active","avatar_url":"https://gitlab.com/uploads/-/system/user/avatar/707601/avatar.png","web_url":"https://gitlab.com/meetmangukiya"},"assignee":null,"user_notes_count":0,"upvotes":0,"downvotes":0,"due_date":null,"confidential":false,"weight":null,"web_url":"https://gitlab.com/gitmate-test-user/test/issues/31","time_stats":{"time_estimate":0,"total_time_spent":0,"human_time_estimate":null,"human_total_time_spent":null},"_links":{"self":"http://gitlab.com/api/v4/projects/3439658/issues/31","notes":"http://gitlab.com/api/v4/projects/3439658/issues/31/notes","award_emoji":"http://gitlab.com/api/v4/projects/3439658/issues/31/award_emoji","project":"http://gitlab.com/api/v4/projects/3439658"},"subscribed":false}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['1031']
+      Content-Type: [application/json]
+      Date: ['Thu, 12 Oct 2017 14:38:44 GMT']
+      Etag: [W/"b6e797058fe51709dd3b922c66f03652"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['14']
+      RateLimit-Remaining: ['586']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [a39bf96b-5aa5-4d6d-9b50-b66b82bb2567]
+      X-Runtime: ['0.245258']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/1?per_page=100
+  response:
+    body: {string: '{"id":5613608,"iid":1,"project_id":3439658,"title":"new title","description":"I
+        am a serious issue. Fix me soon, dude.","state":"opened","created_at":"2017-06-05T05:19:51.840Z","updated_at":"2017-06-09T08:25:34.687Z","labels":["dem"],"milestone":null,"assignees":[{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"}],"author":{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"assignee":{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"user_notes_count":15,"upvotes":0,"downvotes":0,"due_date":null,"confidential":false,"weight":null,"web_url":"https://gitlab.com/gitmate-test-user/test/issues/1","time_stats":{"time_estimate":0,"total_time_spent":0,"human_time_estimate":null,"human_total_time_spent":null},"_links":{"self":"http://gitlab.com/api/v4/projects/3439658/issues/1","notes":"http://gitlab.com/api/v4/projects/3439658/issues/1/notes","award_emoji":"http://gitlab.com/api/v4/projects/3439658/issues/1/award_emoji","project":"http://gitlab.com/api/v4/projects/3439658"},"subscribed":true}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['1534']
+      Content-Type: [application/json]
+      Date: ['Thu, 12 Oct 2017 14:38:51 GMT']
+      Etag: [W/"f6a7d082344ed0d59ebb2f7ab36f221c"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['15']
+      RateLimit-Remaining: ['585']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [ee648561-413e-41a2-9408-de18d682cc41]
+      X-Runtime: ['4.507931']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/27?per_page=100
+  response:
+    body: {string: '{"id":5685687,"iid":27,"project_id":3439658,"title":"test issue","description":"","state":"opened","created_at":"2017-06-12T18:14:54.571Z","updated_at":"2017-09-28T16:26:51.379Z","labels":[],"milestone":null,"assignees":[],"author":{"id":707601,"name":"Meet
+        Mangukiya","username":"meetmangukiya","state":"active","avatar_url":"https://gitlab.com/uploads/-/system/user/avatar/707601/avatar.png","web_url":"https://gitlab.com/meetmangukiya"},"assignee":null,"user_notes_count":0,"upvotes":0,"downvotes":0,"due_date":null,"confidential":false,"weight":null,"web_url":"https://gitlab.com/gitmate-test-user/test/issues/27","time_stats":{"time_estimate":0,"total_time_spent":0,"human_time_estimate":null,"human_total_time_spent":null},"_links":{"self":"http://gitlab.com/api/v4/projects/3439658/issues/27","notes":"http://gitlab.com/api/v4/projects/3439658/issues/27/notes","award_emoji":"http://gitlab.com/api/v4/projects/3439658/issues/27/award_emoji","project":"http://gitlab.com/api/v4/projects/3439658"},"subscribed":true}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['1021']
+      Content-Type: [application/json]
+      Date: ['Thu, 12 Oct 2017 14:38:53 GMT']
+      Etag: [W/"c7ffb8fed2e5e7c097ad60896350c4c5"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['16']
+      RateLimit-Remaining: ['584']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [d5b4e0fc-304f-4d2d-8d4c-62a3ba0c7742]
+      X-Runtime: ['0.361843']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/32?per_page=100
+  response:
+    body: {string: '{"id":6002929,"iid":32,"project_id":3439658,"title":"another one","description":"","state":"opened","created_at":"2017-07-07T10:38:34.299Z","updated_at":"2017-07-07T10:38:57.787Z","labels":[],"milestone":null,"assignees":[],"author":{"id":104269,"name":"Lasse
+        Schuirmann","username":"sils","state":"active","avatar_url":"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80&d=identicon","web_url":"https://gitlab.com/sils"},"assignee":null,"user_notes_count":3,"upvotes":0,"downvotes":0,"due_date":null,"confidential":false,"weight":null,"web_url":"https://gitlab.com/gitmate-test-user/test/issues/32","time_stats":{"time_estimate":0,"total_time_spent":0,"human_time_estimate":null,"human_total_time_spent":null},"_links":{"self":"http://gitlab.com/api/v4/projects/3439658/issues/32","notes":"http://gitlab.com/api/v4/projects/3439658/issues/32/notes","award_emoji":"http://gitlab.com/api/v4/projects/3439658/issues/32/award_emoji","project":"http://gitlab.com/api/v4/projects/3439658"},"subscribed":false}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['1026']
+      Content-Type: [application/json]
+      Date: ['Thu, 12 Oct 2017 14:38:56 GMT']
+      Etag: [W/"ae443d990ecea91d163d1cba80449551"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['17']
+      RateLimit-Remaining: ['583']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [f06f7f0c-6e43-4e55-bc03-5c24078458ea]
+      X-Runtime: ['0.286211']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/34?per_page=100
+  response:
+    body: {string: '{"id":6935337,"iid":34,"project_id":3439658,"title":"title","description":"body","state":"opened","created_at":"2017-09-24T17:52:59.375Z","updated_at":"2017-09-24T17:52:59.375Z","labels":[],"milestone":null,"assignees":[],"author":{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"assignee":null,"user_notes_count":0,"upvotes":0,"downvotes":0,"due_date":null,"confidential":false,"weight":null,"web_url":"https://gitlab.com/gitmate-test-user/test/issues/34","time_stats":{"time_estimate":0,"total_time_spent":0,"human_time_estimate":null,"human_total_time_spent":null},"_links":{"self":"http://gitlab.com/api/v4/projects/3439658/issues/34","notes":"http://gitlab.com/api/v4/projects/3439658/issues/34/notes","award_emoji":"http://gitlab.com/api/v4/projects/3439658/issues/34/award_emoji","project":"http://gitlab.com/api/v4/projects/3439658"},"subscribed":true}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['1041']
+      Content-Type: [application/json]
+      Date: ['Thu, 12 Oct 2017 14:38:58 GMT']
+      Etag: [W/"23d9b264dbd66ddc5c9b979292285569"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['18']
+      RateLimit-Remaining: ['582']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [8827435e-a504-401f-a247-fa00841d762d]
+      X-Runtime: ['0.201703']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/2?per_page=100
+  response:
+    body: {string: '{"id":5613896,"iid":2,"project_id":3439658,"title":"Don''t assign
+        me to anyone!","description":"I wish I stay alone and no one disturbs me.","state":"opened","created_at":"2017-06-05T06:17:38.486Z","updated_at":"2017-09-30T12:14:48.936Z","labels":[],"milestone":null,"assignees":[],"author":{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"assignee":null,"user_notes_count":1,"upvotes":0,"downvotes":0,"due_date":null,"confidential":false,"weight":null,"web_url":"https://gitlab.com/gitmate-test-user/test/issues/2","time_stats":{"time_estimate":0,"total_time_spent":0,"human_time_estimate":null,"human_total_time_spent":null},"_links":{"self":"http://gitlab.com/api/v4/projects/3439658/issues/2","notes":"http://gitlab.com/api/v4/projects/3439658/issues/2/notes","award_emoji":"http://gitlab.com/api/v4/projects/3439658/issues/2/award_emoji","project":"http://gitlab.com/api/v4/projects/3439658"},"subscribed":true}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['1096']
+      Content-Type: [application/json]
+      Date: ['Thu, 12 Oct 2017 14:39:00 GMT']
+      Etag: [W/"7a6f50957b1940e0caa8846e528a82a7"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['19']
+      RateLimit-Remaining: ['581']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [170d4296-1910-4180-98d7-2f8826db354f]
+      X-Runtime: ['0.273990']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/4?per_page=100
+  response:
+    body: {string: '{"id":5615444,"iid":4,"project_id":3439658,"title":"Time is important
+        here.","description":"Don''t update me, never!","state":"opened","created_at":"2017-06-05T09:45:20.678Z","updated_at":"2017-06-05T09:45:56.115Z","labels":[],"milestone":null,"assignees":[],"author":{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"assignee":null,"user_notes_count":1,"upvotes":0,"downvotes":0,"due_date":null,"confidential":false,"weight":null,"web_url":"https://gitlab.com/gitmate-test-user/test/issues/4","time_stats":{"time_estimate":0,"total_time_spent":0,"human_time_estimate":null,"human_total_time_spent":null},"_links":{"self":"http://gitlab.com/api/v4/projects/3439658/issues/4","notes":"http://gitlab.com/api/v4/projects/3439658/issues/4/notes","award_emoji":"http://gitlab.com/api/v4/projects/3439658/issues/4/award_emoji","project":"http://gitlab.com/api/v4/projects/3439658"},"subscribed":true}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['1073']
+      Content-Type: [application/json]
+      Date: ['Thu, 12 Oct 2017 14:39:02 GMT']
+      Etag: [W/"187a4b3d3fb9a7020e387bcb991493cc"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['20']
+      RateLimit-Remaining: ['580']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [8e697a65-6bff-423f-8d53-8bf9b7387c4e]
+      X-Runtime: ['0.191768']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/30?per_page=100
+  response:
+    body: {string: '{"id":5741041,"iid":30,"project_id":3439658,"title":"comment change
+        test","description":"issue to test comment updation","state":"opened","created_at":"2017-06-17T14:45:01.839Z","updated_at":"2017-09-24T11:36:31.140Z","labels":[],"milestone":null,"assignees":[],"author":{"id":683065,"name":"Arjun
+        Singh Yadav","username":"arjunsinghy96","state":"active","avatar_url":"https://gitlab.com/uploads/-/system/user/avatar/683065/avatar.png","web_url":"https://gitlab.com/arjunsinghy96"},"assignee":null,"user_notes_count":2,"upvotes":0,"downvotes":0,"due_date":null,"confidential":false,"weight":null,"web_url":"https://gitlab.com/gitmate-test-user/test/issues/30","time_stats":{"time_estimate":0,"total_time_spent":0,"human_time_estimate":null,"human_total_time_spent":null},"_links":{"self":"http://gitlab.com/api/v4/projects/3439658/issues/30","notes":"http://gitlab.com/api/v4/projects/3439658/issues/30/notes","award_emoji":"http://gitlab.com/api/v4/projects/3439658/issues/30/award_emoji","project":"http://gitlab.com/api/v4/projects/3439658"},"subscribed":false}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['1064']
+      Content-Type: [application/json]
+      Date: ['Thu, 12 Oct 2017 14:39:06 GMT']
+      Etag: [W/"52d247ab5914bd812cc3f89aa091a66b"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['21']
+      RateLimit-Remaining: ['579']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [fe139eb6-b7b1-4f54-9514-470332cf84c4]
+      X-Runtime: ['0.194027']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/29?per_page=100
+  response:
+    body: {string: '{"id":5729804,"iid":29,"project_id":3439658,"title":"testing again","description":"lasse,
+        please don''t mind my internet connection..","state":"closed","created_at":"2017-06-16T10:37:24.767Z","updated_at":"2017-06-19T05:21:15.985Z","labels":[],"milestone":null,"assignees":[{"id":889700,"name":"Naveen
+        Kumar Sangi","username":"nkprince007","state":"active","avatar_url":"https://gitlab.com/uploads/-/system/user/avatar/889700/avatar.png","web_url":"https://gitlab.com/nkprince007"}],"author":{"id":889700,"name":"Naveen
+        Kumar Sangi","username":"nkprince007","state":"active","avatar_url":"https://gitlab.com/uploads/-/system/user/avatar/889700/avatar.png","web_url":"https://gitlab.com/nkprince007"},"assignee":{"id":889700,"name":"Naveen
+        Kumar Sangi","username":"nkprince007","state":"active","avatar_url":"https://gitlab.com/uploads/-/system/user/avatar/889700/avatar.png","web_url":"https://gitlab.com/nkprince007"},"user_notes_count":4,"upvotes":0,"downvotes":0,"due_date":null,"confidential":false,"weight":null,"web_url":"https://gitlab.com/gitmate-test-user/test/issues/29","time_stats":{"time_estimate":0,"total_time_spent":0,"human_time_estimate":null,"human_total_time_spent":null},"_links":{"self":"http://gitlab.com/api/v4/projects/3439658/issues/29","notes":"http://gitlab.com/api/v4/projects/3439658/issues/29/notes","award_emoji":"http://gitlab.com/api/v4/projects/3439658/issues/29/award_emoji","project":"http://gitlab.com/api/v4/projects/3439658"},"subscribed":false}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['1484']
+      Content-Type: [application/json]
+      Date: ['Thu, 12 Oct 2017 14:39:08 GMT']
+      Etag: [W/"2156e7638dda4594347da4c4a9caf893"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['22']
+      RateLimit-Remaining: ['578']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [75c33500-01bf-4883-bb07-9c2776a3e759]
+      X-Runtime: ['0.300384']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/3?per_page=100
+  response:
+    body: {string: '{"id":5613911,"iid":3,"project_id":3439658,"title":"new title","description":"Stop
+        trying to be badass.","state":"opened","created_at":"2017-06-05T06:19:06.379Z","updated_at":"2017-09-28T17:46:48.584Z","labels":["dem"],"milestone":null,"assignees":[],"author":{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"assignee":null,"user_notes_count":10,"upvotes":0,"downvotes":0,"due_date":null,"confidential":false,"weight":null,"web_url":"https://gitlab.com/gitmate-test-user/test/issues/3","time_stats":{"time_estimate":0,"total_time_spent":0,"human_time_estimate":null,"human_total_time_spent":null},"_links":{"self":"http://gitlab.com/api/v4/projects/3439658/issues/3","notes":"http://gitlab.com/api/v4/projects/3439658/issues/3/notes","award_emoji":"http://gitlab.com/api/v4/projects/3439658/issues/3/award_emoji","project":"http://gitlab.com/api/v4/projects/3439658"},"subscribed":true}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['1067']
+      Content-Type: [application/json]
+      Date: ['Thu, 12 Oct 2017 14:39:12 GMT']
+      Etag: [W/"c7cb7913e3f485e15b5f6f2e2906a585"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['23']
+      RateLimit-Remaining: ['577']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [9647c4df-967f-4143-b326-b529809abe0f]
+      X-Runtime: ['0.618388']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/22?per_page=100
+  response:
+    body: {string: '{"id":5659126,"iid":22,"project_id":3439658,"title":"test title","description":"test
+        body","state":"opened","created_at":"2017-06-09T07:44:51.404Z","updated_at":"2017-07-29T15:14:00.123Z","labels":[],"milestone":null,"assignees":[],"author":{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"assignee":null,"user_notes_count":0,"upvotes":0,"downvotes":0,"due_date":null,"confidential":false,"weight":null,"web_url":"https://gitlab.com/gitmate-test-user/test/issues/22","time_stats":{"time_estimate":0,"total_time_spent":0,"human_time_estimate":null,"human_total_time_spent":null},"_links":{"self":"http://gitlab.com/api/v4/projects/3439658/issues/22","notes":"http://gitlab.com/api/v4/projects/3439658/issues/22/notes","award_emoji":"http://gitlab.com/api/v4/projects/3439658/issues/22/award_emoji","project":"http://gitlab.com/api/v4/projects/3439658"},"subscribed":true}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['1051']
+      Content-Type: [application/json]
+      Date: ['Thu, 12 Oct 2017 14:39:15 GMT']
+      Etag: [W/"a443631d8188fd9896ea81f3b05ad184"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['5']
+      RateLimit-Remaining: ['595']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [83d9b432-66f0-41c3-bd91-894ea2ad6e7f]
+      X-Runtime: ['0.333575']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/28?per_page=100
+  response:
+    body: {string: '{"id":5729749,"iid":28,"project_id":3439658,"title":"print test
+        issue","description":"Hello this is a really important issue","state":"opened","created_at":"2017-06-16T10:29:56.766Z","updated_at":"2017-09-24T17:37:53.726Z","labels":[],"milestone":null,"assignees":[{"id":889700,"name":"Naveen
+        Kumar Sangi","username":"nkprince007","state":"active","avatar_url":"https://gitlab.com/uploads/-/system/user/avatar/889700/avatar.png","web_url":"https://gitlab.com/nkprince007"}],"author":{"id":889700,"name":"Naveen
+        Kumar Sangi","username":"nkprince007","state":"active","avatar_url":"https://gitlab.com/uploads/-/system/user/avatar/889700/avatar.png","web_url":"https://gitlab.com/nkprince007"},"assignee":{"id":889700,"name":"Naveen
+        Kumar Sangi","username":"nkprince007","state":"active","avatar_url":"https://gitlab.com/uploads/-/system/user/avatar/889700/avatar.png","web_url":"https://gitlab.com/nkprince007"},"user_notes_count":0,"upvotes":0,"downvotes":0,"due_date":null,"confidential":false,"weight":null,"web_url":"https://gitlab.com/gitmate-test-user/test/issues/28","time_stats":{"time_estimate":0,"total_time_spent":0,"human_time_estimate":null,"human_total_time_spent":null},"_links":{"self":"http://gitlab.com/api/v4/projects/3439658/issues/28","notes":"http://gitlab.com/api/v4/projects/3439658/issues/28/notes","award_emoji":"http://gitlab.com/api/v4/projects/3439658/issues/28/award_emoji","project":"http://gitlab.com/api/v4/projects/3439658"},"subscribed":false}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['1476']
+      Content-Type: [application/json]
+      Date: ['Thu, 12 Oct 2017 14:39:17 GMT']
+      Etag: [W/"aeda588a2561abb90c12c485bae10633"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['24']
+      RateLimit-Remaining: ['576']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [1c0c4c70-d4ed-4c65-9ac2-1ada748afe31]
+      X-Runtime: ['0.272631']
     status: {code: 200, message: OK}
 version: 1

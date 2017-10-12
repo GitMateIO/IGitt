@@ -8,7 +8,7 @@ from typing import Union
 from urllib.parse import quote_plus
 
 from IGitt import ElementAlreadyExistsError, ElementDoesntExistError
-from IGitt.GitLab import delete, get, post, GitLabMixin
+from IGitt.GitLab import delete, get, post, GitLabMixin, GL_INSTANCE_URL
 from IGitt.GitLab import GitLabOAuthToken, GitLabPrivateToken
 from IGitt.GitLab.GitLabIssue import GitLabIssue
 from IGitt.GitLab.GitLabOrganization import GitLabOrganization
@@ -393,7 +393,8 @@ class GitLabRepository(GitLabMixin, Repository):
                                                            {'class': 'issue'})}
                 try:
                     # fetch next page, if exists
-                    url = soup.find_all('a', {'rel': 'next'})[0].get('href')
+                    url = (GL_INSTANCE_URL +
+                           soup.find_all('a', {'rel': 'next'})[0].get('href'))
                 except IndexError:
                     break
             return {GitLabIssue(self._token, self.full_name, iss_iid)

@@ -91,8 +91,20 @@ class GitLabRepositoryTest(IGittTestCase):
         self.assertEqual(len(self.repo.issues), 14)
 
     def test_filter_issues_scrape(self):
-        self.assertEqual(len(self.repo.filter_issues(scrape=True, state='all')),
-                         15)
+        issues = self.repo.filter_issues('all', True)
+        titles = {iss.title for iss in issues}
+        self.assertEqual(len(issues), 15)
+        self.assertEqual(titles, {'test title',
+                                  'title',
+                                  'test issue',
+                                  'another one',
+                                  "Don't assign me to anyone!",
+                                  'Time is important here.',
+                                  'comment change test',
+                                  'testing again',
+                                  'new title',
+                                  'print test issue'})
+
 
     def test_create_fork(self):
         try:
