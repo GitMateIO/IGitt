@@ -91,7 +91,7 @@ class GitLabRepositoryTest(IGittTestCase):
         self.assertEqual(len(self.repo.issues), 14)
 
     def test_filter_issues_scrape(self):
-        issues = self.repo.filter_issues('all', True)
+        issues = self.repo.filter_issues('all', True, 1)
         titles = {iss.title for iss in issues}
         self.assertEqual(len(issues), 15)
         self.assertEqual(titles, {'test title',
@@ -105,6 +105,13 @@ class GitLabRepositoryTest(IGittTestCase):
                                   'new title',
                                   'print test issue'})
 
+    def test_filter_issues_scrape_pages(self):
+        repo = GitLabRepository(
+            self.token,
+            'gitmate/open-source/gitmate-2'
+        )
+        issues = repo.filter_issues('all', True, 1)
+        self.assertEqual(len(issues), 190)
 
     def test_create_fork(self):
         try:
