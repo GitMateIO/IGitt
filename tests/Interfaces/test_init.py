@@ -8,7 +8,6 @@ from IGitt.GitHub import GitHubJsonWebToken
 from IGitt.GitHub import GitHubInstallationToken
 from IGitt.GitLab import BASE_URL as GITLAB_BASE_URL
 from IGitt.GitLab import GitLabOAuthToken
-from requests import Response
 
 from tests import IGittTestCase
 
@@ -38,7 +37,10 @@ class TestInterfacesInit(IGittTestCase):
             _fetch(GITHUB_BASE_URL, 'get', token,
                    '/repos/gitmate-test-user/wontexist')
         except RuntimeError as ex:
-            self.assertIsInstance(ex.args[0], Response)
+            self.assertEqual(
+                ex.args[0],
+                '{"message":"Not Found",'
+                '"documentation_url":"https://developer.github.com/v3"}')
             self.assertEqual(ex.args[1], 404)
 
     @staticmethod

@@ -68,7 +68,7 @@ def get_response(method, *args, **kwargs):
     """
     response = method(*args, **kwargs)
     if response.status_code >= 300:
-        raise RuntimeError(response, response.status_code)
+        raise RuntimeError(response.text, response.status_code)
     return response
 
 
