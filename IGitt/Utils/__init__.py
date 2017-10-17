@@ -11,8 +11,27 @@ class PossiblyIncompleteDict:
     """
     def __init__(self, data: dict, refresh) -> None:
         self.may_need_refresh = True
-        self._data = data
+        self._data = self._del_nul(data)
         self._refresh = refresh
+
+    @staticmethod
+    def _del_nul(elem):
+        """
+        elegantly tries to remove invalid \x00 chars from
+        strings, strings in lists, strings in dicts.
+        """
+        if isinstance(elem, str):
+            return elem.replace(chr(0), '')
+
+        elif isinstance(elem, dict):
+            return {key: PossiblyIncompleteDict._del_nul(value)
+                    for key, value in elem.items()}
+
+        elif isinstance(elem, list):
+            return [PossiblyIncompleteDict._del_nul(item)
+                    for item in elem]
+
+        return elem
 
     def __getitem__(self, item):
         if item in self._data:
@@ -31,7 +50,7 @@ class PossiblyIncompleteDict:
         """
         Updates the dict with provided dict.
         """
-        self._data.update(value)
+        self._data.update(self._del_nul(value))
 
     def maybe_refresh(self):
         """
@@ -44,7 +63,7 @@ class PossiblyIncompleteDict:
         """
         Refreshes data unconditionally.
         """
-        self._data = self._refresh()
+        self._data = self._del_nul(self._refresh())
         self.may_need_refresh = False
 
 
