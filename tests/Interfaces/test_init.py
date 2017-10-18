@@ -24,7 +24,7 @@ class TestInterfacesInit(IGittTestCase):
         self.assertEqual(data['name'], 'gitmate-test-app')
 
     def test_github_installation_token(self):
-        itoken = GitHubInstallationToken(57250, self.token)
+        itoken = GitHubInstallationToken(60731, self.token)
         data = get(itoken, '/installation/repositories')
         self.assertEqual(data['total_count'], 1)
         self.assertEqual(data['repositories'][0]['full_name'],

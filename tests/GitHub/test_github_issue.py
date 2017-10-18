@@ -57,7 +57,7 @@ class GitHubIssueTest(IGittTestCase):
         self.assertEqual(self.iss.created,
                          datetime.datetime(2017, 6, 6, 9, 36, 15))
         self.assertEqual(self.iss.updated,
-                         datetime.datetime(2017, 9, 24, 18, 35, 2))
+                         datetime.datetime(2017, 10, 18, 8, 31, 13))
 
     def test_state(self):
         self.iss.close()

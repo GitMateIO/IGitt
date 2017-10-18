@@ -56,7 +56,7 @@ class GitHubMergeRequestTest(IGittTestCase):
         self.assertEqual(self.mr.created, datetime.datetime(
             2016, 1, 24, 19, 47, 19))
         self.assertEqual(self.mr.updated, datetime.datetime(
-            2017, 9, 24, 18, 39, 2))
+            2017, 10, 18, 8, 34, 21))
 
     def test_affected_files(self):
         self.assertEqual(self.mr.affected_files, {'README.md'})

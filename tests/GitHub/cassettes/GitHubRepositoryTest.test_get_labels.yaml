@@ -7,13 +7,14 @@ interactions:
       Connection: [keep-alive]
       User-Agent: [IGitt]
     method: GET
-    uri: https://api.github.com/repos/gitmate-test-user/test/labels
+    uri: https://api.github.com/repos/gitmate-test-user/test/labels?per_page=100
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAA63OwQqDMAzG8XfJuRplwrSvMnaIGmehXUubnsbefe1JdhoDyeXPdwi/2wvMCvrS
-        D90wTmOnIEcLGnaRkDQiBdM+jOx5bhfvMHLwCcvgSLgRTtLkxBFroaWZbUICBU9yXL7UXLz1sTSv
-        9cqw8kbZCuiNbOK3+hb0JwjmQ1DzP8F1OkGwHIKavwT3D6H3vfiHAQAA
+        H4sIAAAAAAAAA63OwQ6CMAyA4XfpGRg4DLBXMR4KK0KyObJ1J+O7u8UD8aQmpJe/PTTf5QGrBiWb
+        tm77oa8LiN6AgoV5C0oI3NbqtvISx2pyVnjaXBDpYJGpZApcxkBe5BIGRzJBIBRwR0vpS87JGedT
+        k86TDppmjIZBzWgCPYtPQXOAYNwFOf8TdMMBgmkX5PxR0J1kW5+llAcINNnd8F6+Ka4vHVGQZQ0C
+        AAA=
     headers:
       Access-Control-Allow-Origin: ['*']
       Access-Control-Expose-Headers: ['ETag, Link, X-GitHub-OTP, X-RateLimit-Limit,
@@ -23,23 +24,24 @@ interactions:
       Content-Encoding: [gzip]
       Content-Security-Policy: [default-src 'none']
       Content-Type: [application/json; charset=utf-8]
-      Date: ['Sun, 24 Sep 2017 19:12:36 GMT']
-      ETag: [W/"c9f82d5039c119817b46f1296032238b"]
+      Date: ['Wed, 18 Oct 2017 08:40:19 GMT']
+      ETag: [W/"2c60d6d02a13a3da33f4da1bbb35fbab"]
+      Expect-CT: ['max-age=2592000; report-uri="https://api.github.com/_private/browser/errors"']
       Server: [GitHub.com]
       Status: [200 OK]
       Strict-Transport-Security: [max-age=31536000; includeSubdomains; preload]
-      Vary: ['Accept, Authorization, Cookie, X-GitHub-OTP', Accept-Encoding]
+      Vary: ['Accept, Authorization, Cookie, X-GitHub-OTP']
       X-Accepted-OAuth-Scopes: [repo]
       X-Content-Type-Options: [nosniff]
       X-Frame-Options: [deny]
       X-GitHub-Media-Type: [github.v3; format=json]
-      X-GitHub-Request-Id: ['483C:D7DE:2D77603:3A21C4E:59C803A3']
-      X-OAuth-Scopes: ['admin:org, admin:org_hook, admin:public_key, admin:repo_hook,
-          gist, notifications, repo, user']
+      X-GitHub-Request-Id: ['B55E:3E40:237B4A1:4B4CDBA:59E71372']
+      X-OAuth-Scopes: ['admin:gpg_key, admin:org, admin:org_hook, admin:public_key,
+          admin:repo_hook, gist, notifications, repo, user']
       X-RateLimit-Limit: ['5000']
-      X-RateLimit-Remaining: ['4818']
-      X-RateLimit-Reset: ['1506280502']
-      X-Runtime-rack: ['0.032330']
+      X-RateLimit-Remaining: ['4907']
+      X-RateLimit-Reset: ['1508317605']
+      X-Runtime-rack: ['0.041550']
       X-XSS-Protection: [1; mode=block]
     status: {code: 200, message: OK}
 version: 1

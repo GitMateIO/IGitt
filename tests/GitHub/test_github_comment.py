@@ -17,21 +17,21 @@ class GitHubCommentTest(IGittTestCase):
         self.comment = GitHubComment(self.token,
                                      'gitmate-test-user/test',
                                      CommentType.COMMIT,
-                                     22461603)
+                                     25047607)
         self.issue_comment = GitHubComment(self.token,
                                            'gitmate-test-user/test',
                                            CommentType.ISSUE,
                                            309221241)
 
     def test_number(self):
-        self.assertEqual(self.comment.number, 22461603)
+        self.assertEqual(self.comment.number, 25047607)
         self.assertEqual(self.issue_comment.number, 309221241)
 
     def test_type(self):
         self.assertEqual(self.comment.type, CommentType.COMMIT)
 
     def test_body(self):
-        self.assertEqual(self.comment.body, 'test comment on commit')
+        self.assertEqual(self.comment.body, 'hello')
 
     def test_body_setter(self):
         self.issue_comment.body = 'test comment body has changed'
@@ -46,10 +46,10 @@ class GitHubCommentTest(IGittTestCase):
         self.assertEqual(self.comment.author, 'nkprince007')
 
     def test_time(self):
-        self.assertEqual(self.comment.created,
-                         datetime.datetime(2017, 6, 9, 6, 39, 34))
-        self.assertEqual(self.comment.updated,
-                         datetime.datetime(2017, 6, 9, 6, 39, 34))
+        self.assertEqual(self.issue_comment.created,
+                         datetime.datetime(2017, 6, 17, 15, 21, 25))
+        self.assertEqual(self.issue_comment.updated,
+                         datetime.datetime(2017, 10, 12, 9, 33, 13))
 
     def test_delete(self):
         with requests_mock.Mocker() as m:

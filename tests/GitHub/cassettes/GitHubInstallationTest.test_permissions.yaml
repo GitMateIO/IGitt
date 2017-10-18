@@ -4,25 +4,25 @@ interactions:
     headers:
       Accept: [application/vnd.github.machine-man-preview+json]
       Accept-Encoding: ['gzip, deflate']
-      Authorization: [Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE1MDcyNDEyMjcsImV4cCI6MTUwNzI0MTgyNywiaXNzIjo1NDA4fQ.LZgrIbnBBGEIAp3MuJD5byR0e6z6C5QwQnyBIXwW1gXQ5JkbtXW7-3AksBSt8fVXZmoS2Z2exIERG_5jnid4rJr472uaTLHw5yhY-_djc4mU3QjKTgQrw8dOGiIQDvgtIYT0CHzSUnb1r6zbBvxE1Ukl9xulbHZJdo0K1cVVczJJyPfht493MmSn09WUO6vS-uQTOmCzU8Qlt-qf_R33mnAbqy9iXOZIMhPfc4g9t0nBfbLQKcl0nmjOUVproMAmLJgO028ZamlcqQaecSQkzHU1nJLs3D7tAi88NMUw9cTYxX8OHIWBg86v96ZvOSJJi2K5X21MWgGrNijqcxGH-Q]
+      Authorization: [Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE1MDgzMTc2ODksImV4cCI6MTUwODMxODI4NCwiaXNzIjo1NDA4fQ.XL61_FvVazBkr7EPqPpwMctfGY2BcQSvgkeo3Kf4pDvYqLXSk9-nZ7CvTt_LpjtZMmuw48VwRjXhoszEs9up9KsnzkhCQ8DL9gi4FEDJCLA466LbGAKtAxxDQGme4-afOMjKhSiKEuMX2ilMi3QKSP_axVY_Ryh-_PBQILg338iinF_8JxhQhtH1692aLpSXj_8te5f7uxDy0aOTDE-9SaTgeUIh7EW1e7QWNXcg7n7yHg3mKB79FoxZaFJgCD9FXByQ9zApjC3mQ1XqcWUglhEXOuA3nMfXTv44aoSpSPzxC0VfJ9kf6BzHt2DoHyzqxdBNhNhvBGs-VvadNRck5A]
       Connection: [keep-alive]
       User-Agent: [IGitt]
     method: GET
-    uri: https://api.github.com/app/installations/57250
+    uri: https://api.github.com/app/installations/60731?per_page=100
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAA6VV0Y6bMBD8Fz9fzhzhdFekqp/Qlz61qpADG2LVYNdeiFKUf+8YyDVJo6biXiKz
-        2hmPd3Y3g9CVyJ9f0ufkQaiytF3LIh+EsbVuRS5qzY1iWjEFXllfi4cRsE7TJPuQRkyvWPmi8wbZ
-        O2YXcimnYEgfAd91my6QL23L1PJjaRvZyRP+U/8xA2XtZ5rILRC4onN6ZprgoAvyhrIdN+ZKySRg
-        hN0AbK0xdg+2a/3/c6F8Q0PwdNZt/Q4moAdpeUcoJ554jIXRgZeJG5EDHh240FXkCvDJU7VI4IyF
-        vH0LZYP05OxI2m1C6bVjbdtlQi8YwIgmU63+pZYzgiGAKEpcJmlEgoF6dOwyigk6SOd1r8pDLJWn
-        knQPA95Be8UBVj44wsx8PqtatEUzFapq4gxvlQl0nOuh2fpDEchQGQsM5HSmCijMP4VQsP1B98zU
-        LVrCmMklOe4PeQE/GRAv1HSniOdsY2tB/wgDy7+H+qJb/hpxGYgZYxXkDb3g1thJ2D2xEhgS7MEs
-        eUUZnDv7wtTUFGfofOvNwdvFd+QbHUKciLhKUSjGPOMs9h6+xHtD6C4CrjOm8PQTUT5PHC3ECE8a
-        weBJRafmbRpT50hDrCqs4lMEhk99JvJvp/vmiwtswwadDR7XbYwux8MfAVef0NVr2t+OXnCFHZLe
-        7DvgY3q7+A7F0MlofoW/F5EmTy+rp2SVZF+SdZ695tn6K7I7hxfcyQmw01Cx1fhpVYPebyH9+Buo
-        3aN2yAYAAA==
+        H4sIAAAAAAAAA6VVXY+bMBD8L36+nAmX3gdS1Z/Qlz61qpADe8Sqwa69EKUo/71jIFeSRk3FvSR4
+        szOMd3c2vdClyB6Tp4f1nVBFYduGRdYLYyvdiExUmmvFtGIKvLK+EncD4CFNk81LmgDTKVY+b71B
+        9o7ZhUzKMRjSe8B37bYN5AvbMDV8X9hatvKE/9R93ICy8hNN5BYIXNA5PTGNcNAFeUXZjmtzoWQU
+        MMCuAF6tMXYPtkv9//NC+YaG4PFZN9U7mIDupeUdoZy44jEWRgdeJm5A9rh04FyXkSugT57KRQIn
+        LOTtGyjrpSdnB9J2GwqvHWvbLBN6xgBGDJlq9C+1nBEMAURR4jJJAxIM1GFil1GM0F46rztVHGKp
+        PBWkOzTgHbQXHGDlgyN45vOsarEtmilXZR09/KpMoONUD83WH/JAhopYYCDHZyqBgv8phJztD7rV
+        TN1gJIwZuySH/SHP4KcGxBdqulHEOdswWtA/wMDyb1OfTctfFpeBmGGrIK/oBbfGTsLuiZWASUT2
+        YZM8owzOzU5wTUXRQ/OtNwWvF9+Rr3UI0RFxlaJQDD/jWew9+hLfG0J7FnCtMbmnn4jyPHFoISw8
+        agSDJxU7NW3TmDpFamJVYhWfImj4OGci+4b0utacxy9M9B8Bk5LZD67dGl0gY67o4gihnab99egZ
+        V9gh6a2fBxzGYojvuAKEM9yg8H8j0mT9tFonq/Xzl+QlSx6zTfoV2a3DlW7kBPTXUP6q8dGoGmZo
+        UMzjb5jCXh/ZBgAA
     headers:
       Access-Control-Allow-Origin: ['*']
       Access-Control-Expose-Headers: ['ETag, Link, X-GitHub-OTP, X-RateLimit-Limit,
@@ -32,17 +32,18 @@ interactions:
       Content-Encoding: [gzip]
       Content-Security-Policy: [default-src 'none']
       Content-Type: [application/json; charset=utf-8]
-      Date: ['Thu, 05 Oct 2017 22:07:09 GMT']
-      ETag: [W/"b1a5823c62da8b701310dc187b544388"]
+      Date: ['Wed, 18 Oct 2017 09:08:11 GMT']
+      ETag: [W/"bb48c5cf6365444898dea8a870f1ef32"]
+      Expect-CT: ['max-age=2592000; report-uri="https://api.github.com/_private/browser/errors"']
       Server: [GitHub.com]
       Status: [200 OK]
       Strict-Transport-Security: [max-age=31536000; includeSubdomains; preload]
-      Vary: [Accept, Accept-Encoding]
+      Vary: [Accept]
       X-Content-Type-Options: [nosniff]
       X-Frame-Options: [deny]
       X-GitHub-Media-Type: [github.machine-man-preview; format=json]
-      X-GitHub-Request-Id: ['617B:2781D:11F1863E:14E4B20F:59D6AD0C']
-      X-Runtime-rack: ['0.059833']
+      X-GitHub-Request-Id: ['4CB4:081A:24819A2:67612A5:59E719F9']
+      X-Runtime-rack: ['0.028124']
       X-XSS-Protection: [1; mode=block]
     status: {code: 200, message: OK}
 version: 1

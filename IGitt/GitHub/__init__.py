@@ -207,7 +207,8 @@ def get(token: Token,
         If the response indicates any problem.
     """
     return _fetch(BASE_URL, 'get', token,
-                  url, query_params=params, headers=headers)
+                  url, query_params={**dict(params or {}), 'per_page': 100},
+                  headers=headers)
 
 
 def post(token: Token, url: str, data: dict, headers: Optional[dict]=None):

@@ -7,7 +7,7 @@ interactions:
       Connection: [keep-alive]
       User-Agent: [IGitt]
     method: GET
-    uri: https://api.github.com/repos/gitmate-test-user/test/issues/1
+    uri: https://api.github.com/repos/gitmate-test-user/test/issues/1?per_page=100
   response:
     body:
       string: !!binary |
@@ -31,24 +31,25 @@ interactions:
       Content-Encoding: [gzip]
       Content-Security-Policy: [default-src 'none']
       Content-Type: [application/json; charset=utf-8]
-      Date: ['Sun, 24 Sep 2017 18:57:10 GMT']
+      Date: ['Wed, 18 Oct 2017 08:40:14 GMT']
       ETag: [W/"4c6cfad2f7881bcd1f8cb6c05413ce62"]
+      Expect-CT: ['max-age=2592000; report-uri="https://api.github.com/_private/browser/errors"']
       Last-Modified: ['Thu, 15 Jun 2017 17:30:22 GMT']
       Server: [GitHub.com]
       Status: [200 OK]
       Strict-Transport-Security: [max-age=31536000; includeSubdomains; preload]
-      Vary: ['Accept, Authorization, Cookie, X-GitHub-OTP', Accept-Encoding]
+      Vary: ['Accept, Authorization, Cookie, X-GitHub-OTP']
       X-Accepted-OAuth-Scopes: ['public_repo, repo']
       X-Content-Type-Options: [nosniff]
       X-Frame-Options: [deny]
       X-GitHub-Media-Type: [github.v3; format=json]
-      X-GitHub-Request-Id: ['45BB:D7DC:943A34:BCCE8D:59C80005']
-      X-OAuth-Scopes: ['admin:org, admin:org_hook, admin:public_key, admin:repo_hook,
-          gist, notifications, repo, user']
+      X-GitHub-Request-Id: ['C185:3E42:395EE6C:72B8BC3:59E7136B']
+      X-OAuth-Scopes: ['admin:gpg_key, admin:org, admin:org_hook, admin:public_key,
+          admin:repo_hook, gist, notifications, repo, user']
       X-RateLimit-Limit: ['5000']
-      X-RateLimit-Remaining: ['4874']
-      X-RateLimit-Reset: ['1506280502']
-      X-Runtime-rack: ['0.051840']
+      X-RateLimit-Remaining: ['4908']
+      X-RateLimit-Reset: ['1508317605']
+      X-Runtime-rack: ['0.072537']
       X-XSS-Protection: [1; mode=block]
     status: {code: 200, message: OK}
 version: 1

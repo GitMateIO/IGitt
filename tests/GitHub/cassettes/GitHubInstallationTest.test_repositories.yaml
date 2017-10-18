@@ -4,15 +4,15 @@ interactions:
     headers:
       Accept: [application/vnd.github.machine-man-preview+json]
       Accept-Encoding: ['gzip, deflate']
-      Authorization: [Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE1MDcyNDMxNTYsImV4cCI6MTUwNzI0Mzc1NiwiaXNzIjo1NDA4fQ.ZEx1iCJzWLmwu00UXdY0QLsXHW5Dg6QGi_pIgLH8B9-26tOqv_SO7ZN0-3-ZPp7e0l_Ilosdjskw6lJamDn-mfXe7im3o6hbTVQq2SiP9FvmX1mE6PS5ZwsqgGTdCKGrn5fgHkD1ICLLXY9BYv-AHkIa7NdeVB4-Xgm9QvI-UCFDBth5Q1ieB4Z-k0jvGEfW8dX1sNYIf9wWng_4Klm2vGjGYRT9phJbDBZYoQkDf8gP5NgvTDRHcA9H7knv16HtPHoRcuDxjkZccVd5sM_yyt85ZVqib-98OC2bb2BKGhHy4UHar5mBZALBDY2-gcrIXxSnY2ChCKf2gFSdhn1PVw]
+      Authorization: [Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE1MDgzMTc2OTEsImV4cCI6MTUwODMxODI4NiwiaXNzIjo1NDA4fQ.IW1odoPvvFVq81IhpoVfQqmju0cO8TOxx4EsXhr0utXMw8JQpqai3_MXL1CFHjyBBH_tN_SlBbpnD4VdnpLL9EGKhwURD4ANTTIVSVEJW_o7i5Fhd9NiM1dPrr6ofQoxazoWE9K_D71cWReyF7y97RYNmOQ4W-GTl0Ii96DE3qcOuiT26whYt7grnvEtayia0R8bB-XuUPlrlKGlhPTeuZe6xlOTLHjhpGgPN6VVxWuN2A40RU0Etw4dcRjuBLgUHQ5JdNyLTP1QJnns0Pr9hTHy3wfSMwh7MiYSngw0_iLKTIJfZka6aBUUKXzBeRr4m8yQJ24pytIQMXWJLDsGpQ]
       Connection: [keep-alive]
       Content-Length: ['2']
       Content-Type: [application/json]
       User-Agent: [IGitt]
     method: POST
-    uri: https://api.github.com/installations/57250/access_tokens
+    uri: https://api.github.com/installations/60731/access_tokens
   response:
-    body: {string: '{"token":"v1.0ce410283f2991f7739105a2f529c8f4dd3e70cd","expires_at":"2017-10-05T23:39:19Z"}'}
+    body: {string: '{"token":"v1.a8c889afdfb1ad76514627b9cf0c34725cccd684","expires_at":"2017-10-18T10:08:13Z"}'}
     headers:
       Access-Control-Allow-Origin: ['*']
       Access-Control-Expose-Headers: ['ETag, Link, X-GitHub-OTP, X-RateLimit-Limit,
@@ -22,17 +22,18 @@ interactions:
       Content-Length: ['91']
       Content-Security-Policy: [default-src 'none']
       Content-Type: [application/json; charset=utf-8]
-      Date: ['Thu, 05 Oct 2017 22:39:19 GMT']
-      ETag: ['"46a7fea913d750834fd43e5c22a66210"']
+      Date: ['Wed, 18 Oct 2017 09:08:13 GMT']
+      ETag: ['"f53aa4db34606d91b682575855ebb4df"']
+      Expect-CT: ['max-age=2592000; report-uri="https://api.github.com/_private/browser/errors"']
       Server: [GitHub.com]
       Status: [201 Created]
       Strict-Transport-Security: [max-age=31536000; includeSubdomains; preload]
-      Vary: [Accept, Accept-Encoding]
+      Vary: [Accept]
       X-Content-Type-Options: [nosniff]
       X-Frame-Options: [deny]
       X-GitHub-Media-Type: [github.machine-man-preview; format=json]
-      X-GitHub-Request-Id: ['64AD:2781D:11F80856:14EC36A3:59D6B496']
-      X-Runtime-rack: ['0.031256']
+      X-GitHub-Request-Id: ['14AD:081A:2481A86:67614C9:59E719FC']
+      X-Runtime-rack: ['0.013915']
       X-XSS-Protection: [1; mode=block]
     status: {code: 201, message: Created}
 - request:
@@ -40,11 +41,11 @@ interactions:
     headers:
       Accept: [application/vnd.github.machine-man-preview+json]
       Accept-Encoding: ['gzip, deflate']
-      Authorization: [token v1.0ce410283f2991f7739105a2f529c8f4dd3e70cd]
+      Authorization: [token v1.a8c889afdfb1ad76514627b9cf0c34725cccd684]
       Connection: [keep-alive]
       User-Agent: [IGitt]
     method: GET
-    uri: https://api.github.com/installation/repositories
+    uri: https://api.github.com/installation/repositories?per_page=100
   response:
     body:
       string: !!binary |
@@ -77,20 +78,21 @@ interactions:
       Content-Encoding: [gzip]
       Content-Security-Policy: [default-src 'none']
       Content-Type: [application/json; charset=utf-8]
-      Date: ['Thu, 05 Oct 2017 22:39:20 GMT']
-      ETag: [W/"5edffc06dd103d94e11d6bfc245994ae"]
+      Date: ['Wed, 18 Oct 2017 09:08:16 GMT']
+      ETag: [W/"da9323aa7433a921253fff78d5c79904"]
+      Expect-CT: ['max-age=2592000; report-uri="https://api.github.com/_private/browser/errors"']
       Server: [GitHub.com]
       Status: [200 OK]
       Strict-Transport-Security: [max-age=31536000; includeSubdomains; preload]
-      Vary: ['Accept, Authorization, Cookie, X-GitHub-OTP', Accept-Encoding]
+      Vary: ['Accept, Authorization, Cookie, X-GitHub-OTP']
       X-Content-Type-Options: [nosniff]
       X-Frame-Options: [deny]
       X-GitHub-Media-Type: [github.machine-man-preview; format=json]
-      X-GitHub-Request-Id: ['64AE:2781D:11F80A5F:14EC38FA:59D6B498']
+      X-GitHub-Request-Id: ['A3B7:0819:35DDA58:63FFCBE:59E719FF']
       X-RateLimit-Limit: ['5000']
-      X-RateLimit-Remaining: ['4993']
-      X-RateLimit-Reset: ['1507244693']
-      X-Runtime-rack: ['0.035425']
+      X-RateLimit-Remaining: ['4999']
+      X-RateLimit-Reset: ['1508321296']
+      X-Runtime-rack: ['0.047425']
       X-XSS-Protection: [1; mode=block]
     status: {code: 200, message: OK}
 version: 1

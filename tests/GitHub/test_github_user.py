@@ -26,5 +26,5 @@ class GitHubUserTest(IGittTestCase):
 
     def test_installed_repositories(self):
         self.assertEqual({repo.full_name
-                          for repo in self.user.installed_repositories(57250)},
+                          for repo in self.user.installed_repositories(60731)},
                          {'gitmate-test-org/test'})

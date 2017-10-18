@@ -7,19 +7,19 @@ interactions:
       Connection: [keep-alive]
       User-Agent: [IGitt]
     method: GET
-    uri: https://api.github.com/repos/gitmate-test-user/test/comments/22461603
+    uri: https://api.github.com/repos/gitmate-test-user/test/issues/comments/309221241?per_page=100
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAA52UTY+bMBCG/8rKvcLafIQkSNWe9rq9tJdekGNMsAo2sgdWKcp/7xhItclKaclt
-        bM37+J2xxyPpbUNyUgN0LqeUd+r5qKDuD8/CtNTKzjiKGy0HGYJ0EPZOWuojigmt1OBoHKdZlLGE
-        BMhpm+Ia+QF3B6SAZts03e+qMo02ouKlSDZiIw/x7rDbbyK5Y6xKNluRVV/8wQqW48MPp6uS5Jdl
-        QLxTko+kMUelsUb9q7NKC8nYFp363Ggbs3i3ZwHhAwdub5zPmy5ZOuJ5wmjAmqfm9PSifxm+pog8
-        2gXj2QQ37vbW4xy9NnW/fde5lWka846MW9fXV/jpGPpXiA7nWOnjYxAUjtRALbF1WM7ZN0E5WG1p
-        Eo340BwUqvQYh9dhZbnW1iJDU+8a/YzTC554/cEJqzpQRq+2dyVGmLFHrtVv/hAMxQ4Z02itLW8S
-        oVgOfvDWqmfVSHEMBi5Ovi1WCqkG7PNjxBs5AuHUSXz8P/zsYdcVyIKXrZ+/ijdOngOCFSjfOJLr
-        vmkC0iiNijnuONSXeJ5yfA6I+9+vAY8UVuJfVRYcUBezaBuyLGT77yzLk32epD8xp+/Kf+bwHmpj
-        C+6cEWq6aeS9fXt7Rf3BlCdc+V/wafmGnoyeQgXk/AdPeeyHVQUAAA==
+        H4sIAAAAAAAAA52UQY+bMBCF/0rkXsMaw6YRSFVPvW4v20svyAEHLIGNPANRivLfO/bS1YatcvCN
+        DPM+nt9kvLDJ9axkHeIIJedy1E+txm46PdV24E6NFjgVBokqQQWYTKAc909cA0wKOPUNyiDwPC2y
+        TGTPgu2JN/TVPfoD9jGwyL8E9ApOPnLDiw04wnORk0fdsPKdvWf+YKxcWG9bbSgSoy6+dLbOn3bt
+        zwpxPKbisGdylijd1kooglgz9PraGqR4QpwT/6f/Pn97JmTrVoz3wqjwcBoeB/yTr8dZf2o/2763
+        FyJtvd+P/n8f4+9asvr2rE0bzSHtwi12imKko918IBowxljQLfRPBax040lAg3CqiTC3KsnaxZCr
+        JWxBQE4nqJ0eUVsTY/JOTzzrWmn0HxnLIz0QJixpxDmDjvRq9usbAXgTLnx0epb11UfkVK30TLFH
+        QzcEYuJ1VLQdv/x+0hA0qko2g9/Rs+xB3fasdorup6aSSH1ZKo5J+jURx1dxKDNRZoffpJvGZtMj
+        0kRkr2lR5nkpct8jJ+ysqySArXUYC/Fefr78oHcn21zpl78LduvNtPO1XSdhV3fStKpht79fK2+l
+        UAUAAA==
     headers:
       Access-Control-Allow-Origin: ['*']
       Access-Control-Expose-Headers: ['ETag, Link, X-GitHub-OTP, X-RateLimit-Limit,
@@ -29,24 +29,25 @@ interactions:
       Content-Encoding: [gzip]
       Content-Security-Policy: [default-src 'none']
       Content-Type: [application/json; charset=utf-8]
-      Date: ['Sun, 24 Sep 2017 18:15:11 GMT']
-      ETag: [W/"08eef70ea77d269c778fa9da22bffcf0"]
-      Last-Modified: ['Sun, 24 Sep 2017 04:52:11 GMT']
+      Date: ['Wed, 18 Oct 2017 08:07:32 GMT']
+      ETag: [W/"8393cd6c72a16612367a31761670054d"]
+      Expect-CT: ['max-age=2592000; report-uri="https://api.github.com/_private/browser/errors"']
+      Last-Modified: ['Thu, 12 Oct 2017 09:33:13 GMT']
       Server: [GitHub.com]
       Status: [200 OK]
       Strict-Transport-Security: [max-age=31536000; includeSubdomains; preload]
-      Vary: ['Accept, Authorization, Cookie, X-GitHub-OTP', Accept-Encoding]
-      X-Accepted-OAuth-Scopes: ['']
+      Vary: ['Accept, Authorization, Cookie, X-GitHub-OTP']
+      X-Accepted-OAuth-Scopes: ['public_repo, repo']
       X-Content-Type-Options: [nosniff]
       X-Frame-Options: [deny]
       X-GitHub-Media-Type: [github.v3; format=json]
-      X-GitHub-Request-Id: ['3DCE:D7DD:1943789:20480F7:59C7F62E']
-      X-OAuth-Scopes: ['admin:org, admin:org_hook, admin:public_key, admin:repo_hook,
-          gist, notifications, repo, user']
+      X-GitHub-Request-Id: ['D1A9:3E43:33A083D:7EEDB90:59E70BC2']
+      X-OAuth-Scopes: ['admin:gpg_key, admin:org, admin:org_hook, admin:public_key,
+          admin:repo_hook, gist, notifications, repo, user']
       X-RateLimit-Limit: ['5000']
-      X-RateLimit-Remaining: ['4995']
-      X-RateLimit-Reset: ['1506280502']
-      X-Runtime-rack: ['0.036626']
+      X-RateLimit-Remaining: ['4998']
+      X-RateLimit-Reset: ['1508317605']
+      X-Runtime-rack: ['0.057393']
       X-XSS-Protection: [1; mode=block]
     status: {code: 200, message: OK}
 version: 1

@@ -7,7 +7,7 @@ interactions:
       Connection: [keep-alive]
       User-Agent: [IGitt]
     method: GET
-    uri: https://api.github.com/notifications/threads/262245073
+    uri: https://api.github.com/notifications/threads/262245073?per_page=100
   response:
     body:
       string: !!binary |
@@ -38,24 +38,25 @@ interactions:
       Content-Encoding: [gzip]
       Content-Security-Policy: [default-src 'none']
       Content-Type: [application/json; charset=utf-8]
-      Date: ['Sat, 30 Sep 2017 01:58:43 GMT']
+      Date: ['Wed, 18 Oct 2017 08:38:05 GMT']
       ETag: [W/"ca1471c689571b34c6d71a80313ec5ef"]
+      Expect-CT: ['max-age=2592000; report-uri="https://api.github.com/_private/browser/errors"']
       Server: [GitHub.com]
       Status: [200 OK]
       Strict-Transport-Security: [max-age=31536000; includeSubdomains; preload]
-      Vary: ['Accept, Authorization, Cookie, X-GitHub-OTP', Accept-Encoding]
+      Vary: ['Accept, Authorization, Cookie, X-GitHub-OTP']
       X-Accepted-OAuth-Scopes: ['notifications, repo']
       X-Content-Type-Options: [nosniff]
       X-Frame-Options: [deny]
       X-GitHub-Media-Type: [github.v3; format=json]
-      X-GitHub-Request-Id: ['3099:22563:3BAEC38:4C62BB2:59CEFA52']
+      X-GitHub-Request-Id: ['B1EF:3E43:33E195A:7F83E9F:59E712EC']
       X-OAuth-Scopes: ['admin:gpg_key, admin:org, admin:org_hook, admin:public_key,
           admin:repo_hook, gist, notifications, repo, user']
       X-Poll-Interval: ['60']
       X-RateLimit-Limit: ['5000']
-      X-RateLimit-Remaining: ['4997']
-      X-RateLimit-Reset: ['1506740319']
-      X-Runtime-rack: ['0.045825']
+      X-RateLimit-Remaining: ['4922']
+      X-RateLimit-Reset: ['1508317605']
+      X-Runtime-rack: ['0.039735']
       X-XSS-Protection: [1; mode=block]
     status: {code: 200, message: OK}
 version: 1

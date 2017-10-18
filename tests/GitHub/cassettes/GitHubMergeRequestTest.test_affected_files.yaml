@@ -7,7 +7,7 @@ interactions:
       Connection: [keep-alive]
       User-Agent: [IGitt]
     method: GET
-    uri: https://api.github.com/repos/gitmate-test-user/test/pulls/7/files
+    uri: https://api.github.com/repos/gitmate-test-user/test/pulls/7/files?per_page=100
   response:
     body:
       string: !!binary |
@@ -26,24 +26,25 @@ interactions:
       Content-Encoding: [gzip]
       Content-Security-Policy: [default-src 'none']
       Content-Type: [application/json; charset=utf-8]
-      Date: ['Sun, 24 Sep 2017 18:38:45 GMT']
+      Date: ['Wed, 18 Oct 2017 08:33:57 GMT']
       ETag: [W/"375ee9fb03e681803bc19fc3225108f9"]
-      Last-Modified: ['Sun, 24 Sep 2017 18:28:37 GMT']
+      Expect-CT: ['max-age=2592000; report-uri="https://api.github.com/_private/browser/errors"']
+      Last-Modified: ['Wed, 18 Oct 2017 08:13:59 GMT']
       Server: [GitHub.com]
       Status: [200 OK]
       Strict-Transport-Security: [max-age=31536000; includeSubdomains; preload]
-      Vary: ['Accept, Authorization, Cookie, X-GitHub-OTP', Accept-Encoding]
+      Vary: ['Accept, Authorization, Cookie, X-GitHub-OTP']
       X-Accepted-OAuth-Scopes: ['']
       X-Content-Type-Options: [nosniff]
       X-Frame-Options: [deny]
       X-GitHub-Media-Type: [github.v3; format=json]
-      X-GitHub-Request-Id: ['4221:D7D7:473C2:62D91:59C7FBB1']
-      X-OAuth-Scopes: ['admin:org, admin:org_hook, admin:public_key, admin:repo_hook,
-          gist, notifications, repo, user']
+      X-GitHub-Request-Id: ['A390:3E43:33D8895:7F6EAA5:59E711F3']
+      X-OAuth-Scopes: ['admin:gpg_key, admin:org, admin:org_hook, admin:public_key,
+          admin:repo_hook, gist, notifications, repo, user']
       X-RateLimit-Limit: ['5000']
-      X-RateLimit-Remaining: ['4918']
-      X-RateLimit-Reset: ['1506280502']
-      X-Runtime-rack: ['0.055248']
+      X-RateLimit-Remaining: ['4951']
+      X-RateLimit-Reset: ['1508317605']
+      X-Runtime-rack: ['0.035045']
       X-XSS-Protection: [1; mode=block]
     status: {code: 200, message: OK}
 version: 1

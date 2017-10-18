@@ -21,17 +21,19 @@ class GitHubHosterTest(IGittTestCase):
         self.assertEqual(sorted(map(lambda x: x.full_name, self.gh.master_repositories)),
                          ['GitMateIO/gitmate-2',
                           'GitMateIO/gitmate-2-frontend',
+                          'gitmate-test-user/empty',
                           'gitmate-test-user/test'])
 
     def test_owned_repositories(self):
         self.assertEqual(sorted(map(lambda x: x.full_name, self.gh.owned_repositories)),
-                         ['gitmate-test-user/test'])
+                         ['gitmate-test-user/empty', 'gitmate-test-user/test'])
 
     def test_write_repositories(self):
         self.assertEqual(sorted(map(lambda x: x.full_name, self.gh.write_repositories)),
                          ['GitMateIO/IGitt',
                           'GitMateIO/gitmate-2',
                           'GitMateIO/gitmate-2-frontend',
+                          'gitmate-test-user/empty',
                           'gitmate-test-user/test',
                           'sils/gitmate-test'])
 

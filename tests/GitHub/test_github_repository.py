@@ -43,7 +43,7 @@ class GitHubRepositoryTest(IGittTestCase):
                         )
 
     def test_get_labels(self):
-        self.assertEqual(sorted(self.repo.get_labels()), ['a', 'b', 'c'])
+        self.assertEqual(sorted(self.repo.get_labels()), ['a', 'b', 'c', 'dem'])
 
     def test_labels(self):
         with self.assertRaises(ElementAlreadyExistsError):
@@ -54,9 +54,9 @@ class GitHubRepositoryTest(IGittTestCase):
 
         self.repo.create_label('bug', '000000')
         self.assertEqual(sorted(self.repo.get_labels()),
-                         ['a', 'b', 'bug', 'c'])
+                         ['a', 'b', 'bug', 'c', 'dem'])
         self.repo.delete_label('bug')
-        self.assertEqual(sorted(self.repo.get_labels()), ['a', 'b', 'c'])
+        self.assertEqual(sorted(self.repo.get_labels()), ['a', 'b', 'c', 'dem'])
 
     def test_get_issue(self):
         self.assertEqual(self.repo.get_issue(1).title, 'test issue')
@@ -65,10 +65,10 @@ class GitHubRepositoryTest(IGittTestCase):
         self.assertEqual(self.repo.get_mr(11).title, 'testpr closing/opening')
 
     def test_issues(self):
-        self.assertEqual(len(self.repo.issues), 87)
+        self.assertEqual(len(self.repo.issues), 89)
 
     def test_merge_requests(self):
-        self.assertEqual(len(self.repo.merge_requests), 13)
+        self.assertEqual(len(self.repo.merge_requests), 18)
 
     def test_create_issue(self):
         self.assertEqual(self.repo.create_issue(
@@ -122,7 +122,7 @@ class GitHubRepositoryTest(IGittTestCase):
         issues = [issue for issue in self.repo.search_issues(created_before=date)]
         self.assertEqual(len(issues), 75)
         issues = [issue for issue in self.repo.search_issues(created_after=date)]
-        self.assertEqual(len(issues), 10)
+        self.assertEqual(len(issues), 14)
         with self.assertRaises(RuntimeError):
             next(self.repo.search_issues(created_before=date, created_after=date))
 
@@ -131,16 +131,19 @@ class GitHubRepositoryTest(IGittTestCase):
         mrs = [mr for mr in self.repo.search_mrs(created_before=date)]
         self.assertEqual(len(mrs), 2)
         mrs = [mr for mr in self.repo.search_mrs(created_after=date)]
-        self.assertEqual(len(mrs), 11)
+        self.assertEqual(len(mrs), 16)
         date = datetime(2017, 6, 18).date()
         mrs = [mr for mr in self.repo.search_mrs(updated_after=date)]
-        self.assertEqual(len(mrs), 11)
+        self.assertEqual(len(mrs), 16)
         mrs = [mr for mr in self.repo.search_mrs(updated_before=date)]
         self.assertEqual(len(mrs), 2)
 
     def test_commits(self):
         self.assertEqual({commit.sha for commit in self.repo.commits},
                          {'645961c0841a84c1dd2a58535aa70ad45be48c46',
+                          'ff46852ae2afccfe12602420491b9b9e37cd210e',
+                          '68c8743ffa9a78b31f770b6412aacb48df943c2c',
+                          '27576735be020d37c015637c89a356be47cf30dd',
                           'f7e962c0066f7c7600e3a9544bc72e0dc1bfdf02',
                           'aca50e03cbd9e7285a5cf2b09a679505795a9de3',
                           'e5bf3396f339e5a8da2304ddc141c5e09c6de9a0',

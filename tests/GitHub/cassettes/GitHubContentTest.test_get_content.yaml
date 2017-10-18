@@ -7,7 +7,7 @@ interactions:
       Connection: [keep-alive]
       User-Agent: [IGitt]
     method: GET
-    uri: https://api.github.com/repos/gitmate-test-user/test/contents/README.md?path=%2Frepos%2Fgitmate-test-user%2Ftest%2Fcontents%2FREADME.md&ref=master
+    uri: https://api.github.com/repos/gitmate-test-user/test/contents/README.md?path=%2Frepos%2Fgitmate-test-user%2Ftest%2Fcontents%2FREADME.md&per_page=100&ref=master
   response:
     body:
       string: !!binary |
@@ -26,24 +26,25 @@ interactions:
       Content-Encoding: [gzip]
       Content-Security-Policy: [default-src 'none']
       Content-Type: [application/json; charset=utf-8]
-      Date: ['Sun, 24 Sep 2017 18:29:35 GMT']
+      Date: ['Wed, 18 Oct 2017 08:15:18 GMT']
       ETag: [W/"bfc30974c2e1eb4ce7eb6b4417de1e04"]
-      Last-Modified: ['Sun, 24 Sep 2017 18:29:28 GMT']
+      Expect-CT: ['max-age=2592000; report-uri="https://api.github.com/_private/browser/errors"']
+      Last-Modified: ['Wed, 18 Oct 2017 08:15:14 GMT']
       Server: [GitHub.com]
       Status: [200 OK]
       Strict-Transport-Security: [max-age=31536000; includeSubdomains; preload]
-      Vary: ['Accept, Authorization, Cookie, X-GitHub-OTP', Accept-Encoding]
+      Vary: ['Accept, Authorization, Cookie, X-GitHub-OTP']
       X-Accepted-OAuth-Scopes: ['']
       X-Content-Type-Options: [nosniff]
       X-Frame-Options: [deny]
       X-GitHub-Media-Type: [github.v3; format=json]
-      X-GitHub-Request-Id: ['40BC:D7DD:194AD2B:20516ED:59C7F98B']
-      X-OAuth-Scopes: ['admin:org, admin:org_hook, admin:public_key, admin:repo_hook,
-          gist, notifications, repo, user']
+      X-GitHub-Request-Id: ['4906:3E43:33B0D89:7F136E3:59E70D95']
+      X-OAuth-Scopes: ['admin:gpg_key, admin:org, admin:org_hook, admin:public_key,
+          admin:repo_hook, gist, notifications, repo, user']
       X-RateLimit-Limit: ['5000']
-      X-RateLimit-Remaining: ['4949']
-      X-RateLimit-Reset: ['1506280502']
-      X-Runtime-rack: ['0.044541']
+      X-RateLimit-Remaining: ['4974']
+      X-RateLimit-Reset: ['1508317605']
+      X-Runtime-rack: ['0.050007']
       X-XSS-Protection: [1; mode=block]
     status: {code: 200, message: OK}
 version: 1
