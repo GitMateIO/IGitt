@@ -91,8 +91,9 @@ class GitHubJsonWebToken(Token):
             self._payload = {
                 # issued at time
                 'iat': int(datetime.now().timestamp()),
-                # JWT expiration time (10 minute maximum)
-                'exp': int(datetime.now().timestamp() + (10 * 60)),
+                # JWT expiration time (10 minute maximum), minus 5 seconds just
+                # to be sure and cover up the request time
+                'exp': int(datetime.now().timestamp() + (10 * 60) - 5),
                 # GitHub App's identifier
                 'iss': self._app_id
             }
