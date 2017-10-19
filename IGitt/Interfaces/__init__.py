@@ -60,6 +60,7 @@ def is_client_error(exception):
     return 400 <= exception.args[1] < 500
 
 
+@on_exception(expo, ConnectionError, max_tries=8)
 @on_exception(expo, RuntimeError, max_tries=3, giveup=is_client_error)
 def get_response(method, *args, **kwargs):
     """
