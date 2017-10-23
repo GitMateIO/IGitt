@@ -71,7 +71,7 @@ class GitHubRepository(GitHubMixin, Repository):
         this is `gitmate`.
         """
         return GitHubOrganization(self._token,
-                                  self._repository.split('/', maxsplit=1)[0])
+                                  self.full_name.split('/', maxsplit=1)[0])
 
     @property
     def full_name(self):
@@ -436,7 +436,7 @@ class GitHubRepository(GitHubMixin, Repository):
 
         from IGitt.GitHub.GitHubContent import GitHubContent
         return GitHubContent(self._token,
-                             self._repository,
+                             self.full_name,
                              json['content']['path'])
 
     def _search(self,
@@ -449,7 +449,7 @@ class GitHubRepository(GitHubMixin, Repository):
         Search for issue based on type 'issue' or 'pr' and return a
         list of issues.
         """
-        query = ' type:' + issue_type + ' state:open repo:' + self._repository
+        query = ' type:' + issue_type + ' state:open repo:' + self.full_name
         if ((created_after and created_before)
                 or (updated_after and updated_before)):
             raise RuntimeError(('Cannot process before '
