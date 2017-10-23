@@ -94,7 +94,7 @@ class GitLabRepository(GitLabMixin, Repository):
         this is `gitmate`.
         """
         return GitLabOrganization(self._token,
-                                  self._repository.split('/', maxsplit=1)[0])
+                                  self.full_name.split('/', maxsplit=1)[0])
 
     @property
     def full_name(self) -> str:
@@ -450,7 +450,7 @@ class GitLabRepository(GitLabMixin, Repository):
         """
         url = self._url + '/fork'
         data = {
-            'id': self._repository,
+            'id': self.full_name,
             'namespace': namespace
         }
         res = post(self._token, url=url, data=data)
@@ -480,7 +480,7 @@ class GitLabRepository(GitLabMixin, Repository):
         post(token=self._token, url=url, data=data)
 
         from IGitt.GitLab.GitLabContent import GitLabContent
-        return GitLabContent(self._token, self._repository, path=path)
+        return GitLabContent(self._token, self.full_name, path=path)
 
     def create_merge_request(self, title:str, base:str, head:str,
                              body: Optional[str]=None,
@@ -494,7 +494,7 @@ class GitLabRepository(GitLabMixin, Repository):
             'title' : title,
             'target_branch' : base,
             'source_branch' : head,
-            'id' : quote_plus(self._repository),
+            'id' : quote_plus(self.full_name),
             'target_project_id' : target_project_id
         }
         json = post(self._token, url=url, data=data)
