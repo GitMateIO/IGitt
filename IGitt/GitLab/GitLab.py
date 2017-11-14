@@ -126,21 +126,23 @@ class GitLab(GitLabMixin, Hoster):
             ssh_url = webhook['repository']['git_ssh_url']
             return ssh_url[ssh_url.find(':') + 1: ssh_url.rfind('.git')]
 
-    def handle_webhook(self, repository: str, event: str, data: dict):
+    def handle_webhook(self, event: str, data: dict):
         """
-        Handles a GitHub webhook for you.
+        Handles a GitLab webhook for you.
 
         If it's an issue event it returns e.g.
         ``IssueActions.OPENED, [GitLabIssue(...)]``, for comments it returns
         ``MergeRequestActions.COMMENTED,
         [GitLabMergeRequest(...), GitLabComment(...)]``.
 
-        :param repository:  The name of the repository.
         :param event:       The HTTP_X_GITLAB_EVENT of the request header.
         :param data:        The pythonified JSON data of the request.
         :return:            An IssueActions or MergeRequestActions member and a
                             list of the affected IGitt objects.
         """
+
+        repository = self.get_repo_name(data)
+
         if event == 'Issue Hook':
             issue = data['object_attributes']
             issue_obj = GitLabIssue(

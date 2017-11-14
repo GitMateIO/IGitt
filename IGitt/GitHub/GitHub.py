@@ -90,7 +90,7 @@ class GitHub(GitHubMixin, Hoster):
         """
         return webhook['repository']['full_name']
 
-    def handle_webhook(self, repository: str, event: str, data: dict):
+    def handle_webhook(self, event: str, data: dict):
         """
         Handles a GitHub webhook for you.
 
@@ -99,16 +99,17 @@ class GitHub(GitHubMixin, Hoster):
         ``MergeRequestActions.COMMENTED,
         [GitHubMergeRequest(...), GitHubComment(...)]``.
 
-        :param repository:  The name of the repository.
         :param event:       The HTTP_X_GITLAB_EVENT of the request header.
         :param data:        The pythonified JSON data of the request.
         :return:            An IssueActions or MergeRequestActions member and a
                             list of the affected IGitt objects.
         """
+        repository = self.get_repo_name(data)
+
         if event == 'issues':
             issue = data['issue']
-            issue_obj = GitHubIssue(
-                self._token, repository, issue['number'])
+            issue_obj = GitHubIssue.from_data(
+                issue, self._token, repository, issue['number'])
             trigger_event = {
                 'opened': IssueActions.OPENED,
                 'closed': IssueActions.CLOSED,
@@ -119,8 +120,8 @@ class GitHub(GitHubMixin, Hoster):
 
         if event == 'pull_request':
             pull_request = data['pull_request']
-            pull_request_obj = GitHubMergeRequest(
-                self._token, repository, pull_request['number'])
+            pull_request_obj = GitHubMergeRequest.from_data(
+                pull_request, self._token, repository, pull_request['number'])
             trigger_event = {
                 'synchronize': MergeRequestActions.SYNCHRONIZED,
                 'opened': MergeRequestActions.OPENED,
@@ -135,20 +136,24 @@ class GitHub(GitHubMixin, Hoster):
 
         if event == 'issue_comment':
             if data['action'] != 'deleted':
-                comment_obj = GitHubComment(
+                comment_obj = GitHubComment.from_data(
+                    data['comment'],
                     self._token,
                     repository,
                     CommentType.MERGE_REQUEST,
                     data['comment']['id'])
 
                 if 'pull_request' in data['issue']:
-                    return MergeRequestActions.COMMENTED, [GitHubMergeRequest(
-                        self._token,
-                        repository,
-                        data['issue']['number']
-                    ), comment_obj]
+                    return (MergeRequestActions.COMMENTED,
+                            [GitHubMergeRequest.from_data(
+                                data['issue'],
+                                self._token,
+                                repository,
+                                data['issue']['number']),
+                             comment_obj])
 
-                return IssueActions.COMMENTED, [GitHubIssue(
+                return IssueActions.COMMENTED, [GitHubIssue.from_data(
+                    data['issue'],
                     self._token,
                     repository,
                     data['issue']['number']
@@ -156,7 +161,8 @@ class GitHub(GitHubMixin, Hoster):
 
         if event == 'status':
             commit = data['commit']
-            commit_obj = GitHubCommit(self._token, repository, commit['sha'])
+            commit_obj = GitHubCommit.from_data(
+                commit, self._token, repository, commit['sha'])
             return PipelineActions.UPDATED, [commit_obj]
 
         raise NotImplementedError('Given webhook cannot be handled yet.')
