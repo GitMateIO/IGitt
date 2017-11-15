@@ -50,3 +50,17 @@ class PipelineActions(Enum):
     # When the status of a pipeline is updated, also depicts the change of a
     # commit status
     UPDATED = 1
+
+
+class InstallationActions(Enum):
+    """
+    Installation and Integration related actions.
+    """
+    # When an app is installed.
+    CREATED = 1
+    # When an app is uninstalled.
+    DELETED = 2
+    # When a repository/repositories are added to an installation.
+    REPOSITORIES_ADDED = 3
+    # When a repository/repositories are removed from an installation.
+    REPOSITORIES_REMOVED = 4

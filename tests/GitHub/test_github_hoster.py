@@ -1,13 +1,15 @@
 import os
 
-from IGitt.GitHub import GitHubToken
+from IGitt.GitHub import GitHubToken, GitHubInstallationToken, GitHubJsonWebToken
 from IGitt.GitHub.GitHub import GitHub
 from IGitt.GitHub.GitHubComment import GitHubComment
 from IGitt.GitHub.GitHubCommit import GitHubCommit
+from IGitt.GitHub.GitHubInstallation import GitHubInstallation
 from IGitt.GitHub.GitHubIssue import GitHubIssue
 from IGitt.GitHub.GitHubMergeRequest import GitHubMergeRequest
+from IGitt.GitHub.GitHubRepository import GitHubRepository
 from IGitt.Interfaces.Actions import IssueActions, MergeRequestActions, \
-    PipelineActions
+    PipelineActions, InstallationActions
 
 from tests import IGittTestCase
 
@@ -61,10 +63,48 @@ class TestGitHubWebhook(IGittTestCase):
                 'sha': 'deadbeef',
             }
         }
+        self.jwt = GitHubJsonWebToken(os.environ['GITHUB_PRIVATE_KEY'],
+                                      int(os.environ['GITHUB_TEST_APP_ID']))
+        self.itoken = GitHubInstallationToken(60731, self.jwt)
+        self.gh_inst = GitHub(self.itoken)
 
     def test_unknown_event(self):
         with self.assertRaises(NotImplementedError):
             self.gh.handle_webhook('unknown_event', self.default_data)
+
+    def test_installation_hook(self):
+        event, obj = self.gh_inst.handle_webhook('installation', {
+            'installation': {'id': 0},
+            'action': 'created'
+        })
+        self.assertEqual(event, InstallationActions.CREATED)
+        self.assertIsInstance(obj[0], GitHubInstallation)
+
+    def test_installation_repositories_added_hook(self):
+        event, obj = self.gh_inst.handle_webhook('installation_repositories', {
+            'action': 'added',
+            'installation': {'id': 0},
+            'repositories_added': [{
+                'id': 0,
+                'full_name': 'foo/bar'
+            }]
+        })
+        self.assertEqual(event, InstallationActions.REPOSITORIES_ADDED)
+        self.assertIsInstance(obj[0], GitHubInstallation)
+        self.assertTrue(all([isinstance(repo, GitHubRepository) for repo in obj[1]]))
+
+    def test_installation_repositories_removed_hook(self):
+        event, obj = self.gh_inst.handle_webhook('installation_repositories', {
+            'action': 'removed',
+            'installation': {'id': 0},
+            'repositories_removed': [{
+                'id': 0,
+                'full_name': 'foo/bar'
+            }]
+        })
+        self.assertEqual(event, InstallationActions.REPOSITORIES_REMOVED)
+        self.assertIsInstance(obj[0], GitHubInstallation)
+        self.assertTrue(all([isinstance(repo, GitHubRepository) for repo in obj[1]]))
 
     def test_issue_hook(self):
         event, obj = self.gh.handle_webhook('issues', self.default_data)

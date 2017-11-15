@@ -5,10 +5,11 @@ Contains the Hoster implementation for GitHub.
 from IGitt.GitHub import get, GitHubToken, GitHubMixin
 from IGitt.GitHub.GitHubComment import GitHubComment
 from IGitt.GitHub.GitHubCommit import GitHubCommit
+from IGitt.GitHub.GitHubInstallation import GitHubInstallation
 from IGitt.GitHub.GitHubIssue import GitHubIssue
 from IGitt.GitHub.GitHubMergeRequest import GitHubMergeRequest
 from IGitt.Interfaces.Actions import IssueActions, MergeRequestActions, \
-    PipelineActions
+    PipelineActions, InstallationActions
 from IGitt.Interfaces.Comment import CommentType
 from IGitt.Interfaces.Hoster import Hoster
 from IGitt.GitHub.GitHubRepository import GitHubRepository
@@ -104,6 +105,36 @@ class GitHub(GitHubMixin, Hoster):
         :return:            An IssueActions or MergeRequestActions member and a
                             list of the affected IGitt objects.
         """
+        if event == 'installation':
+            installation = data['installation']
+            installation_obj = GitHubInstallation.from_data(
+                installation, self._token, installation['id'])
+            trigger_event = {
+                'created': InstallationActions.CREATED,
+                'deleted': InstallationActions.DELETED
+            }[data['action']]
+
+            return trigger_event, [installation_obj]
+
+        if event == 'installation_repositories':
+            installation = data['installation']
+            installation_obj = GitHubInstallation.from_data(
+                installation, self._token, installation['id'])
+            if data['action'] == 'added':
+                trigger_event = InstallationActions.REPOSITORIES_ADDED
+                repos = [
+                    GitHubRepository.from_data(repo, self._token, repo['id'])
+                    for repo in data['repositories_added']
+                ]
+            elif data['action'] == 'removed':
+                trigger_event = InstallationActions.REPOSITORIES_REMOVED
+                repos = [
+                    GitHubRepository.from_data(repo, self._token, repo['id'])
+                    for repo in data['repositories_removed']
+                ]
+
+            return trigger_event, [installation_obj, repos]
+
         repository = self.get_repo_name(data)
 
         if event == 'issues':
