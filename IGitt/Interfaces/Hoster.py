@@ -42,3 +42,19 @@ class Hoster(IGittObject):
         Return a repository object.
         """
         raise NotImplementedError
+
+    def handle_webhook(self, event: str, data: dict):
+        """
+        Handles a webhook for you.
+
+        If it's an issue event it returns e.g.
+        ``IssueActions.OPENED, [Issue(...)]``, for comments it returns
+        ``MergeRequestActions.COMMENTED,
+        [MergeRequest(...), Comment(...)]``.
+
+        :param event:       The HTTP_X_GITLAB_EVENT of the request header.
+        :param data:        The pythonified JSON data of the request.
+        :return:            An IssueActions or MergeRequestActions member and a
+                            list of the affected IGitt objects.
+        """
+        raise NotImplementedError
