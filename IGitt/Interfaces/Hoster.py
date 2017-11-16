@@ -12,6 +12,13 @@ class Hoster(IGittObject):
     Abstracts a service like GitHub and allows e.g. to query for available
     repositories and stuff like that.
     """
+    @staticmethod
+    def get_repo_name(webhook) -> str:
+        """
+        Retrieves repository name from given webhook data.
+        """
+        raise NotImplementedError
+
     @property
     def master_repositories(self) -> Set[Repository]:
         """

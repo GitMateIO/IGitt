@@ -83,6 +83,13 @@ class GitHub(GitHubMixin, Hoster):
         """
         return GitHubRepository(self._token, repository)
 
+    @staticmethod
+    def get_repo_name(webhook: dict):
+        """
+        Retrieves the repository name from given webhook data.
+        """
+        return webhook['repository']['full_name']
+
     def handle_webhook(self, repository: str, event: str, data: dict):
         """
         Handles a GitHub webhook for you.

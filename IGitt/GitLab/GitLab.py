@@ -108,6 +108,24 @@ class GitLab(GitLabMixin, Hoster):
         """
         return GitLabRepository(self._token, repository)
 
+    @staticmethod
+    def get_repo_name(webhook: dict):
+        """
+        Retrieves the repository name from given webhook data.
+        """
+        # Push, Tag, Issue, Note, Wiki Page and Pipeline Hooks
+        if 'project' in webhook.keys():
+            return webhook['project']['path_with_namespace']
+
+        # Merge Request Hook
+        if 'object_attributes' in webhook.keys():
+            return webhook['object_attributes']['target']['path_with_namespace']
+
+        # Build Hook
+        if 'repository' in webhook.keys():
+            ssh_url = webhook['repository']['git_ssh_url']
+            return ssh_url[ssh_url.find(':') + 1: ssh_url.rfind('.git')]
+
     def handle_webhook(self, repository: str, event: str, data: dict):
         """
         Handles a GitHub webhook for you.
