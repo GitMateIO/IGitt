@@ -239,6 +239,17 @@ class MergeRequest(Issue):
             commit_bodies
         )
 
+
+    def _get_mentioned_issues(self):
+        """
+        Returns a set of tuples(issue number, name of the repository the issue
+        is contained in), which are related to this pull request.
+        """
+        commit_bodies = [commit.message for commit in self.commits]
+        comment_bodies = [comment.body for comment in self.comments]
+        return self._get_keywords_issues(r'', commit_bodies + comment_bodies)
+
+
     @property
     def closes_issues(self) -> Set[Issue]:
         """
@@ -258,3 +269,10 @@ class MergeRequest(Issue):
         if Status.PENDING in statuses or Status.FAILED in statuses:
             return False
         return True
+
+    @property
+    def mentioned_issues(self) -> Set[Issue]:
+        """
+        Returns a set of Issue objects which are related to the pull request.
+        """
+        raise NotImplementedError

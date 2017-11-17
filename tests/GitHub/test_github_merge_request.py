@@ -79,6 +79,11 @@ class GitHubMergeRequestTest(IGittTestCase):
         self.assertEqual({int(issue.number) for issue in mr.closes_issues},
                          {98, 104, 1, 107, 97, 105})
 
+    def test_mentioned_issues(self):
+        mr = GitHubMergeRequest(self.token, 'gitmate-test-user/test', 96)
+        self.assertEqual({int(issue.number) for issue in mr.mentioned_issues},
+                         {114, 115, 127})
+
     def test_tests_passed(self):
         self.assertEqual(self.mr.tests_passed, True)
         mr = GitHubMergeRequest(self.token, 'gitmate-test-user/test', 6)

@@ -227,3 +227,13 @@ class GitHubMergeRequest(GitHubIssue, MergeRequest):
         issues = self._get_closes_issues()
         return {GitHubIssue(self._token, repo_name, number)
                 for number, repo_name in issues}
+
+    @property
+    def mentioned_issues(self) -> Set[GitHubIssue]:
+        """
+        Returns a set of GitHubIssue objects which are related to the pull
+        request.
+        """
+        issues = self._get_mentioned_issues()
+        return {GitHubIssue(self._token, repo_name, number)
+                for number, repo_name in issues}

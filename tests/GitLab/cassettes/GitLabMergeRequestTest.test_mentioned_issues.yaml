@@ -1,0 +1,154 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/merge_requests/16/commits?per_page=100
+  response:
+    body: {string: '[{"id":"a37bb904b39a4aabee24f52ff98a0a988a41a24a","short_id":"a37bb904","title":"gitmate
+        please work","created_at":"2017-06-16T14:00:40.000Z","parent_ids":[],"message":"gitmate
+        please work","author_name":"Naveen Kumar Sangi","author_email":"nkprince007@gmail.com","authored_date":"2017-06-16T14:00:40.000Z","committer_name":"Naveen
+        Kumar Sangi","committer_email":"nkprince007@gmail.com","committed_date":"2017-06-16T14:00:40.000Z"},{"id":"b315282d00f2cff0b181fcc277309f2a08163a8e","short_id":"b315282d","title":"Update
+        README.md","created_at":"2017-06-16T12:40:34.000Z","parent_ids":[],"message":"Update
+        README.md","author_name":"Naveen Kumar Sangi","author_email":"nkprince007@gmail.com","authored_date":"2017-06-16T12:40:34.000Z","committer_name":"Naveen
+        Kumar Sangi","committer_email":"nkprince007@gmail.com","committed_date":"2017-06-16T12:40:34.000Z"}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['857']
+      Content-Type: [application/json]
+      Date: ['Fri, 17 Nov 2017 17:26:33 GMT']
+      Etag: [W/"6f196b098ecdb2ce5bc2f3f7f5b22570"]
+      Link: ['<https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/merge_requests/16/commits?id=gitmate-test-user%2Ftest&merge_request_iid=16&page=1&per_page=100>;
+          rel="first", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/merge_requests/16/commits?id=gitmate-test-user%2Ftest&merge_request_iid=16&page=1&per_page=100>;
+          rel="last"']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['1']
+      RateLimit-Remaining: ['599']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['100']
+      X-Prev-Page: ['']
+      X-Request-Id: [775773b6-344e-41bd-9c29-32f764cef28c]
+      X-Runtime: ['0.140150']
+      X-Total: ['2']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/a37bb904b39a4aabee24f52ff98a0a988a41a24a?per_page=100
+  response:
+    body: {string: '{"id":"a37bb904b39a4aabee24f52ff98a0a988a41a24a","short_id":"a37bb904","title":"gitmate
+        please work","created_at":"2017-06-16T14:00:40.000+00:00","parent_ids":["b315282d00f2cff0b181fcc277309f2a08163a8e"],"message":"gitmate
+        please work","author_name":"Naveen Kumar Sangi","author_email":"nkprince007@gmail.com","authored_date":"2017-06-16T14:00:40.000+00:00","committer_name":"Naveen
+        Kumar Sangi","committer_email":"nkprince007@gmail.com","committed_date":"2017-06-16T14:00:40.000+00:00","stats":{"additions":2,"deletions":1,"total":3},"status":"running","last_pipeline":{"id":9087941,"sha":"a37bb904b39a4aabee24f52ff98a0a988a41a24a","ref":"hello","status":"running"}}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['667']
+      Content-Type: [application/json]
+      Date: ['Fri, 17 Nov 2017 17:26:34 GMT']
+      Etag: [W/"c276eda7beda7747e2d1839395a397ad"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['2']
+      RateLimit-Remaining: ['598']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [39f4b55e-fd07-4e80-b957-6b6b9a22236c]
+      X-Runtime: ['0.243240']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/repository/commits/b315282d00f2cff0b181fcc277309f2a08163a8e?per_page=100
+  response:
+    body: {string: '{"id":"b315282d00f2cff0b181fcc277309f2a08163a8e","short_id":"b315282d","title":"Update
+        README.md","created_at":"2017-06-16T12:40:34.000+00:00","parent_ids":["198dd16f8249ea98ed41876efe27d068b69fa215"],"message":"Update
+        README.md","author_name":"Naveen Kumar Sangi","author_email":"nkprince007@gmail.com","authored_date":"2017-06-16T12:40:34.000+00:00","committer_name":"Naveen
+        Kumar Sangi","committer_email":"nkprince007@gmail.com","committed_date":"2017-06-16T12:40:34.000+00:00","stats":{"additions":2,"deletions":0,"total":2},"status":"failed","last_pipeline":{"id":9073517,"sha":"b315282d00f2cff0b181fcc277309f2a08163a8e","ref":"hello","status":"failed"}}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['659']
+      Content-Type: [application/json]
+      Date: ['Fri, 17 Nov 2017 17:26:36 GMT']
+      Etag: [W/"2cfd1f0e45ffea57263f760d13ead40b"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['3']
+      RateLimit-Remaining: ['597']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [b79c4d76-cdab-4e9d-aa23-09600126f010]
+      X-Runtime: ['0.234791']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/merge_requests/16/notes?per_page=100
+  response:
+    body: {string: '[{"id":47712686,"body":"Related to https://gitlab.com/gitmate-test-user/test/issues/10
+        https://gitlab.com/gitmate-test-user/test/issues/11 \nRelated https://gitlab.com/gitmate-test-user/test/issues/12\nRelates
+        to https://gitlab.com/gitmate-test-user/test/issues/13","attachment":null,"author":{"id":707601,"name":"Meet
+        Mangukiya","username":"meetmangukiya","state":"active","avatar_url":"https://gitlab.com/uploads/-/system/user/avatar/707601/avatar.png","web_url":"https://gitlab.com/meetmangukiya"},"created_at":"2017-11-17T16:54:07.647Z","updated_at":"2017-11-17T16:54:07.647Z","system":false,"noteable_id":3880987,"noteable_type":"MergeRequest","noteable_iid":16},{"id":32571115,"body":"unack
+        a37bb904","attachment":null,"author":{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-17T00:55:53.097Z","updated_at":"2017-06-17T00:55:53.097Z","system":false,"noteable_id":3880987,"noteable_type":"MergeRequest","noteable_iid":16},{"id":32570956,"body":"ack
+        https://gitlab.com/gitmate-test-user/test/commit/a37bb904b39a4aabee24f52ff98a0a988a41a24a","attachment":null,"author":{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-17T00:45:36.138Z","updated_at":"2017-06-17T00:45:36.138Z","system":false,"noteable_id":3880987,"noteable_type":"MergeRequest","noteable_iid":16},{"id":32570858,"body":"marked
+        as a **Work In Progress**","attachment":null,"author":{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-17T00:40:06.293Z","updated_at":"2017-06-17T00:40:06.293Z","system":true,"noteable_id":3880987,"noteable_type":"MergeRequest","noteable_iid":16},{"id":33006099,"body":"reopened","attachment":null,"author":{"id":889700,"name":"Naveen
+        Kumar Sangi","username":"nkprince007","state":"active","avatar_url":"https://gitlab.com/uploads/-/system/user/avatar/889700/avatar.png","web_url":"https://gitlab.com/nkprince007"},"created_at":"2017-06-20T12:44:34.841Z","updated_at":"2017-06-20T12:44:34.841Z","system":true,"noteable_id":3880987,"noteable_type":"MergeRequest","noteable_iid":16},{"id":33006000,"body":"closed","attachment":null,"author":{"id":889700,"name":"Naveen
+        Kumar Sangi","username":"nkprince007","state":"active","avatar_url":"https://gitlab.com/uploads/-/system/user/avatar/889700/avatar.png","web_url":"https://gitlab.com/nkprince007"},"created_at":"2017-06-20T12:43:37.586Z","updated_at":"2017-06-20T12:43:37.586Z","system":true,"noteable_id":3880987,"noteable_type":"MergeRequest","noteable_iid":16},{"id":32570970,"body":"unmarked
+        as a **Work In Progress**","attachment":null,"author":{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-17T00:46:31.996Z","updated_at":"2017-06-17T00:46:31.996Z","system":true,"noteable_id":3880987,"noteable_type":"MergeRequest","noteable_iid":16},{"id":32570841,"body":"Hello,
+        I am gitmate-2, this time, I work with GitLab too.","attachment":null,"author":{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"created_at":"2017-06-17T00:38:43.111Z","updated_at":"2017-06-17T00:38:43.111Z","system":false,"noteable_id":3880987,"noteable_type":"MergeRequest","noteable_iid":16}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['4027']
+      Content-Type: [application/json]
+      Date: ['Fri, 17 Nov 2017 17:26:38 GMT']
+      Etag: [W/"7dd66a4d6b42a82c01ae814f71e90217"]
+      Link: ['<https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/merge_requests/16/notes?id=gitmate-test-user%2Ftest&noteable_id=16&page=1&per_page=100>;
+          rel="first", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/merge_requests/16/notes?id=gitmate-test-user%2Ftest&noteable_id=16&page=1&per_page=100>;
+          rel="last"']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['4']
+      RateLimit-Remaining: ['596']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['100']
+      X-Prev-Page: ['']
+      X-Request-Id: [1a715eb2-97e8-4e2b-b7ad-e49d197c3513]
+      X-Runtime: ['0.609762']
+      X-Total: ['14']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+version: 1

@@ -74,6 +74,11 @@ class GitLabMergeRequestTest(IGittTestCase):
         self.assertEqual({int(issue.number) for issue in mr.closes_issues},
                          {21, 22, 23, 26, 27, 30})
 
+    def test_mentioned_issues(self):
+        mr = GitLabMergeRequest(self.token, 'gitmate-test-user/test', 16)
+        self.assertEqual({int(issue.number) for issue in mr.mentioned_issues},
+                         {10, 11, 12, 13})
+
     def test_assignees(self):
         # test merge request with no assignees
         mr = GitLabMergeRequest(self.token, 'gitmate-test-user/test', 25)

@@ -207,3 +207,13 @@ class GitLabMergeRequest(GitLabIssue, MergeRequest):
         issues = self._get_closes_issues()
         return {GitLabIssue(self._token, repo_name, number)
                 for number, repo_name in issues}
+
+    @property
+    def mentioned_issues(self) -> Set[GitLabIssue]:
+        """
+        Returns a set of GitLabIssue objects which are related to the merge
+        request.
+        """
+        issues = self._get_mentioned_issues()
+        return {GitLabIssue(self._token, repo_name, number)
+                for number, repo_name in issues}
