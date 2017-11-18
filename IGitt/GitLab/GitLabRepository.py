@@ -6,18 +6,15 @@ from typing import Optional
 from typing import Set
 from typing import Union
 from urllib.parse import quote_plus
-from multiprocessing.pool import ThreadPool
 
 from IGitt import ElementAlreadyExistsError, ElementDoesntExistError
-from IGitt.GitLab import delete, get, post, GitLabMixin, GL_INSTANCE_URL
+from IGitt.GitLab import delete, get, post, GitLabMixin
 from IGitt.GitLab import GitLabOAuthToken, GitLabPrivateToken
 from IGitt.GitLab.GitLabIssue import GitLabIssue
 from IGitt.GitLab.GitLabOrganization import GitLabOrganization
 from IGitt.Interfaces.Repository import Repository
 from IGitt.Interfaces.Repository import WebhookEvents
 from IGitt.Utils import eliminate_none
-from bs4 import BeautifulSoup
-from requests import get as _get
 
 
 GL_WEBHOOK_TRANSLATION = {
@@ -376,54 +373,12 @@ class GitLabRepository(GitLabMixin, Repository):
                                              self.full_name, res['iid'])
                 for res in get(self._token, self._url + '/merge_requests')}
 
-    @staticmethod
-    def _issues_from_url(url):
-        """finds issues in a http page of issues"""
-        resp = _get(url)
-        soup = BeautifulSoup(resp.content, 'html.parser')
-        return {li.get('url').split('/')[-1]
-                for li in soup.find_all('li', {'class': 'issue'})}
-
-
-    def filter_issues(self,
-                      state: str='opened',
-                      scrape: bool=False,
-                      pool_size: int=20) -> set:
+    def filter_issues(self, state: str='opened') -> set:
         """
         Filters the issues from the repository based on properties.
 
         :param state: 'opened' or 'closed' or 'all'.
         """
-        if scrape:
-
-            url = self.data['web_url'] + '/issues'
-
-            resp = _get(url, {'state':state, **self._token.parameter})
-            soup = BeautifulSoup(resp.content, 'html.parser')
-            issues = {li.get('url').split('/')[-1]
-                      for li in soup.find_all('li', {'class': 'issue'})}
-
-            # fetch all further pages if available:
-            try:
-                last_url = soup.find_all(
-                    'li', {'class':'last'})[0].find('a').get('href')
-                prefix = last_url.split('page=', 1)[0] + 'page='
-                suffix = '&' + last_url.replace(prefix, '').split('&', 1)[1]
-                max_num = int(last_url.replace(prefix, '').replace(suffix, ''))
-                page_urls = [GL_INSTANCE_URL + prefix + str(i) + suffix
-                             for i in range(2, max_num + 1)]
-
-                issues_per_page = ThreadPool(processes=pool_size).map(
-                    self._issues_from_url, page_urls, chunksize=1)
-
-                for issue_set in issues_per_page:
-                    issues |= issue_set
-            except IndexError:
-                pass
-
-            return {GitLabIssue(self._token, self.full_name, iss_iid)
-                    for iss_iid in issues}
-
         return {GitLabIssue.from_data(res, self._token,
                                       self.full_name, res['iid'])
                 for res in get(self._token,
