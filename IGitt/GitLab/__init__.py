@@ -8,7 +8,7 @@ from typing import Union
 import os
 import logging
 
-from IGitt.Interfaces import Token
+from IGitt.Interfaces import Token, RateLimit
 from IGitt.Interfaces import _fetch
 from IGitt.Utils import CachedDataMixin
 
@@ -26,6 +26,13 @@ class GitLabMixin(CachedDataMixin):
     """
     Base object for things that are on GitLab.
     """
+
+    @property
+    def rate_limit(self):
+        """
+        Returns `GitLabRateLimit` object.
+        """
+        return self._token.rate_limit
 
     def _get_data(self):
         return get(self._token, self._url)
@@ -50,6 +57,41 @@ class GitLabMixin(CachedDataMixin):
                                                   hex(id(self)))
 
 
+class GitLabRateLimit(RateLimit):
+    """
+    Stores RateLimit information about GitLab.
+    """
+    DEFAULT_RESOURCE = '*'
+    RESOURCE_MAPPING = dict()
+
+    def __init__(self, token: Token):
+        self._token = token
+        self.data = {'resources': {'*': {'remaining': 99999, 'reset': 0}}}
+
+    def refresh(self):
+        pass
+
+    def update_from_headers(self, resource, headers):
+        pass
+
+    def remaining(self, resource):
+        return self.data['resources'][resource]['remaining']
+
+    def wait_time(self, resource):
+        if self.remaining(resource):
+            return 0
+        remaining = self.data['resources'][resource]['reset'] - int(time.time())
+        return remaining if remaining > 0  else 0
+
+    def find_resource(self, endpoint):
+        return self.DEFAULT_RESOURCE
+
+    def __repr__(self):
+        return '<GitLabRateLimit object(resources={})>'.format(
+            self.data['resources']
+        )
+
+
 class GitLabOAuthToken(Token):
     """
     Object representation of OAuth tokens.
@@ -57,6 +99,11 @@ class GitLabOAuthToken(Token):
 
     def __init__(self, token):
         self._token = token
+        self._rate_limit = GitLabRateLimit(self)
+
+    @property
+    def rate_limit(self):
+        return self._rate_limit
 
     @property
     def parameter(self):
@@ -81,6 +128,11 @@ class GitLabPrivateToken(Token):
 
     def __init__(self, token):
         self._token = token
+        self._rate_limit = GitLabRateLimit(self)
+
+    @property
+    def rate_limit(self):
+        return self._rate_limit
 
     @property
     def parameter(self):

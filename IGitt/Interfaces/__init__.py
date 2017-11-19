@@ -12,6 +12,51 @@ from requests import Session
 HEADERS = {'User-Agent': 'IGitt'}
 
 
+class RateLimitError(Exception):
+    """
+    Raised if rate limit is blown.
+    """
+
+    def __init__(self, url, wait_time):
+        super().__init__("Rate limit exceeded for {}; wait time {}"
+                         "".format(url, wait_time))
+
+
+class RateLimit:
+    """
+    Stores the information of rate limiting like requests remaining, reset time,
+    etc.
+    """
+    def refresh(self):
+        """
+        Update the rate limit information.
+        """
+        raise NotImplementedError
+
+    def update_from_headers(self, resources: str, headers: dict):
+        """
+        Update the rate limit information for given resource using headers.
+        """
+        raise NotImplementedError
+
+    def remaining(self, resource: str):
+        """
+        Returns number of requests remaining for given resource.
+        """
+        raise NotImplementedError
+
+    def wait_time(self, resource: str):
+        """
+        Returns time to wait(in seconds) to be able to make new requests.
+        """
+        raise NotImplementedError
+
+    def find_resource(self, endpoint: str):
+        """
+        Given the endpoint determine which resource will be consumed.
+        """
+        raise NotImplementedError
+
 class IGittObject:
     """
     Any IGitt interface should inherit from this and any IGitt object shall
@@ -22,6 +67,13 @@ class IGittObject:
     def hoster(self):
         """
         The hosting service of the object, e.g. 'gitlab' or 'github'.
+        """
+        raise NotImplementedError
+
+    @property
+    def rate_limit(self):
+        """
+        Gives information of rate limit.
         """
         raise NotImplementedError
 
@@ -52,6 +104,13 @@ class Token:
         """
         raise NotImplementedError
 
+    @property
+    def rate_limit(self):
+        """
+        Returns ``RateLimit`` object containing rate limit information of given
+        ``Token`` object.
+        """
+        raise NotImplementedError
 
 def is_client_error(exception):
     """
@@ -102,7 +161,15 @@ def _fetch(base_url: str, req_type: str, token: Token, url: str,
         'delete': session.delete
     }
     method = req_methods[req_type]
-    resp = get_response(method, base_url + url, json=data)
+    resource = token.rate_limit.find_resource(url)
+
+    if token.rate_limit.remaining(resource):
+        resp = get_response(method, base_url + url, json=data)
+    else:
+        raise RateLimitError(base_url + url,
+                             token.rate_limit.wait_time(resource))
+
+    token.rate_limit.update_from_headers(resource, resp.headers)
 
     # DELETE request returns no response
     if not len(resp.text):
@@ -122,9 +189,14 @@ def _fetch(base_url: str, req_type: str, token: Token, url: str,
                     data_container.extend(resp.json()['items'])
                 if not resp.links.get('next', False):
                     return data_container
-                resp = get_response(method,
-                                    resp.links.get('next')['url'],
-                                    json=data)
+                if token.rate_limit.remaining(resource):
+                    resp = get_response(method,
+                                        resp.links.get('next')['url'],
+                                        json=data)
+                    token.rate_limit.update_from_headers(resource, resp.headers)
+                else:
+                    raise RateLimitError(base_url + url,
+                                         token.rate_limit.wait_time(resource))
         except JSONDecodeError:
             # if the request has a text response, for e.g. a git diff.
             return resp.text

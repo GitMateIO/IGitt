@@ -5,9 +5,11 @@ server.git.Interfaces.
 from datetime import datetime
 from typing import Optional
 import os
+import re
 import logging
+import time
 
-from IGitt.Interfaces import _fetch, Token
+from IGitt.Interfaces import RateLimit, Token, _fetch
 from IGitt.Utils import CachedDataMixin
 import jwt
 
@@ -24,6 +26,10 @@ class GitHubMixin(CachedDataMixin):
     """
     Base object for things that are on GitHub.
     """
+
+    @property
+    def rate_limit(self):
+        return self._token.rate_limit
 
     def _get_data(self):
         return get(self._token, self._url)
@@ -55,6 +61,12 @@ class GitHubToken(Token):
 
     def __init__(self, token):
         self._token = token
+        self._rate_limit = GitHubRateLimit(self)
+        self._rate_limit.refresh()
+
+    @property
+    def rate_limit(self):
+        return self._rate_limit
 
     @property
     def headers(self):
@@ -70,6 +82,50 @@ class GitHubToken(Token):
     @property
     def value(self):
         return self._token
+
+class GitHubRateLimit(RateLimit):
+    """
+    Stores RateLimit information about GitHub.
+    """
+    DEFAULT_RESOURCE = 'core'
+    RESOURCE_MAPPING = {
+        r'^/search': 'search'
+    }
+
+    def __init__(self, token):
+        self._url = '/rate_limit'
+        self._token = token
+        self.data = {'resources': {'core': {'remaining': 5000},
+                                   'search': {'remaining': 30}}}
+
+    def refresh(self):
+        self.data.update(get(self._token, self._url))
+
+    def update_from_headers(self, resource, headers):
+        remaining = int(headers['X-RateLimit-Remaining'])
+        reset = int(headers['X-RateLimit-Reset'])
+        self.data['resources'].update({resource: {'remaining': remaining,
+                                                  'reset': reset}})
+
+    def remaining(self, resource):
+        return self.data['resources'][resource]['remaining']
+
+    def wait_time(self, resource):
+        if self.remaining(resource):
+            return 0
+        remaining = self.data['resources'][resource]['reset'] - int(time.time())
+        return remaining if remaining > 0  else 0
+
+    def find_resource(self, endpoint):
+        for regex, resource in self.RESOURCE_MAPPING.items():
+            if re.match(regex, endpoint):
+                return resource
+        return self.DEFAULT_RESOURCE
+
+    def __repr__(self):
+        return '<GitHubRateLimit object(resources={})>'.format(
+            self.data['resources']
+        )
 
 
 class GitHubJsonWebToken(Token):
