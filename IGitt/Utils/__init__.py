@@ -40,6 +40,9 @@ class PossiblyIncompleteDict:
         self.maybe_refresh()
         return self._data[item]
 
+    def __setitem__(self, key, item):
+        self._data[key] = item
+
     def __contains__(self, item):
         """
         Needed for determining if an item is in the possibly incomplete self.
