@@ -180,7 +180,7 @@ class GitLabIssue(GitLabMixin, Issue):
 
         :return: A string containing the main description of the issue.
         """
-        return self.data['description']
+        return self.data['description'] if self.data['description'] else ''
 
     @property
     def author(self) -> str:

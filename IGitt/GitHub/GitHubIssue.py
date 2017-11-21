@@ -145,7 +145,7 @@ class GitHubIssue(GitHubMixin, Issue):
 
         :return: A string containing the main description of the issue.
         """
-        return self.data['body']
+        return self.data['body'] if self.data['body'] else ''
 
     @property
     def author(self) -> str:

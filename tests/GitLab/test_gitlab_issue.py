@@ -73,3 +73,8 @@ class GitLabIssueTest(IGittTestCase):
                                    'test title', 'test body')
         self.assertEqual(issue.state, 'opened')
         issue.delete()
+
+    def test_description_is_string(self):
+        issue = GitLabIssue(self.token, 'gitmate-test-user/test', 23)
+        issue.data['description'] = None
+        self.assertEqual(issue.description, '')

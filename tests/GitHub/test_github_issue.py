@@ -70,3 +70,8 @@ class GitHubIssueTest(IGittTestCase):
                                  'gitmate-test-user/test',
                                  'test title', 'test body')
         self.assertEqual(iss.state, 'open')
+
+    def test_description_is_string(self):
+        issue = GitHubIssue(self.token, 'gitmate-test-user/test', 12)
+        issue.data['body'] = None
+        self.assertEqual(issue.description, '')
