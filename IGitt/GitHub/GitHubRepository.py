@@ -430,8 +430,13 @@ class GitHubRepository(GitHubMixin, Repository):
         """
         url = self._url + '/contents/' + path
         content = b64encode(content.encode()).decode('utf-8')
-        data = { 'path' : path,
-                 'message': message, 'content': content, 'branch': branch}
+        data = {
+            'path': path,
+            'message': message,
+            'content': content,
+            'branch': branch,
+            'sha': branch,
+        }
         json = put(self._token, url, data)
 
         from IGitt.GitHub.GitHubContent import GitHubContent
