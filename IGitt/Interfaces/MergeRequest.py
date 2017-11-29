@@ -276,3 +276,10 @@ class MergeRequest(Issue):
         Returns a set of Issue objects which are related to the pull request.
         """
         raise NotImplementedError
+
+    @property
+    def author(self) -> str:
+        """
+        Returns the author of the MR.
+        """
+        raise NotImplementedError

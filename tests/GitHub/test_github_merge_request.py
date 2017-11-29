@@ -96,3 +96,6 @@ class GitHubMergeRequestTest(IGittTestCase):
     def test_assignees(self):
         # test merge request with no assignees
         self.assertEqual(self.mr.assignees, set())
+
+    def test_author(self):
+        self.assertEqual(self.mr.author, 'gitmate-test-user')

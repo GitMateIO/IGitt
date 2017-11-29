@@ -217,3 +217,10 @@ class GitLabMergeRequest(GitLabIssue, MergeRequest):
         issues = self._get_mentioned_issues()
         return {GitLabIssue(self._token, repo_name, number)
                 for number, repo_name in issues}
+
+    @property
+    def author(self) -> str:
+        """
+        Returns the author of the MR.
+        """
+        return self.data['author']['username']

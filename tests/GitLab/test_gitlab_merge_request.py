@@ -87,3 +87,6 @@ class GitLabMergeRequestTest(IGittTestCase):
         # test merge request with no assignees
         mr = GitLabMergeRequest(self.token, 'gitmate-test-user/test', 25)
         self.assertEqual(mr.assignees, set())
+
+    def test_author(self):
+        self.assertEqual(self.mr.author, 'nkprince007')

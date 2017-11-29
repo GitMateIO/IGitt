@@ -237,3 +237,10 @@ class GitHubMergeRequest(GitHubIssue, MergeRequest):
         issues = self._get_mentioned_issues()
         return {GitHubIssue(self._token, repo_name, number)
                 for number, repo_name in issues}
+
+    @property
+    def author(self) -> str:
+        """
+        Returns the author of the PR.
+        """
+        return self.data['user']['login']
