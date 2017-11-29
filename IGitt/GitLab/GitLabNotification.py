@@ -48,6 +48,7 @@ class GitLabNotification(GitLabMixin, Notification):
         return {
             'assigned': Reason.ASSIGNED,
             'mentioned': Reason.MENTIONED,
+            'directly_addressed': Reason.MENTIONED,
             'marked': Reason.MARKED,
             'build_failed': Reason.BUILD_FAILED,
             'approval_required': Reason.APPROVAL_REQUIRED
