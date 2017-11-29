@@ -63,6 +63,10 @@ class GitLabMergeRequestTest(IGittTestCase):
         self.assertEqual(self.mr.url,
                          'https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/merge_requests/7')
 
+    def test_web_url(self):
+        self.assertEqual(self.mr.web_url,
+                         'https://gitlab.com/gitmate-test-user/test/merge_requests/7')
+
     def test_change_state(self):
         self.mr.close()
         self.assertEqual(self.mr.state, 'closed')

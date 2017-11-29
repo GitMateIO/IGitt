@@ -1,0 +1,91 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://api.github.com/orgs/gitmate-test-org?per_page=100
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA6VTy27bMBD8F53t6BE5rggU/YRccupFoKi1zIYiCT4cuIb/vSNRbl07l7o3abkz
+        3J0ZnjJlBqkzlg0yjDzQOpAPa+OGbJXJPmPPVVXUTVWssugU2vYhWM/ynFv5BMg+dk/CjDkAPv+E
+        wpE1vv13aD4DMQMdSIeHGBISFHtj3h9imIGTDt5HeoghIUEx0tiRe4hjgZ7y9HEGm42dkqL9D9K/
+        Ga65+YEH7m4tm4u+WiyPnpwwOsCa2f2YX2Ly7fC1xoA9eeGkDdJM0UJB85FuQoYqsJbrY8Z0VGqV
+        dchialdG8AROJzRyOaVvcpP7FmnjWv6cW1rrzA8SwWcsuEipYU6PDMYd746XzVO+WPlbzEH6iQNB
+        3xmlzAfcuvqTGpPhbB9GdaPN1Sv45AEIR3hVfcsDxq+KcrsumnVVvZVbtnlmm/o7Voq2v+kpi7mn
+        ZNUXVhZTTzjaScDXq82nqglcYUUJf6hddsKY5kPjzvv6pbIsm8TtpX9vo+cDLkgVAQV4ZxyHglBh
+        cUcqBRnaxYtUtIrD4dPF350jwljecgGyZvuyeanqpoHIdyPuQIcZPeTBFTVA6as4T/HZ8ahCWmix
+        kdyI1zQHKl19Sb/guk0q/+mXtMTh/As8gePx4QQAAA==
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Access-Control-Expose-Headers: ['ETag, Link, Retry-After, X-GitHub-OTP, X-RateLimit-Limit,
+          X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes,
+          X-Poll-Interval']
+      Cache-Control: ['private, max-age=60, s-maxage=60']
+      Content-Encoding: [gzip]
+      Content-Security-Policy: [default-src 'none']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Wed, 29 Nov 2017 06:42:44 GMT']
+      ETag: [W/"b4f8d9cd01932bb55ee52bd91b01e4b1"]
+      Last-Modified: ['Sun, 22 Oct 2017 11:28:10 GMT']
+      Server: [GitHub.com]
+      Status: [200 OK]
+      Strict-Transport-Security: [max-age=31536000; includeSubdomains; preload]
+      Vary: ['Accept, Authorization, Cookie, X-GitHub-OTP']
+      X-Accepted-OAuth-Scopes: ['admin:org, read:org, repo, user, write:org']
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [deny]
+      X-GitHub-Media-Type: [github.v3; format=json]
+      X-GitHub-Request-Id: ['5EDA:301A:86D88D:10C801E:5A1E56E4']
+      X-OAuth-Scopes: ['admin:gpg_key, admin:org, admin:org_hook, admin:public_key,
+          admin:repo_hook, gist, notifications, repo, user']
+      X-RateLimit-Limit: ['5000']
+      X-RateLimit-Remaining: ['4998']
+      X-RateLimit-Reset: ['1511941362']
+      X-Runtime-rack: ['0.043974']
+      X-XSS-Protection: [1; mode=block]
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://api.github.com/orgs/gitmate-test-user?per_page=100
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAx3LMQqAMAxA0atIXNUMbh7A0StItaEWbCJt2kHx7hbHz+M/ECgl4wgmWESbWTJb
+        6MDKngOxGvXCa45n9UP1ShOipUKnXBQH5/XI27BLwDKiRJewdaS94b6GYX//P7wfAaxwJmcAAAA=
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Access-Control-Expose-Headers: ['ETag, Link, Retry-After, X-GitHub-OTP, X-RateLimit-Limit,
+          X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes,
+          X-Poll-Interval']
+      Content-Encoding: [gzip]
+      Content-Security-Policy: [default-src 'none']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Wed, 29 Nov 2017 06:42:46 GMT']
+      Server: [GitHub.com]
+      Status: [404 Not Found]
+      Strict-Transport-Security: [max-age=31536000; includeSubdomains; preload]
+      X-Accepted-OAuth-Scopes: [repo]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [deny]
+      X-GitHub-Media-Type: [github.v3; format=json]
+      X-GitHub-Request-Id: ['5F46:301A:86D9C6:10C8247:5A1E56E6']
+      X-OAuth-Scopes: ['admin:gpg_key, admin:org, admin:org_hook, admin:public_key,
+          admin:repo_hook, gist, notifications, repo, user']
+      X-RateLimit-Limit: ['5000']
+      X-RateLimit-Remaining: ['4997']
+      X-RateLimit-Reset: ['1511941362']
+      X-Runtime-rack: ['0.019109']
+      X-XSS-Protection: [1; mode=block]
+    status: {code: 404, message: Not Found}
+version: 1

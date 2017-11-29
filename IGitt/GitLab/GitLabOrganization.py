@@ -6,6 +6,7 @@ from functools import lru_cache
 from typing import Set
 from urllib.parse import quote_plus
 
+from IGitt.GitLab import GL_INSTANCE_URL
 from IGitt.GitLab import GitLabMixin
 from IGitt.GitLab import get
 from IGitt.GitLab.GitLabUser import GitLabUser
@@ -17,6 +18,9 @@ class GitLabOrganization(GitLabMixin, Organization):
     """
     Represents an organization on GitLab.
     """
+    @property
+    def web_url(self):
+        return '{}/{}'.format(GL_INSTANCE_URL, self.name)
 
     def __init__(self, token, name):
         """

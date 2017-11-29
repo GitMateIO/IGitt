@@ -4,6 +4,7 @@ Here you go: GitHub organizations can be used in IGitt.
 from typing import Set
 from urllib.parse import quote_plus
 
+from IGitt.GitHub import GH_INSTANCE_URL
 from IGitt.GitHub import GitHubMixin
 from IGitt.GitHub import get
 from IGitt.GitHub.GitHubUser import GitHubUser
@@ -14,6 +15,10 @@ class GitHubOrganization(GitHubMixin, Organization):
     """
     Represents an organization on GitLab.
     """
+
+    @property
+    def web_url(self):
+        return '{}/{}'.format(GH_INSTANCE_URL, self.name)
 
     def __init__(self, token, name):
         """

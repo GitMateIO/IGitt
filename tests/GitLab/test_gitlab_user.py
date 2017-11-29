@@ -15,6 +15,7 @@ class GitLabUserTest(IGittTestCase):
 
     def test_user_url(self):
         self.assertEqual(self.sils.url, 'https://gitlab.com/api/v4/users/104269')
+        self.assertEqual(self.sils.web_url, 'https://gitlab.com/sils')
 
     def test_user_id(self):
         self.assertEqual(self.user.identifier, 1369631)

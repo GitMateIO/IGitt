@@ -42,6 +42,13 @@ class GitHubMixin(CachedDataMixin):
         """
         return BASE_URL + self._url
 
+    @property
+    def web_url(self):
+        """
+        Returns the web link for GitHub.
+        """
+        return self.data['html_url']
+
     def __repr__(self): # dont cover
         return '<{} object(url={}) at {}>'.format(self.__class__.__name__,
                                                   self.url,

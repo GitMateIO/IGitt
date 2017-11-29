@@ -44,6 +44,13 @@ class GitLabMixin(CachedDataMixin):
         """
         return BASE_URL + self._url
 
+    @property
+    def web_url(self):
+        """
+        Returns a web link for GitLab.
+        """
+        return self.data['web_url']
+
     def __repr__(self): # dont cover
         return '<{} object(url={}) at {}>'.format(self.__class__.__name__,
                                                   self.url,
