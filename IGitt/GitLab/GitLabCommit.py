@@ -22,7 +22,8 @@ GL_STATE_TRANSLATION = {
     Status.PENDING: 'pending',
     Status.SUCCESS: 'success',
     Status.MANUAL: 'manual',
-    Status.CREATED: 'created'
+    Status.CREATED: 'created',
+    Status.SKIPPED: 'skipped'
 }
 
 INV_GL_STATE_TRANSLATION = {val: key for key, val

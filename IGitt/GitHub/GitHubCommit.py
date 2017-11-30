@@ -13,7 +13,8 @@ from IGitt.Interfaces.CommitStatus import CommitStatus, Status
 GH_STATE_TRANSLATION = {Status.ERROR: 'error', Status.FAILED: 'failure',
                         Status.PENDING: 'pending', Status.CANCELED: 'failure',
                         Status.SUCCESS: 'success', Status.RUNNING: 'pending',
-                        Status.CREATED: 'pending', Status.MANUAL: 'pending'}
+                        Status.CREATED: 'pending', Status.MANUAL: 'pending',
+                        Status.SKIPPED: 'success'}
 INV_GH_STATE_TRANSLATION = {'error': Status.ERROR, 'failure': Status.FAILED,
                             'pending': Status.PENDING,
                             'success': Status.SUCCESS}

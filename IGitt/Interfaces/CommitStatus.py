@@ -18,7 +18,7 @@ class Status(Enum):
     RUNNING = 6  # The build is still in progress
     MANUAL = 7  # The build can be triggered manually
     CREATED = 8 # The build job is created
-
+    SKIPPED = 9 # The build job was skipped
 
 class CommitStatus:
     """
