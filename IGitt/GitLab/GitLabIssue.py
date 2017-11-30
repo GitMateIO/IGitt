@@ -11,7 +11,7 @@ from IGitt.GitLab import get, put, post, delete, GitLabMixin
 from IGitt.GitLab import GitLabOAuthToken, GitLabPrivateToken
 from IGitt.GitLab.GitLabComment import GitLabComment
 from IGitt.Interfaces.Comment import CommentType
-from IGitt.Interfaces.Issue import Issue
+from IGitt.Interfaces.Issue import Issue, IssueStates
 
 
 class GitLabIssue(GitLabMixin, Issue):
@@ -361,26 +361,35 @@ class GitLabIssue(GitLabMixin, Issue):
         >>> issue = GitLabIssue(GitLabOAuthToken(environ['GITLAB_TEST_TOKEN']),
         ...                     'gitmate-test-user/test', 1)
         >>> issue.state
-        'opened'
+        <IssueStates.OPEN: 'open'>
+        >>> str(issue.state)
+        'open'
 
         So if we close it:
 
         >>> issue.close()
         >>> issue.state
+        <IssueStates.CLOSED: 'closed'>
+        >>> str(issue.state)
         'closed'
 
         And reopen it:
 
         >>> issue.reopen()
         >>> issue.state
-        'opened'
+        <IssueStates.OPEN: 'open'>
 
         Note: GitLab Issues & Merge Requests API underwent a change to have
-        only two states, 'opened' or 'closed'. No 'reopened' state anymore.
+        only two states, <IssueStates.OPEN: 'open'> or
+        <IssueStates.CLOSED: 'closed'>. No 'reopened' state anymore.
 
-        :return: Either 'opened' or 'closed'.
+        :return: Either <IssueStates.OPEN: 'open'> or
+        <IssueStates.CLOSED: 'closed'>.
         """
-        return self.data['state']
+        if self.data['state'] == 'opened':
+            self.data['state'] = 'open'
+
+        return IssueStates[self.data['state'].upper()]
 
     @staticmethod
     def create(token: Union[GitLabOAuthToken, GitLabPrivateToken],
@@ -397,7 +406,7 @@ class GitLabIssue(GitLabMixin, Issue):
         ...     'sample description'
         ... )
         >>> issue.state
-        'opened'
+        <IssueStates.OPEN: 'open'>
 
         Delete the issue to avoid filling the test repo with issues.
 

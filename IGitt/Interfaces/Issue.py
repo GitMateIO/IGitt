@@ -5,11 +5,25 @@ actions related to issues and bug reports.
 from datetime import datetime
 from typing import Set
 from typing import List
+from enum import Enum
 
 from IGitt.Interfaces import IGittObject
 from IGitt.Interfaces.Comment import Comment
 from IGitt.Interfaces.Repository import Repository
 
+class IssueStates(Enum):
+    """
+    This class depicts the issue states that can are present in any hosting
+    service providers like GitHub or GitLab.
+    """
+    def __str__(self):
+        """
+        Make behaviour of object as similar to a string as possible.
+        """
+        return str(self.value)
+
+    OPEN = 'open'
+    CLOSED = 'closed'
 
 class Issue(IGittObject):
     """

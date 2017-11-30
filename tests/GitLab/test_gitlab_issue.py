@@ -3,6 +3,7 @@ import datetime
 
 from IGitt.GitLab import GitLabOAuthToken
 from IGitt.GitLab.GitLabIssue import GitLabIssue
+from IGitt.Interfaces.Issue import IssueStates
 
 from tests import IGittTestCase
 
@@ -63,15 +64,17 @@ class GitLabIssueTest(IGittTestCase):
 
     def test_state(self):
         self.iss.close()
-        self.assertEqual(self.iss.state, 'closed')
+        self.assertEqual(self.iss.state, IssueStates.CLOSED)
+        self.assertEqual(str(self.iss.state), 'closed')
         self.iss.reopen()
-        self.assertEqual(self.iss.state, 'opened')
+        self.assertEqual(self.iss.state, IssueStates.OPEN)
+        self.assertEqual(str(self.iss.state), 'open')
 
     def test_issue_create(self):
         issue = GitLabIssue.create(self.token,
                                    'gitmate-test-user/test',
                                    'test title', 'test body')
-        self.assertEqual(issue.state, 'opened')
+        self.assertEqual(issue.state, IssueStates.OPEN)
         issue.delete()
 
     def test_description_is_string(self):

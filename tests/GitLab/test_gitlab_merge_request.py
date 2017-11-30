@@ -3,6 +3,7 @@ import datetime
 
 from IGitt.GitLab import GitLabOAuthToken
 from IGitt.GitLab.GitLabMergeRequest import GitLabMergeRequest
+from IGitt.Interfaces.Issue import IssueStates
 
 from tests import IGittTestCase
 
@@ -69,9 +70,9 @@ class GitLabMergeRequestTest(IGittTestCase):
 
     def test_change_state(self):
         self.mr.close()
-        self.assertEqual(self.mr.state, 'closed')
+        self.assertEqual(self.mr.state, IssueStates.CLOSED)
         self.mr.reopen()
-        self.assertEqual(self.mr.state, 'opened')
+        self.assertEqual(self.mr.state, IssueStates.OPEN)
 
     def test_closes_issues(self):
         mr = GitLabMergeRequest(self.token, 'gitmate-test-user/test', 25)

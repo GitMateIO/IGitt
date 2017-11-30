@@ -3,6 +3,7 @@ import datetime
 
 from IGitt.GitHub import GitHubToken
 from IGitt.GitHub.GitHubIssue import GitHubIssue
+from IGitt.Interfaces.Issue import IssueStates
 
 from tests import IGittTestCase
 
@@ -61,15 +62,17 @@ class GitHubIssueTest(IGittTestCase):
 
     def test_state(self):
         self.iss.close()
-        self.assertEqual(self.iss.state, 'closed')
+        self.assertEqual(self.iss.state, IssueStates.CLOSED)
+        self.assertEqual(str(self.iss.state), 'closed')
         self.iss.reopen()
-        self.assertEqual(self.iss.state, 'open')
+        self.assertEqual(self.iss.state, IssueStates.OPEN)
+        self.assertEqual(str(self.iss.state), 'open')
 
     def test_issue_create(self):
         iss = GitHubIssue.create(self.token,
                                  'gitmate-test-user/test',
                                  'test title', 'test body')
-        self.assertEqual(iss.state, 'open')
+        self.assertEqual(iss.state, IssueStates.OPEN)
 
     def test_description_is_string(self):
         issue = GitHubIssue(self.token, 'gitmate-test-user/test', 12)

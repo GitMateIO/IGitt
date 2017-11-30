@@ -8,7 +8,7 @@ from IGitt.GitHub import get, patch, post, delete, GitHubMixin
 from IGitt.GitHub import GitHubToken
 from IGitt.GitHub.GitHubComment import GitHubComment
 from IGitt.Interfaces.Comment import CommentType
-from IGitt.Interfaces.Issue import Issue
+from IGitt.Interfaces.Issue import Issue, IssueStates
 
 
 class GitHubIssue(GitHubMixin, Issue):
@@ -318,23 +318,28 @@ class GitHubIssue(GitHubMixin, Issue):
         >>> issue = GitHubIssue(GitHubToken(environ['GITHUB_TEST_TOKEN']),
         ...                     'gitmate-test-user/test', 10)
         >>> issue.state
+        <IssueStates.OPEN: 'open'>
+        >>> str(issue.state)
         'open'
 
         So if we close it:
 
         >>> issue.close()
         >>> issue.state
+        <IssueStates.CLOSED: 'closed'>
+        >>> str(issue.state)
         'closed'
 
         And reopen it:
 
         >>> issue.reopen()
         >>> issue.state
-        'open'
+        <IssueStates.OPEN: 'open'>
 
-        :return: Either 'open' or 'closed'.
+        :return: Either <IssueStates.OPEN: 'open'> or
+        <IssueStates.CLOSED: 'closed'>.
         """
-        return self.data['state']
+        return IssueStates[self.data['state'].upper()]
 
     @staticmethod
     def create(token: str, repository: str,
@@ -350,6 +355,8 @@ class GitHubIssue(GitHubMixin, Issue):
         ...     'sample description'
         ... )
         >>> issue.state
+        <IssueStates.OPEN: 'open'>
+        >>> str(issue.state)
         'open'
 
         Let's delete the newly created one, because it's useless.
