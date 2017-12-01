@@ -1,13 +1,14 @@
 image: python:3.5-alpine
 
 before_script:
-  - apk --update add build-base libffi-dev openssl-dev
+  - apk --update add build-base libffi-dev openssl-dev git
   - pip install -r requirements.txt
   - pip install -r test-requirements.txt
 
 run_tests:
   script:
   - python3 -m pytest
+  - sh .ci/no_yaml.sh
   except:
   - master
 
