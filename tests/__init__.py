@@ -9,6 +9,7 @@ from unittest import TestCase
 import re
 
 from vcr import VCR
+import pytest
 
 
 FILTER_QUERY_PARAMS = ['access_token', 'private_token']
@@ -16,6 +17,7 @@ FILTER_PARAMS_REGEX = re.compile(r'(\??)((?:{})=\w+&?)'.format(
     '|'.join(FILTER_QUERY_PARAMS)))
 
 
+@pytest.mark.usefixtures('vcrpy_record_mode')
 class IGittTestCase(TestCase, metaclass=ABCMeta):
     """
     Base class for writing testcases in IGitt.
@@ -43,6 +45,7 @@ class IGittTestCase(TestCase, metaclass=ABCMeta):
         """
         cassettes_dir = join(dirname(getfile(self.__class__)), 'cassettes')
         kwargs = {
+            'record_mode': getattr(self, 'vcrpy_record_mode', 'once'),
             'cassette_library_dir': cassettes_dir,
             'match_on': ['method', 'scheme', 'host', 'port', 'path', 'query'],
             'filter_query_parameters': FILTER_QUERY_PARAMS,
