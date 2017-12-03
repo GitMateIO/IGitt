@@ -6,6 +6,8 @@ from IGitt.GitLab import GitLabOAuthToken, GitLabPrivateToken
 from IGitt.GitLab.GitLabContent import GitLabContent
 from IGitt.GitLab.GitLabMergeRequest import GitLabMergeRequest
 from IGitt.GitLab.GitLabRepository import GitLabRepository
+from IGitt.GitLab.GitLabUser import GitLabUser
+from IGitt.Interfaces import AccessLevel
 from IGitt.Interfaces.Repository import WebhookEvents
 from IGitt import ElementAlreadyExistsError, ElementDoesntExistError
 
@@ -174,3 +176,18 @@ class GitLabRepositoryTest(IGittTestCase):
                           'ed5fb0a1cc38a078a6f72b3523b6bce8c14be9b8'})
         repo = GitLabRepository(self.token, 'gitmate-test-user/empty')
         self.assertEqual(repo.commits, set())
+
+    def test_get_permission_level(self):
+        sils = GitLabUser(self.token, 104269)
+        user = GitLabUser(self.token)
+        meetmangukiya = GitLabUser(self.token, 707601)
+        noman = GitLabUser(self.token, 1)
+
+        self.assertEqual(self.repo.get_permission_level(sils),
+                         AccessLevel.ADMIN)
+        self.assertEqual(self.repo.get_permission_level(user),
+                         AccessLevel.ADMIN)
+        self.assertEqual(self.repo.get_permission_level(meetmangukiya),
+                         AccessLevel.CAN_WRITE)
+        self.assertEqual(self.repo.get_permission_level(noman),
+                         AccessLevel.CAN_VIEW)

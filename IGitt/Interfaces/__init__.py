@@ -134,6 +134,7 @@ class AccessLevel(Enum):
     """
     Different access levels for users.
     """
+    NONE = 0  # in case of private repositories
     CAN_VIEW = 10
     CAN_READ = 20
     CAN_WRITE = 30

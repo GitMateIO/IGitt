@@ -11,6 +11,7 @@ from typing import Union
 
 from git.repo.base import Repo
 
+from IGitt.Interfaces import AccessLevel
 from IGitt.Interfaces import IGittObject
 
 
@@ -273,5 +274,12 @@ class Repository(IGittObject):
                       updated_before: Optional[datetime.date]=None):
         """
         Retrieves a list of open issues
+        """
+        raise NotImplementedError
+
+    def get_permission_level(self, user) -> AccessLevel:
+        """
+        Retrieves the permission level for the specified user on this
+        repository.
         """
         raise NotImplementedError

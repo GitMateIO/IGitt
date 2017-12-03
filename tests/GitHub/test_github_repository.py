@@ -5,6 +5,8 @@ from IGitt.GitHub import GitHubToken
 from IGitt.GitHub.GitHubContent import GitHubContent
 from IGitt.GitHub.GitHubMergeRequest import GitHubMergeRequest
 from IGitt.GitHub.GitHubRepository import GitHubRepository
+from IGitt.GitHub.GitHubUser import GitHubUser
+from IGitt.Interfaces import AccessLevel
 from IGitt.Interfaces.Repository import WebhookEvents
 from IGitt import ElementAlreadyExistsError, ElementDoesntExistError
 
@@ -156,3 +158,15 @@ class GitHubRepositoryTest(IGittTestCase):
                           '674498fd415cfadc35c5eb28b8951e800f357c6f'})
         repo = GitHubRepository(self.token, 'gitmate-test-user/empty')
         self.assertEqual(repo.commits, set())
+
+    def test_get_permission_level(self):
+        sils = GitHubUser(self.token, 'sils')
+        user = GitHubUser(self.token)
+        nkprince007 = GitHubUser(self.token, 'nkprince007')
+
+        self.assertEqual(self.repo.get_permission_level(sils),
+                         AccessLevel.CAN_WRITE)
+        self.assertEqual(self.repo.get_permission_level(user),
+                         AccessLevel.ADMIN)
+        self.assertEqual(self.repo.get_permission_level(nkprince007),
+                         AccessLevel.CAN_READ)

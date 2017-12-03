@@ -13,6 +13,7 @@ from IGitt.GitHub import delete, get, post, GitHubMixin, put
 from IGitt.GitHub import GitHubToken
 from IGitt.GitHub.GitHubIssue import GitHubIssue
 from IGitt.GitHub.GitHubOrganization import GitHubOrganization
+from IGitt.Interfaces import AccessLevel
 from IGitt.Interfaces.Repository import Repository
 from IGitt.Interfaces.Repository import WebhookEvents
 from IGitt.Utils import eliminate_none
@@ -519,3 +520,20 @@ class GitHubRepository(GitHubMixin, Repository):
                                      created_before,
                                      updated_after,
                                      updated_before)
+
+    def get_permission_level(self, user) -> AccessLevel:
+        """
+        Retrieves the permission level for the specified user on this
+        repository.
+
+        Note that this request can be made only if the access token used here
+        has atleast write access to the repository. If not, a HTTP 403 occurs.
+        """
+        url = self._url + '/collaborators/{}/permission'.format(user.username)
+        data = get(self._token, url)
+        return {
+            'admin': AccessLevel.ADMIN,
+            'write': AccessLevel.CAN_WRITE,
+            'read': AccessLevel.CAN_READ,
+            'none': AccessLevel.NONE,
+        }.get(data['permission'])

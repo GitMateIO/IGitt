@@ -12,6 +12,7 @@ from IGitt.GitLab import delete, get, post, GitLabMixin
 from IGitt.GitLab import GitLabOAuthToken, GitLabPrivateToken
 from IGitt.GitLab.GitLabIssue import GitLabIssue
 from IGitt.GitLab.GitLabOrganization import GitLabOrganization
+from IGitt.Interfaces import AccessLevel
 from IGitt.Interfaces.Repository import Repository
 from IGitt.Interfaces.Repository import WebhookEvents
 from IGitt.Utils import eliminate_none
@@ -512,3 +513,17 @@ class GitLabRepository(GitLabMixin, Repository):
             merge_request = self.get_mr(mr_data['iid'])
             merge_request.data = mr_data
             yield merge_request
+
+    def get_permission_level(self, user) -> AccessLevel:
+        """
+        Retrieves the permission level for the specified user on this
+        repository.
+        """
+        members = get(self._token, self._url + '/members')
+        if user.username not in map(lambda m: m['username'], members):
+            return (AccessLevel.CAN_VIEW
+                    if self.data['visibility'] != 'private'
+                    else AccessLevel.NONE)
+        curr_member_idx = next(i for (i, d) in enumerate(members)
+                               if d['username'] == user.username)
+        return AccessLevel(members[curr_member_idx]['access_level'])
