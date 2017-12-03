@@ -10,6 +10,7 @@ from urllib.parse import quote_plus
 from IGitt.GitLab import get, put, post, delete, GitLabMixin
 from IGitt.GitLab import GitLabOAuthToken, GitLabPrivateToken
 from IGitt.GitLab.GitLabComment import GitLabComment
+from IGitt.GitLab.GitLabUser import GitLabUser
 from IGitt.Interfaces.Comment import CommentType
 from IGitt.Interfaces.Issue import Issue, IssueStates
 
@@ -183,13 +184,15 @@ class GitLabIssue(GitLabMixin, Issue):
         return self.data['description'] if self.data['description'] else ''
 
     @property
-    def author(self) -> str:
+    def author(self) -> GitLabUser:
         """
-        Retrieves the username of the issue author.
+        Retrieves the author of the issue.
 
-        :return: A string containing the author's username.
+        :return: A GitLabUser object.
         """
-        return self.data['author']['username']
+        return GitLabUser.from_data(self.data['author'],
+                                    self._token,
+                                    self.data['author']['id'])
 
     def add_comment(self, body):
         """

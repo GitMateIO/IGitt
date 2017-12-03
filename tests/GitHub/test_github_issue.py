@@ -41,7 +41,7 @@ class GitHubIssueTest(IGittTestCase):
         self.assertEqual(self.iss.description, 'test description\r\n')
 
     def test_author(self):
-        self.assertEqual(self.iss.author, 'meetmangukiya')
+        self.assertEqual(self.iss.author.username, 'meetmangukiya')
 
     def test_comment(self):
         self.iss.add_comment('this is a comment')

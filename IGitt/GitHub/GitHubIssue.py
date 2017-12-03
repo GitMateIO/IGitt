@@ -7,6 +7,7 @@ from typing import Set
 from IGitt.GitHub import get, patch, post, delete, GitHubMixin
 from IGitt.GitHub import GitHubToken
 from IGitt.GitHub.GitHubComment import GitHubComment
+from IGitt.GitHub.GitHubUser import GitHubUser
 from IGitt.Interfaces.Comment import CommentType
 from IGitt.Interfaces.Issue import Issue, IssueStates
 
@@ -148,13 +149,15 @@ class GitHubIssue(GitHubMixin, Issue):
         return self.data['body'] if self.data['body'] else ''
 
     @property
-    def author(self) -> str:
+    def author(self) -> GitHubUser:
         """
-        Retrieves the username of the issue author.
+        Retrieves the author of the issue.
 
-        :return: A string containing the author's username.
+        :return: A GitHubUser object.
         """
-        return self.data['user']['login']
+        return GitHubUser.from_data(self.data['user'],
+                                    self._token,
+                                    self.data['user']['login'])
 
     def add_comment(self, body):
         """

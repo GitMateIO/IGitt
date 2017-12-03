@@ -42,7 +42,7 @@ class GitLabIssueTest(IGittTestCase):
                          'Stop trying to be badass.')
 
     def test_author(self):
-        self.assertEqual(self.iss.author, 'gitmate-test-user')
+        self.assertEqual(self.iss.author.username, 'gitmate-test-user')
 
     def test_add_comment(self):
         self.iss.add_comment('this is a test comment')
