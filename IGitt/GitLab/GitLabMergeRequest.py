@@ -10,6 +10,7 @@ import re
 from IGitt.GitLab import get, GitLabOAuthToken, GitLabPrivateToken
 from IGitt.GitLab.GitLabCommit import GitLabCommit
 from IGitt.GitLab.GitLabIssue import GitLabIssue
+from IGitt.GitLab.GitLabUser import GitLabUser
 from IGitt.Interfaces.MergeRequest import MergeRequest
 
 
@@ -219,8 +220,12 @@ class GitLabMergeRequest(GitLabIssue, MergeRequest):
                 for number, repo_name in issues}
 
     @property
-    def author(self) -> str:
+    def author(self) -> GitLabUser:
         """
-        Returns the author of the MR.
+        Retrieves the author of the merge request.
+
+        :return: A GitLabUser object.
         """
-        return self.data['author']['username']
+        return GitLabUser.from_data(self.data['author'],
+                                    self._token,
+                                    self.data['author']['id'])

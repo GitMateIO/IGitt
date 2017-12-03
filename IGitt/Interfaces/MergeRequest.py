@@ -11,6 +11,7 @@ import re
 from IGitt.Interfaces.Commit import Commit
 from IGitt.Interfaces.CommitStatus import Status
 from IGitt.Interfaces.Issue import Issue
+from IGitt.Interfaces.User import User
 
 
 SUPPORTED_HOST_KEYWORD_REGEX = {
@@ -278,8 +279,8 @@ class MergeRequest(Issue):
         raise NotImplementedError
 
     @property
-    def author(self) -> str:
+    def author(self) -> User:
         """
-        Returns the author of the MR.
+        Returns the author of the MR wrapped in a User object.
         """
         raise NotImplementedError

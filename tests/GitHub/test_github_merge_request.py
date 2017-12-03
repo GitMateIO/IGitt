@@ -99,4 +99,4 @@ class GitHubMergeRequestTest(IGittTestCase):
         self.assertEqual(self.mr.assignees, set())
 
     def test_author(self):
-        self.assertEqual(self.mr.author, 'gitmate-test-user')
+        self.assertEqual(self.mr.author.username, 'gitmate-test-user')

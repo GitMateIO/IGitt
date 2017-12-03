@@ -22,6 +22,7 @@ from typing import Set
 from IGitt.GitHub import get, GitHubToken
 from IGitt.GitHub.GitHubCommit import GitHubCommit
 from IGitt.GitHub.GitHubIssue import GitHubIssue
+from IGitt.GitHub.GitHubUser import GitHubUser
 from IGitt.Interfaces.MergeRequest import MergeRequest
 
 
@@ -239,8 +240,12 @@ class GitHubMergeRequest(GitHubIssue, MergeRequest):
                 for number, repo_name in issues}
 
     @property
-    def author(self) -> str:
+    def author(self) -> GitHubUser:
         """
-        Returns the author of the PR.
+        Retrieves the author of the merge request.
+
+        :return: A GitHubUser object.
         """
-        return self.data['user']['login']
+        return GitHubUser.from_data(self.data['user'],
+                                    self._token,
+                                    self.data['user']['login'])
