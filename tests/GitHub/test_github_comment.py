@@ -43,7 +43,7 @@ class GitHubCommentTest(IGittTestCase):
 
 
     def test_author(self):
-        self.assertEqual(self.comment.author, 'nkprince007')
+        self.assertEqual(self.comment.author.username, 'nkprince007')
 
     def test_time(self):
         self.assertEqual(self.issue_comment.created,

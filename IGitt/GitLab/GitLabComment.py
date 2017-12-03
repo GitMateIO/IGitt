@@ -7,6 +7,7 @@ from urllib.parse import quote_plus
 from datetime import datetime
 from IGitt.GitLab import delete, put, GitLabMixin
 from IGitt.GitLab import GitLabOAuthToken, GitLabPrivateToken
+from IGitt.GitLab.GitLabUser import GitLabUser
 from IGitt.Interfaces.Comment import Comment
 from IGitt.Interfaces.Comment import CommentType
 
@@ -65,20 +66,22 @@ class GitLabComment(GitLabMixin, Comment):
         return self._type
 
     @property
-    def author(self) -> str:
+    def author(self) -> GitLabUser:
         """
-        Retrieves the username of the comment author.
+        Retrieves the author of the comment.
 
         >>> from os import environ
         >>> note = GitLabComment(GitLabOAuthToken(environ['GITLAB_TEST_TOKEN']),
         ...                      'gitmate-test-user/test', 1,
         ...                      CommentType.ISSUE, 31500135)
-        >>> note.author
+        >>> note.author.username
         'gitmate-test-user'
 
-        :return: A string containing the author's username.
+        :return: A GitLabUser object.
         """
-        return self.data['author']['username']
+        return GitLabUser.from_data(self.data['author'],
+                                    self._token,
+                                    self.data['author']['id'])
 
     @property
     def body(self) -> str:

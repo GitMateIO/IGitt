@@ -42,7 +42,7 @@ class GitLabCommentTest(IGittTestCase):
         self.assertEqual(self.issue_comment.body, 'test comment body to change')
 
     def test_author(self):
-        self.assertEqual(self.comment.author, 'gitmate-test-user')
+        self.assertEqual(self.comment.author.username, 'gitmate-test-user')
 
     def test_time(self):
         self.assertEqual(self.comment.created,

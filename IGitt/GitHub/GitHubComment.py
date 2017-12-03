@@ -5,6 +5,7 @@ from datetime import datetime
 
 from IGitt.GitHub import delete, patch, GitHubMixin, GitHubToken
 from IGitt.Interfaces.Comment import Comment, CommentType
+from IGitt.GitHub.GitHubUser import GitHubUser
 
 
 class GitHubComment(GitHubMixin, Comment):
@@ -82,19 +83,21 @@ class GitHubComment(GitHubMixin, Comment):
         self.data = patch(self._token, self._url, payload)
 
     @property
-    def author(self):
+    def author(self) -> GitHubUser:
         """
-        Retrieves the username of the author:
+        Retrieves the author of the comment.
 
         >>> from os import environ
         >>> issue = GitHubComment(GitHubToken(environ['GITHUB_TEST_TOKEN']),
         ...                      'gitmate-test-user/test', 172962077)
-        >>> issue.author
+        >>> issue.author.username
         'sils'
 
-        :return: A string containing the authors username.
+        :return: A GitHubUser object.
         """
-        return self.data['user']['login']
+        return GitHubUser.from_data(self.data['user'],
+                                    self._token,
+                                    self.data['user']['login'])
 
     @property
     def created(self) -> datetime:

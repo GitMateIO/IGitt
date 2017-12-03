@@ -7,6 +7,7 @@ from enum import Enum
 
 from IGitt.Interfaces import IGittObject
 from IGitt.Interfaces.Repository import Repository
+from IGitt.Interfaces.User import User
 
 
 class CommentType(Enum):
@@ -53,9 +54,9 @@ class Comment(IGittObject):
         raise NotImplementedError
 
     @property
-    def author(self) -> str:
+    def author(self) -> User:
         """
-        Retrieves the username of the author of the comment.
+        Retrieves the author of the comment wrapped in a User object.
         """
         raise NotImplementedError
 
