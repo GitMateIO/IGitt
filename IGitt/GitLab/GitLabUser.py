@@ -25,7 +25,11 @@ class GitLabUser(GitLabMixin, User):
         :param identifier: Pass None if it's you! Otherwise the id, integer.
         """
         self._token = token
-        self._url = '/users/' + str(identifier) if identifier else '/user'
+        if identifier:
+            identifier = self._identifier_from_username(identifier)
+            self._url = '/users/' + str(identifier)
+        else:
+            self._url = '/user'
         self._id = identifier
 
     @property
@@ -41,6 +45,17 @@ class GitLabUser(GitLabMixin, User):
         Gets a unique id for the user that never changes.
         """
         return self._id or self.data['id']
+
+    def _identifier_from_username(self, username: str) -> int:
+        """
+        Returns identifier of the user with given username.
+        """
+        res = get(self._token, '/users', {'username': username})
+        for item in res:
+            if item['username'] == username:
+                self.data = item
+                return item['id']
+        raise RuntimeError('User {} doesn\'t exist'.format(username))
 
     def installed_repositories(self, installation_id: int):
         """
