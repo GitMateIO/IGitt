@@ -7,6 +7,45 @@ interactions:
       Connection: [keep-alive]
       User-Agent: [IGitt]
     method: GET
+    uri: https://gitlab.com/api/v4/users?per_page=100&username=sils
+  response:
+    body: {string: '[{"id":104269,"name":"Lasse Schuirmann","username":"sils","state":"active","avatar_url":"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\u0026d=identicon","web_url":"https://gitlab.com/sils"}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['217']
+      Content-Type: [application/json]
+      Date: ['Tue, 05 Dec 2017 13:39:31 GMT']
+      Etag: [W/"a37e5bb674e0601b24ce96829f3ce168"]
+      Link: ['<https://gitlab.com/api/v4/users?active=false&blocked=false&external=false&page=1&per_page=100&skip_ldap=false&username=sils>;
+          rel="first", <https://gitlab.com/api/v4/users?active=false&blocked=false&external=false&page=1&per_page=100&skip_ldap=false&username=sils>;
+          rel="last"']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['9']
+      RateLimit-Remaining: ['591']
+      RateLimit-Reset: ['1512481231']
+      RateLimit-ResetTime: ['Wed, 05 Dec 2017 13:40:31 GMT']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['100']
+      X-Prev-Page: ['']
+      X-Request-Id: [ddc959d0-4d60-421a-9ff0-c82847d06e6d]
+      X-Runtime: ['0.065045']
+      X-Total: ['1']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
     uri: https://gitlab.com/api/v4/users/104269?per_page=100
   response:
     body: {string: '{"id":104269,"name":"Lasse Schuirmann","username":"sils","state":"active","avatar_url":"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80&d=identicon","web_url":"https://gitlab.com/sils","created_at":"2015-03-01T14:47:31.571Z","bio":"","location":"Hamburg","skype":"","linkedin":"","twitter":"","website_url":"viperdev.io","organization":null}'}
@@ -14,17 +53,20 @@ interactions:
       Cache-Control: ['max-age=0, private, must-revalidate']
       Content-Length: ['366']
       Content-Type: [application/json]
-      Date: ['Sat, 30 Sep 2017 18:50:36 GMT']
+      Date: ['Tue, 05 Dec 2017 13:39:33 GMT']
       Etag: [W/"cd40dab7d954d5d5bbbb2aca2449a21d"]
       RateLimit-Limit: ['600']
-      RateLimit-Observed: ['1']
-      RateLimit-Remaining: ['599']
+      RateLimit-Observed: ['10']
+      RateLimit-Remaining: ['590']
+      RateLimit-Reset: ['1512481233']
+      RateLimit-ResetTime: ['Wed, 05 Dec 2017 13:40:33 GMT']
       Server: [nginx]
       Strict-Transport-Security: [max-age=31536000]
       Vary: [Origin]
+      X-Content-Type-Options: [nosniff]
       X-Frame-Options: [SAMEORIGIN]
-      X-Request-Id: [2d955cc5-3f1a-4196-a315-039f5bd6f7e5]
-      X-Runtime: ['0.053424']
+      X-Request-Id: [c09e09f0-a860-49c0-8010-d77a84650716]
+      X-Runtime: ['0.054356']
     status: {code: 200, message: OK}
 - request:
     body: null
@@ -41,16 +83,19 @@ interactions:
       Cache-Control: ['max-age=0, private, must-revalidate']
       Content-Length: ['779']
       Content-Type: [application/json]
-      Date: ['Sat, 30 Sep 2017 18:50:39 GMT']
+      Date: ['Tue, 05 Dec 2017 13:39:36 GMT']
       Etag: [W/"d6d7c880f3f1baa30897d5b57f90a470"]
       RateLimit-Limit: ['600']
-      RateLimit-Observed: ['2']
-      RateLimit-Remaining: ['598']
+      RateLimit-Observed: ['11']
+      RateLimit-Remaining: ['589']
+      RateLimit-Reset: ['1512481236']
+      RateLimit-ResetTime: ['Wed, 05 Dec 2017 13:40:36 GMT']
       Server: [nginx]
       Strict-Transport-Security: [max-age=31536000]
       Vary: [Origin]
+      X-Content-Type-Options: [nosniff]
       X-Frame-Options: [SAMEORIGIN]
-      X-Request-Id: [3a69f764-d5a5-4893-b6c0-2ec8fd337bc3]
-      X-Runtime: ['0.060744']
+      X-Request-Id: [328d0646-b16a-4350-b02b-d9aa5bd5e156]
+      X-Runtime: ['0.069862']
     status: {code: 200, message: OK}
 version: 1

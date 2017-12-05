@@ -1,9 +1,11 @@
 """
 Holds the User class representing users on such a platform.
 """
+from typing import Iterator
 from typing import Set
 
 from IGitt.Interfaces import IGittObject
+from IGitt.Interfaces.Issue import Issue
 from IGitt.Interfaces.Repository import Repository
 
 
@@ -34,5 +36,11 @@ class User(IGittObject):
         """
         List repositories that are accessible to the authenticated user for an
         installation.
+        """
+        raise NotImplementedError
+
+    def assigned_issues(self) -> Iterator[Issue]:
+        """
+        Returns an iterator of all the issues that are assigned to the user.
         """
         raise NotImplementedError

@@ -1,12 +1,15 @@
 """
 Contains a representation of GitHub users.
 """
+from typing import Iterator
 from typing import Optional
 from typing import Union
 
+from IGitt.GitLab import get
 from IGitt.GitLab import GitLabMixin
 from IGitt.GitLab import GitLabOAuthToken
 from IGitt.GitLab import GitLabPrivateToken
+from IGitt.GitLab.GitLabIssue import GitLabIssue
 from IGitt.Interfaces.User import User
 
 
@@ -65,3 +68,13 @@ class GitLabUser(GitLabMixin, User):
         GitLab doesn't support building installations yet.
         """
         raise NotImplementedError
+
+    def assigned_issues(self) -> Iterator[GitLabIssue]:
+        """
+        Returns an iterator of all the issues that are assigned to the user.
+        """
+        issues = get(self._token, '/issues', {'assignee_id': self.identifier,
+                                              'scope': 'all'})
+        for issue in issues:
+            yield GitLabIssue(self._token, str(issue['project_id']),
+                              issue['iid'])

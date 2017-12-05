@@ -1,0 +1,467 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/users?per_page=100&username=sils
+  response:
+    body: {string: '[{"id":104269,"name":"Lasse Schuirmann","username":"sils","state":"active","avatar_url":"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\u0026d=identicon","web_url":"https://gitlab.com/sils"}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['217']
+      Content-Type: [application/json]
+      Date: ['Tue, 05 Dec 2017 13:38:38 GMT']
+      Etag: [W/"a37e5bb674e0601b24ce96829f3ce168"]
+      Link: ['<https://gitlab.com/api/v4/users?active=false&blocked=false&external=false&page=1&per_page=100&skip_ldap=false&username=sils>;
+          rel="first", <https://gitlab.com/api/v4/users?active=false&blocked=false&external=false&page=1&per_page=100&skip_ldap=false&username=sils>;
+          rel="last"']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['1']
+      RateLimit-Remaining: ['599']
+      RateLimit-Reset: ['1512481178']
+      RateLimit-ResetTime: ['Wed, 05 Dec 2017 13:39:38 GMT']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['100']
+      X-Prev-Page: ['']
+      X-Request-Id: [b8a35d58-0303-49a1-8340-e463b38d588c]
+      X-Runtime: ['0.065637']
+      X-Total: ['1']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/user?per_page=100
+  response:
+    body: {string: '{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user","created_at":"2017-06-02T07:14:25.112Z","bio":null,"location":null,"skype":"","linkedin":"","twitter":"","website_url":"","organization":null,"last_sign_in_at":"2017-09-19T14:30:33.360Z","confirmed_at":"2017-06-02T07:17:21.578Z","last_activity_on":"2017-09-24","email":"naveendarknight@gmail.com","theme_id":null,"color_scheme_id":1,"projects_limit":100000,"current_sign_in_at":"2017-09-19T19:37:42.606Z","identities":[],"can_create_group":true,"can_create_project":true,"two_factor_enabled":false,"external":false,"shared_runners_minutes_limit":2000}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['779']
+      Content-Type: [application/json]
+      Date: ['Tue, 05 Dec 2017 13:38:43 GMT']
+      Etag: [W/"d6d7c880f3f1baa30897d5b57f90a470"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['2']
+      RateLimit-Remaining: ['598']
+      RateLimit-Reset: ['1512481183']
+      RateLimit-ResetTime: ['Wed, 05 Dec 2017 13:39:43 GMT']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [4eb59d13-6a31-4001-94ae-f11c2663f4f9]
+      X-Runtime: ['0.183236']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/issues?assignee_id=1369631&per_page=100&scope=all
+  response:
+    body: {string: '[{"id":7980409,"iid":35,"project_id":3439658,"title":"title","description":"body","state":"opened","created_at":"2017-11-30T03:05:46.289Z","updated_at":"2017-12-05T10:51:58.330Z","closed_at":null,"labels":[],"milestone":null,"assignees":[{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"}],"author":{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"assignee":{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"user_notes_count":2,"upvotes":0,"downvotes":0,"due_date":null,"confidential":false,"weight":null,"discussion_locked":null,"web_url":"https://gitlab.com/gitmate-test-user/test/issues/35","time_stats":{"time_estimate":0,"total_time_spent":0,"human_time_estimate":null,"human_total_time_spent":null}},{"id":6002929,"iid":32,"project_id":3439658,"title":"another
+        one","description":"","state":"opened","created_at":"2017-07-07T10:38:34.299Z","updated_at":"2017-12-05T10:52:32.009Z","closed_at":null,"labels":[],"milestone":null,"assignees":[{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"}],"author":{"id":104269,"name":"Lasse
+        Schuirmann","username":"sils","state":"active","avatar_url":"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\u0026d=identicon","web_url":"https://gitlab.com/sils"},"assignee":{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"user_notes_count":3,"upvotes":0,"downvotes":0,"due_date":null,"confidential":false,"weight":null,"discussion_locked":null,"web_url":"https://gitlab.com/gitmate-test-user/test/issues/32","time_stats":{"time_estimate":0,"total_time_spent":0,"human_time_estimate":null,"human_total_time_spent":null}},{"id":5613608,"iid":1,"project_id":3439658,"title":"new
+        title","description":"I am a serious issue. Fix me soon, dude.","state":"opened","created_at":"2017-06-05T05:19:51.840Z","updated_at":"2017-06-09T08:25:34.687Z","closed_at":"2017-06-09T08:25:29.451Z","labels":["dem"],"milestone":null,"assignees":[{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"}],"author":{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"assignee":{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user"},"user_notes_count":15,"upvotes":0,"downvotes":0,"due_date":null,"confidential":false,"weight":null,"discussion_locked":null,"web_url":"https://gitlab.com/gitmate-test-user/test/issues/1","time_stats":{"time_estimate":0,"total_time_spent":0,"human_time_estimate":null,"human_total_time_spent":null}}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['3828']
+      Content-Type: [application/json]
+      Date: ['Tue, 05 Dec 2017 13:38:48 GMT']
+      Etag: [W/"39f0bd7eeaf3457a55ba573ccc109d41"]
+      Link: ['<https://gitlab.com/api/v4/issues?assignee_id=1369631&order_by=created_at&page=1&per_page=100&scope=all&sort=desc&state=all>;
+          rel="first", <https://gitlab.com/api/v4/issues?assignee_id=1369631&order_by=created_at&page=1&per_page=100&scope=all&sort=desc&state=all>;
+          rel="last"']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['3']
+      RateLimit-Remaining: ['597']
+      RateLimit-Reset: ['1512481188']
+      RateLimit-ResetTime: ['Wed, 05 Dec 2017 13:39:48 GMT']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['100']
+      X-Prev-Page: ['']
+      X-Request-Id: [242c03df-c835-436b-950c-e9104323eff3]
+      X-Runtime: ['0.520709']
+      X-Total: ['3']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/issues?assignee_id=104269&per_page=100&scope=all
+  response:
+    body: {string: "[{\"id\":7956823,\"iid\":236,\"project_id\":1415047,\"title\":\"Issue
+        with turning on repository integration\",\"description\":\"https://coala.zulipchat.com/#narrow/stream/gitmate/subject/Trouble.20w.20Gitmate/near/119065570\\n\\nThe
+        spinner spins forever on https://gitmate.io when a repository is turned on
+        for the first time. Especially noted with GitLab repositories.\",\"state\":\"closed\",\"created_at\":\"2017-11-28T18:50:21.709Z\",\"updated_at\":\"2017-11-29T09:43:47.369Z\",\"closed_at\":\"2017-11-29T09:43:33.373Z\",\"labels\":[],\"milestone\":null,\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":889700,\"name\":\"Naveen
+        Kumar Sangi\",\"username\":\"nkprince007\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/2ed27920a4ec4445d0e390a30df7145d?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/nkprince007\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":4,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/gitmate/open-source/gitmate-2/issues/236\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":7889874,\"iid\":233,\"project_id\":1415047,\"title\":\"Dockerfile:
+        ADD root dir AFTER installing all the packages\",\"description\":\"bad for
+        performance of the main build\",\"state\":\"closed\",\"created_at\":\"2017-11-23T14:08:46.897Z\",\"updated_at\":\"2017-11-27T17:48:03.691Z\",\"closed_at\":\"2017-11-27T17:48:02.901Z\",\"labels\":[\"area/deployment\",\"difficulty/low\"],\"milestone\":null,\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":0,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/gitmate/open-source/gitmate-2/issues/233\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":7781832,\"iid\":228,\"project_id\":1415047,\"title\":\"Inactive
+        Issues Labelling\",\"description\":\"Hi Guys\\nWe did enable the feature to
+        label inactive issues. We use the default settings with 30 days.\\nthis issue
+        was labelled as stalre but it was opened today: https://github.com/owncloud/core/issues/29591#event-1344646965
+        \\nsomething wrong?\\n\\nTHX\",\"state\":\"closed\",\"created_at\":\"2017-11-16T20:33:36.874Z\",\"updated_at\":\"2017-11-17T11:45:48.860Z\",\"closed_at\":\"2017-11-17T11:45:48.682Z\",\"labels\":[\"area/plugin\"],\"milestone\":null,\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":961724,\"name\":\"Thomas
+        M\xFCller\",\"username\":\"DeepDiver1975\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/bdba071ed68da9ce8edae53c364902ef?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/DeepDiver1975\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":3,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/gitmate/open-source/gitmate-2/issues/228\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":7714217,\"iid\":222,\"project_id\":1415047,\"title\":\"ZeroDivisionError:
+        division by zero\",\"description\":\"https://sentry.io/gitmate-ug-haftungsbeschrankt/gitmateio/issues/360659680/\\n\\n```\\nZeroDivisionError:
+        division by zero\\n(4 additional frame(s) were not displayed)\\n...\\n  File
+        \\\"bin/bugspots.py\\\", line 145, in get_hotspots\\n    for f in files],\\n
+        \ File \\\"bin/bugspots.py\\\", line 145, in \\u003clistcomp\\u003e\\n    for
+        f in files],\\n  File \\\"bin/bugspots.py\\\", line 119, in _get_score\\n
+        \   for t in f.commit_dates)\\n  File \\\"bin/bugspots.py\\\", line 119, in
+        \\u003cgenexpr\\u003e\\n    for t in f.commit_dates)\\n  File \\\"bin/bugspots.py\\\",
+        line 117, in normalize_timestamp\\n    return (timestamp - repo_start) / repo_age\\n\\nZeroDivisionError:
+        division by zero\\n```\",\"state\":\"closed\",\"created_at\":\"2017-11-13T08:15:35.929Z\",\"updated_at\":\"2017-11-13T13:17:30.940Z\",\"closed_at\":\"2017-11-13T09:37:24.145Z\",\"labels\":[\"needs-upstream-fix\",\"sentry\",\"type/bug\",\"upstream/bugspots\"],\"milestone\":{\"id\":410676,\"iid\":4,\"project_id\":1415047,\"title\":\"Lasse,
+        November\",\"description\":\"\",\"state\":\"active\",\"created_at\":\"2017-11-13T13:17:03.478Z\",\"updated_at\":\"2017-11-13T13:17:03.478Z\",\"due_date\":\"2017-11-30\",\"start_date\":\"2017-11-01\"},\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":1399318,\"name\":\"GitMate
+        Bot\",\"username\":\"gitmate-bot\",\"state\":\"active\",\"avatar_url\":\"https://assets.gitlab-static.net/uploads/-/system/user/avatar/1399318/avatar.png\",\"web_url\":\"https://gitlab.com/gitmate-bot\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":1,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/gitmate/open-source/gitmate-2/issues/222\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":7708715,\"iid\":220,\"project_id\":1415047,\"title\":\"IGitt,
+        _repository access: TypeError: must be str, not NoneType\",\"description\":\"https://sentry.io/gitmate-ug-haftungsbeschrankt/gitmateio/issues/396521082/\\n\\n```\\nTypeError:
+        must be str, not NoneType\\n  File \\\"celery/app/trace.py\\\", line 367,
+        in trace_task\\n    R = retval = fun(*args, **kwargs)\\n  File \\\"celery/app/trace.py\\\",
+        line 622, in __protected_call__\\n    return self.run(*args, **kwargs)\\n
+        \ File \\\"plugins/gitmate_issue_stale_reminder/responders.py\\\", line 27,
+        in add_stale_label_to_issues\\n    for issue in repo.search_issues(updated_before=minimum_issue_update_time):\\n
+        \ File \\\"IGitt/GitHub/GitHubRepository.py\\\", line 504, in search_issues\\n
+        \   updated_before):\\n  File \\\"IGitt/GitHub/GitHubRepository.py\\\", line
+        452, in _search\\n    query = ' type:' + issue_type + ' state:open repo:'
+        + self._repository\\n\\nTypeError: must be str, not NoneType\\n```\\n\\nI
+        guess self._repository is None because issue_type isn't.\",\"state\":\"closed\",\"created_at\":\"2017-11-12T15:19:50.455Z\",\"updated_at\":\"2017-11-13T13:17:45.027Z\",\"closed_at\":\"2017-11-12T20:47:29.189Z\",\"labels\":[\"needs-upstream-fix\",\"type/bug\",\"upstream/igitt\"],\"milestone\":{\"id\":410676,\"iid\":4,\"project_id\":1415047,\"title\":\"Lasse,
+        November\",\"description\":\"\",\"state\":\"active\",\"created_at\":\"2017-11-13T13:17:03.478Z\",\"updated_at\":\"2017-11-13T13:17:03.478Z\",\"due_date\":\"2017-11-30\",\"start_date\":\"2017-11-01\"},\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":1399318,\"name\":\"GitMate
+        Bot\",\"username\":\"gitmate-bot\",\"state\":\"active\",\"avatar_url\":\"https://assets.gitlab-static.net/uploads/-/system/user/avatar/1399318/avatar.png\",\"web_url\":\"https://gitlab.com/gitmate-bot\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":1,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/gitmate/open-source/gitmate-2/issues/220\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":7012513,\"iid\":48,\"project_id\":3092199,\"title\":\"pricing
+        page: get started button is useless\",\"description\":\"that's really really
+        bad, it's a huge call do action and when you push it nothing happens. Maybe
+        we shuold have \\\"login with github\\\" or \\\"login with gitlab\\\" or so?\",\"state\":\"closed\",\"created_at\":\"2017-09-29T10:23:25.919Z\",\"updated_at\":\"2017-10-03T17:34:16.513Z\",\"closed_at\":\"2017-10-03T17:34:16.409Z\",\"labels\":[\"type/bug\"],\"milestone\":null,\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":2,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/gitmate/open-source/gitmate-2-frontend/issues/48\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":7010538,\"iid\":46,\"project_id\":3092199,\"title\":\"Landing
+        page needs an update\",\"description\":\"I did https://gitlab.com/gitmate/open-source/gitmate-2-frontend/merge_requests/95
+        as a quick fix but this needs a proper update.\\n\\nCC @seblat\",\"state\":\"opened\",\"created_at\":\"2017-09-29T08:28:46.344Z\",\"updated_at\":\"2017-11-03T00:00:11.923Z\",\"closed_at\":null,\"labels\":[\"status/STALE\",\"type/visuals\"],\"milestone\":null,\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":9,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/gitmate/open-source/gitmate-2-frontend/issues/46\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":6979047,\"iid\":172,\"project_id\":1415047,\"title\":\"RuntimeError:
+        ({'message': 'Not Found', 'documentation_url': 'https://developer.github.com/v3/repos/statuses/#c...\",\"description\":\"https://sentry.io/gitmate-ug-haftungsbeschrankt/gitmateio/issues/356185327/\\n\\n```\\nRuntimeError:
+        ({'message': 'Not Found', 'documentation_url': 'https://developer.github.com/v3/repos/statuses/#create-a-status'},
+        404)\\n(1 additional frame(s) were not displayed)\\n...\\n  File \\\"celery/app/trace.py\\\",
+        line 622, in __protected_call__\\n    return self.run(*args, **kwargs)\\n
+        \ File \\\"plugins/gitmate_ack/responders.py\\\", line 148, in add_review_status\\n
+        \   pr.head.set_status(db_pr.ack_state)\\n  File \\\"IGitt/GitHub/GitHubCommit.py\\\",
+        line 189, in set_status\\n    post(self._token, status_url, data)\\n  File
+        \\\"IGitt/GitHub/__init__.py\\\", line 86, in post\\n    headers=headers)\\n
+        \ File \\\"IGitt/Interfaces/__init__.py\\\", line 63, in wrap_func\\n    raise
+        RuntimeError(response, code)\\n\\nRuntimeError: ({'message': 'Not Found',
+        'documentation_url': 'https://developer.github.com/v3/repos/statuses/#create-a-status'},
+        404)\\n```\\n\\nmore info on the request:\\n\\n```\\n[\\n'https://api.github.com',
+        \\n'post', \\n{\\n'access_token': [Filtered]\\n}, \\n'/repos/atultherajput/coala/statuses/108eb637092092c6e37baf48eb6f1e0ac28424e5',
+        \\n{\\n'context': 'review/gitmate/manual/pr', \\n'description': 'This PR needs
+        review.', \\n'state': 'pending', \\n'target_url': 'https://gitmate.io'\\n}\\n]\\n```\",\"state\":\"closed\",\"created_at\":\"2017-09-27T09:07:46.534Z\",\"updated_at\":\"2017-09-28T16:18:05.726Z\",\"closed_at\":\"2017-09-28T16:18:05.655Z\",\"labels\":[\"client/coala\",\"needs-upstream-fix\",\"sentry\",\"type/bug\",\"up
+        next\",\"upstream/igitt\"],\"milestone\":null,\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":1399318,\"name\":\"GitMate
+        Bot\",\"username\":\"gitmate-bot\",\"state\":\"active\",\"avatar_url\":\"https://assets.gitlab-static.net/uploads/-/system/user/avatar/1399318/avatar.png\",\"web_url\":\"https://gitlab.com/gitmate-bot\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":2,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/gitmate/open-source/gitmate-2/issues/172\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":6977701,\"iid\":73,\"project_id\":765988,\"title\":\"status
+        manual throws keyerror\",\"description\":\"https://gitlab.com/api/v4/projects/gitmate%2Fopen-source%2Fgitmate-2/repository/commits/34b69804368517eaf5ac90571e23e5eb0813b5cc/statuses\\n\\nsome
+        of those states are \\\"status: manual\\\" which is I guess the case when
+        the pielineisn't active but can be triggered by pressing that play button\",\"state\":\"closed\",\"created_at\":\"2017-09-27T07:56:37.690Z\",\"updated_at\":\"2017-09-28T16:18:05.415Z\",\"closed_at\":\"2017-09-28T16:18:05.349Z\",\"labels\":[\"difficulty/low\",\"type/bug\"],\"milestone\":null,\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":1,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/gitmate/open-source/IGitt/issues/73\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":6929175,\"iid\":169,\"project_id\":1415047,\"title\":\"use
+        sentry for issue tracking\",\"description\":\"use sentry to catch exceptions:
+        https://docs.getsentry.com/hosted/clients/python/integrations/django/\",\"state\":\"closed\",\"created_at\":\"2017-09-23T16:40:25.878Z\",\"updated_at\":\"2017-09-26T07:59:01.974Z\",\"closed_at\":\"2017-09-26T07:59:01.888Z\",\"labels\":[\"difficulty/low\"],\"milestone\":null,\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":1,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/gitmate/open-source/gitmate-2/issues/169\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":6916298,\"iid\":161,\"project_id\":1415047,\"title\":\"KeyError
+        on GitLab Webhook\",\"description\":\"```\\nTraceback (most recent call last):\\n\\n
+        \ File \\\"/usr/lib/python3.6/site-packages/django/core/handlers/exception.py\\\",
+        line 41, in inner\\n    response = get_response(request)\\n\\n  File \\\"/usr/lib/python3.6/site-packages/django/core/handlers/base.py\\\",
+        line 249, in _legacy_get_response\\n    response = self._get_response(request)\\n\\n
+        \ File \\\"/usr/lib/python3.6/site-packages/django/core/handlers/base.py\\\",
+        line 187, in _get_response\\n    response = self.process_exception_by_middleware(e,
+        request)\\n\\n  File \\\"/usr/lib/python3.6/site-packages/django/core/handlers/base.py\\\",
+        line 185, in _get_response\\n    response = wrapped_callback(request, *callback_args,
+        **callback_kwargs)\\n\\n  File \\\"/usr/lib/python3.6/site-packages/django/views/decorators/csrf.py\\\",
+        line 58, in wrapped_view\\n    return view_func(*args, **kwargs)\\n\\n  File
+        \\\"/usr/lib/python3.6/site-packages/django/views/decorators/csrf.py\\\",
+        line 58, in wrapped_view\\n    return view_func(*args, **kwargs)\\n\\n  File
+        \\\"/usr/lib/python3.6/site-packages/django/views/generic/base.py\\\", line
+        68, in view\\n    return self.dispatch(request, *args, **kwargs)\\n\\n  File
+        \\\"/usr/lib/python3.6/site-packages/rest_framework/views.py\\\", line 489,
+        in dispatch\\n    response = self.handle_exception(exc)\\n\\n  File \\\"/usr/lib/python3.6/site-packages/rest_framework/views.py\\\",
+        line 449, in handle_exception\\n    self.raise_uncaught_exception(exc)\\n\\n
+        \ File \\\"/usr/lib/python3.6/site-packages/rest_framework/views.py\\\", line
+        486, in dispatch\\n    response = handler(request, *args, **kwargs)\\n\\n
+        \ File \\\"/usr/lib/python3.6/site-packages/rest_framework/decorators.py\\\",
+        line 52, in handler\\n    return func(*args, **kwargs)\\n\\n  File \\\"/usr/src/app/gitmate_hooks/__init__.py\\\",
+        line 57, in _view_wrapper\\n    return function(request, *args, **kwargs)\\n\\n
+        \ File \\\"/usr/src/app/gitmate_hooks/views.py\\\", line 70, in gitlab_webhook_receiver\\n
+        \   else webhook['object_attributes']['target'])\\n\\nKeyError: 'object_attributes'\\n```\\n\\n\\nType:
+        KeyError\\nPath: http://api.master.gitmate.io/webhooks/gitlab\\nInfo: 'object_attributes'\\nWhen:
+        Sept. 21, 2017, 12:09 p.m.\\n\\nFrom our nice error logging console.\",\"state\":\"closed\",\"created_at\":\"2017-09-22T09:20:58.127Z\",\"updated_at\":\"2017-09-22T18:10:20.945Z\",\"closed_at\":\"2017-09-22T13:49:24.535Z\",\"labels\":[\"needs-upstream-fix\",\"type/bug\",\"upstream-related\",\"upstream/igitt\"],\"milestone\":null,\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":4,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/gitmate/open-source/gitmate-2/issues/161\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":6749425,\"iid\":137,\"project_id\":1415047,\"title\":\"Commits
+        probably get wrong analysis state\",\"description\":\"https://gitlab.com/gitmate/open-source/gitmate-2/merge_requests/232/diffs#813d700452f87a142bc5b4d927fdd82ac326b660_255_238\",\"state\":\"closed\",\"created_at\":\"2017-09-10T13:54:39.183Z\",\"updated_at\":\"2017-09-10T19:38:56.932Z\",\"closed_at\":\"2017-09-10T19:38:56.831Z\",\"labels\":[\"type/bug\"],\"milestone\":null,\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":0,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/gitmate/open-source/gitmate-2/issues/137\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":6745250,\"iid\":40,\"project_id\":3092199,\"title\":\"disclaimer
+        should have our vat id\",\"description\":\"@fneu put it there please :)\\nOpened
+        by @sils1297\",\"state\":\"closed\",\"created_at\":\"2017-09-10T03:27:44.819Z\",\"updated_at\":\"2017-09-10T14:02:39.730Z\",\"closed_at\":\"2017-09-10T14:02:39.667Z\",\"labels\":[],\"milestone\":null,\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":1399318,\"name\":\"GitMate
+        Bot\",\"username\":\"gitmate-bot\",\"state\":\"active\",\"avatar_url\":\"https://assets.gitlab-static.net/uploads/-/system/user/avatar/1399318/avatar.png\",\"web_url\":\"https://gitlab.com/gitmate-bot\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":0,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/gitmate/open-source/gitmate-2-frontend/issues/40\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":6678642,\"iid\":135,\"project_id\":1415047,\"title\":\"rebaser
+        image url misspelled in gitlab-ci.yaml\",\"description\":\"egistry.gitlab...
+        r missing.\",\"state\":\"closed\",\"created_at\":\"2017-09-05T10:12:22.204Z\",\"updated_at\":\"2017-09-10T13:33:05.801Z\",\"closed_at\":\"2017-09-10T13:32:41.115Z\",\"labels\":[],\"milestone\":null,\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":170770,\"name\":\"Fabian
+        Neuschmidt\",\"username\":\"fneu\",\"state\":\"active\",\"avatar_url\":\"https://assets.gitlab-static.net/uploads/-/system/user/avatar/170770/avatar.png\",\"web_url\":\"https://gitlab.com/fneu\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":1,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/gitmate/open-source/gitmate-2/issues/135\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":6646086,\"iid\":126,\"project_id\":1415047,\"title\":\"Readme:
+        Use new logo\",\"description\":\"\",\"state\":\"closed\",\"created_at\":\"2017-09-01T21:50:36.551Z\",\"updated_at\":\"2017-09-10T19:38:57.195Z\",\"closed_at\":\"2017-09-10T19:38:57.152Z\",\"labels\":[],\"milestone\":null,\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":240100,\"name\":\"Mischa
+        Kr\xFCger\",\"username\":\"Makman2\",\"state\":\"active\",\"avatar_url\":\"https://assets.gitlab-static.net/uploads/-/system/user/avatar/240100/gantzsmall_sqr.jpg\",\"web_url\":\"https://gitlab.com/Makman2\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":1,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/gitmate/open-source/gitmate-2/issues/126\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":6400961,\"iid\":103,\"project_id\":1415047,\"title\":\"Slashes
+        in label names might not be nice\",\"description\":\"I'll assume that there
+        was no reason to choose using slashes in label names like the size ones (size/XS,
+        size/S, etc.)\\n\\nThere's a small argument against:\\n\\nWhen you're using
+        gitlab, if your labels have slashes in them, slash commands won't work, so
+        you can't do `/label ~\\\"size/S\\\"`. `/label ~\\\"size:S\\\"` however works,
+        so my company adopted using colons.\\n\\nI guess even if this is not enough
+        to change the default label names, it might be enough to justify making this
+        configurable?\",\"state\":\"closed\",\"created_at\":\"2017-08-09T13:16:18.229Z\",\"updated_at\":\"2017-08-16T16:33:03.078Z\",\"closed_at\":\"2017-08-16T16:33:02.584Z\",\"labels\":[\"area/plugin\",\"client/kiwi.com\",\"difficulty/low\"],\"milestone\":null,\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":81333,\"name\":\"Bence
+        Nagy\",\"username\":\"underyx\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/c28f51f88953dfcf4b923f0b247c6682?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/underyx\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":2,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/gitmate/open-source/gitmate-2/issues/103\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":6350009,\"iid\":97,\"project_id\":1415047,\"title\":\"Include
+        http in gl instance env var (also gh)\",\"description\":\"related https://gitlab.com/gitmate/open-source/IGitt/issues/64\",\"state\":\"closed\",\"created_at\":\"2017-08-04T09:07:02.763Z\",\"updated_at\":\"2017-08-05T20:36:29.386Z\",\"closed_at\":\"2017-08-05T20:36:29.274Z\",\"labels\":[\"client/kiwi.com\"],\"milestone\":null,\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":0,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/gitmate/open-source/gitmate-2/issues/97\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":6350001,\"iid\":64,\"project_id\":765988,\"title\":\"Include
+        protocol in the gitlab instance env var (also gh ofc)\",\"description\":\"\",\"state\":\"closed\",\"created_at\":\"2017-08-04T09:06:27.794Z\",\"updated_at\":\"2017-08-05T18:27:30.630Z\",\"closed_at\":\"2017-08-05T18:27:30.220Z\",\"labels\":[\"client/kiwi.com\"],\"milestone\":null,\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":0,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/gitmate/open-source/IGitt/issues/64\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":6338038,\"iid\":96,\"project_id\":1415047,\"title\":\"Gitmate
+        status links to gitmate.io\",\"description\":\"Needs to point to custom URL
+        of the frontend!\",\"state\":\"opened\",\"created_at\":\"2017-08-03T15:21:37.759Z\",\"updated_at\":\"2017-10-26T13:45:36.359Z\",\"closed_at\":null,\"labels\":[\"client/kiwi.com\",\"difficulty/low\"],\"milestone\":null,\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":3,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/gitmate/open-source/gitmate-2/issues/96\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":6010400,\"iid\":89,\"project_id\":1107042,\"title\":\"Closure\",\"description\":\"Add
+        a document which summarises GSOC 2016, listing students, projects, results,
+        links to blogs, etc.\",\"state\":\"opened\",\"created_at\":\"2017-07-08T07:45:55.773Z\",\"updated_at\":\"2017-07-27T19:51:44.564Z\",\"closed_at\":null,\"labels\":[],\"milestone\":null,\"assignees\":[{\"id\":104225,\"name\":\"Max
+        Scholz\",\"username\":\"sims1253\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/7326987b1180e383a78348bc18129293?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sims1253\"},{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":71700,\"name\":\"John
+        Vandenberg\",\"username\":\"jayvdb\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/81401f12302217b2b5098d9cca3b74f1?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/jayvdb\"},\"assignee\":{\"id\":104225,\"name\":\"Max
+        Scholz\",\"username\":\"sims1253\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/7326987b1180e383a78348bc18129293?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sims1253\"},\"user_notes_count\":2,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/coala/GSoC2016/issues/89\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":5784160,\"iid\":70,\"project_id\":1415047,\"title\":\"NotImplementedError:
+        Unrecgonized action: pull_request/closed\",\"description\":\"\",\"state\":\"closed\",\"created_at\":\"2017-06-20T08:39:12.754Z\",\"updated_at\":\"2017-09-22T10:27:59.441Z\",\"closed_at\":\"2017-09-22T10:27:58.800Z\",\"labels\":[\"area/webhooks\",\"status/STALE\",\"upstream-related\",\"upstream/igitt\"],\"milestone\":null,\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":2,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/gitmate/open-source/gitmate-2/issues/70\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":5735937,\"iid\":63,\"project_id\":1415047,\"title\":\"Add
+        db mutex\",\"description\":\"The cause for failure of `db-mutex-lock` previously
+        might be attributed to the usage of a unique ID which is a string generated
+        from the combination of plugin name and origin URL of the webhook. (reference:
+        [here](https://gitlab.com/gitmate/open-source/gitmate-2/blob/2d5aa797430b6864c1879596101416a485212fbb/gitmate/utils.py#L16))\\r\\n\\r\\nThe
+        unique key might clash when multiple webhooks received at the same time for
+        similar events with same origin URL, the plugins might conflict with same
+        id for `db_mutex()`. This might be solved by appending a unique identifier
+        at the end of the string.\",\"state\":\"closed\",\"created_at\":\"2017-06-17T00:54:23.322Z\",\"updated_at\":\"2017-06-21T10:24:38.391Z\",\"closed_at\":\"2017-06-21T10:24:38.086Z\",\"labels\":[\"up
+        next\"],\"milestone\":null,\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":889700,\"name\":\"Naveen
+        Kumar Sangi\",\"username\":\"nkprince007\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/2ed27920a4ec4445d0e390a30df7145d?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/nkprince007\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":2,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/gitmate/open-source/gitmate-2/issues/63\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":5696943,\"iid\":56,\"project_id\":1415047,\"title\":\"Result
+        summary doesnt show what wrong with the code\",\"description\":\"![image](/uploads/b04a55f2245c4f1cef24872b3db5c396/image.png)\\n\\nThis
+        is scary, since the summary tells me there is something wrong, but i cant
+        see where or what. Also i cant solve this, when i dont know what coala is.
+        And i dont want to dig into how to run it locally\",\"state\":\"closed\",\"created_at\":\"2017-06-13T14:16:08.919Z\",\"updated_at\":\"2017-06-13T17:36:16.746Z\",\"closed_at\":\"2017-06-13T14:56:31.667Z\",\"labels\":[],\"milestone\":null,\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":463976,\"name\":\"Sebastian
+        Latacz\",\"username\":\"seblat\",\"state\":\"active\",\"avatar_url\":\"https://assets.gitlab-static.net/uploads/-/system/user/avatar/463976/avatar.png\",\"web_url\":\"https://gitlab.com/seblat\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":1,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/gitmate/open-source/gitmate-2/issues/56\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":5660595,\"iid\":44,\"project_id\":765988,\"title\":\"Create
+        organization interface\",\"description\":\"\",\"state\":\"closed\",\"created_at\":\"2017-06-09T11:06:19.018Z\",\"updated_at\":\"2017-09-27T08:03:45.710Z\",\"closed_at\":\"2017-09-27T08:03:04.418Z\",\"labels\":[\"type/feature\"],\"milestone\":null,\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":707601,\"name\":\"Meet
+        Mangukiya\",\"username\":\"meetmangukiya\",\"state\":\"active\",\"avatar_url\":\"https://assets.gitlab-static.net/uploads/-/system/user/avatar/707601/avatar.png\",\"web_url\":\"https://gitlab.com/meetmangukiya\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":1,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/gitmate/open-source/IGitt/issues/44\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":5732290,\"iid\":60,\"project_id\":1415047,\"title\":\"login
+        should redirect to /repositories\",\"description\":\"\",\"state\":\"closed\",\"created_at\":\"2017-05-29T16:25:47.474Z\",\"updated_at\":\"2017-06-20T14:55:02.969Z\",\"closed_at\":\"2017-06-20T14:55:02.775Z\",\"labels\":[\"difficulty/low\"],\"milestone\":null,\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":170770,\"name\":\"Fabian
+        Neuschmidt\",\"username\":\"fneu\",\"state\":\"active\",\"avatar_url\":\"https://assets.gitlab-static.net/uploads/-/system/user/avatar/170770/avatar.png\",\"web_url\":\"https://gitlab.com/fneu\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":0,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/gitmate/open-source/gitmate-2/issues/60\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":5011217,\"iid\":35,\"project_id\":1415047,\"title\":\"Deploy
+        GitMate to a server\",\"description\":\"maybe I'll ask yuki\",\"state\":\"closed\",\"created_at\":\"2017-04-11T09:45:16.397Z\",\"updated_at\":\"2017-05-01T09:26:14.724Z\",\"closed_at\":\"2017-05-01T09:26:14.238Z\",\"labels\":[],\"milestone\":{\"id\":297446,\"iid\":2,\"project_id\":1415047,\"title\":\"Basic
+        Framework Functionality\",\"description\":\"\",\"state\":\"closed\",\"created_at\":\"2017-04-11T09:39:53.296Z\",\"updated_at\":\"2017-08-11T11:59:02.876Z\",\"due_date\":\"2017-04-13\",\"start_date\":\"2017-04-11\"},\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":1,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/gitmate/open-source/gitmate-2/issues/35\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":4260313,\"iid\":45,\"project_id\":1630893,\"title\":\"Allow
+        only a maximum of two newcomer issues through `cobot assign`\",\"description\":\"Sift
+        through the assigned issues and make sure they don't exceed the threshold
+        if they're assigned a new one.\",\"state\":\"closed\",\"created_at\":\"2017-02-03T10:23:17.901Z\",\"updated_at\":\"2017-03-22T23:03:19.019Z\",\"closed_at\":null,\"labels\":[],\"milestone\":null,\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":435971,\"name\":\"Adhityaa\",\"username\":\"adtac\",\"state\":\"active\",\"avatar_url\":\"https://assets.gitlab-static.net/uploads/-/system/user/avatar/435971/avatar.png\",\"web_url\":\"https://gitlab.com/adtac\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":4,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/coala/cobot/issues/45\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":3724608,\"iid\":14,\"project_id\":2130531,\"title\":\"player\",\"description\":\"###national
+        first game as date is missing\\n\\nto check this file, I first need the player
+        IDs from the two performance files\",\"state\":\"closed\",\"created_at\":\"2016-12-12T11:49:45.683Z\",\"updated_at\":\"2016-12-17T10:50:29.933Z\",\"closed_at\":null,\"labels\":[],\"milestone\":null,\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":452236,\"name\":\"Viktoria
+        Boss\",\"username\":\"vboss13\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/547d6a2cde7c80446dc2a763f65d1e65?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/vboss13\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":0,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/TUHH-TIE/SoccerScraping/issues/14\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":3724596,\"iid\":13,\"project_id\":2130531,\"title\":\"performance\",\"description\":\"###checking
+        the roster size for each club, some players seem to be missing (i.e. club_id
+        = 23826, year = 2016 only has 10 players recorded; should be 25)\\n\\n\\n###both
+        performance tables do not have player_ids!\",\"state\":\"closed\",\"created_at\":\"2016-12-12T11:48:45.454Z\",\"updated_at\":\"2016-12-17T10:50:29.541Z\",\"closed_at\":null,\"labels\":[],\"milestone\":null,\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":452236,\"name\":\"Viktoria
+        Boss\",\"username\":\"vboss13\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/547d6a2cde7c80446dc2a763f65d1e65?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/vboss13\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":0,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/TUHH-TIE/SoccerScraping/issues/13\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":3724590,\"iid\":12,\"project_id\":2130531,\"title\":\"coach\",\"description\":\"####
+        coach: there are varying numbers of coach_ids in the different files --\\u003e
+        please double check\\r\\n\\r\\n```R\\r\\ncheck \\u003c- intersect(transfer$from_trainer,
+        transfer$to_trainer) #5946\\r\\ncheck \\u003c- intersect(check, coach$coach_id)
+        #1575\\r\\ncheck \\u003c- unique(coachclub$coach_id) #2520\\r\\ncheck \\u003c-
+        unique(coach$coach_id) #2520\\r\\ncheck \\u003c- unique(transfer$from_trainer)
+        #7314\\r\\ncheck \\u003c- unique(transfer$to_trainer) #undefined \\r\\n```\\r\\n\\r\\ncoachclub
+        should entail all information of all coaches that appear somewhere in the
+        data; hence I would compile a file with all coachIDs (from transfers for example)
+        and then get that data\",\"state\":\"closed\",\"created_at\":\"2016-12-12T11:48:01.370Z\",\"updated_at\":\"2016-12-17T10:50:29.515Z\",\"closed_at\":null,\"labels\":[],\"milestone\":null,\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":452236,\"name\":\"Viktoria
+        Boss\",\"username\":\"vboss13\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/547d6a2cde7c80446dc2a763f65d1e65?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/vboss13\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":5,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/TUHH-TIE/SoccerScraping/issues/12\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":3724579,\"iid\":11,\"project_id\":2130531,\"title\":\"clubranking\",\"description\":\"the
+        field \\\"competition\\\" needs to be something like \\\"Champions League\\\"
+        or \\\"DFB-Pokal\\\" and not the year (the year is saved in year)\",\"state\":\"closed\",\"created_at\":\"2016-12-12T11:45:42.481Z\",\"updated_at\":\"2016-12-17T10:45:35.213Z\",\"closed_at\":null,\"labels\":[],\"milestone\":null,\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":452236,\"name\":\"Viktoria
+        Boss\",\"username\":\"vboss13\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/547d6a2cde7c80446dc2a763f65d1e65?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/vboss13\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":2,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/TUHH-TIE/SoccerScraping/issues/11\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":3723635,\"iid\":10,\"project_id\":2130531,\"title\":\"table
+        names\",\"description\":\"Hey Lasse, \\nI am not familiar with python and
+        the internet is not too helpful on this. I need the names of all tables in
+        your database to extract them to R. I have successfully guessed\\n\\nplayer\\nclub\\nranking\\ntransfer\\ncoach\\n\\nCould
+        you give me the names of the others, please!\",\"state\":\"closed\",\"created_at\":\"2016-12-12T09:46:52.063Z\",\"updated_at\":\"2016-12-12T09:49:48.186Z\",\"closed_at\":null,\"labels\":[],\"milestone\":null,\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":452236,\"name\":\"Viktoria
+        Boss\",\"username\":\"vboss13\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/547d6a2cde7c80446dc2a763f65d1e65?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/vboss13\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":2,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/TUHH-TIE/SoccerScraping/issues/10\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":3705488,\"iid\":9,\"project_id\":2130531,\"title\":\"Database
+        Dump\",\"description\":\"\",\"state\":\"closed\",\"created_at\":\"2016-12-09T13:06:01.289Z\",\"updated_at\":\"2016-12-12T12:05:37.269Z\",\"closed_at\":null,\"labels\":[],\"milestone\":null,\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":7,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/TUHH-TIE/SoccerScraping/issues/9\",\"time_stats\":{\"time_estimate\":7200,\"total_time_spent\":0,\"human_time_estimate\":\"2h\",\"human_total_time_spent\":null}},{\"id\":3703124,\"iid\":7,\"project_id\":2130531,\"title\":\"Portuguese
+        league\",\"description\":\"Please also scrape the portuguese league; and all
+        that entails for the other files. :-)\",\"state\":\"closed\",\"created_at\":\"2016-12-09T10:56:59.381Z\",\"updated_at\":\"2016-12-09T13:18:38.440Z\",\"closed_at\":null,\"labels\":[],\"milestone\":null,\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":452236,\"name\":\"Viktoria
+        Boss\",\"username\":\"vboss13\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/547d6a2cde7c80446dc2a763f65d1e65?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/vboss13\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":0,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/TUHH-TIE/SoccerScraping/issues/7\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":3697556,\"iid\":6,\"project_id\":2130531,\"title\":\"date
+        of birth is sometimes empty (spaces only)\",\"description\":\"`{\\\"player_id\\\":
+        \\\"101380\\\", \\\"birth\\\": \\\"\\\\r\\\\n\\\\t\\\\t\\\\t\\\\t\\\\t\\\\t\\\\t\\\\t\\\\t\\\\t\\\",
+        \\\"coach_id\\\": \\\"650\\\", \\\"first_name\\\": \\\"Terry\\\", \\\"last_name\\\":
+        \\\"Butcher\\\", \\\"nationality\\\": \\\"England\\\"},`\",\"state\":\"closed\",\"created_at\":\"2016-12-08T17:20:54.793Z\",\"updated_at\":\"2016-12-09T14:19:02.323Z\",\"closed_at\":null,\"labels\":[],\"milestone\":null,\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":3,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/TUHH-TIE/SoccerScraping/issues/6\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":3695809,\"iid\":3,\"project_id\":2130531,\"title\":\"Resources\",\"description\":\"This
+        is some info for me to use later:\\n\\n- [multiple requests for the same item](http://stackoverflow.com/questions/13910357/how-can-i-use-multiple-requests-and-pass-items-in-between-them-in-scrapy-python/25571270#25571270)\\n-
+        [sql](https://pypi.python.org/pypi/scrapy-sqlitem)\\n- [duplicates filter](https://doc.scrapy.org/en/latest/topics/item-pipeline.html#duplicates-filter)\",\"state\":\"closed\",\"created_at\":\"2016-12-08T13:30:54.707Z\",\"updated_at\":\"2016-12-12T12:05:54.765Z\",\"closed_at\":null,\"labels\":[],\"milestone\":null,\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":1,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/TUHH-TIE/SoccerScraping/issues/3\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":3576946,\"iid\":22,\"project_id\":1630893,\"title\":\"Inspect
+        why the assign script isn't working\",\"description\":\"\",\"state\":\"closed\",\"created_at\":\"2016-11-24T08:58:28.178Z\",\"updated_at\":\"2017-03-22T23:03:19.308Z\",\"closed_at\":null,\"labels\":[],\"milestone\":null,\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":707601,\"name\":\"Meet
+        Mangukiya\",\"username\":\"meetmangukiya\",\"state\":\"active\",\"avatar_url\":\"https://assets.gitlab-static.net/uploads/-/system/user/avatar/707601/avatar.png\",\"web_url\":\"https://gitlab.com/meetmangukiya\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":1,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/coala/cobot/issues/22\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":2855544,\"iid\":13,\"project_id\":1490040,\"title\":\"Running
+        just `cib` somehow triggers pip's upgrade warning\",\"description\":\"```\\nbash-4.3#
+        cib\\nYou are using pip version 7.1.2, however version 8.1.2 is available.\\nYou
+        should consider upgrading via the 'pip install --upgrade pip' command.\\nYou
+        must give at least one argument. Please use ``cib -h`` for information about
+        possible arguments.\\n```\",\"state\":\"closed\",\"created_at\":\"2016-08-27T15:12:32.440Z\",\"updated_at\":\"2016-08-27T17:24:39.549Z\",\"closed_at\":null,\"labels\":[],\"milestone\":null,\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":81333,\"name\":\"Bence
+        Nagy\",\"username\":\"underyx\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/c28f51f88953dfcf4b923f0b247c6682?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/underyx\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":1,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/coala/cib/issues/13\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":2855497,\"iid\":12,\"project_id\":1490040,\"title\":\"Running
+        just `cib`is unnecessarily slow\",\"description\":\"```\\nbash-4.3# time cib\\nYou
+        must give at least one argument. Please use ``cib -h`` for information about
+        possible arguments.\\n\\nreal   \\t0m1.276s\\n```\",\"state\":\"closed\",\"created_at\":\"2016-08-27T15:11:50.902Z\",\"updated_at\":\"2016-08-27T17:24:39.000Z\",\"closed_at\":null,\"labels\":[],\"milestone\":null,\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":81333,\"name\":\"Bence
+        Nagy\",\"username\":\"underyx\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/c28f51f88953dfcf4b923f0b247c6682?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/underyx\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":3,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/coala/cib/issues/12\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":2855481,\"iid\":11,\"project_id\":1490040,\"title\":\"Add
+        short command aliases\",\"description\":\"\",\"state\":\"closed\",\"created_at\":\"2016-08-27T15:05:53.215Z\",\"updated_at\":\"2016-08-27T17:24:38.340Z\",\"closed_at\":null,\"labels\":[],\"milestone\":null,\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":0,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/coala/cib/issues/11\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":2855480,\"iid\":10,\"project_id\":1490040,\"title\":\"Running
+        `cib` gives no output\",\"description\":\"I think we should simply show help\",\"state\":\"closed\",\"created_at\":\"2016-08-27T15:05:32.804Z\",\"updated_at\":\"2016-08-27T17:24:38.663Z\",\"closed_at\":null,\"labels\":[],\"milestone\":null,\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":0,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/coala/cib/issues/10\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":1326502,\"iid\":13,\"project_id\":765988,\"title\":\"Add
+        remove webhook option\",\"description\":\"\",\"state\":\"closed\",\"created_at\":\"2016-03-10T21:01:24.170Z\",\"updated_at\":\"2017-09-03T01:55:15.870Z\",\"closed_at\":null,\"labels\":[],\"milestone\":{\"id\":49204,\"iid\":3,\"project_id\":765988,\"title\":\"Important
+        stuff and urgent\",\"description\":\"\",\"state\":\"closed\",\"created_at\":\"2016-03-10T19:19:20.494Z\",\"updated_at\":\"2017-06-09T23:36:08.809Z\",\"due_date\":\"2016-03-24\",\"start_date\":null},\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":1,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/gitmate/open-source/IGitt/issues/13\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":1326200,\"iid\":4,\"project_id\":778842,\"title\":\"doesn't
+        work with file rename apparently\",\"description\":\"https://github.com/mr-karan/coala-bears/commit/acbb1367afe64dfa337758caa5ebf89310bc9734\\r\\n\\r\\n```\\r\\nTraceback
+        (most recent call last):\\r\\n  File \\\"/usr/src/app/run_coala.py\\\", line
+        171, in \\u003cmodule\\u003e\\r\\n    main()\\r\\n  File \\\"/usr/src/app/run_coala.py\\\",
+        line 165, in main\\r\\n    analyse_commits(git_repo, tempdir, pr)\\r\\n  File
+        \\\"/usr/src/app/run_coala.py\\\", line 124, in analyse_commits\\r\\n    results)\\r\\n
+        \ File \\\"/usr/src/app/run_coala.py\\\", line 93, in get_new_results\\r\\n
+        \   old_results[section_name], results[section_name])\\r\\n  File \\\"/usr/lib/python3.5/site-packages/coalib/results/ResultFilter.py\\\",
+        line 26, in filter_results\\r\\n    modified_file_dict[file])\\r\\nKeyError:
+        '/tmp/tmp6l7uhhgp/tests/ruby/RubyLintBearTest.py'\\r\\n```\",\"state\":\"closed\",\"created_at\":\"2016-03-10T18:44:57.629Z\",\"updated_at\":\"2016-04-13T16:17:15.909Z\",\"closed_at\":null,\"labels\":[\"type/bug\"],\"milestone\":null,\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":3,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/gitmate/coala-incremental/issues/4\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":1080541,\"iid\":5,\"project_id\":765988,\"title\":\"Add
+        repository abstraction\",\"description\":\"doing that right now\",\"state\":\"closed\",\"created_at\":\"2016-01-21T19:20:02.255Z\",\"updated_at\":\"2016-01-22T13:27:01.861Z\",\"closed_at\":null,\"labels\":[],\"milestone\":null,\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":0,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/gitmate/open-source/IGitt/issues/5\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}},{\"id\":686669,\"iid\":2,\"project_id\":592145,\"title\":\"\\\"Do
+        you care about your code?\\\" looks a bit too 3d-ish\",\"description\":\"That
+        title text looks artificially deep, if you know what I mean. It might make
+        sense to keep the style closer to the rest of the page. I also think title
+        and subtitle should at least use the same font.\",\"state\":\"closed\",\"created_at\":\"2015-11-17T10:46:26.399Z\",\"updated_at\":\"2015-11-27T20:53:01.557Z\",\"closed_at\":null,\"labels\":[],\"milestone\":null,\"assignees\":[{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"}],\"author\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"assignee\":{\"id\":104269,\"name\":\"Lasse
+        Schuirmann\",\"username\":\"sils\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\\u0026d=identicon\",\"web_url\":\"https://gitlab.com/sils\"},\"user_notes_count\":6,\"upvotes\":0,\"downvotes\":0,\"due_date\":null,\"confidential\":false,\"weight\":null,\"discussion_locked\":null,\"web_url\":\"https://gitlab.com/gitmate/landing/issues/2\",\"time_stats\":{\"time_estimate\":0,\"total_time_spent\":0,\"human_time_estimate\":null,\"human_total_time_spent\":null}}]"}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['69353']
+      Content-Type: [application/json]
+      Date: ['Tue, 05 Dec 2017 13:38:57 GMT']
+      Etag: [W/"17e46c8c03f2f95a9168b978ca1d0448"]
+      Link: ['<https://gitlab.com/api/v4/issues?assignee_id=104269&order_by=created_at&page=1&per_page=100&scope=all&sort=desc&state=all>;
+          rel="first", <https://gitlab.com/api/v4/issues?assignee_id=104269&order_by=created_at&page=1&per_page=100&scope=all&sort=desc&state=all>;
+          rel="last"']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['4']
+      RateLimit-Remaining: ['596']
+      RateLimit-Reset: ['1512481197']
+      RateLimit-ResetTime: ['Wed, 05 Dec 2017 13:39:57 GMT']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['100']
+      X-Prev-Page: ['']
+      X-Request-Id: [1befd7e2-cf39-4d63-81a2-a47e3649a0de]
+      X-Runtime: ['4.267128']
+      X-Total: ['45']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+version: 1

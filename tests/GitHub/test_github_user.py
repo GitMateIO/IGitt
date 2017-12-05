@@ -29,3 +29,11 @@ class GitHubUserTest(IGittTestCase):
         self.assertEqual({repo.full_name
                           for repo in self.user.installed_repositories(60731)},
                          {'gitmate-test-org/test'})
+
+    def test_assigend_issues(self):
+        self.assertEqual(list(map(lambda x: x.number,
+                                  self.user.assigned_issues())),
+                         [104, 1])
+        self.assertEqual(list(map(lambda x: x.number,
+                                  self.sils.assigned_issues())),
+                         [91, 2074, 1, 195, 3645, 2990])
