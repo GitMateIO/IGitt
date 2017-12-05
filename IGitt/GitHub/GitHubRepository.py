@@ -445,12 +445,13 @@ class GitHubRepository(GitHubMixin, Repository):
                              self.full_name,
                              json['content']['path'])
 
-    def _search(self, raw_query):
+    @staticmethod
+    def _search(token, raw_query):
         from IGitt.GitHub.GitHubMergeRequest import GitHubMergeRequest
         base_url = '/search/issues'
         query_params = {'q': raw_query,
                         'per_page': '100'}
-        resp = get(self._token, base_url, query_params)
+        resp = get(token, base_url, query_params)
 
         issue_url_re = re.compile(
             r'https://(?:.+)/(\S+)/(\S+)/(issues|pull)/(\d+)')
@@ -458,10 +459,10 @@ class GitHubRepository(GitHubMixin, Repository):
             user, repo, item_type, item_number = issue_url_re.match(
                 item['html_url']).groups()
             if item_type == 'issues':
-                yield GitHubIssue(self._token, user + '/' + repo,
+                yield GitHubIssue(token, user + '/' + repo,
                                   int(item_number))
             elif item_type == 'pull':
-                yield GitHubMergeRequest(self._token, user + '/' + repo,
+                yield GitHubMergeRequest(token, user + '/' + repo,
                                          int(item_number))
 
     def _search_in_range(self,
@@ -491,7 +492,7 @@ class GitHubRepository(GitHubMixin, Repository):
         elif updated_before:
             query += (' updated:<' +
                       str(updated_before.strftime('%Y-%m-%dT%H:%M:%SZ')))
-        return list(self._search(query))
+        return list(self._search(self._token, query))
 
     def search_mrs(self,
                    created_after: Optional[datetime]=None,
