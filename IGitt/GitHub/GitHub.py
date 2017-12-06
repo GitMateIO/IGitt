@@ -93,7 +93,7 @@ class GitHub(GitHubMixin, Hoster):
         return webhook['repository']['full_name']
 
     @staticmethod
-    def _search(token, raw_query):
+    def raw_search(token, raw_query):
         base_url = '/search/issues'
         query_params = {'q': raw_query,
                         'per_page': '100'}

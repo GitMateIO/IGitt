@@ -1,10 +1,12 @@
 """
 Contains the git Hoster abstraction.
 """
-from typing import Set
+from typing import Iterator, Set, Union
 
-from IGitt.Interfaces import IGittObject
+from IGitt.Interfaces import IGittObject, Token
 from IGitt.Interfaces.Repository import Repository
+from IGitt.Interfaces.Issue import Issue
+from IGitt.Interfaces.MergeRequest import MergeRequest
 
 
 class Hoster(IGittObject):
@@ -63,5 +65,18 @@ class Hoster(IGittObject):
         :param data:        The pythonified JSON data of the request.
         :return:            An IssueActions or MergeRequestActions member and a
                             list of the affected IGitt objects.
+        """
+        raise NotImplementedError
+
+    @staticmethod
+    def raw_search(token: Token, raw_query: str) -> Iterator[Union[Issue,
+                                                                   MergeRequest]
+                                                            ]:
+        """
+        Search issues using the raw_query string.
+
+        :param token:       Token object.
+        :param raw_query:   Raw query string.
+        :return:            An iterator to iterator over the search results.
         """
         raise NotImplementedError

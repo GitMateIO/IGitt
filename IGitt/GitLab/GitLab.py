@@ -126,6 +126,15 @@ class GitLab(GitLabMixin, Hoster):
             ssh_url = webhook['repository']['git_ssh_url']
             return ssh_url[ssh_url.find(':') + 1: ssh_url.rfind('.git')]
 
+    @staticmethod
+    def raw_search(token: Union[GitLabPrivateToken, GitLabOAuthToken],
+                   raw_query: str):
+        """
+        GitLab doesn't allow searching through raw queries.
+        """
+        raise NotImplementedError
+
+
     def handle_webhook(self, event: str, data: dict):
         """
         Handles a GitLab webhook for you.

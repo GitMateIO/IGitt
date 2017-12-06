@@ -486,7 +486,7 @@ class GitHubRepository(GitHubMixin, Repository):
         elif updated_before:
             query += (' updated:<' +
                       str(updated_before.strftime('%Y-%m-%dT%H:%M:%SZ')))
-        return list(GitHub._search(self._token, query))
+        return list(GitHub.raw_search(self._token, query))
 
     def search_mrs(self,
                    created_after: Optional[datetime]=None,
