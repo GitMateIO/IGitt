@@ -18,6 +18,7 @@ class CommentType(Enum):
     SNIPPET = 'snippets'
     MERGE_REQUEST = 'merge_requests'
     COMMIT = 'commits'
+    REVIEW = 'review'
 
 
 class Comment(IGittObject):

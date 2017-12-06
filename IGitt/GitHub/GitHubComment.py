@@ -37,6 +37,8 @@ class GitHubComment(GitHubMixin, Comment):
             fixture = '/issues/comments'
         elif comment_type == CommentType.COMMIT:
             fixture = '/comments'
+        elif comment_type == CommentType.REVIEW:
+            fixture = '/pulls/comments'
         else: # No such comment has been implemented on GitHub yet
             raise NotImplementedError
 

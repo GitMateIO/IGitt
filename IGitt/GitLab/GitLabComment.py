@@ -42,6 +42,8 @@ class GitLabComment(GitLabMixin, Comment):
         self._url = '/projects/{repo}/{c_type}/{iid}/notes/{c_id}'.format(
             repo=quote_plus(repository), c_type=self._type.value,
             iid=iid, c_id=comment_id)
+        if comment_type == CommentType.REVIEW:
+            raise NotImplementedError
 
     @property
     def iid(self) -> str:
