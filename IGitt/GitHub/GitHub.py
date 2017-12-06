@@ -1,6 +1,7 @@
 """
 Contains the Hoster implementation for GitHub.
 """
+import re
 
 from IGitt.GitHub import get, GitHubToken, GitHubMixin
 from IGitt.GitHub.GitHubComment import GitHubComment
@@ -90,6 +91,25 @@ class GitHub(GitHubMixin, Hoster):
         Retrieves the repository name from given webhook data.
         """
         return webhook['repository']['full_name']
+
+    @staticmethod
+    def _search(token, raw_query):
+        base_url = '/search/issues'
+        query_params = {'q': raw_query,
+                        'per_page': '100'}
+        resp = get(token, base_url, query_params)
+
+        issue_url_re = re.compile(
+            r'https://(?:.+)/(\S+)/(\S+)/(issues|pull)/(\d+)')
+        for item in resp:
+            user, repo, item_type, item_number = issue_url_re.match(
+                item['html_url']).groups()
+            if item_type == 'issues':
+                yield GitHubIssue(token, user + '/' + repo,
+                                  int(item_number))
+            elif item_type == 'pull':
+                yield GitHubMergeRequest(token, user + '/' + repo,
+                                         int(item_number))
 
     def handle_webhook(self, event: str, data: dict):
         """

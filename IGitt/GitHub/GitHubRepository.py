@@ -3,7 +3,6 @@ Contains the GitHub Repository implementation.
 """
 from base64 import b64encode
 from datetime import datetime
-import re
 from typing import Optional
 from typing import Set
 from typing import Union
@@ -453,26 +452,6 @@ class GitHubRepository(GitHubMixin, Repository):
                              self.full_name,
                              json['content']['path'])
 
-    @staticmethod
-    def _search(token, raw_query):
-        from IGitt.GitHub.GitHubMergeRequest import GitHubMergeRequest
-        base_url = '/search/issues'
-        query_params = {'q': raw_query,
-                        'per_page': '100'}
-        resp = get(token, base_url, query_params)
-
-        issue_url_re = re.compile(
-            r'https://(?:.+)/(\S+)/(\S+)/(issues|pull)/(\d+)')
-        for item in resp:
-            user, repo, item_type, item_number = issue_url_re.match(
-                item['html_url']).groups()
-            if item_type == 'issues':
-                yield GitHubIssue(token, user + '/' + repo,
-                                  int(item_number))
-            elif item_type == 'pull':
-                yield GitHubMergeRequest(token, user + '/' + repo,
-                                         int(item_number))
-
     def _search_in_range(self,
                          issue_type,
                          created_after: Optional[datetime]=None,
@@ -484,6 +463,7 @@ class GitHubRepository(GitHubMixin, Repository):
         Search for issue based on type 'issue' or 'pr' and return a
         list of issues.
         """
+        from IGitt.GitHub.GitHub import GitHub
         if state is None:
             query = ' type:' + issue_type + ' repo:' + self.full_name
         else:
@@ -506,7 +486,7 @@ class GitHubRepository(GitHubMixin, Repository):
         elif updated_before:
             query += (' updated:<' +
                       str(updated_before.strftime('%Y-%m-%dT%H:%M:%SZ')))
-        return list(self._search(self._token, query))
+        return list(GitHub._search(self._token, query))
 
     def search_mrs(self,
                    created_after: Optional[datetime]=None,
