@@ -6,7 +6,9 @@ from typing import Set
 
 from IGitt import ElementDoesntExistError
 from IGitt.GitHub import get, post, GitHubMixin, GitHubToken
+from IGitt.GitHub.GitHubComment import GitHubComment
 from IGitt.GitHub.GitHubRepository import GitHubRepository
+from IGitt.Interfaces.Comment import CommentType
 from IGitt.Interfaces.Commit import Commit
 from IGitt.Interfaces.CommitStatus import CommitStatus, Status
 
@@ -259,7 +261,8 @@ class GitHubCommit(GitHubMixin, Commit):
         raise ElementDoesntExistError('The file does not exist.')
 
     def comment(self, message: str, file: Optional[str]=None,
-                line: Optional[int]=None, mr_number: Optional[int]=None):
+                line: Optional[int]=None,
+                mr_number: Optional[int]=None) -> GitHubComment:
         """
         Places a comment on the commit.
 
@@ -324,17 +327,25 @@ class GitHubCommit(GitHubMixin, Commit):
             data['body'] = ("Comment on " + self.sha + file_str + line_str +
                             ".\n\n" + data['body'])
 
+        comment_type = None
+
         if mr_number is None:
-            post(self._token, self._url + '/comments', data)
+            comment_type = CommentType.COMMIT
+            res = post(self._token, self._url + '/comments', data)
         elif 'position' in data:
+            comment_type = CommentType.REVIEW
             data['commit_id'] = self.sha
-            post(self._token,
-                 '/repos/' + self._repository + "/pulls/" + str(mr_number) +
-                 "/comments", data)
+            res = post(self._token,
+                       '/repos/' + self._repository + "/pulls/" +
+                       str(mr_number) + "/comments", data)
         else:  # Position not available, pr number available, comment on PR
-            post(self._token,
-                 '/repos/' + self._repository + "/issues/" + str(mr_number) +
-                 "/comments", data)
+            comment_type = CommentType.ISSUE
+            res = post(self._token,
+                       '/repos/' + self._repository + "/issues/" +
+                       str(mr_number) + "/comments", data)
+
+        return GitHubComment.from_data(res, self._token, self._repository,
+                                       comment_type, res['id'])
 
     @property
     def unified_diff(self):

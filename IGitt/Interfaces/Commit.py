@@ -5,6 +5,7 @@ from typing import Optional
 from typing import Set
 
 from IGitt.Interfaces import IGittObject
+from IGitt.Interfaces import Comment
 from IGitt.Interfaces.CommitStatus import CommitStatus, Status
 from IGitt.Interfaces.Repository import Repository
 
@@ -94,7 +95,8 @@ class Commit(IGittObject):
         self.set_status(status)
 
     def comment(self, message: str, file: Optional[str]=None,
-                line: Optional[int]=None, mr_number: Optional[int]=None):
+                line: Optional[int]=None,
+                mr_number: Optional[int]=None) -> Comment:
         """
         Puts a comment on the new version of the given line. If the file or
         line is None, the comment will be placed at the bottom of the commit.

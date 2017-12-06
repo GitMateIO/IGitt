@@ -62,13 +62,18 @@ class GitLabCommitTest(IGittTestCase):
         self.commit = GitLabCommit(self.token,
                                    'gitmate-test-user/test',
                                    '3fc4b860e0a2c17819934d678decacd914271e5c')
-        self.commit.comment('An issue is here')
-        self.commit.comment("Here in line 4, there's a spelling mistake!",
-                            'README.md', 4)
-        self.commit.comment("Here in line 4, there's a spelling mistake!",
-                            'README.md', 4, mr_number=6)
-        self.commit.comment('test comment', 'READNOT.md', mr_number=6)
-        self.commit.comment('test comment', 'READNOT.md', 4)
+        # commit comments cannot be retrieved
+        self.assertIsNone(self.commit.comment('An issue is here'))
+        self.assertIsNone(self.commit.comment("Here in line 4, there's a spelling mistake!",
+                                              'README.md', 4))
+        self.assertIsNone(self.commit.comment("Here in line 4, there's a spelling mistake!",
+                                              'README.md', 4, mr_number=6))
+        self.assertIsNone(self.commit.comment('test comment', 'READNOT.md', 4))
+        # MR comments can be retrieved
+        self.assertEqual(self.commit.comment('test comment', 'READNOT.md', mr_number=6).body,
+                         'Comment on 3fc4b860e0a2c17819934d678decacd914271e5c, file READNOT.md.\n\n'
+                         'test comment')
+
 
     def test_unified_diff(self):
         self.assertEqual(self.commit.unified_diff,

@@ -51,13 +51,19 @@ class GitHubCommitTest(IGittTestCase):
     def test_comment(self):
         commit = GitHubCommit(self.token, 'gitmate-test-user/test',
                               'f6d2b7c66372236a090a2a74df2e47f42a54456b')
-        commit.comment('An issue is here')
-        commit.comment("Here in line 4, there's a spelling mistake!",
-                       'README.md', 4)
-        commit.comment("Here in line 4, there's a spelling mistake!",
-                       'README.md', 4, mr_number=7)
-        commit.comment('test comment', 'READNOT.md', mr_number=7)
-        commit.comment('test comment', 'READNOT.md', 4)
+        self.assertIn('An issue is here',
+                      commit.comment('An issue is here').body)
+
+        self.assertIn("Here in line 4, there's a spelling mistake",
+                      commit.comment("Here in line 4, there's a spelling mistake!",
+                                     'README.md', 4).body)
+        self.assertIn("Here in line 4, there's a spelling mistake!",
+                      commit.comment("Here in line 4, there's a spelling mistake!",
+                                     'README.md', 4, mr_number=7).body)
+        self.assertIn('test comment',
+                      commit.comment('test comment', 'READNOT.md', mr_number=7).body)
+        self.assertIn('test comment',
+                      commit.comment('test comment', 'READNOT.md', 4).body)
 
     def test_get_diff_index(self):
         patch = ('---/version/a\n'

@@ -10,7 +10,9 @@ from IGitt import ElementDoesntExistError
 from IGitt.GitHub.GitHubCommit import get_diff_index
 from IGitt.GitLab import get, post, GitLabMixin
 from IGitt.GitLab import GitLabOAuthToken, GitLabPrivateToken
+from IGitt.GitLab.GitLabComment import GitLabComment
 from IGitt.GitLab.GitLabRepository import GitLabRepository
+from IGitt.Interfaces.Comment import CommentType
 from IGitt.Interfaces.Commit import Commit
 from IGitt.Interfaces.CommitStatus import Status, CommitStatus
 
@@ -244,7 +246,8 @@ class GitLabCommit(GitLabMixin, Commit):
         raise ElementDoesntExistError('The file does not exist.')
 
     def comment(self, message: str, file: Optional[str]=None,
-                line: Optional[int]=None, mr_number: Optional[int]=None):
+                line: Optional[int]=None,
+                mr_number: Optional[int]=None) -> GitLabComment:
         """
         Places a comment on the commit.
 
@@ -315,15 +318,19 @@ class GitLabCommit(GitLabMixin, Commit):
         if 'line' in data and 'path' in data or mr_number is None:
             url = '/projects/{id}/repository/commits/{sha}/comments'.format(
                 id=quote_plus(self._repository), sha=self.sha)
-            post(self._token, url, data)
+            res = post(self._token, url, data)
             return
 
         # fallback to post the comment on relevant merge request
         if mr_number is not None:
             data['body'] = data['note']  # because gitlab is stupid
-            post(self._token,
-                 '/projects/{id}/merge_requests/{mr_iid}/notes'.format(
-                     id=quote_plus(self._repository), mr_iid=mr_number), data)
+            res = post(self._token,
+                       '/projects/{id}/merge_requests/{mr_iid}/notes'.format(
+                           id=quote_plus(self._repository), mr_iid=mr_number),
+                       data)
+            return GitLabComment.from_data(res, self._token, self._repository,
+                                           mr_number, CommentType.MERGE_REQUEST,
+                                           res['id'])
 
     @property
     def unified_diff(self):
