@@ -10,6 +10,7 @@ from urllib.parse import quote_plus
 from IGitt.GitLab import get, put, post, delete, GitLabMixin
 from IGitt.GitLab import GitLabOAuthToken, GitLabPrivateToken
 from IGitt.GitLab.GitLabComment import GitLabComment
+from IGitt.GitLab.GitLabReaction import GitLabReaction
 from IGitt.GitLab.GitLabUser import GitLabUser
 from IGitt.Interfaces.Comment import CommentType
 from IGitt.Interfaces.Issue import Issue
@@ -385,13 +386,14 @@ class GitLabIssue(GitLabMixin, Issue):
         return IssueStates[self.data['state'].upper()]
 
     @property
-    def reactions(self) -> List[str]:
+    def reactions(self) -> Set[GitLabReaction]:
         """
         Retrieves the reactions / award emojis applied on the issue.
         """
         url = self._url + '/award_emoji'
         reactions = get(self._token, url)
-        return [reaction['name'] for reaction in reactions]
+        return {GitLabReaction.from_data(r, self._token, self, r['id'])
+                for r in reactions}
 
     @staticmethod
     def create(token: Union[GitLabOAuthToken, GitLabPrivateToken],
