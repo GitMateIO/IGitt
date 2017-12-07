@@ -3,6 +3,7 @@ This module contains the helpers for writing testcases for IGitt.
 """
 from abc import ABCMeta
 from inspect import getfile
+import os
 from os.path import dirname
 from os.path import join
 from unittest import TestCase
@@ -15,6 +16,48 @@ import pytest
 FILTER_QUERY_PARAMS = ['access_token', 'private_token']
 FILTER_PARAMS_REGEX = re.compile(r'(\??)((?:{})=\w+&?)'.format(
     '|'.join(FILTER_QUERY_PARAMS)))
+
+
+# Random private key
+PRIVATE_KEY = """
+-----BEGIN RSA PRIVATE KEY-----
+MIICXAIBAAKBgQCZ3CJJ+7vflLg6XPG59kWjfALWJlRtVj1YWmr95dR5a8FRsnwF
+Lqgh2vLT2lk2Q6PoXX1C5blsM/xrf0Hc/fw2aOE/RvDCgHG83IBcFv8YOEndgTJp
+qBmEK0xIbxhdUtku4xpiZddzyt8KoRg7uHM5P06TX5qJjK5JKL/B4RKnNwIDAQAB
+AoGAIxwLqwxJu+RpAdBxzLi4/WxwDUQj4etbBk1jutp2WNrQ+36aNGiIL2mSHevm
+ja5zubOTwO9BF8LpJ/KbKf2/TqPlKH4QZibHqoPSAHa6n5RHQBn4f6EauG4IaJfC
+nLA5ZyP3T29uCpByM745LUOpteEj/fQCxjYE2y+MsCzdw8ECQQDhMK7psIE7INbN
+cUjikA6F0h48ZpDBYPYy+EetwLc45i/fWLd920DxkuQ6zu/qWQWY/x+ZNh/WoYfr
+GqVpgszhAkEArukZHcd7z7OCso+2SvWmEmrMprfcOpw/1JsIMt2W9GhnBHe+wBvv
+f4jY5iRl/5dKfNXppkz1G1GiXrx7ZOMfFwJADWd1cemUt61Lu+zbVskWZDbOn+/G
+/AvGe+A1fA01mshw3w2L1oz/f6GrvihlNYDZCXNeMSN8n6z7xy3N3MrxYQJAHWcw
+ArKLHLJXkT7ZbSZ4YXY0qv4TdoLXtBzPtwVLIBEA6F5c4ZyQmUbe92k9AEdljTDE
+k2EyfwItInHa6G3JxwJBAIYfzh6YmG/hv0rTgBgKXX0NL+BS/ppcy85w4zg08e/f
+Edf3/k7WkC18G802pLT5+xf8snh+Oti95jfoHU1j4ek=
+-----END RSA PRIVATE KEY-----
+"""
+
+PUBLIC_KEY = """
+-----BEGIN PUBLIC KEY-----
+MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCZ3CJJ+7vflLg6XPG59kWjfALW
+JlRtVj1YWmr95dR5a8FRsnwFLqgh2vLT2lk2Q6PoXX1C5blsM/xrf0Hc/fw2aOE/
+RvDCgHG83IBcFv8YOEndgTJpqBmEK0xIbxhdUtku4xpiZddzyt8KoRg7uHM5P06T
+X5qJjK5JKL/B4RKnNwIDAQAB
+-----END PUBLIC KEY-----
+"""
+
+# set environment variables default
+ENV_DEFAULTS = {
+    'GITLAB_TEST_TOKEN': '',
+    'GITHUB_TEST_TOKEN': '',
+    'GITHUB_PRIVATE_KEY': PRIVATE_KEY,
+    'GITHUB_TEST_APP_ID': '5408',
+    'GITHUB_TEST_TOKEN_2': '',
+    'GITLAB_TEST_TOKEN_2': '',
+}
+
+for key, value in ENV_DEFAULTS.items():
+    os.environ.setdefault(key, value)
 
 
 @pytest.mark.usefixtures('vcrpy_record_mode')
