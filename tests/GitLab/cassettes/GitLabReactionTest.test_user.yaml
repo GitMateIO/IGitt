@@ -1,0 +1,59 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/23/award_emoji/17051518?per_page=100
+  response:
+    body: {string: '{"message":"404 Not found"}'}
+    headers:
+      Cache-Control: [no-cache]
+      Content-Length: ['27']
+      Content-Type: [application/json]
+      Date: ['Thu, 07 Dec 2017 19:55:46 GMT']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['2']
+      RateLimit-Remaining: ['598']
+      RateLimit-Reset: ['1512676606']
+      RateLimit-ResetTime: ['Fri, 07 Dec 2017 19:56:46 GMT']
+      Server: [nginx]
+      Vary: [Origin]
+      X-Request-Id: [b8e54cb8-e0e4-4099-93ec-68473a021aba]
+      X-Runtime: ['0.142242']
+    status: {code: 404, message: Not Found}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/23/award_emoji/490941?per_page=100
+  response:
+    body: {string: '{"id":490941,"name":"thumbsdown","user":{"id":889700,"name":"Naveen
+        Kumar Sangi","username":"nkprince007","state":"active","avatar_url":"https://secure.gravatar.com/avatar/2ed27920a4ec4445d0e390a30df7145d?s=80&d=identicon","web_url":"https://gitlab.com/nkprince007"},"created_at":"2017-12-07T18:18:42.243Z","updated_at":"2017-12-07T18:18:42.243Z","awardable_id":5659413,"awardable_type":"Issue"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['395']
+      Content-Type: [application/json]
+      Date: ['Thu, 07 Dec 2017 19:56:36 GMT']
+      Etag: [W/"57c48d427caea8439747c01724e92e22"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['4']
+      RateLimit-Remaining: ['596']
+      RateLimit-Reset: ['1512676656']
+      RateLimit-ResetTime: ['Fri, 07 Dec 2017 19:57:36 GMT']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [5a5f24f4-70c0-4cb4-9878-5d80e4a909e9]
+      X-Runtime: ['0.132491']
+    status: {code: 200, message: OK}
+version: 1
