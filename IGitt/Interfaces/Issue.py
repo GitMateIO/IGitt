@@ -192,6 +192,13 @@ class Issue(IGittObject):
         """
         raise NotImplementedError
 
+    @property
+    def reactions(self) -> List[str]:
+        """
+        Retrieves the reactions / award emojis applied on the issue.
+        """
+        raise NotImplementedError
+
     @staticmethod
     def create(token, repository, title, body=''):
         """

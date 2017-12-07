@@ -54,7 +54,6 @@ class GitLabIssue(GitLabMixin, Issue):
         from IGitt.GitLab.GitLabRepository import GitLabRepository
         return GitLabRepository(self._token, self._repository)
 
-
     @property
     def title(self) -> str:
         """
@@ -393,6 +392,15 @@ class GitLabIssue(GitLabMixin, Issue):
             self.data['state'] = 'open'
 
         return IssueStates[self.data['state'].upper()]
+
+    @property
+    def reactions(self) -> List[str]:
+        """
+        Retrieves the reactions / award emojis applied on the issue.
+        """
+        url = self._url + '/award_emoji'
+        reactions = get(self._token, url)
+        return [reaction['name'] for reaction in reactions]
 
     @staticmethod
     def create(token: Union[GitLabOAuthToken, GitLabPrivateToken],

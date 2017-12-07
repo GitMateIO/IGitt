@@ -81,3 +81,7 @@ class GitLabIssueTest(IGittTestCase):
         issue = GitLabIssue(self.token, 'gitmate-test-user/test', 23)
         issue.data['description'] = None
         self.assertEqual(issue.description, '')
+
+    def test_reactions(self):
+        issue = GitLabIssue(self.token, 'gitmate-test-user/test', 23)
+        self.assertEqual(issue.reactions, ['thumbsup', 'thumbsdown', 'golf'])

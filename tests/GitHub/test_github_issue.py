@@ -78,3 +78,7 @@ class GitHubIssueTest(IGittTestCase):
         issue = GitHubIssue(self.token, 'gitmate-test-user/test', 12)
         issue.data['body'] = None
         self.assertEqual(issue.description, '')
+
+    def test_reactions(self):
+        issue = GitHubIssue(self.token, 'gitmate-test-user/test', 12)
+        self.assertEqual(issue.reactions, ['laugh', 'hooray', 'heart'])

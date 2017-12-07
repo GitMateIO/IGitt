@@ -1,0 +1,44 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/23/award_emoji?per_page=100
+  response:
+    body: {string: '[{"id":490940,"name":"thumbsup","user":{"id":889700,"name":"Naveen
+        Kumar Sangi","username":"nkprince007","state":"active","avatar_url":"https://secure.gravatar.com/avatar/2ed27920a4ec4445d0e390a30df7145d?s=80\u0026d=identicon","web_url":"https://gitlab.com/nkprince007"},"created_at":"2017-12-07T18:18:41.121Z","updated_at":"2017-12-07T18:18:41.121Z","awardable_id":5659413,"awardable_type":"Issue"},{"id":490941,"name":"thumbsdown","user":{"id":889700,"name":"Naveen
+        Kumar Sangi","username":"nkprince007","state":"active","avatar_url":"https://secure.gravatar.com/avatar/2ed27920a4ec4445d0e390a30df7145d?s=80\u0026d=identicon","web_url":"https://gitlab.com/nkprince007"},"created_at":"2017-12-07T18:18:42.243Z","updated_at":"2017-12-07T18:18:42.243Z","awardable_id":5659413,"awardable_type":"Issue"},{"id":490943,"name":"golf","user":{"id":889700,"name":"Naveen
+        Kumar Sangi","username":"nkprince007","state":"active","avatar_url":"https://secure.gravatar.com/avatar/2ed27920a4ec4445d0e390a30df7145d?s=80\u0026d=identicon","web_url":"https://gitlab.com/nkprince007"},"created_at":"2017-12-07T18:19:23.214Z","updated_at":"2017-12-07T18:19:23.214Z","awardable_id":5659413,"awardable_type":"Issue"}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['1196']
+      Content-Type: [application/json]
+      Date: ['Thu, 07 Dec 2017 18:19:39 GMT']
+      Etag: [W/"853157bc50ea0b562fcad4d19a0a94b2"]
+      Link: ['<https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/23/award_emoji?id=gitmate-test-user%2Ftest&issue_iid=23&page=1&per_page=100>;
+          rel="first", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/23/award_emoji?id=gitmate-test-user%2Ftest&issue_iid=23&page=1&per_page=100>;
+          rel="last"']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['1']
+      RateLimit-Remaining: ['599']
+      RateLimit-Reset: ['1512670839']
+      RateLimit-ResetTime: ['Fri, 07 Dec 2017 18:20:39 GMT']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['100']
+      X-Prev-Page: ['']
+      X-Request-Id: [fad12a62-0daa-4853-ae7a-684f6500a66d]
+      X-Runtime: ['0.111835']
+      X-Total: ['3']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+version: 1

@@ -2,6 +2,7 @@
 This contains the Issue implementation for GitHub.
 """
 from datetime import datetime
+from typing import List
 from typing import Set
 
 from IGitt.GitHub import get, patch, post, delete, GitHubMixin
@@ -343,6 +344,17 @@ class GitHubIssue(GitHubMixin, Issue):
         <IssueStates.CLOSED: 'closed'>.
         """
         return IssueStates[self.data['state'].upper()]
+
+    @property
+    def reactions(self) -> List[str]:
+        """
+        Retrieves the reactions / award emojis applied on the issue.
+        """
+        url = self._url + '/reactions'
+        reactions = get(
+            self._token, url,
+            headers={'Accept': 'application/vnd.github.squirrel-girl-preview'})
+        return [reaction['content'] for reaction in reactions]
 
     @staticmethod
     def create(token: str, repository: str,
