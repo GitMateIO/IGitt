@@ -1,3 +1,5 @@
+.. image:: .gitlab/logo_256.png
+
 IGitt
 =====
 
