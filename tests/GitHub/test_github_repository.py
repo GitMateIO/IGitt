@@ -2,6 +2,8 @@ from datetime import datetime
 import os
 
 from IGitt.GitHub import GitHubToken
+from IGitt.GitHub import GitHubJsonWebToken
+from IGitt.GitHub import GitHubInstallationToken
 from IGitt.GitHub.GitHubContent import GitHubContent
 from IGitt.GitHub.GitHubMergeRequest import GitHubMergeRequest
 from IGitt.GitHub.GitHubRepository import GitHubRepository
@@ -43,6 +45,15 @@ class GitHubRepositoryTest(IGittTestCase):
                          'https://{}@github.com/gitmate-test-user/test.git'.format(
                              os.environ.get('GITHUB_TEST_TOKEN', ''))
                         )
+
+        # testing GitHub installation token
+        jwt = GitHubJsonWebToken(os.environ['GITHUB_PRIVATE_KEY'],
+                                 int(os.environ['GITHUB_TEST_APP_ID']))
+        itoken = GitHubInstallationToken(60731, jwt)
+        repo = GitHubRepository(itoken, 'gitmate-test-user/test')
+        self.assertRegex(
+            repo.clone_url,
+            r'https://x-access-token:\S+@github.com/gitmate-test-user/test.git')
 
     def test_get_labels(self):
         self.assertEqual(sorted(self.repo.get_labels()), ['a', 'b', 'c', 'dem'])

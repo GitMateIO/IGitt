@@ -11,6 +11,7 @@ from typing import Union
 from IGitt import ElementAlreadyExistsError, ElementDoesntExistError
 from IGitt.GitHub import delete, get, post, GitHubMixin, put
 from IGitt.GitHub import GitHubToken
+from IGitt.GitHub import GitHubInstallationToken
 from IGitt.GitHub.GitHubIssue import GitHubIssue
 from IGitt.GitHub.GitHubOrganization import GitHubOrganization
 from IGitt.Interfaces import AccessLevel
@@ -41,7 +42,7 @@ class GitHubRepository(GitHubMixin, Repository):
     """
 
     def __init__(self,
-                 token: GitHubToken,
+                 token: [GitHubToken, GitHubInstallationToken],
                  repository: Union[str, int]):
         """
         Creates a new GitHubRepository object with the given credentials.
@@ -128,8 +129,14 @@ class GitHubRepository(GitHubMixin, Repository):
 
         :return: A URL that can be used to clone the repository with Git.
         """
+        url = 'github.com'
+        if isinstance(self._token, GitHubInstallationToken):
+            # Reference: https://developer.github.com/apps/building-integrations/setting-up-and-registering-github-apps/about-authentication-options-for-github-apps/#http-based-git-access-by-an-installation
+            return self.data['clone_url'].replace(
+                url, 'x-access-token:%s@github.com' % self._token.value, 1)
+
         return self.data['clone_url'].replace(
-            'github.com', self._token.value + '@github.com', 1)
+            url, self._token.value + '@' + url, 1)
 
     def get_labels(self):
         """
