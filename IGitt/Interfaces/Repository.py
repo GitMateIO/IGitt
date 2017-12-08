@@ -261,9 +261,10 @@ class Repository(IGittObject):
                    created_after: Optional[datetime.date]=None,
                    created_before: Optional[datetime.date]=None,
                    updated_after: Optional[datetime.date]=None,
-                   updated_before: Optional[datetime.date]=None):
+                   updated_before: Optional[datetime.date]=None,
+                   state: Optional[str]=None):
         """
-        Retrieves a list of open prs
+        Retrieves a list of prs
         """
         raise NotImplementedError
 
@@ -271,9 +272,10 @@ class Repository(IGittObject):
                       created_after: Optional[datetime.date]=None,
                       created_before: Optional[datetime.date]=None,
                       updated_after: Optional[datetime.date]=None,
-                      updated_before: Optional[datetime.date]=None):
+                      updated_before: Optional[datetime.date]=None,
+                      state: Optional[str] = None):
         """
-        Retrieves a list of open issues
+        Retrieves a list of issues
         """
         raise NotImplementedError
 

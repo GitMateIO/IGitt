@@ -467,22 +467,26 @@ class GitLabRepository(GitLabMixin, Repository):
         delete(token=self._token, url=self._url)
 
     def _search(self,
-                search_type):
+                search_type, state):
         """
-        Retrives a list of all open issues or merge requests.
+        Retrives a list of all issues or merge requests.
         :param search_type: A string for type of object i.e. issues for issue
                             and merge_requests for merge requests.
+        :param state: A string for MR/issue state (opened or closed)
         :return: List of issues/merge requests.
         """
         url = self._url + '/{}'.format(search_type)
-        return get(self._token, url, {'state': 'opened'})
+        if state is None:
+            return get(self._token, url)
+        return get(self._token, url, {'state' : state})
 
 
     def search_issues(self,
                       created_after: Optional[datetime]=None,
                       created_before: Optional[datetime]=None,
                       updated_after: Optional[datetime]=None,
-                      updated_before: Optional[datetime]=None):
+                      updated_before: Optional[datetime]=None,
+                      state: Optional[str] = None):
         """
         Searches for issues based on created and updated date.
         """
@@ -491,7 +495,7 @@ class GitLabRepository(GitLabMixin, Repository):
                                                             created_before,
                                                             updated_after,
                                                             updated_before),
-                                 self._search('issues')):
+                                 self._search('issues', state)):
             issue = self.get_issue(issue_data['iid'])
             issue.data = issue_data
             yield issue
@@ -500,7 +504,8 @@ class GitLabRepository(GitLabMixin, Repository):
                    created_after: Optional[datetime]=None,
                    created_before: Optional[datetime]=None,
                    updated_after: Optional[datetime]=None,
-                   updated_before: Optional[datetime]=None):
+                   updated_before: Optional[datetime]=None,
+                   state: Optional[str] = None):
         """
         Searches for merge request based on created and updated date.
         """
@@ -509,7 +514,7 @@ class GitLabRepository(GitLabMixin, Repository):
                                                          created_before,
                                                          updated_after,
                                                          updated_before),
-                              self._search('merge_requests')):
+                              self._search('merge_requests', state)):
             merge_request = self.get_mr(mr_data['iid'])
             merge_request.data = mr_data
             yield merge_request

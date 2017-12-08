@@ -55,4 +55,51 @@ interactions:
       X-Total: ['14']
       X-Total-Pages: ['1']
     status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues?per_page=100&state=closed
+  response:
+    body: {string: '[{"id":5729804,"iid":29,"project_id":3439658,"title":"testing
+        again","description":"lasse, please don''t mind my internet connection..","state":"closed","created_at":"2017-06-16T10:37:24.767Z","updated_at":"2017-06-19T05:21:15.985Z","closed_at":"2017-06-19T05:21:15.878Z","labels":[],"milestone":null,"assignees":[{"id":889700,"name":"Naveen
+        Kumar Sangi","username":"nkprince007","state":"active","avatar_url":"https://secure.gravatar.com/avatar/8021593fad6525a8164610bdf8183f23?s=80\u0026d=identicon","web_url":"https://gitlab.com/nkprince007"}],"author":{"id":889700,"name":"Naveen
+        Kumar Sangi","username":"nkprince007","state":"active","avatar_url":"https://secure.gravatar.com/avatar/8021593fad6525a8164610bdf8183f23?s=80\u0026d=identicon","web_url":"https://gitlab.com/nkprince007"},"assignee":{"id":889700,"name":"Naveen
+        Kumar Sangi","username":"nkprince007","state":"active","avatar_url":"https://secure.gravatar.com/avatar/8021593fad6525a8164610bdf8183f23?s=80\u0026d=identicon","web_url":"https://gitlab.com/nkprince007"},"user_notes_count":4,"upvotes":0,"downvotes":0,"due_date":null,"confidential":false,"weight":null,"discussion_locked":null,"web_url":"https://gitlab.com/gitmate-test-user/test/issues/29","time_stats":{"time_estimate":0,"total_time_spent":0,"human_time_estimate":null,"human_total_time_spent":null}},{"id":5729749,"iid":28,"project_id":3439658,"title":"print
+        test issue","description":"Hello this is a really important issue","state":"closed","created_at":"2017-06-16T10:29:56.766Z","updated_at":"2017-11-04T11:08:30.832Z","closed_at":"2017-11-04T11:08:30.780Z","labels":[],"milestone":null,"assignees":[{"id":889700,"name":"Naveen
+        Kumar Sangi","username":"nkprince007","state":"active","avatar_url":"https://secure.gravatar.com/avatar/8021593fad6525a8164610bdf8183f23?s=80\u0026d=identicon","web_url":"https://gitlab.com/nkprince007"}],"author":{"id":889700,"name":"Naveen
+        Kumar Sangi","username":"nkprince007","state":"active","avatar_url":"https://secure.gravatar.com/avatar/8021593fad6525a8164610bdf8183f23?s=80\u0026d=identicon","web_url":"https://gitlab.com/nkprince007"},"assignee":{"id":889700,"name":"Naveen
+        Kumar Sangi","username":"nkprince007","state":"active","avatar_url":"https://secure.gravatar.com/avatar/8021593fad6525a8164610bdf8183f23?s=80\u0026d=identicon","web_url":"https://gitlab.com/nkprince007"},"user_notes_count":0,"upvotes":0,"downvotes":0,"due_date":null,"confidential":false,"weight":null,"discussion_locked":null,"web_url":"https://gitlab.com/gitmate-test-user/test/issues/28","time_stats":{"time_estimate":0,"total_time_spent":0,"human_time_estimate":null,"human_total_time_spent":null}}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['2649']
+      Content-Type: [application/json]
+      Date: ['Fri, 08 Dec 2017 19:48:51 GMT']
+      Etag: [W/"af0d3825e0ce40496bf7f6a36832a0b6"]
+      Link: ['<https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues?id=gitmate-test-user%2Ftest&order_by=created_at&page=1&per_page=100&sort=desc&state=closed>;
+          rel="first", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues?id=gitmate-test-user%2Ftest&order_by=created_at&page=1&per_page=100&sort=desc&state=closed>;
+          rel="last"']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['1']
+      RateLimit-Remaining: ['599']
+      RateLimit-Reset: ['1512762591']
+      RateLimit-ResetTime: ['Sat, 08 Dec 2017 19:49:51 GMT']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['100']
+      X-Prev-Page: ['']
+      X-Request-Id: [94879ecd-0245-4040-b431-0021cedf3254]
+      X-Runtime: ['0.486979']
+      X-Total: ['2']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
 version: 1

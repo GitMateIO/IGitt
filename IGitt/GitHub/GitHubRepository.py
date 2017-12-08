@@ -477,12 +477,18 @@ class GitHubRepository(GitHubMixin, Repository):
                          created_after: Optional[datetime]=None,
                          created_before: Optional[datetime]=None,
                          updated_after: Optional[datetime]=None,
-                         updated_before: Optional[datetime]=None):
+                         updated_before: Optional[datetime]=None,
+                         state: Optional[str] = None):
         """
         Search for issue based on type 'issue' or 'pr' and return a
         list of issues.
         """
-        query = ' type:' + issue_type + ' state:open repo:' + self.full_name
+        if state is None:
+            query = ' type:' + issue_type + ' repo:' + self.full_name
+        else:
+            query = (' type:' + issue_type + ' state:' + state +
+                     ' repo:' + self.full_name)
+
         if ((created_after and created_before)
                 or (updated_after and updated_before)):
             raise RuntimeError(('Cannot process before '
@@ -505,7 +511,8 @@ class GitHubRepository(GitHubMixin, Repository):
                    created_after: Optional[datetime]=None,
                    created_before: Optional[datetime]=None,
                    updated_after: Optional[datetime]=None,
-                   updated_before: Optional[datetime]=None):
+                   updated_before: Optional[datetime]=None,
+                   state: Optional[str] = None):
         """
         List open pull request in the repository.
         """
@@ -513,12 +520,14 @@ class GitHubRepository(GitHubMixin, Repository):
                                      created_after,
                                      created_before,
                                      updated_after,
-                                     updated_before)
+                                     updated_before,
+                                     state)
     def search_issues(self,
                       created_after: Optional[datetime]=None,
                       created_before: Optional[datetime]=None,
                       updated_after: Optional[datetime]=None,
-                      updated_before: Optional[datetime]=None):
+                      updated_before: Optional[datetime]=None,
+                      state: Optional[str] = None):
         """
         List open issues in the repository.
         """
@@ -526,7 +535,8 @@ class GitHubRepository(GitHubMixin, Repository):
                                      created_after,
                                      created_before,
                                      updated_after,
-                                     updated_before)
+                                     updated_before,
+                                     state)
 
     def get_permission_level(self, user) -> AccessLevel:
         """

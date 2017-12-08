@@ -148,15 +148,28 @@ class GitLabRepositoryTest(IGittTestCase):
         created_after = datetime(2017, 6, 18).date()
         created_before = datetime(2017, 7, 15).date()
         issues = list(self.repo.search_issues(created_after=created_after,
-                                              created_before=created_before))
+                                              created_before=created_before,
+                                              state='opened'))
         self.assertEqual(len(issues), 2)
+        issues = list(self.repo.search_issues(created_after=created_after,
+                                              created_before=created_before,
+                                              state='closed'))
+        self.assertEqual(len(issues), 0)
 
     def test_search_mrs(self):
         updated_after = datetime(2017, 6, 18).date()
         updated_before = datetime(2017, 7, 2).date()
         merge_requests = list(self.repo.search_mrs(updated_after=updated_after,
-                                                   updated_before=updated_before))
+                                                   updated_before=updated_before,
+                                                   state='opened'))
+        self.assertEqual(len(merge_requests), 1)
+        merge_requests = list(self.repo.search_mrs(updated_after=updated_after,
+                                                   updated_before=updated_before,
+                                                   state='closed'))
         self.assertEqual(len(merge_requests), 2)
+        merge_requests = list(self.repo.search_mrs(updated_after=updated_after,
+                                                   updated_before=updated_before))
+        self.assertEqual(len(merge_requests), 3)
 
     def test_commits(self):
         self.assertEqual({commit.sha for commit in self.repo.commits},
