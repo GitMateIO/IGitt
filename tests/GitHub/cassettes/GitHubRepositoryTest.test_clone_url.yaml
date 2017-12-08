@@ -156,4 +156,40 @@ interactions:
       X-Runtime-rack: ['0.064736']
       X-XSS-Protection: [1; mode=block]
     status: {code: 200, message: OK}
+- request:
+    body: '{}'
+    headers:
+      Accept: [application/vnd.github.machine-man-preview+json]
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE1MTI3NjUzOTIsImV4cCI6MTUxMjc2NTk4NywiaXNzIjo1NDA4fQ.CrbSQDjyoY1SOBexoyaBCFc5hMa8UGR0ItJAp4yNg2oxnbP020hoiIpZxCkeXMCZK8eQO4dRqyO_B0l0m_X325cPMOJ056Ph1rq5hyPOBUGGYKPrYd3nlP2aXU-LUGJbPpS8I4EzJoZIUWByh8lhtge0iklnxYYr7MqfcpmP3fqxZqb9j3sSsgCkRcvy9vSnuf9qhIclqk0MEYBphtNy3i0vyrbaknmUPJnUJ5rnekie8D7koRPCKblA7X-cmOxvA73Pn-teuiO7CnLVN3JEDfsxwuC2ztfu8NcKvdAN0gVnwQPrXt9YnIx9pghdFH16OwOwItQP9qQUEwkaGIMz4A]
+      Connection: [keep-alive]
+      Content-Length: ['2']
+      Content-Type: [application/json]
+      User-Agent: [IGitt]
+    method: POST
+    uri: https://api.github.com/installations/60731/access_tokens
+  response:
+    body: {string: '{"token":"v1.ae0db4fbdb6245606cd07224946bbca42fba4409","expires_at":"2017-12-08T21:36:34Z"}'}
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Access-Control-Expose-Headers: ['ETag, Link, Retry-After, X-GitHub-OTP, X-RateLimit-Limit,
+          X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes,
+          X-Poll-Interval']
+      Cache-Control: ['public, max-age=60, s-maxage=60']
+      Content-Length: ['91']
+      Content-Security-Policy: [default-src 'none']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Fri, 08 Dec 2017 20:36:34 GMT']
+      ETag: ['"741668650addec074de8735da6bd29c5"']
+      Server: [GitHub.com]
+      Status: [201 Created]
+      Strict-Transport-Security: [max-age=31536000; includeSubdomains; preload]
+      Vary: [Accept]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [deny]
+      X-GitHub-Media-Type: [github.machine-man-preview; format=json]
+      X-GitHub-Request-Id: ['D149:2C6FB:29A032C:508DE49:5A2AF7D1']
+      X-Runtime-rack: ['0.020432']
+      X-XSS-Protection: [1; mode=block]
+    status: {code: 201, message: Created}
 version: 1
