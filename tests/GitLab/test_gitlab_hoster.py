@@ -70,53 +70,110 @@ class GitLabWebhookTest(IGittTestCase):
 
     def test_unknown_event(self):
         with self.assertRaises(NotImplementedError):
-            self.gl.handle_webhook('unknown_event', self.default_data)
+            list(self.gl.handle_webhook('unknown_event', self.default_data))
 
     def test_issue_hook(self):
-        event, obj = self.gl.handle_webhook('Issue Hook', self.default_data)
-        self.assertEqual(event, IssueActions.OPENED)
-        self.assertIsInstance(obj[0], GitLabIssue)
+        for event, obj in self.gl.handle_webhook('Issue Hook',
+                                                 self.default_data):
+            self.assertEqual(event, IssueActions.OPENED)
+            self.assertIsInstance(obj[0], GitLabIssue)
 
     def test_pr_hook(self):
-        event, obj = self.gl.handle_webhook('Merge Request Hook',
-                                            self.default_data)
-        self.assertEqual(event, MergeRequestActions.OPENED)
-        self.assertIsInstance(obj[0], GitLabMergeRequest)
+        for event, obj in self.gl.handle_webhook('Merge Request Hook',
+                                                 self.default_data):
+            self.assertEqual(event, MergeRequestActions.OPENED)
+            self.assertIsInstance(obj[0], GitLabMergeRequest)
 
     def test_pr_synchronized(self):
         data = self.default_data
         data['object_attributes']['oldrev'] = 'deadbeef'
-        event, obj = self.gl.handle_webhook('Merge Request Hook',
-                                            self.default_data)
-        self.assertEqual(event, MergeRequestActions.SYNCHRONIZED)
-        self.assertIsInstance(obj[0], GitLabMergeRequest)
+        for event, obj in self.gl.handle_webhook('Merge Request Hook',
+                                                 self.default_data):
+            self.assertEqual(event, MergeRequestActions.SYNCHRONIZED)
+            self.assertIsInstance(obj[0], GitLabMergeRequest)
 
     def test_issue_comment(self):
-        event, obj = self.gl.handle_webhook('Note Hook', self.default_data)
-        self.assertEqual(event, IssueActions.COMMENTED)
-        self.assertIsInstance(obj[0], GitLabIssue)
-        self.assertIsInstance(obj[1], GitLabComment)
+        for event, obj in self.gl.handle_webhook('Note Hook',
+                                                 self.default_data):
+            self.assertEqual(event, IssueActions.COMMENTED)
+            self.assertIsInstance(obj[0], GitLabIssue)
+            self.assertIsInstance(obj[1], GitLabComment)
 
     def test_unsupported_comment(self):
         data = self.default_data
         data['object_attributes']['noteable_type'] = 'Snippet'
 
         with self.assertRaises(NotImplementedError):
-            self.gl.handle_webhook('Note Hook', data)
+            list(self.gl.handle_webhook('Note Hook', data))
 
     def test_pr_comment(self):
         data = self.default_data
         del data['project']
         data['object_attributes']['noteable_type'] = 'MergeRequest'
 
-        event, obj = self.gl.handle_webhook('Note Hook', data)
-        self.assertEqual(event, MergeRequestActions.COMMENTED)
-        self.assertIsInstance(obj[0], GitLabMergeRequest)
-        self.assertIsInstance(obj[1], GitLabComment)
+        for event, obj in self.gl.handle_webhook('Note Hook', data):
+            self.assertEqual(event, MergeRequestActions.COMMENTED)
+            self.assertIsInstance(obj[0], GitLabMergeRequest)
+            self.assertIsInstance(obj[1], GitLabComment)
 
     def test_status(self):
         del self.default_data['project']
         del self.default_data['object_attributes']
-        event, obj = self.gl.handle_webhook('Pipeline Hook', self.default_data)
-        self.assertEqual(event, PipelineActions.UPDATED)
-        self.assertIsInstance(obj[0], GitLabCommit)
+        for event, obj in self.gl.handle_webhook('Pipeline Hook',
+                                                 self.default_data):
+            self.assertEqual(event, PipelineActions.UPDATED)
+            self.assertIsInstance(obj[0], GitLabCommit)
+
+    def test_issue_label(self):
+        obj_attrs = self.default_data['object_attributes']
+        obj_attrs.update({'action': 'update'})
+
+        self.default_data.update({
+            'object_attributes': obj_attrs,
+            'changes': {
+                'labels': {
+                    'previous': [{'title': 'old'}, {'title': 'old2'}],
+                    'current': [{'title': 'new'}],
+                },
+            },
+        })
+
+        unlabeled_labels = set()
+        labeled_labels = set()
+        for event, obj in self.gl.handle_webhook('Issue Hook',
+                                                 self.default_data):
+            self.assertIsInstance(obj[0], GitLabIssue)
+            if event == IssueActions.LABELED:
+                labeled_labels.add(obj[1])
+            elif event == IssueActions.UNLABELED:
+                unlabeled_labels.add(obj[1])
+
+        self.assertEqual(unlabeled_labels, {'old', 'old2'})
+        self.assertEqual(labeled_labels, {'new'})
+
+    def test_merge_request_label(self):
+        obj_attrs = self.default_data['object_attributes']
+        obj_attrs.update({'action': 'update'})
+
+        self.default_data.update({
+            'object_attributes': obj_attrs,
+            'changes': {
+                'labels': {
+                    'previous': [{'title': 'old'}, {'title': 'old2'}],
+                    'current': [{'title': 'new'}],
+                },
+            },
+        })
+
+        unlabeled_labels = set()
+        labeled_labels = set()
+        for event, obj in self.gl.handle_webhook('Merge Request Hook',
+                                                 self.default_data):
+            self.assertIsInstance(obj[0], GitLabMergeRequest)
+            if event == MergeRequestActions.LABELED:
+                labeled_labels.add(obj[1])
+            elif event == MergeRequestActions.UNLABELED:
+                unlabeled_labels.add(obj[1])
+
+        self.assertEqual(unlabeled_labels, {'old', 'old2'})
+        self.assertEqual(labeled_labels, {'new'})

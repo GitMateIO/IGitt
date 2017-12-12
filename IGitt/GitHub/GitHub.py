@@ -111,6 +111,123 @@ class GitHub(GitHubMixin, Hoster):
                 yield GitHubMergeRequest(token, user + '/' + repo,
                                          int(item_number))
 
+    def _handle_webhook_installation(self, data):
+        """Handles 'installation' event."""
+        installation = data['installation']
+        installation_obj = GitHubInstallation.from_data(
+            installation, self._token, installation['id'])
+        trigger_event = {
+            'created': InstallationActions.CREATED,
+            'deleted': InstallationActions.DELETED
+        }[data['action']]
+
+        # When a new installation is created, it will be installed on at
+        # least one repository which will be forwarded through
+        # `repositories` key.
+        if 'repositories' in data:
+            repos = [
+                GitHubRepository.from_data(repo, self._token, repo['id'])
+                for repo in data['repositories']
+            ]
+            yield trigger_event, [installation_obj, repos]
+        else:
+            yield trigger_event, [installation_obj]
+
+    def _handle_webhook_installation_repositories(self, data):
+        """Handles 'installation_repositories' event."""
+        installation = data['installation']
+        installation_obj = GitHubInstallation.from_data(
+            installation, self._token, installation['id'])
+        if data['action'] == 'added':
+            trigger_event = InstallationActions.REPOSITORIES_ADDED
+            repos = [
+                GitHubRepository.from_data(repo, self._token, repo['id'])
+                for repo in data['repositories_added']
+            ]
+        elif data['action'] == 'removed':
+            trigger_event = InstallationActions.REPOSITORIES_REMOVED
+            repos = [
+                GitHubRepository.from_data(repo, self._token, repo['id'])
+                for repo in data['repositories_removed']
+            ]
+
+        yield trigger_event, [installation_obj, repos]
+
+    def _handle_webhook_issues(self, data, repository):
+        """Handles 'issues' event."""
+        issue = data['issue']
+        issue_obj = GitHubIssue.from_data(
+            issue, self._token, repository, issue['number'])
+        trigger_event = {
+            'opened': IssueActions.OPENED,
+            'closed': IssueActions.CLOSED,
+            'reopened': IssueActions.REOPENED,
+            'labeled': IssueActions.LABELED,
+            'unlabeled': IssueActions.UNLABELED,
+        }.get(data['action'], IssueActions.ATTRIBUTES_CHANGED)
+
+        if (trigger_event is IssueActions.LABELED
+                or trigger_event is IssueActions.UNLABELED):
+            yield trigger_event, [issue_obj, data['label']['name']]
+        else:
+            yield trigger_event, [issue_obj]
+
+    def _handle_webhook_pull_request(self, data, repository):
+        """Handles 'pull_request' event."""
+        pull_request = data['pull_request']
+        pull_request_obj = GitHubMergeRequest.from_data(
+            pull_request, self._token, repository, pull_request['number'])
+        trigger_event = {
+            'synchronize': MergeRequestActions.SYNCHRONIZED,
+            'opened': MergeRequestActions.OPENED,
+            'closed': MergeRequestActions.CLOSED,
+            'labeled': MergeRequestActions.LABELED,
+            'unlabeled': MergeRequestActions.UNLABELED,
+        }.get(data['action'], MergeRequestActions.ATTRIBUTES_CHANGED)
+        if (
+                trigger_event == MergeRequestActions.CLOSED and
+                pull_request['merged'] is True):
+            trigger_event = MergeRequestActions.MERGED
+
+        if (trigger_event is MergeRequestActions.LABELED
+                or trigger_event is MergeRequestActions.UNLABELED):
+            yield trigger_event, [pull_request_obj, data['label']['name']]
+        else:
+            yield trigger_event, [pull_request_obj]
+
+    def _handle_webhook_issue_comment(self, data, repository):
+        """Handles 'issue_comment' event."""
+        if data['action'] != 'deleted':
+            comment_obj = GitHubComment.from_data(
+                data['comment'],
+                self._token,
+                repository,
+                CommentType.MERGE_REQUEST,
+                data['comment']['id'])
+
+            if 'pull_request' in data['issue']:
+                yield (MergeRequestActions.COMMENTED,
+                       [GitHubMergeRequest.from_data(
+                           data['issue'],
+                           self._token,
+                           repository,
+                           data['issue']['number']),
+                        comment_obj])
+            else:
+                yield IssueActions.COMMENTED, [GitHubIssue.from_data(
+                    data['issue'],
+                    self._token,
+                    repository,
+                    data['issue']['number']
+                ), comment_obj]
+
+    def _handle_webhook_status(self, data, repository):
+        """Handles 'status' event."""
+        commit = data['commit']
+        commit_obj = GitHubCommit.from_data(
+            commit, self._token, repository, commit['sha'])
+        yield PipelineActions.UPDATED, [commit_obj]
+
     def handle_webhook(self, event: str, data: dict):
         """
         Handles a GitHub webhook for you.
@@ -118,112 +235,21 @@ class GitHub(GitHubMixin, Hoster):
         If it's an issue event it returns e.g.
         ``IssueActions.OPENED, [GitHubIssue(...)]``, for comments it returns
         ``MergeRequestActions.COMMENTED,
-        [GitHubMergeRequest(...), GitHubComment(...)]``.
+        [GitHubMergeRequest(...), GitHubComment(...)]``, for updates it returns
+        ``IssueActions.LABELED, [GitHubIssue(...), 'new label'].
 
-        :param event:       The HTTP_X_GITLAB_EVENT of the request header.
+        :param event:       The X_GITHUB_EVENT of the request header.
         :param data:        The pythonified JSON data of the request.
-        :return:            An IssueActions or MergeRequestActions member and a
+        :yields:            An IssueActions or MergeRequestActions member and a
                             list of the affected IGitt objects.
         """
-        if event == 'installation':
-            installation = data['installation']
-            installation_obj = GitHubInstallation.from_data(
-                installation, self._token, installation['id'])
-            trigger_event = {
-                'created': InstallationActions.CREATED,
-                'deleted': InstallationActions.DELETED
-            }[data['action']]
-
-            # When a new installation is created, it will be installed on at
-            # least one repository which will be forwarded through
-            # `repositories` key.
-            if 'repositories' in data:
-                repos = [
-                    GitHubRepository.from_data(repo, self._token, repo['id'])
-                    for repo in data['repositories']
-                ]
-                return trigger_event, [installation_obj, repos]
-
-            return trigger_event, [installation_obj]
-
-        if event == 'installation_repositories':
-            installation = data['installation']
-            installation_obj = GitHubInstallation.from_data(
-                installation, self._token, installation['id'])
-            if data['action'] == 'added':
-                trigger_event = InstallationActions.REPOSITORIES_ADDED
-                repos = [
-                    GitHubRepository.from_data(repo, self._token, repo['id'])
-                    for repo in data['repositories_added']
-                ]
-            elif data['action'] == 'removed':
-                trigger_event = InstallationActions.REPOSITORIES_REMOVED
-                repos = [
-                    GitHubRepository.from_data(repo, self._token, repo['id'])
-                    for repo in data['repositories_removed']
-                ]
-
-            return trigger_event, [installation_obj, repos]
-
-        repository = self.get_repo_name(data)
-
-        if event == 'issues':
-            issue = data['issue']
-            issue_obj = GitHubIssue.from_data(
-                issue, self._token, repository, issue['number'])
-            trigger_event = {
-                'opened': IssueActions.OPENED,
-                'closed': IssueActions.CLOSED,
-                'reopened': IssueActions.REOPENED,
-            }.get(data['action'], IssueActions.ATTRIBUTES_CHANGED)
-
-            return trigger_event, [issue_obj]
-
-        if event == 'pull_request':
-            pull_request = data['pull_request']
-            pull_request_obj = GitHubMergeRequest.from_data(
-                pull_request, self._token, repository, pull_request['number'])
-            trigger_event = {
-                'synchronize': MergeRequestActions.SYNCHRONIZED,
-                'opened': MergeRequestActions.OPENED,
-                'closed': MergeRequestActions.CLOSED,
-            }.get(data['action'], MergeRequestActions.ATTRIBUTES_CHANGED)
-            if (
-                    trigger_event == MergeRequestActions.CLOSED and
-                    pull_request['merged'] is True):
-                trigger_event = MergeRequestActions.MERGED
-
-            return trigger_event, [pull_request_obj]
-
-        if event == 'issue_comment':
-            if data['action'] != 'deleted':
-                comment_obj = GitHubComment.from_data(
-                    data['comment'],
-                    self._token,
-                    repository,
-                    CommentType.MERGE_REQUEST,
-                    data['comment']['id'])
-
-                if 'pull_request' in data['issue']:
-                    return (MergeRequestActions.COMMENTED,
-                            [GitHubMergeRequest.from_data(
-                                data['issue'],
-                                self._token,
-                                repository,
-                                data['issue']['number']),
-                             comment_obj])
-
-                return IssueActions.COMMENTED, [GitHubIssue.from_data(
-                    data['issue'],
-                    self._token,
-                    repository,
-                    data['issue']['number']
-                ), comment_obj]
-
-        if event == 'status':
-            commit = data['commit']
-            commit_obj = GitHubCommit.from_data(
-                commit, self._token, repository, commit['sha'])
-            return PipelineActions.UPDATED, [commit_obj]
-
-        raise NotImplementedError('Given webhook cannot be handled yet.')
+        try:
+            handler = getattr(self, '_handle_webhook_' + event)
+        except AttributeError:
+            raise NotImplementedError('Given webhook event cannot be handled '
+                                      'yet.')
+        if 'installation' in event:
+            yield from handler(data)
+        else:
+            repository = self.get_repo_name(data)
+            yield from handler(data, repository)

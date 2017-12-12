@@ -70,90 +70,126 @@ class TestGitHubWebhook(IGittTestCase):
 
     def test_unknown_event(self):
         with self.assertRaises(NotImplementedError):
-            self.gh.handle_webhook('unknown_event', self.default_data)
+            list(self.gh.handle_webhook('unknown_event', self.default_data))
 
     def test_installation_deleted_hook(self):
-        event, obj = self.gh_inst.handle_webhook('installation', {
-            'installation': {'id': 0},
-            'action': 'deleted'
-        })
-        self.assertEqual(event, InstallationActions.DELETED)
-        self.assertIsInstance(obj[0], GitHubInstallation)
+        for event, obj in self.gh_inst.handle_webhook('installation', {
+                'installation': {'id': 0},
+                'action': 'deleted'
+            }):
+            self.assertEqual(event, InstallationActions.DELETED)
+            self.assertIsInstance(obj[0], GitHubInstallation)
 
     def test_installation_created_hook(self):
-        event, obj = self.gh_inst.handle_webhook('installation', {
-            'installation': {'id': 0},
-            'action': 'created',
-            'repositories': [
-                {'id': 0, 'full_name': 'star-wars/rogue1'}
-            ]
-        })
-        inst, repos = obj[0], obj[1]
-        self.assertEqual(event, InstallationActions.CREATED)
-        self.assertIsInstance(inst, GitHubInstallation)
-        self.assertIsInstance(repos[0], GitHubRepository)
-        self.assertEqual(repos[0].identifier, 0)
-        self.assertEqual(repos[0].full_name, 'star-wars/rogue1')
+        for event, obj in self.gh_inst.handle_webhook('installation', {
+                'installation': {'id': 0},
+                'action': 'created',
+                'repositories': [
+                    {'id': 0, 'full_name': 'star-wars/rogue1'}
+                ]
+            }):
+            inst, repos = obj[0], obj[1]
+            self.assertEqual(event, InstallationActions.CREATED)
+            self.assertIsInstance(inst, GitHubInstallation)
+            self.assertIsInstance(repos[0], GitHubRepository)
+            self.assertEqual(repos[0].identifier, 0)
+            self.assertEqual(repos[0].full_name, 'star-wars/rogue1')
 
     def test_installation_repositories_added_hook(self):
-        event, obj = self.gh_inst.handle_webhook('installation_repositories', {
-            'action': 'added',
-            'installation': {'id': 0},
-            'repositories_added': [{
-                'id': 0,
-                'full_name': 'foo/bar'
-            }]
-        })
-        self.assertEqual(event, InstallationActions.REPOSITORIES_ADDED)
-        self.assertIsInstance(obj[0], GitHubInstallation)
-        self.assertTrue(all([isinstance(repo, GitHubRepository) for repo in obj[1]]))
+        for event, obj in self.gh_inst.handle_webhook('installation_repositories', {
+                'action': 'added',
+                'installation': {'id': 0},
+                'repositories_added': [{
+                    'id': 0,
+                    'full_name': 'foo/bar'
+                }]
+            }):
+            self.assertEqual(event, InstallationActions.REPOSITORIES_ADDED)
+            self.assertIsInstance(obj[0], GitHubInstallation)
+            self.assertTrue(all([isinstance(repo, GitHubRepository) for repo in obj[1]]))
 
     def test_installation_repositories_removed_hook(self):
-        event, obj = self.gh_inst.handle_webhook('installation_repositories', {
-            'action': 'removed',
-            'installation': {'id': 0},
-            'repositories_removed': [{
-                'id': 0,
-                'full_name': 'foo/bar'
-            }]
-        })
-        self.assertEqual(event, InstallationActions.REPOSITORIES_REMOVED)
-        self.assertIsInstance(obj[0], GitHubInstallation)
-        self.assertTrue(all([isinstance(repo, GitHubRepository) for repo in obj[1]]))
+        for event, obj in self.gh_inst.handle_webhook('installation_repositories', {
+                'action': 'removed',
+                'installation': {'id': 0},
+                'repositories_removed': [{
+                    'id': 0,
+                    'full_name': 'foo/bar'
+                }]
+            }):
+            self.assertEqual(event, InstallationActions.REPOSITORIES_REMOVED)
+            self.assertIsInstance(obj[0], GitHubInstallation)
+            self.assertTrue(all([isinstance(repo, GitHubRepository) for repo in obj[1]]))
 
     def test_issue_hook(self):
-        event, obj = self.gh.handle_webhook('issues', self.default_data)
-        self.assertEqual(event, IssueActions.OPENED)
-        self.assertIsInstance(obj[0], GitHubIssue)
+        for event, obj in self.gh.handle_webhook('issues', self.default_data):
+            self.assertEqual(event, IssueActions.OPENED)
+            self.assertIsInstance(obj[0], GitHubIssue)
 
     def test_pr_hook(self):
-        event, obj = self.gh.handle_webhook('pull_request', self.default_data)
-        self.assertEqual(event, MergeRequestActions.OPENED)
-        self.assertIsInstance(obj[0], GitHubMergeRequest)
+        for event, obj in self.gh.handle_webhook('pull_request', self.default_data):
+            self.assertEqual(event, MergeRequestActions.OPENED)
+            self.assertIsInstance(obj[0], GitHubMergeRequest)
 
     def test_pr_merge_hook(self):
         data = {**self.default_data, 'action': 'closed'}
         data['pull_request']['merged'] = True
-        event, obj = self.gh.handle_webhook('pull_request', data)
-        self.assertEqual(event, MergeRequestActions.MERGED)
-        self.assertIsInstance(obj[0], GitHubMergeRequest)
+        for event, obj in self.gh.handle_webhook('pull_request', data):
+            self.assertEqual(event, MergeRequestActions.MERGED)
+            self.assertIsInstance(obj[0], GitHubMergeRequest)
 
     def test_issue_comment(self):
-        event, obj = self.gh.handle_webhook('issue_comment', self.default_data)
-        self.assertEqual(event, IssueActions.COMMENTED)
-        self.assertIsInstance(obj[0], GitHubIssue)
-        self.assertIsInstance(obj[1], GitHubComment)
+        for event, obj in self.gh.handle_webhook('issue_comment', self.default_data):
+            self.assertEqual(event, IssueActions.COMMENTED)
+            self.assertIsInstance(obj[0], GitHubIssue)
+            self.assertIsInstance(obj[1], GitHubComment)
 
     def test_pr_comment(self):
         data = self.default_data
         data['issue']['pull_request'] = {}  # Exists for PRs
 
-        event, obj = self.gh.handle_webhook('issue_comment', data)
-        self.assertEqual(event, MergeRequestActions.COMMENTED)
-        self.assertIsInstance(obj[0], GitHubMergeRequest)
-        self.assertIsInstance(obj[1], GitHubComment)
+        for event, obj in self.gh.handle_webhook('issue_comment', data):
+            self.assertEqual(event, MergeRequestActions.COMMENTED)
+            self.assertIsInstance(obj[0], GitHubMergeRequest)
+            self.assertIsInstance(obj[1], GitHubComment)
 
     def test_status(self):
-        event, obj = self.gh.handle_webhook('status', self.default_data)
-        self.assertEqual(event, PipelineActions.UPDATED)
-        self.assertIsInstance(obj[0], GitHubCommit)
+        for event, obj in self.gh.handle_webhook('status', self.default_data):
+            self.assertEqual(event, PipelineActions.UPDATED)
+            self.assertIsInstance(obj[0], GitHubCommit)
+
+    def test_issue_label(self):
+        self.default_data.update({
+            'label': {'name': 'title'},
+            'action': 'labeled',
+        })
+        for event, obj in self.gh.handle_webhook('issues', self.default_data):
+            self.assertEqual(event, IssueActions.LABELED)
+            self.assertIsInstance(obj[0], GitHubIssue)
+            self.assertEqual(obj[1], 'title')
+        self.default_data.update({
+            'label': {'name': 'title'},
+            'action': 'unlabeled',
+        })
+        for event, obj in self.gh.handle_webhook('issues', self.default_data):
+            self.assertEqual(event, IssueActions.UNLABELED)
+            self.assertIsInstance(obj[0], GitHubIssue)
+            self.assertEqual(obj[1], 'title')
+
+    def test_pull_request_label(self):
+        self.default_data.update({
+            'label': {'name': 'title'},
+            'action': 'labeled',
+        })
+        for event, obj in self.gh.handle_webhook('pull_request', self.default_data):
+            self.assertEqual(event, MergeRequestActions.LABELED)
+            self.assertIsInstance(obj[0], GitHubMergeRequest)
+            self.assertEqual(obj[1], 'title')
+        self.default_data.update({
+            'label': {'name': 'title'},
+            'action': 'unlabeled',
+        })
+        for event, obj in self.gh.handle_webhook('pull_request', self.default_data):
+            self.assertEqual(event, MergeRequestActions.UNLABELED)
+            self.assertIsInstance(obj[0], GitHubMergeRequest)
+            self.assertEqual(obj[1], 'title')

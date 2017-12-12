@@ -24,6 +24,10 @@ class MergeRequestActions(Enum):
     SYNCHRONIZED = 6
     # When an existing merge request is merged.
     MERGED = 7
+    # When a label is added to the merge request.
+    LABELED = 8
+    # When a label is removed from the merge request.
+    UNLABELED = 9
 
 
 class IssueActions(Enum):
@@ -38,10 +42,13 @@ class IssueActions(Enum):
     REOPENED = 3
     # When someone comments on an issue.
     COMMENTED = 4
-    # When an issue gets reassigned, labels are added or removed or the linked
+    # When an issue gets reassigned, or the linked
     # milestone is changed
     ATTRIBUTES_CHANGED = 5
-
+    # When a new label is added to the issue
+    LABELED = 6
+    # When a label is removed from an issue
+    UNLABELED = 7
 
 class PipelineActions(Enum):
     """

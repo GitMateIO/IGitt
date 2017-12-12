@@ -135,6 +135,111 @@ class GitLab(GitLabMixin, Hoster):
         raise NotImplementedError
 
 
+    @staticmethod
+    def _handle_labels(actions_enum: Union[IssueActions, MergeRequestActions],
+                       obj_to_return: Union[GitLabIssue, GitLabMergeRequest],
+                       data: dict):
+        """
+        Yields `LABELED` or `UNLABELED` actions for each label added or removed
+        from given `Issue` or `MergeRequest`.
+        """
+        old_attrs = {label['title']
+                     for label in
+                     data['changes']['labels']['previous']}
+        new_attrs = {label['title']
+                     for label in
+                     data['changes']['labels']['current']}
+
+        # new labels added
+        for label in new_attrs - old_attrs:
+            yield actions_enum.LABELED, [obj_to_return, label]
+
+        # labels removed
+        for label in old_attrs - new_attrs:
+            yield actions_enum.UNLABELED, [obj_to_return, label]
+
+
+    def _handle_webhook_issue(self, data, repository):
+        issue = data['object_attributes']
+        issue_obj = GitLabIssue(
+            self._token, repository, issue['iid'])
+        trigger_event = {
+            'open': IssueActions.OPENED,
+            'close': IssueActions.CLOSED,
+            'reopen': IssueActions.REOPENED,
+        }.get(issue['action'], IssueActions.ATTRIBUTES_CHANGED)
+
+        if trigger_event == IssueActions.ATTRIBUTES_CHANGED:
+            if 'labels' in data['changes']:
+                # labels are changed
+                yield from type(self)._handle_labels(IssueActions,
+                                                     issue_obj, data)
+        else:
+            yield trigger_event, [issue_obj]
+
+    def _handle_webhook_merge_request(self, data, repository):
+        merge_request_data = data['object_attributes']
+        merge_request_obj = GitLabMergeRequest(
+            self._token,
+            repository,
+            merge_request_data['iid'])
+        trigger_event = {
+            'update': MergeRequestActions.ATTRIBUTES_CHANGED,
+            'open': MergeRequestActions.OPENED,
+            'reopen': MergeRequestActions.REOPENED,
+            'merge': MergeRequestActions.MERGED,
+        }.get(merge_request_data['action'])
+
+        # nasty workaround for finding merge request resync
+        if 'oldrev' in merge_request_data:
+            trigger_event = MergeRequestActions.SYNCHRONIZED
+
+
+        # no such webhook event action implemented yet
+        if not trigger_event:
+            raise NotImplementedError('Unrecgonized action: Merge Request Hook'
+                                      '/' + merge_request_data['action'])
+
+        if trigger_event is MergeRequestActions.ATTRIBUTES_CHANGED:
+            if 'labels' in data['changes']:
+                yield from type(self)._handle_labels(MergeRequestActions,
+                                                     merge_request_obj,
+                                                     data)
+        else:
+            yield trigger_event, [merge_request_obj]
+
+    def _handle_webhook_note(self, data, repository):
+        comment = data['object_attributes']
+        comment_type = {
+            'MergeRequest': CommentType.MERGE_REQUEST,
+            'Commit': CommentType.COMMIT,
+            'Issue': CommentType.ISSUE,
+            'Snippet': CommentType.SNIPPET
+        }.get(comment['noteable_type'])
+
+        if comment_type == CommentType.MERGE_REQUEST:
+            iid = data['merge_request']['iid']
+            iss = GitLabMergeRequest(self._token,
+                                     repository, iid)
+            action = MergeRequestActions.COMMENTED
+        elif comment_type == CommentType.ISSUE:
+            iid = data['issue']['iid']
+            iss = GitLabIssue(self._token, repository, iid)
+            action = IssueActions.COMMENTED
+        else:
+            raise NotImplementedError
+
+        yield action, [iss, GitLabComment(
+            self._token, repository, iid,
+            comment_type, comment['id']
+        )]
+
+    def _handle_webhook_pipeline(self, data, repository):
+        yield PipelineActions.UPDATED, [GitLabCommit(
+            self._token,
+            repository,
+            data['commit']['id'])]
+
     def handle_webhook(self, event: str, data: dict):
         """
         Handles a GitLab webhook for you.
@@ -142,82 +247,21 @@ class GitLab(GitLabMixin, Hoster):
         If it's an issue event it returns e.g.
         ``IssueActions.OPENED, [GitLabIssue(...)]``, for comments it returns
         ``MergeRequestActions.COMMENTED,
-        [GitLabMergeRequest(...), GitLabComment(...)]``.
+        [GitLabMergeRequest(...), GitLabComment(...)]``, for updates it returns
+        ``IssueActions.LABELED, [GitLabIssue(...), 'new label']``
 
         :param event:       The HTTP_X_GITLAB_EVENT of the request header.
         :param data:        The pythonified JSON data of the request.
-        :return:            An IssueActions or MergeRequestActions member and a
+        :yields:            An IssueActions or MergeRequestActions member and a
                             list of the affected IGitt objects.
         """
-
         repository = self.get_repo_name(data)
+        part_handler_name = '_'.join(
+            event.strip('Hook').strip().lower().split())
 
-        if event == 'Issue Hook':
-            issue = data['object_attributes']
-            issue_obj = GitLabIssue(
-                self._token, repository, issue['iid'])
-            trigger_event = {
-                'open': IssueActions.OPENED,
-                'close': IssueActions.CLOSED,
-                'reopen': IssueActions.REOPENED,
-            }.get(issue['action'], IssueActions.ATTRIBUTES_CHANGED)
-
-            return trigger_event, [issue_obj]
-
-        if event == 'Merge Request Hook':
-            merge_request_data = data['object_attributes']
-            merge_request_obj = GitLabMergeRequest(
-                self._token,
-                repository,
-                merge_request_data['iid'])
-            trigger_event = {
-                'update': MergeRequestActions.ATTRIBUTES_CHANGED,
-                'open': MergeRequestActions.OPENED,
-                'reopen': MergeRequestActions.REOPENED,
-                'merge': MergeRequestActions.MERGED,
-            }.get(merge_request_data['action'])
-
-            # nasty workaround for finding merge request resync
-            if 'oldrev' in merge_request_data:
-                trigger_event = MergeRequestActions.SYNCHRONIZED
-
-            # no such webhook event action implemented yet
-            if not trigger_event:
-                raise NotImplementedError('Unrecgonized action: ' + event +
-                                          '/' + merge_request_data['action'])
-
-            return trigger_event, [merge_request_obj]
-
-        if event == 'Note Hook':
-            comment = data['object_attributes']
-            comment_type = {
-                'MergeRequest': CommentType.MERGE_REQUEST,
-                'Commit': CommentType.COMMIT,
-                'Issue': CommentType.ISSUE,
-                'Snippet': CommentType.SNIPPET
-            }.get(comment['noteable_type'])
-
-            if comment_type == CommentType.MERGE_REQUEST:
-                iid = data['merge_request']['iid']
-                iss = GitLabMergeRequest(self._token,
-                                         repository, iid)
-                action = MergeRequestActions.COMMENTED
-            elif comment_type == CommentType.ISSUE:
-                iid = data['issue']['iid']
-                iss = GitLabIssue(self._token, repository, iid)
-                action = IssueActions.COMMENTED
-            else:
-                raise NotImplementedError
-
-            return action, [iss, GitLabComment(
-                self._token, repository, iid,
-                comment_type, comment['id']
-            )]
-
-        if event == 'Pipeline Hook':
-            return PipelineActions.UPDATED, [GitLabCommit(
-                self._token,
-                repository,
-                data['commit']['id'])]
-
-        raise NotImplementedError('Given webhook cannot be handled yet.')
+        try:
+            handler = getattr(self, '_handle_webhook_' +  part_handler_name)
+        except AttributeError:
+            raise NotImplementedError('Given webhook cannot be handled yet.')
+        else:
+            yield from handler(data, repository)
