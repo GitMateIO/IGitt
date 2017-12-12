@@ -134,6 +134,16 @@ class GitHub(GitHubMixin, Hoster):
                 'deleted': InstallationActions.DELETED
             }[data['action']]
 
+            # When a new installation is created, it will be installed on at
+            # least one repository which will be forwarded through
+            # `repositories` key.
+            if 'repositories' in data:
+                repos = [
+                    GitHubRepository.from_data(repo, self._token, repo['id'])
+                    for repo in data['repositories']
+                ]
+                return trigger_event, [installation_obj, repos]
+
             return trigger_event, [installation_obj]
 
         if event == 'installation_repositories':

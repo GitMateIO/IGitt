@@ -72,13 +72,28 @@ class TestGitHubWebhook(IGittTestCase):
         with self.assertRaises(NotImplementedError):
             self.gh.handle_webhook('unknown_event', self.default_data)
 
-    def test_installation_hook(self):
+    def test_installation_deleted_hook(self):
         event, obj = self.gh_inst.handle_webhook('installation', {
             'installation': {'id': 0},
-            'action': 'created'
+            'action': 'deleted'
         })
-        self.assertEqual(event, InstallationActions.CREATED)
+        self.assertEqual(event, InstallationActions.DELETED)
         self.assertIsInstance(obj[0], GitHubInstallation)
+
+    def test_installation_created_hook(self):
+        event, obj = self.gh_inst.handle_webhook('installation', {
+            'installation': {'id': 0},
+            'action': 'created',
+            'repositories': [
+                {'id': 0, 'full_name': 'star-wars/rogue1'}
+            ]
+        })
+        inst, repos = obj[0], obj[1]
+        self.assertEqual(event, InstallationActions.CREATED)
+        self.assertIsInstance(inst, GitHubInstallation)
+        self.assertIsInstance(repos[0], GitHubRepository)
+        self.assertEqual(repos[0].identifier, 0)
+        self.assertEqual(repos[0].full_name, 'star-wars/rogue1')
 
     def test_installation_repositories_added_hook(self):
         event, obj = self.gh_inst.handle_webhook('installation_repositories', {
