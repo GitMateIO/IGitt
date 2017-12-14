@@ -149,6 +149,17 @@ class GitHubIssue(GitHubMixin, Issue):
         """
         return self.data['body'] if self.data['body'] else ''
 
+    @description.setter
+    def description(self, new_description):
+        """
+        Sets the description of the issue.
+
+        :param new_description: The new description.
+        """
+        self.data = patch(self._token,
+                          self._url,
+                          {'body': new_description})
+
     @property
     def author(self) -> GitHubUser:
         """

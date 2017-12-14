@@ -182,6 +182,17 @@ class GitLabIssue(GitLabMixin, Issue):
         """
         return self.data['description'] if self.data['description'] else ''
 
+    @description.setter
+    def description(self, new_description):
+        """
+        Sets the description of the issue.
+
+        :param new_description: The new description.
+        """
+        self.data = put(self._token,
+                        self._url,
+                        {'description': new_description})
+
     @property
     def author(self) -> GitLabUser:
         """

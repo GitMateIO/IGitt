@@ -69,6 +69,15 @@ class Issue(IGittObject):
         """
         raise NotImplementedError
 
+    @description.setter
+    def description(self, new_description):
+        """
+        Sets the description of the issue.
+
+        :param new_description: The new description.
+        """
+        raise NotImplementedError
+
     @property
     def author(self) -> User:
         """

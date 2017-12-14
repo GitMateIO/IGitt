@@ -38,8 +38,8 @@ class GitLabIssueTest(IGittTestCase):
         self.assertEqual(self.iss.number, 3)
 
     def test_description(self):
-        self.assertEqual(self.iss.description,
-                         'Stop trying to be badass.')
+        self.iss.description = 'new description'
+        self.assertEqual(self.iss.description, 'new description')
 
     def test_author(self):
         self.assertEqual(self.iss.author.username, 'gitmate-test-user')

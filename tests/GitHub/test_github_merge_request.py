@@ -28,7 +28,8 @@ class GitHubMergeRequestTest(IGittTestCase):
         self.assertEqual(mr.head.repository.full_name, 'gitmate-test-user/test')
 
     def test_description(self):
-        self.assertEqual(self.mr.description, '')
+        self.mr.description = 'changed description'
+        self.assertEqual(self.mr.description, 'changed description')
 
     def test_title(self):
         self.mr.title = 'changed title'
