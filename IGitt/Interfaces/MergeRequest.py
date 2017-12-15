@@ -183,6 +183,9 @@ class MergeRequest(Issue):
         hoster = self.repository.hoster
         repo_name = self.repository.full_name
 
+        identifier_regex = r'[\w\.-]+'
+        namespace_regex = r'(?:{0})/(?:{0})(?:/(?:{0}))?'.format(
+            identifier_regex)
         concat_regex = '|'.join(kw for kw in CONCATENATION_KEYWORDS)
         issue_no_regex = r'[1-9][0-9]*'
         issue_url_regex = r'https?://{}\S+/issues/{}'.format(
@@ -202,8 +205,9 @@ class MergeRequest(Issue):
             r''.format(keyword,
                        issue_url_regex, issue_no_regex, concat_regex))
         c_issue_capture_regex = re.compile(
-            r'(?:(\S*)#({0}))|(?:https?://{1}\S+?/(\S+)/issues/({0}))'.format(
-                issue_no_regex, hoster))
+            r'(?:(?:\s+|^)({2})?#({0}))|(?:https?://{1}\S+?/({2})/issues/({0}))'
+            ''.format(
+                issue_no_regex, hoster, namespace_regex))
 
         for body in body_list:
             matches = c_joint_regex.findall(body.replace('\r', ''))
