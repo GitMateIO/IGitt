@@ -173,7 +173,7 @@ class MergeRequest(Issue):
         """
         raise NotImplementedError
 
-
+    # Ignore PyLintBear
     def _get_keywords_issues(self, keyword: str, body_list: List) -> Set[int]:
         """
         Returns a set of tuples(issue number, name of the repository the issue

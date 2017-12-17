@@ -9,6 +9,7 @@ class PossiblyIncompleteDict:
     A dict kind of thing (only supporting item getting) that, if an item isn't
     available, gets fresh data from a refresh function.
     """
+
     def __init__(self, data: dict, refresh) -> None:
         self.may_need_refresh = True
         self._data = self._del_nul(data)
@@ -79,9 +80,9 @@ class CachedDataMixin:
     You can also create an IGitt instance with your own data using from_data
     classmethod.
     """
-    default_data = {} # type: dict
+    default_data = {}  # type: dict
 
-    @classmethod
+    @classmethod  # Ignore PyLintBear
     def from_data(cls, data: Optional[dict]=None, *args, **kwargs):
         """
         Returns an instance created from the provided data. No further requests
