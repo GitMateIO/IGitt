@@ -50,3 +50,11 @@ class GitLabUser(GitLabMixin, User):
         GitLab doesn't support building installations yet.
         """
         raise NotImplementedError
+
+    def get_installations(self, jwt):
+        """
+        Gets the installations this user has access to.
+
+        GitLab doesn't support building installations yet.
+        """
+        raise NotImplementedError

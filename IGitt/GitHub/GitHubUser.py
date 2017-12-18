@@ -6,6 +6,7 @@ from typing import Optional
 from IGitt.GitHub import get
 from IGitt.GitHub import GitHubMixin
 from IGitt.GitHub import GitHubToken
+from IGitt.GitHub import GitHubInstallationToken
 from IGitt.Interfaces.User import User
 
 
@@ -54,3 +55,20 @@ class GitHubUser(GitHubMixin, User):
             installation_id), headers=PREVIEW_HEADER)['repositories']
         return {GitHubRepository.from_data(repo, self._token, repo['id'])
                 for repo in repos}
+
+    def get_installations(self, jwt):
+        """
+        Gets the installations this user has access to.
+
+        :param jwt: The GitHubJsonWebToken required to fetch data.
+        """
+        # Don't move to module code, causes circular dependencies
+        from IGitt.GitHub.GitHubInstallation import GitHubInstallation
+
+        resp = get(
+            self._token, '/user/installations', headers=PREVIEW_HEADER)
+        return {
+            GitHubInstallation.from_data(
+                i, GitHubInstallationToken(i['id'], jwt), i['id'])
+            for i in resp['installations']
+        }

@@ -36,3 +36,9 @@ class User(IGittObject):
         installation.
         """
         raise NotImplementedError
+
+    def get_installations(self, jwt):
+        """
+        Gets the installations this user has access to.
+        """
+        raise NotImplementedError

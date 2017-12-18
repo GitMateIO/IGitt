@@ -1,6 +1,7 @@
 import os
 
 from IGitt.GitHub import GitHubToken
+from IGitt.GitHub import GitHubJsonWebToken
 from IGitt.GitHub.GitHubUser import GitHubUser
 
 from tests import IGittTestCase
@@ -29,3 +30,12 @@ class GitHubUserTest(IGittTestCase):
         self.assertEqual({repo.full_name
                           for repo in self.user.installed_repositories(60731)},
                          {'gitmate-test-org/test'})
+
+    def test_get_installations(self):
+        app_token = GitHubToken(os.environ.get('GITHUB_APP_TEST_TOKEN', ''))
+        app_user = GitHubUser(app_token)
+        jwt = GitHubJsonWebToken(os.environ['GITHUB_PRIVATE_KEY'],
+                                 int(os.environ['GITHUB_TEST_APP_ID']))
+
+        self.assertEqual({
+            i.app_id for i in app_user.get_installations(jwt)}, {5408})

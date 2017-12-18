@@ -1,0 +1,56 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: [application/vnd.github.machine-man-preview+json]
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://api.github.com/user/installations?per_page=100
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA+VWy27bMBD8F15rRy/bSQQU/YRe0lMRCLS8sYlSj5KUDVfwv3coyomsyHGgOOih
+        hxjyhjOeXe7uqGamMFwmaVHlhsXhhIlcIyC5EUWuWfyzZmLF4ttwMQ8mjKftwZrJYi1yFrO1MBk3
+        NDWkzbTSpBg4gAgWi7vAj3yAttxwlVRK4vjGmFLHnueCOroBflMtLTAtckO5uUmLzKu8I/7b9usM
+        lGvV0lhuhkCPrhQtk4ODTntD0jYmkz0pTkGDG0I8FVIWO/D1M3jXT3rPcGh2zyJff4QK8NorzIZQ
+        UqR5sMUR2oyU10BrJK5NIlaWDNevFK3GSWzBELjLoa32FJVFw1otdapE2bTVSO4uBSgLtea5+OM6
+        dRwlKDSYrMiRohooKGiL1h3J4bC1Vyqx5enelktRSmKLW/gIb48EtGZfEsbnhxtTLQwlfJXZOX7i
+        UtOhLYUwhdonmiSl9r6AcM+0Agd2AGmdmOIXXbrJk13iNTvEO4Efa29/UNCF8nXZmr6C/gYGlrfH
+        WpMxGBvtDQiyGZUlep/F85l/hxpxtSY7DN0d1gZP61eSyoTWblFiT2pdQUzMdgqFBW9ZSZko+o2o
+        6cbbRdcNYW4Mprkbai4GY6maBgetIm7rn5HhK2zUYwSX5poEy5phiWXCYJ1nGfoRp1tR7UPnH5Iv
+        STYil1KkPbW9r0hiK2g3HO1wlpXe4NDz3ezxxWXGHicsRQIGLc1hNCz0g9tpEE79u4cgjOdBHMy+
+        +PM48gGpSuT3noMalyopeRL4yHmG1s5R8sOk9axosVhc9izsAFsnXHcUhv7sPrxgWeFZyzrir2VZ
+        TtnbrX3iWA4w3rCAv5JfvTBdza4s5fXcyrJ9klk11Ff1KsuIv/FWZQk+6FSW4hOMyik7MTtMY7tn
+        v3cc3q6S9/sV3mABGG9VdnX8E6tCPV5eak7fR5u+OuNkVq9N+JyTvay2UyfrVbjnaAOuNOBd52zu
+        lR/+H44WRA9+FAf3cRC87WhDB8842uPhL7TsXCKpDQAA
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Access-Control-Expose-Headers: ['ETag, Link, Retry-After, X-GitHub-OTP, X-RateLimit-Limit,
+          X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes,
+          X-Poll-Interval']
+      Cache-Control: ['private, max-age=60, s-maxage=60']
+      Content-Encoding: [gzip]
+      Content-Security-Policy: [default-src 'none']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Mon, 18 Dec 2017 12:39:35 GMT']
+      ETag: [W/"046832e67d04f7e984042cdfa69be7a9"]
+      Server: [GitHub.com]
+      Status: [200 OK]
+      Strict-Transport-Security: [max-age=31536000; includeSubdomains; preload]
+      Vary: ['Accept, Authorization, Cookie, X-GitHub-OTP']
+      X-Accepted-OAuth-Scopes: ['']
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [deny]
+      X-GitHub-Media-Type: [github.machine-man-preview; format=json]
+      X-GitHub-Request-Id: ['731C:1EEA7:1D5B3B2:3531B13:5A37B705']
+      X-OAuth-Client-Id: [Iv1.5a5258dbb5cac88c]
+      X-OAuth-Scopes: ['']
+      X-RateLimit-Limit: ['5000']
+      X-RateLimit-Remaining: ['4992']
+      X-RateLimit-Reset: ['1513602027']
+      X-Runtime-rack: ['0.055524']
+      X-XSS-Protection: [1; mode=block]
+    status: {code: 200, message: OK}
+version: 1
