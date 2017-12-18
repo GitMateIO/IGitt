@@ -98,14 +98,14 @@ class GitHubIssue(GitHubMixin, Issue):
         return self._number
 
     @property
-    def assignees(self):
+    def assignees(self) -> Set[GitHubUser]:
         """
         Retrieves the assignee of the issue:
 
         >>> from os import environ
         >>> issue = GitHubIssue(GitHubToken(environ['GITHUB_TEST_TOKEN']),
         ...                     'gitmate-test-user/test', 1)
-        >>> issue.assignees
+        >>> {a.username for a in issue.assignees}
         {'gitmate-test-user'}
 
         >>> issue = GitHubIssue(GitHubToken(environ['GITHUB_TEST_TOKEN']),
@@ -115,23 +115,39 @@ class GitHubIssue(GitHubMixin, Issue):
 
         :return: A set containing the usernames of assignees.
         """
-        return set(user['login'] for user in self.data['assignees'])
+        return set(
+            GitHubUser.from_data(user, self._token, user['login'])
+            for user in self.data['assignees']
+        )
 
-    def assign(self, username: str):
+    @assignees.setter
+    def assignees(self, value: Set[GitHubUser]):
+        """
+        Setter for ssignees.
+        """
+        if value - self.assignees:
+            self.assign(*(value - self.assignees))
+
+        if self.assignees - value:
+            self.unassign(*(self.assignees - value))
+
+    def assign(self, *users: Set[GitHubUser]):
         """
         Adds the user as one of the assignees of the issue.
         :param username: Username of the user to be added as an assignee.
         """
         url = self._url + '/assignees'
-        self.data = post(self._token, url, {"assignees": [username]})
+        self.data = post(self._token, url,
+                         {"assignees": [user.username for user in users]})
 
-    def unassign(self, username: str):
+    def unassign(self, *users: Set[GitHubUser]):
         """
         Removes the user from the assignees of the issue.
-        :param username: Username of the user to be unassigned.
+        :param users: Username of the user to be unassigned.
         """
         url = self._url + '/assignees'
-        delete(self._token, url, {"assignees": [username]})
+        delete(self._token, url,
+               {"assignees": [user.username for user in users]})
         self.data = get(self._token, self._url)
 
     @property

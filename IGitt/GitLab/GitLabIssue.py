@@ -121,51 +121,42 @@ class GitLabIssue(GitLabMixin, Issue):
         :return: A set containing the usernames of assignees.
         """
         try:
-            return set(user['username'] for user in self.data['assignees'])
+            return set(
+                GitLabUser.from_data(user,
+                                     self._token,
+                                     user['id'])
+                for user in self.data['assignees']
+            )
         except KeyError:
             # GitLab merge requests without assignees do not have `assignees`
             # parameter in the fetched data. So, return an empty set instead.
             return set()
 
-    def get_user(self, username: str):
-        """
-        Queries the user resource with given username.
-        :param username: Username of the user being queried.
-        :return:         json response of the query.
-        """
-        return get(self._token, '/users', {'username': username})[0]
-
-    def assign(self, username: str):
+    def assign(self, *usernames: List[GitLabUser]):
         """
         Adds the user as one of the assignees of the issue.
-        :param username: Username of the user to be added as an assignee.
+        :param users: User objects of the users to be added as an assignee.
         """
-        url = '/projects/{repo}/issues/{iid}'.format(
-            repo=quote_plus(self._repository),
-            iid=self.number
-        )
-        current_assignee_ids = [user['id'] for user in self.data['assignees']]
-        user = self.get_user(username)
-        if user['id'] not in current_assignee_ids:
-            current_assignee_ids.append(user['id'])
-            self.data = put(self._token, url,
-                            {"assignee_ids": current_assignee_ids})
+        self.assignees |= set(usernames)
 
-    def unassign(self, username: str):
+    def unassign(self, *users: List[GitLabUser]):
         """
         Removes the user from the assignees of the issue.
-        :param username: Username of the user to be unassigned.
+        :param users: User objects of the users to be unassigned.
+        """
+        self.assignees = self.assignees - set(users)
+
+    @assignees.setter
+    def assignees(self, value: Set[GitLabUser]):
+        """
+        Setter for assignees.
         """
         url = '/projects/{repo}/issues/{iid}'.format(
             repo=quote_plus(self._repository),
             iid=self.number
         )
-        current_assignee_ids = [user['id'] for user in self.data['assignees']]
-        user = self.get_user(username)
-        if user['username'] in self.assignees:
-            current_assignee_ids.remove(user['id'])
-            self.data = put(self._token, url,
-                            {'assignee_ids': current_assignee_ids})
+        self.data = put(self._token, url,
+                        {'assignee_ids': [u.identifier for u in value]})
 
     @property
     def description(self) -> str:

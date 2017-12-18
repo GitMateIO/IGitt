@@ -42,3 +42,9 @@ class User(IGittObject):
         Gets the installations this user has access to.
         """
         raise NotImplementedError
+
+    def __eq__(self, other):
+        return self.identifier == other.identifier
+
+    def __hash__(self):
+        return self.identifier

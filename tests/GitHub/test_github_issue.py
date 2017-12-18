@@ -3,6 +3,7 @@ import datetime
 
 from IGitt.GitHub import GitHubToken
 from IGitt.GitHub.GitHubIssue import GitHubIssue
+from IGitt.GitHub.GitHubUser import GitHubUser
 from IGitt.Interfaces.Issue import IssueStates
 
 from tests import IGittTestCase
@@ -27,9 +28,12 @@ class GitHubIssueTest(IGittTestCase):
         self.assertEqual(self.iss.assignees, set())
         iss = GitHubIssue(self.token,
                           'gitmate-test-user/test', 41)
-        iss.assign('meetmangukiya')
-        self.assertEqual(iss.assignees, {'meetmangukiya'})
-        iss.unassign('meetmangukiya')
+        user = GitHubUser(self.token, 'meetmangukiya')
+        iss.assignees = set()
+        self.assertEqual(iss.assignees, set())
+        iss.assignees = {user}
+        self.assertEqual(iss.assignees, {user})
+        iss.assignees = set()
         self.assertEqual(iss.assignees, set())
         iss = GitHubIssue(self.token, 'gitmate-test-user/test', 107)
         self.assertEqual(iss.assignees, set())

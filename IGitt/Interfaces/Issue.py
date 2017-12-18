@@ -92,15 +92,22 @@ class Issue(IGittObject):
         """
         raise NotImplementedError
 
-    def assign(self, username: str):
+    @assignees.setter
+    def assignees(self, value: Set[str]):
         """
-        Sets a given user as assignee.
+        Setter for ssignees.
         """
         raise NotImplementedError
 
-    def unassign(self, username: str):
+    def assign(self, *usernames: str):
         """
-        Unassigns given user from issue.
+        Sets a given users as assignee.
+        """
+        raise NotImplementedError
+
+    def unassign(self, *usernames: str):
+        """
+        Unassigns given users from issue.
         """
         raise NotImplementedError
 

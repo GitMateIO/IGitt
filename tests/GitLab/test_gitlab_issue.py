@@ -3,6 +3,7 @@ import datetime
 
 from IGitt.GitLab import GitLabOAuthToken
 from IGitt.GitLab.GitLabIssue import GitLabIssue
+from IGitt.GitLab.GitLabUser import GitLabUser
 from IGitt.Interfaces.Issue import IssueStates
 
 from tests import IGittTestCase
@@ -27,9 +28,11 @@ class GitLabIssueTest(IGittTestCase):
         self.assertEqual(self.iss.assignees, set())
         iss = GitLabIssue(self.token,
                           'gitmate-test-user/test', 27)
-        iss.assign('meetmangukiya')
-        self.assertEqual(iss.assignees, {'meetmangukiya'})
-        iss.unassign('meetmangukiya')
+
+        user = GitLabUser(self.token, 707601)
+        iss.assign(user)
+        self.assertEqual(iss.assignees, {user})
+        iss.unassign(user)
         self.assertEqual(iss.assignees, set())
         iss = GitLabIssue(self.token, 'gitmate-test-user/test', 2)
         self.assertEqual(iss.assignees, set())
