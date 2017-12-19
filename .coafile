@@ -29,4 +29,5 @@ files = tests/**.py
 # ignore C0103 to allow lowercase constants
 # ignore E0401 to allow 'unable to import' results
 # ignore R0904 to allow public test methods
-pylint_disable += C0103, C0111, E1120, E0401, R0904
+# ignore W0212 to allow protected methods of classes
+pylint_disable += C0103, C0111, E1120, E0401, R0904, W0212
