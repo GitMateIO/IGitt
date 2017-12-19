@@ -146,7 +146,7 @@ class GitHubIssue(GitHubMixin, Issue):
         """
         url = self._url + '/assignees'
         self.data = post(self._token, url,
-                         {"assignees": [user.username for user in users]})
+                         {'assignees': [user.username for user in users]})
 
     def unassign(self, *users: Set[GitHubUser]):
         """
@@ -155,7 +155,7 @@ class GitHubIssue(GitHubMixin, Issue):
         """
         url = self._url + '/assignees'
         delete(self._token, url,
-               {"assignees": [user.username for user in users]})
+               {'assignees': [user.username for user in users]})
         self.data = get(self._token, self._url)
 
     @property
@@ -308,7 +308,7 @@ class GitHubIssue(GitHubMixin, Issue):
         datetime.datetime(2016, 1, 13, 7, 56, 23)
         """
         return datetime.strptime(self.data['created_at'],
-                                 "%Y-%m-%dT%H:%M:%SZ")
+                                 '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def updated(self) -> datetime:
@@ -322,7 +322,7 @@ class GitHubIssue(GitHubMixin, Issue):
         datetime.datetime(2016, 10, 9, 11, 27, 11)
         """
         return datetime.strptime(self.data['updated_at'],
-                                 "%Y-%m-%dT%H:%M:%SZ")
+                                 '%Y-%m-%dT%H:%M:%SZ')
 
     def close(self):
         """
@@ -330,7 +330,7 @@ class GitHubIssue(GitHubMixin, Issue):
 
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
-        self.data = patch(self._token, self._url, {"state": "closed"})
+        self.data = patch(self._token, self._url, {'state': 'closed'})
 
     def reopen(self):
         """
@@ -338,7 +338,7 @@ class GitHubIssue(GitHubMixin, Issue):
 
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
-        self.data = patch(self._token, self._url, {"state": "open"})
+        self.data = patch(self._token, self._url, {'state': 'open'})
 
     def delete(self):
         """
@@ -426,8 +426,8 @@ class GitHubIssue(GitHubMixin, Issue):
 
         post_url = '/repos/' + repository + '/issues'
         data = {
-            "title": title,
-            "body": body,
+            'title': title,
+            'body': body,
         }
 
         resp = post(token, post_url, data)

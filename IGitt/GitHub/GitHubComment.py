@@ -113,7 +113,7 @@ class GitHubComment(GitHubMixin, Comment):
         datetime.datetime(2016, 1, 19, 19, 37, 53)
         """
         return datetime.strptime(self.data['created_at'],
-                                 "%Y-%m-%dT%H:%M:%SZ")
+                                 '%Y-%m-%dT%H:%M:%SZ')
 
     @property
     def updated(self) -> datetime:
@@ -127,7 +127,7 @@ class GitHubComment(GitHubMixin, Comment):
         datetime.datetime(2016, 10, 9, 11, 36, 7)
         """
         return datetime.strptime(self.data['updated_at'],
-                                 "%Y-%m-%dT%H:%M:%SZ")
+                                 '%Y-%m-%dT%H:%M:%SZ')
 
     def delete(self):
         """

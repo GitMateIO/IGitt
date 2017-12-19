@@ -51,7 +51,7 @@ class GitLabCommit(GitLabMixin, Commit):
         :param branch: A branch name if SHA is unavailable. Note that lazy
                        loading won't work in that case.
         """
-        assert sha or branch, "Either full SHA or branch name has to be given!"
+        assert sha or branch, 'Either full SHA or branch name has to be given!'
         self._token = token
         self._repository = repository
         self._sha = sha

@@ -18,5 +18,5 @@ class ElementAlreadyExistsError(Exception):
     """
 
 
-with open(join(dirname(__file__), "VERSION"), 'r') as ver:
+with open(join(dirname(__file__), 'VERSION'), 'r') as ver:
     VERSION = ver.readline().strip()

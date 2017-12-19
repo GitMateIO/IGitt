@@ -246,8 +246,8 @@ class GitLabMergeRequest(GitLabIssue, MergeRequest):
         """
         if len(value) > 1:
             raise NotImplementedError(
-                "GitLab doesn't support assigning multiple users to the same"
-                "Merge Request.")
+                'GitLab does not support assigning multiple users to the same'
+                'Merge Request.')
 
         # GitLab MR API unassigns all users when 0 is sent.
         # Reference: https://docs.gitlab.com/ee/api/merge_requests.html#update-mr

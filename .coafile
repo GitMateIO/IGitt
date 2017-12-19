@@ -1,13 +1,15 @@
 [all]
 ignore = .ci/**, build/**, .env/**
+language = python
 
 [all.autopep8]
 bears = PEP8Bear
 default_actions = PEP8Bear: ApplyPatchAction
 
 [all.python]
-bears = PyUnusedCodeBear, PyLintBear
+bears = PyUnusedCodeBear, PyLintBear, QuotesBear
 use_spaces = True
+preferred_quotation = '
 # ignore C0301 to allow LineLengthBear to handle it
 # ignore E0401 handle import errors in tests instead
 # ignore R0911 to remove limit on number of return statements

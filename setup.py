@@ -11,14 +11,14 @@ with open('requirements.txt') as requirements:
     REQUIRED = requirements.read().splitlines()
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     setup(name='IGitt',
           version=VERSION,
           description='A git(hub/lab/...) hosting abstraction library.',
-          author="Lasse Schuirmann",
+          author='Lasse Schuirmann',
           maintainer='Lasse Schuirmann',
           maintainer_email='lasse.schuirmann@gmail.com',
-          packages=find_packages(exclude=["build.*", "*.tests.*", "*.tests"]),
+          packages=find_packages(exclude=['build.*', '*.tests.*', '*.tests']),
           install_requires=REQUIRED,
-          package_data={'IGitt': ["VERSION"]},
-          license="MIT")
+          package_data={'IGitt': ['VERSION']},
+          license='MIT')

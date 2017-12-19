@@ -178,7 +178,7 @@ class GitHubRepository(GitHubMixin, Repository):
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
         if name in self.get_labels():
-            raise ElementAlreadyExistsError(name + " already exists.")
+            raise ElementAlreadyExistsError(name + ' already exists.')
 
         self.data = post(
             self._token,
@@ -221,7 +221,7 @@ class GitHubRepository(GitHubMixin, Repository):
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
         if name not in self.get_labels():
-            raise ElementDoesntExistError(name + " doesnt exist.")
+            raise ElementDoesntExistError(name + ' doesnt exist.')
 
         delete(self._token, self._url + '/labels/' + name)
 

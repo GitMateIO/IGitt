@@ -73,10 +73,10 @@ def get_diff_index(patch, line_nr):
         if line.startswith('---') or line.startswith('+++'):
             continue
 
-        if line.startswith("@@"):
-            values = line[line.find("-"):line.find(" @@", 3)]
-            _, added = tuple(values.split(" "))
-            current_line_added = int(added.split(",")[0][1:])
+        if line.startswith('@@'):
+            values = line[line.find('-'):line.find(' @@', 3)]
+            _, added = tuple(values.split(' '))
+            current_line_added = int(added.split(',')[0][1:])
         elif line.startswith('+') or line.startswith(' '):
             if current_line_added == line_nr:
                 return current_diff_index
@@ -322,10 +322,10 @@ class GitHubCommit(GitHubMixin, Commit):
                 pass  # Fallback to comment below the file
 
         if 'position' not in data:
-            file_str = "" if file is None else ", file " + file
-            line_str = "" if line is None else ", line " + str(line)
-            data['body'] = ("Comment on " + self.sha + file_str + line_str +
-                            ".\n\n" + data['body'])
+            file_str = '' if file is None else ', file ' + file
+            line_str = '' if line is None else ', line ' + str(line)
+            data['body'] = ('Comment on ' + self.sha + file_str + line_str +
+                            '.\n\n' + data['body'])
 
         comment_type = None
 
@@ -336,13 +336,13 @@ class GitHubCommit(GitHubMixin, Commit):
             comment_type = CommentType.REVIEW
             data['commit_id'] = self.sha
             res = post(self._token,
-                       '/repos/' + self._repository + "/pulls/" +
-                       str(mr_number) + "/comments", data)
+                       '/repos/' + self._repository + '/pulls/' +
+                       str(mr_number) + '/comments', data)
         else:  # Position not available, pr number available, comment on PR
             comment_type = CommentType.ISSUE
             res = post(self._token,
-                       '/repos/' + self._repository + "/issues/" +
-                       str(mr_number) + "/comments", data)
+                       '/repos/' + self._repository + '/issues/' +
+                       str(mr_number) + '/comments', data)
 
         return GitHubComment.from_data(res, self._token, self._repository,
                                        comment_type, res['id'])
