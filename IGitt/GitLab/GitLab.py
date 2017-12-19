@@ -169,11 +169,11 @@ class GitLab(GitLabMixin, Hoster):
             'reopen': IssueActions.REOPENED,
         }.get(issue['action'], IssueActions.ATTRIBUTES_CHANGED)
 
-        if trigger_event == IssueActions.ATTRIBUTES_CHANGED:
-            if 'labels' in data['changes']:
-                # labels are changed
-                yield from type(self)._handle_labels(IssueActions,
-                                                     issue_obj, data)
+        if (trigger_event == IssueActions.ATTRIBUTES_CHANGED and
+                'labels' in data['changes']):
+            # labels are changed
+            yield from type(self)._handle_labels(
+                IssueActions, issue_obj, data)
         else:
             yield trigger_event, [issue_obj]
 
@@ -200,11 +200,10 @@ class GitLab(GitLabMixin, Hoster):
             raise NotImplementedError('Unrecgonized action: Merge Request Hook'
                                       '/' + merge_request_data['action'])
 
-        if trigger_event is MergeRequestActions.ATTRIBUTES_CHANGED:
-            if 'labels' in data['changes']:
-                yield from type(self)._handle_labels(MergeRequestActions,
-                                                     merge_request_obj,
-                                                     data)
+        if (trigger_event is MergeRequestActions.ATTRIBUTES_CHANGED and
+                'labels' in data['changes']):
+            yield from type(self)._handle_labels(MergeRequestActions,
+                                                 merge_request_obj, data)
         else:
             yield trigger_event, [merge_request_obj]
 
