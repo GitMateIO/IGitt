@@ -4,7 +4,7 @@ Contains a representation of GitHub users.
 from typing import Optional
 from typing import Union
 
-from IGitt.GitLab import GitLabMixin
+from IGitt.GitLab import get, GitLabMixin
 from IGitt.GitLab import GitLabOAuthToken
 from IGitt.GitLab import GitLabPrivateToken
 from IGitt.Interfaces.User import User
@@ -27,6 +27,20 @@ class GitLabUser(GitLabMixin, User):
         self._token = token
         self._url = '/users/' + str(identifier) if identifier else '/user'
         self._id = identifier
+
+    @staticmethod
+    def from_username(token: Union[GitLabPrivateToken, GitLabOAuthToken],
+                      username: str):
+        res = get(token, '/users', {'username': username})
+        identifier = None
+
+        for user in res:
+            if user['username'] == username:
+                identifier = user['id']
+        if identifier:
+            return GitLabUser(token, identifier)
+        else:
+            raise RuntimeError('User {} does not exist.'.format(username))
 
     @property
     def username(self) -> str:

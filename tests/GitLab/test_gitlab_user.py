@@ -24,3 +24,8 @@ class GitLabUserTest(IGittTestCase):
     def test_username(self):
         self.assertEqual(self.sils.username, 'sils')
         self.assertEqual(self.user.username, 'gitmate-test-user')
+
+    def test_from_username(self):
+        user = GitLabUser.from_username(self.token, 'sils')
+        self.assertEqual(user.username, 'sils')
+        self.assertEqual(user.identifier, 104269)
