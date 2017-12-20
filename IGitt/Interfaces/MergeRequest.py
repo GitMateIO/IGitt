@@ -219,7 +219,6 @@ class MergeRequest(Issue):
 
         return results
 
-
     def _get_closes_issues(self) -> Set[int]:
         """
         Returns a set of tuples(issue number, name of the repository the issue
@@ -234,12 +233,12 @@ class MergeRequest(Issue):
         if hoster not in SUPPORTED_HOST_KEYWORD_REGEX: # dont cover
             return set()
 
-        commit_bodies = [commit.message for commit in self.commits]
+        relevant_texts = [commit.message for commit in self.commits]
+        relevant_texts.extend([self.description, self.title])
         return self._get_keywords_issues(
             SUPPORTED_HOST_KEYWORD_REGEX[self.repository.hoster],
-            commit_bodies
+            relevant_texts
         )
-
 
     def _get_mentioned_issues(self):
         """
@@ -249,7 +248,6 @@ class MergeRequest(Issue):
         commit_bodies = [commit.message for commit in self.commits]
         comment_bodies = [comment.body for comment in self.comments]
         return self._get_keywords_issues(r'', commit_bodies + comment_bodies)
-
 
     @property
     def closes_issues(self) -> Set[Issue]:

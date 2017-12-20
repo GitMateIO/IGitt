@@ -19,24 +19,27 @@ interactions:
       Cache-Control: ['max-age=0, private, must-revalidate']
       Content-Length: ['617']
       Content-Type: [application/json]
-      Date: ['Thu, 28 Sep 2017 16:27:07 GMT']
+      Date: ['Wed, 20 Dec 2017 10:56:29 GMT']
       Etag: [W/"af045c93b2c728bd4366b868c62788d2"]
       Link: ['<https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/merge_requests/25/commits?id=gitmate-test-user%2Ftest&merge_request_iid=25&page=1&per_page=100>;
           rel="first", <https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/merge_requests/25/commits?id=gitmate-test-user%2Ftest&merge_request_iid=25&page=1&per_page=100>;
           rel="last"']
       RateLimit-Limit: ['600']
-      RateLimit-Observed: ['21']
-      RateLimit-Remaining: ['579']
+      RateLimit-Observed: ['1']
+      RateLimit-Remaining: ['599']
+      RateLimit-Reset: ['1513767449']
+      RateLimit-ResetTime: ['Thu, 20 Dec 2017 10:57:29 GMT']
       Server: [nginx]
       Strict-Transport-Security: [max-age=31536000]
       Vary: [Origin]
+      X-Content-Type-Options: [nosniff]
       X-Frame-Options: [SAMEORIGIN]
       X-Next-Page: ['']
       X-Page: ['1']
       X-Per-Page: ['100']
       X-Prev-Page: ['']
-      X-Request-Id: [be3b3de1-6012-428c-8950-2a274b2cc11f]
-      X-Runtime: ['0.225704']
+      X-Request-Id: [55b28a3a-887a-49a6-ae20-c594aa46ed91]
+      X-Runtime: ['0.212720']
       X-Total: ['1']
       X-Total-Pages: ['1']
     status: {code: 200, message: OK}
@@ -55,21 +58,57 @@ interactions:
         a.txt\n\nAwesome commit message\n\nFix #21, Fixes #22 and Closes gitmate-test-user/test#23.\nThis
         commit is also related to #31 and fixes #26, #27\nand https://gitlab.com/gitmate-test-user/test/issues/30.","author_name":"Naveen
         Kumar Sangi","author_email":"nkprince007@gmail.com","authored_date":"2017-07-28T19:59:43.000+00:00","committer_name":"Naveen
-        Kumar Sangi","committer_email":"nkprince007@gmail.com","committed_date":"2017-07-28T19:59:43.000+00:00","stats":{"additions":1,"deletions":0,"total":1},"status":"success"}'}
+        Kumar Sangi","committer_email":"nkprince007@gmail.com","committed_date":"2017-07-28T19:59:43.000+00:00","stats":{"additions":1,"deletions":0,"total":1},"status":"success","last_pipeline":{"id":12080175,"sha":"9ba5b704f5866e468ec2e639fa893ae4c129f2ad","ref":"test-issue-pr-relate","status":"success"}}'}
     headers:
       Cache-Control: ['max-age=0, private, must-revalidate']
-      Content-Length: ['739']
+      Content-Length: ['868']
       Content-Type: [application/json]
-      Date: ['Thu, 28 Sep 2017 16:27:09 GMT']
-      Etag: [W/"d9c0e71a8eeb20e03af0be14ca379bf6"]
+      Date: ['Wed, 20 Dec 2017 10:56:30 GMT']
+      Etag: [W/"28550e658c2b8ba5c0b375d876d2831f"]
       RateLimit-Limit: ['600']
-      RateLimit-Observed: ['22']
-      RateLimit-Remaining: ['578']
+      RateLimit-Observed: ['2']
+      RateLimit-Remaining: ['598']
+      RateLimit-Reset: ['1513767450']
+      RateLimit-ResetTime: ['Thu, 20 Dec 2017 10:57:30 GMT']
       Server: [nginx]
       Strict-Transport-Security: [max-age=31536000]
       Vary: [Origin]
+      X-Content-Type-Options: [nosniff]
       X-Frame-Options: [SAMEORIGIN]
-      X-Request-Id: [2bbd48bb-187d-4cca-be88-d5d57ee0c26a]
-      X-Runtime: ['0.122556']
+      X-Request-Id: [b926eb25-70c7-4094-b10f-d71b71fbd719]
+      X-Runtime: ['0.114517']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/merge_requests/25?per_page=100
+  response:
+    body: {string: '{"id":4445169,"iid":25,"project_id":3439658,"title":"Create a.txt","description":"Awesome
+        commit message\n\nFix #21, Fixes #22 and Closes gitmate-test-user/test#23.\nThis
+        commit is also related to #31 and fixes #26, #27\nand https://gitlab.com/gitmate-test-user/test/issues/30.","state":"opened","created_at":"2017-07-28T20:00:27.022Z","updated_at":"2017-08-14T22:07:19.034Z","target_branch":"master","source_branch":"test-issue-pr-relate","upvotes":0,"downvotes":0,"author":{"id":889700,"name":"Naveen
+        Kumar Sangi","username":"nkprince007","state":"active","avatar_url":"https://secure.gravatar.com/avatar/2ed27920a4ec4445d0e390a30df7145d?s=80&d=identicon","web_url":"https://gitlab.com/nkprince007"},"assignee":null,"source_project_id":3439658,"target_project_id":3439658,"labels":[],"work_in_progress":false,"milestone":null,"merge_when_pipeline_succeeds":false,"merge_status":"can_be_merged","sha":"9ba5b704f5866e468ec2e639fa893ae4c129f2ad","merge_commit_sha":null,"user_notes_count":0,"approvals_before_merge":null,"discussion_locked":null,"should_remove_source_branch":null,"force_remove_source_branch":false,"squash":false,"web_url":"https://gitlab.com/gitmate-test-user/test/merge_requests/25","time_stats":{"time_estimate":0,"total_time_spent":0,"human_time_estimate":null,"human_total_time_spent":null},"subscribed":false,"changes_count":"1"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['1352']
+      Content-Type: [application/json]
+      Date: ['Wed, 20 Dec 2017 10:56:30 GMT']
+      Etag: [W/"3b9c96908a10ddb894c9c2526e6cfe9e"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['3']
+      RateLimit-Remaining: ['597']
+      RateLimit-Reset: ['1513767450']
+      RateLimit-ResetTime: ['Thu, 20 Dec 2017 10:57:30 GMT']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [346459b0-ce92-478f-9979-0c88d6836fef]
+      X-Runtime: ['0.335453']
     status: {code: 200, message: OK}
 version: 1
