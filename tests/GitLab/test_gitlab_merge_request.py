@@ -3,6 +3,7 @@ import datetime
 
 from IGitt.GitLab import GitLabOAuthToken
 from IGitt.GitLab.GitLabMergeRequest import GitLabMergeRequest
+from IGitt.GitLab.GitLabUser import GitLabUser
 from IGitt.Interfaces.Issue import IssueStates
 
 from tests import IGittTestCase
@@ -88,6 +89,13 @@ class GitLabMergeRequestTest(IGittTestCase):
         # test merge request with no assignees
         mr = GitLabMergeRequest(self.token, 'gitmate-test-user/test', 25)
         self.assertEqual(mr.assignees, set())
+
+        sils = GitLabUser(self.token, 104269)
+        user = GitLabUser(self.token, 707601)
+        with self.assertRaises(NotImplementedError):
+            self.mr.assignees = {user, sils}
+        self.mr.assignees = {user}
+        self.assertEqual(self.mr.assignees, {user})
 
     def test_author(self):
         self.assertEqual(self.mr.author.username, 'nkprince007')

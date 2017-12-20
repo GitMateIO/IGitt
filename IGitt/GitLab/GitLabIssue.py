@@ -120,17 +120,8 @@ class GitLabIssue(GitLabMixin, Issue):
 
         :return: A set containing the usernames of assignees.
         """
-        try:
-            return set(
-                GitLabUser.from_data(user,
-                                     self._token,
-                                     user['id'])
-                for user in self.data['assignees']
-            )
-        except KeyError:
-            # GitLab merge requests without assignees do not have `assignees`
-            # parameter in the fetched data. So, return an empty set instead.
-            return set()
+        return {GitLabUser.from_data(user, self._token, user['id'])
+                for user in self.data['assignees']}
 
     def assign(self, *usernames: List[GitLabUser]):
         """
@@ -151,11 +142,7 @@ class GitLabIssue(GitLabMixin, Issue):
         """
         Setter for assignees.
         """
-        url = '/projects/{repo}/issues/{iid}'.format(
-            repo=quote_plus(self._repository),
-            iid=self.number
-        )
-        self.data = put(self._token, url,
+        self.data = put(self._token, self._url,
                         {'assignee_ids': [u.identifier for u in value]})
 
     @property

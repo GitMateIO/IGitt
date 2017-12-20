@@ -7,7 +7,7 @@ from typing import Union
 from urllib.parse import quote_plus
 import re
 
-from IGitt.GitLab import get, GitLabOAuthToken, GitLabPrivateToken
+from IGitt.GitLab import get, put, GitLabOAuthToken, GitLabPrivateToken
 from IGitt.GitLab.GitLabCommit import GitLabCommit
 from IGitt.GitLab.GitLabIssue import GitLabIssue
 from IGitt.GitLab.GitLabUser import GitLabUser
@@ -229,3 +229,24 @@ class GitLabMergeRequest(GitLabIssue, MergeRequest):
         return GitLabUser.from_data(self.data['author'],
                                     self._token,
                                     self.data['author']['id'])
+
+    @property
+    def assignees(self):
+        # GitLab Merge Requests do not support multiple assignees.
+        user = self.data['assignee']
+        if not user:
+            return set()
+        return {GitLabUser.from_data(user, self._token, user['id'])}
+
+    @assignees.setter
+    def assignees(self, value: Set[GitLabUser]):
+        """
+        Setter for assignees.
+        """
+        if len(value) > 1:
+            raise NotImplementedError(
+                "GitLab doesn't support assigning multiple users to the same"
+                "Merge Request.")
+
+        self.data = put(self._token, self._url,
+                        {'assignee_id': value.pop().identifier})
