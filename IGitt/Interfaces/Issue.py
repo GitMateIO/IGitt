@@ -86,26 +86,26 @@ class Issue(IGittObject):
         raise NotImplementedError
 
     @property
-    def assignees(self) -> Set[str]:
+    def assignees(self) -> Set[User]:
         """
         Retrieves a set of usernames of assignees.
         """
         raise NotImplementedError
 
     @assignees.setter
-    def assignees(self, value: Set[str]):
+    def assignees(self, value: Set[User]):
         """
         Setter for ssignees.
         """
         raise NotImplementedError
 
-    def assign(self, *usernames: str):
+    def assign(self, *usernames: List[User]):
         """
         Sets a given users as assignee.
         """
         raise NotImplementedError
 
-    def unassign(self, *usernames: str):
+    def unassign(self, *usernames: List[User]):
         """
         Unassigns given users from issue.
         """
