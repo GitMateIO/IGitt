@@ -10,6 +10,7 @@ from IGitt.GitLab.GitLabComment import GitLabComment
 from IGitt.GitLab.GitLabCommit import GitLabCommit
 from IGitt.GitLab.GitLabIssue import GitLabIssue
 from IGitt.GitLab.GitLabMergeRequest import GitLabMergeRequest
+from IGitt.GitLab.GitLabUser import GitLabUser
 from IGitt.Interfaces import AccessLevel
 from IGitt.Interfaces.Actions import IssueActions, MergeRequestActions, \
     PipelineActions
@@ -134,6 +135,33 @@ class GitLab(GitLabMixin, Hoster):
         """
         raise NotImplementedError
 
+    @staticmethod
+    def _handle_assignees(token: Union[GitLabPrivateToken, GitLabOAuthToken],
+                          actions_enum: Union[IssueActions, MergeRequestActions],
+                          obj_to_return: Union[GitLabIssue, GitLabMergeRequest],
+                          data: dict):
+        """
+        Yields `ASSIGNED` or `UNASSIGNED` actions for each label added or removed
+        from given `Issue` or `MergeRequest`.
+        """
+        # import pdb;pdb.set_trace()
+        old_attrs = {user['username']
+                     for user in
+                     data['changes']['assignees']['previous']}
+        new_attrs = {user['username']
+                     for user in
+                     data['changes']['assignees']['current']}
+
+        # new assignees added
+        for user in new_attrs - old_attrs:
+            yield actions_enum.ASSIGNED, [obj_to_return,
+                                          GitLabUser.from_username(token, user)]
+
+        # assignees removed
+        for user in old_attrs - new_attrs:
+            yield actions_enum.UNASSIGNED, [obj_to_return,
+                                            GitLabUser.from_username(token,
+                                                                     user)]
 
     @staticmethod
     def _handle_labels(actions_enum: Union[IssueActions, MergeRequestActions],

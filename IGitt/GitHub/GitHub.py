@@ -9,11 +9,12 @@ from IGitt.GitHub.GitHubCommit import GitHubCommit
 from IGitt.GitHub.GitHubInstallation import GitHubInstallation
 from IGitt.GitHub.GitHubIssue import GitHubIssue
 from IGitt.GitHub.GitHubMergeRequest import GitHubMergeRequest
+from IGitt.GitHub.GitHubRepository import GitHubRepository
+from IGitt.GitHub.GitHubUser import GitHubUser
 from IGitt.Interfaces.Actions import IssueActions, MergeRequestActions, \
     PipelineActions, InstallationActions
 from IGitt.Interfaces.Comment import CommentType
 from IGitt.Interfaces.Hoster import Hoster
-from IGitt.GitHub.GitHubRepository import GitHubRepository
 
 
 class GitHub(GitHubMixin, Hoster):

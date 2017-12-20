@@ -1,11 +1,14 @@
 import os
+from unittest.mock import patch, call
 
 from IGitt.GitLab import GitLabOAuthToken
+import IGitt.GitLab.GitLab
 from IGitt.GitLab.GitLab import GitLab
 from IGitt.GitLab.GitLabComment import GitLabComment
 from IGitt.GitLab.GitLabCommit import GitLabCommit
 from IGitt.GitLab.GitLabIssue import GitLabIssue
 from IGitt.GitLab.GitLabMergeRequest import GitLabMergeRequest
+from IGitt.GitLab.GitLabUser import GitLabUser
 from IGitt.Interfaces.Actions import IssueActions, MergeRequestActions, \
     PipelineActions
 
@@ -177,3 +180,59 @@ class GitLabWebhookTest(IGittTestCase):
 
         self.assertEqual(unlabeled_labels, {'old', 'old2'})
         self.assertEqual(labeled_labels, {'new'})
+
+    def test_issue_assignee(self):
+        import IGitt.GitLab.GitLab.GitLabUser
+        obj_attrs = self.default_data['object_attributes']
+        obj_attrs.update({'action': 'update'})
+
+        self.default_data.update({
+            'object_attributes': obj_attrs,
+            'changes': {
+                'assignees': {
+                    'previous': [{'username': 'sils'}, {'username': 'meet'}],
+                    'current': [{'username': 'nkprince007'}],
+                },
+            },
+        })
+
+        with patch('IGitt.GitLab.GitLab.GitLabUser',
+                   autospec=True) as mock:
+            # import pdb;pdb.set_trace()
+            for event, obj in self.gl.handle_webhook('Issue Hook',
+                                                     self.default_data):
+                self.assertIsInstance(obj[0], GitLabIssue)
+
+            mock.from_username.assert_has_calls(
+                call(self.gl._token, 'sils'),
+                call(self.gl._token, 'meet'),
+                call(self.gl._token, 'nkprince007')
+            )
+
+    def test_merge_request_assignee(self):
+        import IGitt.GitLab.GitLab.GitLabUser
+        obj_attrs = self.default_data['object_attributes']
+        obj_attrs.update({'action': 'update'})
+
+        self.default_data.update({
+            'object_attributes': obj_attrs,
+            'changes': {
+                'assignees': {
+                    'previous': [{'username': 'sils'}, {'username': 'meet'}],
+                    'current': [{'username': 'nkprince007'}],
+                },
+            },
+        })
+
+        with patch('IGitt.GitLab.GitLab.GitLabUser',
+                   autospec=True) as mock:
+            # import pdb;pdb.set_trace()
+            for event, obj in self.gl.handle_webhook('Merge Request Hook',
+                                                     self.default_data):
+                self.assertIsInstance(obj[0], GitLabMergeRequest)
+
+            mock.from_username.assert_has_calls(
+                call(self.gl._token, 'sils'),
+                call(self.gl._token, 'meet'),
+                call(self.gl._token, 'nkprince007')
+            )

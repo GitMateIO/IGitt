@@ -28,6 +28,10 @@ class MergeRequestActions(Enum):
     LABELED = 8
     # When a label is removed from the merge request.
     UNLABELED = 9
+    # When a new assignee is added to the merge request.
+    ASSIGNED = 10
+    # When an existing assignee is removed from the merge request.
+    UNASSIGNED = 11
 
 
 class IssueActions(Enum):
@@ -49,6 +53,11 @@ class IssueActions(Enum):
     LABELED = 6
     # When a label is removed from an issue
     UNLABELED = 7
+    # When a new assignee is added to the issue.
+    ASSIGNED = 8
+    # When an existing assignee is removed from the issue.
+    UNASSIGNED = 9
+
 
 class PipelineActions(Enum):
     """

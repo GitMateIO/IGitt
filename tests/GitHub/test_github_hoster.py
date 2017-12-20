@@ -8,6 +8,7 @@ from IGitt.GitHub.GitHubInstallation import GitHubInstallation
 from IGitt.GitHub.GitHubIssue import GitHubIssue
 from IGitt.GitHub.GitHubMergeRequest import GitHubMergeRequest
 from IGitt.GitHub.GitHubRepository import GitHubRepository
+from IGitt.GitHub.GitHubUser import GitHubUser
 from IGitt.Interfaces.Actions import IssueActions, MergeRequestActions, \
     PipelineActions, InstallationActions
 
@@ -193,3 +194,43 @@ class TestGitHubWebhook(IGittTestCase):
             self.assertEqual(event, MergeRequestActions.UNLABELED)
             self.assertIsInstance(obj[0], GitHubMergeRequest)
             self.assertEqual(obj[1], 'title')
+
+    def test_issue_assignee(self):
+        self.default_data.update({
+            'assignee': {'login': 'gitmate-bot'},
+            'action': 'assigned',
+        })
+        for event, obj in self.gh.handle_webhook('issues', self.default_data):
+            self.assertEqual(event, IssueActions.ASSIGNED)
+            self.assertIsInstance(obj[0], GitHubIssue)
+            self.assertIsInstance(obj[1], GitHubUser)
+            self.assertEqual(obj[1].username, 'gitmate-bot')
+        self.default_data.update({
+            'assignee': {'login': 'gitmate-bot'},
+            'action': 'unassigned',
+        })
+        for event, obj in self.gh.handle_webhook('issues', self.default_data):
+            self.assertEqual(event, IssueActions.UNASSIGNED)
+            self.assertIsInstance(obj[0], GitHubIssue)
+            self.assertIsInstance(obj[1], GitHubUser)
+            self.assertEqual(obj[1].username, 'gitmate-bot')
+
+    def test_pull_request_assignee(self):
+        self.default_data.update({
+            'assignee': {'login': 'gitmate-bot'},
+            'action': 'assigned',
+        })
+        for event, obj in self.gh.handle_webhook('pull_request', self.default_data):
+            self.assertEqual(event, MergeRequestActions.ASSIGNED)
+            self.assertIsInstance(obj[0], GitHubMergeRequest)
+            self.assertIsInstance(obj[1], GitHubUser)
+            self.assertEqual(obj[1].username, 'gitmate-bot')
+        self.default_data.update({
+            'assignee': {'login': 'gitmate-bot'},
+            'action': 'unassigned',
+        })
+        for event, obj in self.gh.handle_webhook('pull_request', self.default_data):
+            self.assertEqual(event, MergeRequestActions.UNASSIGNED)
+            self.assertIsInstance(obj[0], GitHubMergeRequest)
+            self.assertIsInstance(obj[1], GitHubUser)
+            self.assertEqual(obj[1].username, 'gitmate-bot')
