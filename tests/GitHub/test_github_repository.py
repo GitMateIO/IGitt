@@ -9,6 +9,8 @@ from IGitt.GitHub.GitHubMergeRequest import GitHubMergeRequest
 from IGitt.GitHub.GitHubRepository import GitHubRepository
 from IGitt.GitHub.GitHubUser import GitHubUser
 from IGitt.Interfaces import AccessLevel
+from IGitt.Interfaces.Issue import IssueStates
+from IGitt.Interfaces.MergeRequest import MergeRequestStates
 from IGitt.Interfaces.Repository import WebhookEvents
 from IGitt import ElementAlreadyExistsError, ElementDoesntExistError
 
@@ -132,28 +134,41 @@ class GitHubRepositoryTest(IGittTestCase):
 
     def test_search_issues(self):
         date = datetime(2017, 6, 17).date()
-        issues = [issue for issue in self.repo.search_issues(created_before=date, state='open')]
+        issues = [issue for issue in self.repo.search_issues(
+            created_before=date, state=IssueStates.OPEN)]
         self.assertEqual(len(issues), 75)
-        issues = [issue for issue in self.repo.search_issues(created_after=date, state='open')]
+        issues = [issue for issue in self.repo.search_issues(
+            created_after=date, state=IssueStates.OPEN)]
         self.assertEqual(len(issues), 16)
-        issues = [issue for issue in self.repo.search_issues(created_before=date, state='closed')]
+        issues = [issue for issue in self.repo.search_issues(
+            created_before=date, state=IssueStates.CLOSED)]
         self.assertEqual(len(issues), 12)
         with self.assertRaises(RuntimeError):
-            next(self.repo.search_issues(created_before=date, created_after=date))
+            next(self.repo.search_issues(
+                created_before=date, created_after=date))
 
     def test_search_mrs(self):
         date = datetime(2016, 1, 25).date()
-        mrs = [mr for mr in self.repo.search_mrs(created_before=date, state='open')]
+        mrs = [mr for mr in self.repo.search_mrs(
+            created_before=date, state=MergeRequestStates.OPEN)]
         self.assertEqual(len(mrs), 2)
-        mrs = [mr for mr in self.repo.search_mrs(created_after=date, state='open')]
+        mrs = [mr for mr in self.repo.search_mrs(
+            created_after=date, state=MergeRequestStates.OPEN)]
         self.assertEqual(len(mrs), 17)
-        mrs = [mr for mr in self.repo.search_mrs(created_before=date, state='closed')]
+        mrs = [mr for mr in self.repo.search_mrs(
+            created_before=date, state=MergeRequestStates.CLOSED)]
         self.assertEqual(len(mrs), 1)
         date = datetime(2017, 6, 18).date()
-        mrs = [mr for mr in self.repo.search_mrs(updated_after=date, state='open')]
+        mrs = [mr for mr in self.repo.search_mrs(
+            updated_after=date, state=MergeRequestStates.OPEN)]
         self.assertEqual(len(mrs), 17)
-        mrs = [mr for mr in self.repo.search_mrs(updated_before=date, state='open')]
+        mrs = [mr for mr in self.repo.search_mrs(
+            updated_before=date, state=MergeRequestStates.OPEN)]
         self.assertEqual(len(mrs), 2)
+        date = datetime(2017, 12, 31).date()
+        mrs = [mr for mr in self.repo.search_mrs(
+            updated_before=date, state=MergeRequestStates.MERGED)]
+        self.assertEqual(len(mrs), 1)
 
     def test_commits(self):
         self.assertEqual({commit.sha for commit in self.repo.commits},

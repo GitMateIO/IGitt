@@ -102,4 +102,32 @@ interactions:
       X-Total: ['2']
       X-Total-Pages: ['1']
     status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues?per_page=100&state=open
+  response:
+    body: {string: '{"error":"state does not have a valid value"}'}
+    headers:
+      Cache-Control: [no-cache]
+      Content-Length: ['45']
+      Content-Type: [application/json]
+      Date: ['Wed, 20 Dec 2017 23:50:47 GMT']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['1']
+      RateLimit-Remaining: ['599']
+      RateLimit-Reset: ['1513813907']
+      RateLimit-ResetTime: ['Thu, 20 Dec 2017 23:51:47 GMT']
+      Server: [nginx]
+      Vary: [Origin]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [c68feda7-0c60-4b34-bcad-880d915140b1]
+      X-Runtime: ['0.047447']
+    status: {code: 400, message: Bad Request}
 version: 1

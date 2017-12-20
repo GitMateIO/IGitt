@@ -14,6 +14,8 @@ from IGitt.GitHub import GitHubInstallationToken
 from IGitt.GitHub.GitHubIssue import GitHubIssue
 from IGitt.GitHub.GitHubOrganization import GitHubOrganization
 from IGitt.Interfaces import AccessLevel
+from IGitt.Interfaces.Issue import IssueStates
+from IGitt.Interfaces.MergeRequest import MergeRequestStates
 from IGitt.Interfaces.Repository import Repository
 from IGitt.Interfaces.Repository import WebhookEvents
 from IGitt.Utils import eliminate_none
@@ -452,13 +454,15 @@ class GitHubRepository(GitHubMixin, Repository):
                              self.full_name,
                              json['content']['path'])
 
-    def _search_in_range(self,
-                         issue_type,
-                         created_after: Optional[datetime]=None,
-                         created_before: Optional[datetime]=None,
-                         updated_after: Optional[datetime]=None,
-                         updated_before: Optional[datetime]=None,
-                         state: Optional[str] = None):
+    def _search_in_range(
+            self,
+            issue_type,
+            created_after: Optional[datetime]=None,
+            created_before: Optional[datetime]=None,
+            updated_after: Optional[datetime]=None,
+            updated_before: Optional[datetime]=None,
+            state: Union[MergeRequestStates, IssueStates, None]=None
+    ):
         """
         Search for issue based on type 'issue' or 'pr' and return a
         list of issues.
@@ -467,11 +471,11 @@ class GitHubRepository(GitHubMixin, Repository):
         if state is None:
             query = ' type:' + issue_type + ' repo:' + self.full_name
         else:
-            query = (' type:' + issue_type + ' state:' + state +
+            query = (' type:' + issue_type + ' is:' + state.value +
                      ' repo:' + self.full_name)
 
-        if ((created_after and created_before)
-                or (updated_after and updated_before)):
+        if ((created_after and created_before) or
+                (updated_after and updated_before)):
             raise RuntimeError(('Cannot process before '
                                 'and after date simultaneously'))
         if created_after:
@@ -493,7 +497,7 @@ class GitHubRepository(GitHubMixin, Repository):
                    created_before: Optional[datetime]=None,
                    updated_after: Optional[datetime]=None,
                    updated_before: Optional[datetime]=None,
-                   state: Optional[str] = None):
+                   state: Optional[MergeRequestStates] = None):
         """
         List open pull request in the repository.
         """
@@ -508,7 +512,7 @@ class GitHubRepository(GitHubMixin, Repository):
                       created_before: Optional[datetime]=None,
                       updated_after: Optional[datetime]=None,
                       updated_before: Optional[datetime]=None,
-                      state: Optional[str] = None):
+                      state: Optional[IssueStates] = None):
         """
         List open issues in the repository.
         """

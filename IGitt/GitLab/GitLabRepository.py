@@ -13,6 +13,8 @@ from IGitt.GitLab import GitLabOAuthToken, GitLabPrivateToken
 from IGitt.GitLab.GitLabIssue import GitLabIssue
 from IGitt.GitLab.GitLabOrganization import GitLabOrganization
 from IGitt.Interfaces import AccessLevel
+from IGitt.Interfaces.Issue import IssueStates
+from IGitt.Interfaces.MergeRequest import MergeRequestStates
 from IGitt.Interfaces.Repository import Repository
 from IGitt.Interfaces.Repository import WebhookEvents
 from IGitt.Utils import eliminate_none
@@ -29,6 +31,13 @@ GL_WEBHOOK_TRANSLATION = {
 
 GL_WEBHOOK_EVENTS = {'tag_push_events', 'job_events', 'pipeline_events',
                      'wiki_events'} | set(GL_WEBHOOK_TRANSLATION.values())
+
+GL_MR_STATE_TRANSLATION = {MergeRequestStates.MERGED: 'merged',
+                           MergeRequestStates.OPEN: 'opened',
+                           MergeRequestStates.CLOSED: 'closed'}
+
+GL_ISSUE_STATE_TRANSLATION = {IssueStates.OPEN: 'opened',
+                              IssueStates.CLOSED: 'closed'}
 
 
 def date_in_range(data,
@@ -467,7 +476,8 @@ class GitLabRepository(GitLabMixin, Repository):
         delete(token=self._token, url=self._url)
 
     def _search(self,
-                search_type, state):
+                search_type,
+                state: Union[MergeRequestStates, IssueStates, None]):
         """
         Retrives a list of all issues or merge requests.
         :param search_type: A string for type of object i.e. issues for issue
@@ -478,15 +488,18 @@ class GitLabRepository(GitLabMixin, Repository):
         url = self._url + '/{}'.format(search_type)
         if state is None:
             return get(self._token, url)
-        return get(self._token, url, {'state' : state})
-
+        elif isinstance(state, IssueStates):
+            state = GL_ISSUE_STATE_TRANSLATION[state]
+        elif isinstance(state, MergeRequestStates):
+            state = GL_MR_STATE_TRANSLATION[state]
+        return get(self._token, url, {'state': state})
 
     def search_issues(self,
                       created_after: Optional[datetime]=None,
                       created_before: Optional[datetime]=None,
                       updated_after: Optional[datetime]=None,
                       updated_before: Optional[datetime]=None,
-                      state: Optional[str] = None):
+                      state: Optional[IssueStates] = None):
         """
         Searches for issues based on created and updated date.
         """
@@ -505,7 +518,7 @@ class GitLabRepository(GitLabMixin, Repository):
                    created_before: Optional[datetime]=None,
                    updated_after: Optional[datetime]=None,
                    updated_before: Optional[datetime]=None,
-                   state: Optional[str] = None):
+                   state: Optional[MergeRequestStates] = None):
         """
         Searches for merge request based on created and updated date.
         """

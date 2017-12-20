@@ -8,6 +8,8 @@ from IGitt.GitLab.GitLabMergeRequest import GitLabMergeRequest
 from IGitt.GitLab.GitLabRepository import GitLabRepository
 from IGitt.GitLab.GitLabUser import GitLabUser
 from IGitt.Interfaces import AccessLevel
+from IGitt.Interfaces.Issue import IssueStates
+from IGitt.Interfaces.MergeRequest import MergeRequestStates
 from IGitt.Interfaces.Repository import WebhookEvents
 from IGitt import ElementAlreadyExistsError, ElementDoesntExistError
 
@@ -149,26 +151,29 @@ class GitLabRepositoryTest(IGittTestCase):
         created_before = datetime(2017, 7, 15).date()
         issues = list(self.repo.search_issues(created_after=created_after,
                                               created_before=created_before,
-                                              state='opened'))
+                                              state=IssueStates.OPEN))
         self.assertEqual(len(issues), 2)
         issues = list(self.repo.search_issues(created_after=created_after,
                                               created_before=created_before,
-                                              state='closed'))
+                                              state=IssueStates.CLOSED))
         self.assertEqual(len(issues), 0)
 
     def test_search_mrs(self):
         updated_after = datetime(2017, 6, 18).date()
         updated_before = datetime(2017, 7, 2).date()
-        merge_requests = list(self.repo.search_mrs(updated_after=updated_after,
-                                                   updated_before=updated_before,
-                                                   state='opened'))
+        merge_requests = list(self.repo.search_mrs(
+            updated_after=updated_after,
+            updated_before=updated_before,
+            state=MergeRequestStates.OPEN))
         self.assertEqual(len(merge_requests), 1)
-        merge_requests = list(self.repo.search_mrs(updated_after=updated_after,
-                                                   updated_before=updated_before,
-                                                   state='closed'))
+        merge_requests = list(self.repo.search_mrs(
+            updated_after=updated_after,
+            updated_before=updated_before,
+            state=MergeRequestStates.CLOSED))
         self.assertEqual(len(merge_requests), 2)
-        merge_requests = list(self.repo.search_mrs(updated_after=updated_after,
-                                                   updated_before=updated_before))
+        merge_requests = list(self.repo.search_mrs(
+            updated_after=updated_after,
+            updated_before=updated_before))
         self.assertEqual(len(merge_requests), 3)
 
     def test_commits(self):
