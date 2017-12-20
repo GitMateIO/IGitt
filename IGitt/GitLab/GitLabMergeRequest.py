@@ -12,6 +12,7 @@ from IGitt.GitLab.GitLabCommit import GitLabCommit
 from IGitt.GitLab.GitLabIssue import GitLabIssue
 from IGitt.GitLab.GitLabUser import GitLabUser
 from IGitt.Interfaces.MergeRequest import MergeRequest
+from IGitt.Interfaces.MergeRequest import MergeRequestStates
 
 
 # Issue is used as a Mixin, super() is never called by design!
@@ -250,3 +251,16 @@ class GitLabMergeRequest(GitLabIssue, MergeRequest):
 
         self.data = put(self._token, self._url,
                         {'assignee_id': value.pop().identifier})
+
+    @property
+    def state(self) -> MergeRequestStates:
+        """
+        Retrieves the state of the Pull Request on GitHub.
+
+        :return:    A MergeRequestStates object.
+        """
+        return {
+            'opened': MergeRequestStates.OPEN,
+            'closed': MergeRequestStates.CLOSED,
+            'merged': MergeRequestStates.MERGED
+        }[self.data['state']]

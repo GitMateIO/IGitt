@@ -3,6 +3,7 @@ Contains a class that represents a request to merge something into some git
 branch.
 """
 from datetime import datetime
+from enum import Enum
 from itertools import chain
 from typing import List
 from typing import Set
@@ -23,6 +24,16 @@ SUPPORTED_HOST_KEYWORD_REGEX = {
                r'|[Ff]ix(?:e[sd]|ing)?')
     }
 CONCATENATION_KEYWORDS = [r',', r'\sand\s']
+
+
+class MergeRequestStates(Enum):
+    """
+    This class depicts the merge request states that can are present in any
+    hosting service providers like GitHub or GitLab.
+    """
+    OPEN = 'open'
+    CLOSED = 'closed'
+    MERGED = 'merged'
 
 
 class MergeRequest(Issue):
@@ -48,11 +59,11 @@ class MergeRequest(Issue):
         raise NotImplementedError
 
     @property
-    def state(self) -> str:
+    def state(self) -> MergeRequestStates:
         """
         Get's the state of the merge request.
 
-        :return: Either 'open' or 'closed'.
+        :return: A MergeRequestStates object indicating current state.
         """
         raise NotImplementedError
 

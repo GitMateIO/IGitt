@@ -4,7 +4,7 @@ import datetime
 from IGitt.GitLab import GitLabOAuthToken
 from IGitt.GitLab.GitLabMergeRequest import GitLabMergeRequest
 from IGitt.GitLab.GitLabUser import GitLabUser
-from IGitt.Interfaces.Issue import IssueStates
+from IGitt.Interfaces.MergeRequest import MergeRequestStates
 
 from tests import IGittTestCase
 
@@ -71,9 +71,9 @@ class GitLabMergeRequestTest(IGittTestCase):
 
     def test_change_state(self):
         self.mr.close()
-        self.assertEqual(self.mr.state, IssueStates.CLOSED)
+        self.assertEqual(self.mr.state, MergeRequestStates.CLOSED)
         self.mr.reopen()
-        self.assertEqual(self.mr.state, IssueStates.OPEN)
+        self.assertEqual(self.mr.state, MergeRequestStates.OPEN)
 
     def test_closes_issues(self):
         mr = GitLabMergeRequest(self.token, 'gitmate-test-user/test', 25)
@@ -99,3 +99,11 @@ class GitLabMergeRequestTest(IGittTestCase):
 
     def test_author(self):
         self.assertEqual(self.mr.author.username, 'nkprince007')
+
+    def test_state(self):
+        opened = GitLabMergeRequest(self.token, 'gitmate-test-user/test', 39)
+        closed = GitLabMergeRequest(self.token, 'gitmate-test-user/test', 6)
+        merged = GitLabMergeRequest(self.token, 'gitmate-test-user/test', 69)
+        self.assertEqual(merged.state, MergeRequestStates.MERGED)
+        self.assertEqual(closed.state, MergeRequestStates.CLOSED)
+        self.assertEqual(opened.state, MergeRequestStates.OPEN)

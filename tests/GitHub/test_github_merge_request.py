@@ -3,7 +3,7 @@ import datetime
 
 from IGitt.GitHub import GitHubToken
 from IGitt.GitHub.GitHubMergeRequest import GitHubMergeRequest
-from IGitt.Interfaces.Issue import IssueStates
+from IGitt.Interfaces.MergeRequest import MergeRequestStates
 
 from tests import IGittTestCase
 
@@ -76,9 +76,9 @@ class GitHubMergeRequestTest(IGittTestCase):
 
     def test_change_state(self):
         self.mr.close()
-        self.assertEqual(self.mr.state, IssueStates.CLOSED)
+        self.assertEqual(self.mr.state, MergeRequestStates.CLOSED)
         self.mr.reopen()
-        self.assertEqual(self.mr.state, IssueStates.OPEN)
+        self.assertEqual(self.mr.state, MergeRequestStates.OPEN)
 
     def test_closes_issues(self):
         mr = GitHubMergeRequest(self.token, 'gitmate-test-user/test', 113)
@@ -101,3 +101,11 @@ class GitHubMergeRequestTest(IGittTestCase):
 
     def test_author(self):
         self.assertEqual(self.mr.author.username, 'gitmate-test-user')
+
+    def test_state(self):
+        merged = GitHubMergeRequest(self.token, 'gitmate-test-user/test', 130)
+        closed = GitHubMergeRequest(self.token, 'gitmate-test-user/test', 129)
+        opened = GitHubMergeRequest(self.token, 'gitmate-test-user/test', 126)
+        self.assertEqual(merged.state, MergeRequestStates.MERGED)
+        self.assertEqual(closed.state, MergeRequestStates.CLOSED)
+        self.assertEqual(opened.state, MergeRequestStates.OPEN)

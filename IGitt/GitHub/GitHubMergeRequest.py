@@ -24,6 +24,7 @@ from IGitt.GitHub.GitHubCommit import GitHubCommit
 from IGitt.GitHub.GitHubIssue import GitHubIssue
 from IGitt.GitHub.GitHubUser import GitHubUser
 from IGitt.Interfaces.MergeRequest import MergeRequest
+from IGitt.Interfaces.MergeRequest import MergeRequestStates
 
 
 # Issue is used as a Mixin, super() is never called by design!
@@ -249,3 +250,18 @@ class GitHubMergeRequest(GitHubIssue, MergeRequest):
         return GitHubUser.from_data(self.data['user'],
                                     self._token,
                                     self.data['user']['login'])
+
+    @property
+    def state(self) -> MergeRequestStates:
+        """
+        Retrieves the state of the Pull Request on GitHub.
+
+        :return:    A MergeRequestStates object.
+        """
+        state = {
+            'open': MergeRequestStates.OPEN,
+            'closed': MergeRequestStates.CLOSED,
+        }[self.data['state']]
+        if self.data['merged_at'] and self.data['state'] == 'closed':
+            return MergeRequestStates.MERGED
+        return state
