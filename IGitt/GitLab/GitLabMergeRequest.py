@@ -249,8 +249,10 @@ class GitLabMergeRequest(GitLabIssue, MergeRequest):
                 "GitLab doesn't support assigning multiple users to the same"
                 "Merge Request.")
 
-        self.data = put(self._token, self._url,
-                        {'assignee_id': value.pop().identifier})
+        # GitLab MR API unassigns all users when 0 is sent.
+        # Reference: https://docs.gitlab.com/ee/api/merge_requests.html#update-mr
+        user = value.pop().identifier if len(value) == 1 else 0
+        self.data = put(self._token, self._url, {'assignee_id': user})
 
     @property
     def state(self) -> MergeRequestStates:

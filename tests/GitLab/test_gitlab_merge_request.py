@@ -96,6 +96,9 @@ class GitLabMergeRequestTest(IGittTestCase):
             self.mr.assignees = {user, sils}
         self.mr.assignees = {user}
         self.assertEqual(self.mr.assignees, {user})
+        self.mr.assignees = set()
+        self.assertEqual(self.mr.assignees, set())
+
 
     def test_author(self):
         self.assertEqual(self.mr.author.username, 'nkprince007')
