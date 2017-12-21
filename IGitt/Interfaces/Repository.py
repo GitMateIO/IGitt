@@ -13,6 +13,8 @@ from git.repo.base import Repo
 
 from IGitt.Interfaces import AccessLevel
 from IGitt.Interfaces import IGittObject
+from IGitt.Interfaces.Issue import IssueStates
+from IGitt.Interfaces.MergeRequest import MergeRequestStates
 
 
 class WebhookEvents(Enum):
@@ -262,7 +264,7 @@ class Repository(IGittObject):
                    created_before: Optional[datetime.date]=None,
                    updated_after: Optional[datetime.date]=None,
                    updated_before: Optional[datetime.date]=None,
-                   state: Optional[str]=None):
+                   state: Optional[MergeRequestStates]=None):
         """
         Retrieves a list of prs
         """
@@ -273,7 +275,7 @@ class Repository(IGittObject):
                       created_before: Optional[datetime.date]=None,
                       updated_after: Optional[datetime.date]=None,
                       updated_before: Optional[datetime.date]=None,
-                      state: Optional[str] = None):
+                      state: Optional[IssueStates] = None):
         """
         Retrieves a list of issues
         """
