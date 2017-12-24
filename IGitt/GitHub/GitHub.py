@@ -9,11 +9,12 @@ from IGitt.GitHub.GitHubCommit import GitHubCommit
 from IGitt.GitHub.GitHubInstallation import GitHubInstallation
 from IGitt.GitHub.GitHubIssue import GitHubIssue
 from IGitt.GitHub.GitHubMergeRequest import GitHubMergeRequest
+from IGitt.GitHub.GitHubRepository import GitHubRepository
+from IGitt.GitHub.GitHubUser import GitHubUser
 from IGitt.Interfaces.Actions import IssueActions, MergeRequestActions, \
     PipelineActions, InstallationActions
 from IGitt.Interfaces.Comment import CommentType
 from IGitt.Interfaces.Hoster import Hoster
-from IGitt.GitHub.GitHubRepository import GitHubRepository
 
 
 class GitHub(GitHubMixin, Hoster):
@@ -121,6 +122,11 @@ class GitHub(GitHubMixin, Hoster):
             'deleted': InstallationActions.DELETED
         }[data['action']]
 
+        # sender is the user who made this installation and has access to it
+        sender = GitHubUser.from_data(data['sender'],
+                                      self._token,
+                                      data['sender']['login'])
+
         # When a new installation is created, it will be installed on at
         # least one repository which will be forwarded through
         # `repositories` key.
@@ -129,15 +135,21 @@ class GitHub(GitHubMixin, Hoster):
                 GitHubRepository.from_data(repo, self._token, repo['id'])
                 for repo in data['repositories']
             ]
-            yield trigger_event, [installation_obj, repos]
+            yield trigger_event, [installation_obj, sender, repos]
         else:
-            yield trigger_event, [installation_obj]
+            yield trigger_event, [installation_obj, sender]
 
     def _handle_webhook_installation_repositories(self, data):
         """Handles 'installation_repositories' event."""
         installation = data['installation']
         installation_obj = GitHubInstallation.from_data(
             installation, self._token, installation['id'])
+
+        # sender is the user who has access to this installation
+        sender = GitHubUser.from_data(data['sender'],
+                                      self._token,
+                                      data['sender']['login'])
+
         if data['action'] == 'added':
             trigger_event = InstallationActions.REPOSITORIES_ADDED
             repos = [
@@ -151,7 +163,7 @@ class GitHub(GitHubMixin, Hoster):
                 for repo in data['repositories_removed']
             ]
 
-        yield trigger_event, [installation_obj, repos]
+        yield trigger_event, [installation_obj, sender, repos]
 
     def _handle_webhook_issues(self, data, repository):
         """Handles 'issues' event."""

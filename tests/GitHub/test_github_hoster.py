@@ -8,6 +8,7 @@ from IGitt.GitHub.GitHubInstallation import GitHubInstallation
 from IGitt.GitHub.GitHubIssue import GitHubIssue
 from IGitt.GitHub.GitHubMergeRequest import GitHubMergeRequest
 from IGitt.GitHub.GitHubRepository import GitHubRepository
+from IGitt.GitHub.GitHubUser import GitHubUser
 from IGitt.Interfaces.Actions import IssueActions, MergeRequestActions, \
     PipelineActions, InstallationActions
 
@@ -75,10 +76,15 @@ class TestGitHubWebhook(IGittTestCase):
     def test_installation_deleted_hook(self):
         for event, obj in self.gh_inst.handle_webhook('installation', {
                 'installation': {'id': 0},
-                'action': 'deleted'
+                'action': 'deleted',
+                'sender': {'login': 'luke_skywalker', 'id': 0}
             }):
+            inst, sender = obj
             self.assertEqual(event, InstallationActions.DELETED)
-            self.assertIsInstance(obj[0], GitHubInstallation)
+            self.assertIsInstance(inst, GitHubInstallation)
+            self.assertIsInstance(sender, GitHubUser)
+            self.assertEqual(sender.identifier, 0)
+            self.assertEqual(sender.username, 'luke_skywalker')
 
     def test_installation_created_hook(self):
         for event, obj in self.gh_inst.handle_webhook('installation', {
@@ -86,11 +92,15 @@ class TestGitHubWebhook(IGittTestCase):
                 'action': 'created',
                 'repositories': [
                     {'id': 0, 'full_name': 'star-wars/rogue1'}
-                ]
+                ],
+                'sender': {'login': 'luke_skywalker', 'id': 0}
             }):
-            inst, repos = obj[0], obj[1]
+            inst, sender, repos = obj
             self.assertEqual(event, InstallationActions.CREATED)
             self.assertIsInstance(inst, GitHubInstallation)
+            self.assertIsInstance(sender, GitHubUser)
+            self.assertEqual(sender.identifier, 0)
+            self.assertEqual(sender.username, 'luke_skywalker')
             self.assertIsInstance(repos[0], GitHubRepository)
             self.assertEqual(repos[0].identifier, 0)
             self.assertEqual(repos[0].full_name, 'star-wars/rogue1')
@@ -102,11 +112,16 @@ class TestGitHubWebhook(IGittTestCase):
                 'repositories_added': [{
                     'id': 0,
                     'full_name': 'foo/bar'
-                }]
+                }],
+                'sender': {'login': 'luke_skywalker', 'id': 0}
             }):
+            inst, sender, repos = obj
             self.assertEqual(event, InstallationActions.REPOSITORIES_ADDED)
-            self.assertIsInstance(obj[0], GitHubInstallation)
-            self.assertTrue(all([isinstance(repo, GitHubRepository) for repo in obj[1]]))
+            self.assertIsInstance(inst, GitHubInstallation)
+            self.assertTrue(all([isinstance(repo, GitHubRepository) for repo in repos]))
+            self.assertIsInstance(sender, GitHubUser)
+            self.assertEqual(sender.identifier, 0)
+            self.assertEqual(sender.username, 'luke_skywalker')
 
     def test_installation_repositories_removed_hook(self):
         for event, obj in self.gh_inst.handle_webhook('installation_repositories', {
@@ -115,11 +130,16 @@ class TestGitHubWebhook(IGittTestCase):
                 'repositories_removed': [{
                     'id': 0,
                     'full_name': 'foo/bar'
-                }]
+                }],
+                'sender': {'login': 'luke_skywalker', 'id': 0}
             }):
+            inst, sender, repos = obj
             self.assertEqual(event, InstallationActions.REPOSITORIES_REMOVED)
-            self.assertIsInstance(obj[0], GitHubInstallation)
-            self.assertTrue(all([isinstance(repo, GitHubRepository) for repo in obj[1]]))
+            self.assertIsInstance(inst, GitHubInstallation)
+            self.assertTrue(all([isinstance(repo, GitHubRepository) for repo in repos]))
+            self.assertIsInstance(sender, GitHubUser)
+            self.assertEqual(sender.identifier, 0)
+            self.assertEqual(sender.username, 'luke_skywalker')
 
     def test_issue_hook(self):
         for event, obj in self.gh.handle_webhook('issues', self.default_data):
