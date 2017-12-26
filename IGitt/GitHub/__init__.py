@@ -3,9 +3,13 @@ This package contains the GitHub implementations of the interfaces in
 server.git.Interfaces.
 """
 from datetime import datetime
+from datetime import timedelta
 from typing import Optional
+from typing import Callable
 import os
 import logging
+import time
+import requests
 
 from IGitt.Interfaces import _fetch, Token
 from IGitt.Utils import CachedDataMixin
@@ -217,6 +221,34 @@ def get(token: Token,
                   url, query_params={**dict(params or {}), 'per_page': 100},
                   headers=headers)
 
+async def lazy_get(url: str,
+                   callback: Callable,
+                   headers: Optional[dict]=None,
+                   timeout: Optional[timedelta]=timedelta(seconds=120),
+                   interval: Optional[timedelta]=timedelta(seconds=10)):
+    """
+    Queries GitHub on the given URL for data, waiting while it
+    returns HTTP 202.
+
+    :param url: E.g. ``/repo``
+    :param callback:
+        The function to callback with data after data is obtained.
+        An empty dictionary is sent if nothing is returned by the API.
+    :param timeout: datetime.timedelta object with time to keep re-trying.
+    :param interval:
+        datetime.timedelta object with time to keep in between tries.
+    :param headers: The request headers to be sent.
+    """
+    url = BASE_URL + url
+    response = requests.get(url, headers=headers, timeout=3000)
+
+    # Wait and re-request to allow github to process query
+    while response.status_code == 202 and timeout.total_seconds() > 0:
+        time.sleep(interval.total_seconds())
+        timeout -= interval
+        response = requests.get(url, headers=headers, timeout=3000)
+
+    await callback(response.json())
 
 def post(token: Token, url: str, data: dict, headers: Optional[dict]=None):
     """
