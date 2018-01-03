@@ -87,3 +87,7 @@ class GitHubIssueTest(IGittTestCase):
     def test_reactions(self):
         issue = GitHubIssue(self.token, 'gitmate-test-user/test', 12)
         self.assertEqual(issue.reactions, ['laugh', 'hooray', 'heart'])
+
+    def test_mrs_closed_by(self):
+        issue = GitHubIssue(self.token, 'gitmate-test-user/test', 131)
+        self.assertEqual({int(i.number) for i in issue.mrs_closed_by}, {132})

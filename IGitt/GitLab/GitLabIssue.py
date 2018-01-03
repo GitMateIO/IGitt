@@ -13,6 +13,7 @@ from IGitt.GitLab.GitLabComment import GitLabComment
 from IGitt.GitLab.GitLabUser import GitLabUser
 from IGitt.Interfaces.Comment import CommentType
 from IGitt.Interfaces.Issue import Issue, IssueStates
+from IGitt.Interfaces.MergeRequest import MergeRequestStates
 
 
 class GitLabIssue(GitLabMixin, Issue):
@@ -418,3 +419,19 @@ class GitLabIssue(GitLabMixin, Issue):
         issue = post(token, url, {'title': title, 'description': body})
 
         return GitLabIssue.from_data(issue, token, repository, issue['iid'])
+
+    @property
+    def mrs_closed_by(self):
+        """
+        Returns the merge requests that close this issue.
+        """
+        from IGitt.GitLab.GitLabMergeRequest import GitLabMergeRequest
+
+        url = '{url}/closed_by'.format(url=self._url)
+        mrs = get(self._token, url)
+
+        return {GitLabMergeRequest.from_data(mr,
+                                             self._token,
+                                             self._repository,
+                                             mr['iid'])
+                for mr in mrs if mr['state'] == MergeRequestStates.MERGED.value}

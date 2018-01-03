@@ -1,0 +1,43 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/coala%2Fpackage_manager/issues/152/closed_by?per_page=100
+  response:
+    body: {string: '[{"id":4137623,"iid":98,"project_id":2180762,"title":"Add BowerRequirement","description":"Allow
+        to use ''bower''\n\nCloses https://gitlab.com/coala/package_manager/issues/152","state":"merged","created_at":"2017-07-06T16:27:03.216Z","updated_at":"2017-07-08T10:37:46.067Z","target_branch":"master","source_branch":"bower","upvotes":0,"downvotes":0,"author":{"id":727610,"name":"Iqbal
+        Mohammad Abdul Ghoni","username":"arsfiqball","state":"active","avatar_url":"https://secure.gravatar.com/avatar/8280db48981906dc483be012eaaa4a6d?s=80\u0026d=identicon","web_url":"https://gitlab.com/arsfiqball"},"assignee":null,"source_project_id":3652049,"target_project_id":2180762,"labels":["process/pending_review","size/S"],"work_in_progress":false,"milestone":null,"merge_when_pipeline_succeeds":false,"merge_status":"can_be_merged","sha":"369f810aa9772a6807a27996333d346d26e80a98","merge_commit_sha":null,"user_notes_count":5,"approvals_before_merge":null,"discussion_locked":null,"should_remove_source_branch":null,"force_remove_source_branch":false,"squash":false,"web_url":"https://gitlab.com/coala/package_manager/merge_requests/98","time_stats":{"time_estimate":0,"total_time_spent":0,"human_time_estimate":null,"human_total_time_spent":null}}]'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['1238']
+      Content-Type: [application/json]
+      Date: ['Thu, 04 Jan 2018 06:25:35 GMT']
+      Etag: [W/"066340f98110cb0cea8909ad707f698e"]
+      Link: ['<https://gitlab.com/api/v4/projects/coala%2Fpackage_manager/issues/152/closed_by?id=coala%2Fpackage_manager&issue_iid=152&page=1&per_page=100>;
+          rel="first", <https://gitlab.com/api/v4/projects/coala%2Fpackage_manager/issues/152/closed_by?id=coala%2Fpackage_manager&issue_iid=152&page=1&per_page=100>;
+          rel="last"']
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['1']
+      RateLimit-Remaining: ['599']
+      RateLimit-Reset: ['1515047195']
+      RateLimit-ResetTime: ['Fri, 04 Jan 2018 06:26:35 GMT']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Next-Page: ['']
+      X-Page: ['1']
+      X-Per-Page: ['100']
+      X-Prev-Page: ['']
+      X-Request-Id: [bbcef9a8-100e-4179-8d39-8030f6f39183]
+      X-Runtime: ['0.628626']
+      X-Total: ['1']
+      X-Total-Pages: ['1']
+    status: {code: 200, message: OK}
+version: 1

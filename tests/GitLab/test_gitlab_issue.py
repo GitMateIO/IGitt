@@ -88,3 +88,7 @@ class GitLabIssueTest(IGittTestCase):
     def test_reactions(self):
         issue = GitLabIssue(self.token, 'gitmate-test-user/test', 23)
         self.assertEqual(issue.reactions, ['thumbsup', 'thumbsdown', 'golf'])
+
+    def test_mrs_closed_by(self):
+        issue = GitLabIssue(self.token, 'coala/package_manager', 152)
+        self.assertEqual({int(i.number) for i in issue.mrs_closed_by}, {98})

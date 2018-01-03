@@ -4,13 +4,19 @@ This contains the Issue implementation for GitHub.
 from datetime import datetime
 from typing import List
 from typing import Set
+import requests
+import re
 
-from IGitt.GitHub import get, patch, post, delete, GitHubMixin
+from IGitt.GitHub import get, patch, post, delete, GitHubMixin, GH_INSTANCE_URL
 from IGitt.GitHub import GitHubToken
 from IGitt.GitHub.GitHubComment import GitHubComment
 from IGitt.GitHub.GitHubUser import GitHubUser
 from IGitt.Interfaces.Comment import CommentType
 from IGitt.Interfaces.Issue import Issue, IssueStates
+
+
+CLOSED_BY_PATTERN = re.compile('closed this(?:\n| )+in(?:\n| )+<a href=\"/(.+)/'
+                               'pull/([0-9]+)\">#(?:[0-9]+)</a>')
 
 
 class GitHubIssue(GitHubMixin, Issue):
@@ -427,3 +433,17 @@ class GitHubIssue(GitHubMixin, Issue):
         issue_number = resp['number']
 
         return GitHubIssue.from_data(resp, token, repository, issue_number)
+
+    @property
+    def mrs_closed_by(self):
+        """
+        Returns the merge requests that close this issue.
+        """
+        from IGitt.GitHub.GitHubMergeRequest import GitHubMergeRequest
+
+        r = requests.get(GH_INSTANCE_URL + self._url.replace('/repos', ''))
+
+        matches = CLOSED_BY_PATTERN.findall(r.text)
+
+        return {GitHubMergeRequest(self._token, repo_name, int(number))
+                for repo_name, number in matches}

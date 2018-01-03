@@ -221,3 +221,10 @@ class Issue(IGittObject):
         Create a new issue in repository.
         """
         raise NotImplementedError
+
+    @property
+    def mrs_closed_by(self) -> Set:
+        """
+        Returns the merge requests that close this issue.
+        """
+        raise NotImplementedError
