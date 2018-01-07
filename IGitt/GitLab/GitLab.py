@@ -2,7 +2,7 @@
 Contains the Hoster implementation for GitLab.
 """
 
-from typing import Union
+from typing import List, Union
 import logging
 
 from IGitt.GitLab import get, GitLabOAuthToken, GitLabPrivateToken, GitLabMixin
@@ -35,23 +35,50 @@ class GitLab(GitLabMixin, Hoster):
         self._token = token
         self._url = '/'
 
+    @staticmethod
+    def _get_repos_with_permissions(repo_list: List[GitLabRepository],
+                                    permission: AccessLevel):
+        """
+        Retrieves repositories the user has permissions to, even inherit the
+        permissions for sub-groups and projects.
+        """
+        # namespaces with permission or greater access level
+        namespaces = set()
+
+        # normalize access_levels
+        for repo in repo_list:
+            if not repo['permissions']['project_access']:
+                repo['permissions']['project_access'] = {'access_level': 0}
+            if not repo['permissions']['group_access']:
+                repo['permissions']['group_access'] = {'access_level': 0}
+
+        # groups with access_level > permission
+        to_check = [proj['namespace']['id'] for proj in repo_list if
+                    proj['permissions']['group_access'].get(
+                        'access_level', 0) >= permission.value]
+
+        # finding subgroups
+        for namespace in to_check:
+            namespaces.add(namespace)
+            # add sub_groups of this namespace
+            to_check += [proj['namespace']['id'] for proj in repo_list if
+                         proj['namespace']['parent_id'] == namespace]
+
+        return [repo for repo in repo_list
+                if repo['namespace']['id'] in namespaces or
+                repo['permissions']['project_access'].get(
+                    'access_level', 0) >= permission.value]
+
     @property
     def master_repositories(self):
         """
         Retrieves repositories the user has admin access to.
         """
         repo_list = get(self._token, '/projects', {'membership': True})
-        repos = []
-        for repo in repo_list:
-            perms = repo['permissions']
-            project_access = perms['project_access'] or {}
-            group_access = perms['group_access'] or {}
-            access_level = max(project_access.get('access_level', 0),
-                               group_access.get('access_level', 0))
-            if access_level >= AccessLevel.ADMIN.value:
-                repos.append(repo)
         return {GitLabRepository(self._token, repo['path_with_namespace'])
-                for repo in repos}
+                for repo in
+                self._get_repos_with_permissions(repo_list,
+                                                 AccessLevel.ADMIN)}
 
     @property
     def owned_repositories(self):
@@ -82,17 +109,11 @@ class GitLab(GitLabMixin, Hoster):
         :return: A set of GitLabRepository objects.
         """
         repo_list = get(self._token, '/projects', {'membership': True})
-        repos = []
-        for repo in repo_list:
-            perms = repo['permissions']
-            project_access = perms['project_access'] or {}
-            group_access = perms['group_access'] or {}
-            access_level = max(project_access.get('access_level', 0),
-                               group_access.get('access_level', 0))
-            if access_level >= AccessLevel.CAN_WRITE.value:
-                repos.append(repo)
         return {GitLabRepository(self._token, repo['path_with_namespace'])
-                for repo in repos}
+                for repo in
+                self._get_repos_with_permissions(
+                    repo_list,
+                    AccessLevel.CAN_WRITE)}
 
     def get_repo(self, repository) -> GitLabRepository:
         """

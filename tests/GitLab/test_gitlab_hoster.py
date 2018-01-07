@@ -6,6 +6,7 @@ from IGitt.GitLab.GitLabComment import GitLabComment
 from IGitt.GitLab.GitLabCommit import GitLabCommit
 from IGitt.GitLab.GitLabIssue import GitLabIssue
 from IGitt.GitLab.GitLabMergeRequest import GitLabMergeRequest
+from IGitt.Interfaces import AccessLevel
 from IGitt.Interfaces.Actions import IssueActions, MergeRequestActions, \
     PipelineActions
 
@@ -16,6 +17,32 @@ class GitLabHosterTest(IGittTestCase):
 
     def setUp(self):
         self.gl = GitLab(GitLabOAuthToken(os.environ.get('GITLAB_TEST_TOKEN', '')))
+
+    def test_repo_permissions_inheritance(self):
+        repos = [
+            {
+                'namespace':{'id': 1, 'parent_id': None},
+                'permissions': {'group_access': {'access_level': 40},
+                                'project_access': None}
+            },
+            {
+                'namespace': {'id': 2, 'parent_id': 1},
+                'permissions': {'group_access': None, 'project_access': None}
+            },
+            {
+                'namespace': {'id': 3, 'parent_id': 2},
+                'permissions': {'group_access': None, 'project_access': None}
+            },
+            {
+                'namespace': {'id': 4, 'parent_id': None},
+                'permissions': {'group_access': None,
+                                'project_access': {'access_level': 40}}
+            }
+        ]
+        self.assertEqual(set(map(lambda x: x['namespace']['id'],
+                                 GitLab._get_repos_with_permissions(
+                                     repos, AccessLevel.ADMIN))),
+                         {1, 2, 3, 4})
 
     def test_master_repositories(self):
         self.assertEqual(sorted(map(lambda x: x.full_name, self.gl.master_repositories)),
