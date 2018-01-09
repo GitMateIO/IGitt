@@ -13,8 +13,8 @@ from IGitt.GitLab import GitLabOAuthToken, GitLabPrivateToken
 from IGitt.GitLab.GitLabIssue import GitLabIssue
 from IGitt.GitLab.GitLabOrganization import GitLabOrganization
 from IGitt.Interfaces import AccessLevel
-from IGitt.Interfaces.Issue import IssueStates
-from IGitt.Interfaces.MergeRequest import MergeRequestStates
+from IGitt.Interfaces import IssueStates
+from IGitt.Interfaces import MergeRequestStates
 from IGitt.Interfaces.Repository import Repository
 from IGitt.Interfaces.Repository import WebhookEvents
 from IGitt.Utils import eliminate_none
@@ -518,7 +518,7 @@ class GitLabRepository(GitLabMixin, Repository):
                    created_before: Optional[datetime]=None,
                    updated_after: Optional[datetime]=None,
                    updated_before: Optional[datetime]=None,
-                   state: Optional[MergeRequestStates] = None):
+                   state: Optional[MergeRequestStates]=None):
         """
         Searches for merge request based on created and updated date.
         """

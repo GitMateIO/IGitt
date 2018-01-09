@@ -3,12 +3,12 @@ Contains a class that represents a request to merge something into some git
 branch.
 """
 from datetime import datetime
-from enum import Enum
 from itertools import chain
 from typing import List
 from typing import Set
 import re
 
+from IGitt.Interfaces import MergeRequestStates
 from IGitt.Interfaces.Commit import Commit
 from IGitt.Interfaces.CommitStatus import Status
 from IGitt.Interfaces.Issue import Issue
@@ -24,16 +24,6 @@ SUPPORTED_HOST_KEYWORD_REGEX = {
                r'|[Ff]ix(?:e[sd]|ing)?')
     }
 CONCATENATION_KEYWORDS = [r',', r'\sand\s']
-
-
-class MergeRequestStates(Enum):
-    """
-    This class depicts the merge request states that can are present in any
-    hosting service providers like GitHub or GitLab.
-    """
-    OPEN = 'open'
-    CLOSED = 'closed'
-    MERGED = 'merged'
 
 
 class MergeRequest(Issue):

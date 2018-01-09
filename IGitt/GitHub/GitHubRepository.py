@@ -14,8 +14,8 @@ from IGitt.GitHub import GitHubInstallationToken
 from IGitt.GitHub.GitHubIssue import GitHubIssue
 from IGitt.GitHub.GitHubOrganization import GitHubOrganization
 from IGitt.Interfaces import AccessLevel
-from IGitt.Interfaces.Issue import IssueStates
-from IGitt.Interfaces.MergeRequest import MergeRequestStates
+from IGitt.Interfaces import IssueStates
+from IGitt.Interfaces import MergeRequestStates
 from IGitt.Interfaces.Repository import Repository
 from IGitt.Interfaces.Repository import WebhookEvents
 from IGitt.Utils import eliminate_none
@@ -497,7 +497,7 @@ class GitHubRepository(GitHubMixin, Repository):
                    created_before: Optional[datetime]=None,
                    updated_after: Optional[datetime]=None,
                    updated_before: Optional[datetime]=None,
-                   state: Optional[MergeRequestStates] = None):
+                   state: Optional[MergeRequestStates]=None):
         """
         List open pull request in the repository.
         """

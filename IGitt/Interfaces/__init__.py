@@ -52,7 +52,6 @@ class Token:
         """
         raise NotImplementedError
 
-
 def is_client_error(exception):
     """
     Returns true if the request responded with a client error.
@@ -140,3 +139,26 @@ class AccessLevel(Enum):
     CAN_WRITE = 30
     ADMIN = 40
     OWNER = 50
+
+class MergeRequestStates(Enum):
+    """
+    This class depicts the merge request states that can are present in any
+    hosting service providers like GitHub or GitLab.
+    """
+    OPEN = 'open'
+    CLOSED = 'closed'
+    MERGED = 'merged'
+
+class IssueStates(Enum):
+    """
+    This class depicts the issue states that can are present in any hosting
+    service providers like GitHub or GitLab.
+    """
+    def __str__(self):
+        """
+        Make behaviour of object as similar to a string as possible.
+        """
+        return str(self.value)
+
+    OPEN = 'open'
+    CLOSED = 'closed'

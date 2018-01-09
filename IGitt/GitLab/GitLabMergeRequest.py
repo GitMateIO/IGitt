@@ -12,7 +12,7 @@ from IGitt.GitLab.GitLabCommit import GitLabCommit
 from IGitt.GitLab.GitLabIssue import GitLabIssue
 from IGitt.GitLab.GitLabUser import GitLabUser
 from IGitt.Interfaces.MergeRequest import MergeRequest
-from IGitt.Interfaces.MergeRequest import MergeRequestStates
+from IGitt.Interfaces import MergeRequestStates
 
 
 # Issue is used as a Mixin, super() is never called by design!

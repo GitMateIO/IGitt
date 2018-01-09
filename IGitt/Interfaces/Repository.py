@@ -13,6 +13,8 @@ from git.repo.base import Repo
 
 from IGitt.Interfaces import AccessLevel
 from IGitt.Interfaces import IGittObject
+from IGitt.Interfaces import MergeRequestStates
+from IGitt.Interfaces import IssueStates
 
 
 class WebhookEvents(Enum):
@@ -258,22 +260,22 @@ class Repository(IGittObject):
         raise NotImplementedError
 
     def search_mrs(self,
-                   created_after: Optional[datetime.date]=None,
-                   created_before: Optional[datetime.date]=None,
-                   updated_after: Optional[datetime.date]=None,
-                   updated_before: Optional[datetime.date]=None,
-                   state: Optional[str]=None):
+                   created_after: Optional[datetime]=None,
+                   created_before: Optional[datetime]=None,
+                   updated_after: Optional[datetime]=None,
+                   updated_before: Optional[datetime]=None,
+                   state: Optional[MergeRequestStates]=None):
         """
         Retrieves a list of prs
         """
         raise NotImplementedError
 
     def search_issues(self,
-                      created_after: Optional[datetime.date]=None,
-                      created_before: Optional[datetime.date]=None,
-                      updated_after: Optional[datetime.date]=None,
-                      updated_before: Optional[datetime.date]=None,
-                      state: Optional[str] = None):
+                      created_after: Optional[datetime]=None,
+                      created_before: Optional[datetime]=None,
+                      updated_after: Optional[datetime]=None,
+                      updated_before: Optional[datetime]=None,
+                      state: Optional[IssueStates]=None):
         """
         Retrieves a list of issues
         """

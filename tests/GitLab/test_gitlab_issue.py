@@ -4,7 +4,7 @@ import datetime
 from IGitt.GitLab import GitLabOAuthToken
 from IGitt.GitLab.GitLabIssue import GitLabIssue
 from IGitt.GitLab.GitLabUser import GitLabUser
-from IGitt.Interfaces.Issue import IssueStates
+from IGitt.Interfaces import IssueStates
 
 from tests import IGittTestCase
 

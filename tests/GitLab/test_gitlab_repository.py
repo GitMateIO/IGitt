@@ -8,8 +8,8 @@ from IGitt.GitLab.GitLabMergeRequest import GitLabMergeRequest
 from IGitt.GitLab.GitLabRepository import GitLabRepository
 from IGitt.GitLab.GitLabUser import GitLabUser
 from IGitt.Interfaces import AccessLevel
-from IGitt.Interfaces.Issue import IssueStates
-from IGitt.Interfaces.MergeRequest import MergeRequestStates
+from IGitt.Interfaces import IssueStates
+from IGitt.Interfaces import MergeRequestStates
 from IGitt.Interfaces.Repository import WebhookEvents
 from IGitt import ElementAlreadyExistsError, ElementDoesntExistError
 

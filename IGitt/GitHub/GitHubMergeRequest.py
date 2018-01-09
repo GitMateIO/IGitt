@@ -24,7 +24,7 @@ from IGitt.GitHub.GitHubCommit import GitHubCommit
 from IGitt.GitHub.GitHubIssue import GitHubIssue
 from IGitt.GitHub.GitHubUser import GitHubUser
 from IGitt.Interfaces.MergeRequest import MergeRequest
-from IGitt.Interfaces.MergeRequest import MergeRequestStates
+from IGitt.Interfaces import MergeRequestStates
 
 
 # Issue is used as a Mixin, super() is never called by design!

@@ -12,8 +12,9 @@ from IGitt.GitLab import GitLabOAuthToken, GitLabPrivateToken
 from IGitt.GitLab.GitLabComment import GitLabComment
 from IGitt.GitLab.GitLabUser import GitLabUser
 from IGitt.Interfaces.Comment import CommentType
-from IGitt.Interfaces.Issue import Issue, IssueStates
-from IGitt.Interfaces.MergeRequest import MergeRequestStates
+from IGitt.Interfaces.Issue import Issue
+from IGitt.Interfaces import IssueStates
+from IGitt.Interfaces import MergeRequestStates
 
 
 class GitLabIssue(GitLabMixin, Issue):

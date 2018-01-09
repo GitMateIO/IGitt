@@ -12,7 +12,8 @@ from IGitt.GitHub import GitHubToken
 from IGitt.GitHub.GitHubComment import GitHubComment
 from IGitt.GitHub.GitHubUser import GitHubUser
 from IGitt.Interfaces.Comment import CommentType
-from IGitt.Interfaces.Issue import Issue, IssueStates
+from IGitt.Interfaces.Issue import Issue
+from IGitt.Interfaces import IssueStates
 
 
 CLOSED_BY_PATTERN = re.compile('closed this(?:\n| )+in(?:\n| )+<a href=\"/(.+)/'

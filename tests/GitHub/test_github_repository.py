@@ -9,8 +9,8 @@ from IGitt.GitHub.GitHubMergeRequest import GitHubMergeRequest
 from IGitt.GitHub.GitHubRepository import GitHubRepository
 from IGitt.GitHub.GitHubUser import GitHubUser
 from IGitt.Interfaces import AccessLevel
-from IGitt.Interfaces.Issue import IssueStates
-from IGitt.Interfaces.MergeRequest import MergeRequestStates
+from IGitt.Interfaces import IssueStates
+from IGitt.Interfaces import MergeRequestStates
 from IGitt.Interfaces.Repository import WebhookEvents
 from IGitt import ElementAlreadyExistsError, ElementDoesntExistError
 

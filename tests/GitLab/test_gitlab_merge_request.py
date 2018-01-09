@@ -4,7 +4,7 @@ import datetime
 from IGitt.GitLab import GitLabOAuthToken
 from IGitt.GitLab.GitLabMergeRequest import GitLabMergeRequest
 from IGitt.GitLab.GitLabUser import GitLabUser
-from IGitt.Interfaces.MergeRequest import MergeRequestStates
+from IGitt.Interfaces import MergeRequestStates
 
 from tests import IGittTestCase
 

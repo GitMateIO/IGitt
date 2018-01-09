@@ -4,7 +4,7 @@ import datetime
 from IGitt.GitHub import GitHubToken
 from IGitt.GitHub.GitHubIssue import GitHubIssue
 from IGitt.GitHub.GitHubUser import GitHubUser
-from IGitt.Interfaces.Issue import IssueStates
+from IGitt.Interfaces import IssueStates
 
 from tests import IGittTestCase
 
