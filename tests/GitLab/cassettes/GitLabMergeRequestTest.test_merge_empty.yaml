@@ -1,0 +1,35 @@
+interactions:
+- request:
+    body: '{}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['2']
+      Content-Type: [application/json]
+      User-Agent: [IGitt]
+    method: PUT
+    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/merge_requests/74/merge
+  response:
+    body: {string: '{"id":7076885,"iid":74,"project_id":3439658,"title":"Update temp1","description":"","state":"merged","created_at":"2018-01-08T22:52:05.069Z","updated_at":"2018-01-08T23:12:43.650Z","target_branch":"master","source_branch":"b2","upvotes":0,"downvotes":0,"author":{"id":362269,"name":"Andrew
+        Dassonville","username":"andrewda","state":"active","avatar_url":"https://secure.gravatar.com/avatar/38f682efadbaacd2ba53d44466c2775a?s=80&d=identicon","web_url":"https://gitlab.com/andrewda"},"assignee":null,"source_project_id":5090865,"target_project_id":3439658,"labels":[],"work_in_progress":false,"milestone":null,"merge_when_pipeline_succeeds":false,"merge_status":"can_be_merged","sha":"07434f75e2508d4e24f83f09c1735010b0c7e0b6","merge_commit_sha":"66fd5d82d0b9ed923e69198082222877611c8bce","user_notes_count":0,"approvals_before_merge":null,"discussion_locked":null,"should_remove_source_branch":null,"force_remove_source_branch":false,"squash":false,"web_url":"https://gitlab.com/gitmate-test-user/test/merge_requests/74","time_stats":{"time_estimate":0,"total_time_spent":0,"human_time_estimate":null,"human_total_time_spent":null},"subscribed":true,"changes_count":"1"}'}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['1170']
+      Content-Type: [application/json]
+      Date: ['Mon, 08 Jan 2018 23:12:44 GMT']
+      Etag: [W/"c242860914513009186b1bb54a595298"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['1']
+      RateLimit-Remaining: ['599']
+      RateLimit-Reset: ['1515453224']
+      RateLimit-ResetTime: ['Tue, 08 Jan 2018 23:13:44 GMT']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [fa099657-720d-48ea-80a3-2f24e996cebc]
+      X-Runtime: ['3.066445']
+    status: {code: 200, message: OK}
+version: 1

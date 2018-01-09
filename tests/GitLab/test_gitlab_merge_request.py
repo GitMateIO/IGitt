@@ -110,3 +110,17 @@ class GitLabMergeRequestTest(IGittTestCase):
         self.assertEqual(merged.state, MergeRequestStates.MERGED)
         self.assertEqual(closed.state, MergeRequestStates.CLOSED)
         self.assertEqual(opened.state, MergeRequestStates.OPEN)
+
+    def test_merge_empty(self):
+        mr = GitLabMergeRequest(self.token, 'gitmate-test-user/test', 74)
+        mr.merge()
+        self.assertEqual(mr.state, MergeRequestStates.MERGED)
+
+    def test_merge_params(self):
+        commit_msg = 'Test commit title\n\nTest commit body'
+        head_sha = '2dfdc8f236fd5a4683ac52addb9d92b2920d6cfe'
+        mr = GitLabMergeRequest(self.token, 'gitmate-test-user/test', 75)
+        mr.merge(message=commit_msg, sha=head_sha,
+                 should_remove_source_branch=True,
+                 _gitlab_merge_when_pipeline_succeeds=True)
+        self.assertEqual(mr.state, MergeRequestStates.MERGED)

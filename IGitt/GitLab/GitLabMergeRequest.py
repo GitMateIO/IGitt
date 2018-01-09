@@ -266,3 +266,41 @@ class GitLabMergeRequest(GitLabIssue, MergeRequest):
             'closed': MergeRequestStates.CLOSED,
             'merged': MergeRequestStates.MERGED
         }[self.data['state']]
+
+    def merge(self, message: str=None, sha: str=None,
+              should_remove_source_branch: bool=False,
+              _github_merge_method: str=None,
+              _gitlab_merge_when_pipeline_succeeds: bool=False):
+        """
+        Merges the merge request.
+
+        :param message:                     The commit message.
+        :param sha:                         The commit sha that the HEAD must
+                                            match in order to merge.
+        :param should_remove_source_branch: Whether the source branch should be
+                                            removed upon a successful merge.
+        :param _github_merge_method:        On GitHub, the merge method to use
+                                            when merging the MR. Can be one of
+                                            `merge`, `squash` or `rebase`.
+        :param _gitlab_wait_for_pipeline:   On GitLab, whether the MR should be
+                                            merged immediately after the
+                                            pipeline succeeds.
+        :raises RuntimeError:        If something goes wrong (network, auth...).
+        :raises NotImplementedError: If an unused parameter is passed.
+        """
+        if _github_merge_method:
+            raise NotImplementedError
+
+        merge_options = {}
+        if message:
+            merge_options['merge_commit_message'] = message
+        if sha:
+            merge_options['sha'] = sha
+        if should_remove_source_branch:
+            merge_options['should_remove_source_branch'] = \
+                should_remove_source_branch
+        if _gitlab_merge_when_pipeline_succeeds:
+            merge_options['merge_when_pipeline_succeeds'] = \
+                _gitlab_merge_when_pipeline_succeeds
+
+        self.data = put(self._token, self._url + '/merge', merge_options)

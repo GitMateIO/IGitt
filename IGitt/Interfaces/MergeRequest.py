@@ -287,3 +287,26 @@ class MergeRequest(Issue):
         Returns the author of the MR wrapped in a User object.
         """
         raise NotImplementedError
+
+    def merge(self, message: str=None, sha: str=None,
+              should_remove_source_branch: bool=False,
+              _github_merge_method: str=None,
+              _gitlab_merge_when_pipeline_succeeds: bool=False):
+        """
+        Merges the merge request.
+
+        :param message:                     The commit message.
+        :param sha:                         The commit sha that the HEAD must
+                                            match in order to merge.
+        :param should_remove_source_branch: Whether the source branch should be
+                                            removed upon a successful merge.
+        :param _github_merge_method:        On GitHub, the merge method to use
+                                            when merging the MR. Can be one of
+                                            `merge`, `squash` or `rebase`.
+        :param _gitlab_wait_for_pipeline:   On GitLab, whether the MR should be
+                                            merged immediately after the
+                                            pipeline succeeds.
+        :raises RuntimeError:        If something goes wrong (network, auth...).
+        :raises NotImplementedError: If an unused parameter is passed.
+        """
+        raise NotImplementedError

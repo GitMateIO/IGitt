@@ -109,3 +109,16 @@ class GitHubMergeRequestTest(IGittTestCase):
         self.assertEqual(merged.state, MergeRequestStates.MERGED)
         self.assertEqual(closed.state, MergeRequestStates.CLOSED)
         self.assertEqual(opened.state, MergeRequestStates.OPEN)
+
+    def test_merge_empty(self):
+        mr = GitHubMergeRequest(self.token, 'gitmate-test-user/test', 133)
+        mr.merge()
+        self.assertEqual(mr.state, MergeRequestStates.MERGED)
+
+    def test_merge_params(self):
+        commit_msg = 'Test commit title\n\nTest commit body'
+        head_sha = 'fd2e00646b19fc93e72992761c0b2ef31fe697ae'
+        method = 'squash'
+        mr = GitHubMergeRequest(self.token, 'gitmate-test-user/test', 134)
+        mr.merge(message=commit_msg, sha=head_sha, _github_merge_method=method)
+        self.assertEqual(mr.state, MergeRequestStates.MERGED)

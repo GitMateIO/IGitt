@@ -19,7 +19,7 @@ The methods being used from GitHubIssue are:
 from functools import lru_cache
 from typing import Set
 
-from IGitt.GitHub import get, GitHubToken
+from IGitt.GitHub import get, put, GitHubToken
 from IGitt.GitHub.GitHubCommit import GitHubCommit
 from IGitt.GitHub.GitHubIssue import GitHubIssue
 from IGitt.GitHub.GitHubUser import GitHubUser
@@ -265,3 +265,41 @@ class GitHubMergeRequest(GitHubIssue, MergeRequest):
         if self.data['merged_at'] and self.data['state'] == 'closed':
             return MergeRequestStates.MERGED
         return state
+
+    def merge(self, message: str=None, sha: str=None,
+              should_remove_source_branch: bool=False,
+              _github_merge_method: str=None,
+              _gitlab_merge_when_pipeline_succeeds: bool=False):
+        """
+        Merges the merge request.
+
+        :param message:                     The commit message.
+        :param sha:                         The commit sha that the HEAD must
+                                            match in order to merge.
+        :param should_remove_source_branch: Whether the source branch should be
+                                            removed upon a successful merge.
+        :param _github_merge_method:        On GitHub, the merge method to use
+                                            when merging the MR. Can be one of
+                                            `merge`, `squash` or `rebase`.
+        :param _gitlab_wait_for_pipeline:   On GitLab, whether the MR should be
+                                            merged immediately after the
+                                            pipeline succeeds.
+        :raises RuntimeError:        If something goes wrong (network, auth...).
+        :raises NotImplementedError: If an unused parameter is passed.
+        """
+        if should_remove_source_branch or _gitlab_merge_when_pipeline_succeeds:
+            raise NotImplementedError
+
+        merge_options = {}
+        if message:
+            lines = message.splitlines()
+            merge_options['commit_title'] = lines.pop(0)
+            merge_options['commit_message'] = '\n'.join(lines).strip()
+        if sha:
+            merge_options['sha'] = sha
+        if _github_merge_method:
+            merge_options['merge_method'] = _github_merge_method
+
+        put(self._token, self._mr_url + '/merge', merge_options)
+
+        self.refresh()
