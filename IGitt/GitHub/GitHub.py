@@ -95,6 +95,18 @@ class GitHub(GitHubMixin, Hoster):
 
     @staticmethod
     def raw_search(token, raw_query):
+        """
+        Handles a GitHub search.
+
+        Search syntax reference at
+        https://help.github.com/articles/understanding-the-search-syntax/
+
+        :param token:        A GitHubToken object to use for authentication.
+        :param raw_query:    A string with the search query following syntax.
+        :yields:             Search results as GitHubIssue(...) and
+                             GitHubMergeRequest(...) objects for Issues and
+                             Merge Requests respectively.
+        """
         base_url = '/search/issues'
         query_params = {'q': raw_query,
                         'per_page': '100'}
