@@ -19,7 +19,11 @@ class Content(IGittObject):
 
     def delete(self, message: str, branch: Optional[str]=None):
         """
-        Delete content
+        Deletes content
+
+        :param message: The commit message for the deletion commit.
+        :param branch:  The branch to delete this content from. Defaults to
+                        `master`.
         """
         raise NotImplementedError
 

@@ -33,7 +33,13 @@ class GitLabContent(GitLabMixin, Content):
         self.data = get(token=self._token, url=self._url, params=data)
 
     def delete(self, message: str, branch: Optional[str]=None):
+        """
+        Deletes content
 
+        :param message: The commit message for the deletion commit.
+        :param branch:  The branch to delete this content from. Defaults to
+                        `master`.
+        """
         if branch is None:
             branch = 'master'
 
