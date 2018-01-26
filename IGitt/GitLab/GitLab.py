@@ -209,6 +209,7 @@ class GitLab(GitLabMixin, Hoster):
             'open': MergeRequestActions.OPENED,
             'reopen': MergeRequestActions.REOPENED,
             'merge': MergeRequestActions.MERGED,
+            'close': MergeRequestActions.CLOSED,
         }.get(merge_request_data['action'])
 
         # nasty workaround for finding merge request resync
