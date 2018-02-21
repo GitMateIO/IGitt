@@ -11,3 +11,4 @@ __pycache__
 .DS_Store
 *.egg-info
 build/
+.pytest_cache
