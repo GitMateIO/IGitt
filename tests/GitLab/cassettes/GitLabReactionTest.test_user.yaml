@@ -7,32 +7,6 @@ interactions:
       Connection: [keep-alive]
       User-Agent: [IGitt]
     method: GET
-    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/23/award_emoji/17051518?per_page=100
-  response:
-    body: {string: '{"message":"404 Not found"}'}
-    headers:
-      Cache-Control: [no-cache]
-      Content-Length: ['27']
-      Content-Type: [application/json]
-      Date: ['Thu, 07 Dec 2017 19:55:46 GMT']
-      RateLimit-Limit: ['600']
-      RateLimit-Observed: ['2']
-      RateLimit-Remaining: ['598']
-      RateLimit-Reset: ['1512676606']
-      RateLimit-ResetTime: ['Fri, 07 Dec 2017 19:56:46 GMT']
-      Server: [nginx]
-      Vary: [Origin]
-      X-Request-Id: [b8e54cb8-e0e4-4099-93ec-68473a021aba]
-      X-Runtime: ['0.142242']
-    status: {code: 404, message: Not Found}
-- request:
-    body: null
-    headers:
-      Accept: ['*/*']
-      Accept-Encoding: ['gzip, deflate']
-      Connection: [keep-alive]
-      User-Agent: [IGitt]
-    method: GET
     uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/issues/23/award_emoji/490941?per_page=100
   response:
     body: {string: '{"id":490941,"name":"thumbsdown","user":{"id":889700,"name":"Naveen

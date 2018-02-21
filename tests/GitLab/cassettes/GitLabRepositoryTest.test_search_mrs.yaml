@@ -206,32 +206,4 @@ interactions:
       X-Total: ['36']
       X-Total-Pages: ['1']
     status: {code: 200, message: OK}
-- request:
-    body: null
-    headers:
-      Accept: ['*/*']
-      Accept-Encoding: ['gzip, deflate']
-      Connection: [keep-alive]
-      User-Agent: [IGitt]
-    method: GET
-    uri: https://gitlab.com/api/v4/projects/gitmate-test-user%2Ftest/merge_requests?per_page=100&state=open
-  response:
-    body: {string: '{"error":"state does not have a valid value"}'}
-    headers:
-      Cache-Control: [no-cache]
-      Content-Length: ['45']
-      Content-Type: [application/json]
-      Date: ['Wed, 20 Dec 2017 23:51:12 GMT']
-      RateLimit-Limit: ['600']
-      RateLimit-Observed: ['2']
-      RateLimit-Remaining: ['598']
-      RateLimit-Reset: ['1513813932']
-      RateLimit-ResetTime: ['Thu, 20 Dec 2017 23:52:12 GMT']
-      Server: [nginx]
-      Vary: [Origin]
-      X-Content-Type-Options: [nosniff]
-      X-Frame-Options: [SAMEORIGIN]
-      X-Request-Id: [47c113e0-b928-4cdc-87f5-636916abd6cc]
-      X-Runtime: ['1.194474']
-    status: {code: 400, message: Bad Request}
 version: 1

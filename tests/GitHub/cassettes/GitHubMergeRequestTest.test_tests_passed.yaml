@@ -7,60 +7,6 @@ interactions:
       Connection: [keep-alive]
       User-Agent: [IGitt]
     method: GET
-    uri: https://api.github.com/repos/gitmate-test-user/test/pulls/7/commits?per_page=100
-  response:
-    body:
-      string: !!binary |
-        H4sIAAAAAAAAA+1WTW/bMAz9K4POSeTvL2DYBqzHXYbtsqIIaJlOBNiWIckpuiD/fZSTdEu6bo2D
-        ATv0Zpt+j+SjSPF2y8waWMHqpArKVCRJmAZBmICXexBAGlV1gFFaRwHEURQnJZsxodpWWlZsGQx2
-        rbR76qBFYllJ24LFuUVj54NBTb9jC7Ih21oZMhqL+v3ht4VUZK8IQObA85O558+D6IufF1FSxPk3
-        tjt6I9S/ddOiMbBygXztXURvPt98+PjpZtFWFKLVSJajVDmUWZ1nohQ1iLLC3E9TIfK0zhPAPATh
-        Y5WlZULAQY+ZW9ubgnPo5YJSXw/lgjTkGntl+BPJuBPPfebOreEvdkdiXedvX1jDLzwL2NmlUENH
-        R8IPZmyDWtZSgJWqc6Lt37FiRQ2NwRnTCMaZ2NAZuerIMmPuAeygSeZuaJoZ6+GhUUAg97q7KrUJ
-        aa1t2yxPxfylcM+UbO9ngnrmzNUl5+TS5LgDUMUMif6zfRu1kq4iTzKjvyQVwU+SzPdCjzAbsKDP
-        Ax4/mvBwul3jC9VZcjMe9IEf8e82byOiXOkDjeNmf+sTR/ebPiHYhWUiRK2aRt0T33kGp635jEv+
-        CH+kkt3qGiqCb7myayRJKc2dE0caOzG8Ebql2WHsUlaOzFBdNFbTQjyAKcD7jmLbjhNrZB1KI7Ts
-        XYtPDPWEgiiVXkEnv49TYyIlUbhTPY7VaQmPUKLAjeuQaRx77Jb3Wm5APDi5NAqUG6rCNbxnJERr
-        H/rxvtpfs0ZaXELVuj4eB+353fna4689/mS+89ce/8OG9tw18D/1eA96vM6L2+N+mqRRlGd1Ffkx
-        baiVCGMRYxlkZZbHPmaeV4cxbfo1jZDp++Jx77jA2YW39X4PPixVL3azu9vd/QD8a+9F1QwAAA==
-    headers:
-      Access-Control-Allow-Origin: ['*']
-      Access-Control-Expose-Headers: ['ETag, Link, X-GitHub-OTP, X-RateLimit-Limit,
-          X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes,
-          X-Poll-Interval']
-      Cache-Control: ['private, max-age=60, s-maxage=60']
-      Content-Encoding: [gzip]
-      Content-Security-Policy: [default-src 'none']
-      Content-Type: [application/json; charset=utf-8]
-      Date: ['Wed, 18 Oct 2017 08:35:15 GMT']
-      ETag: [W/"c9143087ef3a5a7e6a9f738a64960854"]
-      Expect-CT: ['max-age=2592000; report-uri="https://api.github.com/_private/browser/errors"']
-      Last-Modified: ['Wed, 18 Oct 2017 08:34:21 GMT']
-      Server: [GitHub.com]
-      Status: [200 OK]
-      Strict-Transport-Security: [max-age=31536000; includeSubdomains; preload]
-      Vary: ['Accept, Authorization, Cookie, X-GitHub-OTP']
-      X-Accepted-OAuth-Scopes: ['']
-      X-Content-Type-Options: [nosniff]
-      X-Frame-Options: [deny]
-      X-GitHub-Media-Type: [github.v3; format=json]
-      X-GitHub-Request-Id: ['D31B:3E42:3953A88:72A2045:59E71242']
-      X-OAuth-Scopes: ['admin:gpg_key, admin:org, admin:org_hook, admin:public_key,
-          admin:repo_hook, gist, notifications, repo, user']
-      X-RateLimit-Limit: ['5000']
-      X-RateLimit-Remaining: ['4930']
-      X-RateLimit-Reset: ['1508317605']
-      X-Runtime-rack: ['0.060728']
-      X-XSS-Protection: [1; mode=block]
-    status: {code: 200, message: OK}
-- request:
-    body: null
-    headers:
-      Accept: ['*/*']
-      Accept-Encoding: ['gzip, deflate']
-      Connection: [keep-alive]
-      User-Agent: [IGitt]
-    method: GET
     uri: https://api.github.com/repos/gitmate-test-user/test/commits/f6d2b7c66372236a090a2a74df2e47f42a54456b/status?per_page=100
   response:
     body:

@@ -7,45 +7,6 @@ interactions:
       Connection: [keep-alive]
       User-Agent: [IGitt]
     method: GET
-    uri: https://api.github.com/repos/gitmate-test-user/test/issues//reactions?per_page=100
-  response:
-    body:
-      string: !!binary |
-        H4sIAAAAAAAAA6tWyk0tLk5MT1WyUvLLL1Fwyy/NS1HSUUrJTy7NTc0rSSzJzM+LLy3KAcpnlJQU
-        FFvp66eklqXm5BekFumlZ5ZklCbpJefn6pcZK9UCAP6TTUJNAAAA
-    headers:
-      Access-Control-Allow-Origin: ['*']
-      Access-Control-Expose-Headers: ['ETag, Link, Retry-After, X-GitHub-OTP, X-RateLimit-Limit,
-          X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes,
-          X-Poll-Interval']
-      Content-Encoding: [gzip]
-      Content-Security-Policy: [default-src 'none']
-      Content-Type: [application/json; charset=utf-8]
-      Date: ['Thu, 07 Dec 2017 19:41:17 GMT']
-      Server: [GitHub.com]
-      Status: [404 Not Found]
-      Strict-Transport-Security: [max-age=31536000; includeSubdomains; preload]
-      X-Accepted-OAuth-Scopes: [repo]
-      X-Content-Type-Options: [nosniff]
-      X-Frame-Options: [deny]
-      X-GitHub-Media-Type: [github.squirrel-girl-preview]
-      X-GitHub-Request-Id: ['FF38:7789:631059:E081DA:5A29995C']
-      X-OAuth-Scopes: ['admin:gpg_key, admin:org, admin:org_hook, admin:public_key,
-          admin:repo_hook, gist, notifications, repo, user']
-      X-RateLimit-Limit: ['5000']
-      X-RateLimit-Remaining: ['4997']
-      X-RateLimit-Reset: ['1512677262']
-      X-Runtime-rack: ['0.034607']
-      X-XSS-Protection: [1; mode=block]
-    status: {code: 404, message: Not Found}
-- request:
-    body: null
-    headers:
-      Accept: [application/vnd.github.squirrel-girl-preview]
-      Accept-Encoding: ['gzip, deflate']
-      Connection: [keep-alive]
-      User-Agent: [IGitt]
-    method: GET
     uri: https://api.github.com/repos/gitmate-test-user/test/issues/12/reactions?per_page=100
   response:
     body:

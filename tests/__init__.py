@@ -63,9 +63,10 @@ for key, value in ENV_DEFAULTS.items():
 @pytest.mark.usefixtures('vcrpy_record_mode')
 class IGittTestCase(TestCase, metaclass=ABCMeta):
     """
-    Base class for writing testcases in IGitt.
+    Base class for writing testcases in IGitt with automated request recording.
     """
     vcr_options = dict()
+    enable_unused_record_deletion = True
 
     @staticmethod
     def remove_link_headers(resp):
@@ -115,11 +116,20 @@ class IGittTestCase(TestCase, metaclass=ABCMeta):
 
             cls.setUp = newSetUp
 
+    def tearDown(self):  # pragma: no cover
+        # Check the cassette for unplayed interactions and remove them
+        if (not self.cassette.all_played and self.enable_unused_record_deletion
+                and not self.cassette.dirty):
+            self.cassette.data = [
+                v for i, v in enumerate(self.cassette.data)
+                if self.cassette.play_counts[i] >= 1
+            ]
+            self.cassette._save(force=True)
+
     def setUp(self):
         """
         Common setup method for all inherited classes.
         """
-        my_vcr = self.vcr
-        context_manager = my_vcr.use_cassette(self.cassette_name)
+        context_manager = self.vcr.use_cassette(self.cassette_name)
         self.cassette = context_manager.__enter__()
         self.addCleanup(context_manager.__exit__, None, None, None)

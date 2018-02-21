@@ -56,42 +56,6 @@ interactions:
       X-Runtime: ['0.342788']
     status: {code: 200, message: OK}
 - request:
-    body: null
-    headers:
-      Accept: ['*/*']
-      Accept-Encoding: ['gzip, deflate']
-      Connection: [keep-alive]
-      User-Agent: [IGitt]
-    method: GET
-    uri: https://gitlab.com/api/v4/users?per_page=100&username=meetmangukiya
-  response:
-    body: {string: '[{"id":707601,"name":"Meet Mangukiya","username":"meetmangukiya","state":"active","avatar_url":"https://gitlab.com/uploads/-/system/user/avatar/707601/avatar.png","web_url":"https://gitlab.com/meetmangukiya"}]'}
-    headers:
-      Cache-Control: ['max-age=0, private, must-revalidate']
-      Content-Length: ['209']
-      Content-Type: [application/json]
-      Date: ['Thu, 28 Sep 2017 16:26:43 GMT']
-      Etag: [W/"2150b9c3ff10268a269f7bc544d019c2"]
-      Link: ['<https://gitlab.com/api/v4/users?active=false&blocked=false&external=false&page=1&per_page=100&skip_ldap=false&username=meetmangukiya>;
-          rel="first", <https://gitlab.com/api/v4/users?active=false&blocked=false&external=false&page=1&per_page=100&skip_ldap=false&username=meetmangukiya>;
-          rel="last"']
-      RateLimit-Limit: ['600']
-      RateLimit-Observed: ['13']
-      RateLimit-Remaining: ['587']
-      Server: [nginx]
-      Strict-Transport-Security: [max-age=31536000]
-      Vary: [Origin]
-      X-Frame-Options: [SAMEORIGIN]
-      X-Next-Page: ['']
-      X-Page: ['1']
-      X-Per-Page: ['100']
-      X-Prev-Page: ['']
-      X-Request-Id: [3cbdd780-9fde-4157-8a38-ddca19499e56]
-      X-Runtime: ['0.063713']
-      X-Total: ['1']
-      X-Total-Pages: ['1']
-    status: {code: 200, message: OK}
-- request:
     body: '{"assignee_ids": [707601]}'
     headers:
       Accept: ['*/*']
@@ -122,42 +86,6 @@ interactions:
       X-Frame-Options: [SAMEORIGIN]
       X-Request-Id: [da23c6ee-f60d-428f-8d04-179d9768af8d]
       X-Runtime: ['0.966512']
-    status: {code: 200, message: OK}
-- request:
-    body: null
-    headers:
-      Accept: ['*/*']
-      Accept-Encoding: ['gzip, deflate']
-      Connection: [keep-alive]
-      User-Agent: [IGitt]
-    method: GET
-    uri: https://gitlab.com/api/v4/users?per_page=100&username=meetmangukiya
-  response:
-    body: {string: '[{"id":707601,"name":"Meet Mangukiya","username":"meetmangukiya","state":"active","avatar_url":"https://gitlab.com/uploads/-/system/user/avatar/707601/avatar.png","web_url":"https://gitlab.com/meetmangukiya"}]'}
-    headers:
-      Cache-Control: ['max-age=0, private, must-revalidate']
-      Content-Length: ['209']
-      Content-Type: [application/json]
-      Date: ['Thu, 28 Sep 2017 16:26:48 GMT']
-      Etag: [W/"2150b9c3ff10268a269f7bc544d019c2"]
-      Link: ['<https://gitlab.com/api/v4/users?active=false&blocked=false&external=false&page=1&per_page=100&skip_ldap=false&username=meetmangukiya>;
-          rel="first", <https://gitlab.com/api/v4/users?active=false&blocked=false&external=false&page=1&per_page=100&skip_ldap=false&username=meetmangukiya>;
-          rel="last"']
-      RateLimit-Limit: ['600']
-      RateLimit-Observed: ['15']
-      RateLimit-Remaining: ['585']
-      Server: [nginx]
-      Strict-Transport-Security: [max-age=31536000]
-      Vary: [Origin]
-      X-Frame-Options: [SAMEORIGIN]
-      X-Next-Page: ['']
-      X-Page: ['1']
-      X-Per-Page: ['100']
-      X-Prev-Page: ['']
-      X-Request-Id: [de875324-b673-4c40-8e3b-094bf1ae007c]
-      X-Runtime: ['0.065705']
-      X-Total: ['1']
-      X-Total-Pages: ['1']
     status: {code: 200, message: OK}
 - request:
     body: '{"assignee_ids": []}'

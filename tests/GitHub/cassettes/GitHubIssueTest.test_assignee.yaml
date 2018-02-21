@@ -209,56 +209,6 @@ interactions:
       X-XSS-Protection: [1; mode=block]
     status: {code: 200, message: OK}
 - request:
-    body: null
-    headers:
-      Accept: ['*/*']
-      Accept-Encoding: ['gzip, deflate']
-      Connection: [keep-alive]
-      User-Agent: [IGitt]
-    method: GET
-    uri: https://api.github.com/users/meetmangukiya?per_page=100
-  response:
-    body:
-      string: !!binary |
-        H4sIAAAAAAAAA52UT2+jMBDFv0rlM6mBkG1jadVee8ite+klGsCF0Rob+Q9VFvW77xjoKuGyKics
-        M+/nx3geI1OmQc0E66T0Hegm/MYLsIRhzcTDjzw97PcJgwE82HOwiipb73snOJ83XXrfoG9DGZy0
-        ldFean9fmY4Hvsifhp8FARu7UCKZ0caK1uMCmtVEc3xtqvWdWrmYD5806+p3o5T5IM7a+H+P4v+k
-        5HNeo262Ykg6cuNbSR2kz/qMzUDnN9iaZCOPjzPWEeToXqysv29tEZKxD02eRm5lbyZiKF1lsfdo
-        9AaLN3LCGduAxj+wEUdyR5RoboOZSUZyOdBUbtDPupH3FgeoLrE9VlYSB+r4VuYKQEh/6SVF4hfN
-        Ruw/enmGuoupfAflZMI0dLHgRBG9O11llIa+B32hV8+VAQV3JC8p0FchvcnEV8DQUKEy1XQpERy6
-        EjA5QQsWXOstJC+6xvgbkB1gDP0N5/j43MT9mDqqadFKKBVZ1EEpskD8ZdmHUmF1nu9BFMeELTvT
-        JDNRfMWLUspEnl+ljYl9lrCK0J66DZ5M5GlW7NLDLnt8zXJxOIiieKPzQ1/f1DzssmyXH1/TQmR7
-        keVv7PMvTYT4rOgEAAA=
-    headers:
-      Access-Control-Allow-Origin: ['*']
-      Access-Control-Expose-Headers: ['ETag, Link, Retry-After, X-GitHub-OTP, X-RateLimit-Limit,
-          X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes,
-          X-Poll-Interval']
-      Cache-Control: ['private, max-age=60, s-maxage=60']
-      Content-Encoding: [gzip]
-      Content-Security-Policy: [default-src 'none']
-      Content-Type: [application/json; charset=utf-8]
-      Date: ['Mon, 18 Dec 2017 14:43:52 GMT']
-      ETag: [W/"1d5cab90dd089c86895c42bba06acd0f"]
-      Last-Modified: ['Wed, 29 Nov 2017 04:13:12 GMT']
-      Server: [GitHub.com]
-      Status: [200 OK]
-      Strict-Transport-Security: [max-age=31536000; includeSubdomains; preload]
-      Vary: ['Accept, Authorization, Cookie, X-GitHub-OTP']
-      X-Accepted-OAuth-Scopes: ['']
-      X-Content-Type-Options: [nosniff]
-      X-Frame-Options: [deny]
-      X-GitHub-Media-Type: [github.v3; format=json]
-      X-GitHub-Request-Id: ['821A:0529:D8F678:1CCBF9A:5A37D427']
-      X-OAuth-Scopes: ['admin:gpg_key, admin:org, admin:org_hook, admin:public_key,
-          admin:repo_hook, gist, notifications, repo, user']
-      X-RateLimit-Limit: ['5000']
-      X-RateLimit-Remaining: ['4963']
-      X-RateLimit-Reset: ['1513609806']
-      X-Runtime-rack: ['0.038107']
-      X-XSS-Protection: [1; mode=block]
-    status: {code: 200, message: OK}
-- request:
     body: '{"assignees": ["meetmangukiya"]}'
     headers:
       Accept: ['*/*']

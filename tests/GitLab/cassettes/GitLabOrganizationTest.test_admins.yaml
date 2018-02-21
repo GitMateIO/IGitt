@@ -88,47 +88,6 @@ interactions:
       Connection: [keep-alive]
       User-Agent: [IGitt]
     method: GET
-    uri: https://gitlab.com/api/v4/groups/gitmate-test-org/members?per_page=100
-  response:
-    body: {string: '[{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80\u0026d=identicon","web_url":"https://gitlab.com/gitmate-test-user","access_level":40,"expires_at":null},{"id":104269,"name":"Lasse
-        Schuirmann","username":"sils","state":"active","avatar_url":"https://secure.gravatar.com/avatar/ea9b9ed83df6acc43cc4ea26b0447ea7?s=80\u0026d=identicon","web_url":"https://gitlab.com/sils","access_level":50,"expires_at":null},{"id":889700,"name":"Naveen
-        Kumar Sangi","username":"nkprince007","state":"active","avatar_url":"https://secure.gravatar.com/avatar/2ed27920a4ec4445d0e390a30df7145d?s=80\u0026d=identicon","web_url":"https://gitlab.com/nkprince007","access_level":50,"expires_at":null}]'}
-    headers:
-      Cache-Control: ['max-age=0, private, must-revalidate']
-      Content-Length: ['791']
-      Content-Type: [application/json]
-      Date: ['Mon, 18 Dec 2017 14:55:12 GMT']
-      Etag: [W/"6c6e2dd4819e70bd5cea6c0ce9c94c47"]
-      Link: ['<https://gitlab.com/api/v4/groups/gitmate-test-org/members?id=gitmate-test-org&page=1&per_page=100>;
-          rel="first", <https://gitlab.com/api/v4/groups/gitmate-test-org/members?id=gitmate-test-org&page=1&per_page=100>;
-          rel="last"']
-      RateLimit-Limit: ['600']
-      RateLimit-Observed: ['3']
-      RateLimit-Remaining: ['597']
-      RateLimit-Reset: ['1513608972']
-      RateLimit-ResetTime: ['Tue, 18 Dec 2017 14:56:12 GMT']
-      Server: [nginx]
-      Strict-Transport-Security: [max-age=31536000]
-      Vary: [Origin]
-      X-Content-Type-Options: [nosniff]
-      X-Frame-Options: [SAMEORIGIN]
-      X-Next-Page: ['']
-      X-Page: ['1']
-      X-Per-Page: ['100']
-      X-Prev-Page: ['']
-      X-Request-Id: [6e8826d4-fdf1-4b5b-8ab3-0cd5fe17113a]
-      X-Runtime: ['0.526728']
-      X-Total: ['3']
-      X-Total-Pages: ['1']
-    status: {code: 200, message: OK}
-- request:
-    body: null
-    headers:
-      Accept: ['*/*']
-      Accept-Encoding: ['gzip, deflate']
-      Connection: [keep-alive]
-      User-Agent: [IGitt]
-    method: GET
     uri: https://gitlab.com/api/v4/groups/gitmate-test-user/members?per_page=100
   response:
     body: {string: '{"message":"404 Group Not Found"}'}
@@ -149,34 +108,4 @@ interactions:
       X-Request-Id: [0557fd69-4504-4db5-9a96-7535e1d8e696]
       X-Runtime: ['0.077667']
     status: {code: 404, message: Not Found}
-- request:
-    body: null
-    headers:
-      Accept: ['*/*']
-      Accept-Encoding: ['gzip, deflate']
-      Connection: [keep-alive]
-      User-Agent: [IGitt]
-    method: GET
-    uri: https://gitlab.com/api/v4/user?per_page=100
-  response:
-    body: {string: '{"id":1369631,"name":"GitMate","username":"gitmate-test-user","state":"active","avatar_url":"https://secure.gravatar.com/avatar/27e08ed25afa8578cb3a346964f0de32?s=80&d=identicon","web_url":"https://gitlab.com/gitmate-test-user","created_at":"2017-06-02T07:14:25.112Z","bio":null,"location":null,"skype":"","linkedin":"","twitter":"","website_url":"","organization":null,"last_sign_in_at":"2017-09-19T14:30:33.360Z","confirmed_at":"2017-06-02T07:17:21.578Z","last_activity_on":"2017-09-24","email":"naveendarknight@gmail.com","theme_id":null,"color_scheme_id":1,"projects_limit":100000,"current_sign_in_at":"2017-09-19T19:37:42.606Z","identities":[],"can_create_group":true,"can_create_project":true,"two_factor_enabled":false,"external":false,"shared_runners_minutes_limit":2000}'}
-    headers:
-      Cache-Control: ['max-age=0, private, must-revalidate']
-      Content-Length: ['779']
-      Content-Type: [application/json]
-      Date: ['Mon, 18 Dec 2017 14:55:13 GMT']
-      Etag: [W/"d6d7c880f3f1baa30897d5b57f90a470"]
-      RateLimit-Limit: ['600']
-      RateLimit-Observed: ['5']
-      RateLimit-Remaining: ['595']
-      RateLimit-Reset: ['1513608973']
-      RateLimit-ResetTime: ['Tue, 18 Dec 2017 14:56:13 GMT']
-      Server: [nginx]
-      Strict-Transport-Security: [max-age=31536000]
-      Vary: [Origin]
-      X-Content-Type-Options: [nosniff]
-      X-Frame-Options: [SAMEORIGIN]
-      X-Request-Id: [34d7df7d-135a-4992-8833-b59ca40b0f15]
-      X-Runtime: ['0.086312']
-    status: {code: 200, message: OK}
 version: 1
