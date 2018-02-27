@@ -25,6 +25,20 @@ class IGittObject:
         """
         raise NotImplementedError
 
+    @property
+    def url(self):
+        """
+        Returns API url.
+        """
+        raise NotImplementedError
+
+    @property
+    def web_url(self):
+        """
+        Returns the web link.
+        """
+        raise NotImplementedError
+
 
 class Token:
     """
