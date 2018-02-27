@@ -43,7 +43,13 @@ class IGittObject:
         """
         Wether or not self is equal to another object :)
         """
-        return self.web_url == other.web_url
+        return hash(self) == hash(other)
+
+    def __hash__(self):
+        """
+        A unique hash.
+        """
+        return hash(self.url)
 
 
 class Token:

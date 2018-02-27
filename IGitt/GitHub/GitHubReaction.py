@@ -67,3 +67,9 @@ class GitHubReaction(GitHubMixin, Reaction):
         """
         user = self.data['user']
         return GitHubUser.from_data(user, self._token, user['login'])
+
+    def __hash__(self):
+        """
+        Unique hash for this thing.
+        """
+        return hash(self.url + str(self._identifier))
