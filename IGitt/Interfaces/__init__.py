@@ -39,6 +39,12 @@ class IGittObject:
         """
         raise NotImplementedError
 
+    def __eq__(self, other):
+        """
+        Wether or not self is equal to another object :)
+        """
+        return self.web_url == other.web_url
+
 
 class Token:
     """
