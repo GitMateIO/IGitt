@@ -37,7 +37,7 @@ class GitHub(GitHubMixin, Hoster):
         Retrieves repositories the user has admin access to.
         """
         repo_list = get(self._token, '/user/repos')
-        return {GitHubRepository(self._token, repo['full_name'])
+        return {GitHubRepository.from_data(repo, self._token, repo['full_name'])
                 for repo in repo_list if repo['permissions']['admin']}
 
     @property
@@ -53,7 +53,7 @@ class GitHub(GitHubMixin, Hoster):
         :return: A set of full repository names.
         """
         repo_list = get(self._token, '/user/repos', {'affiliation': 'owner'})
-        return {GitHubRepository(self._token, repo['full_name'])
+        return {GitHubRepository.from_data(repo, self._token, repo['full_name'])
                 for repo in repo_list}
 
     @property
@@ -69,7 +69,7 @@ class GitHub(GitHubMixin, Hoster):
         :return: A set of strings.
         """
         repo_list = get(self._token, '/user/repos')
-        return {GitHubRepository(self._token, repo['full_name'])
+        return {GitHubRepository.from_data(repo, self._token, repo['full_name'])
                 for repo in repo_list if repo['permissions']['push']}
 
     def get_repo(self, repository) -> GitHubRepository:
@@ -118,11 +118,12 @@ class GitHub(GitHubMixin, Hoster):
             user, repo, item_type, item_number = issue_url_re.match(
                 item['html_url']).groups()
             if item_type == 'issues':
-                yield GitHubIssue(token, user + '/' + repo,
-                                  int(item_number))
+                yield GitHubIssue.from_data(item, token, user + '/' + repo,
+                                            int(item_number))
             elif item_type == 'pull':
-                yield GitHubMergeRequest(token, user + '/' + repo,
-                                         int(item_number))
+                yield GitHubMergeRequest.from_data(item, token,
+                                                   user + '/' + repo,
+                                                   int(item_number))
 
     def _handle_webhook_installation(self, data):
         """Handles 'installation' event."""
