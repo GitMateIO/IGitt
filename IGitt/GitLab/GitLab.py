@@ -75,7 +75,8 @@ class GitLab(GitLabMixin, Hoster):
         Retrieves repositories the user has admin access to.
         """
         repo_list = get(self._token, '/projects', {'membership': True})
-        return {GitLabRepository(self._token, repo['path_with_namespace'])
+        return {GitLabRepository.from_data(repo, self._token,
+                                           repo['path_with_namespace'])
                 for repo in
                 self._get_repos_with_permissions(repo_list,
                                                  AccessLevel.ADMIN)}
@@ -93,7 +94,8 @@ class GitLab(GitLabMixin, Hoster):
         :return: A set of GitLabRepository objects.
         """
         repo_list = get(self._token, '/projects', {'owned': True})
-        return {GitLabRepository(self._token, repo['path_with_namespace'])
+        return {GitLabRepository.from_data(repo, self._token,
+                                           repo['path_with_namespace'])
                 for repo in repo_list}
 
     @property
@@ -109,7 +111,8 @@ class GitLab(GitLabMixin, Hoster):
         :return: A set of GitLabRepository objects.
         """
         repo_list = get(self._token, '/projects', {'membership': True})
-        return {GitLabRepository(self._token, repo['path_with_namespace'])
+        return {GitLabRepository.from_data(repo, self._token,
+                                           repo['path_with_namespace'])
                 for repo in
                 self._get_repos_with_permissions(
                     repo_list,
@@ -182,7 +185,8 @@ class GitLab(GitLabMixin, Hoster):
 
     def _handle_webhook_issue(self, data, repository):
         issue = data['object_attributes']
-        issue_obj = GitLabIssue(
+        issue_obj = GitLabIssue.from_data(
+            issue,
             self._token, repository, issue['iid'])
         trigger_event = {
             'open': IssueActions.OPENED,
@@ -200,7 +204,8 @@ class GitLab(GitLabMixin, Hoster):
 
     def _handle_webhook_merge_request(self, data, repository):
         merge_request_data = data['object_attributes']
-        merge_request_obj = GitLabMergeRequest(
+        merge_request_obj = GitLabMergeRequest.from_data(
+            merge_request_data,
             self._token,
             repository,
             merge_request_data['iid'])
@@ -240,19 +245,20 @@ class GitLab(GitLabMixin, Hoster):
 
         if comment_type == CommentType.MERGE_REQUEST:
             iid = data['merge_request']['iid']
-            iss = GitLabMergeRequest(self._token,
-                                     repository, iid)
+            iss = GitLabMergeRequest.from_data(data['merge_request'],
+                                               self._token, repository, iid)
             action = MergeRequestActions.COMMENTED
         elif comment_type == CommentType.ISSUE:
             iid = data['issue']['iid']
-            iss = GitLabIssue(self._token, repository, iid)
+            iss = GitLabIssue.from_data(data['issue'], self._token,
+                                        repository, iid)
             action = IssueActions.COMMENTED
         else:
             raise NotImplementedError
 
-        yield action, [iss, GitLabComment(
-            self._token, repository, iid,
-            comment_type, comment['id']
+        yield action, [iss, GitLabComment.from_data(
+            comment,
+            self._token, repository, iid, comment_type, comment['id']
         )]
 
     def _handle_webhook_pipeline(self, data, repository):
