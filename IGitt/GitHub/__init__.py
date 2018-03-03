@@ -2,6 +2,7 @@
 This package contains the GitHub implementations of the interfaces in
 server.git.Interfaces.
 """
+from collections import defaultdict
 from datetime import datetime
 from datetime import timedelta
 from typing import Optional
@@ -11,7 +12,7 @@ import logging
 import time
 import requests
 
-from IGitt.Interfaces import _fetch, Token
+from IGitt.Interfaces import _fetch, RateLimit, Token
 from IGitt.Utils import CachedDataMixin
 import jwt
 
@@ -22,6 +23,27 @@ if not GH_INSTANCE_URL.startswith('http'):  # dont cover cause it'll be removed
     logging.warning('Include the protocol in GH_INSTANCE_URL! Omitting it has '
                     'been deprecated.')
 BASE_URL = GH_INSTANCE_URL.replace('github.com', 'api.github.com')
+
+
+class GitHubRateLimit(RateLimit):
+    def __init__(self, resources=None):
+        resources = resources if resources else {}
+        self._resources = defaultdict(
+            lambda : {'remaining': 10, 'reset': 10}, resources)
+
+    def _resource_from_endpoint(self, endpoint):
+        if endpoint.startswith('/search'):
+            return 'search'
+        return 'core'
+
+    def _update_from_headers(self, endpoint, headers):
+        resource = self._resource_from_endpoint(endpoint)
+        data = {
+            'limit': headers['X-RateLimit-Limit'],
+            'remaining': headers['X-RateLimit-Remaining'],
+            'reset': headers['X-RateLimit-Reset']
+        }
+        self._resources[resource] = data
 
 
 class GitHubMixin(CachedDataMixin):
@@ -66,6 +88,8 @@ class GitHubToken(Token):
 
     def __init__(self, token):
         self._token = token
+        self._rate_limit = requests.get(
+            BASE_URL + '/rate_limit', param=self.parameter)
 
     @property
     def headers(self):

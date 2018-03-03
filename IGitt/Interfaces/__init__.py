@@ -1,6 +1,7 @@
 """
 This package contains an abstraction for a git repository.
 """
+from contextlib import contextmanager
 from enum import Enum
 from json.decoder import JSONDecodeError
 from typing import Optional
@@ -78,6 +79,37 @@ class Token:
         """
         raise NotImplementedError
 
+    @property
+    def rate_limit(self):
+        return self._rate_limit
+
+    def can_request(self, endpoint):
+        """
+        Returns whether given url can be requested, i.e. if ratelimit is blown
+        or not.
+        """
+        return self.rate_limit.wait_time(
+            self.rate_limit._resource_from_endpoint(endpoint)) <= 0
+
+
+class RateLimit:
+
+    def wait(self, endpoint):
+        time.sleep(self.wait_time(self._resource_from_endpoint(endpoint)))
+
+    def wait_time(self, resource):
+        if self._resources[resource][remaining] > 0:
+            return 0
+        diff = self._resources[resource]['reset'] - int(time.time())
+        return diff if diff > 0 else 0
+
+    def _update_from_headers(self, endpoint, headers):
+        raise NotImplementedError
+
+    def _resource_from_endpoint(self, endpoint):
+        raise NotImplementedError
+
+
 def is_client_error(exception):
     """
     Returns true if the request responded with a client error.
@@ -127,7 +159,9 @@ def _fetch(base_url: str, req_type: str, token: Token, url: str,
         'delete': session.delete
     }
     method = req_methods[req_type]
+
     resp = get_response(method, base_url + url, json=data)
+    token.rate_limit._update_from_headers(url, resp.headers)
 
     # DELETE request returns no response
     if not len(resp.text):
@@ -150,6 +184,7 @@ def _fetch(base_url: str, req_type: str, token: Token, url: str,
                 resp = get_response(method,
                                     resp.links.get('next')['url'],
                                     json=data)
+                token.rate_limit._update_from_headers(url, resp.headers)
         except JSONDecodeError:
             # if the request has a text response, for e.g. a git diff.
             return resp.text

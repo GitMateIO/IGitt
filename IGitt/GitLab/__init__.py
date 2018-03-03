@@ -22,6 +22,19 @@ if not GL_INSTANCE_URL.startswith('http'):  # dont cover cause it'll be removed
 BASE_URL = GL_INSTANCE_URL + '/api/v4'
 
 
+class GitLabRateLimit(RateLimit):
+    def __init__(self, resources=None):
+        resources = resources if resources else {}
+        self._resources = defaultdict(
+            lambda : {'remaining': 10, 'reset': 10}, resources)
+
+    def _resource_from_endpoint(self, endpoint):
+        pass
+
+    def _update_from_headers(self, endpoint, headers):
+        pass
+
+
 class GitLabMixin(CachedDataMixin):
     """
     Base object for things that are on GitLab.
@@ -64,6 +77,7 @@ class GitLabOAuthToken(Token):
 
     def __init__(self, token):
         self._token = token
+        self._rate_limit = GitLabRateLimit()
 
     @property
     def parameter(self):
@@ -88,6 +102,7 @@ class GitLabPrivateToken(Token):
 
     def __init__(self, token):
         self._token = token
+        self._rate_limit = GitLabRateLimit()
 
     @property
     def parameter(self):
