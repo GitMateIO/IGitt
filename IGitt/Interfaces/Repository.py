@@ -4,6 +4,7 @@ Contains the Repository class.
 
 from datetime import datetime
 from enum import Enum
+from os import chdir, getcwd
 from tempfile import mkdtemp
 from typing import Optional
 from typing import Set
@@ -159,8 +160,15 @@ class Repository(IGittObject):
                  repository.
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
-        tempdir = mkdtemp()
-        repo = Repo.clone_from(self.clone_url, tempdir)
+        old_dir = getcwd()
+        try:
+            tempdir = mkdtemp()
+            # Workaround for
+            # https://github.com/gitpython-developers/GitPython/issues/734
+            chdir(tempdir)
+            repo = Repo.clone_from(self.clone_url, tempdir)
+        finally:
+            chdir(old_dir)
 
         return repo, tempdir
 
