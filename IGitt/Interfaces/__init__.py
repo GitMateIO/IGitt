@@ -1,6 +1,7 @@
 """
 This package contains an abstraction for a git repository.
 """
+from collections import defaultdict
 from enum import Enum
 from json.decoder import JSONDecodeError
 from typing import Optional
@@ -10,6 +11,7 @@ from requests import Session
 
 
 HEADERS = {'User-Agent': 'IGitt'}
+_RESPONSES = defaultdict()
 
 
 class IGittObject:
@@ -78,23 +80,31 @@ class Token:
         """
         raise NotImplementedError
 
-def is_client_error(exception):
+def is_client_error_or_unmodified(exception):
     """
     Returns true if the request responded with a client error.
     """
-    return 400 <= exception.args[1] < 500
+    return (400 <= exception.args[1] < 500) or (exception.args[1] == 304)
 
 
 @on_exception(expo, ConnectionError, max_tries=8)
-@on_exception(expo, RuntimeError, max_tries=3, giveup=is_client_error)
-def get_response(method, *args, **kwargs):
+@on_exception(expo,
+              RuntimeError,
+              max_tries=3,
+              giveup=is_client_error_or_unmodified)
+def get_response(method, url, json=frozenset()):
     """
     Sends a request and checks the response for errors, and retries unless it's
     a HTTP client error.
     """
-    response = method(*args, **kwargs)
-    if response.status_code >= 300:
+    headers = ({'If-None-Match': _RESPONSES[url].headers.get('ETag')}
+               if url in _RESPONSES else {})
+    response = method(url, json=dict(json or {}), headers=headers)
+    if response.status_code == 304 and url in _RESPONSES:
+        return _RESPONSES[url]
+    elif response.status_code >= 300:
         raise RuntimeError(response.text, response.status_code)
+    _RESPONSES[url] = response
     return response
 
 

@@ -1,11 +1,13 @@
 import os
 
+from IGitt.Interfaces import _RESPONSES
 from IGitt.Interfaces import _fetch
 from IGitt.GitHub import BASE_URL as GITHUB_BASE_URL
 from IGitt.GitHub import get
 from IGitt.GitHub import GitHubToken
 from IGitt.GitHub import GitHubJsonWebToken
 from IGitt.GitHub import GitHubInstallationToken
+from IGitt.GitHub.GitHubRepository import GitHubRepository
 from IGitt.GitLab import BASE_URL as GITLAB_BASE_URL
 from IGitt.GitLab import GitLabOAuthToken
 
@@ -61,3 +63,23 @@ class TestInterfacesInit(IGittTestCase):
         token = GitHubToken(os.environ.get('GITHUB_TEST_TOKEN', ''))
         _fetch(GITHUB_BASE_URL, 'get', token,
                '/search/issues', query_params={'q': ' repo:coala/corobo'})
+
+    @staticmethod
+    def test_github_conditional_request():
+        token = GitHubToken(os.environ.get('GITHUB_TEST_TOKEN', ''))
+        repo = GitHubRepository(token, os.environ.get('GITHUB_TEST_REPO',
+                                                      'gitmate-test-user/test'))
+
+        repo.refresh()
+        prev_data = repo.data._data
+        prev_count = _RESPONSES[repo.url].headers.get('X-RateLimit-Remaining')
+
+        repo.refresh()
+        new_data = repo.data._data
+        new_count = _RESPONSES[repo.url].headers.get('X-RateLimit-Remaining')
+
+        # check that no reduction in rate limit is observed
+        assert prev_count == new_count
+
+        # check that response data hasn't been modified
+        assert prev_data == new_data
