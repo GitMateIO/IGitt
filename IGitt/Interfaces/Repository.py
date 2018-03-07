@@ -160,15 +160,16 @@ class Repository(IGittObject):
                  repository.
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
-        old_dir = getcwd()
+        tempdir = mkdtemp()
+
+        # Workaround for
+        # https://github.com/gitpython-developers/GitPython/issues/734
         try:
-            tempdir = mkdtemp()
-            # Workaround for
-            # https://github.com/gitpython-developers/GitPython/issues/734
+            getcwd()
+        except FileNotFoundError:
             chdir(tempdir)
-            repo = Repo.clone_from(self.clone_url, tempdir)
-        finally:
-            chdir(old_dir)
+
+        repo = Repo.clone_from(self.clone_url, tempdir)
 
         return repo, tempdir
 

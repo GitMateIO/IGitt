@@ -1,3 +1,4 @@
+import os
 from unittest.mock import MagicMock
 
 import git
@@ -22,3 +23,12 @@ class TestRepository(IGittTestCase):
 
         self.assertIsInstance(repo, git.Repo)
         self.assertIn('tmp', path)
+
+
+    def test_clone_invalid_path(self):
+        nonexistent_dir = '/thisdoesntexist'
+        os.mkdir(nonexistent_dir)
+        os.chdir(nonexistent_dir)
+        os.rmdir(nonexistent_dir)
+
+        self.test_clone()
