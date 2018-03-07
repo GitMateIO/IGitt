@@ -3,9 +3,9 @@
 """
 Provides a main routine that can install IGitt and create distributions.
 """
+from setuptools import find_packages, setup
 
 from IGitt import VERSION
-from setuptools import find_packages, setup
 
 with open('requirements.txt') as requirements:
     REQUIRED = requirements.read().splitlines()

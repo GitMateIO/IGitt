@@ -15,7 +15,7 @@ preferred_quotation = '
 # ignore R0911 to remove limit on number of return statements
 # ignore C0103 to allow CamelCase module names
 # ignore R1710 to allow returns which are not an expression
-pylint_disable = R0903, C0411, C0326, C1801, W0231, R0913, C0301, E0401, R0911, C0103, R1710
+pylint_disable = R0903, C0326, C1801, W0231, R0913, C0301, E0401, R0911, C0103, R1710
 
 [all.python.code]
 bears += LineLengthBear

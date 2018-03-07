@@ -1,8 +1,8 @@
 from unittest.mock import MagicMock
 
-from IGitt.Interfaces.Repository import Repository
 import git
 
+from IGitt.Interfaces.Repository import Repository
 from tests import IGittTestCase
 
 

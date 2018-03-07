@@ -11,9 +11,10 @@ import logging
 import time
 import requests
 
+import jwt
+
 from IGitt.Interfaces import _fetch, Token
 from IGitt.Utils import CachedDataMixin
-import jwt
 
 
 GH_INSTANCE_URL = os.environ.get('GH_INSTANCE_URL', 'https://github.com')

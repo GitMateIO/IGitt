@@ -3,8 +3,9 @@ This contains the Issue implementation for GitHub.
 """
 from datetime import datetime
 from typing import Set
-import requests
 import re
+
+import requests
 
 from IGitt.GitHub import get, patch, post, delete, GitHubMixin, GH_INSTANCE_URL
 from IGitt.GitHub import GitHubToken
