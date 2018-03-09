@@ -367,13 +367,7 @@ class GitHubIssue(GitHubMixin, Issue):
         >>> issue.close()
         >>> issue.state
         <IssueStates.CLOSED: 'closed'>
-        >>> str(issue.state)
-        'closed'
-
-        And reopen it:
-
-        >>> issue.reopen()
-        >>> issue.state
+        >>> str(issue.sta
         <IssueStates.OPEN: 'open'>
 
         :return: Either <IssueStates.OPEN: 'open'> or

@@ -180,15 +180,7 @@ class GitHub(GitHubMixin, Hoster):
 
     def _handle_webhook_issues(self, data, repository):
         """Handles 'issues' event."""
-        issue = data['issue']
-        issue_obj = GitHubIssue.from_data(
-            issue, self._token, repository, issue['number'])
-        trigger_event = {
-            'opened': IssueActions.OPENED,
-            'closed': IssueActions.CLOSED,
-            'reopened': IssueActions.REOPENED,
-            'labeled': IssueActions.LABELED,
-            'unlabeled': IssueActions.UNLABELED,
+        iled': IssueActions.UNLABELED,
         }.get(data['action'], IssueActions.ATTRIBUTES_CHANGED)
 
         if (trigger_event is IssueActions.LABELED

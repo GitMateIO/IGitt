@@ -10,7 +10,6 @@ from tests import IGittTestCase
 class TestRepository(IGittTestCase):
 
     def setUp(self):
-        git.Repo.clone_from = MagicMock()
         git.Repo.clone_from.return_value = git.Repo()
 
         self.test_repo = type(
