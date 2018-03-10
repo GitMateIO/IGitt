@@ -30,7 +30,8 @@ GL_WEBHOOK_TRANSLATION = {
 }
 
 GL_WEBHOOK_EVENTS = {'tag_push_events', 'job_events', 'pipeline_events',
-                     'wiki_events'} | set(GL_WEBHOOK_TRANSLATION.values())
+                     'wiki_events', 'confidential_issues_events',
+                    } | set(GL_WEBHOOK_TRANSLATION.values())
 
 GL_MR_STATE_TRANSLATION = {MergeRequestStates.MERGED: 'merged',
                            MergeRequestStates.OPEN: 'opened',
