@@ -58,3 +58,10 @@ class GitLabOrganizationTest(IGittTestCase):
                          {'gitmate-test-org/subgroup',
                           'gitmate-test-org/another-subgroup',
                           'gitmate-test-org/another-subgroup/nested-subgroup'})
+
+    def test_repositories(self):
+        self.assertEqual(
+            {r.full_name for r in self.org.repositories},
+            {'gitmate-test-org/test',
+             'gitmate-test-org/subgroup/test',
+             'gitmate-test-org/another-subgroup/nested-subgroup/test'})

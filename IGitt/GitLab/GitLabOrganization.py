@@ -12,6 +12,7 @@ from IGitt.GitLab import get
 from IGitt.GitLab.GitLabUser import GitLabUser
 from IGitt.Interfaces import AccessLevel
 from IGitt.Interfaces.Organization import Organization
+from IGitt.Interfaces.Repository import Repository
 
 
 class GitLabOrganization(GitLabMixin, Organization):
@@ -124,3 +125,18 @@ class GitLabOrganization(GitLabMixin, Organization):
                 suborg_data, self._token, suborg_data['full_path'])
             result |= {suborg} | suborg.suborgs
         return result
+
+    @property
+    @lru_cache(None)
+    def repositories(self) -> Set[Repository]:
+        """
+        Returns the list of repositories contained in this organization
+        including subgroup repositories, recursively.
+        """
+        from IGitt.GitLab.GitLabRepository import GitLabRepository
+
+        return {GitLabRepository.from_data(repo, self._token, repo['id'])
+                for repo in get(self._token, self._url + '/projects')
+               }.union({
+                   repo for org in self.suborgs for repo in org.repositories
+               })

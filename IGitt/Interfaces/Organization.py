@@ -6,6 +6,7 @@ from typing import Set
 
 from IGitt.Interfaces import IGittObject
 from IGitt.Interfaces.User import User
+from IGitt.Interfaces.Repository import Repository
 
 
 class Organization(IGittObject):
@@ -52,5 +53,12 @@ class Organization(IGittObject):
     def suborgs(self):
         """
         Returns the sub-organizations within this repository.
+        """
+        raise NotImplementedError
+
+    @property
+    def repositories(self) -> Set[Repository]:
+        """
+        Returns the list of repositories contained in this organization.
         """
         raise NotImplementedError

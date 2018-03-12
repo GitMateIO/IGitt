@@ -45,3 +45,7 @@ class GitHubOrganizationTest(IGittTestCase):
 
     def test_suborgs(self):
         self.assertEqual(self.org.suborgs, set())
+
+    def test_repositories(self):
+        self.assertEqual({r.full_name for r in self.org.repositories},
+                         {'gitmate-test-org/test', 'gitmate-test-org/test-1'})
