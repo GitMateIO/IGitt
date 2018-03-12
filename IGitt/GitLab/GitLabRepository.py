@@ -545,3 +545,17 @@ class GitLabRepository(GitLabMixin, Repository):
         curr_member_idx = next(i for (i, d) in enumerate(members)
                                if d['username'] == user.username)
         return AccessLevel(members[curr_member_idx]['access_level'])
+
+    @property
+    def parent(self):
+        """
+        Returns the repository from which this repository is forked from.
+        Returns `None` if it has no fork relationship.
+        """
+        try:
+            return GitLabRepository.from_data(
+                self.data['forked_from_project'],
+                self._token,
+                self.data['forked_from_project']['id'])
+        except KeyError:
+            return None

@@ -539,3 +539,13 @@ class GitHubRepository(GitHubMixin, Repository):
             'read': AccessLevel.CAN_READ,
             'none': AccessLevel.NONE,
         }.get(data['permission'])
+
+    @property
+    def parent(self):
+        """
+        Returns the repository from which this repository is forked from.
+        Returns `None` if it has no fork relationship.
+        """
+        if self.data['fork'] is True:
+            return GitHubRepository.from_data(
+                self.data['parent'], self._token, self.data['parent']['id'])

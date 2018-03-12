@@ -200,3 +200,8 @@ class GitHubRepositoryTest(IGittTestCase):
                          AccessLevel.ADMIN)
         self.assertEqual(self.repo.get_permission_level(nkprince007),
                          AccessLevel.CAN_READ)
+
+    def test_parent(self):
+        repo = GitHubRepository(self.token, 'nkprince007/test')
+        self.assertEqual(repo.parent.full_name, 'gitmate-test-user/test')
+        self.assertEqual(repo.parent.parent, None)

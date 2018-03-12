@@ -209,3 +209,8 @@ class GitLabRepositoryTest(IGittTestCase):
                          AccessLevel.CAN_WRITE)
         self.assertEqual(self.repo.get_permission_level(noman),
                          AccessLevel.CAN_VIEW)
+
+    def test_parent(self):
+        repo = GitLabRepository(self.token, 'nkprince007/test')
+        self.assertEqual(repo.parent.full_name, 'gitmate-test-user/test')
+        self.assertEqual(repo.parent.parent, None)

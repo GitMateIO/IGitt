@@ -296,3 +296,11 @@ class Repository(IGittObject):
         repository.
         """
         raise NotImplementedError
+
+    @property
+    def parent(self):
+        """
+        Returns the repository from which this repository is forked from.
+        Returns `None` if it has no fork relationship.
+        """
+        raise NotImplementedError

@@ -1,0 +1,75 @@
+interactions:
+- request:
+    body: '{}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['2']
+      Content-Type: [application/json]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/nkprince007%2Ftest?per_page=100
+  response:
+    body: {string: "{\"id\":3447786,\"description\":\"\",\"name\":\"test\",\"name_with_namespace\":\"Naveen
+        Kumar Sangi / test\",\"path\":\"test\",\"path_with_namespace\":\"nkprince007/test\",\"created_at\":\"2017-06-06T08:43:58.142Z\",\"default_branch\":\"master\",\"tag_list\":[],\"ssh_url_to_repo\":\"git@gitlab.com:nkprince007/test.git\",\"http_url_to_repo\":\"https://gitlab.com/nkprince007/test.git\",\"web_url\":\"https://gitlab.com/nkprince007/test\",\"avatar_url\":null,\"star_count\":0,\"forks_count\":0,\"last_activity_at\":\"2018-01-01T09:18:54.196Z\",\"_links\":{\"self\":\"http://gitlab.com/api/v4/projects/3447786\",\"issues\":\"http://gitlab.com/api/v4/projects/3447786/issues\",\"merge_requests\":\"http://gitlab.com/api/v4/projects/3447786/merge_requests\",\"repo_branches\":\"http://gitlab.com/api/v4/projects/3447786/repository/branches\",\"labels\":\"http://gitlab.com/api/v4/projects/3447786/labels\",\"events\":\"http://gitlab.com/api/v4/projects/3447786/events\",\"members\":\"http://gitlab.com/api/v4/projects/3447786/members\"},\"archived\":false,\"visibility\":\"public\",\"owner\":{\"id\":889700,\"name\":\"Naveen
+        Kumar Sangi\U0001F984\",\"username\":\"nkprince007\",\"state\":\"active\",\"avatar_url\":\"https://secure.gravatar.com/avatar/2ed27920a4ec4445d0e390a30df7145d?s=80&d=identicon\",\"web_url\":\"https://gitlab.com/nkprince007\"},\"resolve_outdated_diff_discussions\":null,\"container_registry_enabled\":true,\"issues_enabled\":true,\"merge_requests_enabled\":true,\"wiki_enabled\":true,\"jobs_enabled\":true,\"snippets_enabled\":true,\"shared_runners_enabled\":true,\"lfs_enabled\":true,\"creator_id\":889700,\"namespace\":{\"id\":1066470,\"name\":\"nkprince007\",\"path\":\"nkprince007\",\"kind\":\"user\",\"full_path\":\"nkprince007\",\"parent_id\":null},\"forked_from_project\":{\"id\":3439658,\"description\":\"\",\"name\":\"test\",\"name_with_namespace\":\"GitMate
+        / test\",\"path\":\"test\",\"path_with_namespace\":\"gitmate-test-user/test\",\"created_at\":\"2017-06-05T04:56:19.418Z\",\"default_branch\":\"master\",\"tag_list\":[],\"ssh_url_to_repo\":\"git@gitlab.com:gitmate-test-user/test.git\",\"http_url_to_repo\":\"https://gitlab.com/gitmate-test-user/test.git\",\"web_url\":\"https://gitlab.com/gitmate-test-user/test\",\"avatar_url\":\"https://assets.gitlab-static.net/uploads/-/system/project/avatar/3439658/gitmate-labs.png\",\"star_count\":0,\"forks_count\":3,\"last_activity_at\":\"2018-01-12T17:42:53.571Z\"},\"import_status\":\"finished\",\"import_error\":null,\"open_issues_count\":0,\"runners_token\":\"FGPaZAAzb3DGFndLcvWs\",\"public_jobs\":true,\"ci_config_path\":null,\"shared_with_groups\":[],\"only_allow_merge_if_pipeline_succeeds\":false,\"request_access_enabled\":false,\"only_allow_merge_if_all_discussions_are_resolved\":false,\"printing_merge_request_link_enabled\":true,\"permissions\":{\"project_access\":{\"access_level\":40,\"notification_level\":3},\"group_access\":null},\"approvals_before_merge\":0}"}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['2700']
+      Content-Type: [application/json]
+      Date: ['Mon, 12 Mar 2018 17:37:23 GMT']
+      Etag: [W/"323e8426b52dbdda12209e699b7cac5a"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['1']
+      RateLimit-Remaining: ['599']
+      RateLimit-Reset: ['1520876303']
+      RateLimit-ResetTime: ['Tue, 12 Mar 2018 17:38:23 GMT']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [547d582c-ea19-4ad2-95ca-2073b3504496]
+      X-Runtime: ['0.585856']
+    status: {code: 200, message: OK}
+- request:
+    body: '{}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['2']
+      Content-Type: [application/json]
+      If-None-Match: [W/"612c4d4f223bd58021e8231a8fe67d74"]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://gitlab.com/api/v4/projects/3439658?per_page=100
+  response:
+    body: {string: "{\"id\":3439658,\"description\":\"\",\"name\":\"test\",\"name_with_namespace\":\"GitMate
+        / test\",\"path\":\"test\",\"path_with_namespace\":\"gitmate-test-user/test\",\"created_at\":\"2017-06-05T04:56:19.418Z\",\"default_branch\":\"master\",\"tag_list\":[],\"ssh_url_to_repo\":\"git@gitlab.com:gitmate-test-user/test.git\",\"http_url_to_repo\":\"https://gitlab.com/gitmate-test-user/test.git\",\"web_url\":\"https://gitlab.com/gitmate-test-user/test\",\"avatar_url\":\"https://assets.gitlab-static.net/uploads/-/system/project/avatar/3439658/gitmate-labs.png\",\"star_count\":0,\"forks_count\":3,\"last_activity_at\":\"2018-01-12T17:42:53.571Z\",\"_links\":{\"self\":\"http://gitlab.com/api/v4/projects/3439658\",\"issues\":\"http://gitlab.com/api/v4/projects/3439658/issues\",\"merge_requests\":\"http://gitlab.com/api/v4/projects/3439658/merge_requests\",\"repo_branches\":\"http://gitlab.com/api/v4/projects/3439658/repository/branches\",\"labels\":\"http://gitlab.com/api/v4/projects/3439658/labels\",\"events\":\"http://gitlab.com/api/v4/projects/3439658/events\",\"members\":\"http://gitlab.com/api/v4/projects/3439658/members\"},\"archived\":false,\"visibility\":\"public\",\"owner\":{\"id\":1369631,\"name\":\"GitMate
+        Labs \U0001F47D\",\"username\":\"gitmate-test-user\",\"state\":\"active\",\"avatar_url\":\"https://assets.gitlab-static.net/uploads/-/system/user/avatar/1369631/avatar.png\",\"web_url\":\"https://gitlab.com/gitmate-test-user\"},\"resolve_outdated_diff_discussions\":null,\"container_registry_enabled\":true,\"issues_enabled\":true,\"merge_requests_enabled\":true,\"wiki_enabled\":true,\"jobs_enabled\":true,\"snippets_enabled\":true,\"shared_runners_enabled\":true,\"lfs_enabled\":true,\"creator_id\":1369631,\"namespace\":{\"id\":1652018,\"name\":\"gitmate-test-user\",\"path\":\"gitmate-test-user\",\"kind\":\"user\",\"full_path\":\"gitmate-test-user\",\"parent_id\":null},\"import_status\":\"failed\",\"import_error\":\"Mirror
+        update for gitmate-test-user/test failed with the following message: The default
+        branch (master) has diverged from its upstream counterpart and could not be
+        updated automatically.\",\"open_issues_count\":14,\"runners_token\":\"mJspL93WBs-yfGkkvpos\",\"public_jobs\":true,\"ci_config_path\":null,\"shared_with_groups\":[],\"only_allow_merge_if_pipeline_succeeds\":false,\"request_access_enabled\":false,\"only_allow_merge_if_all_discussions_are_resolved\":false,\"printing_merge_request_link_enabled\":true,\"permissions\":{\"project_access\":{\"access_level\":40,\"notification_level\":3},\"group_access\":null},\"approvals_before_merge\":0}"}
+    headers:
+      Cache-Control: ['max-age=0, private, must-revalidate']
+      Content-Length: ['2393']
+      Content-Type: [application/json]
+      Date: ['Mon, 12 Mar 2018 17:39:44 GMT']
+      Etag: [W/"4879ea616bc2158b78da74411aa9cec2"]
+      RateLimit-Limit: ['600']
+      RateLimit-Observed: ['1']
+      RateLimit-Remaining: ['599']
+      RateLimit-Reset: ['1520876444']
+      RateLimit-ResetTime: ['Tue, 12 Mar 2018 17:40:44 GMT']
+      Server: [nginx]
+      Strict-Transport-Security: [max-age=31536000]
+      Vary: [Origin]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [SAMEORIGIN]
+      X-Request-Id: [9b309a1c-1cf4-44d1-910c-c8ce693755a4]
+      X-Runtime: ['0.305227']
+    status: {code: 200, message: OK}
+version: 1
