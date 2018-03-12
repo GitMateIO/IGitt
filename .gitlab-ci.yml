@@ -30,5 +30,6 @@ release:
   - python .ci/adjust_version.py IGitt/VERSION -b `date --utc +%Y%m%d%H%M%S`
   - python setup.py sdist bdist_wheel
   - twine upload dist/* -u "$PYPIUSER" -p "$PYPIPW"
+  - ./.ci/push_tags.sh
   only:
   - master
