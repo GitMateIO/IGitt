@@ -12,6 +12,12 @@ class Organization(IGittObject):
     """
     Represents an organization on GitHub or GitLab.
     """
+    @property
+    def description(self) -> str:
+        """
+        Returns the description of the Organization.
+        """
+        raise NotImplementedError
 
     @property
     def billable_users(self) -> int:

@@ -31,6 +31,13 @@ class GitLabOrganization(GitLabMixin, Organization):
         self._url = '/groups/{name}'.format(name=quote_plus(name))
         self._is_user = None
 
+    @property
+    def description(self) -> str:
+        """
+        Returns the description of this organization.
+        """
+        return self.data['description']
+
     @lru_cache()
     def raw_members(self) -> list:
         """

@@ -46,3 +46,9 @@ class GitLabOrganizationTest(IGittTestCase):
                          'https://gitlab.com/api/v4/groups/gitmate-test-user')
         self.assertEqual(self.user.web_url,
                          'https://gitlab.com/gitmate-test-user')
+
+    def test_description(self):
+        org = GitLabOrganization(
+            self.token, 'gitmate-test-org/another-subgroup/nested-subgroup')
+        self.assertEqual(org.description, 'This is a test subgroup')
+        self.assertEqual(self.org.description, '')

@@ -29,6 +29,13 @@ class GitHubOrganization(GitHubMixin, Organization):
         self._url = '/orgs/{name}'.format(name=quote_plus(name))
 
     @property
+    def description(self) -> str:
+        """
+        Returns the description of this organization.
+        """
+        return self.data['description']
+
+    @property
     def billable_users(self) -> int:
         """
         Number of paying/registered users on the organization.

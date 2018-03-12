@@ -37,3 +37,8 @@ class GitHubOrganizationTest(IGittTestCase):
                          'https://api.github.com/orgs/gitmate-test-user')
         self.assertEqual(self.user.web_url,
                          'https://github.com/gitmate-test-user')
+
+    def test_description(self):
+        org = GitHubOrganization(self.token, 'github')
+        self.assertEqual(org.description, 'How people build software.')
+        self.assertEqual(self.org.description, '')
