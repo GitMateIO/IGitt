@@ -74,3 +74,10 @@ class GitHubOrganization(GitHubMixin, Organization):
         The name of the organization.
         """
         return self._name
+
+    @property
+    def suborgs(self) -> Set[Organization]:
+        """
+        Returns the sub-organizations within this repository.
+        """
+        return set()

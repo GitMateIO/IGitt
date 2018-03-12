@@ -52,3 +52,9 @@ class GitLabOrganizationTest(IGittTestCase):
             self.token, 'gitmate-test-org/another-subgroup/nested-subgroup')
         self.assertEqual(org.description, 'This is a test subgroup')
         self.assertEqual(self.org.description, '')
+
+    def test_suborgs(self):
+        self.assertEqual({o.name for o in self.org.suborgs},
+                         {'gitmate-test-org/subgroup',
+                          'gitmate-test-org/another-subgroup',
+                          'gitmate-test-org/another-subgroup/nested-subgroup'})

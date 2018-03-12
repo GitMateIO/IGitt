@@ -42,3 +42,6 @@ class GitHubOrganizationTest(IGittTestCase):
         org = GitHubOrganization(self.token, 'github')
         self.assertEqual(org.description, 'How people build software.')
         self.assertEqual(self.org.description, '')
+
+    def test_suborgs(self):
+        self.assertEqual(self.org.suborgs, set())

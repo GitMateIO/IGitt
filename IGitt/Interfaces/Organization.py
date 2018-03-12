@@ -47,3 +47,10 @@ class Organization(IGittObject):
         The name of the organization.
         """
         raise NotImplementedError
+
+    @property
+    def suborgs(self):
+        """
+        Returns the sub-organizations within this repository.
+        """
+        raise NotImplementedError

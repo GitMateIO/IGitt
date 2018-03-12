@@ -111,3 +111,16 @@ class GitLabOrganization(GitLabMixin, Organization):
         The name of the organization.
         """
         return self._name
+
+    @property
+    @lru_cache(None)
+    def suborgs(self) -> Set[Organization]:
+        """
+        Returns the sub-organizations within this organization, recursively.
+        """
+        result = set()
+        for suborg_data in get(self._token, self._url + '/subgroups'):
+            suborg = GitLabOrganization.from_data(
+                suborg_data, self._token, suborg_data['full_path'])
+            result |= {suborg} | suborg.suborgs
+        return result
