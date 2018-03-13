@@ -376,8 +376,9 @@ class GitHubIssue(GitHubMixin, Issue):
         >>> issue.state
         <IssueStates.OPEN: 'open'>
 
-        :return: Either <IssueStates.OPEN: 'open'> or
-        <IssueStates.CLOSED: 'closed'>.
+
+        :return:    Either <IssueStates.OPEN: 'open'> or
+                    <IssueStates.CLOSED: 'closed'>.
         """
         return IssueStates[self.data['state'].upper()]
 

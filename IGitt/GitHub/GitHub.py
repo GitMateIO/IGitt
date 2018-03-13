@@ -261,7 +261,7 @@ class GitHub(GitHubMixin, Hoster):
         ``IssueActions.OPENED, [GitHubIssue(...)]``, for comments it returns
         ``MergeRequestActions.COMMENTED,
         [GitHubMergeRequest(...), GitHubComment(...)]``, for updates it returns
-        ``IssueActions.LABELED, [GitHubIssue(...), 'new label'].
+        ``IssueActions.LABELED, [GitHubIssue(...), 'new label']``.
 
         :param event:       The X_GITHUB_EVENT of the request header.
         :param data:        The pythonified JSON data of the request.

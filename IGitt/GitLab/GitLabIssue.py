@@ -373,12 +373,14 @@ class GitLabIssue(GitLabMixin, Issue):
         >>> issue.state
         <IssueStates.OPEN: 'open'>
 
+
         Note: GitLab Issues & Merge Requests API underwent a change to have
         only two states, <IssueStates.OPEN: 'open'> or
         <IssueStates.CLOSED: 'closed'>. No 'reopened' state anymore.
 
-        :return: Either <IssueStates.OPEN: 'open'> or
-        <IssueStates.CLOSED: 'closed'>.
+        :return:
+            Either <IssueStates.OPEN: 'open'> or
+            <IssueStates.CLOSED: 'closed'>.
         """
         if self.data['state'] == 'opened':
             self.data['state'] = 'open'

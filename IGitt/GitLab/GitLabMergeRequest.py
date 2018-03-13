@@ -79,7 +79,7 @@ class GitLabMergeRequest(GitLabIssue, MergeRequest):
         """
         Retrieves the head commit as a GitLabCommit object.
 
-         >>> from os import environ
+        >>> from os import environ
         >>> pr = GitLabMergeRequest(
         ...     GitLabOAuthToken(environ['GITLAB_TEST_TOKEN']),
         ...     'gitmate-test-user/test', 2
