@@ -298,16 +298,19 @@ class GitHubRepository(GitHubMixin, Repository):
         >>> repo.delete_hook("http://some.url/in/the/world")
         >>> repo.delete_hook("http://some.url/i/have/a/secret")
 
-        :param url: The URL to fire the webhook to.
+
+        :param url:
+            The URL to fire the webhook to.
         :param secret:
             An optional secret token to be registered with the webhook. An
-        `X-Hub-Signature` value, in the response header, computed as a HMAC
-        hex digest of the body, using the `secret` as the key would be
-        returned when the webhook is fired.
+            `X-Hub-Signature` value, in the response header, computed as a HMAC
+            hex digest of the body, using the `secret` as the key would be
+            returned when the webhook is fired.
         :param events:
             The events for which the webhook is to be registered against.
             Defaults to all possible events.
-        :raises RuntimeError: If something goes wrong (network, auth...).
+        :raises RuntimeError:
+            If something goes wrong (network, auth...).
         """
         if url in self.hooks:
             return
