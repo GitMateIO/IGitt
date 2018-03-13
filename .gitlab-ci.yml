@@ -2,6 +2,7 @@ image: python:3.5-alpine
 
 before_script:
   - apk --update add build-base libffi-dev openssl-dev git
+  - pip install -r docs-requirements.txt
   - pip install -r requirements.txt
   - pip install -r test-requirements.txt
 
@@ -9,6 +10,7 @@ run_tests:
   script:
   - python3 -m pytest
   - sh .ci/no_yaml.sh
+  - python3 setup.py docs
   except:
   - master
 
@@ -30,5 +32,15 @@ release:
   - python .ci/adjust_version.py IGitt/VERSION -b `date --utc +%Y%m%d%H%M%S`
   - python setup.py sdist bdist_wheel
   - twine upload dist/* -u "$PYPIUSER" -p "$PYPIPW"
+  only:
+  - master
+
+pages:
+  script:
+  - python3 setup.py docs
+  - mv docs/_build/html public
+  artifacts:
+    paths:
+    - public
   only:
   - master
