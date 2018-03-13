@@ -1,0 +1,4 @@
+# all requirements are needed so that autodoc can find them
+-r requirements.txt
+-r test-requirements.txt
+Sphinx~=1.7.1
