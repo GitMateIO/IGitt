@@ -12,3 +12,4 @@ __pycache__
 *.egg-info
 build/
 .pytest_cache
+_build
