@@ -1,0 +1,61 @@
+interactions:
+- request:
+    body: '{}'
+    headers:
+      Accept:
+      - !!binary |
+        Ki8q
+      Accept-Encoding:
+      - !!binary |
+        Z3ppcCwgZGVmbGF0ZQ==
+      Authorization:
+      - !!binary |
+        T0F1dGggb2F1dGhfbm9uY2U9IjE0MTcyMDYxMjI0NzAyOTI3NTI2MTUyMTI0NTQ3OSIsIG9hdXRo
+        X3RpbWVzdGFtcD0iMTUyMTI0NTQ3OSIsIG9hdXRoX3ZlcnNpb249IjEuMCIsIG9hdXRoX3NpZ25h
+        dHVyZV9tZXRob2Q9IlJTQS1TSEExIiwgb2F1dGhfY29uc3VtZXJfa2V5PSJPYXV0aEtleSIsIG9h
+        dXRoX3Rva2VuPSIwbm82THg1NnhxYTJ0NGREWmthTWFLc1N4NDVxbnBRdCIsIG9hdXRoX3NpZ25h
+        dHVyZT0iaGxpa3VXOW5mSDNuRWhKSzhJT1RvbzhwdnZkY21UYWoxQ3NKa3lmJTJCNWglMkZhSUFl
+        SkglMkZpOXYlMkZnQmE5a3RwQk5teEdTeCUyRiUyRkdET3hqTHZnakpLRiUyRmM3QjlEZzMzTEpP
+        MzRYMVBRRDZzMWVXb0tZJTJCeXJHTldOb0RXdzgzTEQlMkIybXN6WmNTSFB3VmFUM1dDT0phMjF0
+        byUyQmNBZCUyRmxBcjV0WjlUakV2ME5ub2xhdyUzRCI=
+      Connection:
+      - !!binary |
+        a2VlcC1hbGl2ZQ==
+      Content-Length: ['2']
+      Content-Type:
+      - !!binary |
+        YXBwbGljYXRpb24vanNvbg==
+      User-Agent:
+      - !!binary |
+        cHl0aG9uLXJlcXVlc3RzLzIuMTguNA==
+    method: GET
+    uri: https://jira.gitmate.io/rest/api/2/project
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAOySwU7DMAyGX6XKgVO1LG01TZUmTjug7lgkJMTBNB5kJG0Up5Ay8e5kdAMEAokd
+        diIXx4n/z5J/X28ZBgutZCWTSI1T1quuTTWCTHunU+u6DTa+woFYygj1Olbee2+p5HyjHEzulDfg
+        caI67pA8B6t4xvc6LqbxRKXadTgkDzjErFpexXsLBncJtLfQJssAxmqM7/AIHtyl08TKLSvmoZj/
+        0pmw6R0euo7a8zFcyIWY5lkRmVkRYvwjhdQzLsiA1mffgGIWxOwoYPiBmGchz44iGpSqN1+JLynb
+        19aDxept8NSt/RM4jJ+nsF98tl+827+qqw/7V0CESR0BybgJ/xtwmg24eQUAAP//AwB33qOVAgQA
+        AA==
+    headers:
+      Cache-Control: ['no-cache, no-store, no-transform']
+      Content-Encoding: [gzip]
+      Content-Length: ['286']
+      Content-Security-Policy: [frame-ancestors 'self']
+      Content-Type: [application/json;charset=UTF-8]
+      Date: ['Sat, 17 Mar 2018 00:11:17 GMT']
+      Set-Cookie: [JSESSIONID=DE93E8B1CB7A8496FBF90D98DDD7712D;path=/;HttpOnly, atlassian.xsrf.token=B15V-IRV7-Q0YS-ZCZZ|7b80d0fa6e6ab5eb26b8744022b2fe3b023ff2c0|lin;path=/]
+      Strict-Transport-Security: [max-age=315569260; preload]
+      Vary: [User-Agent]
+      X-Arequestid: [11x4284x1]
+      X-Asen: [SEN-L11373089]
+      X-Asessionid: [kd7d96]
+      X-Ausername: [nkprince007]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [DENY, SAMEORIGIN]
+      X-Seraph-Loginreason: [OK]
+      X-Xss-Protection: [1; mode=block, 1; mode=block]
+    status: {code: 200, message: OK}
+version: 1
