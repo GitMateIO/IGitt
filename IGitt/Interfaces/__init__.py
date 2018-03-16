@@ -80,6 +80,7 @@ class Token:
         """
         raise NotImplementedError
 
+
 def is_client_error_or_unmodified(exception):
     """
     Returns true if the request responded with a client error.
@@ -110,7 +111,7 @@ def get_response(method, url, json=frozenset()):
 
 def _fetch(base_url: str, req_type: str, token: Token, url: str,
            data: Optional[dict]=None, query_params: Optional[dict]=None,
-           headers: Optional[dict]=None):
+           headers: Optional[dict]=None, session: Optional[Session]=None):
     """
     Fetch all the contents by following the ``Link`` header.
 
@@ -120,15 +121,18 @@ def _fetch(base_url: str, req_type: str, token: Token, url: str,
     :param url  : E.g. ``/repo``
     :param query_params: The query parameters.
     :param data : The data to post. Used for Patch and Post methods only
+    :param session: The session to be used for sending requests.
     :return     : A dictionary or a list of dictionaries if the response
                   contains multiple items (usually in case of pagination) or a
                   string in case of other format received (e.g. when fetching a
                   git patch or diff) and the HTTP status code.
     """
     data_container = []
-    session = Session()
-    session.headers.update({**dict(headers or {}), **HEADERS, **token.headers})
-    session.params.update({**dict(query_params or {}), **token.parameter})
+    if session is None:
+        session = Session()
+        session.headers.update(
+            {**dict(headers or {}), **HEADERS, **token.headers})
+        session.params.update({**dict(query_params or {}), **token.parameter})
     req_methods = {
         'get': session.get,
         'post': session.post,
@@ -176,6 +180,7 @@ class AccessLevel(Enum):
     ADMIN = 40
     OWNER = 50
 
+
 class MergeRequestStates(Enum):
     """
     This class depicts the merge request states that can are present in any
@@ -185,11 +190,13 @@ class MergeRequestStates(Enum):
     CLOSED = 'closed'
     MERGED = 'merged'
 
+
 class IssueStates(Enum):
     """
     This class depicts the issue states that can are present in any hosting
     service providers like GitHub or GitLab.
     """
+
     def __str__(self):
         """
         Make behaviour of object as similar to a string as possible.
