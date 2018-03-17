@@ -11,22 +11,20 @@ Installation
 
 Make sure you have Python 3 installed. IGitt will not work with Python 2.
 
-```
-pip install IGitt
-```
+Simply install it with::
+
+    pip install IGitt
 
 Quickstart
 ----------
 
 All classes follow the APIs given in `IGitt.Interfaces`. Here's an example on
-how to set labels on a GitHub issue:
+how to set labels on a GitHub issue::
 
-```
-from IGitt.GitHub.GitHubIssue import GitHubToken, GitHubIssue
-issue = GitHubIssue(GitHubToken("YOUR TOKEN"), "ORG/REPO", NUMBER)
+    from IGitt.GitHub.GitHubIssue import GitHubToken, GitHubIssue
+    issue = GitHubIssue(GitHubToken("YOUR TOKEN"), "ORG/REPO", NUMBER)
 
-issue.labels = {"type/bug", "area/core"}
-```
+    issue.labels = {"type/bug", "area/core"}
 
 For more documentation you'll have to check the documentation comments for now.
 
