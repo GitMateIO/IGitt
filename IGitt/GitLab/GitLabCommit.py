@@ -8,10 +8,11 @@ from urllib.parse import quote_plus
 
 from IGitt import ElementDoesntExistError
 from IGitt.GitHub.GitHubCommit import get_diff_index
-from IGitt.GitLab import get, post, GitLabMixin
+from IGitt.GitLab import GitLabMixin
 from IGitt.GitLab import GitLabOAuthToken, GitLabPrivateToken
 from IGitt.GitLab.GitLabComment import GitLabComment
 from IGitt.GitLab.GitLabRepository import GitLabRepository
+from IGitt.Interfaces import get, post
 from IGitt.Interfaces.Comment import CommentType
 from IGitt.Interfaces.Commit import Commit
 from IGitt.Interfaces.CommitStatus import Status, CommitStatus
@@ -131,7 +132,7 @@ class GitLabCommit(GitLabMixin, Commit):
         # rebuild the url with full sha because gitlab doesn't work that way
         url = '/projects/{repo}/repository/commits/{sha}/statuses'.format(
             repo=quote_plus(self._repository), sha=self.sha)
-        statuses = get(self._token, url)
+        statuses = get(self._token, self.absolute_url(url))
 
         # Only the first of each context is the one we want
         result = set()
@@ -211,7 +212,7 @@ class GitLabCommit(GitLabMixin, Commit):
                 'name': status.context}
         status_url = '/projects/{repo}/statuses/{sha}'.format(
             repo=quote_plus(self._repository), sha=self.sha)
-        post(self._token, status_url, data)
+        post(self._token, self.absolute_url(status_url), data)
 
     def get_patch_for_file(self, filename: str):
         r"""
@@ -237,7 +238,7 @@ class GitLabCommit(GitLabMixin, Commit):
         :return: A string containing the patch.
         :raises ElementDoesntExistError: If the given filename does not exist.
         """
-        diff = get(self._token, self._url + '/diff')
+        diff = get(self._token, self.url + '/diff')
 
         for patch in diff:
             if filename in (patch['new_path'], patch['old_path']):
@@ -318,16 +319,15 @@ class GitLabCommit(GitLabMixin, Commit):
         if 'line' in data and 'path' in data or mr_number is None:
             url = '/projects/{id}/repository/commits/{sha}/comments'.format(
                 id=quote_plus(self._repository), sha=self.sha)
-            res = post(self._token, url, data)
+            res = post(self._token, self.absolute_url(url), data)
             return
 
         # fallback to post the comment on relevant merge request
         if mr_number is not None:
             data['body'] = data['note']  # because gitlab is stupid
-            res = post(self._token,
-                       '/projects/{id}/merge_requests/{mr_iid}/notes'.format(
-                           id=quote_plus(self._repository), mr_iid=mr_number),
-                       data)
+            url = '/projects/{id}/merge_requests/{mr_iid}/notes'.format(
+                id=quote_plus(self._repository), mr_iid=mr_number)
+            res = post(self._token, self.absolute_url(url), data)
             return GitLabComment.from_data(res, self._token, self._repository,
                                            mr_number, CommentType.MERGE_REQUEST,
                                            res['id'])
@@ -338,5 +338,5 @@ class GitLabCommit(GitLabMixin, Commit):
         Retrieves the unified diff for the commit excluding the diff index.
         """
         return '\n'.join(patch['diff']
-                         for patch in get(self._token, self._url + '/diff')
+                         for patch in get(self._token, self.url + '/diff')
                         )

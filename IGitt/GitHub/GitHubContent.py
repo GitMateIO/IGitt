@@ -4,7 +4,8 @@ This contains the Content implementation for GitHub.
 from base64 import b64encode
 from typing import Optional
 
-from IGitt.GitHub import GitHubMixin, GitHubToken, get, delete, put
+from IGitt.GitHub import GitHubMixin, GitHubToken
+from IGitt.Interfaces import get, delete, put
 from IGitt.Interfaces.Content import Content
 
 
@@ -22,7 +23,7 @@ class GitHubContent(GitHubMixin, Content):
             'path': self._url,
             'ref': ref
         }
-        self.data = get(token=self._token, url=self._url, params=data)
+        self.data = get(token=self._token, url=self.url, params=data)
 
     def delete(self, message: str, branch: Optional[str]=None):
         """
@@ -41,7 +42,7 @@ class GitHubContent(GitHubMixin, Content):
             'sha': self.data['sha'],
             'branch': branch
         }
-        delete(token=self._token, url=self._url, params=data)
+        delete(token=self._token, url=self.url, data=data)
 
     def update(self, message: str, content: str, branch: Optional[str]=None):
 
@@ -57,4 +58,4 @@ class GitHubContent(GitHubMixin, Content):
             'branch': branch,
             'content' : content
         }
-        put(token=self._token, url=self._url, data=data)
+        put(token=self._token, url=self.url, data=data)

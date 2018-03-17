@@ -7,7 +7,7 @@ import re
 
 import requests
 
-from IGitt.GitHub import get, patch, post, delete, GitHubMixin, GH_INSTANCE_URL
+from IGitt.GitHub import GitHubMixin, GH_INSTANCE_URL
 from IGitt.GitHub import GitHubToken
 from IGitt.GitHub.GitHubComment import GitHubComment
 from IGitt.GitHub.GitHubReaction import GitHubReaction
@@ -15,6 +15,7 @@ from IGitt.GitHub.GitHubReaction import PREVIEW_HEADER
 from IGitt.GitHub.GitHubUser import GitHubUser
 from IGitt.Interfaces.Comment import CommentType
 from IGitt.Interfaces.Issue import Issue
+from IGitt.Interfaces import get, patch, post, delete
 from IGitt.Interfaces import IssueStates
 
 
@@ -89,7 +90,7 @@ class GitHubIssue(GitHubMixin, Issue):
 
         :param new_title: The new title.
         """
-        self.data = patch(self._token, self._url, {'title': new_title})
+        self.data = patch(self._token, self.url, {'title': new_title})
 
     @property
     def number(self) -> int:
@@ -145,7 +146,7 @@ class GitHubIssue(GitHubMixin, Issue):
         Adds the user as one of the assignees of the issue.
         :param username: Username of the user to be added as an assignee.
         """
-        url = self._url + '/assignees'
+        url = self.url + '/assignees'
         self.data = post(self._token, url,
                          {'assignees': [user.username for user in users]})
 
@@ -154,10 +155,10 @@ class GitHubIssue(GitHubMixin, Issue):
         Removes the user from the assignees of the issue.
         :param users: Username of the user to be unassigned.
         """
-        url = self._url + '/assignees'
+        url = self.url + '/assignees'
         delete(self._token, url,
                {'assignees': [user.username for user in users]})
-        self.data = get(self._token, self._url)
+        self.data = get(self._token, self.url)
 
     @property
     def description(self):
@@ -181,9 +182,7 @@ class GitHubIssue(GitHubMixin, Issue):
 
         :param new_description: The new description.
         """
-        self.data = patch(self._token,
-                          self._url,
-                          {'body': new_description})
+        self.data = patch(self._token, self.url, {'body': new_description})
 
     @property
     def author(self) -> GitHubUser:
@@ -217,7 +216,7 @@ class GitHubIssue(GitHubMixin, Issue):
         :param body: The body of the new comment to create.
         :return: The newly created comment.
         """
-        result = post(self._token, self._url + '/comments', {'body': body})
+        result = post(self._token, self.url + '/comments', {'body': body})
 
         return GitHubComment.from_data(result, self._token, self._repository,
                                        CommentType.ISSUE, result['id'])
@@ -241,7 +240,7 @@ class GitHubIssue(GitHubMixin, Issue):
         """
         return [GitHubComment.from_data(result, self._token, self._repository,
                                         CommentType.ISSUE, result['id'])
-                for result in get(self._token, self._url + '/comments')]
+                for result in get(self._token, self.url + '/comments')]
 
     @property
     def labels(self):
@@ -279,7 +278,7 @@ class GitHubIssue(GitHubMixin, Issue):
         if 'labels' in self.data and value == self.labels:
             return  # No need to patch
 
-        self.data = patch(self._token, self._url, {'labels': list(value)})
+        self.data = patch(self._token, self.url, {'labels': list(value)})
 
     @property
     def available_labels(self):
@@ -295,7 +294,8 @@ class GitHubIssue(GitHubMixin, Issue):
         :return: A set of label captions (str).
         """
         return {label['name'] for label in get(
-            self._token, '/repos/' + self._repository + '/labels')}
+            self._token,
+            self.absolute_url('/repos/' + self._repository + '/labels'))}
 
     @property
     def created(self) -> datetime:
@@ -331,7 +331,7 @@ class GitHubIssue(GitHubMixin, Issue):
 
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
-        self.data = patch(self._token, self._url, {'state': 'closed'})
+        self.data = patch(self._token, self.url, {'state': 'closed'})
 
     def reopen(self):
         """
@@ -339,7 +339,7 @@ class GitHubIssue(GitHubMixin, Issue):
 
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
-        self.data = patch(self._token, self._url, {'state': 'open'})
+        self.data = patch(self._token, self.url, {'state': 'open'})
 
     def delete(self):
         """
@@ -386,7 +386,7 @@ class GitHubIssue(GitHubMixin, Issue):
         """
         Retrieves the reactions / award emojis applied on the issue.
         """
-        url = self._url + '/reactions'
+        url = self.url + '/reactions'
         reactions = get(self._token, url, headers=PREVIEW_HEADER)
         return {GitHubReaction.from_data(r, self._token, self, r['id'])
                 for r in reactions}
@@ -431,7 +431,7 @@ class GitHubIssue(GitHubMixin, Issue):
             'body': body,
         }
 
-        resp = post(token, post_url, data)
+        resp = post(token, GitHubIssue.absolute_url(post_url), data)
         issue_number = resp['number']
 
         return GitHubIssue.from_data(resp, token, repository, issue_number)

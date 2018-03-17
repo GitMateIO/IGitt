@@ -5,11 +5,12 @@ Contains the Hoster implementation for GitLab.
 from typing import List, Union
 import logging
 
-from IGitt.GitLab import get, GitLabOAuthToken, GitLabPrivateToken, GitLabMixin
+from IGitt.GitLab import GitLabOAuthToken, GitLabPrivateToken, GitLabMixin
 from IGitt.GitLab.GitLabComment import GitLabComment
 from IGitt.GitLab.GitLabCommit import GitLabCommit
 from IGitt.GitLab.GitLabIssue import GitLabIssue
 from IGitt.GitLab.GitLabMergeRequest import GitLabMergeRequest
+from IGitt.Interfaces import get
 from IGitt.Interfaces import AccessLevel
 from IGitt.Interfaces.Actions import IssueActions, MergeRequestActions, \
     PipelineActions
@@ -74,7 +75,8 @@ class GitLab(GitLabMixin, Hoster):
         """
         Retrieves repositories the user has admin access to.
         """
-        repo_list = get(self._token, '/projects', {'membership': True})
+        repo_list = get(self._token, self.absolute_url('/projects'),
+                        {'membership': True})
         return {GitLabRepository.from_data(repo, self._token,
                                            repo['path_with_namespace'])
                 for repo in
@@ -93,7 +95,8 @@ class GitLab(GitLabMixin, Hoster):
 
         :return: A set of GitLabRepository objects.
         """
-        repo_list = get(self._token, '/projects', {'owned': True})
+        repo_list = get(self._token, self.absolute_url('/projects'),
+                        {'owned': True})
         return {GitLabRepository.from_data(repo, self._token,
                                            repo['path_with_namespace'])
                 for repo in repo_list}
@@ -110,7 +113,8 @@ class GitLab(GitLabMixin, Hoster):
 
         :return: A set of GitLabRepository objects.
         """
-        repo_list = get(self._token, '/projects', {'membership': True})
+        repo_list = get(self._token, self.absolute_url('/projects'),
+                        {'membership': True})
         return {GitLabRepository.from_data(repo, self._token,
                                            repo['path_with_namespace'])
                 for repo in

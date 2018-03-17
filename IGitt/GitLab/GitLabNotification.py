@@ -6,8 +6,6 @@ Take note that GitHub Notifications are actually available via Todos API.
 from functools import lru_cache
 from typing import Union
 
-from IGitt.GitLab import get
-from IGitt.GitLab import post
 from IGitt.GitLab import BASE_URL
 from IGitt.GitLab import GitLabMixin
 from IGitt.GitLab import GitLabOAuthToken
@@ -15,6 +13,8 @@ from IGitt.GitLab import GitLabPrivateToken
 from IGitt.GitLab.GitLabIssue import GitLabIssue
 from IGitt.GitLab.GitLabMergeRequest import GitLabMergeRequest
 from IGitt.GitLab.GitLabRepository import GitLabRepository
+from IGitt.Interfaces import get
+from IGitt.Interfaces import post
 from IGitt.Interfaces.Notification import Notification
 from IGitt.Interfaces.Notification import Reason
 
@@ -96,13 +96,13 @@ class GitLabNotification(GitLabMixin, Notification):
         Unsubscribe from this subject.
         """
         url = '{}/unsubscribe'.format(self.subject.url.replace(BASE_URL, ''))
-        self.data = post(self._token, url, {})
+        self.data = post(self._token, self.absolute_url(url), {})
 
     def mark_done(self):
         """
         Marks the notification as done/read.
         """
-        self.data = post(self._token, self._url + '/mark_as_done', {})
+        self.data = post(self._token, self.url + '/mark_as_done', {})
 
     def _get_data(self):
         try:
@@ -115,7 +115,7 @@ class GitLabNotification(GitLabMixin, Notification):
     @staticmethod
     @lru_cache(None)
     def _fetch_all(token):
-        return get(token, '/todos')
+        return get(token, GitLabNotification.absolute_url('/todos'))
 
     @staticmethod
     def fetch_all(token: Union[GitLabPrivateToken, GitLabOAuthToken]):

@@ -8,9 +8,9 @@ from urllib.parse import quote_plus
 from IGitt.GitLab import GitLabMixin
 from IGitt.GitLab import GitLabOAuthToken
 from IGitt.GitLab import GitLabPrivateToken
-from IGitt.GitLab import delete
-from IGitt.GitLab import get
-from IGitt.GitLab import put
+from IGitt.Interfaces import delete
+from IGitt.Interfaces import get
+from IGitt.Interfaces import put
 from IGitt.Interfaces.Content import Content
 
 
@@ -30,7 +30,7 @@ class GitLabContent(GitLabMixin, Content):
             'path': self._url,
             'ref': ref
         }
-        self.data = get(token=self._token, url=self._url, params=data)
+        self.data = get(token=self._token, url=self.url, params=data)
 
     def delete(self, message: str, branch: Optional[str]=None):
         """
@@ -48,7 +48,7 @@ class GitLabContent(GitLabMixin, Content):
             'branch': branch,
             'commit_message': message
         }
-        delete(self._token, url=self._url, params=data)
+        delete(self._token, url=self.url, params=data)
 
     def update(self, message: str, content: str, branch: Optional[str]=None):
 
@@ -61,4 +61,4 @@ class GitLabContent(GitLabMixin, Content):
             'branch': branch,
             'content' : content
         }
-        put(token=self._token, url=self._url, data=data)
+        put(token=self._token, url=self.url, data=data)

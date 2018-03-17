@@ -4,10 +4,10 @@ Contains an object representation of a reaction on GitHub.
 from functools import lru_cache
 from typing import Union
 
-from IGitt.GitHub import get
 from IGitt.GitHub import GitHubMixin
 from IGitt.GitHub import GitHubToken
 from IGitt.GitHub.GitHubUser import GitHubUser
+from IGitt.Interfaces import get
 from IGitt.Interfaces.Comment import Comment
 from IGitt.Interfaces.Issue import Issue
 from IGitt.Interfaces.MergeRequest import MergeRequest
@@ -26,7 +26,7 @@ class GitHubReaction(GitHubMixin, Reaction):
         # Note: A GitHub reaction cannot be retrieved using a GET request, it
         # has to retrieved as a list and filtered for the match.
         if not getattr(self, '_list', None):
-            setattr(self, '_list', get(self._token, self._url,
+            setattr(self, '_list', get(self._token, self.url,
                                        headers=PREVIEW_HEADER))
         try:
             return list(filter(lambda x: x['id'] == self._identifier,

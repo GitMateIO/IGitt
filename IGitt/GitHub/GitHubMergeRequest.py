@@ -19,12 +19,12 @@ The methods being used from GitHubIssue are:
 from functools import lru_cache
 from typing import Set
 
-from IGitt.GitHub import get, put, GitHubToken
+from IGitt.GitHub import GitHubToken
 from IGitt.GitHub.GitHubCommit import GitHubCommit
 from IGitt.GitHub.GitHubIssue import GitHubIssue
 from IGitt.GitHub.GitHubUser import GitHubUser
 from IGitt.Interfaces.MergeRequest import MergeRequest
-from IGitt.Interfaces import MergeRequestStates
+from IGitt.Interfaces import get, put, MergeRequestStates
 
 
 # Issue is used as a Mixin, super() is never called by design!
@@ -47,11 +47,12 @@ class GitHubMergeRequest(GitHubIssue, MergeRequest):
         self._token = token
         self._number = number
         self._repository = repository
-        self._mr_url = '/repos/' + repository + '/pulls/' + str(number)
+        self._mr_url = self.absolute_url(
+            '/repos/' + repository + '/pulls/' + str(number))
         self._url = '/repos/'+repository+'/issues/'+str(number)
 
     def _get_data(self):
-        issue_data = get(self._token, self._url)
+        issue_data = get(self._token, self.url)
 
         def get_full_data():
             """

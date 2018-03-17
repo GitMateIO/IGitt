@@ -8,10 +8,11 @@ from typing import Union
 from urllib.parse import quote_plus
 
 from IGitt import ElementAlreadyExistsError, ElementDoesntExistError
-from IGitt.GitLab import delete, get, post, GitLabMixin
+from IGitt.GitLab import GitLabMixin
 from IGitt.GitLab import GitLabOAuthToken, GitLabPrivateToken
 from IGitt.GitLab.GitLabIssue import GitLabIssue
 from IGitt.GitLab.GitLabOrganization import GitLabOrganization
+from IGitt.Interfaces import delete, get, post
 from IGitt.Interfaces import AccessLevel
 from IGitt.Interfaces import IssueStates
 from IGitt.Interfaces import MergeRequestStates
@@ -136,7 +137,7 @@ class GitLabRepository(GitLabMixin, Repository):
                                        self.full_name,
                                        commit['id'])
                 for commit in get(self._token,
-                                  self._url + '/repository/commits')}
+                                  self.url + '/repository/commits')}
 
     @property
     def clone_url(self) -> str:
@@ -171,7 +172,7 @@ class GitLabRepository(GitLabMixin, Repository):
         :return: A set of strings containing the label captions.
         """
         return {label['name']
-                for label in get(self._token, self._url + '/labels')}
+                for label in get(self._token, self.url + '/labels')}
 
     def create_label(self, name: str, color: str):
         """
@@ -203,7 +204,7 @@ class GitLabRepository(GitLabMixin, Repository):
 
         self.data = post(
             self._token,
-            self._url + '/labels',
+            self.url + '/labels',
             {'name': name, 'color': color}
         )
 
@@ -246,7 +247,7 @@ class GitLabRepository(GitLabMixin, Repository):
         if name not in self.get_labels():
             raise ElementDoesntExistError(name + ' doesnt exist.')
 
-        delete(self._token, self._url + '/labels', {'name': name})
+        delete(self._token, self.url + '/labels', params={'name': name})
 
     def get_issue(self, issue_number: int) -> GitLabIssue:
         """
@@ -286,7 +287,7 @@ class GitLabRepository(GitLabMixin, Repository):
 
         :return: Set of URLs (str).
         """
-        hook_url = self._url + '/hooks'
+        hook_url = self.url + '/hooks'
         hooks = get(self._token, hook_url)
 
         return {hook['url'] for hook in hooks}
@@ -343,7 +344,7 @@ class GitLabRepository(GitLabMixin, Repository):
         else:
             config.update({event: True for event in GL_WEBHOOK_EVENTS})
 
-        self.data = post(self._token, self._url + '/hooks', config)
+        self.data = post(self._token, self.url + '/hooks', config)
 
     def delete_hook(self, url: str):
         """
@@ -352,7 +353,7 @@ class GitLabRepository(GitLabMixin, Repository):
         :param url: The URL to not fire the webhook to anymore.
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
-        hook_url = self._url + '/hooks'
+        hook_url = self.url + '/hooks'
         hooks = get(self._token, hook_url)
 
         # Do not use self.hooks since id of the hook is needed
@@ -382,7 +383,7 @@ class GitLabRepository(GitLabMixin, Repository):
         from IGitt.GitLab.GitLabMergeRequest import GitLabMergeRequest
         return {GitLabMergeRequest.from_data(res, self._token,
                                              self.full_name, res['iid'])
-                for res in get(self._token, self._url + '/merge_requests')}
+                for res in get(self._token, self.url + '/merge_requests')}
 
     def filter_issues(self, state: str='opened') -> set:
         """
@@ -393,7 +394,7 @@ class GitLabRepository(GitLabMixin, Repository):
         return {GitLabIssue.from_data(res, self._token,
                                       self.full_name, res['iid'])
                 for res in get(self._token,
-                               self._url + '/issues',
+                               self.url + '/issues',
                                {'state': state})}
 
     @property
@@ -414,7 +415,7 @@ class GitLabRepository(GitLabMixin, Repository):
         """
         Create a fork of Repository
         """
-        url = self._url + '/fork'
+        url = self.url + '/fork'
         data = {
             'id': self.full_name,
             'namespace': namespace
@@ -429,7 +430,7 @@ class GitLabRepository(GitLabMixin, Repository):
         """
         Create a new file in Repository
         """
-        url = self._url + '/repository/files/' + path
+        url = self.url + '/repository/files/' + path
         data = {
             'file_path' : path,
             'commit_message' : message,
@@ -455,7 +456,7 @@ class GitLabRepository(GitLabMixin, Repository):
         """
         Create a new merge request in Repository
         """
-        url = self._url + '/merge_requests'
+        url = self.url + '/merge_requests'
         data = {
             'title' : title,
             'target_branch' : base,
@@ -474,7 +475,7 @@ class GitLabRepository(GitLabMixin, Repository):
         """
         Delete the Repository
         """
-        delete(token=self._token, url=self._url)
+        delete(token=self._token, url=self.url)
 
     def _search(self,
                 search_type,
@@ -486,7 +487,7 @@ class GitLabRepository(GitLabMixin, Repository):
         :param state: A string for MR/issue state (opened or closed)
         :return: List of issues/merge requests.
         """
-        url = self._url + '/{}'.format(search_type)
+        url = self.url + '/{}'.format(search_type)
         if state is None:
             return get(self._token, url)
         elif isinstance(state, IssueStates):
@@ -538,7 +539,7 @@ class GitLabRepository(GitLabMixin, Repository):
         Retrieves the permission level for the specified user on this
         repository.
         """
-        members = get(self._token, self._url + '/members')
+        members = get(self._token, self.url + '/members')
         if user.username not in map(lambda m: m['username'], members):
             return (AccessLevel.CAN_VIEW
                     if self.data['visibility'] != 'private'

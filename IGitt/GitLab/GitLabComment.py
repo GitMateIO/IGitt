@@ -5,9 +5,10 @@ from typing import Union
 from urllib.parse import quote_plus
 
 from datetime import datetime
-from IGitt.GitLab import delete, put, GitLabMixin
+from IGitt.GitLab import GitLabMixin
 from IGitt.GitLab import GitLabOAuthToken, GitLabPrivateToken
 from IGitt.GitLab.GitLabUser import GitLabUser
+from IGitt.Interfaces import delete, put
 from IGitt.Interfaces.Comment import Comment
 from IGitt.Interfaces.Comment import CommentType
 
@@ -109,7 +110,7 @@ class GitLabComment(GitLabMixin, Comment):
         :param value: A string containing comment body.
         """
         payload = {'body': value}
-        self.data = put(self._token, self._url, payload)
+        self.data = put(self._token, self.url, payload)
 
     @property
     def created(self) -> datetime:
@@ -145,7 +146,7 @@ class GitLabComment(GitLabMixin, Comment):
         """
         Deletes the comment.
         """
-        delete(self._token, self._url)
+        delete(self._token, self.url)
 
     @property
     def repository(self):

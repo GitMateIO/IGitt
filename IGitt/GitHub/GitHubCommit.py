@@ -5,9 +5,10 @@ from typing import Optional
 from typing import Set
 
 from IGitt import ElementDoesntExistError
-from IGitt.GitHub import get, post, GitHubMixin, GitHubToken
+from IGitt.GitHub import GitHubMixin, GitHubToken
 from IGitt.GitHub.GitHubComment import GitHubComment
 from IGitt.GitHub.GitHubRepository import GitHubRepository
+from IGitt.Interfaces import get, post
 from IGitt.Interfaces.Comment import CommentType
 from IGitt.Interfaces.Commit import Commit
 from IGitt.Interfaces.CommitStatus import CommitStatus, Status
@@ -193,7 +194,7 @@ class GitHubCommit(GitHubMixin, Commit):
                 'target_url': status.url, 'description': status.description,
                 'context': status.context}
         status_url = '/repos/' + self._repository + '/statuses/' + self.sha
-        post(self._token, status_url, data)
+        post(self._token, self.absolute_url(status_url), data)
 
     def get_statuses(self) -> Set[CommitStatus]:
         """
@@ -202,7 +203,7 @@ class GitHubCommit(GitHubMixin, Commit):
         :return: A (frozen)set of CommitStatus objects.
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
-        url = self._url + '/statuses'
+        url = self.url + '/statuses'
         statuses = get(self._token, url)
 
         # Only the first of each context is the one we want
@@ -230,7 +231,7 @@ class GitHubCommit(GitHubMixin, Commit):
             test is running
             Status.SUCCESS if the latest status for all commits is success
         """
-        url = self._url + '/status'
+        url = self.url + '/status'
         return INV_GH_STATE_TRANSLATION[get(self._token, url)['state']]
 
     def get_patch_for_file(self, filename: str):
@@ -331,18 +332,24 @@ class GitHubCommit(GitHubMixin, Commit):
 
         if mr_number is None:
             comment_type = CommentType.COMMIT
-            res = post(self._token, self._url + '/comments', data)
+            res = post(self._token, self.url + '/comments', data)
         elif 'position' in data:
             comment_type = CommentType.REVIEW
             data['commit_id'] = self.sha
-            res = post(self._token,
-                       '/repos/' + self._repository + '/pulls/' +
-                       str(mr_number) + '/comments', data)
+            res = post(
+                self._token,
+                self.absolute_url(
+                    '/repos/' + self._repository + '/pulls/' + str(mr_number) +
+                    '/comments'),
+                data)
         else:  # Position not available, pr number available, comment on PR
             comment_type = CommentType.ISSUE
-            res = post(self._token,
-                       '/repos/' + self._repository + '/issues/' +
-                       str(mr_number) + '/comments', data)
+            res = post(
+                self._token,
+                self.absolute_url(
+                    '/repos/' + self._repository + '/issues/' + str(mr_number) +
+                    '/comments'),
+                data)
 
         return GitHubComment.from_data(res, self._token, self._repository,
                                        comment_type, res['id'])
@@ -352,7 +359,7 @@ class GitHubCommit(GitHubMixin, Commit):
         """
         Retrieves the unified diff for the commit excluding the diff index.
         """
-        difflines = str(get(self._token, self._url, headers={
+        difflines = str(get(self._token, self.url, headers={
             'Accept': 'application/vnd.github.v3.diff'
         })).strip().splitlines()
         # getting rid of the indexing stuff from git diff e.g. removing lines

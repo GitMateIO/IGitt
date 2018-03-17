@@ -8,8 +8,8 @@ from urllib.parse import quote_plus
 
 from IGitt.GitLab import GL_INSTANCE_URL
 from IGitt.GitLab import GitLabMixin
-from IGitt.GitLab import get
 from IGitt.GitLab.GitLabUser import GitLabUser
+from IGitt.Interfaces import get
 from IGitt.Interfaces import AccessLevel
 from IGitt.Interfaces.Organization import Organization
 from IGitt.Interfaces.Repository import Repository
@@ -45,7 +45,7 @@ class GitLabOrganization(GitLabMixin, Organization):
         Gets all members including the ones of groups around subgroups as a
         list of dicts from the JSON responses.
         """
-        members = list(get(self._token, self._url + '/members'))
+        members = list(get(self._token, self.url + '/members'))
         if '/' in self.name:
             members.extend(GitLabOrganization(
                 self._token,
@@ -61,9 +61,9 @@ class GitLabOrganization(GitLabMixin, Organization):
         try:
             # If the org is a user, this'll throw RuntimeError
             users = {user['username'] for user in get(self._token,
-                                                      self._url + '/members')}
+                                                      self.url + '/members')}
 
-            for group in get(self._token, '/groups'):
+            for group in get(self._token, self.absolute_url('/groups')):
                 gname = group['full_path']
                 if (gname in self.name or self.name in gname) \
                         and self.name != gname:
@@ -71,9 +71,9 @@ class GitLabOrganization(GitLabMixin, Organization):
                         user['username']
                         for user in get(
                             self._token,
-                            '/groups/{name}/members'.format(
+                            self.absolute_url('/groups/{name}/members'.format(
                                 name=quote_plus(gname)
-                            )
+                            ))
                         )
                     }
 
@@ -120,7 +120,7 @@ class GitLabOrganization(GitLabMixin, Organization):
         Returns the sub-organizations within this organization, recursively.
         """
         result = set()
-        for suborg_data in get(self._token, self._url + '/subgroups'):
+        for suborg_data in get(self._token, self.url + '/subgroups'):
             suborg = GitLabOrganization.from_data(
                 suborg_data, self._token, suborg_data['full_path'])
             result |= {suborg} | suborg.suborgs
@@ -136,7 +136,7 @@ class GitLabOrganization(GitLabMixin, Organization):
         from IGitt.GitLab.GitLabRepository import GitLabRepository
 
         return {GitLabRepository.from_data(repo, self._token, repo['id'])
-                for repo in get(self._token, self._url + '/projects')
+                for repo in get(self._token, self.url + '/projects')
                }.union({
                    repo for org in self.suborgs for repo in org.repositories
                })

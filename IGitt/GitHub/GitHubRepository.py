@@ -8,11 +8,12 @@ from typing import Set
 from typing import Union
 
 from IGitt import ElementAlreadyExistsError, ElementDoesntExistError
-from IGitt.GitHub import delete, get, post, GitHubMixin, put
+from IGitt.GitHub import GitHubMixin
 from IGitt.GitHub import GitHubToken
 from IGitt.GitHub import GitHubInstallationToken
 from IGitt.GitHub.GitHubIssue import GitHubIssue
 from IGitt.GitHub.GitHubOrganization import GitHubOrganization
+from IGitt.Interfaces import get, post, put, delete
 from IGitt.Interfaces import AccessLevel
 from IGitt.Interfaces import IssueStates
 from IGitt.Interfaces import MergeRequestStates
@@ -107,7 +108,7 @@ class GitHubRepository(GitHubMixin, Repository):
                                            self._token,
                                            self.full_name,
                                            commit['sha'])
-                    for commit in get(self._token, self._url + '/commits')}
+                    for commit in get(self._token, self.url + '/commits')}
         except RuntimeError as ex:
             # Repository is empty. GitHub returns 409.
             if ex.args[1] == 409:
@@ -152,7 +153,7 @@ class GitHubRepository(GitHubMixin, Repository):
         :return: A set of strings containing the label captions.
         """
         return {label['name']
-                for label in get(self._token, self._url + '/labels')}
+                for label in get(self._token, self.url + '/labels')}
 
     def create_label(self, name: str, color: str):
         """
@@ -182,7 +183,7 @@ class GitHubRepository(GitHubMixin, Repository):
 
         self.data = post(
             self._token,
-            self._url + '/labels',
+            self.url + '/labels',
             {'name': name, 'color': color.lstrip('#')}
         )
 
@@ -223,7 +224,7 @@ class GitHubRepository(GitHubMixin, Repository):
         if name not in self.get_labels():
             raise ElementDoesntExistError(name + ' doesnt exist.')
 
-        delete(self._token, self._url + '/labels/' + name)
+        delete(self._token, self.url + '/labels/' + name)
 
     def get_issue(self, issue_number: int):
         """
@@ -261,7 +262,7 @@ class GitHubRepository(GitHubMixin, Repository):
 
         :return: Set of URLs (str).
         """
-        hook_url = self._url + '/hooks'
+        hook_url = self.url + '/hooks'
         hooks = get(self._token, hook_url)
 
         # Use get since some hooks might not have a config - stupid github
@@ -322,7 +323,7 @@ class GitHubRepository(GitHubMixin, Repository):
 
         self.data = post(
             self._token,
-            self._url + '/hooks',
+            self.url + '/hooks',
             {'name': 'web', 'active': True, 'config': config,
              'events': reg_events if len(reg_events) else ['*']}
         )
@@ -334,7 +335,7 @@ class GitHubRepository(GitHubMixin, Repository):
         :param url: The URL to not fire the webhook to anymore.
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
-        hook_url = self._url + '/hooks'
+        hook_url = self.url + '/hooks'
         hooks = get(self._token, hook_url)
 
         # Do not use self.hooks since id of the hook is needed
@@ -355,7 +356,7 @@ class GitHubRepository(GitHubMixin, Repository):
         """
         from IGitt.GitHub.GitHubMergeRequest import GitHubMergeRequest
         return {GitHubMergeRequest(self._token, self.full_name, res['number'])
-                for res in get(self._token, self._url + '/pulls')}
+                for res in get(self._token, self.url + '/pulls')}
 
     def filter_issues(self, state: str='opened') -> set:
         """
@@ -366,7 +367,7 @@ class GitHubRepository(GitHubMixin, Repository):
         params = {'state': GH_ISSUE_STATE_TRANSLATION[state]}
         return {GitHubIssue.from_data(res, self._token,
                                       self.full_name, res['number'])
-                for res in get(self._token, self._url + '/issues', params)
+                for res in get(self._token, self.url + '/issues', params)
                 if 'pull_request' not in res}
 
     @property
@@ -400,7 +401,7 @@ class GitHubRepository(GitHubMixin, Repository):
         """
         Creates a fork of repository.
         """
-        url = self._url + '/forks'
+        url = self.url + '/forks'
         data = {
             'organization': organization
         }
@@ -413,7 +414,7 @@ class GitHubRepository(GitHubMixin, Repository):
         """
         Deletes the repository
         """
-        delete(self._token, self._url)
+        delete(self._token, self.url)
 
     def create_merge_request(self, title:str, base:str, head:str,
                              body: Optional[str]=None,
@@ -424,7 +425,7 @@ class GitHubRepository(GitHubMixin, Repository):
         """
         data = {'title': title, 'body': body, 'base': base,
                 'head': head}
-        url = self._url + '/pulls'
+        url = self.url + '/pulls'
         json = post(self._token, url, data=data)
 
         from IGitt.GitHub.GitHubMergeRequest import GitHubMergeRequest
@@ -438,7 +439,7 @@ class GitHubRepository(GitHubMixin, Repository):
         """
         Creates a new file in the Repository
         """
-        url = self._url + '/contents/' + path
+        url = self.url + '/contents/' + path
         content = b64encode(content.encode()).decode('utf-8')
         data = {
             'path': path,
@@ -531,7 +532,7 @@ class GitHubRepository(GitHubMixin, Repository):
         Note that this request can be made only if the access token used here
         has atleast write access to the repository. If not, a HTTP 403 occurs.
         """
-        url = self._url + '/collaborators/{}/permission'.format(user.username)
+        url = self.url + '/collaborators/{}/permission'.format(user.username)
         data = get(self._token, url)
         return {
             'admin': AccessLevel.ADMIN,

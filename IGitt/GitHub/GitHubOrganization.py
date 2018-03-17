@@ -7,8 +7,8 @@ from urllib.parse import quote_plus
 
 from IGitt.GitHub import GH_INSTANCE_URL
 from IGitt.GitHub import GitHubMixin
-from IGitt.GitHub import get
 from IGitt.GitHub.GitHubUser import GitHubUser
+from IGitt.Interfaces import get
 from IGitt.Interfaces.Organization import Organization
 from IGitt.Interfaces.Repository import Repository
 
@@ -43,7 +43,7 @@ class GitHubOrganization(GitHubMixin, Organization):
         Number of paying/registered users on the organization.
         """
         try:
-            return len(get(self._token, self._url + '/members'))
+            return len(get(self._token, self.url + '/members'))
         except RuntimeError:
             return 1
 
@@ -56,7 +56,7 @@ class GitHubOrganization(GitHubMixin, Organization):
             return {
                 GitHubUser.from_data(user, self._token, user['login'])
                 for user in get(
-                    self._token, self._url + '/members',
+                    self._token, self.url + '/members',
                     params={'role': 'admin'}
                 )
             }
@@ -93,4 +93,4 @@ class GitHubOrganization(GitHubMixin, Organization):
         from IGitt.GitHub.GitHubRepository import GitHubRepository
 
         return {GitHubRepository.from_data(repo, self._token, repo['id'])
-                for repo in get(self._token, self._url + '/repos')}
+                for repo in get(self._token, self.url + '/repos')}

@@ -7,13 +7,14 @@ from typing import Set
 from typing import Union
 from urllib.parse import quote_plus
 
-from IGitt.GitLab import get, put, post, delete, GitLabMixin
+from IGitt.GitLab import GitLabMixin
 from IGitt.GitLab import GitLabOAuthToken, GitLabPrivateToken
 from IGitt.GitLab.GitLabComment import GitLabComment
 from IGitt.GitLab.GitLabReaction import GitLabReaction
 from IGitt.GitLab.GitLabUser import GitLabUser
 from IGitt.Interfaces.Comment import CommentType
 from IGitt.Interfaces.Issue import Issue
+from IGitt.Interfaces import get, put, post, delete
 from IGitt.Interfaces import IssueStates
 from IGitt.Interfaces import MergeRequestStates
 
@@ -88,7 +89,7 @@ class GitLabIssue(GitLabMixin, Issue):
 
         :param new_title: The new title.
         """
-        self.data = put(self._token, self._url, {'title': new_title})
+        self.data = put(self._token, self.url, {'title': new_title})
 
     @property
     def number(self) -> int:
@@ -145,7 +146,7 @@ class GitLabIssue(GitLabMixin, Issue):
         """
         Setter for assignees.
         """
-        self.data = put(self._token, self._url,
+        self.data = put(self._token, self.url,
                         {'assignee_ids': [u.identifier for u in value]})
 
     @property
@@ -170,9 +171,7 @@ class GitLabIssue(GitLabMixin, Issue):
 
         :param new_description: The new description.
         """
-        self.data = put(self._token,
-                        self._url,
-                        {'description': new_description})
+        self.data = put(self._token, self.url, {'description': new_description})
 
     @property
     def author(self) -> GitLabUser:
@@ -206,7 +205,7 @@ class GitLabIssue(GitLabMixin, Issue):
         :param body: The body of the new comment to create.
         :return: The newly created comment.
         """
-        result = post(self._token, self._url + '/notes', {'body': body})
+        result = post(self._token, self.url + '/notes', {'body': body})
 
         return GitLabComment(self._token, self._repository, self.number,
                              CommentType.ISSUE, result['id'])
@@ -235,7 +234,7 @@ class GitLabIssue(GitLabMixin, Issue):
                 result, self._token, self._repository, self.number,
                 CommentType.ISSUE, result['id']
             )
-            for result in get(self._token, self._url + '/notes')
+            for result in get(self._token, self.url + '/notes')
         ]
 
     @property
@@ -274,7 +273,7 @@ class GitLabIssue(GitLabMixin, Issue):
         if 'labels' in self.data and value == self.labels:
             return  # No need to patch
 
-        self.data = put(self._token, self._url,
+        self.data = put(self._token, self.url,
                         {'labels': ','.join(map(str, value))})
 
     @property
@@ -291,8 +290,8 @@ class GitLabIssue(GitLabMixin, Issue):
         :return: A set of label captions (str).
         """
         return {label['name'] for label in get(
-            self._token, '/projects/' +
-            quote_plus(self._repository) + '/labels')}
+            self._token, self.absolute_url(
+                '/projects/' + quote_plus(self._repository) + '/labels'))}
 
     @property
     def created(self)->datetime:
@@ -328,7 +327,7 @@ class GitLabIssue(GitLabMixin, Issue):
 
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
-        self.data = put(self._token, self._url, {'state_event': 'close'})
+        self.data = put(self._token, self.url, {'state_event': 'close'})
 
     def reopen(self):
         """
@@ -336,7 +335,7 @@ class GitLabIssue(GitLabMixin, Issue):
 
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
-        self.data = put(self._token, self._url, {'state_event': 'reopen'})
+        self.data = put(self._token, self.url, {'state_event': 'reopen'})
 
     def delete(self):
         """
@@ -344,7 +343,7 @@ class GitLabIssue(GitLabMixin, Issue):
 
         :raises RuntimeError: If something goes wrong (network, auth...).
         """
-        delete(self._token, self._url)
+        delete(self._token, self.url)
 
     @property
     def state(self):
@@ -390,7 +389,7 @@ class GitLabIssue(GitLabMixin, Issue):
         """
         Retrieves the reactions / award emojis applied on the issue.
         """
-        url = self._url + '/award_emoji'
+        url = self.url + '/award_emoji'
         reactions = get(self._token, url)
         return {GitLabReaction.from_data(r, self._token, self, r['id'])
                 for r in reactions}
@@ -419,7 +418,8 @@ class GitLabIssue(GitLabMixin, Issue):
         :return: GitLabIssue object of the newly created issue.
         """
         url = '/projects/{repo}/issues'.format(repo=quote_plus(repository))
-        issue = post(token, url, {'title': title, 'description': body})
+        issue = post(token, GitLabIssue.absolute_url(url),
+                     {'title': title, 'description': body})
 
         return GitLabIssue.from_data(issue, token, repository, issue['iid'])
 
@@ -431,7 +431,7 @@ class GitLabIssue(GitLabMixin, Issue):
         from IGitt.GitLab.GitLabMergeRequest import GitLabMergeRequest
 
         url = '{url}/closed_by'.format(url=self._url)
-        mrs = get(self._token, url)
+        mrs = get(self._token, self.absolute_url(url))
 
         return {GitLabMergeRequest.from_data(mr,
                                              self._token,

@@ -3,7 +3,7 @@ Contains the Hoster implementation for GitHub.
 """
 import re
 
-from IGitt.GitHub import get, GitHubToken, GitHubMixin
+from IGitt.GitHub import GitHubToken, GitHubMixin
 from IGitt.GitHub.GitHubComment import GitHubComment
 from IGitt.GitHub.GitHubCommit import GitHubCommit
 from IGitt.GitHub.GitHubInstallation import GitHubInstallation
@@ -11,6 +11,7 @@ from IGitt.GitHub.GitHubIssue import GitHubIssue
 from IGitt.GitHub.GitHubMergeRequest import GitHubMergeRequest
 from IGitt.GitHub.GitHubRepository import GitHubRepository
 from IGitt.GitHub.GitHubUser import GitHubUser
+from IGitt.Interfaces import get
 from IGitt.Interfaces.Actions import IssueActions, MergeRequestActions, \
     PipelineActions, InstallationActions
 from IGitt.Interfaces.Comment import CommentType
@@ -36,7 +37,7 @@ class GitHub(GitHubMixin, Hoster):
         """
         Retrieves repositories the user has admin access to.
         """
-        repo_list = get(self._token, '/user/repos')
+        repo_list = get(self._token, self.absolute_url('/user/repos'))
         return {GitHubRepository.from_data(repo, self._token, repo['full_name'])
                 for repo in repo_list if repo['permissions']['admin']}
 
@@ -52,7 +53,8 @@ class GitHub(GitHubMixin, Hoster):
 
         :return: A set of full repository names.
         """
-        repo_list = get(self._token, '/user/repos', {'affiliation': 'owner'})
+        repo_list = get(self._token, self.absolute_url('/user/repos'),
+                        {'affiliation': 'owner'})
         return {GitHubRepository.from_data(repo, self._token, repo['full_name'])
                 for repo in repo_list}
 
@@ -68,7 +70,7 @@ class GitHub(GitHubMixin, Hoster):
 
         :return: A set of strings.
         """
-        repo_list = get(self._token, '/user/repos')
+        repo_list = get(self._token, self.absolute_url('/user/repos'))
         return {GitHubRepository.from_data(repo, self._token, repo['full_name'])
                 for repo in repo_list if repo['permissions']['push']}
 
@@ -107,10 +109,9 @@ class GitHub(GitHubMixin, Hoster):
                              GitHubMergeRequest(...) objects for Issues and
                              Merge Requests respectively.
         """
-        base_url = '/search/issues'
         query_params = {'q': raw_query,
                         'per_page': '100'}
-        resp = get(token, base_url, query_params)
+        resp = get(token, GitHub.absolute_url('/search/issues'), query_params)
 
         issue_url_re = re.compile(
             r'https://(?:.+)/(\S+)/(\S+)/(issues|pull)/(\d+)')

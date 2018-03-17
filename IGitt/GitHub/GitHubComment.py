@@ -3,7 +3,8 @@ Represents a comment on GitHub.
 """
 from datetime import datetime
 
-from IGitt.GitHub import delete, patch, GitHubMixin, GitHubToken
+from IGitt.GitHub import GitHubMixin, GitHubToken
+from IGitt.Interfaces import delete, patch
 from IGitt.Interfaces.Comment import Comment, CommentType
 from IGitt.GitHub.GitHubUser import GitHubUser
 
@@ -82,7 +83,7 @@ class GitHubComment(GitHubMixin, Comment):
         :param value: A string containing comment body.
         """
         payload = {'body': value}
-        self.data = patch(self._token, self._url, payload)
+        self.data = patch(self._token, self.url, payload)
 
     @property
     def author(self) -> GitHubUser:
@@ -133,7 +134,7 @@ class GitHubComment(GitHubMixin, Comment):
         """
         Deletes the comment.
         """
-        delete(self._token, self._url)
+        delete(self._token, self.url)
 
     @property
     def repository(self):

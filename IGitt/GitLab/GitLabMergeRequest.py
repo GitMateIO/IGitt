@@ -7,12 +7,12 @@ from typing import Union
 from urllib.parse import quote_plus
 import re
 
-from IGitt.GitLab import get, put, GitLabOAuthToken, GitLabPrivateToken
+from IGitt.GitLab import GitLabOAuthToken, GitLabPrivateToken
 from IGitt.GitLab.GitLabCommit import GitLabCommit
 from IGitt.GitLab.GitLabIssue import GitLabIssue
 from IGitt.GitLab.GitLabUser import GitLabUser
 from IGitt.Interfaces.MergeRequest import MergeRequest
-from IGitt.Interfaces import MergeRequestStates
+from IGitt.Interfaces import get, put, MergeRequestStates
 
 
 # Issue is used as a Mixin, super() is never called by design!
@@ -109,7 +109,7 @@ class GitLabMergeRequest(GitLabIssue, MergeRequest):
 
         :return: A tuple of commit objects.
         """
-        commits = get(self._token, self._url + '/commits')
+        commits = get(self._token, self.url + '/commits')
         return tuple(GitLabCommit(self._token, self._repository, commit['id'])
                      for commit in commits)
 
@@ -166,7 +166,7 @@ class GitLabMergeRequest(GitLabIssue, MergeRequest):
 
         :return: A set of filenames.
         """
-        changes = get(self._token, self._url + '/changes')['changes']
+        changes = get(self._token, self.url + '/changes')['changes']
         return {change['old_path'] for change in changes}
 
     @property
@@ -184,7 +184,7 @@ class GitLabMergeRequest(GitLabIssue, MergeRequest):
 
         :return: An (additions, deletions) tuple.
         """
-        changes = get(self._token, self._url + '/changes')['changes']
+        changes = get(self._token, self.url + '/changes')['changes']
         results = []
         expr = re.compile(r'@@ [0-9+,-]+ [0-9+,-]+ @@')
         for change in changes:
@@ -252,7 +252,7 @@ class GitLabMergeRequest(GitLabIssue, MergeRequest):
         # GitLab MR API unassigns all users when 0 is sent.
         # Reference: https://docs.gitlab.com/ee/api/merge_requests.html#update-mr
         user = value.pop().identifier if len(value) == 1 else 0
-        self.data = put(self._token, self._url, {'assignee_id': user})
+        self.data = put(self._token, self.url, {'assignee_id': user})
 
     @property
     def state(self) -> MergeRequestStates:
@@ -303,4 +303,4 @@ class GitLabMergeRequest(GitLabIssue, MergeRequest):
             merge_options['merge_when_pipeline_succeeds'] = \
                 _gitlab_merge_when_pipeline_succeeds
 
-        self.data = put(self._token, self._url + '/merge', merge_options)
+        self.data = put(self._token, self.url + '/merge', merge_options)

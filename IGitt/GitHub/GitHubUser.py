@@ -3,10 +3,10 @@ Contains a representation of GitHub users.
 """
 from typing import Optional
 
-from IGitt.GitHub import get
 from IGitt.GitHub import GitHubMixin
 from IGitt.GitHub import GitHubToken
 from IGitt.GitHub import GitHubInstallationToken
+from IGitt.Interfaces import get
 from IGitt.Interfaces.User import User
 
 
@@ -51,8 +51,13 @@ class GitHubUser(GitHubMixin, User):
         # Don't move to module code, causes circular dependencies
         from IGitt.GitHub.GitHubRepository import GitHubRepository
 
-        repos = get(self._token, '/user/installations/{}/repositories'.format(
-            installation_id), headers=PREVIEW_HEADER)['repositories']
+        repos = get(self._token,
+                    self.absolute_url(
+                        '/user/installations/{}/repositories'.format(
+                            installation_id
+                        )
+                    ),
+                    headers=PREVIEW_HEADER)['repositories']
         return {GitHubRepository.from_data(repo, self._token, repo['id'])
                 for repo in repos}
 
@@ -65,8 +70,8 @@ class GitHubUser(GitHubMixin, User):
         # Don't move to module code, causes circular dependencies
         from IGitt.GitHub.GitHubInstallation import GitHubInstallation
 
-        resp = get(
-            self._token, '/user/installations', headers=PREVIEW_HEADER)
+        resp = get(self._token, self.absolute_url('/user/installations'),
+                   headers=PREVIEW_HEADER)
         return {
             GitHubInstallation.from_data(
                 i, GitHubInstallationToken(i['id'], jwt), i['id'])

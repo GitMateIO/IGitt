@@ -3,12 +3,15 @@ This package contains an abstraction for a git repository.
 """
 from base64 import b64encode
 from collections import defaultdict
+from datetime import timedelta
 from enum import Enum
 from json.decoder import JSONDecodeError
+import time
 from typing import Optional
+from typing import Callable
 
 from backoff import on_exception, expo
-from requests import Session
+import requests
 
 
 HEADERS = {'User-Agent': 'IGitt'}
@@ -138,16 +141,14 @@ def get_response(method, url, json=frozenset()):
     return response
 
 
-def _fetch(base_url: str, req_type: str, token: Token, url: str,
-           data: Optional[dict]=None, query_params: Optional[dict]=None,
-           headers: Optional[dict]=None):
+def _fetch(url: str, req_type: str, token: Token, data: Optional[dict]=None,
+           query_params: Optional[dict]=None, headers: Optional[dict]=None):
     """
     Fetch all the contents by following the ``Link`` header.
 
-    :param base_url: The base URL which is used to generate sub URLs.
+    :param url: The URL to query.
     :param req_type: A request type. Get, Post, Patch and Delete.
     :param token: A Token object.
-    :param url  : E.g. ``/repo``
     :param query_params: The query parameters.
     :param data : The data to post. Used for Patch and Post methods only
     :return     : A dictionary or a list of dictionaries if the response
@@ -156,7 +157,7 @@ def _fetch(base_url: str, req_type: str, token: Token, url: str,
                   git patch or diff) and the HTTP status code.
     """
     data_container = []
-    session = Session()
+    session = requests.Session()
     session.headers.update({**dict(headers or {}), **HEADERS, **token.headers})
     session.params.update({**dict(query_params or {}), **token.parameter})
     req_methods = {
@@ -167,7 +168,7 @@ def _fetch(base_url: str, req_type: str, token: Token, url: str,
         'delete': session.delete
     }
     method = req_methods[req_type]
-    resp = get_response(method, base_url + url, json=data)
+    resp = get_response(method, url, json=data)
 
     # DELETE request returns no response
     if not len(resp.text):
@@ -193,6 +194,119 @@ def _fetch(base_url: str, req_type: str, token: Token, url: str,
         except JSONDecodeError:
             # if the request has a text response, for e.g. a git diff.
             return resp.text
+
+def get(token: Token, url: str, params: Optional[dict]=None,
+        headers: Optional[dict]=None):
+    """
+    Queries the given URL for data.
+
+    :param token: A token.
+    :param url: The URL to access.
+    :param params: The query params to be sent.
+    :param headers: The request headers to be sent.
+    :return:
+        A dictionary or a list of dictionary if the response contains multiple
+        items (usually in case of pagination) and the HTTP status code.
+    :raises RunTimeError:
+        If the response indicates any problem.
+    """
+    return _fetch(url, 'get', token,
+                  query_params={**dict(params or {}), 'per_page': 100},
+                  headers=headers)
+
+
+def post(token: Token, url: str, data: dict, headers: Optional[dict]=None):
+    """
+    Posts the given data to the given URL.
+
+    :param token: A token.
+    :param url: The URL to access.
+    :param data: The data to post.
+    :param headers: The request headers to be sent.
+    :return:
+        A dictionary or a list of dictionary if the response contains multiple
+        items (usually in case of pagination) and the HTTP status code.
+    :raises RunTimeError:
+        If the response indicates any problem.
+    """
+    return _fetch(url, 'post', token, data, headers=headers)
+
+
+def put(token: Token, url: str, data: dict, headers: Optional[dict]=None):
+    """
+    Puts the given data to the given URL.
+
+    :param token: A token.
+    :param url: The URL to access.
+    :param data: The data to put.
+    :param headers: The request headers to be sent.
+    :return:
+        A dictionary or a list of dictionary if the response contains multiple
+        items (usually in case of pagination) and the HTTP status code.
+    :raises RunTimeError:
+        If the response indicates any problem.
+    """
+    return _fetch(url, 'put', token, data, headers=headers)
+
+
+def patch(token: Token, url: str, data: dict, headers: Optional[dict]=None):
+    """
+    Patches the given data to the given URL.
+
+    :param token: A token.
+    :param url: The URL to access.
+    :param data: The data to patch.
+    :param headers: The request headers to be sent.
+    :return:
+        A dictionary or a list of dictionary if the response contains multiple
+        items (usually in case of pagination) and the HTTP status code.
+    :raises RunTimeError:
+        If the response indicates any problem.
+    """
+    return _fetch(url, 'patch', token, data, headers=headers)
+
+
+def delete(token:Token, url: str, data: Optional[dict]=None,
+           headers: Optional[dict]=None, params: Optional[dict]=None):
+    """
+    Sends a delete request to the given URL.
+
+    :param token: A token.
+    :param url: The URL to access.
+    :param params: The query params to be sent.
+    :param headers: The request headers to be sent.
+    :raises RuntimeError: If the response indicates any problem.
+    """
+    _fetch(url, 'delete', token, data, query_params=params, headers=headers)
+
+
+async def lazy_get(url: str,
+                   callback: Callable,
+                   headers: Optional[dict]=None,
+                   timeout: Optional[timedelta]=timedelta(seconds=120),
+                   interval: Optional[timedelta]=timedelta(seconds=10)):
+    """
+    Queries GitHub on the given URL for data, waiting while it
+    returns HTTP 202.
+
+    :param url: The full URL to query.
+    :param callback:
+        The function to callback with data after data is obtained.
+        An empty dictionary is sent if nothing is returned by the API.
+    :param timeout: datetime.timedelta object with time to keep re-trying.
+    :param interval:
+        datetime.timedelta object with time to keep in between tries.
+    :param headers: The request headers to be sent.
+    """
+    response = requests.get(url, headers=headers, timeout=3000)
+
+    # Wait and re-request to allow github to process query
+    while response.status_code == 202 and timeout.total_seconds() > 0:
+        time.sleep(interval.total_seconds())
+        timeout -= interval
+        response = requests.get(url, headers=headers, timeout=3000)
+
+    await callback(response.json())
 
 
 class AccessLevel(Enum):

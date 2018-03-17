@@ -6,15 +6,16 @@ Notifications API is just a wrapper to fetching these threads.
 """
 from typing import Union
 
-from IGitt.GitHub import delete
-from IGitt.GitHub import get
-from IGitt.GitHub import patch
+from IGitt.GitHub import BASE_URL
 from IGitt.GitHub import GitHubMixin
 from IGitt.GitHub import GitHubToken
 from IGitt.GitHub.GitHubCommit import GitHubCommit
 from IGitt.GitHub.GitHubIssue import GitHubIssue
 from IGitt.GitHub.GitHubMergeRequest import GitHubMergeRequest
 from IGitt.GitHub.GitHubRepository import GitHubRepository
+from IGitt.Interfaces import delete
+from IGitt.Interfaces import get
+from IGitt.Interfaces import patch
 from IGitt.Interfaces.Notification import Notification
 from IGitt.Interfaces.Notification import Reason
 
@@ -100,13 +101,13 @@ class GitHubNotification(GitHubMixin, Notification):
         """
         Unsubscribe from this subject.
         """
-        delete(self._token, self._url + '/' + 'subscription')
+        delete(self._token, self.url + '/' + 'subscription')
 
     def mark_done(self):
         """
         Marks the notification as done/read.
         """
-        patch(self._token, self._url, {})
+        patch(self._token, self.url, {})
         self.data.update({'unread': False})
 
     @staticmethod
@@ -115,4 +116,4 @@ class GitHubNotification(GitHubMixin, Notification):
         Returns the list of notifications for the user bearing the token.
         """
         return [GitHubNotification.from_data(notif, token, notif['id'])
-                for notif in get(token, '/notifications')]
+                for notif in get(token, BASE_URL + '/notifications')]

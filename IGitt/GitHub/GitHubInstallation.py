@@ -6,10 +6,10 @@ from functools import lru_cache
 from typing import List
 from typing import Set
 
-from IGitt.GitHub import get
 from IGitt.GitHub import GitHubMixin
 from IGitt.GitHub import GitHubInstallationToken
 from IGitt.GitHub.GitHubRepository import GitHubRepository
+from IGitt.Interfaces import get
 from IGitt.Interfaces.Installation import Installation
 
 
@@ -62,7 +62,8 @@ class GitHubInstallation(GitHubMixin, Installation):
         """
         Returns the set of repositories this installation has access to.
         """
-        data = get(self._api_token, '/installation/repositories')
+        data = get(self._api_token,
+                   self.absolute_url('/installation/repositories'))
         return {GitHubRepository.from_data(repo,
                                            self._api_token,
                                            repo['id'])
