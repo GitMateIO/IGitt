@@ -1,0 +1,67 @@
+interactions:
+- request:
+    body: '{}'
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Basic b'Z2l0bWF0ZS10ZXN0LXVzZXI6TmhweTc5VjQydXBpQ2k3VTh2M1dWSUNvM05DQUtTMWo=']
+      Connection: [keep-alive]
+      Content-Length: ['2']
+      Content-Type: [application/json]
+      User-Agent: [IGitt]
+    method: GET
+    uri: https://api.github.com/repos/coala/coala?per_page=100
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA+1YTXPjKBD9Kypd17b8kS+ramt2TrlM7eaQvezFhSUksZFABcgZR5X/vg+QZNme
+        jYPPucw4qN/j0XRDN23I0jBerB8Wd+v71STkpKJhHCaClCSchFlTlpvxWNR/Ea+cyjBuw1LkjI8g
+        lm9+t5zf384nIdkRTeSmkSVMCq1rFUeRG1SrWc500WwbRWUiuKZczxJRRU3U47/tfr+Bilx2NIY7
+        xMAJXc06JgcHnRp0FroqT6Z3s1rbYZ2iLMUrcKdK/5c6ynqIcZP9zXjuCwekjYQuKFwE2e9msUxp
+        DxnWvI3MfxuWGgIFh0uafl5KB4AQs6fvbSRpLSxTs1WJZLVmgntIOoKBRsiccPZGPGkAU0AbMR6T
+        W3PA6A7h5IFz9m1US7Yjyd4sX9KEsh086ct1AgSV3tcmrf4aecL4l2m6IWll8icjpaLvk9DOr2Fs
+        BybImYvxO0RxSoft6hMyqKXYMXwISNBwljGaBgj8ivB0WjJOA4a8kxlJaJAJGWBIIyYDfA4y9tP+
+        LMtgLxoJWEongaQ5kWlJlQpEFiByzQxI0AqryIOS8LwhOaYDJEBIz7BMEL8M6/kwde3mueWMUlO+
+        XNjHMxiSEyBM/UL33liDaSP82+VTguQmWyGJFpfOh3MhR+AWizpwmRDTlFTeAi0I4EIIf89YEMBM
+        qYZ+KrLPF2WxKupThjfV1p1dn0mUczqHgiaiFMs5pd4eGYBt1B+jW0l4UvhT9bg2cr/sLpHcW5LB
+        ALotxdYbiwsqssA2UgVxl4LeXKPCMBncEZGk2VWSDG4g0vKKfbJyDHCgwd2jsWXeenpc1HYeGk6e
+        j++98+gbgNgtcxPm5O1iHXDOckCCxhQzkm2b6w6MA9Yoclcw8svfRQfogcje5b4uGl/odnk47C/d
+        recu6mBHoXgllYmjUzrz9+Ur/9eyDK6NDueYOxw7Rl9vdadjr2fM21W53lvZ46L2t5rowpwIoK+J
+        pL7iOljUbgnKjdls1haU2LKxohL3ti+fQwFOZFKgWPLFtz0ON3ZFtC0+MyMnRTFaCpJ6KxqAIHFb
+        4avJocb7VqMN8hZiQWOWiqFs0oJf4eUBOebjQqOgSz5TV5+H/RG4/aYYT+gEtd4EUaVZwhBnKOjM
+        TqD4of6rdyjIRUPpiumSIuS8vSipw7WR625SWpdif1Wmj6AmgSRFnZ1uiEatvJwvbqbz2+ni9nmx
+        iFe38ermH9g0dXpk8zCdr6aL++flKl6u4/nc2NSNKkY0zuTheX4Xz9fx6t6Y4LjqYhC/0P+eNqCu
+        1jU9LIyVKg7GfxxMY9urHpkmJYLpJLo/5t6dnv2/NoeMQlS0RiU/atutgBkTkVHJ3vBpsVzfockf
+        XZuJaDgculws1pPwlWiUYLi5jkb7CxfMT3tdCG5mI2rj0i6MtWxM34MRdBb/0kSr8dghvUeGr+yF
+        HQFNCzK0HLYZ6DWs13jlqJiUonuV4EjT4fjC+0LXd4ma8k5SD72/BbRkCeUKa29Nc4E1kLwup6vZ
+        HKvoHkoe//w7+J5lVIrgkaKjJmXw1GwBDH44cLBz9qpOf6LJAMn3x6cfHcmHDVI3u4qGWdEyumYn
+        tisbyQ5jK7jfhH5TUpqRptQbV95i7oootICQP+7Tv152ELfwydfLjmmo+p7862Xn+EkIAfL5lx1O
+        9StOoqODaFzed4fkevn+H2uL6ieVFQAA
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Access-Control-Expose-Headers: ['ETag, Link, Retry-After, X-GitHub-OTP, X-RateLimit-Limit,
+          X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes,
+          X-Poll-Interval']
+      Cache-Control: ['public, max-age=60, s-maxage=60']
+      Content-Encoding: [gzip]
+      Content-Security-Policy: [default-src 'none']
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Sun, 18 Mar 2018 08:22:36 GMT']
+      ETag: [W/"739582186e7cb3577084a4cab6572aea"]
+      Last-Modified: ['Sat, 17 Mar 2018 23:29:00 GMT']
+      Referrer-Policy: ['origin-when-cross-origin, strict-origin-when-cross-origin']
+      Server: [GitHub.com]
+      Status: [200 OK]
+      Strict-Transport-Security: [max-age=31536000; includeSubdomains; preload]
+      Vary: [Accept, Accept-Encoding]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [deny]
+      X-GitHub-Media-Type: [github.v3; format=json]
+      X-GitHub-Request-Id: ['C77A:2E7ED:20883BD:2926D6D:5AAE21CA']
+      X-RateLimit-Limit: ['60']
+      X-RateLimit-Remaining: ['58']
+      X-RateLimit-Reset: ['1521363779']
+      X-Runtime-rack: ['0.039755']
+      X-XSS-Protection: [1; mode=block]
+    status: {code: 200, message: OK}
+version: 1

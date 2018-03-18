@@ -1,7 +1,5 @@
 import os
 
-from IGitt.Interfaces import _RESPONSES
-from IGitt.Interfaces import _fetch
 from IGitt.GitHub import BASE_URL as GITHUB_BASE_URL
 from IGitt.GitHub import get
 from IGitt.GitHub import GitHubToken
@@ -10,6 +8,9 @@ from IGitt.GitHub import GitHubInstallationToken
 from IGitt.GitHub.GitHubRepository import GitHubRepository
 from IGitt.GitLab import BASE_URL as GITLAB_BASE_URL
 from IGitt.GitLab import GitLabOAuthToken
+from IGitt.Interfaces import _RESPONSES
+from IGitt.Interfaces import _fetch
+from IGitt.Interfaces import BasicAuthorizationToken
 
 from tests import IGittTestCase
 
@@ -83,3 +84,11 @@ class TestInterfacesInit(IGittTestCase):
 
         # check that response data hasn't been modified
         assert prev_data == new_data
+
+    def test_basic_authentication_github(self):
+        token = BasicAuthorizationToken(
+            os.environ.get('GITHUB_TEST_USERNAME', 'gitmate-test-user'),
+            os.environ.get('GITHUB_TEST_PASSWORD', 'someuserpassword')
+        )
+        repo = GitHubRepository(token, 'coala/coala')
+        self.assertEqual(repo.identifier, 19816973)

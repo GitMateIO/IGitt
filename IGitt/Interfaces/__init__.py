@@ -1,6 +1,7 @@
 """
 This package contains an abstraction for a git repository.
 """
+from base64 import b64encode
 from collections import defaultdict
 from enum import Enum
 from json.decoder import JSONDecodeError
@@ -79,6 +80,35 @@ class Token:
         Parameter to be used for authentication
         """
         raise NotImplementedError
+
+
+class BasicAuthorizationToken(Token):
+    """
+    Basic HTTP Authorization using username and password.
+    """
+    def __init__(self, username: str, password: str):
+        self.username = username
+        self.password = password
+        self._encoded = None
+
+    @property
+    def value(self):
+        if not self._encoded:
+            self._encoded = b64encode(bytes('{}:{}'.format(
+                self.username, self.password), 'utf-8'))
+        return self._encoded
+
+    @property
+    def headers(self):
+        return {'Authorization': 'Basic {}'.format(self.value)}
+
+    @property
+    def parameter(self):
+        """
+        Basic HTTP Authentication only refers to use of `Authorization` Header.
+        """
+        return {}
+
 
 def is_client_error_or_unmodified(exception):
     """
