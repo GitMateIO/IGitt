@@ -48,12 +48,7 @@ X5qJjK5JKL/B4RKnNwIDAQAB
 
 # set environment variables default
 ENV_DEFAULTS = {
-    'GITLAB_TEST_TOKEN': '',
-    'GITHUB_TEST_TOKEN': '',
     'GITHUB_PRIVATE_KEY': PRIVATE_KEY,
-    'GITHUB_TEST_APP_ID': '5408',
-    'GITHUB_TEST_TOKEN_2': '',
-    'GITLAB_TEST_TOKEN_2': '',
 }
 
 for key, value in ENV_DEFAULTS.items():
