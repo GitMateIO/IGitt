@@ -34,13 +34,3 @@ release:
   - twine upload dist/* -u "$PYPIUSER" -p "$PYPIPW"
   only:
   - master
-
-pages:
-  script:
-  - python3 setup.py docs
-  - mv docs/_build/html public
-  artifacts:
-    paths:
-    - public
-  only:
-  - master
