@@ -95,7 +95,7 @@ class IGittTestCase(TestCase, metaclass=ABCMeta):
             'filter_query_parameters': FILTER_QUERY_PARAMS,
             'filter_post_data_parameters': FILTER_QUERY_PARAMS,
             'before_record_response': IGittTestCase.remove_link_headers,
-            'filter_headers': ['Link'],
+            'filter_headers': ['Link', 'Authorization'],
         }
         kwargs.update(self.vcr_options)
         return VCR(**kwargs)

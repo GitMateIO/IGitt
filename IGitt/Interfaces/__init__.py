@@ -7,10 +7,13 @@ from datetime import timedelta
 from enum import Enum
 from json.decoder import JSONDecodeError
 import time
-from typing import Optional
 from typing import Callable
+from typing import Dict
+from typing import Optional
 
 from backoff import on_exception, expo
+from requests.auth import AuthBase
+from requests.auth import HTTPBasicAuth
 import requests
 
 
@@ -84,6 +87,14 @@ class Token:
         """
         raise NotImplementedError
 
+    @property
+    def auth(self):
+        """
+        A AuthBase instance that can be readily used to configure any kind of
+        authentication easily with requests library.
+        """
+        raise NotImplementedError
+
 
 class BasicAuthorizationToken(Token):
     """
@@ -103,7 +114,10 @@ class BasicAuthorizationToken(Token):
 
     @property
     def headers(self):
-        return {'Authorization': 'Basic {}'.format(self.value)}
+        """
+        Addtional headers are not required as HTTPBasicAuth is being used.
+        """
+        return {}
 
     @property
     def parameter(self):
@@ -111,6 +125,10 @@ class BasicAuthorizationToken(Token):
         Basic HTTP Authentication only refers to use of `Authorization` Header.
         """
         return {}
+
+    @property
+    def auth(self):
+        return HTTPBasicAuth(self.username, self.password)
 
 
 def is_client_error_or_unmodified(exception):
@@ -125,14 +143,17 @@ def is_client_error_or_unmodified(exception):
               RuntimeError,
               max_tries=3,
               giveup=is_client_error_or_unmodified)
-def get_response(method, url, json=frozenset()):
+def get_response(method: Callable,
+                 url: str,
+                 auth: AuthBase,
+                 json: Optional[Dict]=frozenset()):
     """
     Sends a request and checks the response for errors, and retries unless it's
     a HTTP client error.
     """
     headers = ({'If-None-Match': _RESPONSES[url].headers.get('ETag')}
                if url in _RESPONSES else {})
-    response = method(url, json=dict(json or {}), headers=headers)
+    response = method(url, auth=auth, json=dict(json or {}), headers=headers)
     if response.status_code == 304 and url in _RESPONSES:
         return _RESPONSES[url]
     elif response.status_code >= 300:
@@ -146,15 +167,23 @@ def _fetch(url: str, req_type: str, token: Token, data: Optional[dict]=None,
     """
     Fetch all the contents by following the ``Link`` header.
 
-    :param url: The URL to query.
-    :param req_type: A request type. Get, Post, Patch and Delete.
-    :param token: A Token object.
-    :param query_params: The query parameters.
-    :param data : The data to post. Used for Patch and Post methods only
-    :return     : A dictionary or a list of dictionaries if the response
-                  contains multiple items (usually in case of pagination) or a
-                  string in case of other format received (e.g. when fetching a
-                  git patch or diff) and the HTTP status code.
+    :param url:
+        The URL to query.
+    :param req_type:
+        The request type. Get, Post, Patch and Delete.
+    :param token:
+        The Token object to be used for authentication.
+    :param data:
+        The data to post. Used for PATCH and POST methods only.
+    :param query_params:
+        Any additional query parameters that should be sent with the request.
+    :param headers:
+        Any additional headers that should be sent with request.
+    :return:
+        A dictionary or a list of dictionaries if the response contains
+        multiple items (usually in case of pagination) or a string in case of
+        other format received (e.g. when fetching a git patch or diff) and the
+        corresponding HTTP status code.
     """
     data_container = []
     session = requests.Session()
@@ -168,7 +197,7 @@ def _fetch(url: str, req_type: str, token: Token, data: Optional[dict]=None,
         'delete': session.delete
     }
     method = req_methods[req_type]
-    resp = get_response(method, url, json=data)
+    resp = get_response(method, url, token.auth, json=data)
 
     # DELETE request returns no response
     if not len(resp.text):
@@ -190,6 +219,7 @@ def _fetch(url: str, req_type: str, token: Token, data: Optional[dict]=None,
                     return data_container
                 resp = get_response(method,
                                     resp.links.get('next')['url'],
+                                    token.auth,
                                     json=data)
         except JSONDecodeError:
             # if the request has a text response, for e.g. a git diff.

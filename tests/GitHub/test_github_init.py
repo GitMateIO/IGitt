@@ -1,6 +1,8 @@
+from os import environ
 import asyncio
 
 from IGitt.GitHub import GitHubToken, BASE_URL
+from IGitt.Interfaces import get
 from IGitt.Interfaces import lazy_get
 
 from tests import IGittTestCase
@@ -9,9 +11,12 @@ from tests import IGittTestCase
 class GitHubInitTest(IGittTestCase):
 
     def test_tokens(self):
-        github_token = GitHubToken('test')
-        self.assertEqual(github_token.parameter, {'access_token': 'test'})
-        self.assertEqual(github_token.value, 'test')
+        raw_token = environ.get('GITHUB_TEST_TOKEN', '')
+        github_token = GitHubToken(raw_token)
+        self.assertEqual(github_token.parameter, {})
+        self.assertEqual(github_token.value, raw_token)
+        self.assertEqual(get(github_token, BASE_URL + '/user')['login'],
+                         'gitmate-test-user')
 
     async def lazy_get_response(self, data):
         self.assertEqual(data[0]['total'], 1)

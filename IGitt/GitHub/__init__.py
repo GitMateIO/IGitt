@@ -6,9 +6,10 @@ from datetime import datetime
 from typing import Optional
 import os
 import logging
-import requests
 
+from requests_oauthlib import OAuth2
 import jwt
+import requests
 
 from IGitt.Interfaces import Token, get, post
 from IGitt.Utils import CachedDataMixin
@@ -81,11 +82,19 @@ class GitHubToken(Token):
 
     @property
     def parameter(self):
-        return {'access_token': self._token}
+        """
+        No additional query parameters are used with GitHub token.
+        """
+        return {}
 
     @property
     def value(self):
         return self._token
+
+    @property
+    def auth(self):
+        return OAuth2(token={'access_token': self._token,
+                             'token_type': 'bearer'})
 
 
 class GitHubJsonWebToken(Token):
@@ -143,6 +152,15 @@ class GitHubJsonWebToken(Token):
         if not self._jwt_token or self.is_expired:
             self._jwt_token = jwt.encode(self.payload, self._key, 'RS256')
         return self._jwt_token.decode('utf-8')
+
+    @property
+    def auth(self):
+        """
+        OAuth 2.0 JWT Bearer Token Flow is not supported by oauthlib yet.
+
+        Reference: https://github.com/oauthlib/oauthlib/issues/50
+        """
+        return None
 
 
 class GitHubInstallationToken(Token):
@@ -203,3 +221,12 @@ class GitHubInstallationToken(Token):
         made in only that way.
         """
         return {}
+
+    @property
+    def auth(self):
+        """
+        OAuth 2.0 JWT Bearer Token Flow is not supported by oauthlib yet.
+
+        Reference: https://github.com/oauthlib/oauthlib/issues/50
+        """
+        return None

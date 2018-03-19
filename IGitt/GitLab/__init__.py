@@ -6,6 +6,8 @@ August 22, 2017. So, IGitt adopts v4 to stay future proof.
 import os
 import logging
 
+from requests_oauthlib import OAuth2
+
 from IGitt.Interfaces import Token, get
 from IGitt.Utils import CachedDataMixin
 
@@ -63,7 +65,7 @@ class GitLabMixin(CachedDataMixin):
 
 class GitLabOAuthToken(Token):
     """
-    Object representation of OAuth tokens.
+    Object representation of OAuth2 tokens.
     """
 
     def __init__(self, token):
@@ -71,7 +73,10 @@ class GitLabOAuthToken(Token):
 
     @property
     def parameter(self):
-        return {'access_token': self._token}
+        """
+        No additional query parameters are used with the token.
+        """
+        return {}
 
     @property
     def value(self):
@@ -83,6 +88,11 @@ class GitLabOAuthToken(Token):
         GitLab OAuth token does not require any special headers.
         """
         return {}
+
+    @property
+    def auth(self):
+        return OAuth2(token={'access_token': self._token,
+                             'token_type': 'bearer'})
 
 
 class GitLabPrivateToken(Token):
@@ -107,3 +117,11 @@ class GitLabPrivateToken(Token):
         GitLab Private token does not require any special headers.
         """
         return {}
+
+    @property
+    def auth(self):
+        """
+        Private token based authorization for GitLab cannot be used directly
+        via an AuthBase object.
+        """
+        return None
