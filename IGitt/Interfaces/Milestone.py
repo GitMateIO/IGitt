@@ -3,8 +3,14 @@ This module contains the milestone abstraction class which provides properties
 and actions related to milestones.
 """
 from datetime import datetime
+from IGitt.Interfaces.Repository import Repository
+from IGitt.Interfaces import IGittObject
+from IGitt.Interfaces import IssueStates
+from IGitt.Interfaces.Organization import Organization
+from typing import Union
 
-class Milestone:
+
+class Milestone(IGittObject):
     """
     Represents a milestone for GitHub or GitLab or any similar collection of issues.
     """
@@ -16,7 +22,7 @@ class Milestone:
         raise NotImplementedError
 
     @property
-    def repository(self) -> int:
+    def scope(self) -> Union[Repository, Organization]:
         """
         Returns the repository this milestone is linked with.
         """
@@ -39,14 +45,6 @@ class Milestone:
         raise NotImplementedError
 
     @property
-    def url(self) -> str:
-        """
-        Retrieves the url of the milestone.
-        """
-        raise NotImplementedError
-
-
-    @property
     def description(self) -> str:
         """
         Retrieves the main description of the milestone.
@@ -63,11 +61,11 @@ class Milestone:
         raise NotImplementedError
 
     @property
-    def state(self) -> str:
+    def state(self) -> IssueStates:
         """
         Get's the state of the milestone.
 
-        :return: Either 'active' or 'closed'.
+        :return: Either IssueStates.OPEN or IssueStates.CLOSED.
         """
         raise NotImplementedError
 
@@ -109,7 +107,7 @@ class Milestone:
         raise NotImplementedError
 
     @start_date.setter
-    def start_date(self, new_date):
+    def start_date(self, new_date: datetime):
         """
         Sets the start date of the milestone.
 
@@ -125,7 +123,7 @@ class Milestone:
         raise NotImplementedError
 
     @due_date.setter
-    def due_date(self, new_date):
+    def due_date(self, new_date: datetime):
         """
         Sets the due date of the milestone.
 
