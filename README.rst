@@ -28,7 +28,7 @@ how to set labels on a GitHub issue::
 
 For more documentation you'll have to check the documentation comments for now.
 
-More docs coming soon :)
+More docs are available at `IGitt.GitMate.io <https://igitt.gitmate.io/>`_.
 
 What About the Name?
 --------------------
