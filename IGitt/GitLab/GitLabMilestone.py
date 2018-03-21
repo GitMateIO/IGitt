@@ -12,32 +12,32 @@ from IGitt.GitLab import GitLabOAuthToken, GitLabPrivateToken
 #from IGitt.Interfaces.Issue import Issue
 from IGitt.Interfaces.Milestone import Milestone
 
-class GitLabMilestone(Milestone, GitLabMixin):
+class GitLabMilestone(GitLabMixin, Milestone):
     """
     This class represents a milestone on GitLab.
     """
 
     def __init__(self, token: (GitLabOAuthToken, GitLabPrivateToken),
-                 repository: str, number: int):
+                 scope, number: int):
         """
         Creates a new GitLabMilestone with the given credentials.
 
         :param token: A Token object to be used for authentication.
-        :param repository: The full name of the repository.
+        :param scope: The full name of the scope.
                            e.g. ``sils/baritone``.
-        :param number: The milestone's id. Note that it is not the iid but the
-        id.
+        :param number: The milestones internal identification number.
         :raises RuntimeError: If something goes wrong (network, auth, ...)
         """
         self._token = token
-        self._repository = repository
-        self._id = number
-        self._url = '/projects/{repo}/milestones/{milestone_id}'.format(
-            repo=quote_plus(repository), milestone_id=number)
+        self._scope = scope
+        self._iid = number
+        self._url = '/projects/{repo}/milestones/{milestone_iid}'.format(
+            repo=quote_plus(scope), milestone_iid=number)
+
 
 
     @staticmethod
-    def create(token: (GitLabOAuthToken, GitLabPrivateToken), repository: str,
+    def create(token: (GitLabOAuthToken, GitLabPrivateToken), scope,
                title: str, body: str=''):
         """
         Create a new milestone with given title and body.
@@ -61,7 +61,7 @@ class GitLabMilestone(Milestone, GitLabMixin):
         url = '/projects/{repo}/milestones'.format(repo=quote_plus(repository))
         milestone = post(token, url, {'title': title, 'description': body})
 
-        return GitLabMilestone(token, repository, milestone['id'])
+        return GitLabMilestone(token, scope, milestone['id'])
 
     @property
     def state(self):
