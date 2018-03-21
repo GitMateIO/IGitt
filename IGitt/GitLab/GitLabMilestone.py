@@ -25,20 +25,21 @@ class GitLabMilestone(GitLabMixin, Milestone):
         :param token: A Token object to be used for authentication.
         :param scope: The full name of the scope.
                            e.g. ``sils/baritone``.
-        :param number: The milestones internal identification number.
+        :param number: The milestones internal identification number (iid).
+                        The clear text number given on the Web UI
         :raises RuntimeError: If something goes wrong (network, auth, ...)
         """
         self._token = token
         self._scope = scope
         self._iid = number
-        self._url = '/projects/{repo}/milestones/{milestone_iid}'.format(
-            repo=quote_plus(scope), milestone_iid=number)
+        self._url = '/projects/{scope}/milestones/{milestone_iid}'.format(
+            scope=quote_plus(scope), milestone_iid=number)
 
 
 
     @staticmethod
     def create(token: (GitLabOAuthToken, GitLabPrivateToken), scope,
-               title: str, body: str=''):
+               title: str, description: str='',): # TODO: Add start_date and due_date
         """
         Create a new milestone with given title and body.
 
@@ -58,8 +59,8 @@ class GitLabMilestone(GitLabMixin, Milestone):
 
         :return: GitLabMilestone object of the newly created milestone.
         """
-        url = '/projects/{repo}/milestones'.format(repo=quote_plus(repository))
-        milestone = post(token, url, {'title': title, 'description': body})
+        url = '/projects/{scope}/milestones'.format(scope=quote_plus(scope))
+        milestone = post(token, url, {'title': title, 'description': description})
 
         return GitLabMilestone(token, scope, milestone['id'])
 
