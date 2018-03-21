@@ -25,15 +25,15 @@ class GitLabMilestone(GitLabMixin, Milestone):
         :param token: A Token object to be used for authentication.
         :param scope: The full name of the scope.
                            e.g. ``sils/baritone``.
-        :param number: The milestones internal identification number (iid).
-                        The clear text number given on the Web UI
+        :param number: The milestones identification number (id).
+                        Not The clear text number given on the Web UI
         :raises RuntimeError: If something goes wrong (network, auth, ...)
         """
         self._token = token
         self._scope = scope
-        self._iid = number
-        self._url = '/projects/{scope}/milestones/{milestone_iid}'.format(
-            scope=quote_plus(scope), milestone_iid=number)
+        self._id = number
+        self._url = '/projects/{scope}/milestones/{milestone_id}'.format(
+            scope=quote_plus(scope), milestone_id=number)
 
 
 
