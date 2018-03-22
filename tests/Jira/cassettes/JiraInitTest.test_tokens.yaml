@@ -1,0 +1,51 @@
+interactions:
+- request:
+    body: '{}'
+    headers:
+      Accept:
+      - !!binary |
+        Ki8q
+      Accept-Encoding:
+      - !!binary |
+        Z3ppcCwgZGVmbGF0ZQ==
+      Connection:
+      - !!binary |
+        a2VlcC1hbGl2ZQ==
+      Content-Length: ['2']
+      Content-Type:
+      - !!binary |
+        YXBwbGljYXRpb24vanNvbg==
+      User-Agent:
+      - !!binary |
+        SUdpdHQ=
+    method: GET
+    uri: https://jira.gitmate.io/rest/api/2/myself?per_page=100
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAKyRvW7CMBRGX6Xy0MmKEyekKRKizJUYilhaVdVtcpO6+E+2gVDEu9dphoJYWSzr
+        8/G5lr8j8ShbMiVfIVg/ZexbOEg6ERQETIRhDn1gYAXjbOvRzYdFg8KZ3lgndI1p+kAo2eAhSi6z
+        AbsKUYGQi6aJXj8cwg5RJx50J57+x0YQdhDArZ2M2JEUVV9UZ8/c7/dJ50YmqY1i45ZVKc8mj3kL
+        TTnhE6iysiiz9LNpq6zKW57Pm5lS934WZZTwoufFDaVRRklW9ll5Q2mUUZLzPuc3lEbZiZJGeCvh
+        sBx7Wv5Vcbcaqhj+vw5iF/PgtkhJEApfjR64hRfAno3cxImRk6YGOeSoP9arGHTObO1faV78xANO
+        iQioYvL2HoeCtVLUEITRL0biGZhdgthb0E0Uj0J6dfH0CwAA//8DANXwBOm9AgAA
+    headers:
+      Cache-Control: ['no-cache, no-store, no-transform']
+      Content-Encoding: [gzip]
+      Content-Length: ['333']
+      Content-Security-Policy: [frame-ancestors 'self']
+      Content-Type: [application/json;charset=UTF-8]
+      Date: ['Thu, 22 Mar 2018 08:36:55 GMT']
+      Set-Cookie: [JSESSIONID=DA11797C2DB2A7A7724A0A6854F2D270;path=/;HttpOnly, atlassian.xsrf.token=B15V-IRV7-Q0YS-ZCZZ|ecb5c93c2ccee5c93fae906fc1b02aeccc60954a|lin;path=/]
+      Strict-Transport-Security: [max-age=315569260; preload]
+      Vary: [User-Agent]
+      X-Arequestid: [516x7121x1]
+      X-Asen: [SEN-L11373089]
+      X-Asessionid: [j8bpb7]
+      X-Ausername: [nkprince007]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [DENY, SAMEORIGIN]
+      X-Seraph-Loginreason: [OK]
+      X-Xss-Protection: [1; mode=block, 1; mode=block]
+    status: {code: 200, message: OK}
+version: 1
