@@ -1,0 +1,116 @@
+interactions:
+- request:
+    body: '{"update": {"summary": [{"set": "something else"}]}}'
+    headers:
+      Accept:
+      - !!binary |
+        Ki8q
+      Accept-Encoding:
+      - !!binary |
+        Z3ppcCwgZGVmbGF0ZQ==
+      Connection:
+      - !!binary |
+        a2VlcC1hbGl2ZQ==
+      Content-Length: ['52']
+      Content-Type:
+      - !!binary |
+        YXBwbGljYXRpb24vanNvbg==
+      User-Agent:
+      - !!binary |
+        SUdpdHQ=
+    method: PUT
+    uri: https://jira.gitmate.io/rest/api/2/issue/10002
+  response:
+    body: {string: ''}
+    headers:
+      Cache-Control: ['no-cache, no-store, no-transform']
+      Content-Security-Policy: [frame-ancestors 'self']
+      Content-Type: [application/json;charset=UTF-8]
+      Date: ['Fri, 23 Mar 2018 14:43:16 GMT']
+      Set-Cookie: [JSESSIONID=EC237E1C62F25F0E4590A89137F8018A;path=/;HttpOnly, atlassian.xsrf.token=B15V-IRV7-Q0YS-ZCZZ|c59e8c3bc0e4a0d1d197ce41e08eba7e54d006a3|lin;path=/]
+      Strict-Transport-Security: [max-age=315569260; preload]
+      X-Arequestid: [883x7139x1]
+      X-Asen: [SEN-L11373089]
+      X-Asessionid: [yhu40]
+      X-Ausername: [nkprince007]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [DENY, SAMEORIGIN]
+      X-Seraph-Loginreason: [OK]
+      X-Xss-Protection: [1; mode=block, 1; mode=block]
+    status: {code: 204, message: No Content}
+- request:
+    body: '{}'
+    headers:
+      Accept:
+      - !!binary |
+        Ki8q
+      Accept-Encoding:
+      - !!binary |
+        Z3ppcCwgZGVmbGF0ZQ==
+      Connection:
+      - !!binary |
+        a2VlcC1hbGl2ZQ==
+      Content-Length: ['2']
+      Content-Type:
+      - !!binary |
+        YXBwbGljYXRpb24vanNvbg==
+      User-Agent:
+      - !!binary |
+        SUdpdHQ=
+    method: GET
+    uri: https://jira.gitmate.io/rest/api/2/issue/10002?per_page=100
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAOxZbXPbNhL+Kxx+6PRaWSKpd83p0sRxZ3yZNpnESW/OymQgYimhBgkeAOqlrv57
+        FwApUbKbRJLvW77YxAK7WCyefQCs7n1Y5SSj/siXkFGQQH9mwKlqZCQF1VDxHFLSEDlIopnIVAMo
+        0ylo0ojnJJsBF7PGAqTCPqBvIZegINNurN/wmbEcBkEQYUMBT7A51zpXo1brdyZJc4bWiIYmEy1U
+        1S2Ss1bUYkoV0Kr07mCNaq+u/nPRxlZi/fNH974dpdc5mMaRxo2anaBT99I0KKhYstysAKXPvVyK
+        KYfUW85ZPPdYmhMmlSckdsAC16o8PQcvKbLYLtoTiRWgGi1i3TTmY5G9l/wz3imICwmtBYMlWRBN
+        5DPF/oDxSqWE8++c6JqOw6AdtMvmDS5gvItAwzcbhlO8KGYm1MVUE3XnjxLCFTT8yoQ/sjY2DT8W
+        aY57hv77o9uPDV8z3O8c2/4oKzh3AiHZjGWEY/CY8bXq24/RD5cScMezmXdt/FE/TLJJ9tscMm8t
+        Ci/mLL7zJv6Pnh0GbtDEt51Lxrk3BQ99BeolGFUTu1hICbE2Mfzd/P8eN9f8n/ivSDYlmXe1ImnO
+        0cg/THzLYcehoFSyGAjqGAjqiNvFdX9mvwop7qvFYmew6gy+vMPlrOUm1zc2MtiLOiv8f6QVC5WH
+        SLEGw94q7J1k8BHsWYvtaNWOTrKYInUU6aHFzcak9OqD45ASjGQ2kzBDiw9QiTsoeOGAt8OpliS+
+        QwDiThhoF0qL1PLEpzAIMavLoYcdXVxH8Cczm56MzJZqTeJ5aqd74MZhDuw8oTXpUsg7S5X+6CI0
+        eZimRBowKYFuzk2SAGYkTsaJ0h8w4YFudYlGulUnsFnLkmPLGZCGeO3npSjMUgJEt/rNCGyILCWY
+        MJl0FPK46QoF8pn5Y9JivC7u2CemPk0FHhy7XDkUu3Q6lOLBwvhzStG6Krt/2k36xQxbLpfNmXRj
+        mshmLffZAgokGYZ92kn6vWTYnkbTOOmFSTcYAu1B8IyO0/Q7NUZjDxPuXKOPJt25RtHYw7w71yga
+        QwxQpnJO1r+6ffulmBPEK/VeEaaI9J7LOzzkzU7g2bbAEVoW4DLuv3h2oMaVjlvvby6NqfLIKTPY
+        gstA24+CcHARtC/C3k3YHoW9UTRodnvRjyXVSsiF1PANht9g+CQw3Od4g7GRf1/S8Asg2RidbBKN
+        7KsYyZoWYzkv8JrTpLBQeHUtVNMgrflup/RT1INw0AG4LS2N73OkbAn/w+uOPtrktYbUmiVd6EFn
+        cCvwCo2n7VcZKj1oTtGAar5BN946N147I9YwRroXQX9wa5TAngPjoGEb49dvrn5txKXInELvc3OC
+        0fE/zTH0r7roxhy/Gm88Zd/HxnR9naEki8FeQO83HxvetGCcnh6EEA9iGtDuGVF4YTyor7897Q2T
+        AJLbBJMbqO3fRqGIY8z1pOB74iK7y8Qy25M9ZZTwtYCn/elh6kTtOOlC54wwvbUuqHqgwgiGw167
+        +xhQypXSAl7Wmmb6lwWM3cviKSNEIediba5fF5AtmBSZ+T49YhGl3V4SnwOsl1uX6kHrDjtJGIeD
+        Wy3yq52naownn5qL5Rt3+VVljHaA+//gKheK4UVufXqk+nF/2EG2PCNSlyJN2V6UoqifRINB5/ZJ
+        uUZie34GJjo0ioPO8ByysS7s4YHG037Yf8KFbhogpZAWUbHIEja7qto2URbluv6tRDa+n/gxvluA
+        fiDcvKxHKHDqE3sZw+6aiUpWLsoNr51mTlCGxzXsuibmITHxawuZlA8XtLUlj3KUFeD3xDenzcRH
+        kcBn3MSd3Rts7q/ZzLOxYkO/p7hwSPSVI4+Qfdn1gPCN/DOuOQJ/0vCU/SXD7gQlx06q+s3Elms4
+        OKvlA+5vHX2cR09x/IDfttCpcVzNxwOe+2I4K9462rPP4ccm55NZtDaZeqcJ3+7GZuPXSgO5FDP3
+        dLj3d9/45NYClWwIUM6EZHp9bIXKabXaX1VDZCmZgWqZgarSZShwZZemWsx2L6NfrKyqerUf3ptD
+        c292VQlOpsDLV10NTvXyy2FpZK9u8nc1xMVexQdToF5G+ZqoYko4R+6rz9JWSlZvQRVc76s0TNpJ
+        /Vw7dVs44SyrXqwLoc+pvTj1rRmcbU7UB2HfwFXFxRSHuJjZSbau7Psb7TlcKlgPUd8cUrMMjqx3
+        f3srf3srP/5WLhwH1oo0Ufsm7Iw6pk7T7EdhVaRx96DjYOd0LHnt/1xwM2fKs6mDf70pmJqo85av
+        PYN4oJ7IPKLtbwGpMJntTde2VWXA1/2sskeJzh/TzCpGaeZZjRSvM+9NRTVbZqzWfokmZ0IeSeFO
+        Ny51W9VvTZ0qv1hG8UyXKfKjNjXhWHAhy51dA+di+bh75mD6CwAA//8DACo6FyG7GwAA
+    headers:
+      Cache-Control: ['no-cache, no-store, no-transform']
+      Content-Encoding: [gzip]
+      Content-Length: ['1818']
+      Content-Security-Policy: [frame-ancestors 'self']
+      Content-Type: [application/json;charset=UTF-8]
+      Date: ['Fri, 23 Mar 2018 14:47:27 GMT']
+      Set-Cookie: [JSESSIONID=15658FB3DF3BC8BE5A24BBA9DA7E66B9;path=/;HttpOnly, atlassian.xsrf.token=B15V-IRV7-Q0YS-ZCZZ|40512565da3cbdb3b802ba77b351cd4ccbdefc5e|lin;path=/]
+      Strict-Transport-Security: [max-age=315569260; preload]
+      Vary: [User-Agent]
+      X-Arequestid: [887x7140x1]
+      X-Asen: [SEN-L11373089]
+      X-Asessionid: [1ou206e]
+      X-Ausername: [nkprince007]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [DENY, SAMEORIGIN]
+      X-Seraph-Loginreason: [OK]
+      X-Xss-Protection: [1; mode=block, 1; mode=block]
+    status: {code: 200, message: OK}
+version: 1

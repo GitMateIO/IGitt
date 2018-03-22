@@ -1,0 +1,120 @@
+interactions:
+- request:
+    body: '{"description": "test body", "fields": {"summary": "test title", "issuetype":
+      {"name": "Task"}, "project": {"id": 10001}}}'
+    headers:
+      Accept:
+      - !!binary |
+        Ki8q
+      Accept-Encoding:
+      - !!binary |
+        Z3ppcCwgZGVmbGF0ZQ==
+      Connection:
+      - !!binary |
+        a2VlcC1hbGl2ZQ==
+      Content-Length: ['122']
+      Content-Type:
+      - !!binary |
+        YXBwbGljYXRpb24vanNvbg==
+      User-Agent:
+      - !!binary |
+        SUdpdHQ=
+    method: POST
+    uri: https://jira.gitmate.io/rest/api/2/issue/
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAKpWykxRslIyNDAwNlHSUcpOrQTyfEK8dQ0tgNzi1Jw0ID+jpKSg2EpfPyuzKFEv
+        PbMkN7EkVS8zX78otbhEP7EgU99IP7O4uDRVH2JMLQAAAP//AwAePwLfVQAAAA==
+    headers:
+      Cache-Control: ['no-cache, no-store, no-transform']
+      Content-Encoding: [gzip]
+      Content-Length: ['103']
+      Content-Security-Policy: [frame-ancestors 'self']
+      Content-Type: [application/json;charset=UTF-8]
+      Date: ['Wed, 21 Mar 2018 20:07:34 GMT']
+      Set-Cookie: [JSESSIONID=0C4012E05A002B9F1F47705A1A9FFEFC;path=/;HttpOnly, atlassian.xsrf.token=B15V-IRV7-Q0YS-ZCZZ|5a7790ac55bc4ced6c8145f3ff8928dbe3e0dc73|lin;path=/]
+      Strict-Transport-Security: [max-age=315569260; preload]
+      Vary: [User-Agent]
+      X-Arequestid: [1207x7096x1]
+      X-Asen: [SEN-L11373089]
+      X-Asessionid: [1071k79]
+      X-Ausername: [nkprince007]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [DENY, SAMEORIGIN]
+      X-Seraph-Loginreason: [OK]
+      X-Xss-Protection: [1; mode=block, 1; mode=block]
+    status: {code: 201, message: Created}
+- request:
+    body: '{}'
+    headers:
+      Accept:
+      - !!binary |
+        Ki8q
+      Accept-Encoding:
+      - !!binary |
+        Z3ppcCwgZGVmbGF0ZQ==
+      Connection:
+      - !!binary |
+        a2VlcC1hbGl2ZQ==
+      Content-Length: ['2']
+      Content-Type:
+      - !!binary |
+        YXBwbGljYXRpb24vanNvbg==
+      User-Agent:
+      - !!binary |
+        SUdpdHQ=
+    method: GET
+    uri: https://jira.gitmate.io/rest/api/2/issue/10034?per_page=100
+  response:
+    body:
+      string: !!binary |
+        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
+    headers:
+      Cache-Control: ['no-cache, no-store, no-transform']
+      Content-Encoding: [gzip]
+      Content-Length: ['1640']
+      Content-Security-Policy: [frame-ancestors 'self']
+      Content-Type: [application/json;charset=UTF-8]
+      Date: ['Wed, 21 Mar 2018 20:07:36 GMT']
+      Set-Cookie: [JSESSIONID=EE286AA360B752103B9FE60191930925;path=/;HttpOnly, atlassian.xsrf.token=B15V-IRV7-Q0YS-ZCZZ|995684916e7a5b0d244e3c41a7429d6d3238551c|lin;path=/]
+      Strict-Transport-Security: [max-age=315569260; preload]
+      Vary: [User-Agent]
+      X-Arequestid: [1207x7097x1]
+      X-Asen: [SEN-L11373089]
+      X-Asessionid: [1t0jwrl]
+      X-Ausername: [nkprince007]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [DENY, SAMEORIGIN]
+      X-Seraph-Loginreason: [OK]
+      X-Xss-Protection: [1; mode=block, 1; mode=block]
+    status: {code: 200, message: OK}
+version: 1

@@ -1,0 +1,107 @@
+interactions:
+- request:
+    body: '{}'
+    headers:
+      Accept:
+      - !!binary |
+        Ki8q
+      Accept-Encoding:
+      - !!binary |
+        Z3ppcCwgZGVmbGF0ZQ==
+      Connection:
+      - !!binary |
+        a2VlcC1hbGl2ZQ==
+      Content-Length: ['2']
+      Content-Type:
+      - !!binary |
+        YXBwbGljYXRpb24vanNvbg==
+      User-Agent:
+      - !!binary |
+        SUdpdHQ=
+    method: GET
+    uri: https://jira.gitmate.io/rest/api/2/issue/10001/comment?per_page=100
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAOyUS4/aMBRG/0rkRTfNJH6EvCQ0RVUX1aizaJlNq2p0iR1wyQPZDjAa8d9rE9ph
+        0KiFDt2xieKbm2Mn9+h7RNqAMiODcuyjGtafhe4qo1FOcJQOkthHpjVQoZz6qGjrWjTu4bdHpEVV
+        ohzNjFnoPAx/SAXBVJoajAhkGyqhTQgLGdJQat2JkGCMSbhD9CvkI8kt49cCOjNrFcpPgXdaqGt3
+        aaAWw4duLu+lvp+0SnBLdEXLOSzPxcMLVVGDrEacW7rePX73tKk73xLsz7pTlXZnjNJ1lO4dcrVa
+        BVPV9wT2O8P+NhRcQJmRhEdlEpcZm9BJUcakHOBM8Fjgaz6s6zd6aGE+otGaRmeEWpiPSLwm8Rmh
+        FuYjRteMnhFqYRsfcakXFTzc9nP71M2groF7NyA1KG+k5jNo3CQKI5e2w6hOWENlLb62jXvjgynC
+        u/F7h5q03E3ZWFe8nXaeq3kz0F5hOdPt1LsFtwMevVq9Zr5QsikExsmTeM+LvXbPawfSNbAUogm0
+        Pd1Z5EsxJYOMlcDjAR1ASuIoJnjCy5SkrKTsn+Q7FnqSfMdCT5LvWOhL8t1uR+F9caP4k3IjLSG8
+        aau53dFRCiXs0FyuUUzSK8yuSDzGaY6jnCZBFqdvbdzh3+btN1I2JiynsQ3fADPWN278M4QtY3th
+        u128Pmwvxl+Mh72k/ehB7YGn2klrgkuyXjz7/8naB2aU5hELsiT7W7IeNG6+b34CAAD//wMAvsTs
+        MAALAAA=
+    headers:
+      Cache-Control: ['no-cache, no-store, no-transform']
+      Content-Encoding: [gzip]
+      Content-Length: ['575']
+      Content-Security-Policy: [frame-ancestors 'self']
+      Content-Type: [application/json;charset=UTF-8]
+      Date: ['Fri, 23 Mar 2018 18:38:11 GMT']
+      Set-Cookie: [JSESSIONID=338724661CB883E3F82AFD580677D744;path=/;HttpOnly, atlassian.xsrf.token=B15V-IRV7-Q0YS-ZCZZ|6d23566bf52696e2a475fc8302300d493c0359da|lin;path=/]
+      Strict-Transport-Security: [max-age=315569260; preload]
+      Vary: [User-Agent]
+      X-Arequestid: [1118x7279x1]
+      X-Asen: [SEN-L11373089]
+      X-Asessionid: [jkatgw]
+      X-Ausername: [nkprince007]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [DENY, SAMEORIGIN]
+      X-Seraph-Loginreason: [OK]
+      X-Xss-Protection: [1; mode=block, 1; mode=block]
+    status: {code: 200, message: OK}
+- request:
+    body: '{"body": "I am a robot."}'
+    headers:
+      Accept:
+      - !!binary |
+        Ki8q
+      Accept-Encoding:
+      - !!binary |
+        Z3ppcCwgZGVmbGF0ZQ==
+      Connection:
+      - !!binary |
+        a2VlcC1hbGl2ZQ==
+      Content-Length: ['25']
+      Content-Type:
+      - !!binary |
+        YXBwbGljYXRpb24vanNvbg==
+      User-Agent:
+      - !!binary |
+        SUdpdHQ=
+    method: POST
+    uri: https://jira.gitmate.io/rest/api/2/issue/10001/comment
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAOyUPW/CMBCG/0rkoUtD/BWCiYQoY1WJpe3SzWAHXOI4sh0IQvz32kX9UoeqUkYW
+        y3c+P3e+9+QTcLKuQAm23reuhPBVWZ5tlNfcy0wZaKXzkLcKEqic6yTECCEM10Zr2fho0RykQInA
+        +DB457fGgvL0D3jnpJ3HpeFazppda1WzlghNAi+6AuWncyePv3xSc1UvhAhcFw/5Xsomc7zZqLuv
+        tLHCPffcPtvaxSpz1ufsW5mHwyHb2EtMFl4KL1vIEMHjKa24KMZkzBku8gKjlagYZrQidC5mWt+4
+        WYClgOQ9yQeEkthZXPS4GBAaYCmgpKdkQGiAnVMglGtrflxetFu+S5E8Rili/9de7YPf206mwCst
+        X0wT4xZOcfhg6l3IGCkrI6LM9wnXCU+sWRmfhftdK4KWi+ucXedsmDlbWxlEi58YQZiNEB0R+oRZ
+        Saclphmd0Nvw7aHPyfsz8PwGAAD//wMA5zWs8VkFAAA=
+    headers:
+      Cache-Control: ['no-cache, no-store, no-transform']
+      Content-Encoding: [gzip]
+      Content-Length: ['374']
+      Content-Security-Policy: [frame-ancestors 'self']
+      Content-Type: [application/json;charset=UTF-8]
+      Date: ['Fri, 23 Mar 2018 18:39:13 GMT']
+      Location: ['https://jira.gitmate.io/rest/api/2/issue/10001/comment/10034']
+      Set-Cookie: [JSESSIONID=58D62E4EF812055D77A2AA652EAA346C;path=/;HttpOnly, atlassian.xsrf.token=B15V-IRV7-Q0YS-ZCZZ|d8ae70071253f7505c4abc710663a2d97b4f5fd5|lin;path=/]
+      Strict-Transport-Security: [max-age=315569260; preload]
+      Vary: [User-Agent]
+      X-Arequestid: [1119x7280x1]
+      X-Asen: [SEN-L11373089]
+      X-Asessionid: [wyrk4q]
+      X-Ausername: [nkprince007]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [DENY, SAMEORIGIN]
+      X-Seraph-Loginreason: [OK]
+      X-Xss-Protection: [1; mode=block, 1; mode=block]
+    status: {code: 201, message: Created}
+version: 1

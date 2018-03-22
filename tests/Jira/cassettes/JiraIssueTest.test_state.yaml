@@ -1,0 +1,78 @@
+interactions:
+- request:
+    body: '{}'
+    headers:
+      Accept:
+      - !!binary |
+        Ki8q
+      Accept-Encoding:
+      - !!binary |
+        Z3ppcCwgZGVmbGF0ZQ==
+      Connection:
+      - !!binary |
+        a2VlcC1hbGl2ZQ==
+      Content-Length: ['2']
+      Content-Type:
+      - !!binary |
+        YXBwbGljYXRpb24vanNvbg==
+      User-Agent:
+      - !!binary |
+        SUdpdHQ=
+    method: GET
+    uri: https://jira.gitmate.io/rest/api/2/issue/10002?per_page=100
+  response:
+    body:
+      string: !!binary |
+        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
+    headers:
+      Cache-Control: ['no-cache, no-store, no-transform']
+      Content-Encoding: [gzip]
+      Content-Length: ['1860']
+      Content-Security-Policy: [frame-ancestors 'self']
+      Content-Type: [application/json;charset=UTF-8]
+      Date: ['Thu, 22 Mar 2018 08:40:15 GMT']
+      Set-Cookie: [JSESSIONID=4C6033005EA76DE893A3F7BB2672D847;path=/;HttpOnly, atlassian.xsrf.token=B15V-IRV7-Q0YS-ZCZZ|34f57264b19a234746fa35e3d961c8201f92a25d|lin;path=/]
+      Strict-Transport-Security: [max-age=315569260; preload]
+      Vary: [User-Agent]
+      X-Arequestid: [520x7122x1]
+      X-Asen: [SEN-L11373089]
+      X-Asessionid: [1p46jnd]
+      X-Ausername: [nkprince007]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [DENY, SAMEORIGIN]
+      X-Seraph-Loginreason: [OK]
+      X-Xss-Protection: [1; mode=block, 1; mode=block]
+    status: {code: 200, message: OK}
+version: 1

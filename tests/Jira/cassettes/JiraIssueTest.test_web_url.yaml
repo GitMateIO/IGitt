@@ -1,0 +1,76 @@
+interactions:
+- request:
+    body: '{}'
+    headers:
+      Accept:
+      - !!binary |
+        Ki8q
+      Accept-Encoding:
+      - !!binary |
+        Z3ppcCwgZGVmbGF0ZQ==
+      Connection:
+      - !!binary |
+        a2VlcC1hbGl2ZQ==
+      Content-Length: ['2']
+      Content-Type:
+      - !!binary |
+        YXBwbGljYXRpb24vanNvbg==
+      User-Agent:
+      - !!binary |
+        SUdpdHQ=
+    method: GET
+    uri: https://jira.gitmate.io/rest/api/2/issue/10002?per_page=100
+  response:
+    body:
+      string: !!binary |
+        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
+    headers:
+      Cache-Control: ['no-cache, no-store, no-transform']
+      Content-Encoding: [gzip]
+      Content-Length: ['1752']
+      Content-Security-Policy: [frame-ancestors 'self']
+      Content-Type: [application/json;charset=UTF-8]
+      Date: ['Mon, 26 Mar 2018 11:02:39 GMT']
+      Set-Cookie: [JSESSIONID=DC028F2CB649571D1582FFA5975085CE;path=/;HttpOnly, atlassian.xsrf.token=B15V-IRV7-Q0YS-ZCZZ|77fba9bcc500302c5ae655dd6e0972abba8937c5|lin;path=/]
+      Strict-Transport-Security: [max-age=315569260; preload]
+      Vary: [User-Agent]
+      X-Arequestid: [662x7686x1]
+      X-Asen: [SEN-L11373089]
+      X-Asessionid: [10s8cf7]
+      X-Ausername: [nkprince007]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [DENY, SAMEORIGIN]
+      X-Seraph-Loginreason: [OK]
+      X-Xss-Protection: [1; mode=block, 1; mode=block]
+    status: {code: 200, message: OK}
+version: 1
