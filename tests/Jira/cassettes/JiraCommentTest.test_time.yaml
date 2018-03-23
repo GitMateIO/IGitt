@@ -1,0 +1,54 @@
+interactions:
+- request:
+    body: '{}'
+    headers:
+      Accept:
+      - !!binary |
+        Ki8q
+      Accept-Encoding:
+      - !!binary |
+        Z3ppcCwgZGVmbGF0ZQ==
+      Connection:
+      - !!binary |
+        a2VlcC1hbGl2ZQ==
+      Content-Length: ['2']
+      Content-Type:
+      - !!binary |
+        YXBwbGljYXRpb24vanNvbg==
+      User-Agent:
+      - !!binary |
+        SUdpdHQ=
+    method: GET
+    uri: https://jira.gitmate.io/rest/api/2/issue/10001/comment/10001?per_page=100
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAKyUS2+cMBRG/wryopsQ/GI8gDRKR1VXUbPpZJNN5MFmcMGAbDMPRfnvtUPaPBRV
+        M81sEL5cjq/1HfkBWNlWoAC1c4MtIPylDE82ymnuZKJ6aKR1kA8KEqisHSXECCEMy15r2blpBWKg
+        hGf8WfDR1b0BxcMJ8NFKcxUeHddycRgbda/s/bo3UnhiKHrO+3IjDx9UpeaqXQrh6fb589eXTcN8
+        W+64uTWtDTOm2T7NXg252+2SjZl6En9OOL1CKSSvcjwXaTVnVU7XZF1WDFczlEvBJLoSC62/2IWH
+        xYCke5KeEephMcBsj9kZoR4WA0r2lJwR6mGPMRDKDi0/3Ey5/RhrrjUX0TVXlptoaZqadyGJ0qmt
+        73BmlDFwSsu7vgt/fHclvF19C6h1L0LKzrsSPWsXhVpUcxuVnrN5Sn0chA94+Wn1umYwqislQvMX
+        8d4WJ+3e1t5J1/GtlF1i/XRnkS9DBM9yWnHBZmTGM8xShtFaVBnOaEXof8l3LPQk+Y6FniTfsdCP
+        5Lt5iiL6GaL4l3JLqzi87tvG7xgopZE+tHCvEYSzS0QvMVuhrEBpQeZJzrILf92hv+a9biR0hWlB
+        WIFRgiidGh9/AwAA//8DAHs5VCBsBQAA
+    headers:
+      Cache-Control: ['no-cache, no-store, no-transform']
+      Content-Encoding: [gzip]
+      Content-Length: ['480']
+      Content-Security-Policy: [frame-ancestors 'self']
+      Content-Type: [application/json;charset=UTF-8]
+      Date: ['Fri, 23 Mar 2018 13:26:14 GMT']
+      Set-Cookie: [JSESSIONID=8E3C855DE3EA8977F4329A7B467214ED;path=/;HttpOnly, atlassian.xsrf.token=B15V-IRV7-Q0YS-ZCZZ|81a00b6fa99ef1f98811ad4fcf1764e254702fff|lin;path=/]
+      Strict-Transport-Security: [max-age=315569260; preload]
+      Vary: [User-Agent]
+      X-Arequestid: [806x7135x1]
+      X-Asen: [SEN-L11373089]
+      X-Asessionid: [o3vpdg]
+      X-Ausername: [nkprince007]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [DENY, SAMEORIGIN]
+      X-Seraph-Loginreason: [OK]
+      X-Xss-Protection: [1; mode=block, 1; mode=block]
+    status: {code: 200, message: OK}
+version: 1

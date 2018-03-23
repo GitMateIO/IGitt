@@ -1,0 +1,53 @@
+interactions:
+- request:
+    body: '{}'
+    headers:
+      Accept:
+      - !!binary |
+        Ki8q
+      Accept-Encoding:
+      - !!binary |
+        Z3ppcCwgZGVmbGF0ZQ==
+      Connection:
+      - !!binary |
+        a2VlcC1hbGl2ZQ==
+      Content-Length: ['2']
+      Content-Type:
+      - !!binary |
+        YXBwbGljYXRpb24vanNvbg==
+      User-Agent:
+      - !!binary |
+        SUdpdHQ=
+    method: GET
+    uri: https://jira.gitmate.io/rest/api/2/issue/10001/comment/10001?per_page=100
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAOyUS2vcMBDHv4rQoZc41mMdr9ewJJu0p9JemlxKIGit8VpZyzJ67IOQ714p7osQ
+        KIU95iI0f41+M2L+6Ak76Ftc48770dWEPCor8o3yWnjIlSEWnCdiVIQT5VwAwiiljDRGaxj8FOEM
+        KxkZvwIRfGcsrp/+Ax4c2Mu0DELD8hi26kG5h7WxICMxiZHzWt7C8Q0VtFD9SspIdz+Pr/4UTf3t
+        hBf2zvYu9VhUh6L6q8n9fp9v7JSTx3eSaUtAgmgXbC6Ldl62i9mar5u2ZO0FXYAsgV7KpdYf3DLC
+        MsyLAy9OCI2wDLPywMoTQiMswzN+mPETQiPsOcNSubEXx6/T3L6ETmgtJPoslBMWrey2E0OaROPV
+        LmZ4GyDDXmn4boZ045NvyN3tTUKtjUxTvrEQBygRQ1IcHRIbc2/vh2vRbHuzQd6gb9BDkzJaY9FH
+        2EFvxuRRdIE6E6xDjCOthuDh5XasHkYZkat3t7679WRubSabRpFTVp3T2Tkrb2lV06Lm83xRVmfx
+        k6S/zffPxOcfAAAA//8DAPbolYeiBQAA
+    headers:
+      Cache-Control: ['no-cache, no-store, no-transform']
+      Content-Encoding: [gzip]
+      Content-Length: ['423']
+      Content-Security-Policy: [frame-ancestors 'self']
+      Content-Type: [application/json;charset=UTF-8]
+      Date: ['Fri, 23 Mar 2018 13:26:05 GMT']
+      Set-Cookie: [JSESSIONID=0333AC2A25040CA2E8F8CFAA4C2540FB;path=/;HttpOnly, atlassian.xsrf.token=B15V-IRV7-Q0YS-ZCZZ|0d83180fc0d3740d23d2efa3bc587db1beee81ea|lin;path=/]
+      Strict-Transport-Security: [max-age=315569260; preload]
+      Vary: [User-Agent]
+      X-Arequestid: [806x7133x1]
+      X-Asen: [SEN-L11373089]
+      X-Asessionid: [1vajkol]
+      X-Ausername: [nkprince007]
+      X-Content-Type-Options: [nosniff]
+      X-Frame-Options: [DENY, SAMEORIGIN]
+      X-Seraph-Loginreason: [OK]
+      X-Xss-Protection: [1; mode=block, 1; mode=block]
+    status: {code: 200, message: OK}
+version: 1
