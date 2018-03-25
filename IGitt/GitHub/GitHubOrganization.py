@@ -15,7 +15,7 @@ from IGitt.Interfaces.Repository import Repository
 
 class GitHubOrganization(GitHubMixin, Organization):
     """
-    Represents an organization on GitLab.
+    Represents an organization on GitHub.
     """
 
     @property
