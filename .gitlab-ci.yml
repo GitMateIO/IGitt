@@ -12,14 +12,14 @@ run_tests:
   - sh .ci/no_yaml.sh
   - python3 setup.py docs
   except:
-  - master
+  - master@gitmate/open-source/IGitt
 
 check_code:
   script:
   - pip install 'coala-bears[alldeps]'
   - coala --ci
   except:
-  - master
+  - master@gitmate/open-source/IGitt
 
 cache:
   paths:
@@ -33,4 +33,4 @@ release:
   - python setup.py sdist bdist_wheel
   - twine upload dist/* -u "$PYPIUSER" -p "$PYPIPW"
   only:
-  - master
+  - master@gitmate/open-source/IGitt
